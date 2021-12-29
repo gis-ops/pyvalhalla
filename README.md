@@ -10,6 +10,14 @@ We package CPython 3.7, 3.8, 3.9 binary **wheels** for Win64, MacOS X and Linux 
 
 ## Build
 
+First you need to build and install valhalla. On Linux I use:
+
+```shell script
+cmake -B build -DENABLE_BENCHMARKS=OFF -DENABLE_PYTHON_BINDINGS=OFF -DENABLE_TESTS=OFF -DENABLE_TOOLS=OFF -DENABLE_SERVICES=OFF -DENABLE_HTTP=OFF -DCMAKE_BUILD_TYPE=Release -G Ninja
+cmake --build build -- -j$(nproc)
+cmake --build . --target install
+```
+
 This should be enough for all platforms. For OSX and Linux the wheels have to be fixed with `auditwheel` or `delocate`.
 
 ```
