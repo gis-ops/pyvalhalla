@@ -19,6 +19,14 @@ library_dirs = list()
 extra_link_args = list()
 extra_compile_args = list()
 
+# TODO: still no idea how to handle conan's boost..:
+#   - win's conan installs config to $HOME/.conan, but package data (include etc) to `C:/.conan/data`
+#   - linux installs everything to $HOME/.conan/data
+#   - mac?
+#  Problem: how can I dynamically get the conan include directory for valhalla's boost dependency in this setup.py?
+#
+#  ref: https://github.com/conan-io/conan/issues/10246
+
 if platform == "win32":
     if not VCPKG_ROOT:
         print("ERROR. Set the environment variable VCPKG_ROOT to the absolute path of the vcpkg root directory.")
