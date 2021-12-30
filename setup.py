@@ -6,13 +6,17 @@ from setuptools import find_packages, setup
 from pybind11.setup_helpers import Pybind11Extension
 
 VCPKG_ROOT = os.getenv('VCPKG_ROOT', '')
-CONAN_ROOT = os.getenv('CONAN_ROOT', '')
+BOOST_ROOT = os.getenv('BOOST_ROOT', '')
+
+if not BOOST_ROOT:
+    print("ERROR. Set the environment variable BOOST_ROOT to the absolute path of the conan's include's parent directory.")
 
 include_dirs = [
     "third_party/date/include",
     "third_party/rapidjson/include",
     "third_party/pybind11/include",
-    "third_party/cpp-statsd-client/include"
+    "third_party/cpp-statsd-client/include",
+    f"{str(Path(BOOST_ROOT).joinpath('include'))}"
 ]
 libraries = list()
 library_dirs = list()
@@ -31,12 +35,9 @@ if platform == "win32":
     if not VCPKG_ROOT:
         print("ERROR. Set the environment variable VCPKG_ROOT to the absolute path of the vcpkg root directory.")
         sys.exit(1)
-    if not CONAN_ROOT:
-        print("ERROR. Set the environment variable CONAN_ROOT to the absolute path of the conan's include's parent directory.")
 
     PROGRAM_FILES = os.getenv('programfiles(x86)')
     include_dirs.extend([
-        f"{str(Path(CONAN_ROOT).joinpath('include'))}"
         f'{str(Path(PROGRAM_FILES).joinpath("valhalla", "include"))}',
         "third_party/dirent/include",
         str(Path(VCPKG_ROOT).joinpath('installed', 'x64-windows', 'include').resolve())

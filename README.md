@@ -17,13 +17,13 @@ First you need to build and install valhalla:
 cmake -B build -DENABLE_BENCHMARKS=OFF -DENABLE_PYTHON_BINDINGS=OFF -DENABLE_TESTS=OFF -DENABLE_TOOLS=OFF -DENABLE_SERVICES=OFF -DENABLE_HTTP=OFF -DCMAKE_BUILD_TYPE=Release -G Ninja
 cmake --build build -- -j$(nproc)
 cmake --build . --target install
-export CONAN_ROOT="/home/nilsnolde/.conan/"
+export BOOST_ROOT="/home/nilsnolde/.conan/data/boost/1.71.0/_/_/package/524ea35a8120baabdde02483add58d81bf541327/"
 
 # Windows
 # build with VS Code & CMake
 cmake --build c:/Users/nilsn/Documents/dev/cpp/valhalla/build --config Release --target install -j 24
 # set env vars for setup.py
-set CONAN_ROOT="C:\.conan\bc7df6\1"
+set BOOST_ROOT="C:\.conan\bc7df6\1"
 set VCPKG_ROOT=C:\Users\nilsn\Documents\dev\vcpkg
 ```
 
