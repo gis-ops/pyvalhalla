@@ -10,12 +10,21 @@ We package CPython 3.7, 3.8, 3.9 binary **wheels** for Win64, MacOS X and Linux 
 
 ## Build
 
-First you need to build and install valhalla. On Linux I use:
+First you need to build and install valhalla:
 
 ```shell script
+# Linux
 cmake -B build -DENABLE_BENCHMARKS=OFF -DENABLE_PYTHON_BINDINGS=OFF -DENABLE_TESTS=OFF -DENABLE_TOOLS=OFF -DENABLE_SERVICES=OFF -DENABLE_HTTP=OFF -DCMAKE_BUILD_TYPE=Release -G Ninja
 cmake --build build -- -j$(nproc)
 cmake --build . --target install
+export CONAN_ROOT="/home/nilsnolde/.conan/"
+
+# Windows
+# build with VS Code & CMake
+cmake --build c:/Users/nilsn/Documents/dev/cpp/valhalla/build --config Release --target install -j 24
+# set env vars for setup.py
+set CONAN_ROOT="C:\.conan\bc7df6\1"
+set VCPKG_ROOT=C:\Users\nilsn\Documents\dev\vcpkg
 ```
 
 This should be enough for all platforms. For OSX and Linux the wheels have to be fixed with `auditwheel` or `delocate`.
