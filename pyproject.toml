@@ -7,3 +7,22 @@ requires = [
     "pybind11>=2.9.0",
 ]
 build-backend = "setuptools.build_meta"
+
+[tool.black]
+line-length = 105
+exclude = '''
+/(
+    \..*
+  | dist
+  | wheelhouse
+  | .*build
+  | __pycache__
+)/
+'''
+
+[tool.cibuildwheel]
+test-command = 'python -c "import valhalla"'
+# find out current defaults: cibuildwheel --print-build-identifiers --platform linux
+build = "cp*"
+skip = "*musllinux*"
+archs = "native"

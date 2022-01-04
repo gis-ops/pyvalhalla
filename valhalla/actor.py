@@ -1,12 +1,20 @@
 import json
-from typing import Union, Callable
+from typing import Union
 
-from ._valhalla import _Actor
+try:
+    from .python_valhalla import _Actor
+except ModuleNotFoundError:
+    from python_valhalla import _Actor
 
 
-def decorator(func):
+# TODO: wasteful for dict input/output; more reasonable would be to extend
+#   the Actor's action C++ interfaces with a JSON arg
+def dict_or_str(func):
     def wrapped(*args):
-        # args[0] is self
+        # /status doesn't take any parameters
+        if not len(args) > 1:
+            return func(*args)
+
         if isinstance(args[1], dict):
             return json.loads(func(args[0], json.dumps(args[1])))
         elif not isinstance(args[1], str):
@@ -16,45 +24,47 @@ def decorator(func):
 
 
 class Actor(_Actor):
-    def __init__(self, config_file: str, tile_extract: str = "", config: dict = {}, verbose: bool = False) -> None:
-        super().__init__(config_file, tile_extract, config, verbose)
     
-    @decorator
+    @dict_or_str
     def route(self, req: Union[str, dict]):
-        return super().Route(req)
+        return super().route(req)
 
-    @decorator
+    @dict_or_str
     def locate(self, req: Union[str, dict]):
-        return super().Locate(req)
+        return super().locate(req)
 
-    @decorator
+    @dict_or_str
     def isochrone(self, req: Union[str, dict]):
-        return super().Isochrone(req)
+        return super().isochrone(req)
 
-    @decorator
+    @dict_or_str
     def matrix(self, req: Union[str, dict]):
-        return super().Matrix(req)
+        return super().matrix(req)
 
-    @decorator
+    @dict_or_str
     def trace_route(self, req: Union[str, dict]):
-        return super().TraceRoute(req)
+        return super().traceRoute(req)
 
-    @decorator
+    @dict_or_str
     def trace_attributes(self, req: Union[str, dict]):
-        return super().TraceAttributes(req)
+        return super().traceAttributes(req)
 
-    @decorator
+    @dict_or_str
     def height(self, req: Union[str, dict]):
-        return super().Height(req)
+        return super().height(req)
 
-    @decorator
+    @dict_or_str
+    def transit_available(self, req: Union[str, dict]):
+        return super().transit_available(req)
+
+    @dict_or_str
     def expansion(self, req: Union[str, dict]):
-        return super().Expansion(req)
+        return super().expansion(req)
 
-    @decorator
+    @dict_or_str
     def centroid(self, req: Union[str, dict]):
-        return super().Centroid(req)
+        return super().centroid(req)
 
-    @decorator
-    def status(self, req: Union[str, dict]):
-        return super().Status(req)
+    @dict_or_str
+    def status(self, req: Union[str, dict] = ""):
+        return super().status(req)

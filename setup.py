@@ -1,7 +1,7 @@
 import os
 from pathlib import Path
 import sys
-from sys import platform
+import platform
 from setuptools import find_packages, setup
 from pybind11.setup_helpers import Pybind11Extension
 
@@ -31,7 +31,7 @@ extra_compile_args = list()
 #
 #  ref: https://github.com/conan-io/conan/issues/10246
 
-if platform == "win32":
+if platform.system() == "Windows":
     if not VCPKG_ROOT:
         print("ERROR. Set the environment variable VCPKG_ROOT to the absolute path of the vcpkg root directory.")
         sys.exit(1)
@@ -48,8 +48,7 @@ if platform == "win32":
     ])
     libraries.extend(["libprotobuf-lite", "valhalla", "libcurl", "zlib", "Ws2_32", "ole32", "Shell32"])
     extra_compile_args.extend(["-DNOMINMAX", "-DWIN32_LEAN_AND_MEAN", "-DNOGDI"])
-
-elif platform == "linux":
+else:
     extra_link_args.extend(["-lvalhalla", "-lprotobuf-lite", "-lcurl", "-lz"])
     libraries.extend(["protobuf-lite", "valhalla", "curl", "z"])
 
