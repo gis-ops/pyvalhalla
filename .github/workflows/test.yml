@@ -41,7 +41,7 @@ jobs:
         path: |
           ${{ github.workspace }}/conan_data
           ${{ github.workspace }}/conan_build
-        key: conan-${{ matrix.os }}-${{ hashFiles('lib/valhalla/conanfile.txt') }}
+        key: conan-${{ matrix.platform }}-${{ hashFiles('lib/valhalla/conanfile.txt') }}
 
     - name: Cache Valhalla
       id: cache-valhalla
@@ -49,23 +49,22 @@ jobs:
       with:
         path: |
           ${{ github.workspace }}/lib/valhalla/build
-        key: valhalla-${{ matrix.os }}
+        key: valhalla-${{ matrix.platform }}
 
     - name: Set up Python for conan
       uses: actions/setup-python@v2
-      if: steps.cache-conan.outputs.cache-hit != 'true'
+      if: steps.cache-conan.outputs.cache-hit != 'true' && matrix.platform != 'linux'
       with:
         python-version: '3.x'
 
     - name: Install conan dependencies
-      if: steps.cache-conan.outputs.cache-hit != 'true'
+      if: steps.cache-conan.outputs.cache-hit != 'true' && matrix.platform != 'linux'
       run: |
         pip install pip --upgrade
         pip install conan
         conan profile new default --detect
-        conan config set "storage.path=$GITHUB_WORKSPACE/conan_data"
+        conan config set "storage.path=${{ github.workspace }}/conan_data"
         conan install --install-folder conan_build --remote conancenter lib/valhalla
-      shell: bash
 
 #    - name: Cache Win deps
 #      id: win-deps

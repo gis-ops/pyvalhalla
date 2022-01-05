@@ -29,16 +29,21 @@ archs = "native"
 manylinux-x86_64-image = "ghcr.io/gis-ops/manylinux:valhalla_py"
 
 [tool.cibuildwheel.linux]
+# need to install conan here bcs docker container
 before-all = """
-cmake -B lib/valhalla/build -S lib/valhalla -DENABLE_CCACHE=OFF -DBUILD_SHARED_LIBS=ON -DENABLE_BENCHMARKS=OFF -DENABLE_PYTHON_BINDINGS=OFF -DENABLE_TESTS=OFF -DENABLE_TOOLS=OFF -DENABLE_SERVICES=OFF -DENABLE_HTTP=OFF -DENABLE_CCACHE=OFF -DCMAKE_BUILD_TYPE=Release -DGEOS_INCLUDE_DIR=/usr/include/geos -DGEOS_LIB=/usr/lib/x86_64-linux-gnu/libgeos-3.5.1.so -DGEOS_C_LIB=/usr/lib/x86_64-linux-gnu/libgeos_c.so.1.9.1
-cmake --build lib/valhalla/build -- -j$(nproc)
+pip install conan
+echo "installing conan packages to {package}"
+conan config set "storage.path={package}/conan_data"
+conan install --install-folder conan_build --remote conancenter {package}/conanfile.txt
+cmake -B {package}/lib/valhalla/build -S {package}/lib/valhalla -DENABLE_CCACHE=OFF -DBUILD_SHARED_LIBS=ON -DENABLE_BENCHMARKS=OFF -DENABLE_PYTHON_BINDINGS=OFF -DENABLE_TESTS=OFF -DENABLE_TOOLS=OFF -DENABLE_SERVICES=OFF -DENABLE_HTTP=OFF -DENABLE_CCACHE=OFF -DCMAKE_BUILD_TYPE=Release -DGEOS_INCLUDE_DIR=/usr/include/geos -DGEOS_LIB=/usr/lib/x86_64-linux-gnu/libgeos-3.5.1.so -DGEOS_C_LIB=/usr/lib/x86_64-linux-gnu/libgeos_c.so.1.9.1
+cmake --build {package}/lib/valhalla/build -- -j$(nproc)
 """
 
 [tool.cibuildwheel.macos]
 before-all = """
 brew install protobuf cmake libtool libspatialite pkg-config luajit curl lz4 spatialite-tools unzip
-cmake -B lib/valhalla/build -S lib/valhalla -DENABLE_CCACHE=OFF -DBUILD_SHARED_LIBS=ON -DENABLE_BENCHMARKS=OFF -DENABLE_PYTHON_BINDINGS=OFF -DENABLE_TESTS=OFF -DENABLE_TOOLS=OFF -DENABLE_SERVICES=OFF -DENABLE_HTTP=OFF -DENABLE_CCACHE=OFF -DCMAKE_BUILD_TYPE=Release
-cmake --build lib/valhalla/build -- -j$(nproc)
+cmake -B {package}/lib/valhalla/build -S {package}/lib/valhalla -DENABLE_CCACHE=OFF -DBUILD_SHARED_LIBS=ON -DENABLE_BENCHMARKS=OFF -DENABLE_PYTHON_BINDINGS=OFF -DENABLE_TESTS=OFF -DENABLE_TOOLS=OFF -DENABLE_SERVICES=OFF -DENABLE_HTTP=OFF -DENABLE_CCACHE=OFF -DCMAKE_BUILD_TYPE=Release
+cmake --build {package}/lib/valhalla/build -- -j$(nproc)
 """
 
 [tool.cibuildwheel.windows]
