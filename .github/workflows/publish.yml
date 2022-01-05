@@ -2,17 +2,18 @@ name: Publish wheels
 
 on:
   push:
-    branches:
-      - 'main'
-    tags:
+    # TODO: remove eventually
+    branches-ignore:
       - '*'
+#    tags:
+#      - '*'
     paths-ignore:
       - '*.md'
-  pull_request:
-    branches:
-      - 'main'
-    paths-ignore:
-      - '*.md'
+#  pull_request:
+#    branches:
+#      - 'main'
+#    paths-ignore:
+#      - '*.md'
 
 jobs:
   build_wheels:

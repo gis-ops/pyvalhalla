@@ -8,8 +8,6 @@ from setuptools import find_packages, setup
 from pybind11.setup_helpers import Pybind11Extension
 import pybind11
 
-# TODO: didn't try all these changes yet!
-
 THIS_DIR = Path(__file__).parent.resolve()
 VALHALLA_INC_ROOT = THIS_DIR.joinpath("lib", "valhalla", "third_party")
 
@@ -17,24 +15,15 @@ include_dirs = [
     str(VALHALLA_INC_ROOT.joinpath("date", "include")),
     str(VALHALLA_INC_ROOT.joinpath("rapidjson", "include")),
     str(VALHALLA_INC_ROOT.joinpath("cpp-statsd-client", "include")),
-    str(THIS_DIR.joinpath("lib", "valhalla", "valhalla")),
     str(THIS_DIR.joinpath("lib", "valhalla")),
+    # some includes are referencing like <baldr/..> instead <valhalla/baldr/..>
+    str(THIS_DIR.joinpath("lib", "valhalla", "valhalla")),
     pybind11.get_include()
 ]
 libraries = list()
 library_dirs = list()
 extra_link_args = list()
 extra_compile_args = list()
-
-# do conan dependency resolution
-conanfile = tuple(Path(__file__).parent.resolve().rglob('conanbuildinfo.json'))
-if conanfile:
-    logging.info("Using conan to resolve dependencies.")
-    with conanfile[0].open() as f:
-        # it's just header-only boost so far..
-        include_dirs.extend(json.load(f)['dependencies'][0]['include_paths'])
-else:
-    logging.warning('Conan not installed and/or no conan build detected. Assuming dependencies are installed.')
 
 if platform.system() == "Windows":
     # This env var is already registered on GA windows-latest runner
@@ -46,7 +35,7 @@ if platform.system() == "Windows":
 
     include_dirs.extend([
         str(Path(vcpkg_root).joinpath('installed', 'x64-windows', 'include')),
-        str(THIS_DIR.joinpath("third_party", "dirent", "include")),
+        str(VALHALLA_INC_ROOT.joinpath("dirent", "include")),
     ])
     library_dirs.extend([
         str(Path(vcpkg_root).joinpath('installed', 'x64-windows', 'lib').resolve()),
@@ -55,11 +44,22 @@ if platform.system() == "Windows":
     libraries.extend(["libprotobuf-lite", "valhalla", "libcurl", "zlib", "Ws2_32", "ole32", "Shell32"])
     extra_compile_args.extend(["-DNOMINMAX", "-DWIN32_LEAN_AND_MEAN", "-DNOGDI"])
 else:
+    # where libvalhalla lives
     valhalla_src = str(THIS_DIR.joinpath("lib", "valhalla", "build", "src"))
     include_dirs.extend([valhalla_src])
     library_dirs.extend([valhalla_src])
     libraries.extend(["protobuf-lite", "valhalla", "curl", "z"])
     extra_link_args.extend(["-lvalhalla", "-lprotobuf-lite", "-lcurl", "-lz"])
+
+# do conan dependency resolution
+conanfile = tuple(Path(__file__).parent.resolve().rglob('conanbuildinfo.json'))
+if conanfile:
+    logging.info("Using conan to resolve dependencies.")
+    with conanfile[0].open() as f:
+        # it's just header-only boost so far..
+        include_dirs.extend(json.load(f)['dependencies'][0]['include_paths'])
+else:
+    logging.warning('Conan not installed and/or no conan build detected. Assuming dependencies are installed.')
 
 ext_modules = [
     Pybind11Extension(
