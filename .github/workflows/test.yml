@@ -24,9 +24,9 @@ jobs:
           - image: ubuntu-latest
             platform: linux
             cxx: 'g++-9'
-          - image: windows-latest
-            platform: windows
-            cxx: 'Visual Studio'
+#          - image: windows-latest
+#            platform: windows
+#            cxx: 'Visual Studio'
           # - macos-latest
 
     steps:
@@ -50,21 +50,6 @@ jobs:
         path: |
           ${{ github.workspace }}/lib/valhalla/build
         key: valhalla-${{ matrix.platform }}
-
-    - name: Set up Python for conan
-      uses: actions/setup-python@v2
-      if: steps.cache-conan.outputs.cache-hit != 'true' && matrix.platform != 'linux'
-      with:
-        python-version: '3.x'
-
-    - name: Install conan dependencies
-      if: steps.cache-conan.outputs.cache-hit != 'true' && matrix.platform != 'linux'
-      run: |
-        pip install pip --upgrade
-        pip install conan
-        conan profile new default --detect
-        conan config set "storage.path=${{ github.workspace }}/conan_data"
-        conan install --install-folder conan_build --remote conancenter lib/valhalla
 
 #    - name: Cache Win deps
 #      id: win-deps

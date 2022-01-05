@@ -32,7 +32,6 @@ manylinux-x86_64-image = "ghcr.io/gis-ops/manylinux:valhalla_py"
 # need to install conan here bcs docker container
 before-all = """
 pip install conan
-echo "installing conan packages to {package}"
 conan config set "storage.path={package}/conan_data"
 conan install --install-folder conan_build --remote conancenter {package}/conanfile.txt
 cmake -B {package}/lib/valhalla/build -S {package}/lib/valhalla -DENABLE_CCACHE=OFF -DBUILD_SHARED_LIBS=ON -DENABLE_BENCHMARKS=OFF -DENABLE_PYTHON_BINDINGS=OFF -DENABLE_TESTS=OFF -DENABLE_TOOLS=OFF -DENABLE_SERVICES=OFF -DENABLE_HTTP=OFF -DENABLE_CCACHE=OFF -DCMAKE_BUILD_TYPE=Release -DGEOS_INCLUDE_DIR=/usr/include/geos -DGEOS_LIB=/usr/lib/x86_64-linux-gnu/libgeos-3.5.1.so -DGEOS_C_LIB=/usr/lib/x86_64-linux-gnu/libgeos_c.so.1.9.1
@@ -41,6 +40,9 @@ cmake --build {package}/lib/valhalla/build -- -j$(nproc)
 
 [tool.cibuildwheel.macos]
 before-all = """
+pip install conan
+conan config set "storage.path={package}/conan_data"
+conan install --install-folder conan_build --remote conancenter {package}/conanfile.txt
 brew install protobuf cmake libtool libspatialite pkg-config luajit curl lz4 spatialite-tools unzip
 cmake -B {package}/lib/valhalla/build -S {package}/lib/valhalla -DENABLE_CCACHE=OFF -DBUILD_SHARED_LIBS=ON -DENABLE_BENCHMARKS=OFF -DENABLE_PYTHON_BINDINGS=OFF -DENABLE_TESTS=OFF -DENABLE_TOOLS=OFF -DENABLE_SERVICES=OFF -DENABLE_HTTP=OFF -DENABLE_CCACHE=OFF -DCMAKE_BUILD_TYPE=Release
 cmake --build {package}/lib/valhalla/build -- -j$(nproc)
@@ -48,6 +50,13 @@ cmake --build {package}/lib/valhalla/build -- -j$(nproc)
 
 [tool.cibuildwheel.windows]
 before-all = """
+pip install conan
+conan profile new default --detect
+conan profile update "settings.compiler=Visual Studio" default
+conan profile update "settings.compiler.version=16" default
+conan config set "storage.path={package}/conan_data"
+conan install --install-folder conan_build --remote conancenter lib/valhalla
+vcpkg.exe install --triplet x64-windows "@lib/valhalla/.vcpkg_deps.txt"
 cmake.exe -Slib/valhalla -Blib/valhalla/build -DENABLE_CCACHE=OFF -DBUILD_SHARED_LIBS=ON -DENABLE_BENCHMARKS=OFF -DENABLE_PYTHON_BINDINGS=OFF -DENABLE_TESTS=OFF -DENABLE_TOOLS=OFF -DENABLE_SERVICES=OFF -DENABLE_HTTP=OFF -DENABLE_CCACHE=OFF -DCMAKE_BUILD_TYPE=Release -DLUA_INCLUDE_DIR=%VCPKG_INSTALLATION_ROOT%\\installed\\x64-windows\\include\\luajit -DLUA_LIBRARIES=\\installed\\x64-windows\\lib\\lua51.lib -DPython_EXECUTABLE=C:\\Users\\nilsn\\AppData\\Local\\Programs\\Python\\Python39\\python.exe -DCMAKE_TOOLCHAIN_FILE=%VCPKG_INSTALLATION_ROOT%\\scripts\\buildsystems\\vcpkg.cmake -DVCPKG_TARGET_TRIPLET=x64-windows -DCMAKE_EXPORT_COMPILE_COMMANDS=TRUE -G "Visual Studio 16 2019" -T host=x64 -A x64
 cmake --build lib/valhalla/build
 """
