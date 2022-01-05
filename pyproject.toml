@@ -21,7 +21,7 @@ exclude = '''
 '''
 
 [tool.cibuildwheel]
-test-command = 'python -c "import valhalla"'
+test-command = 'python -c "from valhalla import Actor"'
 # find out current defaults: cibuildwheel --print-build-identifiers --platform linux
 build = "cp*"
 skip = "*musllinux*"

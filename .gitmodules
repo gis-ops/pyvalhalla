@@ -1,3 +1,3 @@
-[submodule "third_party/cpp-statsd-client"]
-	path = third_party/cpp-statsd-client
-	url = https://github.com/vthiery/cpp-statsd-client
+[submodule "lib/valhalla"]
+	path = lib/valhalla
+	url = https://github.com/valhalla/valhalla

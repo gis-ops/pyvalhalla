@@ -1,56 +1,65 @@
+import json
+import logging
 import os
 from pathlib import Path
 import sys
 import platform
 from setuptools import find_packages, setup
 from pybind11.setup_helpers import Pybind11Extension
+import pybind11
 
-VCPKG_ROOT = os.getenv('VCPKG_ROOT', '')
-BOOST_ROOT = os.getenv('BOOST_ROOT', '')
+# TODO: didn't try all these changes yet!
 
-if not BOOST_ROOT:
-    print("ERROR. Set the environment variable BOOST_ROOT to the absolute path of the conan's include's parent directory.")
+THIS_DIR = Path(__file__).parent.resolve()
+VALHALLA_INC_ROOT = THIS_DIR.joinpath("lib", "valhalla", "third_party")
 
 include_dirs = [
-    "third_party/date/include",
-    "third_party/rapidjson/include",
-    "third_party/pybind11/include",
-    "third_party/cpp-statsd-client/include",
-    f"{str(Path(BOOST_ROOT).joinpath('include'))}"
+    str(VALHALLA_INC_ROOT.joinpath("date", "include")),
+    str(VALHALLA_INC_ROOT.joinpath("rapidjson", "include")),
+    str(VALHALLA_INC_ROOT.joinpath("cpp-statsd-client", "include")),
+    str(THIS_DIR.joinpath("lib", "valhalla", "valhalla")),
+    str(THIS_DIR.joinpath("lib", "valhalla")),
+    pybind11.get_include()
 ]
 libraries = list()
 library_dirs = list()
 extra_link_args = list()
 extra_compile_args = list()
 
-# TODO: still no idea how to handle conan's boost..:
-#   - win's conan installs config to $HOME/.conan, but package data (include etc) to `C:/.conan/data`
-#   - linux installs everything to $HOME/.conan/data
-#   - mac?
-#  Problem: how can I dynamically get the conan include directory for valhalla's boost dependency in this setup.py?
-#
-#  ref: https://github.com/conan-io/conan/issues/10246
+# do conan dependency resolution
+conanfile = tuple(Path(__file__).parent.resolve().rglob('conanbuildinfo.json'))
+if conanfile:
+    logging.info("Using conan to resolve dependencies.")
+    with conanfile[0].open() as f:
+        # it's just header-only boost so far..
+        include_dirs.extend(json.load(f)['dependencies'][0]['include_paths'])
+else:
+    logging.warning('Conan not installed and/or no conan build detected. Assuming dependencies are installed.')
 
 if platform.system() == "Windows":
-    if not VCPKG_ROOT:
-        print("ERROR. Set the environment variable VCPKG_ROOT to the absolute path of the vcpkg root directory.")
+    # This env var is already registered on GA windows-latest runner
+    # Need to set for local setup as well
+    vcpkg_root = os.getenv("VCPKG_INSTALLATION_ROOT", "")
+    if not vcpkg_root:
+        logging.critical("Set the environment variable VCPKG_INSTALLATION_ROOT to the absolute path of the vcpkg root directory.")
         sys.exit(1)
 
-    PROGRAM_FILES = os.getenv('programfiles(x86)')
     include_dirs.extend([
-        f'{str(Path(PROGRAM_FILES).joinpath("valhalla", "include"))}',
-        "third_party/dirent/include",
-        str(Path(VCPKG_ROOT).joinpath('installed', 'x64-windows', 'include').resolve())
+        str(Path(vcpkg_root).joinpath('installed', 'x64-windows', 'include')),
+        str(THIS_DIR.joinpath("third_party", "dirent", "include")),
     ])
     library_dirs.extend([
-        f'{str(Path(PROGRAM_FILES).joinpath("valhalla", "lib"))}',
-        str(Path(VCPKG_ROOT).joinpath('installed', 'x64-windows', 'lib').resolve())
+        str(Path(vcpkg_root).joinpath('installed', 'x64-windows', 'lib').resolve()),
+        str(THIS_DIR.joinpath("lib", "valhalla", "build", "Release"))
     ])
     libraries.extend(["libprotobuf-lite", "valhalla", "libcurl", "zlib", "Ws2_32", "ole32", "Shell32"])
     extra_compile_args.extend(["-DNOMINMAX", "-DWIN32_LEAN_AND_MEAN", "-DNOGDI"])
 else:
-    extra_link_args.extend(["-lvalhalla", "-lprotobuf-lite", "-lcurl", "-lz"])
+    valhalla_src = str(THIS_DIR.joinpath("lib", "valhalla", "build", "src"))
+    include_dirs.extend([valhalla_src])
+    library_dirs.extend([valhalla_src])
     libraries.extend(["protobuf-lite", "valhalla", "curl", "z"])
+    extra_link_args.extend(["-lvalhalla", "-lprotobuf-lite", "-lcurl", "-lz"])
 
 ext_modules = [
     Pybind11Extension(
@@ -66,14 +75,13 @@ ext_modules = [
     ),
 ]
 
-here = os.path.abspath(os.path.dirname(__file__))
-
-with open(os.path.join(here, "README.md"), encoding="utf-8") as f:
+# open README.md for PyPI
+with open(os.path.join(THIS_DIR, "README.md"), encoding="utf-8") as f:
     long_description = "\n" + f.read()
 
 setup(
     name="valhalla",
-    description="High-level bindings to the Valhalla framework",
+    description="High-level bindings to the Valhalla C++ library",
     long_description=long_description,
     author="Nils Nolde",
     author_email="nils@gis-ops.com",

@@ -1,6 +1,5 @@
 #include <pybind11/pybind11.h>
 
-#include "baldr/rapidjson_utils.h"
 #include <boost/make_shared.hpp>
 #include <boost/noncopyable.hpp>
 #include <boost/optional.hpp>
