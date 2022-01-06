@@ -50,7 +50,7 @@ cmake --build {package}/lib/valhalla/build -- -j$(nproc)
 
 [tool.cibuildwheel.windows]
 before-all = """\
-ls -l lib/vahalla && \
+ls -l {package}/lib/vahalla && \
 pip install conan && \
 conan profile new default --detect && \
 conan profile update "settings.compiler=Visual Studio" default && \
