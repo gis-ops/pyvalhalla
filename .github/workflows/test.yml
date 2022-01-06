@@ -22,12 +22,12 @@ jobs:
       matrix:
         # TODO: re-enable other OSs
         include:
-          - image: ubuntu-latest
-            platform: linux
-            cxx: 'g++-9'
-#          - image: windows-latest
-#            platform: windows
-#            cxx: 'Visual Studio'
+#         - image: ubuntu-latest
+#            platform: linux
+#            cxx: 'g++-9'
+          - image: windows-latest
+            platform: windows
+            cxx: 'Visual Studio'
 #          - macos-latest
 
     steps:
@@ -44,27 +44,10 @@ jobs:
           ${{ github.workspace }}/conan_build
         key: conan-${{ matrix.platform }}-${{ hashFiles('lib/valhalla/conanfile.txt') }}
 
-    - name: Cache Valhalla
-      id: cache-valhalla
-      uses: actions/cache@v2
-      with:
-        path: |
-          ${{ github.workspace }}/lib/valhalla/build
-        key: valhalla-${{ matrix.platform }}
-
-    - name: Cache Win deps
-      id: win-deps
-      uses: actions/cache@v2
-      if: matrix.platform == 'windows'
-      with:
-        path: |
-          c:/vcpkg
-        key: win-deps-${{ hashFiles('lib/valhalla/.vcpkg_deps.txt') }}
-
     - uses: pypa/cibuildwheel@v2.3.1
       env:
         MACOSX_DEPLOYMENT_TARGET: 10.9
-        CIBW_BUILD: '*cp310*'
+        CIBW_BUILD: '*cp39*'
 
 #    - name: Verify clean directory
 #      run: git diff --exit-code
