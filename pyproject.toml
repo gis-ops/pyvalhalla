@@ -45,7 +45,7 @@ conan install --install-folder conan_build --remote conancenter {package}/lib/va
 
 [tool.cibuildwheel.windows]
 before-all = """\
-pip install conan delvehweel && \
+pip install conan delvewheel && \
 conan profile new default --detect && \
 conan profile update "settings.compiler=Visual Studio" default && \
 conan profile update "settings.compiler.version=16" default && \
