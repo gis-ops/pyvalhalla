@@ -21,9 +21,9 @@ jobs:
       matrix:
         # TODO: re-enable other OSs
         include:
-          - image: ubuntu-latest
-            platform: linux
-            cxx: 'g++-9'
+#          - image: ubuntu-latest
+#            platform: linux
+#            cxx: 'g++-9'
           - image: windows-latest
             platform: windows
             cxx: 'Visual Studio'
