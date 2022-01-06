@@ -18,6 +18,7 @@ jobs:
     name: Wheels on ${{ matrix.platform }}
     runs-on: ${{ matrix.image }}
     strategy:
+      fail-fast: false
       matrix:
         # TODO: re-enable other OSs
         include:
@@ -51,22 +52,19 @@ jobs:
           ${{ github.workspace }}/lib/valhalla/build
         key: valhalla-${{ matrix.platform }}
 
-#    - name: Cache Win deps
-#      id: win-deps
-#      uses: actions/cache@v2
-#      with:
-#        path: |
-#          c:/vcpkg
-#        key: win-deps-${{ hashFiles('lib/valhalla/.vcpkg_deps.txt') }}
+    - name: Cache Win deps
+      id: win-deps
+      uses: actions/cache@v2
+      if: matrix.platform == 'windows'
+      with:
+        path: |
+          c:/vcpkg
+        key: win-deps-${{ hashFiles('lib/valhalla/.vcpkg_deps.txt') }}
 
     - uses: pypa/cibuildwheel@v2.3.1
       env:
         MACOSX_DEPLOYMENT_TARGET: 10.9
         CIBW_BUILD: '*cp310*'
-
-    - name: TEMP
-      run: |
-        ls -la lib/valhalla/build
 
 #    - name: Verify clean directory
 #      run: git diff --exit-code
