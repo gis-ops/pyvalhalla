@@ -53,4 +53,4 @@ conan config set "storage.path={package}/conan_data" && \
 conan install --install-folder conan_build --remote conancenter {package}/lib/valhalla/conanfile.txt
 """
 
-repair-wheel-command = "delvewheel repair --add-path lib\windows\lib {wheel}"
+repair-wheel-command = "delvewheel repair --add-path lib/windows/lib {wheel}"
