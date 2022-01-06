@@ -63,6 +63,7 @@ jobs:
       env:
         MACOSX_DEPLOYMENT_TARGET: 10.9
         CIBW_BUILD: '*cp310*'
+      shell: bash
 
     - name: TEMP
       run: |
