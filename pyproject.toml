@@ -50,13 +50,13 @@ cmake --build {package}/lib/valhalla/build -- -j$(nproc)
 
 [tool.cibuildwheel.windows]
 before-all = """\
-pip install conan \
-conan profile new default --detect \
-conan profile update "settings.compiler=Visual Studio" default \
-conan profile update "settings.compiler.version=16" default \
-conan config set "storage.path={package}/conan_data" \
-conan install --install-folder conan_build --remote conancenter {package}/lib/vahalla/conanfile.txt \
-vcpkg.exe install --triplet x64-windows "@lib/valhalla/.vcpkg_deps.txt" \
-cmake.exe -Slib/valhalla -Blib/valhalla/build -DENABLE_CCACHE=OFF -DBUILD_SHARED_LIBS=OFF -DENABLE_BENCHMARKS=OFF -DENABLE_PYTHON_BINDINGS=ON -DENABLE_TESTS=OFF -DENABLE_TOOLS=OFF -DENABLE_SERVICES=OFF -DENABLE_HTTP=OFF -DENABLE_CCACHE=OFF -DCMAKE_BUILD_TYPE=Release -DLUA_INCLUDE_DIR=%VCPKG_INSTALLATION_ROOT%\\installed\\x64-windows\\include\\luajit -DLUA_LIBRARIES=%VCPKG_INSTALLATION_ROOT%\\installed\\x64-windows\\lib\\lua51.lib -DCMAKE_TOOLCHAIN_FILE=%VCPKG_INSTALLATION_ROOT%\\scripts\\buildsystems\\vcpkg.cmake -DVCPKG_TARGET_TRIPLET=x64-windows -G "Visual Studio 16 2019" -T host=x64 -A x64 \
+pip install conan && \
+conan profile new default --detect && \
+conan profile update "settings.compiler=Visual Studio" default && \
+conan profile update "settings.compiler.version=16" default && \
+conan config set "storage.path={package}/conan_data" && \
+conan install --install-folder conan_build --remote conancenter {package}/lib/vahalla/conanfile.txt && \
+vcpkg.exe install --triplet x64-windows "@lib/valhalla/.vcpkg_deps.txt" && \
+cmake.exe -Slib/valhalla -Blib/valhalla/build -DENABLE_CCACHE=OFF -DBUILD_SHARED_LIBS=OFF -DENABLE_BENCHMARKS=OFF -DENABLE_PYTHON_BINDINGS=ON -DENABLE_TESTS=OFF -DENABLE_TOOLS=OFF -DENABLE_SERVICES=OFF -DENABLE_HTTP=OFF -DENABLE_CCACHE=OFF -DCMAKE_BUILD_TYPE=Release -DLUA_INCLUDE_DIR=%VCPKG_INSTALLATION_ROOT%\\installed\\x64-windows\\include\\luajit -DLUA_LIBRARIES=%VCPKG_INSTALLATION_ROOT%\\installed\\x64-windows\\lib\\lua51.lib -DCMAKE_TOOLCHAIN_FILE=%VCPKG_INSTALLATION_ROOT%\\scripts\\buildsystems\\vcpkg.cmake -DVCPKG_TARGET_TRIPLET=x64-windows -G "Visual Studio 16 2019" -T host=x64 -A x64 && \
 cmake --build lib/valhalla/build --config Release -j 8 \
 """
