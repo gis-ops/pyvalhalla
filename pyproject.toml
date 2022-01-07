@@ -28,29 +28,6 @@ skip = "*musllinux*"
 archs = "native"
 manylinux-x86_64-image = "ghcr.io/gis-ops/manylinux:valhalla_py"
 
-[tool.cibuildwheel.linux]
-# need to install conan here bcs docker container
-before-all = """
-pip install conan
-conan config set "storage.path={package}/conan_data"
-conan install --install-folder conan_build --remote conancenter {package}/lib/valhalla/conanfile.txt
-"""
-
-[tool.cibuildwheel.macos]
-before-all = """
-pip install conan
-conan config set "storage.path={package}/conan_data"
-conan install --install-folder conan_build --remote conancenter {package}/lib/valhalla/conanfile.txt
-"""
-
 [tool.cibuildwheel.windows]
-before-all = """\
-pip install conan delvewheel && \
-conan profile new default --detect && \
-conan profile update "settings.compiler=Visual Studio" default && \
-conan profile update "settings.compiler.version=16" default && \
-conan config set "storage.path={package}/conan_data" && \
-conan install --install-folder conan_build --remote conancenter {package}/lib/valhalla/conanfile.txt
-"""
-
+before-all = "pip install conan delvewheel"
 repair-wheel-command = "delvewheel repair --add-path lib/windows/lib {wheel}"

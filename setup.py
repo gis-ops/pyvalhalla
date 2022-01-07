@@ -2,46 +2,34 @@ import json
 import logging
 import os
 from pathlib import Path
-import sys
 import platform
 from setuptools import find_packages, setup
-from pybind11.setup_helpers import Pybind11Extension
 import pybind11
+from pybind11.setup_helpers import Pybind11Extension
+
+# TODO:
+#   - remove valhalla as submodule
+#   - check in the same valhalla library for all platforms (i.e. same commit)
+#   - check in dependencies on MacOS
+#   - try it out on all platforms before engaging CI again..
 
 THIS_DIR = Path(__file__).parent.resolve()
-VALHALLA_INC_ROOT = THIS_DIR.joinpath("lib", "valhalla", "third_party")
-VALHALLA_SOURCE = str(THIS_DIR.joinpath("lib", "valhalla", "build", "src"))
 
 include_dirs = [
-    str(VALHALLA_INC_ROOT.joinpath("date", "include")),
-    str(VALHALLA_INC_ROOT.joinpath("rapidjson", "include")),
-    str(VALHALLA_INC_ROOT.joinpath("cpp-statsd-client", "include")),
-    str(THIS_DIR.joinpath("lib", "valhalla")),
-    str(THIS_DIR.joinpath("lib", platform.system().lower(), "include")),
+    str(THIS_DIR.joinpath("include")),
     # some includes are referencing like <baldr/..> instead of <valhalla/baldr/..>
-    str(THIS_DIR.joinpath("lib", "valhalla", "valhalla")),
-    # contains headers for all platforms
-    VALHALLA_SOURCE,
+    str(THIS_DIR.joinpath("include", "valhalla")),
     pybind11.get_include()
 ]
+library_dirs = [str(THIS_DIR.joinpath("lib", platform.system().lower()))]
 libraries = list()
-library_dirs = list()
 extra_link_args = list()
 extra_compile_args = list()
 
 if platform.system() == "Windows":
-    # I couldn't take it anymore on windows, so I just checked in all dependencies including headers
-    # needs to be update here and there, but likely mainly for valhalla, fair enough!
-    include_dirs.extend([
-        str(THIS_DIR.joinpath("lib", "windows", "include")),
-        str(VALHALLA_INC_ROOT.joinpath("dirent", "include"))
-    ])
-    library_dirs.append(str(THIS_DIR.joinpath("lib", "windows", "lib")))
     libraries.extend(["libprotobuf-lite", "valhalla", "libcurl", "zlib", "Ws2_32", "ole32", "Shell32"])
     extra_compile_args.extend(["-DNOMINMAX", "-DWIN32_LEAN_AND_MEAN", "-DNOGDI"])
 else:
-    # where libvalhalla lives
-    library_dirs.extend([VALHALLA_SOURCE])
     libraries.extend(["protobuf-lite", "valhalla", "curl", "z"])
     extra_link_args.extend(["-lvalhalla", "-lprotobuf-lite", "-lcurl", "-lz"])
 
