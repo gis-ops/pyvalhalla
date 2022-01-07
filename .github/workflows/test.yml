@@ -3,7 +3,7 @@ name: Test code
 on:
   push:
     # TODO: change back to main
-    branches:
+    branches-ignore:
       - '*'
     paths-ignore:
       - '*.md'
@@ -32,8 +32,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-      with:
-        submodules: recursive
 
     # keep in-sync with the other yaml
     - name: Cache Conan

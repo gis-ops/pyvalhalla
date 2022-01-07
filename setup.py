@@ -9,6 +9,7 @@ from pybind11.setup_helpers import Pybind11Extension
 
 # TODO:
 #   - remove valhalla as submodule
+#   - check in includes of valhalla's third_party modules
 #   - check in the same valhalla library for all platforms (i.e. same commit)
 #   - check in dependencies on MacOS
 #   - try it out on all platforms before engaging CI again..
