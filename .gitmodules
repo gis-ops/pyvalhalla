@@ -1,3 +1,0 @@
-[submodule "lib/valhalla"]
-	path = lib/valhalla
-	url = https://github.com/valhalla/valhalla
