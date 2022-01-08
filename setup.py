@@ -4,7 +4,6 @@ import os
 from pathlib import Path
 import platform
 from setuptools import find_packages, setup
-import pybind11
 from pybind11.setup_helpers import Pybind11Extension
 
 # TODO:
@@ -19,8 +18,7 @@ THIS_DIR = Path(__file__).parent.resolve()
 include_dirs = [
     str(THIS_DIR.joinpath("include")),
     # some includes are referencing like <baldr/..> instead of <valhalla/baldr/..>
-    str(THIS_DIR.joinpath("include", "valhalla")),
-    pybind11.get_include()
+    str(THIS_DIR.joinpath("include", "valhalla"))
 ]
 library_dirs = [str(THIS_DIR.joinpath("lib", platform.system().lower()))]
 libraries = list()
