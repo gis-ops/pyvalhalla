@@ -18,13 +18,13 @@ jobs:
     name: Wheels on ${{ matrix.platform }}
     runs-on: ${{ matrix.image }}
     strategy:
-      fail-fast: false
+      fail-fast: true
       matrix:
         # TODO: re-enable other OSs
         include:
          - image: ubuntu-latest
-            platform: linux
-            cxx: 'g++-9'
+           platform: linux
+           cxx: 'g++-9'
 #          - image: windows-latest
 #            platform: windows
 #            cxx: 'Visual Studio'
