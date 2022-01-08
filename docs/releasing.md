@@ -50,17 +50,25 @@ To release after dependency updates (mostly Valhalla usually), it will then be a
 
 - all headers to `include`
 - don't forget valhalla's `third_party` repos: `date`, `rapidjson`, `statsd` & `dirent` (win-only) are needed for compiling bindings
-- proto headers to `include/valhalla/proto`, which have to be compiled first, e.g.
+- proto headers to `include/valhalla/proto`, which have to be compiled first, e.g. in Valhalla's root
 
-`protoc --proto_path=lib/valhalla/proto --cpp_out=lib/valhalla/valhalla/proto lib/valhalla/proto/*.proto`
+`protoc --proto_path=proto --cpp_out=/home/nilsnolde/dev/gis-ops/valhalla-py/include/valhalla/proto proto/*.proto`
 
 #### Linux
 
 Fire up the `ghcr.io/gis-ops/manylinux:valhalla_py` image which has all dependencies installed and build valhalla:
 
+```
+docker run -dt -v $PWD:/valhalla-py --name valhalla-py ghcr.io/gis-ops/manylinux:valhalla_py
+./scripts/build_linux.sh
+```
+
+
+
 TODO: describe the process, maybe add a small script for building and copying the headers & libs
 
 - copy the .so deps: `ldd ${jail}/bin/* | egrep -o '\[^ \]*/lib\[^ \]*\[.\]\[0-9\]' | xargs -I{} -P1 sudo cp -v {} ${jail}{}` (from [here](https://unix.stackexchange.com/a/120017))
+- **add the built valhalla commit**
 
 #### Mac OS
 

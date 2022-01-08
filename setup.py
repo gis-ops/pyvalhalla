@@ -7,18 +7,16 @@ from setuptools import find_packages, setup
 from pybind11.setup_helpers import Pybind11Extension
 
 # TODO:
-#   - remove valhalla as submodule
-#   - check in includes of valhalla's third_party modules
-#   - check in the same valhalla library for all platforms (i.e. same commit)
 #   - check in dependencies on MacOS
 #   - try it out on all platforms before engaging CI again..
 
 THIS_DIR = Path(__file__).parent.resolve()
 
 include_dirs = [
-    str(THIS_DIR.joinpath("include")),
+    str(THIS_DIR.joinpath("include", "common")),
     # some includes are referencing like <baldr/..> instead of <valhalla/baldr/..>
-    str(THIS_DIR.joinpath("include", "valhalla"))
+    str(THIS_DIR.joinpath("include", "common", "valhalla")),
+    str(THIS_DIR.joinpath("include", platform.system().lower()))
 ]
 library_dirs = [str(THIS_DIR.joinpath("lib", platform.system().lower()))]
 libraries = list()
@@ -26,6 +24,7 @@ extra_link_args = list()
 extra_compile_args = list()
 
 if platform.system() == "Windows":
+    include_dirs.append(str(THIS_DIR.joinpath("include_win")))
     libraries.extend(["libprotobuf-lite", "valhalla", "libcurl", "zlib", "Ws2_32", "ole32", "Shell32"])
     extra_compile_args.extend(["-DNOMINMAX", "-DWIN32_LEAN_AND_MEAN", "-DNOGDI"])
 else:

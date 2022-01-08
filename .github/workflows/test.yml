@@ -3,7 +3,7 @@ name: Test code
 on:
   push:
     # TODO: change back to main
-    branches-ignore:
+    branches:
       - '*'
     paths-ignore:
       - '*.md'
@@ -22,12 +22,12 @@ jobs:
       matrix:
         # TODO: re-enable other OSs
         include:
-#         - image: ubuntu-latest
-#            platform: linux
-#            cxx: 'g++-9'
-          - image: windows-latest
-            platform: windows
-            cxx: 'Visual Studio'
+         - image: ubuntu-latest
+            platform: linux
+            cxx: 'g++-9'
+#          - image: windows-latest
+#            platform: windows
+#            cxx: 'Visual Studio'
 #          - macos-latest
 
     steps:
@@ -72,7 +72,6 @@ jobs:
     - uses: pypa/cibuildwheel@v2.3.1
       env:
         MACOSX_DEPLOYMENT_TARGET: 10.9
-        CIBW_BUILD: '*cp39*'
 
 #    - name: Verify clean directory
 #      run: git diff --exit-code
