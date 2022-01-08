@@ -29,8 +29,8 @@ The usual minor bug fixes.
 ### Releasing
 
 What a struggle! I won't go in all the details and different dead-ends I tried, but dear C++ dev being (rightfully) appalled by the current design: Windows made it pretty much impossible to build the dependencies in CI. Some reasons:
-- `vcpkg` dependency installation on Github Action runners takes > 45 mins
-- `vcpkg` binaries can't be cached since they exceed GA free limit
+- `vcpkg` dependency installation on Github Action Windows runners takes > 45 mins
+- `vcpkg` dependency binaries can't be cached since they exceed GA free limit
 - `vcpkg` installs _both_ debug & release binaries, bloating the cache abnormously. There's an option to only build release binaries, but some (e.g. `spatialite`) won't compile without debug files
 - almost most important: save some resources. Why the hell would I need to build dependencies which change really rarely? Pointless.
 
@@ -38,7 +38,7 @@ So, decision was in the end to check in all dependencies except for boost header
 
 #### Procedure
 
-We need access to all headers and libraries, so everything needs to be in `./lib`. There's no magic going on here, it's a plain copy/paste operation, our `setup.py` will configure the build correctly.
+We need access to all headers and libraries, so everything needs to be in `./include` `./lib`. There's no magic going on here, it's a plain copy/paste operation, our `setup.py` will configure the build correctly.
 
 To release binding code changes, we simply push a tag and let CI take care of the rest.
 
@@ -48,11 +48,10 @@ To release after dependency updates (mostly Valhalla usually), it will then be a
 
 #### Common
 
-- all headers to `include`
+- all header-only libraries are safe to share in `./include/common`
 - don't forget valhalla's `third_party` repos: `date`, `rapidjson`, `statsd` & `dirent` (win-only) are needed for compiling bindings
-- proto headers to `include/valhalla/proto`, which have to be compiled first, e.g. in Valhalla's root
 
-`protoc --proto_path=proto --cpp_out=/home/nilsnolde/dev/gis-ops/valhalla-py/include/valhalla/proto proto/*.proto`
+Proto headers have to be compiled on each platform separately.
 
 #### Linux
 
@@ -61,11 +60,10 @@ Fire up the `ghcr.io/gis-ops/manylinux:valhalla_py` image which has all dependen
 ```
 docker run -dt -v $PWD:/valhalla-py --name valhalla-py ghcr.io/gis-ops/manylinux:valhalla_py
 ./scripts/build_linux.sh
+sudo chown -R nilsnolde:nilsnolde .
 ```
 
-
-
-TODO: describe the process, maybe add a small script for building and copying the headers & libs
+That'll take care of all the header & library copying, proto compilation etc. It'll also build a wheel to `./wheelhouse`.
 
 - copy the .so deps: `ldd ${jail}/bin/* | egrep -o '\[^ \]*/lib\[^ \]*\[.\]\[0-9\]' | xargs -I{} -P1 sudo cp -v {} ${jail}{}` (from [here](https://unix.stackexchange.com/a/120017))
 - **add the built valhalla commit**
@@ -75,5 +73,19 @@ TODO: describe the process, maybe add a small script for building and copying th
 TODO: describe process, maybe add a small script to build valhalla and copy headers & libs (maybe some `brew list` or so?)
 
 #### Windows
+
+First build Valhalla:
+```
+cmake -Bupstream/build -Supstream -DENABLE_TOOLS=OFF -DENABLE_HTTP=OFF -DENABLE_DATA_TOOLS=ON -DENABLE_PYTHON_BINDINGS=ON -DENABLE_SERVICES=OFF -DENABLE_TESTS=OFF -DENABLE_CCACHE=OFF -DENABLE_COVERAGE=OFF -DENABLE_BENCHMARKS=OFF -DENABLE_SINGLE_FILES_WERROR=OFF  -DLUA_INCLUDE_DIR=C:\Users\nilsn\Documents\dev\vcpkg\installed\x64-windows\include\luajit -DLUA_LIBRARIES=C:\Users\nilsn\Documents\dev\vcpkg\installed\x64-windows\lib\lua51.lib -DPython_EXECUTABLE=C:\Users\nilsn\AppData\Local\Programs\Python\Python39\python.exe -DPython_LIBRARIES=C:\Users\nilsn\AppData\Local\Programs\Python\Python39\libs\python39.lib -DPython_INCLUDE_DIRS=C:\Users\nilsn\AppData\Local\Programs\Python\Python39\include -DCMAKE_TOOLCHAIN_FILE=C:\Users\nilsn\Documents\dev\vcpkg\scripts\buildsystems\vcpkg.cmake -DVCPKG_TARGET_TRIPLET=x64-windows -DCMAKE_BUILD_TYPE=Release -G "Visual Studio 16 2019" -T host=x64 -A x64
+cmake --build upstream/build --config Release --target valhalla -- -j 8
+protoc.exe --proto_path=upstream/proto --cpp_out=include/windows/valhalla/proto upstream/proto/*.proto
+
+# protobuf 3.12.3 seems to have problems with spelling: https://github.com/protocolbuffers/protobuf/issues/7522
+# need to patch here:
+# replace all occurrences of "AuxillaryParseTableField" with "AuxiliaryParseTableField"
+git apply win_protobuf.patch
+
+
+```
 
 The only area where Windows is shining: makes it really simple, just copy the headers & libs from `vcpkg`.
