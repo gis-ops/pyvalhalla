@@ -38,6 +38,7 @@ jobs:
     - name: Cache Conan
       id: cache-conan
       uses: actions/cache@v2
+      if: matrix.platform != 'windows'
       with:
         path: |
           ${{ github.workspace }}/conan_data
@@ -53,7 +54,7 @@ jobs:
         python-version: '3.x'
 
     - name: Install Conan (Windows)
-      if: matrix.platform == 'windows' && steps.cache-conan.outputs.cache-hit != 'true'
+      if: matrix.platform == 'windows'  # && steps.cache-conan.outputs.cache-hit != 'true'
       run: |
         pip install pip --upgrade
         pip install conan
