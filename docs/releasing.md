@@ -1,6 +1,6 @@
 ## `valhalla-py` release patterns
 
-We release entirely independently from Valhalla core. One can retrieve both versions by:
+We release independently from Valhalla core. One can retrieve both versions by:
 
 TBD
 
@@ -16,7 +16,7 @@ As opposed to Valhalla itself, we also guarantee API stability (much easier to d
 
 #### Minor version change
 
-The usual backwards-compatible features/deprecations.
+The usual backwards-compatible features/deprecations, often forward-compatible stuff (e.g. additional request parameters).
 
 **Note** however, that you might have to re-create the configuration JSON.
 
@@ -65,8 +65,7 @@ sudo chown -R nilsnolde:nilsnolde .
 
 That'll take care of all the header & library copying, proto compilation etc. It'll also build a wheel to `./wheelhouse`.
 
-- copy the .so deps: `ldd ${jail}/bin/* | egrep -o '\[^ \]*/lib\[^ \]*\[.\]\[0-9\]' | xargs -I{} -P1 sudo cp -v {} ${jail}{}` (from [here](https://unix.stackexchange.com/a/120017))
-- **add the built valhalla commit**
+- **add the built valhalla commit and add the current version in __init__.py**
 
 #### Mac OS
 
@@ -83,9 +82,6 @@ protoc.exe --proto_path=upstream/proto --cpp_out=include/windows/valhalla/proto 
 # protobuf 3.12.3 seems to have problems with spelling: https://github.com/protocolbuffers/protobuf/issues/7522
 # need to patch here:
 # replace all occurrences of "AuxillaryParseTableField" with "AuxiliaryParseTableField"
-git apply win_protobuf.patch
-
-
 ```
 
 The only area where Windows is shining: makes it really simple, just copy the headers & libs from `vcpkg`.
