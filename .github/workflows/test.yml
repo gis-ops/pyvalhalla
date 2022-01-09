@@ -16,7 +16,7 @@ on:
 
 jobs:
   build_wheels:
-    name: Pulish wheels on ${{ matrix.platform }}
+    name: Test Python 3.10 wheels on ${{ matrix.platform }}
     runs-on: ${{ matrix.image }}
     strategy:
       fail-fast: true
