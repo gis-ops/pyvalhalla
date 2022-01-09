@@ -62,7 +62,7 @@ with open(os.path.join(THIS_DIR, "README.md"), encoding="utf-8") as f:
     long_description = "\n" + f.read()
 
 setup(
-    name="valhalla-py",
+    name="pyvalhalla",
     description="High-level bindings to the Valhalla C++ library",
     long_description=long_description,
     author="Nils Nolde",
