@@ -5,6 +5,7 @@ cd valhalla-py
 apt-get update
 apt-get install -y python3-pip
 pip3 install conan
+conan config set "storage.path=$PWD/upstream/conan_data"
 conan install --install-folder upstream/conan_build .
 cmake -B upstream/build -S upstream/ -DENABLE_CCACHE=OFF -DBUILD_SHARED_LIBS=OFF -DENABLE_BENCHMARKS=OFF -DENABLE_PYTHON_BINDINGS=ON -DENABLE_TESTS=OFF -DENABLE_TOOLS=OFF -DENABLE_SERVICES=OFF -DENABLE_HTTP=OFF -DENABLE_CCACHE=OFF -DCMAKE_BUILD_TYPE=Release
 cmake --build upstream/build -- -j$(nproc)
@@ -27,8 +28,8 @@ for dep in $deps; do
 done
 
 # make the bindings so we can see which libraries it exactly links to and also for testing
-/opt/python/cp39-cp39/bin/pip install -r build-requirements.txt
-/opt/python/cp39-cp39/bin/python3 setup.py bdist_wheel
+/opt/python/cp310-cp310/bin/pip install -r build-requirements.txt
+/opt/python/cp310-cp310/bin/python3 setup.py bdist_wheel
 
 echo "copying all libraries"
 deps="libprotobuf-lite libcurl libz"
@@ -52,6 +53,7 @@ done
 # copy libvalhalla
 cp -f upstream/build/src/libvalhalla.a lib/linux
 
+# build the proto files into the include/linux/valhalla/proto directory
 mkdir -p include/linux/valhalla/proto
 protoc --proto_path=upstream/proto --cpp_out=include/linux/valhalla/proto upstream/proto/*.proto
 

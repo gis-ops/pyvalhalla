@@ -31,10 +31,12 @@ else:
     extra_link_args.extend(["-lvalhalla", "-lprotobuf-lite", "-lcurl", "-lz"])
 
 # do conan dependency resolution
-conanfile = tuple(Path(__file__).parent.resolve().rglob('conanbuildinfo.json'))
-if conanfile:
+# locally there will be 2 conanbuildinfo.json, one here and one in ./upstream/conan_build
+conanfiles = Path(__file__).parent.resolve().rglob('conanbuildinfo.json')
+conanfiles = tuple(filter(lambda p: p.parent.parent.name != "upstream", conanfiles))
+if conanfiles:
     logging.info("Using conan to resolve dependencies.")
-    with conanfile[0].open() as f:
+    with conanfiles[0].open() as f:
         # it's just header-only boost so far..
         include_dirs.extend(json.load(f)['dependencies'][0]['include_paths'])
 else:

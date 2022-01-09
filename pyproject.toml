@@ -24,10 +24,10 @@ exclude = '''
 test-command = "python -c \"from valhalla import Actor\""
 # find out current defaults: cibuildwheel --print-build-identifiers --platform linux
 build = "cp*"
-skip = "*musllinux* cp310*"
+skip = "*musllinux*"
 archs = "native"
 manylinux-x86_64-image = "ghcr.io/gis-ops/manylinux:valhalla_py"
 
 [tool.cibuildwheel.windows]
 before-all = "pip install conan delvewheel"
-repair-wheel-command = "delvewheel repair --add-path lib/windows {wheel}"
+repair-wheel-command = "delvewheel repair --add-path lib/windows {wheel} -w {dest_dir}"

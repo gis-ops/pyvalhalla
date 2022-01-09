@@ -13,12 +13,14 @@ on:
 #    paths-ignore:
 #      - '*.md'
 
+# TODO: linting stage which determines if the tests run
+
 jobs:
   build_wheels:
     name: Wheels on ${{ matrix.platform }}
     runs-on: ${{ matrix.image }}
     strategy:
-      fail-fast: true
+      fail-fast: false
       matrix:
         # TODO: re-enable other OSs
         include:
@@ -72,10 +74,6 @@ jobs:
     - uses: pypa/cibuildwheel@v2.3.1
       env:
         MACOSX_DEPLOYMENT_TARGET: 10.9
-
-#    - name: Verify clean directory
-#      run: git diff --exit-code
-#      shell: bash
 
     - name: Upload wheels
       uses: actions/upload-artifact@v2
