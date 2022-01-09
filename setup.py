@@ -2,61 +2,41 @@ import json
 import logging
 import os
 from pathlib import Path
-import sys
 import platform
 from setuptools import find_packages, setup
 from pybind11.setup_helpers import Pybind11Extension
-import pybind11
+
+# TODO:
+#   - check in dependencies on MacOS
+#   - try it out on all platforms before engaging CI again..
 
 THIS_DIR = Path(__file__).parent.resolve()
-VALHALLA_INC_ROOT = THIS_DIR.joinpath("lib", "valhalla", "third_party")
-VALHALLA_SOURCE = str(THIS_DIR.joinpath("lib", "valhalla", "build", "src"))
 
 include_dirs = [
-    str(VALHALLA_INC_ROOT.joinpath("date", "include")),
-    str(VALHALLA_INC_ROOT.joinpath("rapidjson", "include")),
-    str(VALHALLA_INC_ROOT.joinpath("cpp-statsd-client", "include")),
-    str(THIS_DIR.joinpath("lib", "valhalla")),
+    str(THIS_DIR.joinpath("include", "common")),
     # some includes are referencing like <baldr/..> instead of <valhalla/baldr/..>
-    str(THIS_DIR.joinpath("lib", "valhalla", "valhalla")),
-    # contains headers for all platforms
-    VALHALLA_SOURCE,
-    pybind11.get_include()
+    str(THIS_DIR.joinpath("include", "common", "valhalla")),
+    str(THIS_DIR.joinpath("include", platform.system().lower()))
 ]
+library_dirs = [str(THIS_DIR.joinpath("lib", platform.system().lower()))]
 libraries = list()
-library_dirs = list()
 extra_link_args = list()
 extra_compile_args = list()
 
 if platform.system() == "Windows":
-    # This env var is already registered on GA windows-latest runner
-    # Need to set for local setup as well
-    vcpkg_root = os.getenv("VCPKG_INSTALLATION_ROOT", "")
-    if not vcpkg_root:
-        logging.critical("Set the environment variable VCPKG_INSTALLATION_ROOT to the absolute path of the vcpkg root directory.")
-        sys.exit(1)
-
-    include_dirs.extend([
-        str(Path(vcpkg_root).joinpath('installed', 'x64-windows', 'include')),
-        str(VALHALLA_INC_ROOT.joinpath("dirent", "include")),
-    ])
-    library_dirs.extend([
-        str(Path(vcpkg_root).joinpath('installed', 'x64-windows', 'lib').resolve()),
-        str(THIS_DIR.joinpath("lib", "valhalla", "build", "src", "Release"))
-    ])
     libraries.extend(["libprotobuf-lite", "valhalla", "libcurl", "zlib", "Ws2_32", "ole32", "Shell32"])
     extra_compile_args.extend(["-DNOMINMAX", "-DWIN32_LEAN_AND_MEAN", "-DNOGDI"])
 else:
-    # where libvalhalla lives
-    library_dirs.extend([VALHALLA_SOURCE])
     libraries.extend(["protobuf-lite", "valhalla", "curl", "z"])
     extra_link_args.extend(["-lvalhalla", "-lprotobuf-lite", "-lcurl", "-lz"])
 
 # do conan dependency resolution
-conanfile = tuple(Path(__file__).parent.resolve().rglob('conanbuildinfo.json'))
-if conanfile:
+# locally there will be 2 conanbuildinfo.json, one here and one in ./upstream/conan_build
+conanfiles = Path(__file__).parent.resolve().rglob('conanbuildinfo.json')
+conanfiles = tuple(filter(lambda p: p.parent.parent.name != "upstream", conanfiles))
+if conanfiles:
     logging.info("Using conan to resolve dependencies.")
-    with conanfile[0].open() as f:
+    with conanfiles[0].open() as f:
         # it's just header-only boost so far..
         include_dirs.extend(json.load(f)['dependencies'][0]['include_paths'])
 else:

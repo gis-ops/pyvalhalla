@@ -2,50 +2,53 @@ name: Publish wheels
 
 on:
   push:
-    # TODO: remove eventually
     branches-ignore:
       - '*'
-#    tags:
-#      - '*'
+    tags:
+      - '*'
     paths-ignore:
       - '*.md'
-#  pull_request:
-#    branches:
-#      - 'main'
-#    paths-ignore:
-#      - '*.md'
 
 jobs:
   build_wheels:
-    name: Wheels on ${{ matrix.os }}
-    runs-on: ${{ matrix.os }}
+    name: Publish wheels on ${{ matrix.platform }}
+    runs-on: ${{ matrix.image }}
     strategy:
+      fail-fast: true
       matrix:
-        os:
-          - ubuntu-latest
-          - macos-latest
-          - windows-latest
-
+        # TODO: re-enable other OSs
+        include:
+          - image: ubuntu-latest
+            platform: linux
+            cxx: 'g++-9'
+          - image: windows-latest
+            platform: windows
+            cxx: 'Visual Studio'
+#          - macos-latest
     steps:
     - uses: actions/checkout@v2
-      with:
-        submodules: recursive
 
+    # keep in-sync with the other yaml
     - name: Cache Conan
       id: cache-conan
       uses: actions/cache@v2
-      if: matrix.os == 'windows-latest'
+      if: matrix.platform != 'windows'
       with:
         path: |
-          conan_data
-        key: conan-${{ matrix.os }}-${{ hashFiles('conanfile.txt') }}
+          ${{ github.workspace }}/conan_data
+          ${{ github.workspace }}/conan_build
+        key: conan-${{ matrix.platform }}-${{ hashFiles('conanfile.txt') }}
+        restore_keys: |
+          conan-${{ matrix.platform }}-
 
-    - name: Set up Python ${{ matrix.python_version }} for conan
+    - name: Configure Python
       uses: actions/setup-python@v2
+      if: steps.cache-conan.outputs.cache-hit != 'true'
       with:
         python-version: '3.x'
 
-    - name: Install conan for Windows
+    - name: Install Conan (Windows)
+      if: matrix.platform == 'windows'  # && steps.cache-conan.outputs.cache-hit != 'true'
       run: |
         pip install pip --upgrade
         pip install conan
@@ -53,15 +56,20 @@ jobs:
         conan profile update "settings.compiler=Visual Studio" default
         conan profile update "settings.compiler.version=16" default
         conan config set "storage.path=$env:GITHUB_WORKSPACE/conan_data"
-        conan install --install-folder $PWD/conan_build --remote conancenter lib/valhalla
+        conan install --install-folder conan_build --remote conancenter .
+
+    - name: Install Conan (Unix)
+      if: matrix.platform != 'windows' && steps.cache-conan.outputs.cache-hit != 'true'
+      run: |
+        pip install pip --upgrade
+        pip install conan
+        conan profile new default --detect
+        conan config set "storage.path=${{ github.workspace }}/conan_data"
+        conan install --install-folder ${{ github.workspace }}/conan_build --remote conancenter .
 
     - uses: pypa/cibuildwheel@v2.3.1
       env:
         MACOSX_DEPLOYMENT_TARGET: 10.9
-
-    - name: Verify clean directory
-      run: git diff --exit-code
-      shell: bash
 
     - name: Upload wheels
       uses: actions/upload-artifact@v2
@@ -71,7 +79,7 @@ jobs:
   upload_all:
     name: Upload if release
     if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags')
-    needs: [build_wheels, build_sdist]
+    needs: [build_wheels]
     runs-on: ubuntu-latest
 
     steps:
@@ -84,5 +92,5 @@ jobs:
 
     - uses: pypa/gh-action-pypi-publish@v1.4.2
       with:
-        user: jonathf
-        password: ${{ secrets.pypi_password }}
+        user: nilsnolde
+        password: ${{ secrets.PYPI_PASS }}

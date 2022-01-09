@@ -12,4 +12,8 @@ We distribute all 4 currently supported CPython versions as binary **wheels** fo
 
 ## Usage
 
-TBD
+TODO
+
+## License
+
+`valhalla-py` is licensed with GPLv2, see [LICENSE](./LICENSE).
