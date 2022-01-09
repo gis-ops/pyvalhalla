@@ -65,6 +65,7 @@ setup(
     name="pyvalhalla",
     description="High-level bindings to the Valhalla C++ library",
     long_description=long_description,
+    long_description_content_type="text/markdown",
     author="Nils Nolde",
     author_email="nils@gis-ops.com",
     packages=find_packages(exclude=["tests", "*.tests", "*.tests.*", "tests.*"]),
@@ -74,4 +75,10 @@ setup(
     ext_modules=ext_modules,
     zip_safe=False,
     use_scm_version=True,
+    classifiers=[
+        "License :: OSI Approved :: GNU General Public License v2 or later (GPLv2+)",
+        "Programming Language :: Python",
+        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: Implementation :: CPython",
+    ],
 )
