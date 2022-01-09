@@ -13,7 +13,6 @@ jobs:
   build_wheels:
     name: Publish wheels on ${{ matrix.platform }}
     runs-on: ${{ matrix.image }}
-    needs: [ lint ]
     strategy:
       fail-fast: true
       matrix:
