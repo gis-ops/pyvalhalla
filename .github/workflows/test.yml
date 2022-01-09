@@ -16,7 +16,7 @@ on:
 
 jobs:
   build_wheels:
-    name: Test Python 3.10 wheels on ${{ matrix.platform }}
+    name: ${{ matrix.platform }} - Test 3.10 wheels
     runs-on: ${{ matrix.image }}
     strategy:
       fail-fast: true

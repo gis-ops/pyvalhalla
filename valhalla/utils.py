@@ -1,8 +1,10 @@
 from typing import List, Tuple
 
 
-def decode_polyline(polyline: str, precision: int = 6, order: str = 'lnglat') -> List[Tuple[float, float]]:
-    """Decodes an encoded ``polyline`` string with ``precision`` to a list of coordinate tuples. 
+def decode_polyline(
+    polyline: str, precision: int = 6, order: str = "lnglat"
+) -> List[Tuple[float, float]]:
+    """Decodes an encoded ``polyline`` string with ``precision`` to a list of coordinate tuples.
     The coordinate ``order`` of the output can be ``lnglat`` or ``latlng``."""
 
     return _decode(polyline, precision=precision, order=order, is3d=False)
@@ -19,14 +21,14 @@ def _trans(value, index):
     while byte is None or byte >= 0x20:
         byte = ord(value[index]) - 63
         index += 1
-        result |= (byte & 0x1f) << shift
+        result |= (byte & 0x1F) << shift
         shift += 5
         comp = result & 1
 
     return ~(result >> 1) if comp else (result >> 1), index
 
 
-def _decode(expression, precision=5, order='lnglat', is3d=False):
+def _decode(expression, precision=5, order="lnglat", is3d=False):
     """
     Copyright (c) 2014 Bruno M. Custódio
     Copyright (c) 2016 Frederick Jansen
@@ -34,8 +36,14 @@ def _decode(expression, precision=5, order='lnglat', is3d=False):
 
     Modified to be able to work with 3D polylines and a specified coordinate order.
     """
-    coordinates, index, lat, lng, z, length, factor = [], 0, 0, 0, 0, len(expression), float(
-        10**precision
+    coordinates, index, lat, lng, z, length, factor = (
+        [],
+        0,
+        0,
+        0,
+        0,
+        len(expression),
+        float(10 ** precision),
     )
 
     while index < length:
@@ -43,7 +51,7 @@ def _decode(expression, precision=5, order='lnglat', is3d=False):
         lng_change, index = _trans(expression, index)
         lat += lat_change
         lng += lng_change
-        coord = (lat / factor, lng / factor) if order == 'latlng' else (lng / factor, lat / factor)
+        coord = (lat / factor, lng / factor) if order == "latlng" else (lng / factor, lat / factor)
         if not is3d:
             coordinates.append(coord)
         else:
