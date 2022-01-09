@@ -34,6 +34,17 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
+    - name: Configure Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.7'
+
+    - name: Lint & Style Check
+      run: |
+        pip install black flake8
+        black --check valhalla
+        flake8 valhalla
+
     # keep in-sync with the other yaml
     - name: Cache Conan
       id: cache-conan
@@ -44,14 +55,8 @@ jobs:
           ${{ github.workspace }}/conan_data
           ${{ github.workspace }}/conan_build
         key: conan-${{ matrix.platform }}-${{ hashFiles('conanfile.txt') }}
-        restore_keys: |
+        restore-keys: |
           conan-${{ matrix.platform }}-
-
-    - name: Configure Python
-      uses: actions/setup-python@v2
-      if: steps.cache-conan.outputs.cache-hit != 'true'
-      with:
-        python-version: '3.x'
 
     - name: Install Conan (Windows)
       if: matrix.platform == 'windows'  # && steps.cache-conan.outputs.cache-hit != 'true'

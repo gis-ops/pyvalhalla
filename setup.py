@@ -7,8 +7,7 @@ from setuptools import find_packages, setup
 from pybind11.setup_helpers import Pybind11Extension
 
 # TODO:
-#   - check in dependencies on MacOS
-#   - try it out on all platforms before engaging CI again..
+#   - try it out on MacOS and check in dependencies
 
 THIS_DIR = Path(__file__).parent.resolve()
 
@@ -16,7 +15,7 @@ include_dirs = [
     str(THIS_DIR.joinpath("include", "common")),
     # some includes are referencing like <baldr/..> instead of <valhalla/baldr/..>
     str(THIS_DIR.joinpath("include", "common", "valhalla")),
-    str(THIS_DIR.joinpath("include", platform.system().lower()))
+    str(THIS_DIR.joinpath("include", platform.system().lower())),
 ]
 library_dirs = [str(THIS_DIR.joinpath("lib", platform.system().lower()))]
 libraries = list()
@@ -32,15 +31,17 @@ else:
 
 # do conan dependency resolution
 # locally there will be 2 conanbuildinfo.json, one here and one in ./upstream/conan_build
-conanfiles = Path(__file__).parent.resolve().rglob('conanbuildinfo.json')
+conanfiles = Path(__file__).parent.resolve().rglob("conanbuildinfo.json")
 conanfiles = tuple(filter(lambda p: p.parent.parent.name != "upstream", conanfiles))
 if conanfiles:
     logging.info("Using conan to resolve dependencies.")
     with conanfiles[0].open() as f:
         # it's just header-only boost so far..
-        include_dirs.extend(json.load(f)['dependencies'][0]['include_paths'])
+        include_dirs.extend(json.load(f)["dependencies"][0]["include_paths"])
 else:
-    logging.warning('Conan not installed and/or no conan build detected. Assuming dependencies are installed.')
+    logging.warning(
+        "Conan not installed and/or no conan build detected. Assuming dependencies are installed."
+    )
 
 ext_modules = [
     Pybind11Extension(
@@ -52,7 +53,7 @@ ext_modules = [
         include_dirs=include_dirs,
         extra_link_args=extra_link_args,
         extra_compile_args=extra_compile_args,
-        libraries=libraries,  #, "geos", "luajit-5.1", "sqlite3", "spatialite"]
+        libraries=libraries,  # , "geos", "luajit-5.1", "sqlite3", "spatialite"]
     ),
 ]
 
@@ -61,7 +62,7 @@ with open(os.path.join(THIS_DIR, "README.md"), encoding="utf-8") as f:
     long_description = "\n" + f.read()
 
 setup(
-    name="valhalla",
+    name="valhalla-py",
     description="High-level bindings to the Valhalla C++ library",
     long_description=long_description,
     author="Nils Nolde",
