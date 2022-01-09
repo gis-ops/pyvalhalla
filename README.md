@@ -1,4 +1,5 @@
 # Valhalla for Python
+[![Tests](https://github.com/gis-ops/valhalla-py/actions/workflows/test.yml/badge.svg)](https://github.com/gis-ops/valhalla-py/actions/workflows/test.yml)
 
 This spin-off project simply offers packaged Python bindings to the fantastic [Valhalla project](https://github.com/valhalla/valhalla).
 
