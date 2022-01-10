@@ -1,0 +1,53 @@
+name: Pull Request
+
+# run test within the manylinux container: linux is quickest to run but needs access to the right system libs
+# runs tests on all python versions
+# push_master.yml tests all platforms but only py3.7 (lowest supported version)
+
+on:
+  pull_request:
+    branches:
+      - 'master'
+    paths-ignore:
+      - '*.md'
+
+# TODO: linting stage which determines if the tests run
+
+jobs:
+  build_wheels:
+    name: PR - cp*, ubuntu-latest
+    container: ghcr.io/gis-ops/manylinux:valhalla_py
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Lint & Style Check
+      run: |
+        pip install black flake8
+        black --check valhalla
+        flake8 valhalla
+
+    # keep in-sync with the other yaml
+    - name: Cache Conan
+      id: cache-conan
+      uses: actions/cache@v2
+      with:
+        path: |
+          ${{ github.workspace }}/conan_data
+          ${{ github.workspace }}/conan_build
+        key: conan-${{ matrix.platform }}-${{ hashFiles('conanfile.txt') }}
+        restore-keys: |
+          conan-${{ matrix.platform }}-
+
+    - name: Install Conan
+      if: steps.cache-conan.outputs.cache-hit != 'true'
+      run: |
+        pip install pip --upgrade
+        pip install conan
+        conan profile new default --detect
+        conan config set "storage.path=${{ github.workspace }}/conan_data"
+        conan install --install-folder ${{ github.workspace }}/conan_build --remote conancenter .
+
+    - name: Test
+      run: |
+        for py_version in cp37-cp37m cp38-cp38 cp39-cp39 cp310-cp310; do /opt/python/$py_version/bin/pip install -e . && /opt/python/$py_version/bin/python -c "from valhalla import Actor"; done

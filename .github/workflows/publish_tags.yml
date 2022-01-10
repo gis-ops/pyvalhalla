@@ -11,7 +11,7 @@ on:
 
 jobs:
   build_wheels:
-    name: Publish wheels on ${{ matrix.platform }}
+    name: Wheels - cp*, ${{ matrix.platform }}
     runs-on: ${{ matrix.image }}
     strategy:
       fail-fast: true
@@ -32,12 +32,6 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: '3.7'
-
-    - name: Lint & Style Check
-      run: |
-        pip install black flake8
-        black --check valhalla
-        flake8 valhalla
 
     # keep in-sync with the other yaml
     - name: Cache Conan

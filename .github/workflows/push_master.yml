@@ -1,4 +1,7 @@
-name: Test code
+name: Master Push
+
+# run (and build) only py3.7 but on all platforms
+# pull_request.yml tests all py versions but only on ubuntu
 
 on:
   push:
@@ -6,17 +9,10 @@ on:
       - 'master'
     paths-ignore:
       - '*.md'
-  pull_request:
-    branches:
-      - 'master'
-    paths-ignore:
-      - '*.md'
-
-# TODO: linting stage which determines if the tests run
 
 jobs:
   build_wheels:
-    name: ${{ matrix.platform }} - Test 3.10 wheels
+    name: Push - cp37*, ${{ matrix.image }}
     runs-on: ${{ matrix.image }}
     strategy:
       fail-fast: true
