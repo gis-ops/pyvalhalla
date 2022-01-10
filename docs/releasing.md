@@ -1,8 +1,12 @@
 ## `valhalla-py` release patterns
 
-We release independently from Valhalla core. One can retrieve both versions by:
+We release independently from Valhalla core. One can retrieve both by:
 
-TBD
+```python
+import valhalla
+print(valhalla.__version__)
+print(valhalla.__valhalla_commit__)
+```
 
 ### Release scheme
 
@@ -16,11 +20,15 @@ As opposed to Valhalla itself, we also guarantee API stability (much easier to d
 
 #### Minor version change
 
+Does not reflect Valhalla's minor version!
+
 The usual backwards-compatible features/deprecations, often forward-compatible stuff (e.g. additional request parameters).
 
 **Note** however, that you might have to re-create the configuration JSON.
 
 #### Patch version change
+
+Does not reflect Valhalla's patch version!
 
 The usual minor bug fixes.
 
