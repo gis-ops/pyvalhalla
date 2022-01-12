@@ -1,0 +1,77 @@
+name: Custom build
+
+# This one is disabled by default and can be enabled/customized based on specific needs:
+# create a branch, customize this for your branch (i.e. on.push.branches member) and push
+
+on:
+  push:
+    branches-ignore:
+      - '*'
+    paths-ignore:
+      - '*.md'
+
+jobs:
+  build_wheels:
+    name: Wheels - cp*, ${{ matrix.platform }}
+    runs-on: ${{ matrix.image }}
+    strategy:
+      matrix:
+        # TODO: re-enable other OSs
+        include:
+          - image: ubuntu-latest
+            platform: linux
+            cxx: 'g++-9'
+#          - image: windows-latest
+#            platform: windows
+#            cxx: 'Visual Studio'
+#          - macos-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Configure Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.7'
+
+    # keep in-sync with the other yaml
+    - name: Cache Conan
+      id: cache-conan
+      uses: actions/cache@v2
+      if: matrix.platform != 'windows'
+      with:
+        path: |
+          ${{ github.workspace }}/conan_data
+          ${{ github.workspace }}/conan_build
+        key: conan-${{ matrix.platform }}-${{ hashFiles('conanfile.txt') }}
+        restore-keys: |
+          conan-${{ matrix.platform }}-
+
+#    - name: Install Conan (Windows)
+#      if: matrix.platform == 'windows'  # && steps.cache-conan.outputs.cache-hit != 'true'
+#      run: |
+#        pip install pip --upgrade
+#        pip install conan
+#        conan profile new default --detect
+#        conan profile update "settings.compiler=Visual Studio" default
+#        conan profile update "settings.compiler.version=16" default
+#        conan config set "storage.path=$env:GITHUB_WORKSPACE/conan_data"
+#        conan install --install-folder conan_build --remote conancenter .
+
+    - name: Install Conan (Unix)
+      if: matrix.platform != 'windows' && steps.cache-conan.outputs.cache-hit != 'true'
+      run: |
+        pip install pip --upgrade
+        pip install conan
+        conan profile new default --detect
+        conan config set "storage.path=${{ github.workspace }}/conan_data"
+        conan install --install-folder ${{ github.workspace }}/conan_build --remote conancenter .
+
+    - uses: pypa/cibuildwheel@v2.3.1
+      env:
+        MACOSX_DEPLOYMENT_TARGET: 10.9
+        CIBW_BUILD: cp310* cp39* cp38*
+
+    - name: Upload wheels
+      uses: actions/upload-artifact@v2
+      with:
+        path: wheelhouse/*.whl
