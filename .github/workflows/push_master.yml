@@ -50,9 +50,9 @@ jobs:
         path: |
           ${{ github.workspace }}/conan_data
           ${{ github.workspace }}/conan_build
-        key: conan-${{ matrix.platform }}-${{ hashFiles('conanfile.txt') }}
+        key: conan-v2-${{ matrix.platform }}-${{ hashFiles('conanfile.txt') }}
         restore-keys: |
-          conan-${{ matrix.platform }}-
+          conan-v2-${{ matrix.platform }}-
 
     - name: Install Conan (Windows)
       if: matrix.platform == 'windows'  # && steps.cache-conan.outputs.cache-hit != 'true'
