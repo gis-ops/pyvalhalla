@@ -19,9 +19,9 @@ jobs:
       matrix:
         # TODO: re-enable other OSs
         include:
-          - image: ubuntu-latest
-            platform: linux
-            cxx: 'g++-9'
+#          - image: ubuntu-latest
+#            platform: linux
+#            cxx: 'g++-9'
           - image: windows-latest
             platform: windows
             cxx: 'Visual Studio'
@@ -73,7 +73,6 @@ jobs:
         conan profile new default --detect
         conan config set "storage.path=${{ github.workspace }}/conan_data"
         conan install --install-folder ${{ github.workspace }}/conan_build --remote conancenter .
-        cat /home/runner/work/valhalla-py/valhalla-py/conan_build/conanbuildinfo.json
 
     # only build the lastest python version
     - uses: pypa/cibuildwheel@v2.3.1
