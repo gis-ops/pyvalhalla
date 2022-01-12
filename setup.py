@@ -40,8 +40,8 @@ if conanfiles:
         inc = json.load(f)["dependencies"][0]["include_paths"]
         include_dirs.extend(inc)
         logging.warning(f"Boost path: {inc}")
-        logging.warning(f"Boost inc path exists: {Path(inc).joinpath('boost').exists()}")
-        for p in Path(inc).joinpath("boost").iterdir():
+        logging.warning(f"Boost inc path exists: {Path(inc[0]).joinpath('boost').exists()}")
+        for p in Path(inc[0]).joinpath("boost").iterdir():
             logging.warning(p)
 
 else:
