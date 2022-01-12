@@ -1,12 +1,17 @@
 #!/usr/bin/env bash
+set -e
 
 cd valhalla-py
 
+# install conan
 apt-get update
 apt-get install -y python3-pip
 pip3 install conan
 conan config set "storage.path=$PWD/upstream/conan_data"
-conan install --install-folder upstream/conan_build .
+conan install --install-folder upstream/conan_build upstream/
+
+# build valhalla
+pushd upstream && git apply ../upstream_patches/* && popd
 cmake -B upstream/build -S upstream/ -DENABLE_CCACHE=OFF -DBUILD_SHARED_LIBS=OFF -DENABLE_BENCHMARKS=OFF -DENABLE_PYTHON_BINDINGS=ON -DENABLE_TESTS=OFF -DENABLE_TOOLS=OFF -DENABLE_SERVICES=OFF -DENABLE_HTTP=OFF -DENABLE_CCACHE=OFF -DCMAKE_BUILD_TYPE=Release
 cmake --build upstream/build -- -j$(nproc)
 
@@ -34,7 +39,7 @@ done
 echo "copying all libraries"
 deps="libprotobuf-lite libcurl libz"
 # prints all linked library paths
-for path in $(ldd build/lib.linux-x86_64-3.9/valhalla/_valhalla.cpython-39-x86_64-linux-gnu.so | awk 'NF == 4 {print $3}; NF == 2 {print $1}'); do
+for path in $(ldd build/lib.linux-x86_64-3.10/valhalla/_valhalla.cpython-310-x86_64-linux-gnu.so | awk 'NF == 4 {print $3}; NF == 2 {print $1}'); do
   for dep in ${deps}; do
     if [[ ${path} == *${dep}* ]]; then
       if [[ ${path} == *"/x86_64-linux-gnu/"* ]]; then
@@ -55,6 +60,6 @@ cp -f upstream/build/src/libvalhalla.a lib/linux
 
 # build the proto files into the include/linux/valhalla/proto directory
 mkdir -p include/linux/valhalla/proto
-protoc --proto_path=upstream/proto --cpp_out=include/linux/valhalla/proto upstream/proto/*.proto
+/usr/bin/protoc --proto_path=upstream/proto --cpp_out=include/linux/valhalla/proto upstream/proto/*.proto
 
 auditwheel repair --plat manylinux_2_24_x86_64 dist/*
