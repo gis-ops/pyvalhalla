@@ -19,6 +19,9 @@ popd
 cmake -B upstream/build -S upstream/ -DENABLE_CCACHE=OFF -DBUILD_SHARED_LIBS=OFF -DENABLE_BENCHMARKS=OFF -DENABLE_PYTHON_BINDINGS=ON -DENABLE_TESTS=OFF -DENABLE_TOOLS=OFF -DENABLE_SERVICES=OFF -DENABLE_HTTP=OFF -DENABLE_CCACHE=OFF -DCMAKE_BUILD_TYPE=Release
 cmake --build upstream/build -- -j$(nproc)
 
+# reset valhalla upstream
+git -C upstream checkout .
+
 echo "copying all headers"
 deps="libcurl4-openssl-dev libgeos++-dev libgeos-dev libluajit-5.1-dev libprotobuf-dev libspatialite-dev libsqlite3-dev"
 for dep in $deps; do
@@ -73,9 +76,12 @@ done
 mkdir -p include/linux/valhalla/proto
 /usr/bin/protoc --proto_path=upstream/proto --cpp_out=include/linux/valhalla/proto upstream/proto/*.proto
 
+<<<<<<< HEAD
 # now checkout the unpatched valhalla version again
 git -C upstream checkout .
 
+=======
+>>>>>>> master
 for so in dist/*; do
   auditwheel repair --plat manylinux_2_24_x86_64 "${so}"
 done
