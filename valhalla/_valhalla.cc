@@ -73,5 +73,7 @@ PYBIND11_MODULE(_valhalla, m) {
           "centroid", [](vt::actor_t& self, std::string& req) { return self.centroid(req); },
           "Returns routes from all the input locations to the minimum cost meeting point of those paths.")
       .def("status", [](vt::actor_t& self, std::string& req) { return self.status(req); },
-           "Returns nothing or optionally details about Valhalla's configuration.");
+           "Returns nothing or optionally details about Valhalla's configuration.")
+      .def("recover_shortcut", &vt::actor_t::recover_shortcut, "Returns the graph id values for all edges comprising the given shortcut.")
+      .def("get_shorcut", &vt::actor_t::get_shortcut, "Returns the shortcut's edge ID if the passed edge ID is superseded by a shortcut else 0.");
 }

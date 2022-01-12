@@ -1,0 +1,43 @@
+diff --git a/src/tyr/actor.cc b/src/tyr/actor.cc
+index ba49314c9..f45e39396 100644
+--- a/src/tyr/actor.cc
++++ b/src/tyr/actor.cc
+@@ -363,5 +363,24 @@ actor_t::status(const std::string& request_str, const std::function<void()>* int
+   return json;
+ }
+ 
++std::vector<uint64_t> actor_t::recover_shortcut(const uint64_t value) {
++  std::vector<uint64_t> result;
++  auto graph_ids = pimpl->reader->RecoverShortcut(valhalla::baldr::GraphId(value));
++  std::transform(graph_ids.begin(), graph_ids.end(), std::back_inserter(result), [](const valhalla::baldr::GraphId gid){
++    return gid.value;
++  });
++  return result;
++}
++
++uint64_t actor_t::get_shortcut(const uint64_t value) {
++  auto gid = pimpl->reader->GetShortcut(valhalla::baldr::GraphId(value));
++  auto gid_value = gid.value;
++  if (!gid.Is_Valid() || gid_value == value) {
++    return 0;
++  } else {
++    return gid_value;
++  }
++}
++
+ } // namespace tyr
+ } // namespace valhalla
+diff --git a/valhalla/tyr/actor.h b/valhalla/tyr/actor.h
+index 43ecb75d2..53c565a3d 100644
+--- a/valhalla/tyr/actor.h
++++ b/valhalla/tyr/actor.h
+@@ -213,6 +213,9 @@ public:
+                      const std::function<void()>* interrupt = nullptr,
+                      Api* api = nullptr);
+ 
++  std::vector<uint64_t> recover_shortcut(const uint64_t value);
++  uint64_t get_shortcut(const uint64_t value);
++
+ protected:
+   struct pimpl_t;
+   std::shared_ptr<pimpl_t> pimpl;

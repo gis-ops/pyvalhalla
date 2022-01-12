@@ -15,6 +15,11 @@ Then there will a Github artifact which you can download and use to install `pyv
 If we can't contain our changes to the binding code for some reason, we create patch files with git, the `./scripts/build_linux.sh` will apply them. On other OSs you'll have to apply the patches before building `upstream`.
 
 ```
-git diff [<filename>] > your.patch
-git apply your.patch
+git -C upstream diff [<filename>] > upstream_patches/your.patch
+# need a clean submodule before attempting the build
+git -C upstream checkout .
+./scripts/build_linux.sh
+
+# if it didn't work, you can apply the patch(es) to continue working on a solution
+git -C upstream apply upstream_patches/*
 ```

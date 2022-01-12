@@ -213,6 +213,9 @@ public:
                      const std::function<void()>* interrupt = nullptr,
                      Api* api = nullptr);
 
+  std::vector<uint64_t> recover_shortcut(const uint64_t value);
+  uint64_t get_shortcut(const uint64_t value);
+
 protected:
   struct pimpl_t;
   std::shared_ptr<pimpl_t> pimpl;
