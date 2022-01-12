@@ -31,6 +31,3 @@ manylinux-x86_64-image = "ghcr.io/gis-ops/manylinux:valhalla_python"
 [tool.cibuildwheel.windows]
 before-all = "pip install conan delvewheel"
 repair-wheel-command = "delvewheel repair --add-path lib/windows {wheel} -w {dest_dir}"
-
-[tool.cibuildwheel.linux]
-before-all = "cat /home/runner/work/valhalla-py/valhalla-py/conan_build/conanbuildinfo.json"
