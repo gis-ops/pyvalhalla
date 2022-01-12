@@ -53,6 +53,7 @@ To release binding code changes, we simply push a tag and let CI take care of th
 To release after dependency updates (mostly Valhalla usually), it will then be a 3-stage process:
 - first build and copy all dependencies for manylinux, also include the [common stuff](#common) here
 - then check out the release branch on the other OSs and repeat
+- finally `git tag` & `git push --tags`
 
 #### Common
 
