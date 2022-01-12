@@ -5,7 +5,7 @@ name: Custom build
 
 on:
   push:
-    branches-ignore:
+    branches:
       - 'custom_eclever'
     paths-ignore:
       - '*.md'
