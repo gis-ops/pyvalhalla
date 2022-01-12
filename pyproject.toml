@@ -26,7 +26,7 @@ test-command = "python -c \"from valhalla import Actor\""
 build = "cp*"
 skip = "*musllinux*"
 archs = "native"
-manylinux-x86_64-image = "ghcr.io/gis-ops/manylinux:valhalla_py"
+manylinux-x86_64-image = "ghcr.io/gis-ops/manylinux:valhalla_python"
 
 [tool.cibuildwheel.windows]
 before-all = "pip install conan delvewheel"

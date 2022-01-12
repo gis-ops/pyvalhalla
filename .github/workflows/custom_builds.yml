@@ -39,7 +39,7 @@ jobs:
     - name: Cache Conan
       id: cache-conan
       uses: actions/cache@v2
-      if: matrix.platform != 'windows'
+      if: steps.cache-conan.outputs.cache-hit != 'true'
       with:
         path: |
           ${{ github.workspace }}/conan_data
