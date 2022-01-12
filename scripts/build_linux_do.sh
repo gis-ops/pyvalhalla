@@ -13,7 +13,7 @@ apt-get update
 apt-get install -y python3-pip
 pip3 install conan
 conan config set "storage.path=$PWD/upstream/conan_data"
-conan install --install-folder upstream/conan_build upstream/
+conan install --install-folder conan_build .
 
 # apply any patches
 pushd upstream
