@@ -33,4 +33,4 @@ before-all = "pip install conan delvewheel"
 repair-wheel-command = "delvewheel repair --add-path lib/windows {wheel} -w {dest_dir}"
 
 [tool.cibuildwheel.linux]
-before-all = "ls -la /home/runner/work/valhalla-py/valhalla-py/conan_data/boost/1.71.0/_/_/package/524ea35a8120baabdde02483add58d81bf541327/include"
+before-all = "cat /home/runner/work/valhalla-py/valhalla-py/conan_build/conanbuildinfo.json"
