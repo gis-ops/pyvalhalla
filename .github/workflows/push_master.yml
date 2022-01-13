@@ -19,9 +19,9 @@ jobs:
       matrix:
         # TODO: re-enable other OSs
         include:
-#          - image: ubuntu-latest
-#            platform: linux
-#            cxx: 'g++-9'
+          - image: ubuntu-latest
+            platform: linux
+            cxx: 'g++-9'
           - image: windows-latest
             platform: windows
             cxx: 'Visual Studio'
@@ -50,9 +50,9 @@ jobs:
         path: |
           ${{ github.workspace }}/conan_data
           ${{ github.workspace }}/conan_build
-        key: conan-v2-${{ matrix.platform }}-${{ hashFiles('conanfile.txt') }}
+        key: conan-${{ matrix.platform }}-${{ hashFiles('conanfile.txt') }}
         restore-keys: |
-          conan-v2-${{ matrix.platform }}-
+          conan-${{ matrix.platform }}-
 
     - name: Install Conan (Windows)
       if: matrix.platform == 'windows'  # && steps.cache-conan.outputs.cache-hit != 'true'
@@ -64,15 +64,6 @@ jobs:
         conan profile update "settings.compiler.version=16" default
         conan config set "storage.path=$env:GITHUB_WORKSPACE/conan_data"
         conan install --install-folder conan_build --remote conancenter .
-
-    - name: Install Conan (Unix)
-      if: matrix.platform != 'windows' && steps.cache-conan.outputs.cache-hit != 'true'
-      run: |
-        pip install pip --upgrade
-        pip install conan
-        conan profile new default --detect
-        conan config set "storage.path=${{ github.workspace }}/conan_data"
-        conan install --install-folder ${{ github.workspace }}/conan_build --remote conancenter .
 
     # only build the lastest python version
     - uses: pypa/cibuildwheel@v2.3.1

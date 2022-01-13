@@ -37,12 +37,7 @@ if conanfiles:
     logging.info("Using conan to resolve dependencies.")
     with conanfiles[0].open() as f:
         # it's just header-only boost so far..
-        inc = json.load(f)["dependencies"][0]["include_paths"]
-        include_dirs.extend(inc)
-        logging.warning(f"Boost path: {inc}")
-        logging.warning(f"Boost inc path exists: {Path(inc[0]).joinpath('boost').exists()}")
-        for p in Path(inc[0]).joinpath("boost").iterdir():
-            logging.warning(p)
+        include_dirs.extend(json.load(f)["dependencies"][0]["include_paths"])
 
 else:
     logging.warning(
@@ -59,7 +54,7 @@ ext_modules = [
         include_dirs=include_dirs,
         extra_link_args=extra_link_args,
         extra_compile_args=extra_compile_args,
-        libraries=libraries,  # , "geos", "luajit-5.1", "sqlite3", "spatialite"]
+        libraries=libraries,
     ),
 ]
 

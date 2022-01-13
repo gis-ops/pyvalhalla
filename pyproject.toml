@@ -15,8 +15,9 @@ exclude = '''
     \\..*
   | dist
   | wheelhouse
-  | .*build
+  | '*build'
   | __pycache__
+  | '*.toml'
 )/
 '''
 
@@ -31,3 +32,11 @@ manylinux-x86_64-image = "ghcr.io/gis-ops/manylinux:valhalla_python"
 [tool.cibuildwheel.windows]
 before-all = "pip install conan delvewheel"
 repair-wheel-command = "delvewheel repair --add-path lib/windows {wheel} -w {dest_dir}"
+
+[tool.cibuildwheel.linux]
+before-all = """
+pip install conan
+conan profile new default --detect
+conan config set storage.path={package}/conan_data
+conan install --install-folder {package}/conan_build --remote conancenter {package}/conanfile.txt
+"""
