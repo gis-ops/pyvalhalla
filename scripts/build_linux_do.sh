@@ -44,11 +44,14 @@ for dep in $deps; do
   done
 done
 
-# copy valhalla headers from upstream to lib/common
+# copy valhalla headers from upstream to include/common
 rm -r include/common/valhalla
 cp -r upstream/valhalla include/common
 mv include/common/valhalla/config.h.cmake include/common/valhalla/config.h
 mv include/common/valhalla/valhalla.h.in include/common/valhalla/valhalla.h
+
+# copy most recent valhalla_build_config.py
+cp upstream/scripts/valhalla_build_config valhalla/valhalla_build_config.py
 
 # copy libvalhalla so it's available for setup.py in its most recent version
 # patch the files names of some headers
