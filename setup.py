@@ -32,16 +32,12 @@ else:
 # do conan dependency resolution
 # locally there will be 2 conanbuildinfo.json, one here and one in ./upstream/conan_build
 conanfiles = Path(__file__).parent.resolve().rglob("conanbuildinfo.json")
-conanfiles = tuple(filter(lambda p: p.parent.parent.name == "upstream", conanfiles))
+conanfiles = tuple(filter(lambda p: p.parent.parent.name != "upstream", conanfiles))
 if conanfiles:
     logging.info("Using conan to resolve dependencies.")
     with conanfiles[0].open() as f:
         # it's just header-only boost so far..
-        inc = json.load(f)["dependencies"][0]["include_paths"]
         include_dirs.extend(json.load(f)["dependencies"][0]["include_paths"])
-        logging.warning(f"boost inc dir: {inc[0]}")
-        for p in Path(inc).joinpath("boost").iterdir():
-            logging.warning(f"path: {p}")
 
 else:
     logging.warning(
