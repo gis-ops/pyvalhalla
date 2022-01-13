@@ -38,6 +38,7 @@ if conanfiles:
     with conanfiles[0].open() as f:
         # it's just header-only boost so far..
         include_dirs.extend(json.load(f)["dependencies"][0]["include_paths"])
+
 else:
     logging.warning(
         "Conan not installed and/or no conan build detected. Assuming dependencies are installed."
@@ -53,7 +54,7 @@ ext_modules = [
         include_dirs=include_dirs,
         extra_link_args=extra_link_args,
         extra_compile_args=extra_compile_args,
-        libraries=libraries,  # , "geos", "luajit-5.1", "sqlite3", "spatialite"]
+        libraries=libraries,
     ),
 ]
 

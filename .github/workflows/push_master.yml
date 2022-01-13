@@ -65,15 +65,6 @@ jobs:
         conan config set "storage.path=$env:GITHUB_WORKSPACE/conan_data"
         conan install --install-folder conan_build --remote conancenter .
 
-    - name: Install Conan (Unix)
-      if: matrix.platform != 'windows' && steps.cache-conan.outputs.cache-hit != 'true'
-      run: |
-        pip install pip --upgrade
-        pip install conan
-        conan profile new default --detect
-        conan config set "storage.path=${{ github.workspace }}/conan_data"
-        conan install --install-folder ${{ github.workspace }}/conan_build --remote conancenter .
-
     # only build the lastest python version
     - uses: pypa/cibuildwheel@v2.3.1
       env:

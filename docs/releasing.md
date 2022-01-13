@@ -58,7 +58,8 @@ To release after dependency updates (mostly Valhalla usually), it will then be a
 #### Common
 
 - all header-only libraries are safe to share in `./include/common`
-- don't forget valhalla's `third_party` repos: `date`, `rapidjson`, `statsd` & `dirent` (win-only) are needed for compiling bindings
+- valhalla headers can be shared too
+- don't forget valhalla's `third_party` repos: `date`, `rapidjson`, `statsd`, `pybind` & `dirent` (win-only) are needed for compiling bindings
 
 Proto headers have to be compiled on each platform separately.
 
