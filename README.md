@@ -1,20 +1,9 @@
-# Valhalla for Python
-[![Master Push](https://github.com/gis-ops/valhalla-py/actions/workflows/push_master.yml/badge.svg)](https://github.com/gis-ops/valhalla-py/actions/workflows/push_master.yml)
+# Changelog for patches in this version
 
-This spin-off project simply offers packaged Python bindings to the fantastic [Valhalla project](https://github.com/valhalla/valhalla).
+Apply each patch file to see the actual code changes.
 
-Over time we will very likely deviate from Valhalla's own Python binding code to allow usages outside the scope of the core project.
-
-## Installation
- 
-We distribute all 4 currently supported CPython versions as binary **wheels** for Win64, MacOS (Intel) and x86_64 Linux distributions with `glibc>=2.24` (most modern systems, see [PEP 600](https://www.python.org/dev/peps/pep-0600/)). We **do not** offer a source distribution on PyPI. Please contact us on enquiry@gis-ops.com if you need support building the bindings for your platform.
-
-`pip install valhalla-py`
-
-## Usage
-
-TODO
-
-## License
-
-`valhalla-py` is licensed with GPLv2, see [LICENSE](./LICENSE).
+- `custom_eclever_actor`: implement `get_shortcut` & `recover_shortcut` in Actor interface and expose in bindings
+- `custom_eclever_trace_serializer`: 
+  - (**eventually PR**) the response key `length` is now the whole edge length and `source/target_percent_along` were added and can be used to retrieve the actual position of the correlated point
+  - slim down the trace_attributes response to only needed fields
+- `custom_eclever_locate_serializer`: slim down the /locate response to only needed fields
