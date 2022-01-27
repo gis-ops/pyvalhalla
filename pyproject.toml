@@ -40,3 +40,6 @@ conan profile new default --detect
 conan config set storage.path={package}/conan_data
 conan install --install-folder {package}/conan_build --remote conancenter {package}/conanfile.txt
 """
+
+[tool.cibuildwheel.macos]
+environment = { DYLD_LIBRARY_PATH=$(pwd)/lib/darwin:$DYLD_LIBRARY_PATH }
