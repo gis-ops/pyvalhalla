@@ -3,7 +3,7 @@ deps="curl geos luajit protobuf libspatialite sqlite"
 for dep in $deps; do
   for path in $(brew list ${dep} -v); do
     # find and copy the headers
-    if [[ ${path} == *".h"* ]]; then
+    if [[ ${path} == *"/include/"* ]]; then
       rel_dest=include/darwin/${path##*/include/}
       mkdir -p $(dirname ${rel_dest})
       cp $path $(dirname ${rel_dest})
