@@ -32,7 +32,7 @@ deps="libcurl4-openssl-dev libgeos++-dev libgeos-dev libluajit-5.1-dev libprotob
 for dep in $deps; do
   for path in $(dpkg -L ${dep}); do
     # find and copy the headers
-    if [[ ${path} == *".h"* ]]; then
+    if [[ ${path} == *"/include/"* ]]; then
       if [[ ${path} == *"/x86_64-linux-gnu/"* ]]; then
         rel_dest=include/linux/${path##*/x86_64-linux-gnu/}
       else

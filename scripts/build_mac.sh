@@ -1,3 +1,14 @@
+#!/usr/bin/env bash
+
+pip3 install conan
+conan profile new default --detect
+conan config set "storage.path=${PWD}/upstream/conan_data"
+conan install --install-folder upstream/conan_build .
+
+# TODO: the env var can be omitted once geos 3.11 is released: https://github.com/libgeos/geos/issues/500
+CXXFLAGS=-DGEOS_INLINE cmake -B upstream/build -S upstream/ -DCMAKE_OSX_DEPLOYMENT_TARGET=10.9 -DENABLE_CCACHE=OFF -DBUILD_SHARED_LIBS=OFF -DENABLE_BENCHMARKS=OFF -DENABLE_PYTHON_BINDINGS=ON -DENABLE_TESTS=OFF -DENABLE_TOOLS=OFF -DENABLE_SERVICES=OFF -DENABLE_HTTP=OFF -DENABLE_CCACHE=OFF -DCMAKE_BUILD_TYPE=Release
+cmake --build upstream/build -- -j$(nproc)
+
 echo "copying all headers"
 deps="curl geos luajit protobuf libspatialite sqlite"
 for dep in $deps; do
@@ -10,6 +21,11 @@ for dep in $deps; do
     fi
   done
 done
+
+# symlink libs, otherwise gcc/g++ can't find e.g. libprotobuf-lite.28.dylib (while it does find libprotobuf-lite.dylib)
+push lib/darwin
+ln -s libprotobuf-lite.28.dylib libprotobuf-lite.dylib
+popd
 
 # copy libvalhalla
 mkdir -p lib/darwin

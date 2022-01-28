@@ -17,7 +17,6 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        # TODO: re-enable other OSs
         include:
           - image: ubuntu-latest
             platform: linux
@@ -42,7 +41,7 @@ jobs:
 
     # keep in-sync with the other yaml
     # only macos makes sense, windows didn't work, linux installs conan inside the docker image
-    - name: Cache Conan
+    - name: Cache Conan (MacOS)
       id: cache-conan
       uses: actions/cache@v2
       if: matrix.platform != 'windows'
@@ -54,17 +53,6 @@ jobs:
         restore-keys: |
           conan-${{ matrix.platform }}-
 
-    - name: Install Conan (Windows)
-      if: matrix.platform == 'windows'  # && steps.cache-conan.outputs.cache-hit != 'true'
-      run: |
-        pip install pip --upgrade
-        pip install conan
-        conan profile new default --detect
-        conan profile update "settings.compiler=Visual Studio" default
-        conan profile update "settings.compiler.version=16" default
-        conan config set "storage.path=$env:GITHUB_WORKSPACE/conan_data"
-        conan install --install-folder conan_build --remote conancenter .
-
     - name: Install Conan (MacOS)
       if: matrix.platform == 'macos' && steps.cache-conan.outputs.cache-hit != 'true'
       run: |
@@ -74,7 +62,18 @@ jobs:
         conan config set "storage.path=${{ github.workspace }}/conan_data"
         conan install --install-folder ${{ github.workspace }}/conan_build --remote conancenter .
 
-    # only build the lastest python version
+    - name: Install Conan (Windows)
+      if: matrix.platform == 'windows'
+      run: |
+        pip install pip --upgrade
+        pip install conan
+        conan profile new default --detect
+        conan profile update "settings.compiler=Visual Studio" default
+        conan profile update "settings.compiler.version=16" default
+        conan config set "storage.path=$env:GITHUB_WORKSPACE/conan_data"
+        conan install --install-folder conan_build --remote conancenter .
+
+    # only build the earliest supported python version
     - uses: pypa/cibuildwheel@v2.3.1
       env:
         MACOSX_DEPLOYMENT_TARGET: 10.9
