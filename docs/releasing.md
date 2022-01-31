@@ -84,6 +84,8 @@ Pretty identical to Linux, just we don't need a docker container of course:
 ./scripts/build_mac.sh
 ```
 
+Call 911 if this doesn't work!;)
+
 #### Windows
 
 First build Valhalla:
