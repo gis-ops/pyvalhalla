@@ -36,9 +36,8 @@ jobs:
 
     - name: Lint & Style Check
       run: |
-        pip install -r requirements-dev.txt
-        black --check valhalla
-        flake8 valhalla
+        pip install -r dev-requirements.txt
+        pre-commit run --all-files --show-diff-on-failure
 
     # keep in-sync with the other yaml
     # only macos makes sense, windows didn't work, linux installs conan inside the docker image
