@@ -36,7 +36,7 @@ jobs:
 
     - name: Lint & Style Check
       run: |
-        pip install black flake8
+        pip install -r requirements-dev.txt
         black --check valhalla
         flake8 valhalla
 
