@@ -44,7 +44,7 @@ jobs:
     - name: Cache Conan (MacOS)
       id: cache-conan
       uses: actions/cache@v2
-      if: matrix.platform != 'windows'
+      if: matrix.platform == 'macos'
       with:
         path: |
           ${{ github.workspace }}/conan_data
