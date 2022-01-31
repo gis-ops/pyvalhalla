@@ -6,8 +6,6 @@ on:
       - '*'
     tags:
       - '*'
-    paths-ignore:
-      - '*.md'
 
 jobs:
   build_wheels:

@@ -10,6 +10,7 @@ on:
       - 'master'
     paths-ignore:
       - '*.md'
+      - '*.sh'
 
 jobs:
   build_wheels:
