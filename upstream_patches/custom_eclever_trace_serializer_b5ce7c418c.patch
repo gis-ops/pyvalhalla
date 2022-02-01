@@ -1,3 +1,16 @@
+diff --git a/src/thor/triplegbuilder.cc b/src/thor/triplegbuilder.cc
+index 8cb8469c5..3ad24cd25 100644
+--- a/src/thor/triplegbuilder.cc
++++ b/src/thor/triplegbuilder.cc
+@@ -1687,7 +1687,7 @@ void TripLegBuilder::Build(
+     // Set length if requested. Convert to km
+     if (controller.attributes.at(kEdgeLength)) {
+       float km =
+-          std::max(directededge->length() * kKmPerMeter * (trim_end_pct - trim_start_pct), 0.0f);
++          std::max(directededge->length() * kKmPerMeter, 0.0f);
+       trip_edge->set_length_km(km);
+     }
+ 
 diff --git a/src/tyr/trace_serializer.cc b/src/tyr/trace_serializer.cc
 index 68df54332..535944114 100644
 --- a/src/tyr/trace_serializer.cc
