@@ -79,7 +79,12 @@ That'll take care of all the header & library copying, proto compilation etc. It
 
 #### Mac OS
 
-TODO: describe process, maybe add a small script to build valhalla and copy headers & libs (maybe some `brew list` or so?)
+Pretty identical to Linux, just we don't need a docker container of course:
+```
+./scripts/build_mac.sh
+```
+
+Call 911 if this doesn't work!;)
 
 #### Windows
 

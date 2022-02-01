@@ -11,8 +11,6 @@ on:
     paths-ignore:
       - '*.md'
 
-# TODO: linting stage which determines if the tests run
-
 jobs:
   build_wheels:
     name: PR - cp*, ubuntu-latest
@@ -28,6 +26,7 @@ jobs:
         flake8 valhalla
 
     # keep in-sync with the other yaml
+    # only macos makes sense, windows didn't work, linux installs conan inside the docker image
     - name: Cache Conan
       id: cache-conan
       uses: actions/cache@v2
