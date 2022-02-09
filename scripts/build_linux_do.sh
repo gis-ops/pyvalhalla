@@ -24,20 +24,19 @@ popd
 cmake -B upstream/build -S upstream/ -DENABLE_CCACHE=OFF -DBUILD_SHARED_LIBS=OFF -DENABLE_BENCHMARKS=OFF -DENABLE_PYTHON_BINDINGS=ON -DENABLE_TESTS=OFF -DENABLE_TOOLS=OFF -DENABLE_SERVICES=OFF -DENABLE_HTTP=OFF -DENABLE_CCACHE=OFF -DCMAKE_BUILD_TYPE=Release
 cmake --build upstream/build -- -j$(nproc)
 
-# reset valhalla upstream
-git -C upstream checkout .
-
 echo "copying all headers"
 deps="libcurl4-openssl-dev libgeos++-dev libgeos-dev libluajit-5.1-dev libprotobuf-dev libspatialite-dev libsqlite3-dev"
 for dep in $deps; do
   for path in $(dpkg -L ${dep}); do
     # find and copy the headers
-    if [[ ${path} == *"/include/"* ]]; then
-      if [[ ${path} == *"/x86_64-linux-gnu/"* ]]; then
-        rel_dest=include/linux/${path##*/x86_64-linux-gnu/}
-      else
-        rel_dest=include/linux/${path##*/include/}
-      fi
+    if [[ ${path} == *"/include/x86_64-linux-gnu/"* ]]; then
+      rel_dest=include/linux/${path##*/x86_64-linux-gnu/}
+    elif [[ ${path} == *"/include/"* ]]; then
+      rel_dest=include/linux/${path##*/include/}
+    else
+      continue
+    fi
+    if [[ -f $path ]]; then
       mkdir -p $(dirname ${rel_dest})
       cp $path $(dirname ${rel_dest})
     fi
@@ -56,6 +55,9 @@ cp upstream/scripts/valhalla_build_config valhalla/valhalla_build_config.py
 # copy libvalhalla so it's available for setup.py in its most recent version
 # patch the files names of some headers
 cp -f upstream/build/src/libvalhalla.a lib/linux
+
+# reset valhalla upstream
+git -C upstream checkout .
 
 # make the bindings so we can see which libraries it exactly links to and also for testing
 /opt/python/cp310-cp310/bin/pip install -r build-requirements.txt
