@@ -3,11 +3,10 @@ import logging
 import os
 from pathlib import Path
 import platform
-from setuptools import find_packages, setup
-from pybind11.setup_helpers import Pybind11Extension
 
-# TODO:
-#   - try it out on MacOS and check in dependencies
+from pybind11.setup_helpers import Pybind11Extension
+from setuptools import find_packages, setup
+
 
 THIS_DIR = Path(__file__).parent.resolve()
 
@@ -78,7 +77,6 @@ setup(
     use_scm_version=True,
     classifiers=[
         "License :: OSI Approved :: GNU General Public License v2 or later (GPLv2+)",
-        "Programming Language :: Python",
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: Implementation :: CPython",
     ],
