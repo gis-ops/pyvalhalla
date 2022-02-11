@@ -3,11 +3,6 @@ set -e
 
 cd valhalla-py
 
-## some cleanup in case the last build failed or so
-#git -C upstream checkout .
-#rm dist/*
-#rm wheelhouse/*
-
 # install conan
 apt-get update
 apt-get install -y python3-pip
@@ -17,7 +12,7 @@ conan install --install-folder conan_build .
 
 # apply any patches
 pushd upstream
-git apply ../upstream_patches/*
+git apply --reject --whitespace=fix ../upstream_patches/*
 popd
 
 # build valhalla
@@ -43,8 +38,13 @@ for dep in $deps; do
   done
 done
 
-# copy valhalla headers from upstream to include/common
+# copy valhalla headers from upstream to include/common after deleting the old ones for safety reasons
+# also rm the old setup.py build folder: if the version doesn't change, setuptools simply won't update the .so,
+# so we'd get old builds fact.. wtf..
 rm -r include/common/valhalla
+if [[ -d build ]]; then
+  rm -r build
+fi
 cp -r upstream/valhalla include/common
 mv include/common/valhalla/config.h.cmake include/common/valhalla/config.h
 mv include/common/valhalla/valhalla.h.in include/common/valhalla/valhalla.h
@@ -53,11 +53,7 @@ mv include/common/valhalla/valhalla.h.in include/common/valhalla/valhalla.h
 cp upstream/scripts/valhalla_build_config valhalla/valhalla_build_config.py
 
 # copy libvalhalla so it's available for setup.py in its most recent version
-# patch the files names of some headers
 cp -f upstream/build/src/libvalhalla.a lib/linux
-
-# reset valhalla upstream
-git -C upstream checkout .
 
 # make the bindings so we can see which libraries it exactly links to and also for testing
 /opt/python/cp310-cp310/bin/pip install -r build-requirements.txt
@@ -85,6 +81,9 @@ done
 # build the proto files into the include/linux/valhalla/proto directory
 mkdir -p include/linux/valhalla/proto
 /usr/bin/protoc --proto_path=upstream/proto --cpp_out=include/linux/valhalla/proto upstream/proto/*.proto
+
+# now checkout the unpatched valhalla version again
+git -C upstream checkout .
 
 for so in dist/*; do
   auditwheel repair --plat manylinux_2_24_x86_64 "${so}"
