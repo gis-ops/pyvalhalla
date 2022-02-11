@@ -1,21 +1,34 @@
+diff --git a/proto/trip.proto b/proto/trip.proto
+index f5de31fa5..077a444e1 100644
+--- a/proto/trip.proto
++++ b/proto/trip.proto
+@@ -277,6 +277,9 @@ message TripLeg {
+     oneof has_shoulder {
+       bool shoulder = 52;
+     }
++    oneof has_total_length_km {
++      float total_length_km = 53;
++    }
+   }
+ 
+   message IntersectingEdge {
 diff --git a/src/thor/triplegbuilder.cc b/src/thor/triplegbuilder.cc
-index 8cb8469c5..3ad24cd25 100644
+index 8cb8469c5..690672a5d 100644
 --- a/src/thor/triplegbuilder.cc
 +++ b/src/thor/triplegbuilder.cc
-@@ -1687,7 +1687,7 @@ void TripLegBuilder::Build(
-     // Set length if requested. Convert to km
-     if (controller.attributes.at(kEdgeLength)) {
+@@ -1689,6 +1689,7 @@ void TripLegBuilder::Build(
        float km =
--          std::max(directededge->length() * kKmPerMeter * (trim_end_pct - trim_start_pct), 0.0f);
-+          std::max(directededge->length() * kKmPerMeter, 0.0f);
+           std::max(directededge->length() * kKmPerMeter * (trim_end_pct - trim_start_pct), 0.0f);
        trip_edge->set_length_km(km);
++      trip_edge->set_total_length_km(std::max(directededge->length() * kKmPerMeter, 0.0f));
      }
  
+     // How long on this edge?
 diff --git a/src/tyr/trace_serializer.cc b/src/tyr/trace_serializer.cc
-index 68df54332..535944114 100644
+index 68df54332..a91877cf1 100644
 --- a/src/tyr/trace_serializer.cc
 +++ b/src/tyr/trace_serializer.cc
-@@ -63,282 +63,290 @@ json::ArrayPtr serialize_edges(const AttributesController& controller,
+@@ -63,282 +63,293 @@ json::ArrayPtr serialize_edges(const AttributesController& controller,
  
        // Process each edge
        auto edge_map = json::map({});
@@ -288,7 +301,7 @@ index 68df54332..535944114 100644
        if (edge.has_length_km_case()) {
          edge_map->emplace("length", json::fixed_t{edge.length_km() * scale, 3});
        }
-       // TODO: do we want to output 'is_route_number'?
+-      // TODO: do we want to output 'is_route_number'?
 -      if (edge.name_size() > 0) {
 -        auto names_array = json::array({});
 -        for (const auto& name : edge.name()) {
@@ -308,10 +321,12 @@ index 68df54332..535944114 100644
 -          segments_array->emplace_back(segmap);
 -        }
 -        edge_map->emplace("traffic_segments", segments_array);
--      }
++      if (edge.has_total_length_km_case()) {
++        edge_map->emplace("total_length", json::fixed_t{edge.total_length_km() * scale, 3});
+       }
 -
 -      // Process edge sign
--      // TODO: do we want to output 'is_route_number'?
+       // TODO: do we want to output 'is_route_number'?
 -      if (edge.has_sign()) {
 -        auto sign_map = json::map({});
 -
@@ -574,7 +589,7 @@ index 68df54332..535944114 100644
  
        // TODO - transit info on edge
        // kEdgeTransitType = "edge.transit_type";
-@@ -466,43 +474,43 @@ void append_trace_info(
+@@ -466,43 +477,43 @@ void append_trace_info(
    const auto& match_results = std::get<kMatchResultsIndex>(map_match_result);
  
    // Add osm_changeset
@@ -651,7 +666,7 @@ index 68df54332..535944114 100644
  }
  } // namespace
  
-@@ -523,14 +531,14 @@ std::string serializeTraceAttributes(
+@@ -523,14 +534,14 @@ std::string serializeTraceAttributes(
    auto json = json::map({});
  
    // Add result id, if supplied

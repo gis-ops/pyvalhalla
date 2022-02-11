@@ -7,7 +7,7 @@ conan install --install-folder upstream/conan_build .
 
 # apply any patches
 pushd upstream
-git apply ../upstream_patches/*
+git apply --reject --whitespace=fix ../upstream_patches/*
 popd
 
 # TODO: the env var can be omitted once geos 3.11 is released: https://github.com/libgeos/geos/issues/500
@@ -21,8 +21,10 @@ for dep in $deps; do
     # find and copy the headers
     if [[ ${path} == *"/include/"* ]]; then
       rel_dest=include/darwin/${path##*/include/}
-      mkdir -p $(dirname ${rel_dest})
-      cp $path $(dirname ${rel_dest})
+      if [[ -f ${path} ]]; then
+        mkdir -p $(dirname ${rel_dest})
+        cp $path $(dirname ${rel_dest})
+      fi
     fi
   done
 done
@@ -35,6 +37,11 @@ popd
 # copy libvalhalla
 mkdir -p lib/darwin
 cp -f upstream/build/src/libvalhalla.a lib/darwin
+
+# remove setuptools build folder so we build a fresh _valhalla.so every tiem
+if [[ -d build ]]; then
+  rm -r build
+fi
 
 # make the bindings so we can see which libraries it exactly links to and also for testing
 pip3 install -r build-requirements.txt

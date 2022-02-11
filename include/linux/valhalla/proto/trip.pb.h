@@ -911,6 +911,11 @@ class TripLeg_Edge : public ::google::protobuf::MessageLite /* @@protoc_insertio
     HAS_SHOULDER_NOT_SET = 0,
   };
 
+  enum HasTotalLengthKmCase {
+    kTotalLengthKm = 53,
+    HAS_TOTAL_LENGTH_KM_NOT_SET = 0,
+  };
+
   #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
@@ -1444,6 +1449,15 @@ class TripLeg_Edge : public ::google::protobuf::MessageLite /* @@protoc_insertio
   bool shoulder() const;
   void set_shoulder(bool value);
 
+  // optional float total_length_km = 53;
+  private:
+  bool has_total_length_km() const;
+  public:
+  void clear_total_length_km();
+  static const int kTotalLengthKmFieldNumber = 53;
+  float total_length_km() const;
+  void set_total_length_km(float value);
+
   HasLengthKmCase has_length_km_case() const;
   HasSpeedCase has_speed_case() const;
   HasRoadClassCase has_road_class_case() const;
@@ -1488,6 +1502,7 @@ class TripLeg_Edge : public ::google::protobuf::MessageLite /* @@protoc_insertio
   HasTargetAlongEdgeCase has_target_along_edge_case() const;
   HasSacScaleCase has_sac_scale_case() const;
   HasShoulderCase has_shoulder_case() const;
+  HasTotalLengthKmCase has_total_length_km_case() const;
   // @@protoc_insertion_point(class_scope:valhalla.TripLeg.Edge)
  private:
   inline void set_has_length_km();
@@ -1534,6 +1549,7 @@ class TripLeg_Edge : public ::google::protobuf::MessageLite /* @@protoc_insertio
   inline void set_has_target_along_edge();
   inline void set_has_sac_scale();
   inline void set_has_shoulder();
+  inline void set_has_total_length_km();
 
   inline bool has_has_length_km() const;
   void clear_has_length_km();
@@ -1710,6 +1726,10 @@ class TripLeg_Edge : public ::google::protobuf::MessageLite /* @@protoc_insertio
   inline bool has_has_shoulder() const;
   void clear_has_shoulder();
   inline void clear_has_has_shoulder();
+
+  inline bool has_has_total_length_km() const;
+  void clear_has_total_length_km();
+  inline void clear_has_has_total_length_km();
 
   ::google::protobuf::internal::ArenaStringPtr _unknown_fields_;
   ::google::protobuf::Arena* _arena_ptr_;
@@ -1899,8 +1919,12 @@ class TripLeg_Edge : public ::google::protobuf::MessageLite /* @@protoc_insertio
     HasShoulderUnion() {}
     bool shoulder_;
   } has_shoulder_;
+  union HasTotalLengthKmUnion {
+    HasTotalLengthKmUnion() {}
+    float total_length_km_;
+  } has_total_length_km_;
   mutable int _cached_size_;
-  ::google::protobuf::uint32 _oneof_case_[44];
+  ::google::protobuf::uint32 _oneof_case_[45];
 
   #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   friend void  protobuf_AddDesc_trip_2eproto_impl();
@@ -6124,6 +6148,35 @@ inline void TripLeg_Edge::set_shoulder(bool value) {
   // @@protoc_insertion_point(field_set:valhalla.TripLeg.Edge.shoulder)
 }
 
+// optional float total_length_km = 53;
+inline bool TripLeg_Edge::has_total_length_km() const {
+  return has_total_length_km_case() == kTotalLengthKm;
+}
+inline void TripLeg_Edge::set_has_total_length_km() {
+  _oneof_case_[44] = kTotalLengthKm;
+}
+inline void TripLeg_Edge::clear_total_length_km() {
+  if (has_total_length_km()) {
+    has_total_length_km_.total_length_km_ = 0;
+    clear_has_has_total_length_km();
+  }
+}
+inline float TripLeg_Edge::total_length_km() const {
+  // @@protoc_insertion_point(field_get:valhalla.TripLeg.Edge.total_length_km)
+  if (has_total_length_km()) {
+    return has_total_length_km_.total_length_km_;
+  }
+  return 0;
+}
+inline void TripLeg_Edge::set_total_length_km(float value) {
+  if (!has_total_length_km()) {
+    clear_has_total_length_km();
+    set_has_total_length_km();
+  }
+  has_total_length_km_.total_length_km_ = value;
+  // @@protoc_insertion_point(field_set:valhalla.TripLeg.Edge.total_length_km)
+}
+
 inline bool TripLeg_Edge::has_has_length_km() const {
   return has_length_km_case() != HAS_LENGTH_KM_NOT_SET;
 }
@@ -6388,6 +6441,12 @@ inline bool TripLeg_Edge::has_has_shoulder() const {
 inline void TripLeg_Edge::clear_has_has_shoulder() {
   _oneof_case_[43] = HAS_SHOULDER_NOT_SET;
 }
+inline bool TripLeg_Edge::has_has_total_length_km() const {
+  return has_total_length_km_case() != HAS_TOTAL_LENGTH_KM_NOT_SET;
+}
+inline void TripLeg_Edge::clear_has_has_total_length_km() {
+  _oneof_case_[44] = HAS_TOTAL_LENGTH_KM_NOT_SET;
+}
 inline TripLeg_Edge::HasLengthKmCase TripLeg_Edge::has_length_km_case() const {
   return TripLeg_Edge::HasLengthKmCase(_oneof_case_[0]);
 }
@@ -6519,6 +6578,9 @@ inline TripLeg_Edge::HasSacScaleCase TripLeg_Edge::has_sac_scale_case() const {
 }
 inline TripLeg_Edge::HasShoulderCase TripLeg_Edge::has_shoulder_case() const {
   return TripLeg_Edge::HasShoulderCase(_oneof_case_[43]);
+}
+inline TripLeg_Edge::HasTotalLengthKmCase TripLeg_Edge::has_total_length_km_case() const {
+  return TripLeg_Edge::HasTotalLengthKmCase(_oneof_case_[44]);
 }
 // -------------------------------------------------------------------
 

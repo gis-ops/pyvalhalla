@@ -65,3 +65,9 @@ class Actor(_Actor):
     @dict_or_str
     def status(self, req: Union[str, dict] = ""):
         return super().status(req)
+
+    def get_livespeed(self, edge_id: int):
+        return json.dumps(super().get_livespeed(edge_id))
+
+    def get_all_shortcuts(self):
+        return super().get_all_shortcuts()

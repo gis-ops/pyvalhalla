@@ -12,7 +12,7 @@ conan install --install-folder conan_build .
 
 # apply any patches
 pushd upstream
-git apply ../upstream_patches/*
+git apply --reject --whitespace=fix ../upstream_patches/*
 popd
 
 # build valhalla
@@ -24,20 +24,27 @@ deps="libcurl4-openssl-dev libgeos++-dev libgeos-dev libluajit-5.1-dev libprotob
 for dep in $deps; do
   for path in $(dpkg -L ${dep}); do
     # find and copy the headers
-    if [[ ${path} == *"/include/"* ]]; then
-      if [[ ${path} == *"/x86_64-linux-gnu/"* ]]; then
-        rel_dest=include/linux/${path##*/x86_64-linux-gnu/}
-      else
-        rel_dest=include/linux/${path##*/include/}
-      fi
+    if [[ ${path} == *"/include/x86_64-linux-gnu/"* ]]; then
+      rel_dest=include/linux/${path##*/x86_64-linux-gnu/}
+    elif [[ ${path} == *"/include/"* ]]; then
+      rel_dest=include/linux/${path##*/include/}
+    else
+      continue
+    fi
+    if [[ -f $path ]]; then
       mkdir -p $(dirname ${rel_dest})
       cp $path $(dirname ${rel_dest})
     fi
   done
 done
 
-# copy valhalla headers from upstream to include/common
+# copy valhalla headers from upstream to include/common after deleting the old ones for safety reasons
+# also rm the old setup.py build folder: if the version doesn't change, setuptools simply won't update the .so,
+# so we'd get old builds fact.. wtf..
 rm -r include/common/valhalla
+if [[ -d build ]]; then
+  rm -r build
+fi
 cp -r upstream/valhalla include/common
 mv include/common/valhalla/config.h.cmake include/common/valhalla/config.h
 mv include/common/valhalla/valhalla.h.in include/common/valhalla/valhalla.h
@@ -46,7 +53,6 @@ mv include/common/valhalla/valhalla.h.in include/common/valhalla/valhalla.h
 cp upstream/scripts/valhalla_build_config valhalla/valhalla_build_config.py
 
 # copy libvalhalla so it's available for setup.py in its most recent version
-# patch the files names of some headers
 cp -f upstream/build/src/libvalhalla.a lib/linux
 
 # make the bindings so we can see which libraries it exactly links to and also for testing

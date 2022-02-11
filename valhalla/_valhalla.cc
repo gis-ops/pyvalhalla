@@ -1,5 +1,6 @@
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
+#include <pybind11/stl_bind.h>
 
 #include <boost/make_shared.hpp>
 #include <boost/noncopyable.hpp>
@@ -41,6 +42,8 @@ const boost::property_tree::ptree configure(const std::string& config) {
 namespace py = pybind11;
 
 PYBIND11_MODULE(_valhalla, m) {
+  // return the shortcut unordered_map as dict of list of integers to python
+  py::bind_map<std::unordered_map<uint64_t, std::vector<uint64_t>>>(m, "UMapIntVectorInt");
   py::class_<vt::actor_t>(m, "_Actor", "Valhalla Actor class")
       .def(py::init<>([](std::string config) { return vt::actor_t(configure(config), true); }))
       .def("route", [](vt::actor_t& self, std::string& req) { return self.route(req); },
@@ -75,6 +78,5 @@ PYBIND11_MODULE(_valhalla, m) {
           "Returns routes from all the input locations to the minimum cost meeting point of those paths.")
       .def("status", [](vt::actor_t& self, std::string& req) { return self.status(req); },
            "Returns nothing or optionally details about Valhalla's configuration.")
-      .def("recover_shortcut", &vt::actor_t::recover_shortcut, "Returns the graph id values for all edges comprising the given shortcut.")
-      .def("get_shorcut", &vt::actor_t::get_shortcut, "Returns the shortcut's edge ID if the passed edge ID is superseded by a shortcut else 0.");
+      .def("get_all_shortcuts", &vt::actor_t::get_all_shortcuts, "Returns all shortcuts and their underlying edge IDs as dict");
 }

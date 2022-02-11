@@ -1393,6 +1393,7 @@ const int TripLeg_Edge::kSourceAlongEdgeFieldNumber;
 const int TripLeg_Edge::kTargetAlongEdgeFieldNumber;
 const int TripLeg_Edge::kSacScaleFieldNumber;
 const int TripLeg_Edge::kShoulderFieldNumber;
+const int TripLeg_Edge::kTotalLengthKmFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 TripLeg_Edge::TripLeg_Edge()
@@ -1481,6 +1482,7 @@ void TripLeg_Edge::SharedCtor() {
   clear_has_has_target_along_edge();
   clear_has_has_sac_scale();
   clear_has_has_shoulder();
+  clear_has_has_total_length_km();
 }
 
 TripLeg_Edge::~TripLeg_Edge() {
@@ -1620,6 +1622,9 @@ void TripLeg_Edge::SharedDtor() {
   }
   if (has_has_shoulder()) {
     clear_has_shoulder();
+  }
+  if (has_has_total_length_km()) {
+    clear_has_total_length_km();
   }
   #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   if (this != &default_instance()) {
@@ -2272,6 +2277,20 @@ void TripLeg_Edge::clear_has_shoulder() {
   _oneof_case_[43] = HAS_SHOULDER_NOT_SET;
 }
 
+void TripLeg_Edge::clear_has_total_length_km() {
+// @@protoc_insertion_point(one_of_clear_start:valhalla.TripLeg.Edge)
+  switch(has_total_length_km_case()) {
+    case kTotalLengthKm: {
+      // No need to clear
+      break;
+    }
+    case HAS_TOTAL_LENGTH_KM_NOT_SET: {
+      break;
+    }
+  }
+  _oneof_case_[44] = HAS_TOTAL_LENGTH_KM_NOT_SET;
+}
+
 
 void TripLeg_Edge::Clear() {
 // @@protoc_insertion_point(message_clear_start:valhalla.TripLeg.Edge)
@@ -2330,6 +2349,7 @@ void TripLeg_Edge::Clear() {
   clear_has_target_along_edge();
   clear_has_sac_scale();
   clear_has_shoulder();
+  clear_has_total_length_km();
 }
 
 bool TripLeg_Edge::MergePartialFromCodedStream(
@@ -3164,6 +3184,22 @@ bool TripLeg_Edge::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
+        if (input->ExpectTag(429)) goto parse_total_length_km;
+        break;
+      }
+
+      // optional float total_length_km = 53;
+      case 53: {
+        if (tag == 429) {
+         parse_total_length_km:
+          clear_has_total_length_km();
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   float, ::google::protobuf::internal::WireFormatLite::TYPE_FLOAT>(
+                 input, &has_total_length_km_.total_length_km_)));
+          set_has_total_length_km();
+        } else {
+          goto handle_unusual;
+        }
         if (input->ExpectAtEnd()) goto success;
         break;
       }
@@ -3470,6 +3506,11 @@ void TripLeg_Edge::SerializeWithCachedSizes(
   // optional bool shoulder = 52;
   if (has_shoulder()) {
     ::google::protobuf::internal::WireFormatLite::WriteBool(52, this->shoulder(), output);
+  }
+
+  // optional float total_length_km = 53;
+  if (has_total_length_km()) {
+    ::google::protobuf::internal::WireFormatLite::WriteFloat(53, this->total_length_km(), output);
   }
 
   // @@protoc_insertion_point(serialize_end:valhalla.TripLeg.Edge)
@@ -4018,6 +4059,16 @@ int TripLeg_Edge::ByteSize() const {
       break;
     }
   }
+  switch (has_total_length_km_case()) {
+    // optional float total_length_km = 53;
+    case kTotalLengthKm: {
+      total_size += 2 + 4;
+      break;
+    }
+    case HAS_TOTAL_LENGTH_KM_NOT_SET: {
+      break;
+    }
+  }
   GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
   _cached_size_ = total_size;
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
@@ -4435,6 +4486,15 @@ void TripLeg_Edge::MergeFrom(const TripLeg_Edge& from) {
       break;
     }
   }
+  switch (from.has_total_length_km_case()) {
+    case kTotalLengthKm: {
+      set_total_length_km(from.total_length_km());
+      break;
+    }
+    case HAS_TOTAL_LENGTH_KM_NOT_SET: {
+      break;
+    }
+  }
   if (from.has_sign()) {
     mutable_sign()->::valhalla::TripSign::MergeFrom(from.sign());
   }
@@ -4559,6 +4619,8 @@ void TripLeg_Edge::InternalSwap(TripLeg_Edge* other) {
   std::swap(_oneof_case_[42], other->_oneof_case_[42]);
   std::swap(has_shoulder_, other->has_shoulder_);
   std::swap(_oneof_case_[43], other->_oneof_case_[43]);
+  std::swap(has_total_length_km_, other->has_total_length_km_);
+  std::swap(_oneof_case_[44], other->_oneof_case_[44]);
   _unknown_fields_.Swap(&other->_unknown_fields_);
   std::swap(_cached_size_, other->_cached_size_);
 }
@@ -10804,6 +10866,35 @@ void TripLeg_Edge::clear_shoulder() {
   // @@protoc_insertion_point(field_set:valhalla.TripLeg.Edge.shoulder)
 }
 
+// optional float total_length_km = 53;
+bool TripLeg_Edge::has_total_length_km() const {
+  return has_total_length_km_case() == kTotalLengthKm;
+}
+void TripLeg_Edge::set_has_total_length_km() {
+  _oneof_case_[44] = kTotalLengthKm;
+}
+void TripLeg_Edge::clear_total_length_km() {
+  if (has_total_length_km()) {
+    has_total_length_km_.total_length_km_ = 0;
+    clear_has_has_total_length_km();
+  }
+}
+ float TripLeg_Edge::total_length_km() const {
+  // @@protoc_insertion_point(field_get:valhalla.TripLeg.Edge.total_length_km)
+  if (has_total_length_km()) {
+    return has_total_length_km_.total_length_km_;
+  }
+  return 0;
+}
+ void TripLeg_Edge::set_total_length_km(float value) {
+  if (!has_total_length_km()) {
+    clear_has_total_length_km();
+    set_has_total_length_km();
+  }
+  has_total_length_km_.total_length_km_ = value;
+  // @@protoc_insertion_point(field_set:valhalla.TripLeg.Edge.total_length_km)
+}
+
 bool TripLeg_Edge::has_has_length_km() const {
   return has_length_km_case() != HAS_LENGTH_KM_NOT_SET;
 }
@@ -11068,6 +11159,12 @@ bool TripLeg_Edge::has_has_shoulder() const {
 void TripLeg_Edge::clear_has_has_shoulder() {
   _oneof_case_[43] = HAS_SHOULDER_NOT_SET;
 }
+bool TripLeg_Edge::has_has_total_length_km() const {
+  return has_total_length_km_case() != HAS_TOTAL_LENGTH_KM_NOT_SET;
+}
+void TripLeg_Edge::clear_has_has_total_length_km() {
+  _oneof_case_[44] = HAS_TOTAL_LENGTH_KM_NOT_SET;
+}
 TripLeg_Edge::HasLengthKmCase TripLeg_Edge::has_length_km_case() const {
   return TripLeg_Edge::HasLengthKmCase(_oneof_case_[0]);
 }
@@ -11199,6 +11296,9 @@ TripLeg_Edge::HasSacScaleCase TripLeg_Edge::has_sac_scale_case() const {
 }
 TripLeg_Edge::HasShoulderCase TripLeg_Edge::has_shoulder_case() const {
   return TripLeg_Edge::HasShoulderCase(_oneof_case_[43]);
+}
+TripLeg_Edge::HasTotalLengthKmCase TripLeg_Edge::has_total_length_km_case() const {
+  return TripLeg_Edge::HasTotalLengthKmCase(_oneof_case_[44]);
 }
 // -------------------------------------------------------------------
 

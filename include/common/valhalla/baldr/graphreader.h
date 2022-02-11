@@ -695,6 +695,12 @@ public:
   std::vector<GraphId> RecoverShortcut(const GraphId& shortcutid);
 
   /**
+   * Recovers all shortcuts and their edges
+   *@return Returns a map of shortcut IDs to recovered edge IDs
+   */
+  std::unordered_map<uint64_t, std::vector<uint64_t>> GetAllShortcuts();
+
+  /**
    * Convenience method to get the relative edge density (from the
    * begin node of an edge).
    * @param   edgeid  Graph Id of the directed edge.
