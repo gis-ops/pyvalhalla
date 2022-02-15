@@ -78,5 +78,7 @@ PYBIND11_MODULE(_valhalla, m) {
           "Returns routes from all the input locations to the minimum cost meeting point of those paths.")
       .def("status", [](vt::actor_t& self, std::string& req) { return self.status(req); },
            "Returns nothing or optionally details about Valhalla's configuration.")
-      .def("get_all_shortcuts", &vt::actor_t::get_all_shortcuts, "Returns all shortcuts and their underlying edge IDs as dict");
+      .def("get_livespeed", &vt::actor_t::get_livespeed, "Returns the live speed of an edge, if available.")
+      .def("get_all_shortcuts", &vt::actor_t::get_all_shortcuts, "Returns all shortcuts and their underlying edge IDs as dict")
+      .def("get_edge_speed", &vt::actor_t::get_edge_speed, "Returns constrained edge speed if it's not covered by live speed");
 }

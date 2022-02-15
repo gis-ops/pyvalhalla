@@ -215,6 +215,7 @@ public:
 
   std::string get_livespeed(const uint64_t value);
   std::unordered_map<uint64_t, std::vector<uint64_t>> get_all_shortcuts();
+  std::uint32_t get_edge_speed(const uint64_t value);
 
 protected:
   struct pimpl_t;

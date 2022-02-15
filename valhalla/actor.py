@@ -71,3 +71,6 @@ class Actor(_Actor):
 
     def get_all_shortcuts(self):
         return super().get_all_shortcuts()
+
+    def get_edge_speed(self, edge_id: int):
+        return super().get_edge_speed(edge_id)

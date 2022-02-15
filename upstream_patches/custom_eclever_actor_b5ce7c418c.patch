@@ -1,8 +1,21 @@
+diff --git a/.gitignore b/.gitignore
+index 1fd592245..e3a14ee02 100644
+--- a/.gitignore
++++ b/.gitignore
+@@ -1,6 +1,8 @@
+ # editor temporary / backup files
+ *~
+ 
++conan_data
++
+ # built objects
+ valhalla_run_map_match
+ valhalla_meili_worker
 diff --git a/src/baldr/graphreader.cc b/src/baldr/graphreader.cc
-index 2769f96ca..5cff5b437 100644
+index 2769f96ca..f1c246ce6 100644
 --- a/src/baldr/graphreader.cc
 +++ b/src/baldr/graphreader.cc
-@@ -815,7 +815,16 @@ GraphId GraphReader::GetShortcut(const GraphId& id) {
+@@ -815,9 +815,28 @@ GraphId GraphReader::GetShortcut(const GraphId& id) {
  
  // Unpack edges for a given shortcut edge
  std::vector<GraphId> GraphReader::RecoverShortcut(const GraphId& shortcut_id) {
@@ -13,13 +26,25 @@ index 2769f96ca..5cff5b437 100644
 +    return valhalla::baldr::GraphId(v);
 +  });
 +  return out;
-+}
-+
-+std::unordered_map<uint64_t, std::vector<uint64_t>> GraphReader::GetAllShortcuts() {
-+  return shortcut_recovery_t::get_instance().shortcuts;
  }
  
++std::unordered_map<uint64_t, std::vector<uint64_t>> GraphReader::GetAllShortcuts() {
++  return shortcut_recovery_t::get_instance().shortcuts;
++}
++
++uint32_t GraphReader::GetEdgeSpeed(const uint64_t edge_id) {
++  const auto gid = GraphId(edge_id);
++  auto tile = GetGraphTile(gid);
++  if (tile == nullptr) {
++    return 0;
++  }
++  const baldr::DirectedEdge* de = tile->directededge(gid);
++  return tile->GetSpeed(de);
++};
++
  // Convenience method to get the relative edge density (from the
+ // begin node of an edge).
+ uint32_t GraphReader::GetEdgeDensity(const GraphId& edgeid) {
 diff --git a/src/baldr/shortcut_recovery.h b/src/baldr/shortcut_recovery.h
 index 21bc006c1..bd049867f 100644
 --- a/src/baldr/shortcut_recovery.h
@@ -146,10 +171,10 @@ index 21bc006c1..bd049867f 100644
      auto itr = shortcuts.find(shortcut_id);
      if (itr == shortcuts.cend())
 diff --git a/src/tyr/actor.cc b/src/tyr/actor.cc
-index ba49314c9..bd8e478b0 100644
+index ba49314c9..f5030c6c7 100644
 --- a/src/tyr/actor.cc
 +++ b/src/tyr/actor.cc
-@@ -363,5 +363,22 @@ actor_t::status(const std::string& request_str, const std::function<void()>* int
+@@ -363,5 +363,26 @@ actor_t::status(const std::string& request_str, const std::function<void()>* int
    return json;
  }
  
@@ -170,6 +195,10 @@ index ba49314c9..bd8e478b0 100644
 +std::unordered_map<uint64_t, std::vector<uint64_t>> actor_t::get_all_shortcuts() {
 +  return pimpl->reader->GetAllShortcuts();
 +}
++
++uint32_t actor_t::get_edge_speed(const uint64_t value) {
++  return pimpl->reader->GetEdgeSpeed(value);
++}
  } // namespace tyr
  } // namespace valhalla
 diff --git a/test/recover_shortcut.cc b/test/recover_shortcut.cc
@@ -189,32 +218,43 @@ index cc92cdd5a..222a9bd1e 100644
            if (!de->forward()) {
              std::reverse(de_shape.begin(), de_shape.end());
 diff --git a/valhalla/baldr/graphreader.h b/valhalla/baldr/graphreader.h
-index c819ffa5c..4d8564c23 100644
+index c819ffa5c..ac081bc94 100644
 --- a/valhalla/baldr/graphreader.h
 +++ b/valhalla/baldr/graphreader.h
-@@ -694,6 +694,12 @@ public:
+@@ -694,6 +694,22 @@ public:
     */
    std::vector<GraphId> RecoverShortcut(const GraphId& shortcutid);
  
 +  /**
-+   * Recovers all shortcuts and their edges
++   * Returns overall speeds for all relevant shortcuts, i.e. the ones
++   * containing traffic matched edge_ids
 +   *@return Returns a map of shortcut IDs to recovered edge IDs
 +   */
 +  std::unordered_map<uint64_t, std::vector<uint64_t>> GetAllShortcuts();
++
++  /**
++   * Returns the speed for an edge not covered by live speed
++   * NOTE: will not give live speed results, since we initialize the Actor without
++   * to be able to map-match properly
++   * @return Speed of an edge not covered by live speed
++   */
++
++  uint32_t GetEdgeSpeed(const uint64_t edge_id);
 +
    /**
     * Convenience method to get the relative edge density (from the
     * begin node of an edge).
 diff --git a/valhalla/tyr/actor.h b/valhalla/tyr/actor.h
-index 43ecb75d2..e37dd1e26 100644
+index 43ecb75d2..c78e11162 100644
 --- a/valhalla/tyr/actor.h
 +++ b/valhalla/tyr/actor.h
-@@ -213,6 +213,9 @@ public:
+@@ -213,6 +213,10 @@ public:
                       const std::function<void()>* interrupt = nullptr,
                       Api* api = nullptr);
  
 +  std::string get_livespeed(const uint64_t value);
 +  std::unordered_map<uint64_t, std::vector<uint64_t>> get_all_shortcuts();
++  std::uint32_t get_edge_speed(const uint64_t value);
 +
  protected:
    struct pimpl_t;

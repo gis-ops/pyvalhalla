@@ -695,10 +695,20 @@ public:
   std::vector<GraphId> RecoverShortcut(const GraphId& shortcutid);
 
   /**
-   * Recovers all shortcuts and their edges
+   * Returns overall speeds for all relevant shortcuts, i.e. the ones
+   * containing traffic matched edge_ids
    *@return Returns a map of shortcut IDs to recovered edge IDs
    */
   std::unordered_map<uint64_t, std::vector<uint64_t>> GetAllShortcuts();
+
+  /**
+   * Returns the speed for an edge not covered by live speed
+   * NOTE: will not give live speed results, since we initialize the Actor without
+   * to be able to map-match properly
+   * @return Speed of an edge not covered by live speed
+   */
+
+  uint32_t GetEdgeSpeed(const uint64_t edge_id);
 
   /**
    * Convenience method to get the relative edge density (from the
