@@ -84,7 +84,13 @@ Pretty identical to Linux, just we don't need a docker container of course:
 ./scripts/build_mac.sh
 ```
 
-Call 911 if this doesn't work!;)
+To test it worked:
+
+```
+pip uninstall pyvalhalla
+pip install wheelhouse/pyvalhalla-xxx.whl
+python -c "from valhalla import Actor; a = Actor('valhalla.json')"
+```
 
 #### Windows
 

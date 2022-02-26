@@ -1,5 +1,17 @@
 #!/usr/bin/env bash
 
+# do some cleanup of previous builds to not interfere with the current one
+# setuptools artifacts
+if [[ -d build ]]; then
+  rm -r build
+fi
+# delocate artifacts
+if [[ -d wheelhouse ]]; then
+  rm -r wheelhouse/*
+fi
+rm -r lib/darwin/*  # previous libs
+
+# install conan to arrange boost
 pip3 install conan
 conan profile new default --detect
 conan config set "storage.path=${PWD}/upstream/conan_data"
@@ -30,18 +42,13 @@ for dep in $deps; do
 done
 
 # symlink libs, otherwise gcc/g++ can't find e.g. libprotobuf-lite.28.dylib (while it does find libprotobuf-lite.dylib)
-push lib/darwin
+pushd lib/darwin
 ln -s libprotobuf-lite.28.dylib libprotobuf-lite.dylib
 popd
 
 # copy libvalhalla
 mkdir -p lib/darwin
 cp -f upstream/build/src/libvalhalla.a lib/darwin
-
-# remove setuptools build folder so we build a fresh _valhalla.so every tiem
-if [[ -d build ]]; then
-  rm -r build
-fi
 
 # make the bindings so we can see which libraries it exactly links to and also for testing
 pip3 install -r build-requirements.txt
@@ -69,7 +76,7 @@ protoc --proto_path=upstream/proto --cpp_out=include/darwin/valhalla/proto upstr
 git -C upstream checkout .
 
 # patch the paths delocate sees
-LIBRARY_PATH="$(pwd)/lib/darwin/:$LIBRARY_PATH
+LIBRARY_PATH="$(pwd)/lib/darwin/:$LIBRARY_PATH"
 
 for dylib in dist/*; do
   DYLD_LIBRARY_PATH=$LIBRARY_PATH delocate-wheel -w wheelhouse "${dylib}"

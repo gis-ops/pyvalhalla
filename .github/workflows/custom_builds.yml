@@ -11,6 +11,7 @@ on:
       - 'custom_eclever'
     paths-ignore:
       - '*.md'
+      - '*.sh'
 
 jobs:
   build_wheels:
