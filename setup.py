@@ -70,11 +70,10 @@ setup(
     author_email="nils@gis-ops.com",
     packages=find_packages(exclude=["tests", "*.tests", "*.tests.*", "tests.*"]),
     python_requires=">=3.7.0",
-    url="https://github.com/gis-ops/valhalla-py",
+    url="https://github.com/gis-ops/pyvalhalla",
     ext_package="valhalla",
     ext_modules=ext_modules,
     zip_safe=False,
-    use_scm_version=True,
     classifiers=[
         "License :: OSI Approved :: GNU General Public License v2 or later (GPLv2+)",
         "Programming Language :: Python :: 3",

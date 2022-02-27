@@ -15,8 +15,8 @@ on:
 jobs:
   build_wheels:
     name: PR - cp*, ubuntu-latest
+    runs-on: ubuntu-latest
     container: ghcr.io/gis-ops/manylinux:valhalla_py
-
     steps:
     - uses: actions/checkout@v2
 
@@ -26,28 +26,5 @@ jobs:
         black --check valhalla
         flake8 valhalla
 
-    # keep in-sync with the other yaml
-    # only macos makes sense, windows didn't work, linux installs conan inside the docker image
-    - name: Cache Conan
-      id: cache-conan
-      uses: actions/cache@v2
-      with:
-        path: |
-          ${{ github.workspace }}/conan_data
-          ${{ github.workspace }}/conan_build
-        key: conan-${{ matrix.platform }}-${{ hashFiles('conanfile.txt') }}
-        restore-keys: |
-          conan-${{ matrix.platform }}-
-
-    - name: Install Conan
-      if: steps.cache-conan.outputs.cache-hit != 'true'
-      run: |
-        pip install pip --upgrade
-        pip install conan
-        conan profile new default --detect
-        conan config set "storage.path=${{ github.workspace }}/conan_data"
-        conan install --install-folder ${{ github.workspace }}/conan_build --remote conancenter .
-
-    - name: Test
-      run: |
-        for py_version in cp37-cp37m cp38-cp38 cp39-cp39 cp310-cp310; do /opt/python/$py_version/bin/pip install -e . && /opt/python/$py_version/bin/python -c "from valhalla import Actor"; done
+    # only build the earliest supported python version
+    - uses: pypa/cibuildwheel@v2.3.1

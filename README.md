@@ -11,6 +11,8 @@ We distribute all 4 currently supported CPython versions as binary **wheels** fo
 
 `pip install valhalla-py`
 
+**Note**, to install from PyPI as a **Linux** user you must have at least `pip` version 20.3 or greater installed.
+
 ## Usage
 
 TODO
