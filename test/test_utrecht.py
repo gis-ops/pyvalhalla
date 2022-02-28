@@ -24,20 +24,13 @@ def has_cyrillic(text):
 class TestBindings(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.config_path = PWD.joinpath("test_valhalla.json")
-        cls.tiles_path = Path("test/data/utrecht_tiles")
-        cls.extract_path = Path("test/data/utrecht_tiles/tiles.tar")
+        cls.tiles_path = PWD.joinpath("data/utrecht_tiles")
+        cls.extract_path = PWD.joinpath("data/utrecht_tiles/tiles.tar")
 
-        cls.actor = Actor(str(cls.config_path))
-
-        # remember the old config and write it back after the tests
-        with open(cls.config_path) as f:
-            cls.config = json.load(f)
+        cls.actor = Actor(get_config(cls.extract_path, cls.tiles_path))
 
     @classmethod
     def tearDownClass(cls):
-        with open(cls.config_path, "w") as f:
-            json.dump(cls.config, f, indent=2)
         del cls.actor
 
     def test_config(self):

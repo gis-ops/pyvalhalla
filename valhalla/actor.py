@@ -65,7 +65,7 @@ class Actor(_Actor):
         if not Path(config["mjolnir"]["tile_extract"]).is_file():
             if not Path(config["mjolnir"]["tile_dir"]).is_dir():
                 raise FileNotFoundError(
-                    f"Neither mjolnir.tile_extract ({tile_extract_fp}) nor mjolnir.tile_dir ({tile_dir}) exists. Can't load graph."
+                    f"Neither mjolnir.tile_extract ({Path(tile_extract_fp).resolve()}) nor mjolnir.tile_dir ({Path(tile_dir).resolve()}) exists. Can't load graph."
                 )
 
         super(Actor, self).__init__(self._config_path)
