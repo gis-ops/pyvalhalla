@@ -27,7 +27,7 @@ exclude = '''
 '''
 
 [tool.cibuildwheel]
-test-command = "python -m unittest discover -s test -k test_utrecht"
+test-command = "python -m unittest discover -s {project}/test"
 # find out current defaults: cibuildwheel --print-build-identifiers --platform linux
 build = "cp*"
 skip = "*musllinux*"
