@@ -26,9 +26,8 @@ jobs:
 
     - name: Lint & Style Check
       run: |
-        pip install black flake8
-        black --check valhalla
-        flake8 valhalla
+        pip install black flake8 pre-commit
+        pre-commit run --all-files --show-diff-on-failure
 
     # only build the earliest supported python version
     - uses: pypa/cibuildwheel@v2.3.1
