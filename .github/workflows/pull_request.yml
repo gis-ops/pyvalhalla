@@ -16,7 +16,7 @@ jobs:
   build_wheels:
     name: PR - cp*, ubuntu-latest
     runs-on: ubuntu-latest
-    container: ghcr.io/gis-ops/manylinux:valhalla_py
+    container: ghcr.io/gis-ops/manylinux:valhalla_python
     steps:
     - uses: actions/checkout@v2
 
