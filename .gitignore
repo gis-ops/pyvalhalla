@@ -3,6 +3,9 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# will be updated by setuptools_scm on github actions before releasing to pypi
+__version__.py
+
 # C extensions
 *.so
 
