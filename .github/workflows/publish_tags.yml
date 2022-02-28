@@ -23,6 +23,8 @@ jobs:
             platform: macos
     steps:
     - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
 
     - name: Configure Python
       uses: actions/setup-python@v2
