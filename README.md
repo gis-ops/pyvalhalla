@@ -9,6 +9,7 @@ Apply each patch file to see the actual code changes.
 - `custom_eclever_trace_serializer`: 
   - (**eventually PR**) `source/target_percent_along` response fields were added and can be used to retrieve the actual position of the correlated point
   - added `total_length` in response to return an edge's total length
+  - added `shortcut_id` in case an edge is superseded (only added if available)
   - slim down the trace_attributes response to only needed fields
 - `custom_eclever_locate_serializer`: slim down the /locate response to only needed fields
 - ~~`custom_eclever_service`: add the `get_livespeed` to `valhalla_service` on command line~~
