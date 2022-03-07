@@ -8,6 +8,11 @@ requires = [
 ]
 build-backend = "setuptools.build_meta"
 
+[tool.setuptools_scm]
+write_to = "valhalla/__version__.py"
+write_to_template = "__version__ = '{version}'\n"
+version_scheme = "post-release"
+
 [tool.black]
 line-length = 105
 exclude = '''
@@ -22,7 +27,7 @@ exclude = '''
 '''
 
 [tool.cibuildwheel]
-test-command = "python -c \"from valhalla import Actor\""
+test-command = "python -m unittest discover -s {project}/test"
 # find out current defaults: cibuildwheel --print-build-identifiers --platform linux
 build = "cp*"
 skip = "*musllinux*"

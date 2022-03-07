@@ -37,7 +37,6 @@ if conanfiles:
     with conanfiles[0].open() as f:
         # it's just header-only boost so far..
         include_dirs.extend(json.load(f)["dependencies"][0]["include_paths"])
-
 else:
     logging.warning(
         "Conan not installed and/or no conan build detected. Assuming dependencies are installed."
@@ -70,11 +69,10 @@ setup(
     author_email="nils@gis-ops.com",
     packages=find_packages(exclude=["tests", "*.tests", "*.tests.*", "tests.*"]),
     python_requires=">=3.7.0",
-    url="https://github.com/gis-ops/valhalla-py",
+    url="https://github.com/gis-ops/pyvalhalla",
     ext_package="valhalla",
     ext_modules=ext_modules,
     zip_safe=False,
-    use_scm_version=True,
     classifiers=[
         "License :: OSI Approved :: GNU General Public License v2 or later (GPLv2+)",
         "Programming Language :: Python :: 3",

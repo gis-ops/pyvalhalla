@@ -17,14 +17,14 @@ jobs:
         include:
           - image: ubuntu-latest
             platform: linux
-            cxx: 'g++-9'
           - image: windows-latest
             platform: windows
-            cxx: 'Visual Studio'
           - image: macos-latest
             platform: macos
     steps:
     - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
 
     - name: Configure Python
       uses: actions/setup-python@v2
@@ -56,7 +56,7 @@ jobs:
         conan install --install-folder conan_build --remote conancenter .
 
     - name: Install Conan (MacOS)
-      if: matrix.platform != 'windows' && steps.cache-conan.outputs.cache-hit != 'true'
+      if: matrix.platform == 'macos' && steps.cache-conan.outputs.cache-hit != 'true'
       run: |
         pip install pip --upgrade
         pip install conan
