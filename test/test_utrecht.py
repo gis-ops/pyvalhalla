@@ -24,8 +24,8 @@ def has_cyrillic(text):
 class TestBindings(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.tiles_path = PWD.joinpath("data/utrecht_tiles")
-        cls.extract_path = PWD.joinpath("data/utrecht_tiles/tiles.tar")
+        cls.tiles_path = PWD.joinpath("data", "utrecht_tiles")
+        cls.extract_path = PWD.joinpath("data", "utrecht_tiles", "tiles.tar")
 
         cls.actor = Actor(get_config(cls.extract_path, cls.tiles_path))
 

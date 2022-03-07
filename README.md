@@ -15,6 +15,8 @@ We distribute all 4 currently supported CPython versions as binary **wheels** fo
 
 ## Usage
 
+Find a more extended notebook in `./examples`, e.g. how to [use the actor](./examples/actor_examples.ipynb).
+
 Before using the Python bindings you need to have access to a routable Valhalla graph. Either install Valhalla from source and built the graph from OSM compatible data or use our [Valhalla docker image](https://github.com/gis-ops/docker-valhalla) for a painless experience.
 
 Once you have created a graph locally, you can use it like this:
