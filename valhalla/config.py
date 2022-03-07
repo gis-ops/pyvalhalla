@@ -17,25 +17,22 @@ def _sanitize_config(dict_: dict = None) -> dict:
 
 
 def get_config(
-    tile_dir: Union[str, Path], tile_extract: Union[str, Path] = "valhalla_tiles.tar"
+    tile_extract: Union[str, Path] = "valhalla_tiles.tar",
+    tile_dir: Union[str, Path] = "valhalla_tiles",
+    verbose: bool = False,
 ) -> dict:
     """
-    Returns a default Valhalla configuration expecting an existing tile directory.
+    Returns a default Valhalla configuration.
 
-    :param tile_dir: The directory path where the graph tiles should be stored.
-    :param tile_extract: The file path (with .tar extension) of the tile extract, if present.
+    :param tile_extract: The file path (with .tar extension) of the tile extract (mjolnir.tile_extract), if present. Preferred over tile_dir.
+    :param tile_dir: The directory path where the graph tiles are stored (mjolnir.tile_dir), if present.
+    :param verbose: Whether you want to see Valhalla's logs on stdout (mjolnir.logging). Default False.
     """
 
     config = _sanitize_config(default_config.copy())
 
-    tile_dir = Path(tile_dir)
-    tile_extract = Path(tile_extract)
-
-    # insert the tile paths
-    if not tile_dir.is_dir():
-        raise FileNotFoundError(f"'tile_dir': {tile_dir.resolve()} is not an existing Valhalla graph.")
-
-    config["mjolnir"]["tile_dir"] = str(tile_dir.resolve())
-    config["mjolnir"]["tile_extract"] = str(tile_extract.resolve())
+    config["mjolnir"]["tile_dir"] = str(Path(tile_dir).resolve())
+    config["mjolnir"]["tile_extract"] = str(Path(tile_extract).resolve())
+    config["mjolnir"]["logging"]["type"] = "std_out" if verbose else ""
 
     return config

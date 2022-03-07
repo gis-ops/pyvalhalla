@@ -1,4 +1,4 @@
-## `valhalla-py` release patterns
+## `pyvalhalla` release patterns
 
 We release independently from Valhalla core. One can retrieve both by:
 
@@ -65,10 +65,10 @@ Proto headers have to be compiled on each platform separately.
 
 #### Linux
 
-Fire up the `ghcr.io/gis-ops/manylinux:valhalla_py` image which has all dependencies installed and build valhalla:
+Fire up the `ghcr.io/gis-ops/manylinux:valhalla_python` image which has all dependencies installed and build valhalla:
 
 ```
-docker run -dt -v $PWD:/valhalla-py --name valhalla-py ghcr.io/gis-ops/manylinux:valhalla_py
+docker run -dt -v $PWD:/valhalla-py --name valhalla-py ghcr.io/gis-ops/manylinux:valhalla_python
 ./scripts/build_linux.sh
 sudo chown -R nilsnolde:nilsnolde .
 ```
@@ -82,6 +82,14 @@ That'll take care of all the header & library copying, proto compilation etc. It
 Pretty identical to Linux, just we don't need a docker container of course:
 ```
 ./scripts/build_mac.sh
+```
+
+To test it worked:
+
+```
+pip uninstall pyvalhalla
+pip install wheelhouse/pyvalhalla-xxx.whl
+python -c "from valhalla import Actor; a = Actor('valhalla.json')"
 ```
 
 #### Windows
