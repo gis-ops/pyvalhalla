@@ -1394,6 +1394,7 @@ const int TripLeg_Edge::kTargetAlongEdgeFieldNumber;
 const int TripLeg_Edge::kSacScaleFieldNumber;
 const int TripLeg_Edge::kShoulderFieldNumber;
 const int TripLeg_Edge::kTotalLengthKmFieldNumber;
+const int TripLeg_Edge::kShortcutIdFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 TripLeg_Edge::TripLeg_Edge()
@@ -1483,6 +1484,7 @@ void TripLeg_Edge::SharedCtor() {
   clear_has_has_sac_scale();
   clear_has_has_shoulder();
   clear_has_has_total_length_km();
+  clear_has_has_shortcut_id();
 }
 
 TripLeg_Edge::~TripLeg_Edge() {
@@ -1625,6 +1627,9 @@ void TripLeg_Edge::SharedDtor() {
   }
   if (has_has_total_length_km()) {
     clear_has_total_length_km();
+  }
+  if (has_has_shortcut_id()) {
+    clear_has_shortcut_id();
   }
   #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   if (this != &default_instance()) {
@@ -2291,6 +2296,20 @@ void TripLeg_Edge::clear_has_total_length_km() {
   _oneof_case_[44] = HAS_TOTAL_LENGTH_KM_NOT_SET;
 }
 
+void TripLeg_Edge::clear_has_shortcut_id() {
+// @@protoc_insertion_point(one_of_clear_start:valhalla.TripLeg.Edge)
+  switch(has_shortcut_id_case()) {
+    case kShortcutId: {
+      // No need to clear
+      break;
+    }
+    case HAS_SHORTCUT_ID_NOT_SET: {
+      break;
+    }
+  }
+  _oneof_case_[45] = HAS_SHORTCUT_ID_NOT_SET;
+}
+
 
 void TripLeg_Edge::Clear() {
 // @@protoc_insertion_point(message_clear_start:valhalla.TripLeg.Edge)
@@ -2350,6 +2369,7 @@ void TripLeg_Edge::Clear() {
   clear_has_sac_scale();
   clear_has_shoulder();
   clear_has_total_length_km();
+  clear_has_shortcut_id();
 }
 
 bool TripLeg_Edge::MergePartialFromCodedStream(
@@ -3200,6 +3220,22 @@ bool TripLeg_Edge::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
+        if (input->ExpectTag(432)) goto parse_shortcut_id;
+        break;
+      }
+
+      // optional int64 shortcut_id = 54;
+      case 54: {
+        if (tag == 432) {
+         parse_shortcut_id:
+          clear_has_shortcut_id();
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_INT64>(
+                 input, &has_shortcut_id_.shortcut_id_)));
+          set_has_shortcut_id();
+        } else {
+          goto handle_unusual;
+        }
         if (input->ExpectAtEnd()) goto success;
         break;
       }
@@ -3511,6 +3547,11 @@ void TripLeg_Edge::SerializeWithCachedSizes(
   // optional float total_length_km = 53;
   if (has_total_length_km()) {
     ::google::protobuf::internal::WireFormatLite::WriteFloat(53, this->total_length_km(), output);
+  }
+
+  // optional int64 shortcut_id = 54;
+  if (has_shortcut_id()) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt64(54, this->shortcut_id(), output);
   }
 
   // @@protoc_insertion_point(serialize_end:valhalla.TripLeg.Edge)
@@ -4069,6 +4110,18 @@ int TripLeg_Edge::ByteSize() const {
       break;
     }
   }
+  switch (has_shortcut_id_case()) {
+    // optional int64 shortcut_id = 54;
+    case kShortcutId: {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::Int64Size(
+          this->shortcut_id());
+      break;
+    }
+    case HAS_SHORTCUT_ID_NOT_SET: {
+      break;
+    }
+  }
   GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
   _cached_size_ = total_size;
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
@@ -4495,6 +4548,15 @@ void TripLeg_Edge::MergeFrom(const TripLeg_Edge& from) {
       break;
     }
   }
+  switch (from.has_shortcut_id_case()) {
+    case kShortcutId: {
+      set_shortcut_id(from.shortcut_id());
+      break;
+    }
+    case HAS_SHORTCUT_ID_NOT_SET: {
+      break;
+    }
+  }
   if (from.has_sign()) {
     mutable_sign()->::valhalla::TripSign::MergeFrom(from.sign());
   }
@@ -4621,6 +4683,8 @@ void TripLeg_Edge::InternalSwap(TripLeg_Edge* other) {
   std::swap(_oneof_case_[43], other->_oneof_case_[43]);
   std::swap(has_total_length_km_, other->has_total_length_km_);
   std::swap(_oneof_case_[44], other->_oneof_case_[44]);
+  std::swap(has_shortcut_id_, other->has_shortcut_id_);
+  std::swap(_oneof_case_[45], other->_oneof_case_[45]);
   _unknown_fields_.Swap(&other->_unknown_fields_);
   std::swap(_cached_size_, other->_cached_size_);
 }
@@ -10895,6 +10959,35 @@ void TripLeg_Edge::clear_total_length_km() {
   // @@protoc_insertion_point(field_set:valhalla.TripLeg.Edge.total_length_km)
 }
 
+// optional int64 shortcut_id = 54;
+bool TripLeg_Edge::has_shortcut_id() const {
+  return has_shortcut_id_case() == kShortcutId;
+}
+void TripLeg_Edge::set_has_shortcut_id() {
+  _oneof_case_[45] = kShortcutId;
+}
+void TripLeg_Edge::clear_shortcut_id() {
+  if (has_shortcut_id()) {
+    has_shortcut_id_.shortcut_id_ = GOOGLE_LONGLONG(0);
+    clear_has_has_shortcut_id();
+  }
+}
+ ::google::protobuf::int64 TripLeg_Edge::shortcut_id() const {
+  // @@protoc_insertion_point(field_get:valhalla.TripLeg.Edge.shortcut_id)
+  if (has_shortcut_id()) {
+    return has_shortcut_id_.shortcut_id_;
+  }
+  return GOOGLE_LONGLONG(0);
+}
+ void TripLeg_Edge::set_shortcut_id(::google::protobuf::int64 value) {
+  if (!has_shortcut_id()) {
+    clear_has_shortcut_id();
+    set_has_shortcut_id();
+  }
+  has_shortcut_id_.shortcut_id_ = value;
+  // @@protoc_insertion_point(field_set:valhalla.TripLeg.Edge.shortcut_id)
+}
+
 bool TripLeg_Edge::has_has_length_km() const {
   return has_length_km_case() != HAS_LENGTH_KM_NOT_SET;
 }
@@ -11165,6 +11258,12 @@ bool TripLeg_Edge::has_has_total_length_km() const {
 void TripLeg_Edge::clear_has_has_total_length_km() {
   _oneof_case_[44] = HAS_TOTAL_LENGTH_KM_NOT_SET;
 }
+bool TripLeg_Edge::has_has_shortcut_id() const {
+  return has_shortcut_id_case() != HAS_SHORTCUT_ID_NOT_SET;
+}
+void TripLeg_Edge::clear_has_has_shortcut_id() {
+  _oneof_case_[45] = HAS_SHORTCUT_ID_NOT_SET;
+}
 TripLeg_Edge::HasLengthKmCase TripLeg_Edge::has_length_km_case() const {
   return TripLeg_Edge::HasLengthKmCase(_oneof_case_[0]);
 }
@@ -11299,6 +11398,9 @@ TripLeg_Edge::HasShoulderCase TripLeg_Edge::has_shoulder_case() const {
 }
 TripLeg_Edge::HasTotalLengthKmCase TripLeg_Edge::has_total_length_km_case() const {
   return TripLeg_Edge::HasTotalLengthKmCase(_oneof_case_[44]);
+}
+TripLeg_Edge::HasShortcutIdCase TripLeg_Edge::has_shortcut_id_case() const {
+  return TripLeg_Edge::HasShortcutIdCase(_oneof_case_[45]);
 }
 // -------------------------------------------------------------------
 

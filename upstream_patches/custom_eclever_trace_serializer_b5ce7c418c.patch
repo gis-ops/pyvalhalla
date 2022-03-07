@@ -33,7 +33,7 @@ index 8cb8469c5..9bc76e8d6 100644
  
      // How long on this edge?
 diff --git a/src/tyr/trace_serializer.cc b/src/tyr/trace_serializer.cc
-index 68df54332..a1e38a38c 100644
+index 68df54332..38d0960ba 100644
 --- a/src/tyr/trace_serializer.cc
 +++ b/src/tyr/trace_serializer.cc
 @@ -63,282 +63,296 @@ json::ArrayPtr serialize_edges(const AttributesController& controller,
@@ -331,7 +331,7 @@ index 68df54332..a1e38a38c 100644
 -          segments_array->emplace_back(segmap);
 -        }
 -        edge_map->emplace("traffic_segments", segments_array);
-+      if (edge.has_shortcut_id()) {
++      if (edge.has_shortcut_id_case()) {
 +        edge_map->emplace("shortcut_id", static_cast<uint64_t>(edge.shortcut_id()));
        }
 -

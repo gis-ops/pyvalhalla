@@ -9277,6 +9277,7 @@ bool Options_Action_IsValid(int value) {
     case 9:
     case 10:
     case 11:
+    case 12:
       return true;
     default:
       return false;
@@ -9296,6 +9297,7 @@ const Options_Action Options::transit_available;
 const Options_Action Options::expansion;
 const Options_Action Options::centroid;
 const Options_Action Options::status;
+const Options_Action Options::livespeed;
 const Options_Action Options::Action_MIN;
 const Options_Action Options::Action_MAX;
 const int Options::Action_ARRAYSIZE;

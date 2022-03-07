@@ -81,12 +81,13 @@ enum Options_Action {
   Options_Action_expansion = 9,
   Options_Action_centroid = 10,
   Options_Action_status = 11,
+  Options_Action_livespeed = 12,
   Options_Action_Options_Action_INT_MIN_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32min,
   Options_Action_Options_Action_INT_MAX_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32max
 };
 bool Options_Action_IsValid(int value);
 const Options_Action Options_Action_Action_MIN = Options_Action_route;
-const Options_Action Options_Action_Action_MAX = Options_Action_status;
+const Options_Action Options_Action_Action_MAX = Options_Action_livespeed;
 const int Options_Action_Action_ARRAYSIZE = Options_Action_Action_MAX + 1;
 
 enum Options_DateTimeType {
@@ -2835,6 +2836,8 @@ class Options : public ::google::protobuf::MessageLite /* @@protoc_insertion_poi
     Options_Action_centroid;
   static const Action status =
     Options_Action_status;
+  static const Action livespeed =
+    Options_Action_livespeed;
   static inline bool Action_IsValid(int value) {
     return Options_Action_IsValid(value);
   }
