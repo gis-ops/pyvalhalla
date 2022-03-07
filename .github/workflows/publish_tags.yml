@@ -26,11 +26,6 @@ jobs:
       with:
         fetch-depth: 0
 
-    - name: Configure Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.7'
-
     # keep in-sync with the other yaml
     - name: Cache Conan (MacOS)
       id: cache-conan
@@ -91,3 +86,4 @@ jobs:
       with:
         user: nilsnolde
         password: ${{ secrets.PYPI_PASS }}
+        repository_url: https://test.pypi.org/legacy/

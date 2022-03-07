@@ -29,5 +29,4 @@ jobs:
         pip install black flake8 pre-commit
         pre-commit run --all-files --show-diff-on-failure
 
-    # only build the earliest supported python version
     - uses: pypa/cibuildwheel@v2.3.1

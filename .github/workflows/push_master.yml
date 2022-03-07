@@ -29,16 +29,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Configure Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.7'
-
-    - name: Lint & Style Check
-      run: |
-        pip install -r dev-requirements.txt
-        pre-commit run --all-files --show-diff-on-failure
-
     # keep in-sync with the other yaml
     # only macos makes sense, windows didn't work, linux installs conan inside the docker image
     - name: Cache Conan (MacOS)
