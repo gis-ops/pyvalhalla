@@ -6,7 +6,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 **Unreleased** is available in Github's `master` branch, but not on PyPI.
 
-## [3.0.1](https://pypi.org/project/pyvalhalla/3.0.0/) - 2021-03-08
+## [3.0.1](https://pypi.org/project/pyvalhalla/3.0.1/) - 2021-03-08
 
 ### Fixed
 
