@@ -1,6 +1,6 @@
 ## `pyvalhalla` release patterns
 
-We release independently from Valhalla core. One can retrieve both by:
+We release independently of Valhalla core but adhere to its major version. One can retrieve both by:
 
 ```python
 import valhalla
@@ -16,7 +16,7 @@ We follow semantic versioning as good as we can with the following guarantees:
 
 Reflects Valhalla's major version, i.e. we can guarantee compatibility of tiles built by the same Valhalla major version.
 
-As opposed to Valhalla itself, we also guarantee API stability (much easier to do in bindings).
+Because of that you can't expect full API stability, though we do our best.
 
 #### Minor version change
 
@@ -75,7 +75,7 @@ sudo chown -R nilsnolde:nilsnolde .
 
 That'll take care of all the header & library copying, proto compilation etc. It'll also build a wheel to `./wheelhouse`.
 
-- **add the built valhalla commit and add the current version in __init__.py**
+- **add the built valhalla commit in __init__.py**
 
 #### Mac OS
 
