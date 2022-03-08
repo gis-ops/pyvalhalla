@@ -58,9 +58,9 @@ class Actor(_Actor):
         tile_dir = config.get("mjolnir", {}).get("tile_dir")
 
         # raise if neither exists
-        if not tile_extract_fp or not tile_dir:
+        if not tile_extract_fp and not tile_dir:
             raise AttributeError(
-                "Valhalla config JSON is not valid: either mjolnir.tile_extract or mjolnir.tile_dir is missing."
+                "Valhalla config JSON is not valid: mjolnir.tile_extract and mjolnir.tile_dir are missing."
             )
         if not Path(config["mjolnir"]["tile_extract"]).is_file():
             if not Path(config["mjolnir"]["tile_dir"]).is_dir():
