@@ -1,7 +1,7 @@
 from pathlib import Path
-from typing import Union
+from typing import Union, Dict
 
-from .valhalla_build_config import config as default_config, Optional
+from .valhalla_build_config import config as default_config, Optional, help_text
 
 
 def _sanitize_config(dict_: dict = None) -> dict:
@@ -14,6 +14,13 @@ def _sanitize_config(dict_: dict = None) -> dict:
             _sanitize_config(v)
 
     return dict_
+
+
+def get_help() -> Dict[str, Union[Dict[str, str], str]]:
+    """
+    Returns the help dictionary with the same keys as the config JSON.
+    """
+    return help_text
 
 
 def get_config(

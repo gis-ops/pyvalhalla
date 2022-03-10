@@ -5,6 +5,8 @@ This spin-off project simply offers packaged Python bindings to the fantastic [V
 
 Over time we will very likely deviate from Valhalla's own Python binding code to allow usages outside the scope of the core project. Refer to our [release pattern](./docs/releasing.md) to learn more about the versioning of this project.
 
+**Note**, the performance boost using these bindings compared to requesting an HTTP service is tremendous: on 500 random routes in Berlin, the bindings take 27 secs while HTTP on localhost takes 127 secs.
+
 ## Installation
  
 We distribute all 4 currently developed CPython versions as **binary wheels** for Win64, MacOS (Intel) and x86_64 Linux distributions with `glibc>=2.24` (most modern systems, see [PEP 600](https://www.python.org/dev/peps/pep-0600/)). We **do not** offer a source distribution on PyPI. Please contact us on enquiry@gis-ops.com if you need support building the bindings for your platform/distribution.
@@ -21,10 +23,13 @@ Before using the Python bindings you need to have access to a routable Valhalla 
 
 Once you have created a graph locally, you can use it like this:
 ```python
-from valhalla import Actor, get_config
+from valhalla import Actor, get_config, get_help
 
 # generate configuration
 config = get_config(tile_extract='path/to/extract.tar', verbose=True)
+
+# print the help for specific config items (has the same structure as the output of get_config()
+print(get_help()["service_limits"]["auto"]["max_distance"])
 
 # instantiate Actor to load graph and call actions
 actor = Actor(config)
