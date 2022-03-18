@@ -11,6 +11,7 @@ on:
       - '*.md'
       - '*.sh'
       - '*.ipynb'
+      - '*.*json'
 
 jobs:
   build_wheels:
