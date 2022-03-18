@@ -26,6 +26,9 @@ jobs:
       with:
         fetch-depth: 0
 
+    - name: Configure Python
+      uses: actions/setup-python@v2
+
     # keep in-sync with the other yaml
     - name: Cache Conan (MacOS)
       id: cache-conan

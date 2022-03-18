@@ -22,8 +22,6 @@ jobs:
 
     - name: Configure Python
       uses: actions/setup-python@v2
-      with:
-        python-version: '3.7'
 
     - name: Lint & Style Check
       run: |

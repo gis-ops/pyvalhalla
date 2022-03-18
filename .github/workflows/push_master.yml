@@ -30,6 +30,9 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
+    - name: Configure Python
+      uses: actions/setup-python@v2
+
     # keep in-sync with the other yaml
     # only macos makes sense, windows didn't work, linux installs conan inside the docker image
     - name: Cache Conan (MacOS)
