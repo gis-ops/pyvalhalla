@@ -11,6 +11,8 @@ on:
       - '*'
     paths-ignore:
       - '*.md'
+      - '*.sh'
+      - '*.ipynb'
 
 jobs:
   build_wheels:

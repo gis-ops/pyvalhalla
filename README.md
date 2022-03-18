@@ -19,14 +19,19 @@ We distribute all 4 currently developed CPython versions as **binary wheels** fo
 
 Find a more extended notebook in `./examples`, e.g. how to [use the actor](./examples/actor_examples.ipynb).
 
-Before using the Python bindings you need to have access to a routable Valhalla graph. Either install Valhalla from source and built the graph from OSM compatible data or use our [Valhalla docker image](https://github.com/gis-ops/docker-valhalla) for a painless experience.
+Before using the Python bindings you need to have access to a routable Valhalla graph. Either install Valhalla from source and built the graph from OSM compatible data or use our [Valhalla docker image](https://github.com/gis-ops/docker-valhalla) for a painless experience, e.g. this will build the routing graph for Andorra in `./custom_files`:
+
+```shell
+docker run --rm --name valhalla_gis-ops -p 8002:8002 -v $PWD/custom_files:/custom_files -e tile_urls=https://download.geofabrik.de/europe/andorra-latest.osm.pbf gisops/valhalla:latest
+```
 
 Once you have created a graph locally, you can use it like this:
+
 ```python
 from valhalla import Actor, get_config, get_help
 
 # generate configuration
-config = get_config(tile_extract='path/to/extract.tar', verbose=True)
+config = get_config(tile_extract='./custom_files/valhalla_tiles.tar', verbose=True)
 
 # print the help for specific config items (has the same structure as the output of get_config()
 print(get_help()["service_limits"]["auto"]["max_distance"])
