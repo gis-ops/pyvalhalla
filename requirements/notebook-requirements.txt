@@ -10,6 +10,8 @@ attrs==21.4.0
     # via
     #   fiona
     #   rasterio
+bottle==0.12.19
+    # via conan
 certifi==2021.10.8
     # via
     #   fiona
@@ -33,10 +35,18 @@ cligj==0.7.2
     # via
     #   fiona
     #   rasterio
+colorama==0.4.4
+    # via conan
+conan==1.46.2
+    # via -r requirements/notebook-requirements.in
 contextily==1.2.0
     # via -r requirements/notebook-requirements.in
 cycler==0.11.0
     # via matplotlib
+distro==1.6.0
+    # via conan
+fasteners==0.17.3
+    # via conan
 fiona==1.8.21
     # via geopandas
 fonttools==4.31.2
@@ -49,10 +59,14 @@ geopy==2.2.0
     # via contextily
 idna==3.3
     # via requests
+jinja2==3.0.3
+    # via conan
 joblib==1.1.0
     # via contextily
 kiwisolver==1.4.0
     # via matplotlib
+markupsafe==2.1.1
+    # via jinja2
 matplotlib==3.5.1
     # via
     #   -r requirements/notebook-requirements.in
@@ -61,6 +75,8 @@ mercantile==1.2.1
     # via contextily
 munch==2.5.0
     # via fiona
+node-semver==0.6.1
+    # via conan
 numpy==1.21.5
     # via
     #   -r requirements/notebook-requirements.in
@@ -74,10 +90,18 @@ pandas==1.3.5
     # via
     #   -r requirements/notebook-requirements.in
     #   geopandas
+patch-ng==1.17.4
+    # via conan
 pillow==9.0.1
     # via
     #   contextily
     #   matplotlib
+pluginbase==1.0.1
+    # via conan
+pygments==2.11.2
+    # via conan
+pyjwt==1.7.1
+    # via conan
 pyparsing==3.0.7
     # via
     #   matplotlib
@@ -89,29 +113,39 @@ pyproj==3.2.1
     #   geopandas
 python-dateutil==2.8.2
     # via
+    #   conan
     #   matplotlib
     #   pandas
 pytz==2022.1
     # via pandas
 pyvalhalla==3.0.2
     # via -r requirements/notebook-requirements.in
+pyyaml==5.4.1
+    # via conan
 rasterio==1.2.10
     # via contextily
 requests==2.27.1
-    # via contextily
+    # via
+    #   conan
+    #   contextily
 shapely==1.8.0
     # via
     #   -r requirements/notebook-requirements.in
     #   geopandas
 six==1.16.0
     # via
+    #   conan
     #   fiona
     #   munch
     #   python-dateutil
 snuggs==1.4.7
     # via rasterio
+tqdm==4.63.1
+    # via conan
 urllib3==1.26.9
-    # via requests
+    # via
+    #   conan
+    #   requests
 xyzservices==2022.3.0
     # via contextily
 
