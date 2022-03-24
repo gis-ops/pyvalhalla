@@ -83,8 +83,10 @@ pyparsing==3.0.7
     #   matplotlib
     #   packaging
     #   snuggs
-pyproj==3.3.0
-    # via geopandas
+pyproj==3.2.1
+    # via
+    #   -r requirements/notebook-requirements.in
+    #   geopandas
 python-dateutil==2.8.2
     # via
     #   matplotlib
@@ -97,8 +99,10 @@ rasterio==1.2.10
     # via contextily
 requests==2.27.1
     # via contextily
-shapely==1.8.1.post1
-    # via geopandas
+shapely==1.8.0
+    # via
+    #   -r requirements/notebook-requirements.in
+    #   geopandas
 six==1.16.0
     # via
     #   fiona
