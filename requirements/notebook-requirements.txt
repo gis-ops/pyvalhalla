@@ -61,8 +61,9 @@ mercantile==1.2.1
     # via contextily
 munch==2.5.0
     # via fiona
-numpy==1.22.3
+numpy==1.21.5
     # via
+    #   -r requirements/notebook-requirements.in
     #   matplotlib
     #   pandas
     #   rasterio
@@ -88,6 +89,8 @@ python-dateutil==2.8.2
     #   pandas
 pytz==2022.1
     # via pandas
+pyvalhalla==3.0.2
+    # via -r requirements/notebook-requirements.in
 rasterio==1.2.10
     # via contextily
 requests==2.27.1
