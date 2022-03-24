@@ -1,0 +1,4 @@
+setuptools>=45
+wheel>=0.36,<=1.0.0
+setuptools_scm>=6.2,<7.0.0
+pybind11>=2.8.0,<3.0.0
