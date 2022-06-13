@@ -80,7 +80,7 @@ done
 
 # build the proto files into the include/linux/valhalla/proto directory
 mkdir -p include/linux/valhalla/proto
-/usr/bin/protoc --proto_path=upstream/proto --cpp_out=include/linux/valhalla/proto upstream/proto/*.proto
+/usr/local/bin/protoc --proto_path=upstream/proto --cpp_out=include/linux/valhalla/proto upstream/proto/*.proto
 
 # now checkout the unpatched valhalla version again
 git -C upstream checkout .

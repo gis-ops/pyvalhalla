@@ -14,6 +14,7 @@ include_dirs = [
     str(THIS_DIR.joinpath("include", "common")),
     # some includes are referencing like <baldr/..> instead of <valhalla/baldr/..>
     str(THIS_DIR.joinpath("include", "common", "valhalla")),
+    str("/usr/local/include/google"),
     str(THIS_DIR.joinpath("include", platform.system().lower())),
 ]
 library_dirs = [str(THIS_DIR.joinpath("lib", platform.system().lower()))]
@@ -25,8 +26,9 @@ if platform.system() == "Windows":
     libraries.extend(["libprotobuf-lite", "valhalla", "libcurl", "zlib", "Ws2_32", "ole32", "Shell32"])
     extra_compile_args.extend(["-DNOMINMAX", "-DWIN32_LEAN_AND_MEAN", "-DNOGDI"])
 else:
-    libraries.extend(["protobuf-lite", "valhalla", "curl", "z"])
+    libraries.extend(["/usr/local/lib/libprotobuf-lite.a", "valhalla", "curl", "z"])
     extra_link_args.extend(["-lvalhalla", "-lprotobuf-lite", "-lcurl", "-lz"])
+    extra_objects = ["/usr/local/lib/libprotobuf-lite.a"]
 
 # do conan dependency resolution
 # locally there will be 2 conanbuildinfo.json, one here and one in ./upstream/conan_build
@@ -72,6 +74,7 @@ setup(
     url="https://github.com/gis-ops/pyvalhalla",
     ext_package="valhalla",
     ext_modules=ext_modules,
+    extra_objects=extra_objects,
     zip_safe=False,
     classifiers=[
         "License :: OSI Approved :: GNU General Public License v2 or later (GPLv2+)",

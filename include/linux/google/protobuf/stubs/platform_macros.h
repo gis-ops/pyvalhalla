@@ -46,14 +46,21 @@
 #define GOOGLE_PROTOBUF_ARCH_32_BIT 1
 #elif defined(__QNX__)
 #define GOOGLE_PROTOBUF_ARCH_ARM_QNX 1
+#if defined(__aarch64__)
+#define GOOGLE_PROTOBUF_ARCH_64_BIT 1
+#else
 #define GOOGLE_PROTOBUF_ARCH_32_BIT 1
-#elif defined(__ARMEL__)
+#endif
+#elif defined(_M_ARM) || defined(__ARMEL__)
 #define GOOGLE_PROTOBUF_ARCH_ARM 1
 #define GOOGLE_PROTOBUF_ARCH_32_BIT 1
+#elif defined(_M_ARM64)
+#define GOOGLE_PROTOBUF_ARCH_ARM 1
+#define GOOGLE_PROTOBUF_ARCH_64_BIT 1
 #elif defined(__aarch64__)
 #define GOOGLE_PROTOBUF_ARCH_AARCH64 1
 #define GOOGLE_PROTOBUF_ARCH_64_BIT 1
-#elif defined(__MIPSEL__)
+#elif defined(__mips__)
 #if defined(__LP64__)
 #define GOOGLE_PROTOBUF_ARCH_MIPS64 1
 #define GOOGLE_PROTOBUF_ARCH_64_BIT 1
@@ -76,13 +83,6 @@
 #elif defined(__PPC__)
 #define GOOGLE_PROTOBUF_ARCH_PPC 1
 #define GOOGLE_PROTOBUF_ARCH_32_BIT 1
-#elif defined(__s390__) || defined(__s390x__)
-#define GOOGLE_PROTOBUF_ARCH_S390 1
-#if defined(__s390x__)
-#define GOOGLE_PROTOBUF_ARCH_64_BIT 1
-#else
-#define GOOGLE_PROTOBUF_ARCH_32_BIT 1
-#endif
 #elif defined(__GNUC__)
 # if (((__GNUC__ == 4) && (__GNUC_MINOR__ >= 7)) || (__GNUC__ > 4))
 // We fallback to the generic Clang/GCC >= 4.7 implementation in atomicops.h
@@ -103,6 +103,7 @@ GOOGLE_PROTOBUF_PLATFORM_ERROR
 
 #if defined(__APPLE__)
 #define GOOGLE_PROTOBUF_OS_APPLE
+#include <Availability.h>
 #include <TargetConditionals.h>
 #if TARGET_OS_IPHONE
 #define GOOGLE_PROTOBUF_OS_IPHONE
@@ -121,11 +122,16 @@ GOOGLE_PROTOBUF_PLATFORM_ERROR
 
 #undef GOOGLE_PROTOBUF_PLATFORM_ERROR
 
-#if defined(GOOGLE_PROTOBUF_OS_ANDROID) || defined(GOOGLE_PROTOBUF_OS_IPHONE)
+#if defined(GOOGLE_PROTOBUF_OS_ANDROID) || defined(GOOGLE_PROTOBUF_OS_IPHONE) || defined(__OpenBSD__)
 // Android ndk does not support the __thread keyword very well yet. Here
 // we use pthread_key_create()/pthread_getspecific()/... methods for
 // TLS support on android.
-// iOS also does not support the __thread keyword.
+// iOS and OpenBSD also do not support the __thread keyword.
+#define GOOGLE_PROTOBUF_NO_THREADLOCAL
+#endif
+
+#if defined(__MAC_OS_X_VERSION_MIN_REQUIRED) && __MAC_OS_X_VERSION_MIN_REQUIRED < 1070
+// __thread keyword requires at least 10.7
 #define GOOGLE_PROTOBUF_NO_THREADLOCAL
 #endif
 

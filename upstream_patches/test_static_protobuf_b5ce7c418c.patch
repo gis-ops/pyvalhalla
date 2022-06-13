@@ -1,0 +1,121 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 5261f8ae1..03c69bad9 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -135,7 +135,7 @@ find_package(ZLIB REQUIRED)
+ 
+ # try to find an installed boost or install locally with conan
+ set(boost_VERSION "1.71")
+-find_package(Boost ${boost_VERSION} QUIET)
++# find_package(Boost ${boost_VERSION} QUIET)
+ if (NOT Boost_FOUND)
+   # bail if there's no conan installed
+   message(STATUS "No compatible boost version detected, using conan...")
+diff --git a/proto/CMakeLists.txt b/proto/CMakeLists.txt
+index cb4be7183..a24e90e52 100644
+--- a/proto/CMakeLists.txt
++++ b/proto/CMakeLists.txt
+@@ -22,5 +22,4 @@ valhalla_module(NAME proto
+   INCLUDE_DIRECTORIES
+     PUBLIC
+       ${CMAKE_CURRENT_BINARY_DIR}
+-  DEPENDS
+-    ${valhalla_protobuf_targets})
++  DEPENDS)
+diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
+index 7bd8d263b..dc3dc78e2 100644
+--- a/src/CMakeLists.txt
++++ b/src/CMakeLists.txt
+@@ -99,7 +99,7 @@ function(valhalla_module)
+        ${VALHALLA_BINARY_DIR}
+        ${VALHALLA_BINARY_DIR}/valhalla)
+   
+-  target_link_libraries(${library} Boost::boost)
++  target_link_libraries(${library} Boost::boost /usr/local/lib/libprotobuf-lite.a)
+ 
+   if(ENABLE_COVERAGE)
+     target_compile_options(${library} PUBLIC -ftest-coverage -fprofile-arcs)
+@@ -231,6 +231,7 @@ target_include_directories(valhalla
+ 
+ target_link_libraries(valhalla
+   PUBLIC
++    /usr/local/lib/libprotobuf-lite.a
+     ${libvalhalla_link_libraries}
+   PRIVATE
+     $<$<BOOL:${ENABLE_COVERAGE}>:gcov>
+diff --git a/src/baldr/CMakeLists.txt b/src/baldr/CMakeLists.txt
+index 54ce33a19..b0c9a838a 100644
+--- a/src/baldr/CMakeLists.txt
++++ b/src/baldr/CMakeLists.txt
+@@ -117,7 +117,6 @@ valhalla_module(NAME baldr
+   DEPENDS
+     valhalla::midgard
+     valhalla::proto
+-    ${valhalla_protobuf_targets}
+     Boost::boost
+     CURL::CURL
+     ZLIB::ZLIB)
+diff --git a/src/loki/CMakeLists.txt b/src/loki/CMakeLists.txt
+index df18560c1..a5e4caa3f 100644
+--- a/src/loki/CMakeLists.txt
++++ b/src/loki/CMakeLists.txt
+@@ -43,6 +43,5 @@ valhalla_module(NAME loki
+     valhalla::skadi
+     valhalla::sif
+     valhalla::proto
+-    ${valhalla_protobuf_targets}
+     Boost::boost
+     libprime_server)
+diff --git a/src/meili/CMakeLists.txt b/src/meili/CMakeLists.txt
+index d4b19c194..7087ecca5 100644
+--- a/src/meili/CMakeLists.txt
++++ b/src/meili/CMakeLists.txt
+@@ -26,5 +26,4 @@ valhalla_module(NAME meili
+       ${CMAKE_BINARY_DIR}
+   DEPENDS
+     valhalla::sif
+-    ${valhalla_protobuf_targets}
+     Boost::boost)
+diff --git a/src/odin/CMakeLists.txt b/src/odin/CMakeLists.txt
+index 372cb166d..043da039a 100644
+--- a/src/odin/CMakeLists.txt
++++ b/src/odin/CMakeLists.txt
+@@ -40,6 +40,5 @@ valhalla_module(NAME odin
+       ${CMAKE_CURRENT_BINARY_DIR}
+   DEPENDS
+     valhalla::proto
+-    ${valhalla_protobuf_targets}
+     Boost::boost
+     libprime_server)
+diff --git a/src/sif/CMakeLists.txt b/src/sif/CMakeLists.txt
+index b24ed2c94..181d02f64 100644
+--- a/src/sif/CMakeLists.txt
++++ b/src/sif/CMakeLists.txt
+@@ -33,5 +33,4 @@ valhalla_module(NAME sif
+   DEPENDS
+     valhalla::baldr
+     valhalla::proto
+-    ${valhalla_protobuf_targets}
+     Boost::boost)
+diff --git a/src/thor/CMakeLists.txt b/src/thor/CMakeLists.txt
+index 9b32fd483..fb8caea21 100644
+--- a/src/thor/CMakeLists.txt
++++ b/src/thor/CMakeLists.txt
+@@ -55,7 +55,6 @@ valhalla_module(NAME thor
+     valhalla::proto
+     valhalla::sif
+     valhalla::meili
+-    ${valhalla_protobuf_targets}
+     Boost::boost
+     libprime_server
+     robin_hood::robin_hood)
+diff --git a/src/tyr/CMakeLists.txt b/src/tyr/CMakeLists.txt
+index da44fd01e..9f07f2491 100644
+--- a/src/tyr/CMakeLists.txt
++++ b/src/tyr/CMakeLists.txt
+@@ -29,5 +29,4 @@ valhalla_module(NAME tyr
+     valhalla::thor
+     valhalla::odin
+     valhalla::proto
+-    ${valhalla_protobuf_targets}
+     Boost::boost)
