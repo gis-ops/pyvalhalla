@@ -55,6 +55,7 @@ ext_modules = [
         include_dirs=include_dirs,
         extra_link_args=extra_link_args,
         extra_compile_args=extra_compile_args,
+        extra_objects=extra_objects,
         libraries=libraries,
     ),
 ]
@@ -75,7 +76,6 @@ setup(
     url="https://github.com/gis-ops/pyvalhalla",
     ext_package="valhalla",
     ext_modules=ext_modules,
-    extra_objects=extra_objects,
     zip_safe=False,
     classifiers=[
         "License :: OSI Approved :: GNU General Public License v2 or later (GPLv2+)",
