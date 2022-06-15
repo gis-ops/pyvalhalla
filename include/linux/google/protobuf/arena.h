@@ -315,15 +315,6 @@ class PROTOBUF_EXPORT PROTOBUF_ALIGNAS(8) Arena final {
                              static_cast<Args&&>(args)...);
   }
 
-  // API to delete any objects not on an arena.  This can be used to safely
-  // clean up messages or repeated fields without knowing whether or not they're
-  // owned by an arena.  The pointer passed to this function should not be used
-  // again.
-  template <typename T>
-  PROTOBUF_ALWAYS_INLINE static void Destroy(T* obj) {
-    if (InternalGetOwningArena(obj) == nullptr) delete obj;
-  }
-
   // Allocates memory with the specific size and alignment.
   void* AllocateAligned(size_t size, size_t align = 8) {
     if (align <= 8) {
@@ -420,23 +411,8 @@ class PROTOBUF_EXPORT PROTOBUF_ALIGNAS(8) Arena final {
   template <typename T>
   class InternalHelper {
    private:
-    struct Rank1 {};
-    struct Rank0 : Rank1 {};
-
-    static Arena* GetOwningArena(const T* p) {
-      return GetOwningArena(Rank0{}, p);
-    }
-
-    template <typename U>
-    static auto GetOwningArena(Rank0, const U* p)
-        -> decltype(p->GetOwningArena()) {
-      return p->GetOwningArena();
-    }
-
-    template <typename U>
-    static Arena* GetOwningArena(Rank1, const U* p) {
-      return nullptr;
-    }
+    // Provides access to protected GetOwningArena to generated messages.
+    static Arena* GetOwningArena(const T* p) { return p->GetOwningArena(); }
 
     static void InternalSwap(T* a, T* b) { a->InternalSwap(b); }
 
@@ -792,6 +768,25 @@ class PROTOBUF_EXPORT PROTOBUF_ALIGNAS(8) Arena final {
                                     int>::type = 0>
   PROTOBUF_ALWAYS_INLINE static Arena* GetArenaInternal(const T* value) {
     (void)value;
+    return nullptr;
+  }
+
+  template <typename T>
+  PROTOBUF_ALWAYS_INLINE static Arena* GetOwningArena(const T* value) {
+    return GetOwningArenaInternal(
+        value, std::is_convertible<T*, MessageLite*>());
+  }
+
+  // Implementation for GetOwningArena(). All and only message objects have
+  // GetOwningArena() method.
+  template <typename T>
+  PROTOBUF_ALWAYS_INLINE static Arena* GetOwningArenaInternal(
+      const T* value, std::true_type) {
+    return InternalHelper<T>::GetOwningArena(value);
+  }
+  template <typename T>
+  PROTOBUF_ALWAYS_INLINE static Arena* GetOwningArenaInternal(
+      const T* /* value */, std::false_type) {
     return nullptr;
   }
 

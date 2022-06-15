@@ -1140,7 +1140,9 @@ inline std::string* Version::release_suffix() {
   _impl_._has_bits_[0] &= ~0x00000001u;
   auto* p = _impl_.suffix_.Release();
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.suffix_.Set("", GetArenaForAllocation());
+  if (_impl_.suffix_.IsDefault()) {
+    _impl_.suffix_.Set("", GetArenaForAllocation());
+  }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   return p;
 }
@@ -1285,7 +1287,9 @@ inline std::string* CodeGeneratorRequest::release_parameter() {
   _impl_._has_bits_[0] &= ~0x00000001u;
   auto* p = _impl_.parameter_.Release();
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.parameter_.Set("", GetArenaForAllocation());
+  if (_impl_.parameter_.IsDefault()) {
+    _impl_.parameter_.Set("", GetArenaForAllocation());
+  }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   return p;
 }
@@ -1482,7 +1486,9 @@ inline std::string* CodeGeneratorResponse_File::release_name() {
   _impl_._has_bits_[0] &= ~0x00000001u;
   auto* p = _impl_.name_.Release();
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.name_.Set("", GetArenaForAllocation());
+  if (_impl_.name_.IsDefault()) {
+    _impl_.name_.Set("", GetArenaForAllocation());
+  }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   return p;
 }
@@ -1548,7 +1554,9 @@ inline std::string* CodeGeneratorResponse_File::release_insertion_point() {
   _impl_._has_bits_[0] &= ~0x00000002u;
   auto* p = _impl_.insertion_point_.Release();
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.insertion_point_.Set("", GetArenaForAllocation());
+  if (_impl_.insertion_point_.IsDefault()) {
+    _impl_.insertion_point_.Set("", GetArenaForAllocation());
+  }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   return p;
 }
@@ -1614,7 +1622,9 @@ inline std::string* CodeGeneratorResponse_File::release_content() {
   _impl_._has_bits_[0] &= ~0x00000004u;
   auto* p = _impl_.content_.Release();
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.content_.Set("", GetArenaForAllocation());
+  if (_impl_.content_.IsDefault()) {
+    _impl_.content_.Set("", GetArenaForAllocation());
+  }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   return p;
 }
@@ -1771,7 +1781,9 @@ inline std::string* CodeGeneratorResponse::release_error() {
   _impl_._has_bits_[0] &= ~0x00000001u;
   auto* p = _impl_.error_.Release();
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.error_.Set("", GetArenaForAllocation());
+  if (_impl_.error_.IsDefault()) {
+    _impl_.error_.Set("", GetArenaForAllocation());
+  }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   return p;
 }

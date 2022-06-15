@@ -29,7 +29,7 @@
 #include <google/protobuf/repeated_field.h>  // IWYU pragma: export
 #include <google/protobuf/extension_set.h>  // IWYU pragma: export
 #include <google/protobuf/generated_enum_util.h>
-#include "tripcommon.pb.h"
+#include "common.pb.h"
 #include "sign.pb.h"
 #include "incidents.pb.h"
 // @@protoc_insertion_point(includes)
@@ -125,12 +125,14 @@ enum TripLeg_Node_Type : int {
   TripLeg_Node_Type_kBorderControl = 10,
   TripLeg_Node_Type_kTollGantry = 11,
   TripLeg_Node_Type_kSumpBuster = 12,
+  TripLeg_Node_Type_kBuildingEntrance = 13,
+  TripLeg_Node_Type_kElevator = 14,
   TripLeg_Node_Type_TripLeg_Node_Type_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
   TripLeg_Node_Type_TripLeg_Node_Type_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
 };
 bool TripLeg_Node_Type_IsValid(int value);
 constexpr TripLeg_Node_Type TripLeg_Node_Type_Type_MIN = TripLeg_Node_Type_kStreetIntersection;
-constexpr TripLeg_Node_Type TripLeg_Node_Type_Type_MAX = TripLeg_Node_Type_kSumpBuster;
+constexpr TripLeg_Node_Type TripLeg_Node_Type_Type_MAX = TripLeg_Node_Type_kElevator;
 constexpr int TripLeg_Node_Type_Type_ARRAYSIZE = TripLeg_Node_Type_Type_MAX + 1;
 
 const std::string& TripLeg_Node_Type_Name(TripLeg_Node_Type value);
@@ -188,11 +190,14 @@ enum TripLeg_Use : int {
   TripLeg_Use_kPedestrianUse = 28,
   TripLeg_Use_kBridlewayUse = 29,
   TripLeg_Use_kPedestrianCrossingUse = 32,
+  TripLeg_Use_kElevatorUse = 33,
+  TripLeg_Use_kEscalatorUse = 34,
   TripLeg_Use_kRestAreaUse = 30,
   TripLeg_Use_kServiceAreaUse = 31,
   TripLeg_Use_kOtherUse = 40,
   TripLeg_Use_kFerryUse = 41,
   TripLeg_Use_kRailFerryUse = 42,
+  TripLeg_Use_kConstructionUse = 43,
   TripLeg_Use_kRailUse = 50,
   TripLeg_Use_kBusUse = 51,
   TripLeg_Use_kEgressConnectionUse = 52,
@@ -351,21 +356,6 @@ class TripLeg_LaneConnectivity final :
   static const TripLeg_LaneConnectivity& default_instance() {
     return *internal_default_instance();
   }
-  enum HasFromWayIdCase {
-    kFromWayId = 1,
-    HAS_FROM_WAY_ID_NOT_SET = 0,
-  };
-
-  enum HasFromLanesCase {
-    kFromLanes = 2,
-    HAS_FROM_LANES_NOT_SET = 0,
-  };
-
-  enum HasToLanesCase {
-    kToLanes = 3,
-    HAS_TO_LANES_NOT_SET = 0,
-  };
-
   static inline const TripLeg_LaneConnectivity* internal_default_instance() {
     return reinterpret_cast<const TripLeg_LaneConnectivity*>(
                &_TripLeg_LaneConnectivity_default_instance_);
@@ -435,28 +425,11 @@ class TripLeg_LaneConnectivity final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kFromWayIdFieldNumber = 1,
     kFromLanesFieldNumber = 2,
     kToLanesFieldNumber = 3,
+    kFromWayIdFieldNumber = 1,
   };
-  // uint64 from_way_id = 1;
-  bool has_from_way_id() const;
-  private:
-  bool _internal_has_from_way_id() const;
-  public:
-  void clear_from_way_id();
-  uint64_t from_way_id() const;
-  void set_from_way_id(uint64_t value);
-  private:
-  uint64_t _internal_from_way_id() const;
-  void _internal_set_from_way_id(uint64_t value);
-  public:
-
   // string from_lanes = 2;
-  bool has_from_lanes() const;
-  private:
-  bool _internal_has_from_lanes() const;
-  public:
   void clear_from_lanes();
   const std::string& from_lanes() const;
   template <typename ArgT0 = const std::string&, typename... ArgT>
@@ -471,10 +444,6 @@ class TripLeg_LaneConnectivity final :
   public:
 
   // string to_lanes = 3;
-  bool has_to_lanes() const;
-  private:
-  bool _internal_has_to_lanes() const;
-  public:
   void clear_to_lanes();
   const std::string& to_lanes() const;
   template <typename ArgT0 = const std::string&, typename... ArgT>
@@ -488,50 +457,27 @@ class TripLeg_LaneConnectivity final :
   std::string* _internal_mutable_to_lanes();
   public:
 
-  void clear_has_from_way_id();
-  HasFromWayIdCase has_from_way_id_case() const;
-  void clear_has_from_lanes();
-  HasFromLanesCase has_from_lanes_case() const;
-  void clear_has_to_lanes();
-  HasToLanesCase has_to_lanes_case() const;
+  // uint64 from_way_id = 1;
+  void clear_from_way_id();
+  uint64_t from_way_id() const;
+  void set_from_way_id(uint64_t value);
+  private:
+  uint64_t _internal_from_way_id() const;
+  void _internal_set_from_way_id(uint64_t value);
+  public:
+
   // @@protoc_insertion_point(class_scope:valhalla.TripLeg.LaneConnectivity)
  private:
   class _Internal;
-  void set_has_from_way_id();
-  void set_has_from_lanes();
-  void set_has_to_lanes();
-
-  inline bool has_has_from_way_id() const;
-  inline void clear_has_has_from_way_id();
-
-  inline bool has_has_from_lanes() const;
-  inline void clear_has_has_from_lanes();
-
-  inline bool has_has_to_lanes() const;
-  inline void clear_has_has_to_lanes();
 
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
-    union HasFromWayIdUnion {
-      constexpr HasFromWayIdUnion() : _constinit_{} {}
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
-      uint64_t from_way_id_;
-    } has_from_way_id_;
-    union HasFromLanesUnion {
-      constexpr HasFromLanesUnion() : _constinit_{} {}
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
-      ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr from_lanes_;
-    } has_from_lanes_;
-    union HasToLanesUnion {
-      constexpr HasToLanesUnion() : _constinit_{} {}
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
-      ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr to_lanes_;
-    } has_to_lanes_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr from_lanes_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr to_lanes_;
+    uint64_t from_way_id_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-    uint32_t _oneof_case_[3];
-
   };
   union { Impl_ _impl_; };
   friend struct ::TableStruct_trip_2eproto;
@@ -572,31 +518,6 @@ class TripLeg_TrafficSegment final :
   static const TripLeg_TrafficSegment& default_instance() {
     return *internal_default_instance();
   }
-  enum HasSegmentIdCase {
-    kSegmentId = 1,
-    HAS_SEGMENT_ID_NOT_SET = 0,
-  };
-
-  enum HasBeginPercentCase {
-    kBeginPercent = 2,
-    HAS_BEGIN_PERCENT_NOT_SET = 0,
-  };
-
-  enum HasEndPercentCase {
-    kEndPercent = 3,
-    HAS_END_PERCENT_NOT_SET = 0,
-  };
-
-  enum HasStartsSegmentCase {
-    kStartsSegment = 4,
-    HAS_STARTS_SEGMENT_NOT_SET = 0,
-  };
-
-  enum HasEndsSegmentCase {
-    kEndsSegment = 5,
-    HAS_ENDS_SEGMENT_NOT_SET = 0,
-  };
-
   static inline const TripLeg_TrafficSegment* internal_default_instance() {
     return reinterpret_cast<const TripLeg_TrafficSegment*>(
                &_TripLeg_TrafficSegment_default_instance_);
@@ -673,10 +594,6 @@ class TripLeg_TrafficSegment final :
     kEndsSegmentFieldNumber = 5,
   };
   // uint64 segment_id = 1;
-  bool has_segment_id() const;
-  private:
-  bool _internal_has_segment_id() const;
-  public:
   void clear_segment_id();
   uint64_t segment_id() const;
   void set_segment_id(uint64_t value);
@@ -686,10 +603,6 @@ class TripLeg_TrafficSegment final :
   public:
 
   // float begin_percent = 2;
-  bool has_begin_percent() const;
-  private:
-  bool _internal_has_begin_percent() const;
-  public:
   void clear_begin_percent();
   float begin_percent() const;
   void set_begin_percent(float value);
@@ -699,10 +612,6 @@ class TripLeg_TrafficSegment final :
   public:
 
   // float end_percent = 3;
-  bool has_end_percent() const;
-  private:
-  bool _internal_has_end_percent() const;
-  public:
   void clear_end_percent();
   float end_percent() const;
   void set_end_percent(float value);
@@ -712,10 +621,6 @@ class TripLeg_TrafficSegment final :
   public:
 
   // bool starts_segment = 4;
-  bool has_starts_segment() const;
-  private:
-  bool _internal_has_starts_segment() const;
-  public:
   void clear_starts_segment();
   bool starts_segment() const;
   void set_starts_segment(bool value);
@@ -725,10 +630,6 @@ class TripLeg_TrafficSegment final :
   public:
 
   // bool ends_segment = 5;
-  bool has_ends_segment() const;
-  private:
-  bool _internal_has_ends_segment() const;
-  public:
   void clear_ends_segment();
   bool ends_segment() const;
   void set_ends_segment(bool value);
@@ -737,72 +638,20 @@ class TripLeg_TrafficSegment final :
   void _internal_set_ends_segment(bool value);
   public:
 
-  void clear_has_segment_id();
-  HasSegmentIdCase has_segment_id_case() const;
-  void clear_has_begin_percent();
-  HasBeginPercentCase has_begin_percent_case() const;
-  void clear_has_end_percent();
-  HasEndPercentCase has_end_percent_case() const;
-  void clear_has_starts_segment();
-  HasStartsSegmentCase has_starts_segment_case() const;
-  void clear_has_ends_segment();
-  HasEndsSegmentCase has_ends_segment_case() const;
   // @@protoc_insertion_point(class_scope:valhalla.TripLeg.TrafficSegment)
  private:
   class _Internal;
-  void set_has_segment_id();
-  void set_has_begin_percent();
-  void set_has_end_percent();
-  void set_has_starts_segment();
-  void set_has_ends_segment();
-
-  inline bool has_has_segment_id() const;
-  inline void clear_has_has_segment_id();
-
-  inline bool has_has_begin_percent() const;
-  inline void clear_has_has_begin_percent();
-
-  inline bool has_has_end_percent() const;
-  inline void clear_has_has_end_percent();
-
-  inline bool has_has_starts_segment() const;
-  inline void clear_has_has_starts_segment();
-
-  inline bool has_has_ends_segment() const;
-  inline void clear_has_has_ends_segment();
 
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
-    union HasSegmentIdUnion {
-      constexpr HasSegmentIdUnion() : _constinit_{} {}
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
-      uint64_t segment_id_;
-    } has_segment_id_;
-    union HasBeginPercentUnion {
-      constexpr HasBeginPercentUnion() : _constinit_{} {}
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
-      float begin_percent_;
-    } has_begin_percent_;
-    union HasEndPercentUnion {
-      constexpr HasEndPercentUnion() : _constinit_{} {}
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
-      float end_percent_;
-    } has_end_percent_;
-    union HasStartsSegmentUnion {
-      constexpr HasStartsSegmentUnion() : _constinit_{} {}
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
-      bool starts_segment_;
-    } has_starts_segment_;
-    union HasEndsSegmentUnion {
-      constexpr HasEndsSegmentUnion() : _constinit_{} {}
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
-      bool ends_segment_;
-    } has_ends_segment_;
+    uint64_t segment_id_;
+    float begin_percent_;
+    float end_percent_;
+    bool starts_segment_;
+    bool ends_segment_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-    uint32_t _oneof_case_[5];
-
   };
   union { Impl_ _impl_; };
   friend struct ::TableStruct_trip_2eproto;
@@ -843,11 +692,6 @@ class TripLeg_Restriction final :
   static const TripLeg_Restriction& default_instance() {
     return *internal_default_instance();
   }
-  enum HasTypeCase {
-    kType = 1,
-    HAS_TYPE_NOT_SET = 0,
-  };
-
   static inline const TripLeg_Restriction* internal_default_instance() {
     return reinterpret_cast<const TripLeg_Restriction*>(
                &_TripLeg_Restriction_default_instance_);
@@ -920,10 +764,6 @@ class TripLeg_Restriction final :
     kTypeFieldNumber = 1,
   };
   // uint32 type = 1;
-  bool has_type() const;
-  private:
-  bool _internal_has_type() const;
-  public:
   void clear_type();
   uint32_t type() const;
   void set_type(uint32_t value);
@@ -932,28 +772,16 @@ class TripLeg_Restriction final :
   void _internal_set_type(uint32_t value);
   public:
 
-  void clear_has_type();
-  HasTypeCase has_type_case() const;
   // @@protoc_insertion_point(class_scope:valhalla.TripLeg.Restriction)
  private:
   class _Internal;
-  void set_has_type();
-
-  inline bool has_has_type() const;
-  inline void clear_has_has_type();
 
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
-    union HasTypeUnion {
-      constexpr HasTypeUnion() : _constinit_{} {}
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
-      uint32_t type_;
-    } has_type_;
+    uint32_t type_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-    uint32_t _oneof_case_[1];
-
   };
   union { Impl_ _impl_; };
   friend struct ::TableStruct_trip_2eproto;
@@ -994,226 +822,6 @@ class TripLeg_Edge final :
   static const TripLeg_Edge& default_instance() {
     return *internal_default_instance();
   }
-  enum HasLengthKmCase {
-    kLengthKm = 2,
-    HAS_LENGTH_KM_NOT_SET = 0,
-  };
-
-  enum HasSpeedCase {
-    kSpeed = 3,
-    HAS_SPEED_NOT_SET = 0,
-  };
-
-  enum HasRoadClassCase {
-    kRoadClass = 4,
-    HAS_ROAD_CLASS_NOT_SET = 0,
-  };
-
-  enum HasBeginHeadingCase {
-    kBeginHeading = 5,
-    HAS_BEGIN_HEADING_NOT_SET = 0,
-  };
-
-  enum HasEndHeadingCase {
-    kEndHeading = 6,
-    HAS_END_HEADING_NOT_SET = 0,
-  };
-
-  enum HasBeginShapeIndexCase {
-    kBeginShapeIndex = 7,
-    HAS_BEGIN_SHAPE_INDEX_NOT_SET = 0,
-  };
-
-  enum HasEndShapeIndexCase {
-    kEndShapeIndex = 8,
-    HAS_END_SHAPE_INDEX_NOT_SET = 0,
-  };
-
-  enum HasTraversabilityCase {
-    kTraversability = 9,
-    HAS_TRAVERSABILITY_NOT_SET = 0,
-  };
-
-  enum HasUseCase {
-    kUse = 10,
-    HAS_USE_NOT_SET = 0,
-  };
-
-  enum HasTollCase {
-    kToll = 11,
-    HAS_TOLL_NOT_SET = 0,
-  };
-
-  enum HasUnpavedCase {
-    kUnpaved = 12,
-    HAS_UNPAVED_NOT_SET = 0,
-  };
-
-  enum HasTunnelCase {
-    kTunnel = 13,
-    HAS_TUNNEL_NOT_SET = 0,
-  };
-
-  enum HasBridgeCase {
-    kBridge = 14,
-    HAS_BRIDGE_NOT_SET = 0,
-  };
-
-  enum HasRoundaboutCase {
-    kRoundabout = 15,
-    HAS_ROUNDABOUT_NOT_SET = 0,
-  };
-
-  enum HasInternalIntersectionCase {
-    kInternalIntersection = 16,
-    HAS_INTERNAL_INTERSECTION_NOT_SET = 0,
-  };
-
-  enum HasDriveOnLeftCase {
-    kDriveOnLeft = 17,
-    HAS_DRIVE_ON_LEFT_NOT_SET = 0,
-  };
-
-  enum HasSurfaceCase {
-    kSurface = 18,
-    HAS_SURFACE_NOT_SET = 0,
-  };
-
-  enum HasTravelModeCase {
-    kTravelMode = 20,
-    HAS_TRAVEL_MODE_NOT_SET = 0,
-  };
-
-  enum HasVehicleTypeCase {
-    kVehicleType = 21,
-    HAS_VEHICLE_TYPE_NOT_SET = 0,
-  };
-
-  enum HasPedestrianTypeCase {
-    kPedestrianType = 22,
-    HAS_PEDESTRIAN_TYPE_NOT_SET = 0,
-  };
-
-  enum HasBicycleTypeCase {
-    kBicycleType = 23,
-    HAS_BICYCLE_TYPE_NOT_SET = 0,
-  };
-
-  enum HasTransitTypeCase {
-    kTransitType = 24,
-    HAS_TRANSIT_TYPE_NOT_SET = 0,
-  };
-
-  enum HasIdCase {
-    kId = 26,
-    HAS_ID_NOT_SET = 0,
-  };
-
-  enum HasWayIdCase {
-    kWayId = 27,
-    HAS_WAY_ID_NOT_SET = 0,
-  };
-
-  enum HasWeightedGradeCase {
-    kWeightedGrade = 28,
-    HAS_WEIGHTED_GRADE_NOT_SET = 0,
-  };
-
-  enum HasMaxUpwardGradeCase {
-    kMaxUpwardGrade = 29,
-    HAS_MAX_UPWARD_GRADE_NOT_SET = 0,
-  };
-
-  enum HasMaxDownwardGradeCase {
-    kMaxDownwardGrade = 30,
-    HAS_MAX_DOWNWARD_GRADE_NOT_SET = 0,
-  };
-
-  enum HasLaneCountCase {
-    kLaneCount = 31,
-    HAS_LANE_COUNT_NOT_SET = 0,
-  };
-
-  enum HasCycleLaneCase {
-    kCycleLane = 32,
-    HAS_CYCLE_LANE_NOT_SET = 0,
-  };
-
-  enum HasBicycleNetworkCase {
-    kBicycleNetwork = 33,
-    HAS_BICYCLE_NETWORK_NOT_SET = 0,
-  };
-
-  enum HasSidewalkCase {
-    kSidewalk = 34,
-    HAS_SIDEWALK_NOT_SET = 0,
-  };
-
-  enum HasDensityCase {
-    kDensity = 35,
-    HAS_DENSITY_NOT_SET = 0,
-  };
-
-  enum HasSpeedLimitCase {
-    kSpeedLimit = 36,
-    HAS_SPEED_LIMIT_NOT_SET = 0,
-  };
-
-  enum HasTruckSpeedCase {
-    kTruckSpeed = 37,
-    HAS_TRUCK_SPEED_NOT_SET = 0,
-  };
-
-  enum HasTruckRouteCase {
-    kTruckRoute = 38,
-    HAS_TRUCK_ROUTE_NOT_SET = 0,
-  };
-
-  enum HasMeanElevationCase {
-    kMeanElevation = 40,
-    HAS_MEAN_ELEVATION_NOT_SET = 0,
-  };
-
-  enum HasHasTimeRestrictionsCase {
-    kHasTimeRestrictions = 43,
-    HAS_HAS_TIME_RESTRICTIONS_NOT_SET = 0,
-  };
-
-  enum HasDefaultSpeedCase {
-    kDefaultSpeed = 44,
-    HAS_DEFAULT_SPEED_NOT_SET = 0,
-  };
-
-  enum HasDestinationOnlyCase {
-    kDestinationOnly = 46,
-    HAS_DESTINATION_ONLY_NOT_SET = 0,
-  };
-
-  enum HasIsUrbanCase {
-    kIsUrban = 47,
-    HAS_IS_URBAN_NOT_SET = 0,
-  };
-
-  enum HasSourceAlongEdgeCase {
-    kSourceAlongEdge = 49,
-    HAS_SOURCE_ALONG_EDGE_NOT_SET = 0,
-  };
-
-  enum HasTargetAlongEdgeCase {
-    kTargetAlongEdge = 50,
-    HAS_TARGET_ALONG_EDGE_NOT_SET = 0,
-  };
-
-  enum HasSacScaleCase {
-    kSacScale = 51,
-    HAS_SAC_SCALE_NOT_SET = 0,
-  };
-
-  enum HasShoulderCase {
-    kShoulder = 52,
-    HAS_SHOULDER_NOT_SET = 0,
-  };
-
   static inline const TripLeg_Edge* internal_default_instance() {
     return reinterpret_cast<const TripLeg_Edge*>(
                &_TripLeg_Edge_default_instance_);
@@ -1304,37 +912,38 @@ class TripLeg_Edge final :
     kUnpavedFieldNumber = 12,
     kTunnelFieldNumber = 13,
     kBridgeFieldNumber = 14,
+    kSurfaceFieldNumber = 18,
+    kTravelModeFieldNumber = 20,
     kRoundaboutFieldNumber = 15,
     kInternalIntersectionFieldNumber = 16,
     kDriveOnLeftFieldNumber = 17,
-    kSurfaceFieldNumber = 18,
-    kTravelModeFieldNumber = 20,
+    kBicycleNetworkFieldNumber = 33,
     kVehicleTypeFieldNumber = 21,
     kPedestrianTypeFieldNumber = 22,
     kBicycleTypeFieldNumber = 23,
-    kTransitTypeFieldNumber = 24,
     kIdFieldNumber = 26,
-    kWayIdFieldNumber = 27,
+    kTransitTypeFieldNumber = 24,
     kWeightedGradeFieldNumber = 28,
+    kWayIdFieldNumber = 27,
     kMaxUpwardGradeFieldNumber = 29,
     kMaxDownwardGradeFieldNumber = 30,
     kLaneCountFieldNumber = 31,
     kCycleLaneFieldNumber = 32,
-    kBicycleNetworkFieldNumber = 33,
     kSidewalkFieldNumber = 34,
     kDensityFieldNumber = 35,
     kSpeedLimitFieldNumber = 36,
     kTruckSpeedFieldNumber = 37,
-    kTruckRouteFieldNumber = 38,
     kMeanElevationFieldNumber = 40,
+    kTruckRouteFieldNumber = 38,
     kHasTimeRestrictionsFieldNumber = 43,
-    kDefaultSpeedFieldNumber = 44,
     kDestinationOnlyFieldNumber = 46,
     kIsUrbanFieldNumber = 47,
+    kDefaultSpeedFieldNumber = 44,
     kSourceAlongEdgeFieldNumber = 49,
     kTargetAlongEdgeFieldNumber = 50,
     kSacScaleFieldNumber = 51,
     kShoulderFieldNumber = 52,
+    kIndoorFieldNumber = 53,
   };
   // repeated .valhalla.StreetName name = 1;
   int name_size() const;
@@ -1481,10 +1090,6 @@ class TripLeg_Edge final :
   ::valhalla::TripLeg_Restriction* unsafe_arena_release_restriction();
 
   // float length_km = 2;
-  bool has_length_km() const;
-  private:
-  bool _internal_has_length_km() const;
-  public:
   void clear_length_km();
   float length_km() const;
   void set_length_km(float value);
@@ -1494,10 +1099,6 @@ class TripLeg_Edge final :
   public:
 
   // float speed = 3;
-  bool has_speed() const;
-  private:
-  bool _internal_has_speed() const;
-  public:
   void clear_speed();
   float speed() const;
   void set_speed(float value);
@@ -1507,10 +1108,6 @@ class TripLeg_Edge final :
   public:
 
   // .valhalla.RoadClass road_class = 4;
-  bool has_road_class() const;
-  private:
-  bool _internal_has_road_class() const;
-  public:
   void clear_road_class();
   ::valhalla::RoadClass road_class() const;
   void set_road_class(::valhalla::RoadClass value);
@@ -1520,10 +1117,6 @@ class TripLeg_Edge final :
   public:
 
   // uint32 begin_heading = 5;
-  bool has_begin_heading() const;
-  private:
-  bool _internal_has_begin_heading() const;
-  public:
   void clear_begin_heading();
   uint32_t begin_heading() const;
   void set_begin_heading(uint32_t value);
@@ -1533,10 +1126,6 @@ class TripLeg_Edge final :
   public:
 
   // uint32 end_heading = 6;
-  bool has_end_heading() const;
-  private:
-  bool _internal_has_end_heading() const;
-  public:
   void clear_end_heading();
   uint32_t end_heading() const;
   void set_end_heading(uint32_t value);
@@ -1546,10 +1135,6 @@ class TripLeg_Edge final :
   public:
 
   // uint32 begin_shape_index = 7;
-  bool has_begin_shape_index() const;
-  private:
-  bool _internal_has_begin_shape_index() const;
-  public:
   void clear_begin_shape_index();
   uint32_t begin_shape_index() const;
   void set_begin_shape_index(uint32_t value);
@@ -1559,10 +1144,6 @@ class TripLeg_Edge final :
   public:
 
   // uint32 end_shape_index = 8;
-  bool has_end_shape_index() const;
-  private:
-  bool _internal_has_end_shape_index() const;
-  public:
   void clear_end_shape_index();
   uint32_t end_shape_index() const;
   void set_end_shape_index(uint32_t value);
@@ -1572,10 +1153,6 @@ class TripLeg_Edge final :
   public:
 
   // .valhalla.TripLeg.Traversability traversability = 9;
-  bool has_traversability() const;
-  private:
-  bool _internal_has_traversability() const;
-  public:
   void clear_traversability();
   ::valhalla::TripLeg_Traversability traversability() const;
   void set_traversability(::valhalla::TripLeg_Traversability value);
@@ -1585,10 +1162,6 @@ class TripLeg_Edge final :
   public:
 
   // .valhalla.TripLeg.Use use = 10;
-  bool has_use() const;
-  private:
-  bool _internal_has_use() const;
-  public:
   void clear_use();
   ::valhalla::TripLeg_Use use() const;
   void set_use(::valhalla::TripLeg_Use value);
@@ -1598,10 +1171,6 @@ class TripLeg_Edge final :
   public:
 
   // bool toll = 11;
-  bool has_toll() const;
-  private:
-  bool _internal_has_toll() const;
-  public:
   void clear_toll();
   bool toll() const;
   void set_toll(bool value);
@@ -1611,10 +1180,6 @@ class TripLeg_Edge final :
   public:
 
   // bool unpaved = 12;
-  bool has_unpaved() const;
-  private:
-  bool _internal_has_unpaved() const;
-  public:
   void clear_unpaved();
   bool unpaved() const;
   void set_unpaved(bool value);
@@ -1624,10 +1189,6 @@ class TripLeg_Edge final :
   public:
 
   // bool tunnel = 13;
-  bool has_tunnel() const;
-  private:
-  bool _internal_has_tunnel() const;
-  public:
   void clear_tunnel();
   bool tunnel() const;
   void set_tunnel(bool value);
@@ -1637,10 +1198,6 @@ class TripLeg_Edge final :
   public:
 
   // bool bridge = 14;
-  bool has_bridge() const;
-  private:
-  bool _internal_has_bridge() const;
-  public:
   void clear_bridge();
   bool bridge() const;
   void set_bridge(bool value);
@@ -1649,50 +1206,7 @@ class TripLeg_Edge final :
   void _internal_set_bridge(bool value);
   public:
 
-  // bool roundabout = 15;
-  bool has_roundabout() const;
-  private:
-  bool _internal_has_roundabout() const;
-  public:
-  void clear_roundabout();
-  bool roundabout() const;
-  void set_roundabout(bool value);
-  private:
-  bool _internal_roundabout() const;
-  void _internal_set_roundabout(bool value);
-  public:
-
-  // bool internal_intersection = 16;
-  bool has_internal_intersection() const;
-  private:
-  bool _internal_has_internal_intersection() const;
-  public:
-  void clear_internal_intersection();
-  bool internal_intersection() const;
-  void set_internal_intersection(bool value);
-  private:
-  bool _internal_internal_intersection() const;
-  void _internal_set_internal_intersection(bool value);
-  public:
-
-  // bool drive_on_left = 17;
-  bool has_drive_on_left() const;
-  private:
-  bool _internal_has_drive_on_left() const;
-  public:
-  void clear_drive_on_left();
-  bool drive_on_left() const;
-  void set_drive_on_left(bool value);
-  private:
-  bool _internal_drive_on_left() const;
-  void _internal_set_drive_on_left(bool value);
-  public:
-
   // .valhalla.TripLeg.Surface surface = 18;
-  bool has_surface() const;
-  private:
-  bool _internal_has_surface() const;
-  public:
   void clear_surface();
   ::valhalla::TripLeg_Surface surface() const;
   void set_surface(::valhalla::TripLeg_Surface value);
@@ -1702,10 +1216,6 @@ class TripLeg_Edge final :
   public:
 
   // .valhalla.TravelMode travel_mode = 20;
-  bool has_travel_mode() const;
-  private:
-  bool _internal_has_travel_mode() const;
-  public:
   void clear_travel_mode();
   ::valhalla::TravelMode travel_mode() const;
   void set_travel_mode(::valhalla::TravelMode value);
@@ -1714,11 +1224,43 @@ class TripLeg_Edge final :
   void _internal_set_travel_mode(::valhalla::TravelMode value);
   public:
 
-  // .valhalla.VehicleType vehicle_type = 21;
-  bool has_vehicle_type() const;
+  // bool roundabout = 15;
+  void clear_roundabout();
+  bool roundabout() const;
+  void set_roundabout(bool value);
   private:
-  bool _internal_has_vehicle_type() const;
+  bool _internal_roundabout() const;
+  void _internal_set_roundabout(bool value);
   public:
+
+  // bool internal_intersection = 16;
+  void clear_internal_intersection();
+  bool internal_intersection() const;
+  void set_internal_intersection(bool value);
+  private:
+  bool _internal_internal_intersection() const;
+  void _internal_set_internal_intersection(bool value);
+  public:
+
+  // bool drive_on_left = 17;
+  void clear_drive_on_left();
+  bool drive_on_left() const;
+  void set_drive_on_left(bool value);
+  private:
+  bool _internal_drive_on_left() const;
+  void _internal_set_drive_on_left(bool value);
+  public:
+
+  // bool bicycle_network = 33;
+  void clear_bicycle_network();
+  bool bicycle_network() const;
+  void set_bicycle_network(bool value);
+  private:
+  bool _internal_bicycle_network() const;
+  void _internal_set_bicycle_network(bool value);
+  public:
+
+  // .valhalla.VehicleType vehicle_type = 21;
   void clear_vehicle_type();
   ::valhalla::VehicleType vehicle_type() const;
   void set_vehicle_type(::valhalla::VehicleType value);
@@ -1728,10 +1270,6 @@ class TripLeg_Edge final :
   public:
 
   // .valhalla.PedestrianType pedestrian_type = 22;
-  bool has_pedestrian_type() const;
-  private:
-  bool _internal_has_pedestrian_type() const;
-  public:
   void clear_pedestrian_type();
   ::valhalla::PedestrianType pedestrian_type() const;
   void set_pedestrian_type(::valhalla::PedestrianType value);
@@ -1741,10 +1279,6 @@ class TripLeg_Edge final :
   public:
 
   // .valhalla.BicycleType bicycle_type = 23;
-  bool has_bicycle_type() const;
-  private:
-  bool _internal_has_bicycle_type() const;
-  public:
   void clear_bicycle_type();
   ::valhalla::BicycleType bicycle_type() const;
   void set_bicycle_type(::valhalla::BicycleType value);
@@ -1753,24 +1287,7 @@ class TripLeg_Edge final :
   void _internal_set_bicycle_type(::valhalla::BicycleType value);
   public:
 
-  // .valhalla.TransitType transit_type = 24;
-  bool has_transit_type() const;
-  private:
-  bool _internal_has_transit_type() const;
-  public:
-  void clear_transit_type();
-  ::valhalla::TransitType transit_type() const;
-  void set_transit_type(::valhalla::TransitType value);
-  private:
-  ::valhalla::TransitType _internal_transit_type() const;
-  void _internal_set_transit_type(::valhalla::TransitType value);
-  public:
-
   // uint64 id = 26;
-  bool has_id() const;
-  private:
-  bool _internal_has_id() const;
-  public:
   void clear_id();
   uint64_t id() const;
   void set_id(uint64_t value);
@@ -1779,24 +1296,16 @@ class TripLeg_Edge final :
   void _internal_set_id(uint64_t value);
   public:
 
-  // uint64 way_id = 27;
-  bool has_way_id() const;
+  // .valhalla.TransitType transit_type = 24;
+  void clear_transit_type();
+  ::valhalla::TransitType transit_type() const;
+  void set_transit_type(::valhalla::TransitType value);
   private:
-  bool _internal_has_way_id() const;
-  public:
-  void clear_way_id();
-  uint64_t way_id() const;
-  void set_way_id(uint64_t value);
-  private:
-  uint64_t _internal_way_id() const;
-  void _internal_set_way_id(uint64_t value);
+  ::valhalla::TransitType _internal_transit_type() const;
+  void _internal_set_transit_type(::valhalla::TransitType value);
   public:
 
   // float weighted_grade = 28;
-  bool has_weighted_grade() const;
-  private:
-  bool _internal_has_weighted_grade() const;
-  public:
   void clear_weighted_grade();
   float weighted_grade() const;
   void set_weighted_grade(float value);
@@ -1805,11 +1314,16 @@ class TripLeg_Edge final :
   void _internal_set_weighted_grade(float value);
   public:
 
-  // int32 max_upward_grade = 29;
-  bool has_max_upward_grade() const;
+  // uint64 way_id = 27;
+  void clear_way_id();
+  uint64_t way_id() const;
+  void set_way_id(uint64_t value);
   private:
-  bool _internal_has_max_upward_grade() const;
+  uint64_t _internal_way_id() const;
+  void _internal_set_way_id(uint64_t value);
   public:
+
+  // int32 max_upward_grade = 29;
   void clear_max_upward_grade();
   int32_t max_upward_grade() const;
   void set_max_upward_grade(int32_t value);
@@ -1819,10 +1333,6 @@ class TripLeg_Edge final :
   public:
 
   // int32 max_downward_grade = 30;
-  bool has_max_downward_grade() const;
-  private:
-  bool _internal_has_max_downward_grade() const;
-  public:
   void clear_max_downward_grade();
   int32_t max_downward_grade() const;
   void set_max_downward_grade(int32_t value);
@@ -1832,10 +1342,6 @@ class TripLeg_Edge final :
   public:
 
   // uint32 lane_count = 31;
-  bool has_lane_count() const;
-  private:
-  bool _internal_has_lane_count() const;
-  public:
   void clear_lane_count();
   uint32_t lane_count() const;
   void set_lane_count(uint32_t value);
@@ -1845,10 +1351,6 @@ class TripLeg_Edge final :
   public:
 
   // .valhalla.TripLeg.CycleLane cycle_lane = 32;
-  bool has_cycle_lane() const;
-  private:
-  bool _internal_has_cycle_lane() const;
-  public:
   void clear_cycle_lane();
   ::valhalla::TripLeg_CycleLane cycle_lane() const;
   void set_cycle_lane(::valhalla::TripLeg_CycleLane value);
@@ -1857,24 +1359,7 @@ class TripLeg_Edge final :
   void _internal_set_cycle_lane(::valhalla::TripLeg_CycleLane value);
   public:
 
-  // uint32 bicycle_network = 33;
-  bool has_bicycle_network() const;
-  private:
-  bool _internal_has_bicycle_network() const;
-  public:
-  void clear_bicycle_network();
-  uint32_t bicycle_network() const;
-  void set_bicycle_network(uint32_t value);
-  private:
-  uint32_t _internal_bicycle_network() const;
-  void _internal_set_bicycle_network(uint32_t value);
-  public:
-
   // .valhalla.TripLeg.Sidewalk sidewalk = 34;
-  bool has_sidewalk() const;
-  private:
-  bool _internal_has_sidewalk() const;
-  public:
   void clear_sidewalk();
   ::valhalla::TripLeg_Sidewalk sidewalk() const;
   void set_sidewalk(::valhalla::TripLeg_Sidewalk value);
@@ -1884,10 +1369,6 @@ class TripLeg_Edge final :
   public:
 
   // uint32 density = 35;
-  bool has_density() const;
-  private:
-  bool _internal_has_density() const;
-  public:
   void clear_density();
   uint32_t density() const;
   void set_density(uint32_t value);
@@ -1897,10 +1378,6 @@ class TripLeg_Edge final :
   public:
 
   // uint32 speed_limit = 36;
-  bool has_speed_limit() const;
-  private:
-  bool _internal_has_speed_limit() const;
-  public:
   void clear_speed_limit();
   uint32_t speed_limit() const;
   void set_speed_limit(uint32_t value);
@@ -1910,10 +1387,6 @@ class TripLeg_Edge final :
   public:
 
   // float truck_speed = 37;
-  bool has_truck_speed() const;
-  private:
-  bool _internal_has_truck_speed() const;
-  public:
   void clear_truck_speed();
   float truck_speed() const;
   void set_truck_speed(float value);
@@ -1922,24 +1395,7 @@ class TripLeg_Edge final :
   void _internal_set_truck_speed(float value);
   public:
 
-  // bool truck_route = 38;
-  bool has_truck_route() const;
-  private:
-  bool _internal_has_truck_route() const;
-  public:
-  void clear_truck_route();
-  bool truck_route() const;
-  void set_truck_route(bool value);
-  private:
-  bool _internal_truck_route() const;
-  void _internal_set_truck_route(bool value);
-  public:
-
   // int32 mean_elevation = 40;
-  bool has_mean_elevation() const;
-  private:
-  bool _internal_has_mean_elevation() const;
-  public:
   void clear_mean_elevation();
   int32_t mean_elevation() const;
   void set_mean_elevation(int32_t value);
@@ -1948,11 +1404,16 @@ class TripLeg_Edge final :
   void _internal_set_mean_elevation(int32_t value);
   public:
 
-  // bool has_time_restrictions = 43;
-  bool has_has_time_restrictions() const;
+  // bool truck_route = 38;
+  void clear_truck_route();
+  bool truck_route() const;
+  void set_truck_route(bool value);
   private:
-  bool _internal_has_has_time_restrictions() const;
+  bool _internal_truck_route() const;
+  void _internal_set_truck_route(bool value);
   public:
+
+  // bool has_time_restrictions = 43;
   void clear_has_time_restrictions();
   bool has_time_restrictions() const;
   void set_has_time_restrictions(bool value);
@@ -1961,24 +1422,7 @@ class TripLeg_Edge final :
   void _internal_set_has_time_restrictions(bool value);
   public:
 
-  // float default_speed = 44;
-  bool has_default_speed() const;
-  private:
-  bool _internal_has_default_speed() const;
-  public:
-  void clear_default_speed();
-  float default_speed() const;
-  void set_default_speed(float value);
-  private:
-  float _internal_default_speed() const;
-  void _internal_set_default_speed(float value);
-  public:
-
   // bool destination_only = 46;
-  bool has_destination_only() const;
-  private:
-  bool _internal_has_destination_only() const;
-  public:
   void clear_destination_only();
   bool destination_only() const;
   void set_destination_only(bool value);
@@ -1988,10 +1432,6 @@ class TripLeg_Edge final :
   public:
 
   // bool is_urban = 47;
-  bool has_is_urban() const;
-  private:
-  bool _internal_has_is_urban() const;
-  public:
   void clear_is_urban();
   bool is_urban() const;
   void set_is_urban(bool value);
@@ -2000,11 +1440,16 @@ class TripLeg_Edge final :
   void _internal_set_is_urban(bool value);
   public:
 
-  // float source_along_edge = 49;
-  bool has_source_along_edge() const;
+  // float default_speed = 44;
+  void clear_default_speed();
+  float default_speed() const;
+  void set_default_speed(float value);
   private:
-  bool _internal_has_source_along_edge() const;
+  float _internal_default_speed() const;
+  void _internal_set_default_speed(float value);
   public:
+
+  // float source_along_edge = 49;
   void clear_source_along_edge();
   float source_along_edge() const;
   void set_source_along_edge(float value);
@@ -2014,10 +1459,6 @@ class TripLeg_Edge final :
   public:
 
   // float target_along_edge = 50;
-  bool has_target_along_edge() const;
-  private:
-  bool _internal_has_target_along_edge() const;
-  public:
   void clear_target_along_edge();
   float target_along_edge() const;
   void set_target_along_edge(float value);
@@ -2027,10 +1468,6 @@ class TripLeg_Edge final :
   public:
 
   // .valhalla.TripLeg.SacScale sac_scale = 51;
-  bool has_sac_scale() const;
-  private:
-  bool _internal_has_sac_scale() const;
-  public:
   void clear_sac_scale();
   ::valhalla::TripLeg_SacScale sac_scale() const;
   void set_sac_scale(::valhalla::TripLeg_SacScale value);
@@ -2040,10 +1477,6 @@ class TripLeg_Edge final :
   public:
 
   // bool shoulder = 52;
-  bool has_shoulder() const;
-  private:
-  bool _internal_has_shoulder() const;
-  public:
   void clear_shoulder();
   bool shoulder() const;
   void set_shoulder(bool value);
@@ -2052,273 +1485,18 @@ class TripLeg_Edge final :
   void _internal_set_shoulder(bool value);
   public:
 
-  void clear_has_length_km();
-  HasLengthKmCase has_length_km_case() const;
-  void clear_has_speed();
-  HasSpeedCase has_speed_case() const;
-  void clear_has_road_class();
-  HasRoadClassCase has_road_class_case() const;
-  void clear_has_begin_heading();
-  HasBeginHeadingCase has_begin_heading_case() const;
-  void clear_has_end_heading();
-  HasEndHeadingCase has_end_heading_case() const;
-  void clear_has_begin_shape_index();
-  HasBeginShapeIndexCase has_begin_shape_index_case() const;
-  void clear_has_end_shape_index();
-  HasEndShapeIndexCase has_end_shape_index_case() const;
-  void clear_has_traversability();
-  HasTraversabilityCase has_traversability_case() const;
-  void clear_has_use();
-  HasUseCase has_use_case() const;
-  void clear_has_toll();
-  HasTollCase has_toll_case() const;
-  void clear_has_unpaved();
-  HasUnpavedCase has_unpaved_case() const;
-  void clear_has_tunnel();
-  HasTunnelCase has_tunnel_case() const;
-  void clear_has_bridge();
-  HasBridgeCase has_bridge_case() const;
-  void clear_has_roundabout();
-  HasRoundaboutCase has_roundabout_case() const;
-  void clear_has_internal_intersection();
-  HasInternalIntersectionCase has_internal_intersection_case() const;
-  void clear_has_drive_on_left();
-  HasDriveOnLeftCase has_drive_on_left_case() const;
-  void clear_has_surface();
-  HasSurfaceCase has_surface_case() const;
-  void clear_has_travel_mode();
-  HasTravelModeCase has_travel_mode_case() const;
-  void clear_has_vehicle_type();
-  HasVehicleTypeCase has_vehicle_type_case() const;
-  void clear_has_pedestrian_type();
-  HasPedestrianTypeCase has_pedestrian_type_case() const;
-  void clear_has_bicycle_type();
-  HasBicycleTypeCase has_bicycle_type_case() const;
-  void clear_has_transit_type();
-  HasTransitTypeCase has_transit_type_case() const;
-  void clear_has_id();
-  HasIdCase has_id_case() const;
-  void clear_has_way_id();
-  HasWayIdCase has_way_id_case() const;
-  void clear_has_weighted_grade();
-  HasWeightedGradeCase has_weighted_grade_case() const;
-  void clear_has_max_upward_grade();
-  HasMaxUpwardGradeCase has_max_upward_grade_case() const;
-  void clear_has_max_downward_grade();
-  HasMaxDownwardGradeCase has_max_downward_grade_case() const;
-  void clear_has_lane_count();
-  HasLaneCountCase has_lane_count_case() const;
-  void clear_has_cycle_lane();
-  HasCycleLaneCase has_cycle_lane_case() const;
-  void clear_has_bicycle_network();
-  HasBicycleNetworkCase has_bicycle_network_case() const;
-  void clear_has_sidewalk();
-  HasSidewalkCase has_sidewalk_case() const;
-  void clear_has_density();
-  HasDensityCase has_density_case() const;
-  void clear_has_speed_limit();
-  HasSpeedLimitCase has_speed_limit_case() const;
-  void clear_has_truck_speed();
-  HasTruckSpeedCase has_truck_speed_case() const;
-  void clear_has_truck_route();
-  HasTruckRouteCase has_truck_route_case() const;
-  void clear_has_mean_elevation();
-  HasMeanElevationCase has_mean_elevation_case() const;
-  void clear_has_has_time_restrictions();
-  HasHasTimeRestrictionsCase has_has_time_restrictions_case() const;
-  void clear_has_default_speed();
-  HasDefaultSpeedCase has_default_speed_case() const;
-  void clear_has_destination_only();
-  HasDestinationOnlyCase has_destination_only_case() const;
-  void clear_has_is_urban();
-  HasIsUrbanCase has_is_urban_case() const;
-  void clear_has_source_along_edge();
-  HasSourceAlongEdgeCase has_source_along_edge_case() const;
-  void clear_has_target_along_edge();
-  HasTargetAlongEdgeCase has_target_along_edge_case() const;
-  void clear_has_sac_scale();
-  HasSacScaleCase has_sac_scale_case() const;
-  void clear_has_shoulder();
-  HasShoulderCase has_shoulder_case() const;
+  // bool indoor = 53;
+  void clear_indoor();
+  bool indoor() const;
+  void set_indoor(bool value);
+  private:
+  bool _internal_indoor() const;
+  void _internal_set_indoor(bool value);
+  public:
+
   // @@protoc_insertion_point(class_scope:valhalla.TripLeg.Edge)
  private:
   class _Internal;
-  void set_has_length_km();
-  void set_has_speed();
-  void set_has_road_class();
-  void set_has_begin_heading();
-  void set_has_end_heading();
-  void set_has_begin_shape_index();
-  void set_has_end_shape_index();
-  void set_has_traversability();
-  void set_has_use();
-  void set_has_toll();
-  void set_has_unpaved();
-  void set_has_tunnel();
-  void set_has_bridge();
-  void set_has_roundabout();
-  void set_has_internal_intersection();
-  void set_has_drive_on_left();
-  void set_has_surface();
-  void set_has_travel_mode();
-  void set_has_vehicle_type();
-  void set_has_pedestrian_type();
-  void set_has_bicycle_type();
-  void set_has_transit_type();
-  void set_has_id();
-  void set_has_way_id();
-  void set_has_weighted_grade();
-  void set_has_max_upward_grade();
-  void set_has_max_downward_grade();
-  void set_has_lane_count();
-  void set_has_cycle_lane();
-  void set_has_bicycle_network();
-  void set_has_sidewalk();
-  void set_has_density();
-  void set_has_speed_limit();
-  void set_has_truck_speed();
-  void set_has_truck_route();
-  void set_has_mean_elevation();
-  void set_has_has_time_restrictions();
-  void set_has_default_speed();
-  void set_has_destination_only();
-  void set_has_is_urban();
-  void set_has_source_along_edge();
-  void set_has_target_along_edge();
-  void set_has_sac_scale();
-  void set_has_shoulder();
-
-  inline bool has_has_length_km() const;
-  inline void clear_has_has_length_km();
-
-  inline bool has_has_speed() const;
-  inline void clear_has_has_speed();
-
-  inline bool has_has_road_class() const;
-  inline void clear_has_has_road_class();
-
-  inline bool has_has_begin_heading() const;
-  inline void clear_has_has_begin_heading();
-
-  inline bool has_has_end_heading() const;
-  inline void clear_has_has_end_heading();
-
-  inline bool has_has_begin_shape_index() const;
-  inline void clear_has_has_begin_shape_index();
-
-  inline bool has_has_end_shape_index() const;
-  inline void clear_has_has_end_shape_index();
-
-  inline bool has_has_traversability() const;
-  inline void clear_has_has_traversability();
-
-  inline bool has_has_use() const;
-  inline void clear_has_has_use();
-
-  inline bool has_has_toll() const;
-  inline void clear_has_has_toll();
-
-  inline bool has_has_unpaved() const;
-  inline void clear_has_has_unpaved();
-
-  inline bool has_has_tunnel() const;
-  inline void clear_has_has_tunnel();
-
-  inline bool has_has_bridge() const;
-  inline void clear_has_has_bridge();
-
-  inline bool has_has_roundabout() const;
-  inline void clear_has_has_roundabout();
-
-  inline bool has_has_internal_intersection() const;
-  inline void clear_has_has_internal_intersection();
-
-  inline bool has_has_drive_on_left() const;
-  inline void clear_has_has_drive_on_left();
-
-  inline bool has_has_surface() const;
-  inline void clear_has_has_surface();
-
-  inline bool has_has_travel_mode() const;
-  inline void clear_has_has_travel_mode();
-
-  inline bool has_has_vehicle_type() const;
-  inline void clear_has_has_vehicle_type();
-
-  inline bool has_has_pedestrian_type() const;
-  inline void clear_has_has_pedestrian_type();
-
-  inline bool has_has_bicycle_type() const;
-  inline void clear_has_has_bicycle_type();
-
-  inline bool has_has_transit_type() const;
-  inline void clear_has_has_transit_type();
-
-  inline bool has_has_id() const;
-  inline void clear_has_has_id();
-
-  inline bool has_has_way_id() const;
-  inline void clear_has_has_way_id();
-
-  inline bool has_has_weighted_grade() const;
-  inline void clear_has_has_weighted_grade();
-
-  inline bool has_has_max_upward_grade() const;
-  inline void clear_has_has_max_upward_grade();
-
-  inline bool has_has_max_downward_grade() const;
-  inline void clear_has_has_max_downward_grade();
-
-  inline bool has_has_lane_count() const;
-  inline void clear_has_has_lane_count();
-
-  inline bool has_has_cycle_lane() const;
-  inline void clear_has_has_cycle_lane();
-
-  inline bool has_has_bicycle_network() const;
-  inline void clear_has_has_bicycle_network();
-
-  inline bool has_has_sidewalk() const;
-  inline void clear_has_has_sidewalk();
-
-  inline bool has_has_density() const;
-  inline void clear_has_has_density();
-
-  inline bool has_has_speed_limit() const;
-  inline void clear_has_has_speed_limit();
-
-  inline bool has_has_truck_speed() const;
-  inline void clear_has_has_truck_speed();
-
-  inline bool has_has_truck_route() const;
-  inline void clear_has_has_truck_route();
-
-  inline bool has_has_mean_elevation() const;
-  inline void clear_has_has_mean_elevation();
-
-  inline bool has_has_has_time_restrictions() const;
-  inline void clear_has_has_has_time_restrictions();
-
-  inline bool has_has_default_speed() const;
-  inline void clear_has_has_default_speed();
-
-  inline bool has_has_destination_only() const;
-  inline void clear_has_has_destination_only();
-
-  inline bool has_has_is_urban() const;
-  inline void clear_has_has_is_urban();
-
-  inline bool has_has_source_along_edge() const;
-  inline void clear_has_has_source_along_edge();
-
-  inline bool has_has_target_along_edge() const;
-  inline void clear_has_has_target_along_edge();
-
-  inline bool has_has_sac_scale() const;
-  inline void clear_has_has_sac_scale();
-
-  inline bool has_has_shoulder() const;
-  inline void clear_has_has_shoulder();
 
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
@@ -2332,229 +1510,52 @@ class TripLeg_Edge final :
     ::valhalla::TripSign* sign_;
     ::valhalla::TransitRouteInfo* transit_route_info_;
     ::valhalla::TripLeg_Restriction* restriction_;
-    union HasLengthKmUnion {
-      constexpr HasLengthKmUnion() : _constinit_{} {}
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
-      float length_km_;
-    } has_length_km_;
-    union HasSpeedUnion {
-      constexpr HasSpeedUnion() : _constinit_{} {}
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
-      float speed_;
-    } has_speed_;
-    union HasRoadClassUnion {
-      constexpr HasRoadClassUnion() : _constinit_{} {}
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
-      int road_class_;
-    } has_road_class_;
-    union HasBeginHeadingUnion {
-      constexpr HasBeginHeadingUnion() : _constinit_{} {}
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
-      uint32_t begin_heading_;
-    } has_begin_heading_;
-    union HasEndHeadingUnion {
-      constexpr HasEndHeadingUnion() : _constinit_{} {}
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
-      uint32_t end_heading_;
-    } has_end_heading_;
-    union HasBeginShapeIndexUnion {
-      constexpr HasBeginShapeIndexUnion() : _constinit_{} {}
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
-      uint32_t begin_shape_index_;
-    } has_begin_shape_index_;
-    union HasEndShapeIndexUnion {
-      constexpr HasEndShapeIndexUnion() : _constinit_{} {}
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
-      uint32_t end_shape_index_;
-    } has_end_shape_index_;
-    union HasTraversabilityUnion {
-      constexpr HasTraversabilityUnion() : _constinit_{} {}
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
-      int traversability_;
-    } has_traversability_;
-    union HasUseUnion {
-      constexpr HasUseUnion() : _constinit_{} {}
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
-      int use_;
-    } has_use_;
-    union HasTollUnion {
-      constexpr HasTollUnion() : _constinit_{} {}
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
-      bool toll_;
-    } has_toll_;
-    union HasUnpavedUnion {
-      constexpr HasUnpavedUnion() : _constinit_{} {}
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
-      bool unpaved_;
-    } has_unpaved_;
-    union HasTunnelUnion {
-      constexpr HasTunnelUnion() : _constinit_{} {}
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
-      bool tunnel_;
-    } has_tunnel_;
-    union HasBridgeUnion {
-      constexpr HasBridgeUnion() : _constinit_{} {}
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
-      bool bridge_;
-    } has_bridge_;
-    union HasRoundaboutUnion {
-      constexpr HasRoundaboutUnion() : _constinit_{} {}
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
-      bool roundabout_;
-    } has_roundabout_;
-    union HasInternalIntersectionUnion {
-      constexpr HasInternalIntersectionUnion() : _constinit_{} {}
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
-      bool internal_intersection_;
-    } has_internal_intersection_;
-    union HasDriveOnLeftUnion {
-      constexpr HasDriveOnLeftUnion() : _constinit_{} {}
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
-      bool drive_on_left_;
-    } has_drive_on_left_;
-    union HasSurfaceUnion {
-      constexpr HasSurfaceUnion() : _constinit_{} {}
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
-      int surface_;
-    } has_surface_;
-    union HasTravelModeUnion {
-      constexpr HasTravelModeUnion() : _constinit_{} {}
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
-      int travel_mode_;
-    } has_travel_mode_;
-    union HasVehicleTypeUnion {
-      constexpr HasVehicleTypeUnion() : _constinit_{} {}
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
-      int vehicle_type_;
-    } has_vehicle_type_;
-    union HasPedestrianTypeUnion {
-      constexpr HasPedestrianTypeUnion() : _constinit_{} {}
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
-      int pedestrian_type_;
-    } has_pedestrian_type_;
-    union HasBicycleTypeUnion {
-      constexpr HasBicycleTypeUnion() : _constinit_{} {}
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
-      int bicycle_type_;
-    } has_bicycle_type_;
-    union HasTransitTypeUnion {
-      constexpr HasTransitTypeUnion() : _constinit_{} {}
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
-      int transit_type_;
-    } has_transit_type_;
-    union HasIdUnion {
-      constexpr HasIdUnion() : _constinit_{} {}
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
-      uint64_t id_;
-    } has_id_;
-    union HasWayIdUnion {
-      constexpr HasWayIdUnion() : _constinit_{} {}
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
-      uint64_t way_id_;
-    } has_way_id_;
-    union HasWeightedGradeUnion {
-      constexpr HasWeightedGradeUnion() : _constinit_{} {}
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
-      float weighted_grade_;
-    } has_weighted_grade_;
-    union HasMaxUpwardGradeUnion {
-      constexpr HasMaxUpwardGradeUnion() : _constinit_{} {}
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
-      int32_t max_upward_grade_;
-    } has_max_upward_grade_;
-    union HasMaxDownwardGradeUnion {
-      constexpr HasMaxDownwardGradeUnion() : _constinit_{} {}
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
-      int32_t max_downward_grade_;
-    } has_max_downward_grade_;
-    union HasLaneCountUnion {
-      constexpr HasLaneCountUnion() : _constinit_{} {}
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
-      uint32_t lane_count_;
-    } has_lane_count_;
-    union HasCycleLaneUnion {
-      constexpr HasCycleLaneUnion() : _constinit_{} {}
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
-      int cycle_lane_;
-    } has_cycle_lane_;
-    union HasBicycleNetworkUnion {
-      constexpr HasBicycleNetworkUnion() : _constinit_{} {}
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
-      uint32_t bicycle_network_;
-    } has_bicycle_network_;
-    union HasSidewalkUnion {
-      constexpr HasSidewalkUnion() : _constinit_{} {}
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
-      int sidewalk_;
-    } has_sidewalk_;
-    union HasDensityUnion {
-      constexpr HasDensityUnion() : _constinit_{} {}
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
-      uint32_t density_;
-    } has_density_;
-    union HasSpeedLimitUnion {
-      constexpr HasSpeedLimitUnion() : _constinit_{} {}
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
-      uint32_t speed_limit_;
-    } has_speed_limit_;
-    union HasTruckSpeedUnion {
-      constexpr HasTruckSpeedUnion() : _constinit_{} {}
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
-      float truck_speed_;
-    } has_truck_speed_;
-    union HasTruckRouteUnion {
-      constexpr HasTruckRouteUnion() : _constinit_{} {}
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
-      bool truck_route_;
-    } has_truck_route_;
-    union HasMeanElevationUnion {
-      constexpr HasMeanElevationUnion() : _constinit_{} {}
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
-      int32_t mean_elevation_;
-    } has_mean_elevation_;
-    union HasHasTimeRestrictionsUnion {
-      constexpr HasHasTimeRestrictionsUnion() : _constinit_{} {}
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
-      bool has_time_restrictions_;
-    } has_has_time_restrictions_;
-    union HasDefaultSpeedUnion {
-      constexpr HasDefaultSpeedUnion() : _constinit_{} {}
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
-      float default_speed_;
-    } has_default_speed_;
-    union HasDestinationOnlyUnion {
-      constexpr HasDestinationOnlyUnion() : _constinit_{} {}
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
-      bool destination_only_;
-    } has_destination_only_;
-    union HasIsUrbanUnion {
-      constexpr HasIsUrbanUnion() : _constinit_{} {}
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
-      bool is_urban_;
-    } has_is_urban_;
-    union HasSourceAlongEdgeUnion {
-      constexpr HasSourceAlongEdgeUnion() : _constinit_{} {}
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
-      float source_along_edge_;
-    } has_source_along_edge_;
-    union HasTargetAlongEdgeUnion {
-      constexpr HasTargetAlongEdgeUnion() : _constinit_{} {}
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
-      float target_along_edge_;
-    } has_target_along_edge_;
-    union HasSacScaleUnion {
-      constexpr HasSacScaleUnion() : _constinit_{} {}
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
-      int sac_scale_;
-    } has_sac_scale_;
-    union HasShoulderUnion {
-      constexpr HasShoulderUnion() : _constinit_{} {}
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
-      bool shoulder_;
-    } has_shoulder_;
+    float length_km_;
+    float speed_;
+    int road_class_;
+    uint32_t begin_heading_;
+    uint32_t end_heading_;
+    uint32_t begin_shape_index_;
+    uint32_t end_shape_index_;
+    int traversability_;
+    int use_;
+    bool toll_;
+    bool unpaved_;
+    bool tunnel_;
+    bool bridge_;
+    int surface_;
+    int travel_mode_;
+    bool roundabout_;
+    bool internal_intersection_;
+    bool drive_on_left_;
+    bool bicycle_network_;
+    int vehicle_type_;
+    int pedestrian_type_;
+    int bicycle_type_;
+    uint64_t id_;
+    int transit_type_;
+    float weighted_grade_;
+    uint64_t way_id_;
+    int32_t max_upward_grade_;
+    int32_t max_downward_grade_;
+    uint32_t lane_count_;
+    int cycle_lane_;
+    int sidewalk_;
+    uint32_t density_;
+    uint32_t speed_limit_;
+    float truck_speed_;
+    int32_t mean_elevation_;
+    bool truck_route_;
+    bool has_time_restrictions_;
+    bool destination_only_;
+    bool is_urban_;
+    float default_speed_;
+    float source_along_edge_;
+    float target_along_edge_;
+    int sac_scale_;
+    bool shoulder_;
+    bool indoor_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-    uint32_t _oneof_case_[44];
-
   };
   union { Impl_ _impl_; };
   friend struct ::TableStruct_trip_2eproto;
@@ -2595,51 +1596,6 @@ class TripLeg_IntersectingEdge final :
   static const TripLeg_IntersectingEdge& default_instance() {
     return *internal_default_instance();
   }
-  enum HasBeginHeadingCase {
-    kBeginHeading = 1,
-    HAS_BEGIN_HEADING_NOT_SET = 0,
-  };
-
-  enum HasPrevNameConsistencyCase {
-    kPrevNameConsistency = 2,
-    HAS_PREV_NAME_CONSISTENCY_NOT_SET = 0,
-  };
-
-  enum HasCurrNameConsistencyCase {
-    kCurrNameConsistency = 3,
-    HAS_CURR_NAME_CONSISTENCY_NOT_SET = 0,
-  };
-
-  enum HasDriveabilityCase {
-    kDriveability = 4,
-    HAS_DRIVEABILITY_NOT_SET = 0,
-  };
-
-  enum HasCyclabilityCase {
-    kCyclability = 5,
-    HAS_CYCLABILITY_NOT_SET = 0,
-  };
-
-  enum HasWalkabilityCase {
-    kWalkability = 6,
-    HAS_WALKABILITY_NOT_SET = 0,
-  };
-
-  enum HasUseCase {
-    kUse = 7,
-    HAS_USE_NOT_SET = 0,
-  };
-
-  enum HasRoadClassCase {
-    kRoadClass = 8,
-    HAS_ROAD_CLASS_NOT_SET = 0,
-  };
-
-  enum HasLaneCountCase {
-    kLaneCount = 9,
-    HAS_LANE_COUNT_NOT_SET = 0,
-  };
-
   static inline const TripLeg_IntersectingEdge* internal_default_instance() {
     return reinterpret_cast<const TripLeg_IntersectingEdge*>(
                &_TripLeg_IntersectingEdge_default_instance_);
@@ -2739,10 +1695,6 @@ class TripLeg_IntersectingEdge final :
   ::valhalla::TripSign* unsafe_arena_release_sign();
 
   // uint32 begin_heading = 1;
-  bool has_begin_heading() const;
-  private:
-  bool _internal_has_begin_heading() const;
-  public:
   void clear_begin_heading();
   uint32_t begin_heading() const;
   void set_begin_heading(uint32_t value);
@@ -2752,10 +1704,6 @@ class TripLeg_IntersectingEdge final :
   public:
 
   // bool prev_name_consistency = 2;
-  bool has_prev_name_consistency() const;
-  private:
-  bool _internal_has_prev_name_consistency() const;
-  public:
   void clear_prev_name_consistency();
   bool prev_name_consistency() const;
   void set_prev_name_consistency(bool value);
@@ -2765,10 +1713,6 @@ class TripLeg_IntersectingEdge final :
   public:
 
   // bool curr_name_consistency = 3;
-  bool has_curr_name_consistency() const;
-  private:
-  bool _internal_has_curr_name_consistency() const;
-  public:
   void clear_curr_name_consistency();
   bool curr_name_consistency() const;
   void set_curr_name_consistency(bool value);
@@ -2778,10 +1722,6 @@ class TripLeg_IntersectingEdge final :
   public:
 
   // .valhalla.TripLeg.Traversability driveability = 4;
-  bool has_driveability() const;
-  private:
-  bool _internal_has_driveability() const;
-  public:
   void clear_driveability();
   ::valhalla::TripLeg_Traversability driveability() const;
   void set_driveability(::valhalla::TripLeg_Traversability value);
@@ -2791,10 +1731,6 @@ class TripLeg_IntersectingEdge final :
   public:
 
   // .valhalla.TripLeg.Traversability cyclability = 5;
-  bool has_cyclability() const;
-  private:
-  bool _internal_has_cyclability() const;
-  public:
   void clear_cyclability();
   ::valhalla::TripLeg_Traversability cyclability() const;
   void set_cyclability(::valhalla::TripLeg_Traversability value);
@@ -2804,10 +1740,6 @@ class TripLeg_IntersectingEdge final :
   public:
 
   // .valhalla.TripLeg.Traversability walkability = 6;
-  bool has_walkability() const;
-  private:
-  bool _internal_has_walkability() const;
-  public:
   void clear_walkability();
   ::valhalla::TripLeg_Traversability walkability() const;
   void set_walkability(::valhalla::TripLeg_Traversability value);
@@ -2817,10 +1749,6 @@ class TripLeg_IntersectingEdge final :
   public:
 
   // .valhalla.TripLeg.Use use = 7;
-  bool has_use() const;
-  private:
-  bool _internal_has_use() const;
-  public:
   void clear_use();
   ::valhalla::TripLeg_Use use() const;
   void set_use(::valhalla::TripLeg_Use value);
@@ -2830,10 +1758,6 @@ class TripLeg_IntersectingEdge final :
   public:
 
   // .valhalla.RoadClass road_class = 8;
-  bool has_road_class() const;
-  private:
-  bool _internal_has_road_class() const;
-  public:
   void clear_road_class();
   ::valhalla::RoadClass road_class() const;
   void set_road_class(::valhalla::RoadClass value);
@@ -2843,10 +1767,6 @@ class TripLeg_IntersectingEdge final :
   public:
 
   // uint32 lane_count = 9;
-  bool has_lane_count() const;
-  private:
-  bool _internal_has_lane_count() const;
-  public:
   void clear_lane_count();
   uint32_t lane_count() const;
   void set_lane_count(uint32_t value);
@@ -2855,117 +1775,25 @@ class TripLeg_IntersectingEdge final :
   void _internal_set_lane_count(uint32_t value);
   public:
 
-  void clear_has_begin_heading();
-  HasBeginHeadingCase has_begin_heading_case() const;
-  void clear_has_prev_name_consistency();
-  HasPrevNameConsistencyCase has_prev_name_consistency_case() const;
-  void clear_has_curr_name_consistency();
-  HasCurrNameConsistencyCase has_curr_name_consistency_case() const;
-  void clear_has_driveability();
-  HasDriveabilityCase has_driveability_case() const;
-  void clear_has_cyclability();
-  HasCyclabilityCase has_cyclability_case() const;
-  void clear_has_walkability();
-  HasWalkabilityCase has_walkability_case() const;
-  void clear_has_use();
-  HasUseCase has_use_case() const;
-  void clear_has_road_class();
-  HasRoadClassCase has_road_class_case() const;
-  void clear_has_lane_count();
-  HasLaneCountCase has_lane_count_case() const;
   // @@protoc_insertion_point(class_scope:valhalla.TripLeg.IntersectingEdge)
  private:
   class _Internal;
-  void set_has_begin_heading();
-  void set_has_prev_name_consistency();
-  void set_has_curr_name_consistency();
-  void set_has_driveability();
-  void set_has_cyclability();
-  void set_has_walkability();
-  void set_has_use();
-  void set_has_road_class();
-  void set_has_lane_count();
-
-  inline bool has_has_begin_heading() const;
-  inline void clear_has_has_begin_heading();
-
-  inline bool has_has_prev_name_consistency() const;
-  inline void clear_has_has_prev_name_consistency();
-
-  inline bool has_has_curr_name_consistency() const;
-  inline void clear_has_has_curr_name_consistency();
-
-  inline bool has_has_driveability() const;
-  inline void clear_has_has_driveability();
-
-  inline bool has_has_cyclability() const;
-  inline void clear_has_has_cyclability();
-
-  inline bool has_has_walkability() const;
-  inline void clear_has_has_walkability();
-
-  inline bool has_has_use() const;
-  inline void clear_has_has_use();
-
-  inline bool has_has_road_class() const;
-  inline void clear_has_has_road_class();
-
-  inline bool has_has_lane_count() const;
-  inline void clear_has_has_lane_count();
 
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
     ::valhalla::TripSign* sign_;
-    union HasBeginHeadingUnion {
-      constexpr HasBeginHeadingUnion() : _constinit_{} {}
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
-      uint32_t begin_heading_;
-    } has_begin_heading_;
-    union HasPrevNameConsistencyUnion {
-      constexpr HasPrevNameConsistencyUnion() : _constinit_{} {}
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
-      bool prev_name_consistency_;
-    } has_prev_name_consistency_;
-    union HasCurrNameConsistencyUnion {
-      constexpr HasCurrNameConsistencyUnion() : _constinit_{} {}
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
-      bool curr_name_consistency_;
-    } has_curr_name_consistency_;
-    union HasDriveabilityUnion {
-      constexpr HasDriveabilityUnion() : _constinit_{} {}
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
-      int driveability_;
-    } has_driveability_;
-    union HasCyclabilityUnion {
-      constexpr HasCyclabilityUnion() : _constinit_{} {}
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
-      int cyclability_;
-    } has_cyclability_;
-    union HasWalkabilityUnion {
-      constexpr HasWalkabilityUnion() : _constinit_{} {}
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
-      int walkability_;
-    } has_walkability_;
-    union HasUseUnion {
-      constexpr HasUseUnion() : _constinit_{} {}
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
-      int use_;
-    } has_use_;
-    union HasRoadClassUnion {
-      constexpr HasRoadClassUnion() : _constinit_{} {}
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
-      int road_class_;
-    } has_road_class_;
-    union HasLaneCountUnion {
-      constexpr HasLaneCountUnion() : _constinit_{} {}
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
-      uint32_t lane_count_;
-    } has_lane_count_;
+    uint32_t begin_heading_;
+    bool prev_name_consistency_;
+    bool curr_name_consistency_;
+    int driveability_;
+    int cyclability_;
+    int walkability_;
+    int use_;
+    int road_class_;
+    uint32_t lane_count_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-    uint32_t _oneof_case_[9];
-
   };
   union { Impl_ _impl_; };
   friend struct ::TableStruct_trip_2eproto;
@@ -3006,16 +1834,6 @@ class TripLeg_Cost final :
   static const TripLeg_Cost& default_instance() {
     return *internal_default_instance();
   }
-  enum HasSecondsCase {
-    kSeconds = 1,
-    HAS_SECONDS_NOT_SET = 0,
-  };
-
-  enum HasCostCase {
-    kCost = 2,
-    HAS_COST_NOT_SET = 0,
-  };
-
   static inline const TripLeg_Cost* internal_default_instance() {
     return reinterpret_cast<const TripLeg_Cost*>(
                &_TripLeg_Cost_default_instance_);
@@ -3089,10 +1907,6 @@ class TripLeg_Cost final :
     kCostFieldNumber = 2,
   };
   // double seconds = 1;
-  bool has_seconds() const;
-  private:
-  bool _internal_has_seconds() const;
-  public:
   void clear_seconds();
   double seconds() const;
   void set_seconds(double value);
@@ -3102,10 +1916,6 @@ class TripLeg_Cost final :
   public:
 
   // double cost = 2;
-  bool has_cost() const;
-  private:
-  bool _internal_has_cost() const;
-  public:
   void clear_cost();
   double cost() const;
   void set_cost(double value);
@@ -3114,39 +1924,17 @@ class TripLeg_Cost final :
   void _internal_set_cost(double value);
   public:
 
-  void clear_has_seconds();
-  HasSecondsCase has_seconds_case() const;
-  void clear_has_cost();
-  HasCostCase has_cost_case() const;
   // @@protoc_insertion_point(class_scope:valhalla.TripLeg.Cost)
  private:
   class _Internal;
-  void set_has_seconds();
-  void set_has_cost();
-
-  inline bool has_has_seconds() const;
-  inline void clear_has_has_seconds();
-
-  inline bool has_has_cost() const;
-  inline void clear_has_has_cost();
 
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
-    union HasSecondsUnion {
-      constexpr HasSecondsUnion() : _constinit_{} {}
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
-      double seconds_;
-    } has_seconds_;
-    union HasCostUnion {
-      constexpr HasCostUnion() : _constinit_{} {}
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
-      double cost_;
-    } has_cost_;
+    double seconds_;
+    double cost_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-    uint32_t _oneof_case_[2];
-
   };
   union { Impl_ _impl_; };
   friend struct ::TableStruct_trip_2eproto;
@@ -3346,26 +2134,6 @@ class TripLeg_Node final :
   static const TripLeg_Node& default_instance() {
     return *internal_default_instance();
   }
-  enum HasAdminIndexCase {
-    kAdminIndex = 3,
-    HAS_ADMIN_INDEX_NOT_SET = 0,
-  };
-
-  enum HasTypeCase {
-    kType = 4,
-    HAS_TYPE_NOT_SET = 0,
-  };
-
-  enum HasForkCase {
-    kFork = 5,
-    HAS_FORK_NOT_SET = 0,
-  };
-
-  enum HasTimeZoneCase {
-    kTimeZone = 11,
-    HAS_TIME_ZONE_NOT_SET = 0,
-  };
-
   static inline const TripLeg_Node* internal_default_instance() {
     return reinterpret_cast<const TripLeg_Node*>(
                &_TripLeg_Node_default_instance_);
@@ -3459,6 +2227,10 @@ class TripLeg_Node final :
     TripLeg_Node_Type_kTollGantry;
   static constexpr Type kSumpBuster =
     TripLeg_Node_Type_kSumpBuster;
+  static constexpr Type kBuildingEntrance =
+    TripLeg_Node_Type_kBuildingEntrance;
+  static constexpr Type kElevator =
+    TripLeg_Node_Type_kElevator;
   static inline bool Type_IsValid(int value) {
     return TripLeg_Node_Type_IsValid(value);
   }
@@ -3485,6 +2257,7 @@ class TripLeg_Node final :
   enum : int {
     kIntersectingEdgeFieldNumber = 2,
     kRecostsFieldNumber = 13,
+    kTimeZoneFieldNumber = 11,
     kEdgeFieldNumber = 1,
     kTransitPlatformInfoFieldNumber = 6,
     kTransitStationInfoFieldNumber = 7,
@@ -3494,7 +2267,6 @@ class TripLeg_Node final :
     kAdminIndexFieldNumber = 3,
     kTypeFieldNumber = 4,
     kForkFieldNumber = 5,
-    kTimeZoneFieldNumber = 11,
   };
   // repeated .valhalla.TripLeg.IntersectingEdge intersecting_edge = 2;
   int intersecting_edge_size() const;
@@ -3531,6 +2303,20 @@ class TripLeg_Node final :
   ::valhalla::TripLeg_PathCost* add_recosts();
   const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::valhalla::TripLeg_PathCost >&
       recosts() const;
+
+  // string time_zone = 11;
+  void clear_time_zone();
+  const std::string& time_zone() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_time_zone(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_time_zone();
+  PROTOBUF_NODISCARD std::string* release_time_zone();
+  void set_allocated_time_zone(std::string* time_zone);
+  private:
+  const std::string& _internal_time_zone() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_time_zone(const std::string& value);
+  std::string* _internal_mutable_time_zone();
+  public:
 
   // .valhalla.TripLeg.Edge edge = 1;
   bool has_edge() const;
@@ -3641,10 +2427,6 @@ class TripLeg_Node final :
   ::valhalla::BikeShareStationInfo* unsafe_arena_release_bss_info();
 
   // uint32 admin_index = 3;
-  bool has_admin_index() const;
-  private:
-  bool _internal_has_admin_index() const;
-  public:
   void clear_admin_index();
   uint32_t admin_index() const;
   void set_admin_index(uint32_t value);
@@ -3654,10 +2436,6 @@ class TripLeg_Node final :
   public:
 
   // .valhalla.TripLeg.Node.Type type = 4;
-  bool has_type() const;
-  private:
-  bool _internal_has_type() const;
-  public:
   void clear_type();
   ::valhalla::TripLeg_Node_Type type() const;
   void set_type(::valhalla::TripLeg_Node_Type value);
@@ -3667,10 +2445,6 @@ class TripLeg_Node final :
   public:
 
   // bool fork = 5;
-  bool has_fork() const;
-  private:
-  bool _internal_has_fork() const;
-  public:
   void clear_fork();
   bool fork() const;
   void set_fork(bool value);
@@ -3679,51 +2453,9 @@ class TripLeg_Node final :
   void _internal_set_fork(bool value);
   public:
 
-  // string time_zone = 11;
-  bool has_time_zone() const;
-  private:
-  bool _internal_has_time_zone() const;
-  public:
-  void clear_time_zone();
-  const std::string& time_zone() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_time_zone(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_time_zone();
-  PROTOBUF_NODISCARD std::string* release_time_zone();
-  void set_allocated_time_zone(std::string* time_zone);
-  private:
-  const std::string& _internal_time_zone() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_time_zone(const std::string& value);
-  std::string* _internal_mutable_time_zone();
-  public:
-
-  void clear_has_admin_index();
-  HasAdminIndexCase has_admin_index_case() const;
-  void clear_has_type();
-  HasTypeCase has_type_case() const;
-  void clear_has_fork();
-  HasForkCase has_fork_case() const;
-  void clear_has_time_zone();
-  HasTimeZoneCase has_time_zone_case() const;
   // @@protoc_insertion_point(class_scope:valhalla.TripLeg.Node)
  private:
   class _Internal;
-  void set_has_admin_index();
-  void set_has_type();
-  void set_has_fork();
-  void set_has_time_zone();
-
-  inline bool has_has_admin_index() const;
-  inline void clear_has_has_admin_index();
-
-  inline bool has_has_type() const;
-  inline void clear_has_has_type();
-
-  inline bool has_has_fork() const;
-  inline void clear_has_has_fork();
-
-  inline bool has_has_time_zone() const;
-  inline void clear_has_has_time_zone();
 
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
@@ -3731,35 +2463,17 @@ class TripLeg_Node final :
   struct Impl_ {
     ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::valhalla::TripLeg_IntersectingEdge > intersecting_edge_;
     ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::valhalla::TripLeg_PathCost > recosts_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr time_zone_;
     ::valhalla::TripLeg_Edge* edge_;
     ::valhalla::TransitPlatformInfo* transit_platform_info_;
     ::valhalla::TransitStationInfo* transit_station_info_;
     ::valhalla::TransitEgressInfo* transit_egress_info_;
     ::valhalla::TripLeg_PathCost* cost_;
     ::valhalla::BikeShareStationInfo* bss_info_;
-    union HasAdminIndexUnion {
-      constexpr HasAdminIndexUnion() : _constinit_{} {}
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
-      uint32_t admin_index_;
-    } has_admin_index_;
-    union HasTypeUnion {
-      constexpr HasTypeUnion() : _constinit_{} {}
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
-      int type_;
-    } has_type_;
-    union HasForkUnion {
-      constexpr HasForkUnion() : _constinit_{} {}
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
-      bool fork_;
-    } has_fork_;
-    union HasTimeZoneUnion {
-      constexpr HasTimeZoneUnion() : _constinit_{} {}
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
-      ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr time_zone_;
-    } has_time_zone_;
+    uint32_t admin_index_;
+    int type_;
+    bool fork_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-    uint32_t _oneof_case_[4];
-
   };
   union { Impl_ _impl_; };
   friend struct ::TableStruct_trip_2eproto;
@@ -3800,26 +2514,6 @@ class TripLeg_Admin final :
   static const TripLeg_Admin& default_instance() {
     return *internal_default_instance();
   }
-  enum HasCountryCodeCase {
-    kCountryCode = 1,
-    HAS_COUNTRY_CODE_NOT_SET = 0,
-  };
-
-  enum HasCountryTextCase {
-    kCountryText = 2,
-    HAS_COUNTRY_TEXT_NOT_SET = 0,
-  };
-
-  enum HasStateCodeCase {
-    kStateCode = 3,
-    HAS_STATE_CODE_NOT_SET = 0,
-  };
-
-  enum HasStateTextCase {
-    kStateText = 4,
-    HAS_STATE_TEXT_NOT_SET = 0,
-  };
-
   static inline const TripLeg_Admin* internal_default_instance() {
     return reinterpret_cast<const TripLeg_Admin*>(
                &_TripLeg_Admin_default_instance_);
@@ -3895,10 +2589,6 @@ class TripLeg_Admin final :
     kStateTextFieldNumber = 4,
   };
   // string country_code = 1;
-  bool has_country_code() const;
-  private:
-  bool _internal_has_country_code() const;
-  public:
   void clear_country_code();
   const std::string& country_code() const;
   template <typename ArgT0 = const std::string&, typename... ArgT>
@@ -3913,10 +2603,6 @@ class TripLeg_Admin final :
   public:
 
   // string country_text = 2;
-  bool has_country_text() const;
-  private:
-  bool _internal_has_country_text() const;
-  public:
   void clear_country_text();
   const std::string& country_text() const;
   template <typename ArgT0 = const std::string&, typename... ArgT>
@@ -3931,10 +2617,6 @@ class TripLeg_Admin final :
   public:
 
   // string state_code = 3;
-  bool has_state_code() const;
-  private:
-  bool _internal_has_state_code() const;
-  public:
   void clear_state_code();
   const std::string& state_code() const;
   template <typename ArgT0 = const std::string&, typename... ArgT>
@@ -3949,10 +2631,6 @@ class TripLeg_Admin final :
   public:
 
   // string state_text = 4;
-  bool has_state_text() const;
-  private:
-  bool _internal_has_state_text() const;
-  public:
   void clear_state_text();
   const std::string& state_text() const;
   template <typename ArgT0 = const std::string&, typename... ArgT>
@@ -3966,61 +2644,19 @@ class TripLeg_Admin final :
   std::string* _internal_mutable_state_text();
   public:
 
-  void clear_has_country_code();
-  HasCountryCodeCase has_country_code_case() const;
-  void clear_has_country_text();
-  HasCountryTextCase has_country_text_case() const;
-  void clear_has_state_code();
-  HasStateCodeCase has_state_code_case() const;
-  void clear_has_state_text();
-  HasStateTextCase has_state_text_case() const;
   // @@protoc_insertion_point(class_scope:valhalla.TripLeg.Admin)
  private:
   class _Internal;
-  void set_has_country_code();
-  void set_has_country_text();
-  void set_has_state_code();
-  void set_has_state_text();
-
-  inline bool has_has_country_code() const;
-  inline void clear_has_has_country_code();
-
-  inline bool has_has_country_text() const;
-  inline void clear_has_has_country_text();
-
-  inline bool has_has_state_code() const;
-  inline void clear_has_has_state_code();
-
-  inline bool has_has_state_text() const;
-  inline void clear_has_has_state_text();
 
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
-    union HasCountryCodeUnion {
-      constexpr HasCountryCodeUnion() : _constinit_{} {}
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
-      ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr country_code_;
-    } has_country_code_;
-    union HasCountryTextUnion {
-      constexpr HasCountryTextUnion() : _constinit_{} {}
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
-      ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr country_text_;
-    } has_country_text_;
-    union HasStateCodeUnion {
-      constexpr HasStateCodeUnion() : _constinit_{} {}
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
-      ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr state_code_;
-    } has_state_code_;
-    union HasStateTextUnion {
-      constexpr HasStateTextUnion() : _constinit_{} {}
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
-      ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr state_text_;
-    } has_state_text_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr country_code_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr country_text_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr state_code_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr state_text_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-    uint32_t _oneof_case_[4];
-
   };
   union { Impl_ _impl_; };
   friend struct ::TableStruct_trip_2eproto;
@@ -4280,16 +2916,6 @@ class TripLeg_Incident final :
   static const TripLeg_Incident& default_instance() {
     return *internal_default_instance();
   }
-  enum HasBeginShapeIndexCase {
-    kBeginShapeIndex = 3,
-    HAS_BEGIN_SHAPE_INDEX_NOT_SET = 0,
-  };
-
-  enum HasEndShapeIndexCase {
-    kEndShapeIndex = 4,
-    HAS_END_SHAPE_INDEX_NOT_SET = 0,
-  };
-
   static inline const TripLeg_Incident* internal_default_instance() {
     return reinterpret_cast<const TripLeg_Incident*>(
                &_TripLeg_Incident_default_instance_);
@@ -4382,10 +3008,6 @@ class TripLeg_Incident final :
   ::valhalla::IncidentsTile_Metadata* unsafe_arena_release_metadata();
 
   // uint32 begin_shape_index = 3;
-  bool has_begin_shape_index() const;
-  private:
-  bool _internal_has_begin_shape_index() const;
-  public:
   void clear_begin_shape_index();
   uint32_t begin_shape_index() const;
   void set_begin_shape_index(uint32_t value);
@@ -4395,10 +3017,6 @@ class TripLeg_Incident final :
   public:
 
   // uint32 end_shape_index = 4;
-  bool has_end_shape_index() const;
-  private:
-  bool _internal_has_end_shape_index() const;
-  public:
   void clear_end_shape_index();
   uint32_t end_shape_index() const;
   void set_end_shape_index(uint32_t value);
@@ -4407,40 +3025,18 @@ class TripLeg_Incident final :
   void _internal_set_end_shape_index(uint32_t value);
   public:
 
-  void clear_has_begin_shape_index();
-  HasBeginShapeIndexCase has_begin_shape_index_case() const;
-  void clear_has_end_shape_index();
-  HasEndShapeIndexCase has_end_shape_index_case() const;
   // @@protoc_insertion_point(class_scope:valhalla.TripLeg.Incident)
  private:
   class _Internal;
-  void set_has_begin_shape_index();
-  void set_has_end_shape_index();
-
-  inline bool has_has_begin_shape_index() const;
-  inline void clear_has_has_begin_shape_index();
-
-  inline bool has_has_end_shape_index() const;
-  inline void clear_has_has_end_shape_index();
 
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
     ::valhalla::IncidentsTile_Metadata* metadata_;
-    union HasBeginShapeIndexUnion {
-      constexpr HasBeginShapeIndexUnion() : _constinit_{} {}
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
-      uint32_t begin_shape_index_;
-    } has_begin_shape_index_;
-    union HasEndShapeIndexUnion {
-      constexpr HasEndShapeIndexUnion() : _constinit_{} {}
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
-      uint32_t end_shape_index_;
-    } has_end_shape_index_;
+    uint32_t begin_shape_index_;
+    uint32_t end_shape_index_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-    uint32_t _oneof_case_[2];
-
   };
   union { Impl_ _impl_; };
   friend struct ::TableStruct_trip_2eproto;
@@ -4662,31 +3258,6 @@ class TripLeg final :
   static const TripLeg& default_instance() {
     return *internal_default_instance();
   }
-  enum HasOsmChangesetCase {
-    kOsmChangeset = 1,
-    HAS_OSM_CHANGESET_NOT_SET = 0,
-  };
-
-  enum HasTripIdCase {
-    kTripId = 2,
-    HAS_TRIP_ID_NOT_SET = 0,
-  };
-
-  enum HasLegIdCase {
-    kLegId = 3,
-    HAS_LEG_ID_NOT_SET = 0,
-  };
-
-  enum HasLegCountCase {
-    kLegCount = 4,
-    HAS_LEG_COUNT_NOT_SET = 0,
-  };
-
-  enum HasShapeCase {
-    kShape = 8,
-    HAS_SHAPE_NOT_SET = 0,
-  };
-
   static inline const TripLeg* internal_default_instance() {
     return reinterpret_cast<const TripLeg*>(
                &_TripLeg_default_instance_);
@@ -4839,6 +3410,10 @@ class TripLeg final :
     TripLeg_Use_kBridlewayUse;
   static constexpr Use kPedestrianCrossingUse =
     TripLeg_Use_kPedestrianCrossingUse;
+  static constexpr Use kElevatorUse =
+    TripLeg_Use_kElevatorUse;
+  static constexpr Use kEscalatorUse =
+    TripLeg_Use_kEscalatorUse;
   static constexpr Use kRestAreaUse =
     TripLeg_Use_kRestAreaUse;
   static constexpr Use kServiceAreaUse =
@@ -4849,6 +3424,8 @@ class TripLeg final :
     TripLeg_Use_kFerryUse;
   static constexpr Use kRailFerryUse =
     TripLeg_Use_kRailFerryUse;
+  static constexpr Use kConstructionUse =
+    TripLeg_Use_kConstructionUse;
   static constexpr Use kRailUse =
     TripLeg_Use_kRailUse;
   static constexpr Use kBusUse =
@@ -5023,13 +3600,13 @@ class TripLeg final :
     kIncidentsFieldNumber = 11,
     kAlgorithmsFieldNumber = 12,
     kClosuresFieldNumber = 13,
+    kShapeFieldNumber = 8,
     kBboxFieldNumber = 9,
     kShapeAttributesFieldNumber = 10,
     kOsmChangesetFieldNumber = 1,
     kTripIdFieldNumber = 2,
     kLegIdFieldNumber = 3,
     kLegCountFieldNumber = 4,
-    kShapeFieldNumber = 8,
   };
   // repeated .valhalla.Location location = 5;
   int location_size() const;
@@ -5145,6 +3722,20 @@ class TripLeg final :
   const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::valhalla::TripLeg_Closure >&
       closures() const;
 
+  // string shape = 8;
+  void clear_shape();
+  const std::string& shape() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_shape(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_shape();
+  PROTOBUF_NODISCARD std::string* release_shape();
+  void set_allocated_shape(std::string* shape);
+  private:
+  const std::string& _internal_shape() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_shape(const std::string& value);
+  std::string* _internal_mutable_shape();
+  public:
+
   // .valhalla.BoundingBox bbox = 9;
   bool has_bbox() const;
   private:
@@ -5182,10 +3773,6 @@ class TripLeg final :
   ::valhalla::TripLeg_ShapeAttributes* unsafe_arena_release_shape_attributes();
 
   // uint64 osm_changeset = 1;
-  bool has_osm_changeset() const;
-  private:
-  bool _internal_has_osm_changeset() const;
-  public:
   void clear_osm_changeset();
   uint64_t osm_changeset() const;
   void set_osm_changeset(uint64_t value);
@@ -5195,10 +3782,6 @@ class TripLeg final :
   public:
 
   // uint64 trip_id = 2;
-  bool has_trip_id() const;
-  private:
-  bool _internal_has_trip_id() const;
-  public:
   void clear_trip_id();
   uint64_t trip_id() const;
   void set_trip_id(uint64_t value);
@@ -5208,10 +3791,6 @@ class TripLeg final :
   public:
 
   // uint32 leg_id = 3;
-  bool has_leg_id() const;
-  private:
-  bool _internal_has_leg_id() const;
-  public:
   void clear_leg_id();
   uint32_t leg_id() const;
   void set_leg_id(uint32_t value);
@@ -5221,10 +3800,6 @@ class TripLeg final :
   public:
 
   // uint32 leg_count = 4;
-  bool has_leg_count() const;
-  private:
-  bool _internal_has_leg_count() const;
-  public:
   void clear_leg_count();
   uint32_t leg_count() const;
   void set_leg_count(uint32_t value);
@@ -5233,57 +3808,9 @@ class TripLeg final :
   void _internal_set_leg_count(uint32_t value);
   public:
 
-  // string shape = 8;
-  bool has_shape() const;
-  private:
-  bool _internal_has_shape() const;
-  public:
-  void clear_shape();
-  const std::string& shape() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_shape(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_shape();
-  PROTOBUF_NODISCARD std::string* release_shape();
-  void set_allocated_shape(std::string* shape);
-  private:
-  const std::string& _internal_shape() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_shape(const std::string& value);
-  std::string* _internal_mutable_shape();
-  public:
-
-  void clear_has_osm_changeset();
-  HasOsmChangesetCase has_osm_changeset_case() const;
-  void clear_has_trip_id();
-  HasTripIdCase has_trip_id_case() const;
-  void clear_has_leg_id();
-  HasLegIdCase has_leg_id_case() const;
-  void clear_has_leg_count();
-  HasLegCountCase has_leg_count_case() const;
-  void clear_has_shape();
-  HasShapeCase has_shape_case() const;
   // @@protoc_insertion_point(class_scope:valhalla.TripLeg)
  private:
   class _Internal;
-  void set_has_osm_changeset();
-  void set_has_trip_id();
-  void set_has_leg_id();
-  void set_has_leg_count();
-  void set_has_shape();
-
-  inline bool has_has_osm_changeset() const;
-  inline void clear_has_has_osm_changeset();
-
-  inline bool has_has_trip_id() const;
-  inline void clear_has_has_trip_id();
-
-  inline bool has_has_leg_id() const;
-  inline void clear_has_has_leg_id();
-
-  inline bool has_has_leg_count() const;
-  inline void clear_has_has_leg_count();
-
-  inline bool has_has_shape() const;
-  inline void clear_has_has_shape();
 
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
@@ -5295,36 +3822,14 @@ class TripLeg final :
     ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::valhalla::TripLeg_Incident > incidents_;
     ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> algorithms_;
     ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::valhalla::TripLeg_Closure > closures_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr shape_;
     ::valhalla::BoundingBox* bbox_;
     ::valhalla::TripLeg_ShapeAttributes* shape_attributes_;
-    union HasOsmChangesetUnion {
-      constexpr HasOsmChangesetUnion() : _constinit_{} {}
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
-      uint64_t osm_changeset_;
-    } has_osm_changeset_;
-    union HasTripIdUnion {
-      constexpr HasTripIdUnion() : _constinit_{} {}
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
-      uint64_t trip_id_;
-    } has_trip_id_;
-    union HasLegIdUnion {
-      constexpr HasLegIdUnion() : _constinit_{} {}
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
-      uint32_t leg_id_;
-    } has_leg_id_;
-    union HasLegCountUnion {
-      constexpr HasLegCountUnion() : _constinit_{} {}
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
-      uint32_t leg_count_;
-    } has_leg_count_;
-    union HasShapeUnion {
-      constexpr HasShapeUnion() : _constinit_{} {}
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
-      ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr shape_;
-    } has_shape_;
+    uint64_t osm_changeset_;
+    uint64_t trip_id_;
+    uint32_t leg_id_;
+    uint32_t leg_count_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-    uint32_t _oneof_case_[5];
-
   };
   union { Impl_ _impl_; };
   friend struct ::TableStruct_trip_2eproto;
@@ -5619,37 +4124,19 @@ class Trip final :
 // TripLeg_LaneConnectivity
 
 // uint64 from_way_id = 1;
-inline bool TripLeg_LaneConnectivity::_internal_has_from_way_id() const {
-  return has_from_way_id_case() == kFromWayId;
-}
-inline bool TripLeg_LaneConnectivity::has_from_way_id() const {
-  return _internal_has_from_way_id();
-}
-inline void TripLeg_LaneConnectivity::set_has_from_way_id() {
-  _impl_._oneof_case_[0] = kFromWayId;
-}
 inline void TripLeg_LaneConnectivity::clear_from_way_id() {
-  if (_internal_has_from_way_id()) {
-    _impl_.has_from_way_id_.from_way_id_ = uint64_t{0u};
-    clear_has_has_from_way_id();
-  }
+  _impl_.from_way_id_ = uint64_t{0u};
 }
 inline uint64_t TripLeg_LaneConnectivity::_internal_from_way_id() const {
-  if (_internal_has_from_way_id()) {
-    return _impl_.has_from_way_id_.from_way_id_;
-  }
-  return uint64_t{0u};
-}
-inline void TripLeg_LaneConnectivity::_internal_set_from_way_id(uint64_t value) {
-  if (!_internal_has_from_way_id()) {
-    clear_has_from_way_id();
-    set_has_from_way_id();
-  }
-  _impl_.has_from_way_id_.from_way_id_ = value;
+  return _impl_.from_way_id_;
 }
 inline uint64_t TripLeg_LaneConnectivity::from_way_id() const {
   // @@protoc_insertion_point(field_get:valhalla.TripLeg.LaneConnectivity.from_way_id)
   return _internal_from_way_id();
+}
+inline void TripLeg_LaneConnectivity::_internal_set_from_way_id(uint64_t value) {
+  
+  _impl_.from_way_id_ = value;
 }
 inline void TripLeg_LaneConnectivity::set_from_way_id(uint64_t value) {
   _internal_set_from_way_id(value);
@@ -5657,33 +4144,18 @@ inline void TripLeg_LaneConnectivity::set_from_way_id(uint64_t value) {
 }
 
 // string from_lanes = 2;
-inline bool TripLeg_LaneConnectivity::_internal_has_from_lanes() const {
-  return has_from_lanes_case() == kFromLanes;
-}
-inline bool TripLeg_LaneConnectivity::has_from_lanes() const {
-  return _internal_has_from_lanes();
-}
-inline void TripLeg_LaneConnectivity::set_has_from_lanes() {
-  _impl_._oneof_case_[1] = kFromLanes;
-}
 inline void TripLeg_LaneConnectivity::clear_from_lanes() {
-  if (_internal_has_from_lanes()) {
-    _impl_.has_from_lanes_.from_lanes_.Destroy();
-    clear_has_has_from_lanes();
-  }
+  _impl_.from_lanes_.ClearToEmpty();
 }
 inline const std::string& TripLeg_LaneConnectivity::from_lanes() const {
   // @@protoc_insertion_point(field_get:valhalla.TripLeg.LaneConnectivity.from_lanes)
   return _internal_from_lanes();
 }
 template <typename ArgT0, typename... ArgT>
-inline void TripLeg_LaneConnectivity::set_from_lanes(ArgT0&& arg0, ArgT... args) {
-  if (!_internal_has_from_lanes()) {
-    clear_has_from_lanes();
-    set_has_from_lanes();
-    _impl_.has_from_lanes_.from_lanes_.InitDefault();
-  }
-  _impl_.has_from_lanes_.from_lanes_.Set( static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+inline PROTOBUF_ALWAYS_INLINE
+void TripLeg_LaneConnectivity::set_from_lanes(ArgT0&& arg0, ArgT... args) {
+ 
+ _impl_.from_lanes_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
   // @@protoc_insertion_point(field_set:valhalla.TripLeg.LaneConnectivity.from_lanes)
 }
 inline std::string* TripLeg_LaneConnectivity::mutable_from_lanes() {
@@ -5692,75 +4164,48 @@ inline std::string* TripLeg_LaneConnectivity::mutable_from_lanes() {
   return _s;
 }
 inline const std::string& TripLeg_LaneConnectivity::_internal_from_lanes() const {
-  if (_internal_has_from_lanes()) {
-    return _impl_.has_from_lanes_.from_lanes_.Get();
-  }
-  return ::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited();
+  return _impl_.from_lanes_.Get();
 }
 inline void TripLeg_LaneConnectivity::_internal_set_from_lanes(const std::string& value) {
-  if (!_internal_has_from_lanes()) {
-    clear_has_from_lanes();
-    set_has_from_lanes();
-    _impl_.has_from_lanes_.from_lanes_.InitDefault();
-  }
-  _impl_.has_from_lanes_.from_lanes_.Set(value, GetArenaForAllocation());
+  
+  _impl_.from_lanes_.Set(value, GetArenaForAllocation());
 }
 inline std::string* TripLeg_LaneConnectivity::_internal_mutable_from_lanes() {
-  if (!_internal_has_from_lanes()) {
-    clear_has_from_lanes();
-    set_has_from_lanes();
-    _impl_.has_from_lanes_.from_lanes_.InitDefault();
-  }
-  return _impl_.has_from_lanes_.from_lanes_.Mutable(      GetArenaForAllocation());
+  
+  return _impl_.from_lanes_.Mutable(GetArenaForAllocation());
 }
 inline std::string* TripLeg_LaneConnectivity::release_from_lanes() {
   // @@protoc_insertion_point(field_release:valhalla.TripLeg.LaneConnectivity.from_lanes)
-  if (_internal_has_from_lanes()) {
-    clear_has_has_from_lanes();
-    return _impl_.has_from_lanes_.from_lanes_.Release();
-  } else {
-    return nullptr;
-  }
+  return _impl_.from_lanes_.Release();
 }
 inline void TripLeg_LaneConnectivity::set_allocated_from_lanes(std::string* from_lanes) {
-  if (has_has_from_lanes()) {
-    clear_has_from_lanes();
-  }
   if (from_lanes != nullptr) {
-    set_has_from_lanes();
-    _impl_.has_from_lanes_.from_lanes_.InitAllocated(from_lanes, GetArenaForAllocation());
+    
+  } else {
+    
   }
+  _impl_.from_lanes_.SetAllocated(from_lanes, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.from_lanes_.IsDefault()) {
+    _impl_.from_lanes_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:valhalla.TripLeg.LaneConnectivity.from_lanes)
 }
 
 // string to_lanes = 3;
-inline bool TripLeg_LaneConnectivity::_internal_has_to_lanes() const {
-  return has_to_lanes_case() == kToLanes;
-}
-inline bool TripLeg_LaneConnectivity::has_to_lanes() const {
-  return _internal_has_to_lanes();
-}
-inline void TripLeg_LaneConnectivity::set_has_to_lanes() {
-  _impl_._oneof_case_[2] = kToLanes;
-}
 inline void TripLeg_LaneConnectivity::clear_to_lanes() {
-  if (_internal_has_to_lanes()) {
-    _impl_.has_to_lanes_.to_lanes_.Destroy();
-    clear_has_has_to_lanes();
-  }
+  _impl_.to_lanes_.ClearToEmpty();
 }
 inline const std::string& TripLeg_LaneConnectivity::to_lanes() const {
   // @@protoc_insertion_point(field_get:valhalla.TripLeg.LaneConnectivity.to_lanes)
   return _internal_to_lanes();
 }
 template <typename ArgT0, typename... ArgT>
-inline void TripLeg_LaneConnectivity::set_to_lanes(ArgT0&& arg0, ArgT... args) {
-  if (!_internal_has_to_lanes()) {
-    clear_has_to_lanes();
-    set_has_to_lanes();
-    _impl_.has_to_lanes_.to_lanes_.InitDefault();
-  }
-  _impl_.has_to_lanes_.to_lanes_.Set( static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+inline PROTOBUF_ALWAYS_INLINE
+void TripLeg_LaneConnectivity::set_to_lanes(ArgT0&& arg0, ArgT... args) {
+ 
+ _impl_.to_lanes_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
   // @@protoc_insertion_point(field_set:valhalla.TripLeg.LaneConnectivity.to_lanes)
 }
 inline std::string* TripLeg_LaneConnectivity::mutable_to_lanes() {
@@ -5769,110 +4214,53 @@ inline std::string* TripLeg_LaneConnectivity::mutable_to_lanes() {
   return _s;
 }
 inline const std::string& TripLeg_LaneConnectivity::_internal_to_lanes() const {
-  if (_internal_has_to_lanes()) {
-    return _impl_.has_to_lanes_.to_lanes_.Get();
-  }
-  return ::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited();
+  return _impl_.to_lanes_.Get();
 }
 inline void TripLeg_LaneConnectivity::_internal_set_to_lanes(const std::string& value) {
-  if (!_internal_has_to_lanes()) {
-    clear_has_to_lanes();
-    set_has_to_lanes();
-    _impl_.has_to_lanes_.to_lanes_.InitDefault();
-  }
-  _impl_.has_to_lanes_.to_lanes_.Set(value, GetArenaForAllocation());
+  
+  _impl_.to_lanes_.Set(value, GetArenaForAllocation());
 }
 inline std::string* TripLeg_LaneConnectivity::_internal_mutable_to_lanes() {
-  if (!_internal_has_to_lanes()) {
-    clear_has_to_lanes();
-    set_has_to_lanes();
-    _impl_.has_to_lanes_.to_lanes_.InitDefault();
-  }
-  return _impl_.has_to_lanes_.to_lanes_.Mutable(      GetArenaForAllocation());
+  
+  return _impl_.to_lanes_.Mutable(GetArenaForAllocation());
 }
 inline std::string* TripLeg_LaneConnectivity::release_to_lanes() {
   // @@protoc_insertion_point(field_release:valhalla.TripLeg.LaneConnectivity.to_lanes)
-  if (_internal_has_to_lanes()) {
-    clear_has_has_to_lanes();
-    return _impl_.has_to_lanes_.to_lanes_.Release();
-  } else {
-    return nullptr;
-  }
+  return _impl_.to_lanes_.Release();
 }
 inline void TripLeg_LaneConnectivity::set_allocated_to_lanes(std::string* to_lanes) {
-  if (has_has_to_lanes()) {
-    clear_has_to_lanes();
-  }
   if (to_lanes != nullptr) {
-    set_has_to_lanes();
-    _impl_.has_to_lanes_.to_lanes_.InitAllocated(to_lanes, GetArenaForAllocation());
+    
+  } else {
+    
   }
+  _impl_.to_lanes_.SetAllocated(to_lanes, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.to_lanes_.IsDefault()) {
+    _impl_.to_lanes_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:valhalla.TripLeg.LaneConnectivity.to_lanes)
 }
 
-inline bool TripLeg_LaneConnectivity::has_has_from_way_id() const {
-  return has_from_way_id_case() != HAS_FROM_WAY_ID_NOT_SET;
-}
-inline void TripLeg_LaneConnectivity::clear_has_has_from_way_id() {
-  _impl_._oneof_case_[0] = HAS_FROM_WAY_ID_NOT_SET;
-}
-inline bool TripLeg_LaneConnectivity::has_has_from_lanes() const {
-  return has_from_lanes_case() != HAS_FROM_LANES_NOT_SET;
-}
-inline void TripLeg_LaneConnectivity::clear_has_has_from_lanes() {
-  _impl_._oneof_case_[1] = HAS_FROM_LANES_NOT_SET;
-}
-inline bool TripLeg_LaneConnectivity::has_has_to_lanes() const {
-  return has_to_lanes_case() != HAS_TO_LANES_NOT_SET;
-}
-inline void TripLeg_LaneConnectivity::clear_has_has_to_lanes() {
-  _impl_._oneof_case_[2] = HAS_TO_LANES_NOT_SET;
-}
-inline TripLeg_LaneConnectivity::HasFromWayIdCase TripLeg_LaneConnectivity::has_from_way_id_case() const {
-  return TripLeg_LaneConnectivity::HasFromWayIdCase(_impl_._oneof_case_[0]);
-}
-inline TripLeg_LaneConnectivity::HasFromLanesCase TripLeg_LaneConnectivity::has_from_lanes_case() const {
-  return TripLeg_LaneConnectivity::HasFromLanesCase(_impl_._oneof_case_[1]);
-}
-inline TripLeg_LaneConnectivity::HasToLanesCase TripLeg_LaneConnectivity::has_to_lanes_case() const {
-  return TripLeg_LaneConnectivity::HasToLanesCase(_impl_._oneof_case_[2]);
-}
 // -------------------------------------------------------------------
 
 // TripLeg_TrafficSegment
 
 // uint64 segment_id = 1;
-inline bool TripLeg_TrafficSegment::_internal_has_segment_id() const {
-  return has_segment_id_case() == kSegmentId;
-}
-inline bool TripLeg_TrafficSegment::has_segment_id() const {
-  return _internal_has_segment_id();
-}
-inline void TripLeg_TrafficSegment::set_has_segment_id() {
-  _impl_._oneof_case_[0] = kSegmentId;
-}
 inline void TripLeg_TrafficSegment::clear_segment_id() {
-  if (_internal_has_segment_id()) {
-    _impl_.has_segment_id_.segment_id_ = uint64_t{0u};
-    clear_has_has_segment_id();
-  }
+  _impl_.segment_id_ = uint64_t{0u};
 }
 inline uint64_t TripLeg_TrafficSegment::_internal_segment_id() const {
-  if (_internal_has_segment_id()) {
-    return _impl_.has_segment_id_.segment_id_;
-  }
-  return uint64_t{0u};
-}
-inline void TripLeg_TrafficSegment::_internal_set_segment_id(uint64_t value) {
-  if (!_internal_has_segment_id()) {
-    clear_has_segment_id();
-    set_has_segment_id();
-  }
-  _impl_.has_segment_id_.segment_id_ = value;
+  return _impl_.segment_id_;
 }
 inline uint64_t TripLeg_TrafficSegment::segment_id() const {
   // @@protoc_insertion_point(field_get:valhalla.TripLeg.TrafficSegment.segment_id)
   return _internal_segment_id();
+}
+inline void TripLeg_TrafficSegment::_internal_set_segment_id(uint64_t value) {
+  
+  _impl_.segment_id_ = value;
 }
 inline void TripLeg_TrafficSegment::set_segment_id(uint64_t value) {
   _internal_set_segment_id(value);
@@ -5880,37 +4268,19 @@ inline void TripLeg_TrafficSegment::set_segment_id(uint64_t value) {
 }
 
 // float begin_percent = 2;
-inline bool TripLeg_TrafficSegment::_internal_has_begin_percent() const {
-  return has_begin_percent_case() == kBeginPercent;
-}
-inline bool TripLeg_TrafficSegment::has_begin_percent() const {
-  return _internal_has_begin_percent();
-}
-inline void TripLeg_TrafficSegment::set_has_begin_percent() {
-  _impl_._oneof_case_[1] = kBeginPercent;
-}
 inline void TripLeg_TrafficSegment::clear_begin_percent() {
-  if (_internal_has_begin_percent()) {
-    _impl_.has_begin_percent_.begin_percent_ = 0;
-    clear_has_has_begin_percent();
-  }
+  _impl_.begin_percent_ = 0;
 }
 inline float TripLeg_TrafficSegment::_internal_begin_percent() const {
-  if (_internal_has_begin_percent()) {
-    return _impl_.has_begin_percent_.begin_percent_;
-  }
-  return 0;
-}
-inline void TripLeg_TrafficSegment::_internal_set_begin_percent(float value) {
-  if (!_internal_has_begin_percent()) {
-    clear_has_begin_percent();
-    set_has_begin_percent();
-  }
-  _impl_.has_begin_percent_.begin_percent_ = value;
+  return _impl_.begin_percent_;
 }
 inline float TripLeg_TrafficSegment::begin_percent() const {
   // @@protoc_insertion_point(field_get:valhalla.TripLeg.TrafficSegment.begin_percent)
   return _internal_begin_percent();
+}
+inline void TripLeg_TrafficSegment::_internal_set_begin_percent(float value) {
+  
+  _impl_.begin_percent_ = value;
 }
 inline void TripLeg_TrafficSegment::set_begin_percent(float value) {
   _internal_set_begin_percent(value);
@@ -5918,37 +4288,19 @@ inline void TripLeg_TrafficSegment::set_begin_percent(float value) {
 }
 
 // float end_percent = 3;
-inline bool TripLeg_TrafficSegment::_internal_has_end_percent() const {
-  return has_end_percent_case() == kEndPercent;
-}
-inline bool TripLeg_TrafficSegment::has_end_percent() const {
-  return _internal_has_end_percent();
-}
-inline void TripLeg_TrafficSegment::set_has_end_percent() {
-  _impl_._oneof_case_[2] = kEndPercent;
-}
 inline void TripLeg_TrafficSegment::clear_end_percent() {
-  if (_internal_has_end_percent()) {
-    _impl_.has_end_percent_.end_percent_ = 0;
-    clear_has_has_end_percent();
-  }
+  _impl_.end_percent_ = 0;
 }
 inline float TripLeg_TrafficSegment::_internal_end_percent() const {
-  if (_internal_has_end_percent()) {
-    return _impl_.has_end_percent_.end_percent_;
-  }
-  return 0;
-}
-inline void TripLeg_TrafficSegment::_internal_set_end_percent(float value) {
-  if (!_internal_has_end_percent()) {
-    clear_has_end_percent();
-    set_has_end_percent();
-  }
-  _impl_.has_end_percent_.end_percent_ = value;
+  return _impl_.end_percent_;
 }
 inline float TripLeg_TrafficSegment::end_percent() const {
   // @@protoc_insertion_point(field_get:valhalla.TripLeg.TrafficSegment.end_percent)
   return _internal_end_percent();
+}
+inline void TripLeg_TrafficSegment::_internal_set_end_percent(float value) {
+  
+  _impl_.end_percent_ = value;
 }
 inline void TripLeg_TrafficSegment::set_end_percent(float value) {
   _internal_set_end_percent(value);
@@ -5956,37 +4308,19 @@ inline void TripLeg_TrafficSegment::set_end_percent(float value) {
 }
 
 // bool starts_segment = 4;
-inline bool TripLeg_TrafficSegment::_internal_has_starts_segment() const {
-  return has_starts_segment_case() == kStartsSegment;
-}
-inline bool TripLeg_TrafficSegment::has_starts_segment() const {
-  return _internal_has_starts_segment();
-}
-inline void TripLeg_TrafficSegment::set_has_starts_segment() {
-  _impl_._oneof_case_[3] = kStartsSegment;
-}
 inline void TripLeg_TrafficSegment::clear_starts_segment() {
-  if (_internal_has_starts_segment()) {
-    _impl_.has_starts_segment_.starts_segment_ = false;
-    clear_has_has_starts_segment();
-  }
+  _impl_.starts_segment_ = false;
 }
 inline bool TripLeg_TrafficSegment::_internal_starts_segment() const {
-  if (_internal_has_starts_segment()) {
-    return _impl_.has_starts_segment_.starts_segment_;
-  }
-  return false;
-}
-inline void TripLeg_TrafficSegment::_internal_set_starts_segment(bool value) {
-  if (!_internal_has_starts_segment()) {
-    clear_has_starts_segment();
-    set_has_starts_segment();
-  }
-  _impl_.has_starts_segment_.starts_segment_ = value;
+  return _impl_.starts_segment_;
 }
 inline bool TripLeg_TrafficSegment::starts_segment() const {
   // @@protoc_insertion_point(field_get:valhalla.TripLeg.TrafficSegment.starts_segment)
   return _internal_starts_segment();
+}
+inline void TripLeg_TrafficSegment::_internal_set_starts_segment(bool value) {
+  
+  _impl_.starts_segment_ = value;
 }
 inline void TripLeg_TrafficSegment::set_starts_segment(bool value) {
   _internal_set_starts_segment(value);
@@ -5994,139 +4328,49 @@ inline void TripLeg_TrafficSegment::set_starts_segment(bool value) {
 }
 
 // bool ends_segment = 5;
-inline bool TripLeg_TrafficSegment::_internal_has_ends_segment() const {
-  return has_ends_segment_case() == kEndsSegment;
-}
-inline bool TripLeg_TrafficSegment::has_ends_segment() const {
-  return _internal_has_ends_segment();
-}
-inline void TripLeg_TrafficSegment::set_has_ends_segment() {
-  _impl_._oneof_case_[4] = kEndsSegment;
-}
 inline void TripLeg_TrafficSegment::clear_ends_segment() {
-  if (_internal_has_ends_segment()) {
-    _impl_.has_ends_segment_.ends_segment_ = false;
-    clear_has_has_ends_segment();
-  }
+  _impl_.ends_segment_ = false;
 }
 inline bool TripLeg_TrafficSegment::_internal_ends_segment() const {
-  if (_internal_has_ends_segment()) {
-    return _impl_.has_ends_segment_.ends_segment_;
-  }
-  return false;
-}
-inline void TripLeg_TrafficSegment::_internal_set_ends_segment(bool value) {
-  if (!_internal_has_ends_segment()) {
-    clear_has_ends_segment();
-    set_has_ends_segment();
-  }
-  _impl_.has_ends_segment_.ends_segment_ = value;
+  return _impl_.ends_segment_;
 }
 inline bool TripLeg_TrafficSegment::ends_segment() const {
   // @@protoc_insertion_point(field_get:valhalla.TripLeg.TrafficSegment.ends_segment)
   return _internal_ends_segment();
+}
+inline void TripLeg_TrafficSegment::_internal_set_ends_segment(bool value) {
+  
+  _impl_.ends_segment_ = value;
 }
 inline void TripLeg_TrafficSegment::set_ends_segment(bool value) {
   _internal_set_ends_segment(value);
   // @@protoc_insertion_point(field_set:valhalla.TripLeg.TrafficSegment.ends_segment)
 }
 
-inline bool TripLeg_TrafficSegment::has_has_segment_id() const {
-  return has_segment_id_case() != HAS_SEGMENT_ID_NOT_SET;
-}
-inline void TripLeg_TrafficSegment::clear_has_has_segment_id() {
-  _impl_._oneof_case_[0] = HAS_SEGMENT_ID_NOT_SET;
-}
-inline bool TripLeg_TrafficSegment::has_has_begin_percent() const {
-  return has_begin_percent_case() != HAS_BEGIN_PERCENT_NOT_SET;
-}
-inline void TripLeg_TrafficSegment::clear_has_has_begin_percent() {
-  _impl_._oneof_case_[1] = HAS_BEGIN_PERCENT_NOT_SET;
-}
-inline bool TripLeg_TrafficSegment::has_has_end_percent() const {
-  return has_end_percent_case() != HAS_END_PERCENT_NOT_SET;
-}
-inline void TripLeg_TrafficSegment::clear_has_has_end_percent() {
-  _impl_._oneof_case_[2] = HAS_END_PERCENT_NOT_SET;
-}
-inline bool TripLeg_TrafficSegment::has_has_starts_segment() const {
-  return has_starts_segment_case() != HAS_STARTS_SEGMENT_NOT_SET;
-}
-inline void TripLeg_TrafficSegment::clear_has_has_starts_segment() {
-  _impl_._oneof_case_[3] = HAS_STARTS_SEGMENT_NOT_SET;
-}
-inline bool TripLeg_TrafficSegment::has_has_ends_segment() const {
-  return has_ends_segment_case() != HAS_ENDS_SEGMENT_NOT_SET;
-}
-inline void TripLeg_TrafficSegment::clear_has_has_ends_segment() {
-  _impl_._oneof_case_[4] = HAS_ENDS_SEGMENT_NOT_SET;
-}
-inline TripLeg_TrafficSegment::HasSegmentIdCase TripLeg_TrafficSegment::has_segment_id_case() const {
-  return TripLeg_TrafficSegment::HasSegmentIdCase(_impl_._oneof_case_[0]);
-}
-inline TripLeg_TrafficSegment::HasBeginPercentCase TripLeg_TrafficSegment::has_begin_percent_case() const {
-  return TripLeg_TrafficSegment::HasBeginPercentCase(_impl_._oneof_case_[1]);
-}
-inline TripLeg_TrafficSegment::HasEndPercentCase TripLeg_TrafficSegment::has_end_percent_case() const {
-  return TripLeg_TrafficSegment::HasEndPercentCase(_impl_._oneof_case_[2]);
-}
-inline TripLeg_TrafficSegment::HasStartsSegmentCase TripLeg_TrafficSegment::has_starts_segment_case() const {
-  return TripLeg_TrafficSegment::HasStartsSegmentCase(_impl_._oneof_case_[3]);
-}
-inline TripLeg_TrafficSegment::HasEndsSegmentCase TripLeg_TrafficSegment::has_ends_segment_case() const {
-  return TripLeg_TrafficSegment::HasEndsSegmentCase(_impl_._oneof_case_[4]);
-}
 // -------------------------------------------------------------------
 
 // TripLeg_Restriction
 
 // uint32 type = 1;
-inline bool TripLeg_Restriction::_internal_has_type() const {
-  return has_type_case() == kType;
-}
-inline bool TripLeg_Restriction::has_type() const {
-  return _internal_has_type();
-}
-inline void TripLeg_Restriction::set_has_type() {
-  _impl_._oneof_case_[0] = kType;
-}
 inline void TripLeg_Restriction::clear_type() {
-  if (_internal_has_type()) {
-    _impl_.has_type_.type_ = 0u;
-    clear_has_has_type();
-  }
+  _impl_.type_ = 0u;
 }
 inline uint32_t TripLeg_Restriction::_internal_type() const {
-  if (_internal_has_type()) {
-    return _impl_.has_type_.type_;
-  }
-  return 0u;
-}
-inline void TripLeg_Restriction::_internal_set_type(uint32_t value) {
-  if (!_internal_has_type()) {
-    clear_has_type();
-    set_has_type();
-  }
-  _impl_.has_type_.type_ = value;
+  return _impl_.type_;
 }
 inline uint32_t TripLeg_Restriction::type() const {
   // @@protoc_insertion_point(field_get:valhalla.TripLeg.Restriction.type)
   return _internal_type();
+}
+inline void TripLeg_Restriction::_internal_set_type(uint32_t value) {
+  
+  _impl_.type_ = value;
 }
 inline void TripLeg_Restriction::set_type(uint32_t value) {
   _internal_set_type(value);
   // @@protoc_insertion_point(field_set:valhalla.TripLeg.Restriction.type)
 }
 
-inline bool TripLeg_Restriction::has_has_type() const {
-  return has_type_case() != HAS_TYPE_NOT_SET;
-}
-inline void TripLeg_Restriction::clear_has_has_type() {
-  _impl_._oneof_case_[0] = HAS_TYPE_NOT_SET;
-}
-inline TripLeg_Restriction::HasTypeCase TripLeg_Restriction::has_type_case() const {
-  return TripLeg_Restriction::HasTypeCase(_impl_._oneof_case_[0]);
-}
 // -------------------------------------------------------------------
 
 // TripLeg_Edge
@@ -6169,37 +4413,19 @@ TripLeg_Edge::name() const {
 }
 
 // float length_km = 2;
-inline bool TripLeg_Edge::_internal_has_length_km() const {
-  return has_length_km_case() == kLengthKm;
-}
-inline bool TripLeg_Edge::has_length_km() const {
-  return _internal_has_length_km();
-}
-inline void TripLeg_Edge::set_has_length_km() {
-  _impl_._oneof_case_[0] = kLengthKm;
-}
 inline void TripLeg_Edge::clear_length_km() {
-  if (_internal_has_length_km()) {
-    _impl_.has_length_km_.length_km_ = 0;
-    clear_has_has_length_km();
-  }
+  _impl_.length_km_ = 0;
 }
 inline float TripLeg_Edge::_internal_length_km() const {
-  if (_internal_has_length_km()) {
-    return _impl_.has_length_km_.length_km_;
-  }
-  return 0;
-}
-inline void TripLeg_Edge::_internal_set_length_km(float value) {
-  if (!_internal_has_length_km()) {
-    clear_has_length_km();
-    set_has_length_km();
-  }
-  _impl_.has_length_km_.length_km_ = value;
+  return _impl_.length_km_;
 }
 inline float TripLeg_Edge::length_km() const {
   // @@protoc_insertion_point(field_get:valhalla.TripLeg.Edge.length_km)
   return _internal_length_km();
+}
+inline void TripLeg_Edge::_internal_set_length_km(float value) {
+  
+  _impl_.length_km_ = value;
 }
 inline void TripLeg_Edge::set_length_km(float value) {
   _internal_set_length_km(value);
@@ -6207,37 +4433,19 @@ inline void TripLeg_Edge::set_length_km(float value) {
 }
 
 // float speed = 3;
-inline bool TripLeg_Edge::_internal_has_speed() const {
-  return has_speed_case() == kSpeed;
-}
-inline bool TripLeg_Edge::has_speed() const {
-  return _internal_has_speed();
-}
-inline void TripLeg_Edge::set_has_speed() {
-  _impl_._oneof_case_[1] = kSpeed;
-}
 inline void TripLeg_Edge::clear_speed() {
-  if (_internal_has_speed()) {
-    _impl_.has_speed_.speed_ = 0;
-    clear_has_has_speed();
-  }
+  _impl_.speed_ = 0;
 }
 inline float TripLeg_Edge::_internal_speed() const {
-  if (_internal_has_speed()) {
-    return _impl_.has_speed_.speed_;
-  }
-  return 0;
-}
-inline void TripLeg_Edge::_internal_set_speed(float value) {
-  if (!_internal_has_speed()) {
-    clear_has_speed();
-    set_has_speed();
-  }
-  _impl_.has_speed_.speed_ = value;
+  return _impl_.speed_;
 }
 inline float TripLeg_Edge::speed() const {
   // @@protoc_insertion_point(field_get:valhalla.TripLeg.Edge.speed)
   return _internal_speed();
+}
+inline void TripLeg_Edge::_internal_set_speed(float value) {
+  
+  _impl_.speed_ = value;
 }
 inline void TripLeg_Edge::set_speed(float value) {
   _internal_set_speed(value);
@@ -6245,37 +4453,19 @@ inline void TripLeg_Edge::set_speed(float value) {
 }
 
 // .valhalla.RoadClass road_class = 4;
-inline bool TripLeg_Edge::_internal_has_road_class() const {
-  return has_road_class_case() == kRoadClass;
-}
-inline bool TripLeg_Edge::has_road_class() const {
-  return _internal_has_road_class();
-}
-inline void TripLeg_Edge::set_has_road_class() {
-  _impl_._oneof_case_[2] = kRoadClass;
-}
 inline void TripLeg_Edge::clear_road_class() {
-  if (_internal_has_road_class()) {
-    _impl_.has_road_class_.road_class_ = 0;
-    clear_has_has_road_class();
-  }
+  _impl_.road_class_ = 0;
 }
 inline ::valhalla::RoadClass TripLeg_Edge::_internal_road_class() const {
-  if (_internal_has_road_class()) {
-    return static_cast< ::valhalla::RoadClass >(_impl_.has_road_class_.road_class_);
-  }
-  return static_cast< ::valhalla::RoadClass >(0);
+  return static_cast< ::valhalla::RoadClass >(_impl_.road_class_);
 }
 inline ::valhalla::RoadClass TripLeg_Edge::road_class() const {
   // @@protoc_insertion_point(field_get:valhalla.TripLeg.Edge.road_class)
   return _internal_road_class();
 }
 inline void TripLeg_Edge::_internal_set_road_class(::valhalla::RoadClass value) {
-  if (!_internal_has_road_class()) {
-    clear_has_road_class();
-    set_has_road_class();
-  }
-  _impl_.has_road_class_.road_class_ = value;
+  
+  _impl_.road_class_ = value;
 }
 inline void TripLeg_Edge::set_road_class(::valhalla::RoadClass value) {
   _internal_set_road_class(value);
@@ -6283,37 +4473,19 @@ inline void TripLeg_Edge::set_road_class(::valhalla::RoadClass value) {
 }
 
 // uint32 begin_heading = 5;
-inline bool TripLeg_Edge::_internal_has_begin_heading() const {
-  return has_begin_heading_case() == kBeginHeading;
-}
-inline bool TripLeg_Edge::has_begin_heading() const {
-  return _internal_has_begin_heading();
-}
-inline void TripLeg_Edge::set_has_begin_heading() {
-  _impl_._oneof_case_[3] = kBeginHeading;
-}
 inline void TripLeg_Edge::clear_begin_heading() {
-  if (_internal_has_begin_heading()) {
-    _impl_.has_begin_heading_.begin_heading_ = 0u;
-    clear_has_has_begin_heading();
-  }
+  _impl_.begin_heading_ = 0u;
 }
 inline uint32_t TripLeg_Edge::_internal_begin_heading() const {
-  if (_internal_has_begin_heading()) {
-    return _impl_.has_begin_heading_.begin_heading_;
-  }
-  return 0u;
-}
-inline void TripLeg_Edge::_internal_set_begin_heading(uint32_t value) {
-  if (!_internal_has_begin_heading()) {
-    clear_has_begin_heading();
-    set_has_begin_heading();
-  }
-  _impl_.has_begin_heading_.begin_heading_ = value;
+  return _impl_.begin_heading_;
 }
 inline uint32_t TripLeg_Edge::begin_heading() const {
   // @@protoc_insertion_point(field_get:valhalla.TripLeg.Edge.begin_heading)
   return _internal_begin_heading();
+}
+inline void TripLeg_Edge::_internal_set_begin_heading(uint32_t value) {
+  
+  _impl_.begin_heading_ = value;
 }
 inline void TripLeg_Edge::set_begin_heading(uint32_t value) {
   _internal_set_begin_heading(value);
@@ -6321,37 +4493,19 @@ inline void TripLeg_Edge::set_begin_heading(uint32_t value) {
 }
 
 // uint32 end_heading = 6;
-inline bool TripLeg_Edge::_internal_has_end_heading() const {
-  return has_end_heading_case() == kEndHeading;
-}
-inline bool TripLeg_Edge::has_end_heading() const {
-  return _internal_has_end_heading();
-}
-inline void TripLeg_Edge::set_has_end_heading() {
-  _impl_._oneof_case_[4] = kEndHeading;
-}
 inline void TripLeg_Edge::clear_end_heading() {
-  if (_internal_has_end_heading()) {
-    _impl_.has_end_heading_.end_heading_ = 0u;
-    clear_has_has_end_heading();
-  }
+  _impl_.end_heading_ = 0u;
 }
 inline uint32_t TripLeg_Edge::_internal_end_heading() const {
-  if (_internal_has_end_heading()) {
-    return _impl_.has_end_heading_.end_heading_;
-  }
-  return 0u;
-}
-inline void TripLeg_Edge::_internal_set_end_heading(uint32_t value) {
-  if (!_internal_has_end_heading()) {
-    clear_has_end_heading();
-    set_has_end_heading();
-  }
-  _impl_.has_end_heading_.end_heading_ = value;
+  return _impl_.end_heading_;
 }
 inline uint32_t TripLeg_Edge::end_heading() const {
   // @@protoc_insertion_point(field_get:valhalla.TripLeg.Edge.end_heading)
   return _internal_end_heading();
+}
+inline void TripLeg_Edge::_internal_set_end_heading(uint32_t value) {
+  
+  _impl_.end_heading_ = value;
 }
 inline void TripLeg_Edge::set_end_heading(uint32_t value) {
   _internal_set_end_heading(value);
@@ -6359,37 +4513,19 @@ inline void TripLeg_Edge::set_end_heading(uint32_t value) {
 }
 
 // uint32 begin_shape_index = 7;
-inline bool TripLeg_Edge::_internal_has_begin_shape_index() const {
-  return has_begin_shape_index_case() == kBeginShapeIndex;
-}
-inline bool TripLeg_Edge::has_begin_shape_index() const {
-  return _internal_has_begin_shape_index();
-}
-inline void TripLeg_Edge::set_has_begin_shape_index() {
-  _impl_._oneof_case_[5] = kBeginShapeIndex;
-}
 inline void TripLeg_Edge::clear_begin_shape_index() {
-  if (_internal_has_begin_shape_index()) {
-    _impl_.has_begin_shape_index_.begin_shape_index_ = 0u;
-    clear_has_has_begin_shape_index();
-  }
+  _impl_.begin_shape_index_ = 0u;
 }
 inline uint32_t TripLeg_Edge::_internal_begin_shape_index() const {
-  if (_internal_has_begin_shape_index()) {
-    return _impl_.has_begin_shape_index_.begin_shape_index_;
-  }
-  return 0u;
-}
-inline void TripLeg_Edge::_internal_set_begin_shape_index(uint32_t value) {
-  if (!_internal_has_begin_shape_index()) {
-    clear_has_begin_shape_index();
-    set_has_begin_shape_index();
-  }
-  _impl_.has_begin_shape_index_.begin_shape_index_ = value;
+  return _impl_.begin_shape_index_;
 }
 inline uint32_t TripLeg_Edge::begin_shape_index() const {
   // @@protoc_insertion_point(field_get:valhalla.TripLeg.Edge.begin_shape_index)
   return _internal_begin_shape_index();
+}
+inline void TripLeg_Edge::_internal_set_begin_shape_index(uint32_t value) {
+  
+  _impl_.begin_shape_index_ = value;
 }
 inline void TripLeg_Edge::set_begin_shape_index(uint32_t value) {
   _internal_set_begin_shape_index(value);
@@ -6397,37 +4533,19 @@ inline void TripLeg_Edge::set_begin_shape_index(uint32_t value) {
 }
 
 // uint32 end_shape_index = 8;
-inline bool TripLeg_Edge::_internal_has_end_shape_index() const {
-  return has_end_shape_index_case() == kEndShapeIndex;
-}
-inline bool TripLeg_Edge::has_end_shape_index() const {
-  return _internal_has_end_shape_index();
-}
-inline void TripLeg_Edge::set_has_end_shape_index() {
-  _impl_._oneof_case_[6] = kEndShapeIndex;
-}
 inline void TripLeg_Edge::clear_end_shape_index() {
-  if (_internal_has_end_shape_index()) {
-    _impl_.has_end_shape_index_.end_shape_index_ = 0u;
-    clear_has_has_end_shape_index();
-  }
+  _impl_.end_shape_index_ = 0u;
 }
 inline uint32_t TripLeg_Edge::_internal_end_shape_index() const {
-  if (_internal_has_end_shape_index()) {
-    return _impl_.has_end_shape_index_.end_shape_index_;
-  }
-  return 0u;
-}
-inline void TripLeg_Edge::_internal_set_end_shape_index(uint32_t value) {
-  if (!_internal_has_end_shape_index()) {
-    clear_has_end_shape_index();
-    set_has_end_shape_index();
-  }
-  _impl_.has_end_shape_index_.end_shape_index_ = value;
+  return _impl_.end_shape_index_;
 }
 inline uint32_t TripLeg_Edge::end_shape_index() const {
   // @@protoc_insertion_point(field_get:valhalla.TripLeg.Edge.end_shape_index)
   return _internal_end_shape_index();
+}
+inline void TripLeg_Edge::_internal_set_end_shape_index(uint32_t value) {
+  
+  _impl_.end_shape_index_ = value;
 }
 inline void TripLeg_Edge::set_end_shape_index(uint32_t value) {
   _internal_set_end_shape_index(value);
@@ -6435,37 +4553,19 @@ inline void TripLeg_Edge::set_end_shape_index(uint32_t value) {
 }
 
 // .valhalla.TripLeg.Traversability traversability = 9;
-inline bool TripLeg_Edge::_internal_has_traversability() const {
-  return has_traversability_case() == kTraversability;
-}
-inline bool TripLeg_Edge::has_traversability() const {
-  return _internal_has_traversability();
-}
-inline void TripLeg_Edge::set_has_traversability() {
-  _impl_._oneof_case_[7] = kTraversability;
-}
 inline void TripLeg_Edge::clear_traversability() {
-  if (_internal_has_traversability()) {
-    _impl_.has_traversability_.traversability_ = 0;
-    clear_has_has_traversability();
-  }
+  _impl_.traversability_ = 0;
 }
 inline ::valhalla::TripLeg_Traversability TripLeg_Edge::_internal_traversability() const {
-  if (_internal_has_traversability()) {
-    return static_cast< ::valhalla::TripLeg_Traversability >(_impl_.has_traversability_.traversability_);
-  }
-  return static_cast< ::valhalla::TripLeg_Traversability >(0);
+  return static_cast< ::valhalla::TripLeg_Traversability >(_impl_.traversability_);
 }
 inline ::valhalla::TripLeg_Traversability TripLeg_Edge::traversability() const {
   // @@protoc_insertion_point(field_get:valhalla.TripLeg.Edge.traversability)
   return _internal_traversability();
 }
 inline void TripLeg_Edge::_internal_set_traversability(::valhalla::TripLeg_Traversability value) {
-  if (!_internal_has_traversability()) {
-    clear_has_traversability();
-    set_has_traversability();
-  }
-  _impl_.has_traversability_.traversability_ = value;
+  
+  _impl_.traversability_ = value;
 }
 inline void TripLeg_Edge::set_traversability(::valhalla::TripLeg_Traversability value) {
   _internal_set_traversability(value);
@@ -6473,37 +4573,19 @@ inline void TripLeg_Edge::set_traversability(::valhalla::TripLeg_Traversability 
 }
 
 // .valhalla.TripLeg.Use use = 10;
-inline bool TripLeg_Edge::_internal_has_use() const {
-  return has_use_case() == kUse;
-}
-inline bool TripLeg_Edge::has_use() const {
-  return _internal_has_use();
-}
-inline void TripLeg_Edge::set_has_use() {
-  _impl_._oneof_case_[8] = kUse;
-}
 inline void TripLeg_Edge::clear_use() {
-  if (_internal_has_use()) {
-    _impl_.has_use_.use_ = 0;
-    clear_has_has_use();
-  }
+  _impl_.use_ = 0;
 }
 inline ::valhalla::TripLeg_Use TripLeg_Edge::_internal_use() const {
-  if (_internal_has_use()) {
-    return static_cast< ::valhalla::TripLeg_Use >(_impl_.has_use_.use_);
-  }
-  return static_cast< ::valhalla::TripLeg_Use >(0);
+  return static_cast< ::valhalla::TripLeg_Use >(_impl_.use_);
 }
 inline ::valhalla::TripLeg_Use TripLeg_Edge::use() const {
   // @@protoc_insertion_point(field_get:valhalla.TripLeg.Edge.use)
   return _internal_use();
 }
 inline void TripLeg_Edge::_internal_set_use(::valhalla::TripLeg_Use value) {
-  if (!_internal_has_use()) {
-    clear_has_use();
-    set_has_use();
-  }
-  _impl_.has_use_.use_ = value;
+  
+  _impl_.use_ = value;
 }
 inline void TripLeg_Edge::set_use(::valhalla::TripLeg_Use value) {
   _internal_set_use(value);
@@ -6511,37 +4593,19 @@ inline void TripLeg_Edge::set_use(::valhalla::TripLeg_Use value) {
 }
 
 // bool toll = 11;
-inline bool TripLeg_Edge::_internal_has_toll() const {
-  return has_toll_case() == kToll;
-}
-inline bool TripLeg_Edge::has_toll() const {
-  return _internal_has_toll();
-}
-inline void TripLeg_Edge::set_has_toll() {
-  _impl_._oneof_case_[9] = kToll;
-}
 inline void TripLeg_Edge::clear_toll() {
-  if (_internal_has_toll()) {
-    _impl_.has_toll_.toll_ = false;
-    clear_has_has_toll();
-  }
+  _impl_.toll_ = false;
 }
 inline bool TripLeg_Edge::_internal_toll() const {
-  if (_internal_has_toll()) {
-    return _impl_.has_toll_.toll_;
-  }
-  return false;
-}
-inline void TripLeg_Edge::_internal_set_toll(bool value) {
-  if (!_internal_has_toll()) {
-    clear_has_toll();
-    set_has_toll();
-  }
-  _impl_.has_toll_.toll_ = value;
+  return _impl_.toll_;
 }
 inline bool TripLeg_Edge::toll() const {
   // @@protoc_insertion_point(field_get:valhalla.TripLeg.Edge.toll)
   return _internal_toll();
+}
+inline void TripLeg_Edge::_internal_set_toll(bool value) {
+  
+  _impl_.toll_ = value;
 }
 inline void TripLeg_Edge::set_toll(bool value) {
   _internal_set_toll(value);
@@ -6549,37 +4613,19 @@ inline void TripLeg_Edge::set_toll(bool value) {
 }
 
 // bool unpaved = 12;
-inline bool TripLeg_Edge::_internal_has_unpaved() const {
-  return has_unpaved_case() == kUnpaved;
-}
-inline bool TripLeg_Edge::has_unpaved() const {
-  return _internal_has_unpaved();
-}
-inline void TripLeg_Edge::set_has_unpaved() {
-  _impl_._oneof_case_[10] = kUnpaved;
-}
 inline void TripLeg_Edge::clear_unpaved() {
-  if (_internal_has_unpaved()) {
-    _impl_.has_unpaved_.unpaved_ = false;
-    clear_has_has_unpaved();
-  }
+  _impl_.unpaved_ = false;
 }
 inline bool TripLeg_Edge::_internal_unpaved() const {
-  if (_internal_has_unpaved()) {
-    return _impl_.has_unpaved_.unpaved_;
-  }
-  return false;
-}
-inline void TripLeg_Edge::_internal_set_unpaved(bool value) {
-  if (!_internal_has_unpaved()) {
-    clear_has_unpaved();
-    set_has_unpaved();
-  }
-  _impl_.has_unpaved_.unpaved_ = value;
+  return _impl_.unpaved_;
 }
 inline bool TripLeg_Edge::unpaved() const {
   // @@protoc_insertion_point(field_get:valhalla.TripLeg.Edge.unpaved)
   return _internal_unpaved();
+}
+inline void TripLeg_Edge::_internal_set_unpaved(bool value) {
+  
+  _impl_.unpaved_ = value;
 }
 inline void TripLeg_Edge::set_unpaved(bool value) {
   _internal_set_unpaved(value);
@@ -6587,37 +4633,19 @@ inline void TripLeg_Edge::set_unpaved(bool value) {
 }
 
 // bool tunnel = 13;
-inline bool TripLeg_Edge::_internal_has_tunnel() const {
-  return has_tunnel_case() == kTunnel;
-}
-inline bool TripLeg_Edge::has_tunnel() const {
-  return _internal_has_tunnel();
-}
-inline void TripLeg_Edge::set_has_tunnel() {
-  _impl_._oneof_case_[11] = kTunnel;
-}
 inline void TripLeg_Edge::clear_tunnel() {
-  if (_internal_has_tunnel()) {
-    _impl_.has_tunnel_.tunnel_ = false;
-    clear_has_has_tunnel();
-  }
+  _impl_.tunnel_ = false;
 }
 inline bool TripLeg_Edge::_internal_tunnel() const {
-  if (_internal_has_tunnel()) {
-    return _impl_.has_tunnel_.tunnel_;
-  }
-  return false;
-}
-inline void TripLeg_Edge::_internal_set_tunnel(bool value) {
-  if (!_internal_has_tunnel()) {
-    clear_has_tunnel();
-    set_has_tunnel();
-  }
-  _impl_.has_tunnel_.tunnel_ = value;
+  return _impl_.tunnel_;
 }
 inline bool TripLeg_Edge::tunnel() const {
   // @@protoc_insertion_point(field_get:valhalla.TripLeg.Edge.tunnel)
   return _internal_tunnel();
+}
+inline void TripLeg_Edge::_internal_set_tunnel(bool value) {
+  
+  _impl_.tunnel_ = value;
 }
 inline void TripLeg_Edge::set_tunnel(bool value) {
   _internal_set_tunnel(value);
@@ -6625,37 +4653,19 @@ inline void TripLeg_Edge::set_tunnel(bool value) {
 }
 
 // bool bridge = 14;
-inline bool TripLeg_Edge::_internal_has_bridge() const {
-  return has_bridge_case() == kBridge;
-}
-inline bool TripLeg_Edge::has_bridge() const {
-  return _internal_has_bridge();
-}
-inline void TripLeg_Edge::set_has_bridge() {
-  _impl_._oneof_case_[12] = kBridge;
-}
 inline void TripLeg_Edge::clear_bridge() {
-  if (_internal_has_bridge()) {
-    _impl_.has_bridge_.bridge_ = false;
-    clear_has_has_bridge();
-  }
+  _impl_.bridge_ = false;
 }
 inline bool TripLeg_Edge::_internal_bridge() const {
-  if (_internal_has_bridge()) {
-    return _impl_.has_bridge_.bridge_;
-  }
-  return false;
-}
-inline void TripLeg_Edge::_internal_set_bridge(bool value) {
-  if (!_internal_has_bridge()) {
-    clear_has_bridge();
-    set_has_bridge();
-  }
-  _impl_.has_bridge_.bridge_ = value;
+  return _impl_.bridge_;
 }
 inline bool TripLeg_Edge::bridge() const {
   // @@protoc_insertion_point(field_get:valhalla.TripLeg.Edge.bridge)
   return _internal_bridge();
+}
+inline void TripLeg_Edge::_internal_set_bridge(bool value) {
+  
+  _impl_.bridge_ = value;
 }
 inline void TripLeg_Edge::set_bridge(bool value) {
   _internal_set_bridge(value);
@@ -6663,37 +4673,19 @@ inline void TripLeg_Edge::set_bridge(bool value) {
 }
 
 // bool roundabout = 15;
-inline bool TripLeg_Edge::_internal_has_roundabout() const {
-  return has_roundabout_case() == kRoundabout;
-}
-inline bool TripLeg_Edge::has_roundabout() const {
-  return _internal_has_roundabout();
-}
-inline void TripLeg_Edge::set_has_roundabout() {
-  _impl_._oneof_case_[13] = kRoundabout;
-}
 inline void TripLeg_Edge::clear_roundabout() {
-  if (_internal_has_roundabout()) {
-    _impl_.has_roundabout_.roundabout_ = false;
-    clear_has_has_roundabout();
-  }
+  _impl_.roundabout_ = false;
 }
 inline bool TripLeg_Edge::_internal_roundabout() const {
-  if (_internal_has_roundabout()) {
-    return _impl_.has_roundabout_.roundabout_;
-  }
-  return false;
-}
-inline void TripLeg_Edge::_internal_set_roundabout(bool value) {
-  if (!_internal_has_roundabout()) {
-    clear_has_roundabout();
-    set_has_roundabout();
-  }
-  _impl_.has_roundabout_.roundabout_ = value;
+  return _impl_.roundabout_;
 }
 inline bool TripLeg_Edge::roundabout() const {
   // @@protoc_insertion_point(field_get:valhalla.TripLeg.Edge.roundabout)
   return _internal_roundabout();
+}
+inline void TripLeg_Edge::_internal_set_roundabout(bool value) {
+  
+  _impl_.roundabout_ = value;
 }
 inline void TripLeg_Edge::set_roundabout(bool value) {
   _internal_set_roundabout(value);
@@ -6701,37 +4693,19 @@ inline void TripLeg_Edge::set_roundabout(bool value) {
 }
 
 // bool internal_intersection = 16;
-inline bool TripLeg_Edge::_internal_has_internal_intersection() const {
-  return has_internal_intersection_case() == kInternalIntersection;
-}
-inline bool TripLeg_Edge::has_internal_intersection() const {
-  return _internal_has_internal_intersection();
-}
-inline void TripLeg_Edge::set_has_internal_intersection() {
-  _impl_._oneof_case_[14] = kInternalIntersection;
-}
 inline void TripLeg_Edge::clear_internal_intersection() {
-  if (_internal_has_internal_intersection()) {
-    _impl_.has_internal_intersection_.internal_intersection_ = false;
-    clear_has_has_internal_intersection();
-  }
+  _impl_.internal_intersection_ = false;
 }
 inline bool TripLeg_Edge::_internal_internal_intersection() const {
-  if (_internal_has_internal_intersection()) {
-    return _impl_.has_internal_intersection_.internal_intersection_;
-  }
-  return false;
-}
-inline void TripLeg_Edge::_internal_set_internal_intersection(bool value) {
-  if (!_internal_has_internal_intersection()) {
-    clear_has_internal_intersection();
-    set_has_internal_intersection();
-  }
-  _impl_.has_internal_intersection_.internal_intersection_ = value;
+  return _impl_.internal_intersection_;
 }
 inline bool TripLeg_Edge::internal_intersection() const {
   // @@protoc_insertion_point(field_get:valhalla.TripLeg.Edge.internal_intersection)
   return _internal_internal_intersection();
+}
+inline void TripLeg_Edge::_internal_set_internal_intersection(bool value) {
+  
+  _impl_.internal_intersection_ = value;
 }
 inline void TripLeg_Edge::set_internal_intersection(bool value) {
   _internal_set_internal_intersection(value);
@@ -6739,37 +4713,19 @@ inline void TripLeg_Edge::set_internal_intersection(bool value) {
 }
 
 // bool drive_on_left = 17;
-inline bool TripLeg_Edge::_internal_has_drive_on_left() const {
-  return has_drive_on_left_case() == kDriveOnLeft;
-}
-inline bool TripLeg_Edge::has_drive_on_left() const {
-  return _internal_has_drive_on_left();
-}
-inline void TripLeg_Edge::set_has_drive_on_left() {
-  _impl_._oneof_case_[15] = kDriveOnLeft;
-}
 inline void TripLeg_Edge::clear_drive_on_left() {
-  if (_internal_has_drive_on_left()) {
-    _impl_.has_drive_on_left_.drive_on_left_ = false;
-    clear_has_has_drive_on_left();
-  }
+  _impl_.drive_on_left_ = false;
 }
 inline bool TripLeg_Edge::_internal_drive_on_left() const {
-  if (_internal_has_drive_on_left()) {
-    return _impl_.has_drive_on_left_.drive_on_left_;
-  }
-  return false;
-}
-inline void TripLeg_Edge::_internal_set_drive_on_left(bool value) {
-  if (!_internal_has_drive_on_left()) {
-    clear_has_drive_on_left();
-    set_has_drive_on_left();
-  }
-  _impl_.has_drive_on_left_.drive_on_left_ = value;
+  return _impl_.drive_on_left_;
 }
 inline bool TripLeg_Edge::drive_on_left() const {
   // @@protoc_insertion_point(field_get:valhalla.TripLeg.Edge.drive_on_left)
   return _internal_drive_on_left();
+}
+inline void TripLeg_Edge::_internal_set_drive_on_left(bool value) {
+  
+  _impl_.drive_on_left_ = value;
 }
 inline void TripLeg_Edge::set_drive_on_left(bool value) {
   _internal_set_drive_on_left(value);
@@ -6777,37 +4733,19 @@ inline void TripLeg_Edge::set_drive_on_left(bool value) {
 }
 
 // .valhalla.TripLeg.Surface surface = 18;
-inline bool TripLeg_Edge::_internal_has_surface() const {
-  return has_surface_case() == kSurface;
-}
-inline bool TripLeg_Edge::has_surface() const {
-  return _internal_has_surface();
-}
-inline void TripLeg_Edge::set_has_surface() {
-  _impl_._oneof_case_[16] = kSurface;
-}
 inline void TripLeg_Edge::clear_surface() {
-  if (_internal_has_surface()) {
-    _impl_.has_surface_.surface_ = 0;
-    clear_has_has_surface();
-  }
+  _impl_.surface_ = 0;
 }
 inline ::valhalla::TripLeg_Surface TripLeg_Edge::_internal_surface() const {
-  if (_internal_has_surface()) {
-    return static_cast< ::valhalla::TripLeg_Surface >(_impl_.has_surface_.surface_);
-  }
-  return static_cast< ::valhalla::TripLeg_Surface >(0);
+  return static_cast< ::valhalla::TripLeg_Surface >(_impl_.surface_);
 }
 inline ::valhalla::TripLeg_Surface TripLeg_Edge::surface() const {
   // @@protoc_insertion_point(field_get:valhalla.TripLeg.Edge.surface)
   return _internal_surface();
 }
 inline void TripLeg_Edge::_internal_set_surface(::valhalla::TripLeg_Surface value) {
-  if (!_internal_has_surface()) {
-    clear_has_surface();
-    set_has_surface();
-  }
-  _impl_.has_surface_.surface_ = value;
+  
+  _impl_.surface_ = value;
 }
 inline void TripLeg_Edge::set_surface(::valhalla::TripLeg_Surface value) {
   _internal_set_surface(value);
@@ -6900,37 +4838,19 @@ inline void TripLeg_Edge::set_allocated_sign(::valhalla::TripSign* sign) {
 }
 
 // .valhalla.TravelMode travel_mode = 20;
-inline bool TripLeg_Edge::_internal_has_travel_mode() const {
-  return has_travel_mode_case() == kTravelMode;
-}
-inline bool TripLeg_Edge::has_travel_mode() const {
-  return _internal_has_travel_mode();
-}
-inline void TripLeg_Edge::set_has_travel_mode() {
-  _impl_._oneof_case_[17] = kTravelMode;
-}
 inline void TripLeg_Edge::clear_travel_mode() {
-  if (_internal_has_travel_mode()) {
-    _impl_.has_travel_mode_.travel_mode_ = 0;
-    clear_has_has_travel_mode();
-  }
+  _impl_.travel_mode_ = 0;
 }
 inline ::valhalla::TravelMode TripLeg_Edge::_internal_travel_mode() const {
-  if (_internal_has_travel_mode()) {
-    return static_cast< ::valhalla::TravelMode >(_impl_.has_travel_mode_.travel_mode_);
-  }
-  return static_cast< ::valhalla::TravelMode >(0);
+  return static_cast< ::valhalla::TravelMode >(_impl_.travel_mode_);
 }
 inline ::valhalla::TravelMode TripLeg_Edge::travel_mode() const {
   // @@protoc_insertion_point(field_get:valhalla.TripLeg.Edge.travel_mode)
   return _internal_travel_mode();
 }
 inline void TripLeg_Edge::_internal_set_travel_mode(::valhalla::TravelMode value) {
-  if (!_internal_has_travel_mode()) {
-    clear_has_travel_mode();
-    set_has_travel_mode();
-  }
-  _impl_.has_travel_mode_.travel_mode_ = value;
+  
+  _impl_.travel_mode_ = value;
 }
 inline void TripLeg_Edge::set_travel_mode(::valhalla::TravelMode value) {
   _internal_set_travel_mode(value);
@@ -6938,37 +4858,19 @@ inline void TripLeg_Edge::set_travel_mode(::valhalla::TravelMode value) {
 }
 
 // .valhalla.VehicleType vehicle_type = 21;
-inline bool TripLeg_Edge::_internal_has_vehicle_type() const {
-  return has_vehicle_type_case() == kVehicleType;
-}
-inline bool TripLeg_Edge::has_vehicle_type() const {
-  return _internal_has_vehicle_type();
-}
-inline void TripLeg_Edge::set_has_vehicle_type() {
-  _impl_._oneof_case_[18] = kVehicleType;
-}
 inline void TripLeg_Edge::clear_vehicle_type() {
-  if (_internal_has_vehicle_type()) {
-    _impl_.has_vehicle_type_.vehicle_type_ = 0;
-    clear_has_has_vehicle_type();
-  }
+  _impl_.vehicle_type_ = 0;
 }
 inline ::valhalla::VehicleType TripLeg_Edge::_internal_vehicle_type() const {
-  if (_internal_has_vehicle_type()) {
-    return static_cast< ::valhalla::VehicleType >(_impl_.has_vehicle_type_.vehicle_type_);
-  }
-  return static_cast< ::valhalla::VehicleType >(0);
+  return static_cast< ::valhalla::VehicleType >(_impl_.vehicle_type_);
 }
 inline ::valhalla::VehicleType TripLeg_Edge::vehicle_type() const {
   // @@protoc_insertion_point(field_get:valhalla.TripLeg.Edge.vehicle_type)
   return _internal_vehicle_type();
 }
 inline void TripLeg_Edge::_internal_set_vehicle_type(::valhalla::VehicleType value) {
-  if (!_internal_has_vehicle_type()) {
-    clear_has_vehicle_type();
-    set_has_vehicle_type();
-  }
-  _impl_.has_vehicle_type_.vehicle_type_ = value;
+  
+  _impl_.vehicle_type_ = value;
 }
 inline void TripLeg_Edge::set_vehicle_type(::valhalla::VehicleType value) {
   _internal_set_vehicle_type(value);
@@ -6976,37 +4878,19 @@ inline void TripLeg_Edge::set_vehicle_type(::valhalla::VehicleType value) {
 }
 
 // .valhalla.PedestrianType pedestrian_type = 22;
-inline bool TripLeg_Edge::_internal_has_pedestrian_type() const {
-  return has_pedestrian_type_case() == kPedestrianType;
-}
-inline bool TripLeg_Edge::has_pedestrian_type() const {
-  return _internal_has_pedestrian_type();
-}
-inline void TripLeg_Edge::set_has_pedestrian_type() {
-  _impl_._oneof_case_[19] = kPedestrianType;
-}
 inline void TripLeg_Edge::clear_pedestrian_type() {
-  if (_internal_has_pedestrian_type()) {
-    _impl_.has_pedestrian_type_.pedestrian_type_ = 0;
-    clear_has_has_pedestrian_type();
-  }
+  _impl_.pedestrian_type_ = 0;
 }
 inline ::valhalla::PedestrianType TripLeg_Edge::_internal_pedestrian_type() const {
-  if (_internal_has_pedestrian_type()) {
-    return static_cast< ::valhalla::PedestrianType >(_impl_.has_pedestrian_type_.pedestrian_type_);
-  }
-  return static_cast< ::valhalla::PedestrianType >(0);
+  return static_cast< ::valhalla::PedestrianType >(_impl_.pedestrian_type_);
 }
 inline ::valhalla::PedestrianType TripLeg_Edge::pedestrian_type() const {
   // @@protoc_insertion_point(field_get:valhalla.TripLeg.Edge.pedestrian_type)
   return _internal_pedestrian_type();
 }
 inline void TripLeg_Edge::_internal_set_pedestrian_type(::valhalla::PedestrianType value) {
-  if (!_internal_has_pedestrian_type()) {
-    clear_has_pedestrian_type();
-    set_has_pedestrian_type();
-  }
-  _impl_.has_pedestrian_type_.pedestrian_type_ = value;
+  
+  _impl_.pedestrian_type_ = value;
 }
 inline void TripLeg_Edge::set_pedestrian_type(::valhalla::PedestrianType value) {
   _internal_set_pedestrian_type(value);
@@ -7014,37 +4898,19 @@ inline void TripLeg_Edge::set_pedestrian_type(::valhalla::PedestrianType value) 
 }
 
 // .valhalla.BicycleType bicycle_type = 23;
-inline bool TripLeg_Edge::_internal_has_bicycle_type() const {
-  return has_bicycle_type_case() == kBicycleType;
-}
-inline bool TripLeg_Edge::has_bicycle_type() const {
-  return _internal_has_bicycle_type();
-}
-inline void TripLeg_Edge::set_has_bicycle_type() {
-  _impl_._oneof_case_[20] = kBicycleType;
-}
 inline void TripLeg_Edge::clear_bicycle_type() {
-  if (_internal_has_bicycle_type()) {
-    _impl_.has_bicycle_type_.bicycle_type_ = 0;
-    clear_has_has_bicycle_type();
-  }
+  _impl_.bicycle_type_ = 0;
 }
 inline ::valhalla::BicycleType TripLeg_Edge::_internal_bicycle_type() const {
-  if (_internal_has_bicycle_type()) {
-    return static_cast< ::valhalla::BicycleType >(_impl_.has_bicycle_type_.bicycle_type_);
-  }
-  return static_cast< ::valhalla::BicycleType >(0);
+  return static_cast< ::valhalla::BicycleType >(_impl_.bicycle_type_);
 }
 inline ::valhalla::BicycleType TripLeg_Edge::bicycle_type() const {
   // @@protoc_insertion_point(field_get:valhalla.TripLeg.Edge.bicycle_type)
   return _internal_bicycle_type();
 }
 inline void TripLeg_Edge::_internal_set_bicycle_type(::valhalla::BicycleType value) {
-  if (!_internal_has_bicycle_type()) {
-    clear_has_bicycle_type();
-    set_has_bicycle_type();
-  }
-  _impl_.has_bicycle_type_.bicycle_type_ = value;
+  
+  _impl_.bicycle_type_ = value;
 }
 inline void TripLeg_Edge::set_bicycle_type(::valhalla::BicycleType value) {
   _internal_set_bicycle_type(value);
@@ -7052,37 +4918,19 @@ inline void TripLeg_Edge::set_bicycle_type(::valhalla::BicycleType value) {
 }
 
 // .valhalla.TransitType transit_type = 24;
-inline bool TripLeg_Edge::_internal_has_transit_type() const {
-  return has_transit_type_case() == kTransitType;
-}
-inline bool TripLeg_Edge::has_transit_type() const {
-  return _internal_has_transit_type();
-}
-inline void TripLeg_Edge::set_has_transit_type() {
-  _impl_._oneof_case_[21] = kTransitType;
-}
 inline void TripLeg_Edge::clear_transit_type() {
-  if (_internal_has_transit_type()) {
-    _impl_.has_transit_type_.transit_type_ = 0;
-    clear_has_has_transit_type();
-  }
+  _impl_.transit_type_ = 0;
 }
 inline ::valhalla::TransitType TripLeg_Edge::_internal_transit_type() const {
-  if (_internal_has_transit_type()) {
-    return static_cast< ::valhalla::TransitType >(_impl_.has_transit_type_.transit_type_);
-  }
-  return static_cast< ::valhalla::TransitType >(0);
+  return static_cast< ::valhalla::TransitType >(_impl_.transit_type_);
 }
 inline ::valhalla::TransitType TripLeg_Edge::transit_type() const {
   // @@protoc_insertion_point(field_get:valhalla.TripLeg.Edge.transit_type)
   return _internal_transit_type();
 }
 inline void TripLeg_Edge::_internal_set_transit_type(::valhalla::TransitType value) {
-  if (!_internal_has_transit_type()) {
-    clear_has_transit_type();
-    set_has_transit_type();
-  }
-  _impl_.has_transit_type_.transit_type_ = value;
+  
+  _impl_.transit_type_ = value;
 }
 inline void TripLeg_Edge::set_transit_type(::valhalla::TransitType value) {
   _internal_set_transit_type(value);
@@ -7175,37 +5023,19 @@ inline void TripLeg_Edge::set_allocated_transit_route_info(::valhalla::TransitRo
 }
 
 // uint64 id = 26;
-inline bool TripLeg_Edge::_internal_has_id() const {
-  return has_id_case() == kId;
-}
-inline bool TripLeg_Edge::has_id() const {
-  return _internal_has_id();
-}
-inline void TripLeg_Edge::set_has_id() {
-  _impl_._oneof_case_[22] = kId;
-}
 inline void TripLeg_Edge::clear_id() {
-  if (_internal_has_id()) {
-    _impl_.has_id_.id_ = uint64_t{0u};
-    clear_has_has_id();
-  }
+  _impl_.id_ = uint64_t{0u};
 }
 inline uint64_t TripLeg_Edge::_internal_id() const {
-  if (_internal_has_id()) {
-    return _impl_.has_id_.id_;
-  }
-  return uint64_t{0u};
-}
-inline void TripLeg_Edge::_internal_set_id(uint64_t value) {
-  if (!_internal_has_id()) {
-    clear_has_id();
-    set_has_id();
-  }
-  _impl_.has_id_.id_ = value;
+  return _impl_.id_;
 }
 inline uint64_t TripLeg_Edge::id() const {
   // @@protoc_insertion_point(field_get:valhalla.TripLeg.Edge.id)
   return _internal_id();
+}
+inline void TripLeg_Edge::_internal_set_id(uint64_t value) {
+  
+  _impl_.id_ = value;
 }
 inline void TripLeg_Edge::set_id(uint64_t value) {
   _internal_set_id(value);
@@ -7213,37 +5043,19 @@ inline void TripLeg_Edge::set_id(uint64_t value) {
 }
 
 // uint64 way_id = 27;
-inline bool TripLeg_Edge::_internal_has_way_id() const {
-  return has_way_id_case() == kWayId;
-}
-inline bool TripLeg_Edge::has_way_id() const {
-  return _internal_has_way_id();
-}
-inline void TripLeg_Edge::set_has_way_id() {
-  _impl_._oneof_case_[23] = kWayId;
-}
 inline void TripLeg_Edge::clear_way_id() {
-  if (_internal_has_way_id()) {
-    _impl_.has_way_id_.way_id_ = uint64_t{0u};
-    clear_has_has_way_id();
-  }
+  _impl_.way_id_ = uint64_t{0u};
 }
 inline uint64_t TripLeg_Edge::_internal_way_id() const {
-  if (_internal_has_way_id()) {
-    return _impl_.has_way_id_.way_id_;
-  }
-  return uint64_t{0u};
-}
-inline void TripLeg_Edge::_internal_set_way_id(uint64_t value) {
-  if (!_internal_has_way_id()) {
-    clear_has_way_id();
-    set_has_way_id();
-  }
-  _impl_.has_way_id_.way_id_ = value;
+  return _impl_.way_id_;
 }
 inline uint64_t TripLeg_Edge::way_id() const {
   // @@protoc_insertion_point(field_get:valhalla.TripLeg.Edge.way_id)
   return _internal_way_id();
+}
+inline void TripLeg_Edge::_internal_set_way_id(uint64_t value) {
+  
+  _impl_.way_id_ = value;
 }
 inline void TripLeg_Edge::set_way_id(uint64_t value) {
   _internal_set_way_id(value);
@@ -7251,37 +5063,19 @@ inline void TripLeg_Edge::set_way_id(uint64_t value) {
 }
 
 // float weighted_grade = 28;
-inline bool TripLeg_Edge::_internal_has_weighted_grade() const {
-  return has_weighted_grade_case() == kWeightedGrade;
-}
-inline bool TripLeg_Edge::has_weighted_grade() const {
-  return _internal_has_weighted_grade();
-}
-inline void TripLeg_Edge::set_has_weighted_grade() {
-  _impl_._oneof_case_[24] = kWeightedGrade;
-}
 inline void TripLeg_Edge::clear_weighted_grade() {
-  if (_internal_has_weighted_grade()) {
-    _impl_.has_weighted_grade_.weighted_grade_ = 0;
-    clear_has_has_weighted_grade();
-  }
+  _impl_.weighted_grade_ = 0;
 }
 inline float TripLeg_Edge::_internal_weighted_grade() const {
-  if (_internal_has_weighted_grade()) {
-    return _impl_.has_weighted_grade_.weighted_grade_;
-  }
-  return 0;
-}
-inline void TripLeg_Edge::_internal_set_weighted_grade(float value) {
-  if (!_internal_has_weighted_grade()) {
-    clear_has_weighted_grade();
-    set_has_weighted_grade();
-  }
-  _impl_.has_weighted_grade_.weighted_grade_ = value;
+  return _impl_.weighted_grade_;
 }
 inline float TripLeg_Edge::weighted_grade() const {
   // @@protoc_insertion_point(field_get:valhalla.TripLeg.Edge.weighted_grade)
   return _internal_weighted_grade();
+}
+inline void TripLeg_Edge::_internal_set_weighted_grade(float value) {
+  
+  _impl_.weighted_grade_ = value;
 }
 inline void TripLeg_Edge::set_weighted_grade(float value) {
   _internal_set_weighted_grade(value);
@@ -7289,37 +5083,19 @@ inline void TripLeg_Edge::set_weighted_grade(float value) {
 }
 
 // int32 max_upward_grade = 29;
-inline bool TripLeg_Edge::_internal_has_max_upward_grade() const {
-  return has_max_upward_grade_case() == kMaxUpwardGrade;
-}
-inline bool TripLeg_Edge::has_max_upward_grade() const {
-  return _internal_has_max_upward_grade();
-}
-inline void TripLeg_Edge::set_has_max_upward_grade() {
-  _impl_._oneof_case_[25] = kMaxUpwardGrade;
-}
 inline void TripLeg_Edge::clear_max_upward_grade() {
-  if (_internal_has_max_upward_grade()) {
-    _impl_.has_max_upward_grade_.max_upward_grade_ = 0;
-    clear_has_has_max_upward_grade();
-  }
+  _impl_.max_upward_grade_ = 0;
 }
 inline int32_t TripLeg_Edge::_internal_max_upward_grade() const {
-  if (_internal_has_max_upward_grade()) {
-    return _impl_.has_max_upward_grade_.max_upward_grade_;
-  }
-  return 0;
-}
-inline void TripLeg_Edge::_internal_set_max_upward_grade(int32_t value) {
-  if (!_internal_has_max_upward_grade()) {
-    clear_has_max_upward_grade();
-    set_has_max_upward_grade();
-  }
-  _impl_.has_max_upward_grade_.max_upward_grade_ = value;
+  return _impl_.max_upward_grade_;
 }
 inline int32_t TripLeg_Edge::max_upward_grade() const {
   // @@protoc_insertion_point(field_get:valhalla.TripLeg.Edge.max_upward_grade)
   return _internal_max_upward_grade();
+}
+inline void TripLeg_Edge::_internal_set_max_upward_grade(int32_t value) {
+  
+  _impl_.max_upward_grade_ = value;
 }
 inline void TripLeg_Edge::set_max_upward_grade(int32_t value) {
   _internal_set_max_upward_grade(value);
@@ -7327,37 +5103,19 @@ inline void TripLeg_Edge::set_max_upward_grade(int32_t value) {
 }
 
 // int32 max_downward_grade = 30;
-inline bool TripLeg_Edge::_internal_has_max_downward_grade() const {
-  return has_max_downward_grade_case() == kMaxDownwardGrade;
-}
-inline bool TripLeg_Edge::has_max_downward_grade() const {
-  return _internal_has_max_downward_grade();
-}
-inline void TripLeg_Edge::set_has_max_downward_grade() {
-  _impl_._oneof_case_[26] = kMaxDownwardGrade;
-}
 inline void TripLeg_Edge::clear_max_downward_grade() {
-  if (_internal_has_max_downward_grade()) {
-    _impl_.has_max_downward_grade_.max_downward_grade_ = 0;
-    clear_has_has_max_downward_grade();
-  }
+  _impl_.max_downward_grade_ = 0;
 }
 inline int32_t TripLeg_Edge::_internal_max_downward_grade() const {
-  if (_internal_has_max_downward_grade()) {
-    return _impl_.has_max_downward_grade_.max_downward_grade_;
-  }
-  return 0;
-}
-inline void TripLeg_Edge::_internal_set_max_downward_grade(int32_t value) {
-  if (!_internal_has_max_downward_grade()) {
-    clear_has_max_downward_grade();
-    set_has_max_downward_grade();
-  }
-  _impl_.has_max_downward_grade_.max_downward_grade_ = value;
+  return _impl_.max_downward_grade_;
 }
 inline int32_t TripLeg_Edge::max_downward_grade() const {
   // @@protoc_insertion_point(field_get:valhalla.TripLeg.Edge.max_downward_grade)
   return _internal_max_downward_grade();
+}
+inline void TripLeg_Edge::_internal_set_max_downward_grade(int32_t value) {
+  
+  _impl_.max_downward_grade_ = value;
 }
 inline void TripLeg_Edge::set_max_downward_grade(int32_t value) {
   _internal_set_max_downward_grade(value);
@@ -7365,37 +5123,19 @@ inline void TripLeg_Edge::set_max_downward_grade(int32_t value) {
 }
 
 // uint32 lane_count = 31;
-inline bool TripLeg_Edge::_internal_has_lane_count() const {
-  return has_lane_count_case() == kLaneCount;
-}
-inline bool TripLeg_Edge::has_lane_count() const {
-  return _internal_has_lane_count();
-}
-inline void TripLeg_Edge::set_has_lane_count() {
-  _impl_._oneof_case_[27] = kLaneCount;
-}
 inline void TripLeg_Edge::clear_lane_count() {
-  if (_internal_has_lane_count()) {
-    _impl_.has_lane_count_.lane_count_ = 0u;
-    clear_has_has_lane_count();
-  }
+  _impl_.lane_count_ = 0u;
 }
 inline uint32_t TripLeg_Edge::_internal_lane_count() const {
-  if (_internal_has_lane_count()) {
-    return _impl_.has_lane_count_.lane_count_;
-  }
-  return 0u;
-}
-inline void TripLeg_Edge::_internal_set_lane_count(uint32_t value) {
-  if (!_internal_has_lane_count()) {
-    clear_has_lane_count();
-    set_has_lane_count();
-  }
-  _impl_.has_lane_count_.lane_count_ = value;
+  return _impl_.lane_count_;
 }
 inline uint32_t TripLeg_Edge::lane_count() const {
   // @@protoc_insertion_point(field_get:valhalla.TripLeg.Edge.lane_count)
   return _internal_lane_count();
+}
+inline void TripLeg_Edge::_internal_set_lane_count(uint32_t value) {
+  
+  _impl_.lane_count_ = value;
 }
 inline void TripLeg_Edge::set_lane_count(uint32_t value) {
   _internal_set_lane_count(value);
@@ -7403,113 +5143,59 @@ inline void TripLeg_Edge::set_lane_count(uint32_t value) {
 }
 
 // .valhalla.TripLeg.CycleLane cycle_lane = 32;
-inline bool TripLeg_Edge::_internal_has_cycle_lane() const {
-  return has_cycle_lane_case() == kCycleLane;
-}
-inline bool TripLeg_Edge::has_cycle_lane() const {
-  return _internal_has_cycle_lane();
-}
-inline void TripLeg_Edge::set_has_cycle_lane() {
-  _impl_._oneof_case_[28] = kCycleLane;
-}
 inline void TripLeg_Edge::clear_cycle_lane() {
-  if (_internal_has_cycle_lane()) {
-    _impl_.has_cycle_lane_.cycle_lane_ = 0;
-    clear_has_has_cycle_lane();
-  }
+  _impl_.cycle_lane_ = 0;
 }
 inline ::valhalla::TripLeg_CycleLane TripLeg_Edge::_internal_cycle_lane() const {
-  if (_internal_has_cycle_lane()) {
-    return static_cast< ::valhalla::TripLeg_CycleLane >(_impl_.has_cycle_lane_.cycle_lane_);
-  }
-  return static_cast< ::valhalla::TripLeg_CycleLane >(0);
+  return static_cast< ::valhalla::TripLeg_CycleLane >(_impl_.cycle_lane_);
 }
 inline ::valhalla::TripLeg_CycleLane TripLeg_Edge::cycle_lane() const {
   // @@protoc_insertion_point(field_get:valhalla.TripLeg.Edge.cycle_lane)
   return _internal_cycle_lane();
 }
 inline void TripLeg_Edge::_internal_set_cycle_lane(::valhalla::TripLeg_CycleLane value) {
-  if (!_internal_has_cycle_lane()) {
-    clear_has_cycle_lane();
-    set_has_cycle_lane();
-  }
-  _impl_.has_cycle_lane_.cycle_lane_ = value;
+  
+  _impl_.cycle_lane_ = value;
 }
 inline void TripLeg_Edge::set_cycle_lane(::valhalla::TripLeg_CycleLane value) {
   _internal_set_cycle_lane(value);
   // @@protoc_insertion_point(field_set:valhalla.TripLeg.Edge.cycle_lane)
 }
 
-// uint32 bicycle_network = 33;
-inline bool TripLeg_Edge::_internal_has_bicycle_network() const {
-  return has_bicycle_network_case() == kBicycleNetwork;
-}
-inline bool TripLeg_Edge::has_bicycle_network() const {
-  return _internal_has_bicycle_network();
-}
-inline void TripLeg_Edge::set_has_bicycle_network() {
-  _impl_._oneof_case_[29] = kBicycleNetwork;
-}
+// bool bicycle_network = 33;
 inline void TripLeg_Edge::clear_bicycle_network() {
-  if (_internal_has_bicycle_network()) {
-    _impl_.has_bicycle_network_.bicycle_network_ = 0u;
-    clear_has_has_bicycle_network();
-  }
+  _impl_.bicycle_network_ = false;
 }
-inline uint32_t TripLeg_Edge::_internal_bicycle_network() const {
-  if (_internal_has_bicycle_network()) {
-    return _impl_.has_bicycle_network_.bicycle_network_;
-  }
-  return 0u;
+inline bool TripLeg_Edge::_internal_bicycle_network() const {
+  return _impl_.bicycle_network_;
 }
-inline void TripLeg_Edge::_internal_set_bicycle_network(uint32_t value) {
-  if (!_internal_has_bicycle_network()) {
-    clear_has_bicycle_network();
-    set_has_bicycle_network();
-  }
-  _impl_.has_bicycle_network_.bicycle_network_ = value;
-}
-inline uint32_t TripLeg_Edge::bicycle_network() const {
+inline bool TripLeg_Edge::bicycle_network() const {
   // @@protoc_insertion_point(field_get:valhalla.TripLeg.Edge.bicycle_network)
   return _internal_bicycle_network();
 }
-inline void TripLeg_Edge::set_bicycle_network(uint32_t value) {
+inline void TripLeg_Edge::_internal_set_bicycle_network(bool value) {
+  
+  _impl_.bicycle_network_ = value;
+}
+inline void TripLeg_Edge::set_bicycle_network(bool value) {
   _internal_set_bicycle_network(value);
   // @@protoc_insertion_point(field_set:valhalla.TripLeg.Edge.bicycle_network)
 }
 
 // .valhalla.TripLeg.Sidewalk sidewalk = 34;
-inline bool TripLeg_Edge::_internal_has_sidewalk() const {
-  return has_sidewalk_case() == kSidewalk;
-}
-inline bool TripLeg_Edge::has_sidewalk() const {
-  return _internal_has_sidewalk();
-}
-inline void TripLeg_Edge::set_has_sidewalk() {
-  _impl_._oneof_case_[30] = kSidewalk;
-}
 inline void TripLeg_Edge::clear_sidewalk() {
-  if (_internal_has_sidewalk()) {
-    _impl_.has_sidewalk_.sidewalk_ = 0;
-    clear_has_has_sidewalk();
-  }
+  _impl_.sidewalk_ = 0;
 }
 inline ::valhalla::TripLeg_Sidewalk TripLeg_Edge::_internal_sidewalk() const {
-  if (_internal_has_sidewalk()) {
-    return static_cast< ::valhalla::TripLeg_Sidewalk >(_impl_.has_sidewalk_.sidewalk_);
-  }
-  return static_cast< ::valhalla::TripLeg_Sidewalk >(0);
+  return static_cast< ::valhalla::TripLeg_Sidewalk >(_impl_.sidewalk_);
 }
 inline ::valhalla::TripLeg_Sidewalk TripLeg_Edge::sidewalk() const {
   // @@protoc_insertion_point(field_get:valhalla.TripLeg.Edge.sidewalk)
   return _internal_sidewalk();
 }
 inline void TripLeg_Edge::_internal_set_sidewalk(::valhalla::TripLeg_Sidewalk value) {
-  if (!_internal_has_sidewalk()) {
-    clear_has_sidewalk();
-    set_has_sidewalk();
-  }
-  _impl_.has_sidewalk_.sidewalk_ = value;
+  
+  _impl_.sidewalk_ = value;
 }
 inline void TripLeg_Edge::set_sidewalk(::valhalla::TripLeg_Sidewalk value) {
   _internal_set_sidewalk(value);
@@ -7517,37 +5203,19 @@ inline void TripLeg_Edge::set_sidewalk(::valhalla::TripLeg_Sidewalk value) {
 }
 
 // uint32 density = 35;
-inline bool TripLeg_Edge::_internal_has_density() const {
-  return has_density_case() == kDensity;
-}
-inline bool TripLeg_Edge::has_density() const {
-  return _internal_has_density();
-}
-inline void TripLeg_Edge::set_has_density() {
-  _impl_._oneof_case_[31] = kDensity;
-}
 inline void TripLeg_Edge::clear_density() {
-  if (_internal_has_density()) {
-    _impl_.has_density_.density_ = 0u;
-    clear_has_has_density();
-  }
+  _impl_.density_ = 0u;
 }
 inline uint32_t TripLeg_Edge::_internal_density() const {
-  if (_internal_has_density()) {
-    return _impl_.has_density_.density_;
-  }
-  return 0u;
-}
-inline void TripLeg_Edge::_internal_set_density(uint32_t value) {
-  if (!_internal_has_density()) {
-    clear_has_density();
-    set_has_density();
-  }
-  _impl_.has_density_.density_ = value;
+  return _impl_.density_;
 }
 inline uint32_t TripLeg_Edge::density() const {
   // @@protoc_insertion_point(field_get:valhalla.TripLeg.Edge.density)
   return _internal_density();
+}
+inline void TripLeg_Edge::_internal_set_density(uint32_t value) {
+  
+  _impl_.density_ = value;
 }
 inline void TripLeg_Edge::set_density(uint32_t value) {
   _internal_set_density(value);
@@ -7555,37 +5223,19 @@ inline void TripLeg_Edge::set_density(uint32_t value) {
 }
 
 // uint32 speed_limit = 36;
-inline bool TripLeg_Edge::_internal_has_speed_limit() const {
-  return has_speed_limit_case() == kSpeedLimit;
-}
-inline bool TripLeg_Edge::has_speed_limit() const {
-  return _internal_has_speed_limit();
-}
-inline void TripLeg_Edge::set_has_speed_limit() {
-  _impl_._oneof_case_[32] = kSpeedLimit;
-}
 inline void TripLeg_Edge::clear_speed_limit() {
-  if (_internal_has_speed_limit()) {
-    _impl_.has_speed_limit_.speed_limit_ = 0u;
-    clear_has_has_speed_limit();
-  }
+  _impl_.speed_limit_ = 0u;
 }
 inline uint32_t TripLeg_Edge::_internal_speed_limit() const {
-  if (_internal_has_speed_limit()) {
-    return _impl_.has_speed_limit_.speed_limit_;
-  }
-  return 0u;
-}
-inline void TripLeg_Edge::_internal_set_speed_limit(uint32_t value) {
-  if (!_internal_has_speed_limit()) {
-    clear_has_speed_limit();
-    set_has_speed_limit();
-  }
-  _impl_.has_speed_limit_.speed_limit_ = value;
+  return _impl_.speed_limit_;
 }
 inline uint32_t TripLeg_Edge::speed_limit() const {
   // @@protoc_insertion_point(field_get:valhalla.TripLeg.Edge.speed_limit)
   return _internal_speed_limit();
+}
+inline void TripLeg_Edge::_internal_set_speed_limit(uint32_t value) {
+  
+  _impl_.speed_limit_ = value;
 }
 inline void TripLeg_Edge::set_speed_limit(uint32_t value) {
   _internal_set_speed_limit(value);
@@ -7593,37 +5243,19 @@ inline void TripLeg_Edge::set_speed_limit(uint32_t value) {
 }
 
 // float truck_speed = 37;
-inline bool TripLeg_Edge::_internal_has_truck_speed() const {
-  return has_truck_speed_case() == kTruckSpeed;
-}
-inline bool TripLeg_Edge::has_truck_speed() const {
-  return _internal_has_truck_speed();
-}
-inline void TripLeg_Edge::set_has_truck_speed() {
-  _impl_._oneof_case_[33] = kTruckSpeed;
-}
 inline void TripLeg_Edge::clear_truck_speed() {
-  if (_internal_has_truck_speed()) {
-    _impl_.has_truck_speed_.truck_speed_ = 0;
-    clear_has_has_truck_speed();
-  }
+  _impl_.truck_speed_ = 0;
 }
 inline float TripLeg_Edge::_internal_truck_speed() const {
-  if (_internal_has_truck_speed()) {
-    return _impl_.has_truck_speed_.truck_speed_;
-  }
-  return 0;
-}
-inline void TripLeg_Edge::_internal_set_truck_speed(float value) {
-  if (!_internal_has_truck_speed()) {
-    clear_has_truck_speed();
-    set_has_truck_speed();
-  }
-  _impl_.has_truck_speed_.truck_speed_ = value;
+  return _impl_.truck_speed_;
 }
 inline float TripLeg_Edge::truck_speed() const {
   // @@protoc_insertion_point(field_get:valhalla.TripLeg.Edge.truck_speed)
   return _internal_truck_speed();
+}
+inline void TripLeg_Edge::_internal_set_truck_speed(float value) {
+  
+  _impl_.truck_speed_ = value;
 }
 inline void TripLeg_Edge::set_truck_speed(float value) {
   _internal_set_truck_speed(value);
@@ -7631,37 +5263,19 @@ inline void TripLeg_Edge::set_truck_speed(float value) {
 }
 
 // bool truck_route = 38;
-inline bool TripLeg_Edge::_internal_has_truck_route() const {
-  return has_truck_route_case() == kTruckRoute;
-}
-inline bool TripLeg_Edge::has_truck_route() const {
-  return _internal_has_truck_route();
-}
-inline void TripLeg_Edge::set_has_truck_route() {
-  _impl_._oneof_case_[34] = kTruckRoute;
-}
 inline void TripLeg_Edge::clear_truck_route() {
-  if (_internal_has_truck_route()) {
-    _impl_.has_truck_route_.truck_route_ = false;
-    clear_has_has_truck_route();
-  }
+  _impl_.truck_route_ = false;
 }
 inline bool TripLeg_Edge::_internal_truck_route() const {
-  if (_internal_has_truck_route()) {
-    return _impl_.has_truck_route_.truck_route_;
-  }
-  return false;
-}
-inline void TripLeg_Edge::_internal_set_truck_route(bool value) {
-  if (!_internal_has_truck_route()) {
-    clear_has_truck_route();
-    set_has_truck_route();
-  }
-  _impl_.has_truck_route_.truck_route_ = value;
+  return _impl_.truck_route_;
 }
 inline bool TripLeg_Edge::truck_route() const {
   // @@protoc_insertion_point(field_get:valhalla.TripLeg.Edge.truck_route)
   return _internal_truck_route();
+}
+inline void TripLeg_Edge::_internal_set_truck_route(bool value) {
+  
+  _impl_.truck_route_ = value;
 }
 inline void TripLeg_Edge::set_truck_route(bool value) {
   _internal_set_truck_route(value);
@@ -7709,37 +5323,19 @@ TripLeg_Edge::lane_connectivity() const {
 }
 
 // int32 mean_elevation = 40;
-inline bool TripLeg_Edge::_internal_has_mean_elevation() const {
-  return has_mean_elevation_case() == kMeanElevation;
-}
-inline bool TripLeg_Edge::has_mean_elevation() const {
-  return _internal_has_mean_elevation();
-}
-inline void TripLeg_Edge::set_has_mean_elevation() {
-  _impl_._oneof_case_[35] = kMeanElevation;
-}
 inline void TripLeg_Edge::clear_mean_elevation() {
-  if (_internal_has_mean_elevation()) {
-    _impl_.has_mean_elevation_.mean_elevation_ = 0;
-    clear_has_has_mean_elevation();
-  }
+  _impl_.mean_elevation_ = 0;
 }
 inline int32_t TripLeg_Edge::_internal_mean_elevation() const {
-  if (_internal_has_mean_elevation()) {
-    return _impl_.has_mean_elevation_.mean_elevation_;
-  }
-  return 0;
-}
-inline void TripLeg_Edge::_internal_set_mean_elevation(int32_t value) {
-  if (!_internal_has_mean_elevation()) {
-    clear_has_mean_elevation();
-    set_has_mean_elevation();
-  }
-  _impl_.has_mean_elevation_.mean_elevation_ = value;
+  return _impl_.mean_elevation_;
 }
 inline int32_t TripLeg_Edge::mean_elevation() const {
   // @@protoc_insertion_point(field_get:valhalla.TripLeg.Edge.mean_elevation)
   return _internal_mean_elevation();
+}
+inline void TripLeg_Edge::_internal_set_mean_elevation(int32_t value) {
+  
+  _impl_.mean_elevation_ = value;
 }
 inline void TripLeg_Edge::set_mean_elevation(int32_t value) {
   _internal_set_mean_elevation(value);
@@ -7824,37 +5420,19 @@ TripLeg_Edge::turn_lanes() const {
 }
 
 // bool has_time_restrictions = 43;
-inline bool TripLeg_Edge::_internal_has_has_time_restrictions() const {
-  return has_has_time_restrictions_case() == kHasTimeRestrictions;
-}
-inline bool TripLeg_Edge::has_has_time_restrictions() const {
-  return _internal_has_has_time_restrictions();
-}
-inline void TripLeg_Edge::set_has_has_time_restrictions() {
-  _impl_._oneof_case_[36] = kHasTimeRestrictions;
-}
 inline void TripLeg_Edge::clear_has_time_restrictions() {
-  if (_internal_has_has_time_restrictions()) {
-    _impl_.has_has_time_restrictions_.has_time_restrictions_ = false;
-    clear_has_has_has_time_restrictions();
-  }
+  _impl_.has_time_restrictions_ = false;
 }
 inline bool TripLeg_Edge::_internal_has_time_restrictions() const {
-  if (_internal_has_has_time_restrictions()) {
-    return _impl_.has_has_time_restrictions_.has_time_restrictions_;
-  }
-  return false;
-}
-inline void TripLeg_Edge::_internal_set_has_time_restrictions(bool value) {
-  if (!_internal_has_has_time_restrictions()) {
-    clear_has_has_time_restrictions();
-    set_has_has_time_restrictions();
-  }
-  _impl_.has_has_time_restrictions_.has_time_restrictions_ = value;
+  return _impl_.has_time_restrictions_;
 }
 inline bool TripLeg_Edge::has_time_restrictions() const {
   // @@protoc_insertion_point(field_get:valhalla.TripLeg.Edge.has_time_restrictions)
   return _internal_has_time_restrictions();
+}
+inline void TripLeg_Edge::_internal_set_has_time_restrictions(bool value) {
+  
+  _impl_.has_time_restrictions_ = value;
 }
 inline void TripLeg_Edge::set_has_time_restrictions(bool value) {
   _internal_set_has_time_restrictions(value);
@@ -7862,37 +5440,19 @@ inline void TripLeg_Edge::set_has_time_restrictions(bool value) {
 }
 
 // float default_speed = 44;
-inline bool TripLeg_Edge::_internal_has_default_speed() const {
-  return has_default_speed_case() == kDefaultSpeed;
-}
-inline bool TripLeg_Edge::has_default_speed() const {
-  return _internal_has_default_speed();
-}
-inline void TripLeg_Edge::set_has_default_speed() {
-  _impl_._oneof_case_[37] = kDefaultSpeed;
-}
 inline void TripLeg_Edge::clear_default_speed() {
-  if (_internal_has_default_speed()) {
-    _impl_.has_default_speed_.default_speed_ = 0;
-    clear_has_has_default_speed();
-  }
+  _impl_.default_speed_ = 0;
 }
 inline float TripLeg_Edge::_internal_default_speed() const {
-  if (_internal_has_default_speed()) {
-    return _impl_.has_default_speed_.default_speed_;
-  }
-  return 0;
-}
-inline void TripLeg_Edge::_internal_set_default_speed(float value) {
-  if (!_internal_has_default_speed()) {
-    clear_has_default_speed();
-    set_has_default_speed();
-  }
-  _impl_.has_default_speed_.default_speed_ = value;
+  return _impl_.default_speed_;
 }
 inline float TripLeg_Edge::default_speed() const {
   // @@protoc_insertion_point(field_get:valhalla.TripLeg.Edge.default_speed)
   return _internal_default_speed();
+}
+inline void TripLeg_Edge::_internal_set_default_speed(float value) {
+  
+  _impl_.default_speed_ = value;
 }
 inline void TripLeg_Edge::set_default_speed(float value) {
   _internal_set_default_speed(value);
@@ -7990,37 +5550,19 @@ inline void TripLeg_Edge::set_allocated_restriction(::valhalla::TripLeg_Restrict
 }
 
 // bool destination_only = 46;
-inline bool TripLeg_Edge::_internal_has_destination_only() const {
-  return has_destination_only_case() == kDestinationOnly;
-}
-inline bool TripLeg_Edge::has_destination_only() const {
-  return _internal_has_destination_only();
-}
-inline void TripLeg_Edge::set_has_destination_only() {
-  _impl_._oneof_case_[38] = kDestinationOnly;
-}
 inline void TripLeg_Edge::clear_destination_only() {
-  if (_internal_has_destination_only()) {
-    _impl_.has_destination_only_.destination_only_ = false;
-    clear_has_has_destination_only();
-  }
+  _impl_.destination_only_ = false;
 }
 inline bool TripLeg_Edge::_internal_destination_only() const {
-  if (_internal_has_destination_only()) {
-    return _impl_.has_destination_only_.destination_only_;
-  }
-  return false;
-}
-inline void TripLeg_Edge::_internal_set_destination_only(bool value) {
-  if (!_internal_has_destination_only()) {
-    clear_has_destination_only();
-    set_has_destination_only();
-  }
-  _impl_.has_destination_only_.destination_only_ = value;
+  return _impl_.destination_only_;
 }
 inline bool TripLeg_Edge::destination_only() const {
   // @@protoc_insertion_point(field_get:valhalla.TripLeg.Edge.destination_only)
   return _internal_destination_only();
+}
+inline void TripLeg_Edge::_internal_set_destination_only(bool value) {
+  
+  _impl_.destination_only_ = value;
 }
 inline void TripLeg_Edge::set_destination_only(bool value) {
   _internal_set_destination_only(value);
@@ -8028,37 +5570,19 @@ inline void TripLeg_Edge::set_destination_only(bool value) {
 }
 
 // bool is_urban = 47;
-inline bool TripLeg_Edge::_internal_has_is_urban() const {
-  return has_is_urban_case() == kIsUrban;
-}
-inline bool TripLeg_Edge::has_is_urban() const {
-  return _internal_has_is_urban();
-}
-inline void TripLeg_Edge::set_has_is_urban() {
-  _impl_._oneof_case_[39] = kIsUrban;
-}
 inline void TripLeg_Edge::clear_is_urban() {
-  if (_internal_has_is_urban()) {
-    _impl_.has_is_urban_.is_urban_ = false;
-    clear_has_has_is_urban();
-  }
+  _impl_.is_urban_ = false;
 }
 inline bool TripLeg_Edge::_internal_is_urban() const {
-  if (_internal_has_is_urban()) {
-    return _impl_.has_is_urban_.is_urban_;
-  }
-  return false;
-}
-inline void TripLeg_Edge::_internal_set_is_urban(bool value) {
-  if (!_internal_has_is_urban()) {
-    clear_has_is_urban();
-    set_has_is_urban();
-  }
-  _impl_.has_is_urban_.is_urban_ = value;
+  return _impl_.is_urban_;
 }
 inline bool TripLeg_Edge::is_urban() const {
   // @@protoc_insertion_point(field_get:valhalla.TripLeg.Edge.is_urban)
   return _internal_is_urban();
+}
+inline void TripLeg_Edge::_internal_set_is_urban(bool value) {
+  
+  _impl_.is_urban_ = value;
 }
 inline void TripLeg_Edge::set_is_urban(bool value) {
   _internal_set_is_urban(value);
@@ -8103,37 +5627,19 @@ TripLeg_Edge::tagged_value() const {
 }
 
 // float source_along_edge = 49;
-inline bool TripLeg_Edge::_internal_has_source_along_edge() const {
-  return has_source_along_edge_case() == kSourceAlongEdge;
-}
-inline bool TripLeg_Edge::has_source_along_edge() const {
-  return _internal_has_source_along_edge();
-}
-inline void TripLeg_Edge::set_has_source_along_edge() {
-  _impl_._oneof_case_[40] = kSourceAlongEdge;
-}
 inline void TripLeg_Edge::clear_source_along_edge() {
-  if (_internal_has_source_along_edge()) {
-    _impl_.has_source_along_edge_.source_along_edge_ = 0;
-    clear_has_has_source_along_edge();
-  }
+  _impl_.source_along_edge_ = 0;
 }
 inline float TripLeg_Edge::_internal_source_along_edge() const {
-  if (_internal_has_source_along_edge()) {
-    return _impl_.has_source_along_edge_.source_along_edge_;
-  }
-  return 0;
-}
-inline void TripLeg_Edge::_internal_set_source_along_edge(float value) {
-  if (!_internal_has_source_along_edge()) {
-    clear_has_source_along_edge();
-    set_has_source_along_edge();
-  }
-  _impl_.has_source_along_edge_.source_along_edge_ = value;
+  return _impl_.source_along_edge_;
 }
 inline float TripLeg_Edge::source_along_edge() const {
   // @@protoc_insertion_point(field_get:valhalla.TripLeg.Edge.source_along_edge)
   return _internal_source_along_edge();
+}
+inline void TripLeg_Edge::_internal_set_source_along_edge(float value) {
+  
+  _impl_.source_along_edge_ = value;
 }
 inline void TripLeg_Edge::set_source_along_edge(float value) {
   _internal_set_source_along_edge(value);
@@ -8141,37 +5647,19 @@ inline void TripLeg_Edge::set_source_along_edge(float value) {
 }
 
 // float target_along_edge = 50;
-inline bool TripLeg_Edge::_internal_has_target_along_edge() const {
-  return has_target_along_edge_case() == kTargetAlongEdge;
-}
-inline bool TripLeg_Edge::has_target_along_edge() const {
-  return _internal_has_target_along_edge();
-}
-inline void TripLeg_Edge::set_has_target_along_edge() {
-  _impl_._oneof_case_[41] = kTargetAlongEdge;
-}
 inline void TripLeg_Edge::clear_target_along_edge() {
-  if (_internal_has_target_along_edge()) {
-    _impl_.has_target_along_edge_.target_along_edge_ = 0;
-    clear_has_has_target_along_edge();
-  }
+  _impl_.target_along_edge_ = 0;
 }
 inline float TripLeg_Edge::_internal_target_along_edge() const {
-  if (_internal_has_target_along_edge()) {
-    return _impl_.has_target_along_edge_.target_along_edge_;
-  }
-  return 0;
-}
-inline void TripLeg_Edge::_internal_set_target_along_edge(float value) {
-  if (!_internal_has_target_along_edge()) {
-    clear_has_target_along_edge();
-    set_has_target_along_edge();
-  }
-  _impl_.has_target_along_edge_.target_along_edge_ = value;
+  return _impl_.target_along_edge_;
 }
 inline float TripLeg_Edge::target_along_edge() const {
   // @@protoc_insertion_point(field_get:valhalla.TripLeg.Edge.target_along_edge)
   return _internal_target_along_edge();
+}
+inline void TripLeg_Edge::_internal_set_target_along_edge(float value) {
+  
+  _impl_.target_along_edge_ = value;
 }
 inline void TripLeg_Edge::set_target_along_edge(float value) {
   _internal_set_target_along_edge(value);
@@ -8179,37 +5667,19 @@ inline void TripLeg_Edge::set_target_along_edge(float value) {
 }
 
 // .valhalla.TripLeg.SacScale sac_scale = 51;
-inline bool TripLeg_Edge::_internal_has_sac_scale() const {
-  return has_sac_scale_case() == kSacScale;
-}
-inline bool TripLeg_Edge::has_sac_scale() const {
-  return _internal_has_sac_scale();
-}
-inline void TripLeg_Edge::set_has_sac_scale() {
-  _impl_._oneof_case_[42] = kSacScale;
-}
 inline void TripLeg_Edge::clear_sac_scale() {
-  if (_internal_has_sac_scale()) {
-    _impl_.has_sac_scale_.sac_scale_ = 0;
-    clear_has_has_sac_scale();
-  }
+  _impl_.sac_scale_ = 0;
 }
 inline ::valhalla::TripLeg_SacScale TripLeg_Edge::_internal_sac_scale() const {
-  if (_internal_has_sac_scale()) {
-    return static_cast< ::valhalla::TripLeg_SacScale >(_impl_.has_sac_scale_.sac_scale_);
-  }
-  return static_cast< ::valhalla::TripLeg_SacScale >(0);
+  return static_cast< ::valhalla::TripLeg_SacScale >(_impl_.sac_scale_);
 }
 inline ::valhalla::TripLeg_SacScale TripLeg_Edge::sac_scale() const {
   // @@protoc_insertion_point(field_get:valhalla.TripLeg.Edge.sac_scale)
   return _internal_sac_scale();
 }
 inline void TripLeg_Edge::_internal_set_sac_scale(::valhalla::TripLeg_SacScale value) {
-  if (!_internal_has_sac_scale()) {
-    clear_has_sac_scale();
-    set_has_sac_scale();
-  }
-  _impl_.has_sac_scale_.sac_scale_ = value;
+  
+  _impl_.sac_scale_ = value;
 }
 inline void TripLeg_Edge::set_sac_scale(::valhalla::TripLeg_SacScale value) {
   _internal_set_sac_scale(value);
@@ -8217,475 +5687,63 @@ inline void TripLeg_Edge::set_sac_scale(::valhalla::TripLeg_SacScale value) {
 }
 
 // bool shoulder = 52;
-inline bool TripLeg_Edge::_internal_has_shoulder() const {
-  return has_shoulder_case() == kShoulder;
-}
-inline bool TripLeg_Edge::has_shoulder() const {
-  return _internal_has_shoulder();
-}
-inline void TripLeg_Edge::set_has_shoulder() {
-  _impl_._oneof_case_[43] = kShoulder;
-}
 inline void TripLeg_Edge::clear_shoulder() {
-  if (_internal_has_shoulder()) {
-    _impl_.has_shoulder_.shoulder_ = false;
-    clear_has_has_shoulder();
-  }
+  _impl_.shoulder_ = false;
 }
 inline bool TripLeg_Edge::_internal_shoulder() const {
-  if (_internal_has_shoulder()) {
-    return _impl_.has_shoulder_.shoulder_;
-  }
-  return false;
-}
-inline void TripLeg_Edge::_internal_set_shoulder(bool value) {
-  if (!_internal_has_shoulder()) {
-    clear_has_shoulder();
-    set_has_shoulder();
-  }
-  _impl_.has_shoulder_.shoulder_ = value;
+  return _impl_.shoulder_;
 }
 inline bool TripLeg_Edge::shoulder() const {
   // @@protoc_insertion_point(field_get:valhalla.TripLeg.Edge.shoulder)
   return _internal_shoulder();
+}
+inline void TripLeg_Edge::_internal_set_shoulder(bool value) {
+  
+  _impl_.shoulder_ = value;
 }
 inline void TripLeg_Edge::set_shoulder(bool value) {
   _internal_set_shoulder(value);
   // @@protoc_insertion_point(field_set:valhalla.TripLeg.Edge.shoulder)
 }
 
-inline bool TripLeg_Edge::has_has_length_km() const {
-  return has_length_km_case() != HAS_LENGTH_KM_NOT_SET;
+// bool indoor = 53;
+inline void TripLeg_Edge::clear_indoor() {
+  _impl_.indoor_ = false;
 }
-inline void TripLeg_Edge::clear_has_has_length_km() {
-  _impl_._oneof_case_[0] = HAS_LENGTH_KM_NOT_SET;
+inline bool TripLeg_Edge::_internal_indoor() const {
+  return _impl_.indoor_;
 }
-inline bool TripLeg_Edge::has_has_speed() const {
-  return has_speed_case() != HAS_SPEED_NOT_SET;
+inline bool TripLeg_Edge::indoor() const {
+  // @@protoc_insertion_point(field_get:valhalla.TripLeg.Edge.indoor)
+  return _internal_indoor();
 }
-inline void TripLeg_Edge::clear_has_has_speed() {
-  _impl_._oneof_case_[1] = HAS_SPEED_NOT_SET;
+inline void TripLeg_Edge::_internal_set_indoor(bool value) {
+  
+  _impl_.indoor_ = value;
 }
-inline bool TripLeg_Edge::has_has_road_class() const {
-  return has_road_class_case() != HAS_ROAD_CLASS_NOT_SET;
+inline void TripLeg_Edge::set_indoor(bool value) {
+  _internal_set_indoor(value);
+  // @@protoc_insertion_point(field_set:valhalla.TripLeg.Edge.indoor)
 }
-inline void TripLeg_Edge::clear_has_has_road_class() {
-  _impl_._oneof_case_[2] = HAS_ROAD_CLASS_NOT_SET;
-}
-inline bool TripLeg_Edge::has_has_begin_heading() const {
-  return has_begin_heading_case() != HAS_BEGIN_HEADING_NOT_SET;
-}
-inline void TripLeg_Edge::clear_has_has_begin_heading() {
-  _impl_._oneof_case_[3] = HAS_BEGIN_HEADING_NOT_SET;
-}
-inline bool TripLeg_Edge::has_has_end_heading() const {
-  return has_end_heading_case() != HAS_END_HEADING_NOT_SET;
-}
-inline void TripLeg_Edge::clear_has_has_end_heading() {
-  _impl_._oneof_case_[4] = HAS_END_HEADING_NOT_SET;
-}
-inline bool TripLeg_Edge::has_has_begin_shape_index() const {
-  return has_begin_shape_index_case() != HAS_BEGIN_SHAPE_INDEX_NOT_SET;
-}
-inline void TripLeg_Edge::clear_has_has_begin_shape_index() {
-  _impl_._oneof_case_[5] = HAS_BEGIN_SHAPE_INDEX_NOT_SET;
-}
-inline bool TripLeg_Edge::has_has_end_shape_index() const {
-  return has_end_shape_index_case() != HAS_END_SHAPE_INDEX_NOT_SET;
-}
-inline void TripLeg_Edge::clear_has_has_end_shape_index() {
-  _impl_._oneof_case_[6] = HAS_END_SHAPE_INDEX_NOT_SET;
-}
-inline bool TripLeg_Edge::has_has_traversability() const {
-  return has_traversability_case() != HAS_TRAVERSABILITY_NOT_SET;
-}
-inline void TripLeg_Edge::clear_has_has_traversability() {
-  _impl_._oneof_case_[7] = HAS_TRAVERSABILITY_NOT_SET;
-}
-inline bool TripLeg_Edge::has_has_use() const {
-  return has_use_case() != HAS_USE_NOT_SET;
-}
-inline void TripLeg_Edge::clear_has_has_use() {
-  _impl_._oneof_case_[8] = HAS_USE_NOT_SET;
-}
-inline bool TripLeg_Edge::has_has_toll() const {
-  return has_toll_case() != HAS_TOLL_NOT_SET;
-}
-inline void TripLeg_Edge::clear_has_has_toll() {
-  _impl_._oneof_case_[9] = HAS_TOLL_NOT_SET;
-}
-inline bool TripLeg_Edge::has_has_unpaved() const {
-  return has_unpaved_case() != HAS_UNPAVED_NOT_SET;
-}
-inline void TripLeg_Edge::clear_has_has_unpaved() {
-  _impl_._oneof_case_[10] = HAS_UNPAVED_NOT_SET;
-}
-inline bool TripLeg_Edge::has_has_tunnel() const {
-  return has_tunnel_case() != HAS_TUNNEL_NOT_SET;
-}
-inline void TripLeg_Edge::clear_has_has_tunnel() {
-  _impl_._oneof_case_[11] = HAS_TUNNEL_NOT_SET;
-}
-inline bool TripLeg_Edge::has_has_bridge() const {
-  return has_bridge_case() != HAS_BRIDGE_NOT_SET;
-}
-inline void TripLeg_Edge::clear_has_has_bridge() {
-  _impl_._oneof_case_[12] = HAS_BRIDGE_NOT_SET;
-}
-inline bool TripLeg_Edge::has_has_roundabout() const {
-  return has_roundabout_case() != HAS_ROUNDABOUT_NOT_SET;
-}
-inline void TripLeg_Edge::clear_has_has_roundabout() {
-  _impl_._oneof_case_[13] = HAS_ROUNDABOUT_NOT_SET;
-}
-inline bool TripLeg_Edge::has_has_internal_intersection() const {
-  return has_internal_intersection_case() != HAS_INTERNAL_INTERSECTION_NOT_SET;
-}
-inline void TripLeg_Edge::clear_has_has_internal_intersection() {
-  _impl_._oneof_case_[14] = HAS_INTERNAL_INTERSECTION_NOT_SET;
-}
-inline bool TripLeg_Edge::has_has_drive_on_left() const {
-  return has_drive_on_left_case() != HAS_DRIVE_ON_LEFT_NOT_SET;
-}
-inline void TripLeg_Edge::clear_has_has_drive_on_left() {
-  _impl_._oneof_case_[15] = HAS_DRIVE_ON_LEFT_NOT_SET;
-}
-inline bool TripLeg_Edge::has_has_surface() const {
-  return has_surface_case() != HAS_SURFACE_NOT_SET;
-}
-inline void TripLeg_Edge::clear_has_has_surface() {
-  _impl_._oneof_case_[16] = HAS_SURFACE_NOT_SET;
-}
-inline bool TripLeg_Edge::has_has_travel_mode() const {
-  return has_travel_mode_case() != HAS_TRAVEL_MODE_NOT_SET;
-}
-inline void TripLeg_Edge::clear_has_has_travel_mode() {
-  _impl_._oneof_case_[17] = HAS_TRAVEL_MODE_NOT_SET;
-}
-inline bool TripLeg_Edge::has_has_vehicle_type() const {
-  return has_vehicle_type_case() != HAS_VEHICLE_TYPE_NOT_SET;
-}
-inline void TripLeg_Edge::clear_has_has_vehicle_type() {
-  _impl_._oneof_case_[18] = HAS_VEHICLE_TYPE_NOT_SET;
-}
-inline bool TripLeg_Edge::has_has_pedestrian_type() const {
-  return has_pedestrian_type_case() != HAS_PEDESTRIAN_TYPE_NOT_SET;
-}
-inline void TripLeg_Edge::clear_has_has_pedestrian_type() {
-  _impl_._oneof_case_[19] = HAS_PEDESTRIAN_TYPE_NOT_SET;
-}
-inline bool TripLeg_Edge::has_has_bicycle_type() const {
-  return has_bicycle_type_case() != HAS_BICYCLE_TYPE_NOT_SET;
-}
-inline void TripLeg_Edge::clear_has_has_bicycle_type() {
-  _impl_._oneof_case_[20] = HAS_BICYCLE_TYPE_NOT_SET;
-}
-inline bool TripLeg_Edge::has_has_transit_type() const {
-  return has_transit_type_case() != HAS_TRANSIT_TYPE_NOT_SET;
-}
-inline void TripLeg_Edge::clear_has_has_transit_type() {
-  _impl_._oneof_case_[21] = HAS_TRANSIT_TYPE_NOT_SET;
-}
-inline bool TripLeg_Edge::has_has_id() const {
-  return has_id_case() != HAS_ID_NOT_SET;
-}
-inline void TripLeg_Edge::clear_has_has_id() {
-  _impl_._oneof_case_[22] = HAS_ID_NOT_SET;
-}
-inline bool TripLeg_Edge::has_has_way_id() const {
-  return has_way_id_case() != HAS_WAY_ID_NOT_SET;
-}
-inline void TripLeg_Edge::clear_has_has_way_id() {
-  _impl_._oneof_case_[23] = HAS_WAY_ID_NOT_SET;
-}
-inline bool TripLeg_Edge::has_has_weighted_grade() const {
-  return has_weighted_grade_case() != HAS_WEIGHTED_GRADE_NOT_SET;
-}
-inline void TripLeg_Edge::clear_has_has_weighted_grade() {
-  _impl_._oneof_case_[24] = HAS_WEIGHTED_GRADE_NOT_SET;
-}
-inline bool TripLeg_Edge::has_has_max_upward_grade() const {
-  return has_max_upward_grade_case() != HAS_MAX_UPWARD_GRADE_NOT_SET;
-}
-inline void TripLeg_Edge::clear_has_has_max_upward_grade() {
-  _impl_._oneof_case_[25] = HAS_MAX_UPWARD_GRADE_NOT_SET;
-}
-inline bool TripLeg_Edge::has_has_max_downward_grade() const {
-  return has_max_downward_grade_case() != HAS_MAX_DOWNWARD_GRADE_NOT_SET;
-}
-inline void TripLeg_Edge::clear_has_has_max_downward_grade() {
-  _impl_._oneof_case_[26] = HAS_MAX_DOWNWARD_GRADE_NOT_SET;
-}
-inline bool TripLeg_Edge::has_has_lane_count() const {
-  return has_lane_count_case() != HAS_LANE_COUNT_NOT_SET;
-}
-inline void TripLeg_Edge::clear_has_has_lane_count() {
-  _impl_._oneof_case_[27] = HAS_LANE_COUNT_NOT_SET;
-}
-inline bool TripLeg_Edge::has_has_cycle_lane() const {
-  return has_cycle_lane_case() != HAS_CYCLE_LANE_NOT_SET;
-}
-inline void TripLeg_Edge::clear_has_has_cycle_lane() {
-  _impl_._oneof_case_[28] = HAS_CYCLE_LANE_NOT_SET;
-}
-inline bool TripLeg_Edge::has_has_bicycle_network() const {
-  return has_bicycle_network_case() != HAS_BICYCLE_NETWORK_NOT_SET;
-}
-inline void TripLeg_Edge::clear_has_has_bicycle_network() {
-  _impl_._oneof_case_[29] = HAS_BICYCLE_NETWORK_NOT_SET;
-}
-inline bool TripLeg_Edge::has_has_sidewalk() const {
-  return has_sidewalk_case() != HAS_SIDEWALK_NOT_SET;
-}
-inline void TripLeg_Edge::clear_has_has_sidewalk() {
-  _impl_._oneof_case_[30] = HAS_SIDEWALK_NOT_SET;
-}
-inline bool TripLeg_Edge::has_has_density() const {
-  return has_density_case() != HAS_DENSITY_NOT_SET;
-}
-inline void TripLeg_Edge::clear_has_has_density() {
-  _impl_._oneof_case_[31] = HAS_DENSITY_NOT_SET;
-}
-inline bool TripLeg_Edge::has_has_speed_limit() const {
-  return has_speed_limit_case() != HAS_SPEED_LIMIT_NOT_SET;
-}
-inline void TripLeg_Edge::clear_has_has_speed_limit() {
-  _impl_._oneof_case_[32] = HAS_SPEED_LIMIT_NOT_SET;
-}
-inline bool TripLeg_Edge::has_has_truck_speed() const {
-  return has_truck_speed_case() != HAS_TRUCK_SPEED_NOT_SET;
-}
-inline void TripLeg_Edge::clear_has_has_truck_speed() {
-  _impl_._oneof_case_[33] = HAS_TRUCK_SPEED_NOT_SET;
-}
-inline bool TripLeg_Edge::has_has_truck_route() const {
-  return has_truck_route_case() != HAS_TRUCK_ROUTE_NOT_SET;
-}
-inline void TripLeg_Edge::clear_has_has_truck_route() {
-  _impl_._oneof_case_[34] = HAS_TRUCK_ROUTE_NOT_SET;
-}
-inline bool TripLeg_Edge::has_has_mean_elevation() const {
-  return has_mean_elevation_case() != HAS_MEAN_ELEVATION_NOT_SET;
-}
-inline void TripLeg_Edge::clear_has_has_mean_elevation() {
-  _impl_._oneof_case_[35] = HAS_MEAN_ELEVATION_NOT_SET;
-}
-inline bool TripLeg_Edge::has_has_has_time_restrictions() const {
-  return has_has_time_restrictions_case() != HAS_HAS_TIME_RESTRICTIONS_NOT_SET;
-}
-inline void TripLeg_Edge::clear_has_has_has_time_restrictions() {
-  _impl_._oneof_case_[36] = HAS_HAS_TIME_RESTRICTIONS_NOT_SET;
-}
-inline bool TripLeg_Edge::has_has_default_speed() const {
-  return has_default_speed_case() != HAS_DEFAULT_SPEED_NOT_SET;
-}
-inline void TripLeg_Edge::clear_has_has_default_speed() {
-  _impl_._oneof_case_[37] = HAS_DEFAULT_SPEED_NOT_SET;
-}
-inline bool TripLeg_Edge::has_has_destination_only() const {
-  return has_destination_only_case() != HAS_DESTINATION_ONLY_NOT_SET;
-}
-inline void TripLeg_Edge::clear_has_has_destination_only() {
-  _impl_._oneof_case_[38] = HAS_DESTINATION_ONLY_NOT_SET;
-}
-inline bool TripLeg_Edge::has_has_is_urban() const {
-  return has_is_urban_case() != HAS_IS_URBAN_NOT_SET;
-}
-inline void TripLeg_Edge::clear_has_has_is_urban() {
-  _impl_._oneof_case_[39] = HAS_IS_URBAN_NOT_SET;
-}
-inline bool TripLeg_Edge::has_has_source_along_edge() const {
-  return has_source_along_edge_case() != HAS_SOURCE_ALONG_EDGE_NOT_SET;
-}
-inline void TripLeg_Edge::clear_has_has_source_along_edge() {
-  _impl_._oneof_case_[40] = HAS_SOURCE_ALONG_EDGE_NOT_SET;
-}
-inline bool TripLeg_Edge::has_has_target_along_edge() const {
-  return has_target_along_edge_case() != HAS_TARGET_ALONG_EDGE_NOT_SET;
-}
-inline void TripLeg_Edge::clear_has_has_target_along_edge() {
-  _impl_._oneof_case_[41] = HAS_TARGET_ALONG_EDGE_NOT_SET;
-}
-inline bool TripLeg_Edge::has_has_sac_scale() const {
-  return has_sac_scale_case() != HAS_SAC_SCALE_NOT_SET;
-}
-inline void TripLeg_Edge::clear_has_has_sac_scale() {
-  _impl_._oneof_case_[42] = HAS_SAC_SCALE_NOT_SET;
-}
-inline bool TripLeg_Edge::has_has_shoulder() const {
-  return has_shoulder_case() != HAS_SHOULDER_NOT_SET;
-}
-inline void TripLeg_Edge::clear_has_has_shoulder() {
-  _impl_._oneof_case_[43] = HAS_SHOULDER_NOT_SET;
-}
-inline TripLeg_Edge::HasLengthKmCase TripLeg_Edge::has_length_km_case() const {
-  return TripLeg_Edge::HasLengthKmCase(_impl_._oneof_case_[0]);
-}
-inline TripLeg_Edge::HasSpeedCase TripLeg_Edge::has_speed_case() const {
-  return TripLeg_Edge::HasSpeedCase(_impl_._oneof_case_[1]);
-}
-inline TripLeg_Edge::HasRoadClassCase TripLeg_Edge::has_road_class_case() const {
-  return TripLeg_Edge::HasRoadClassCase(_impl_._oneof_case_[2]);
-}
-inline TripLeg_Edge::HasBeginHeadingCase TripLeg_Edge::has_begin_heading_case() const {
-  return TripLeg_Edge::HasBeginHeadingCase(_impl_._oneof_case_[3]);
-}
-inline TripLeg_Edge::HasEndHeadingCase TripLeg_Edge::has_end_heading_case() const {
-  return TripLeg_Edge::HasEndHeadingCase(_impl_._oneof_case_[4]);
-}
-inline TripLeg_Edge::HasBeginShapeIndexCase TripLeg_Edge::has_begin_shape_index_case() const {
-  return TripLeg_Edge::HasBeginShapeIndexCase(_impl_._oneof_case_[5]);
-}
-inline TripLeg_Edge::HasEndShapeIndexCase TripLeg_Edge::has_end_shape_index_case() const {
-  return TripLeg_Edge::HasEndShapeIndexCase(_impl_._oneof_case_[6]);
-}
-inline TripLeg_Edge::HasTraversabilityCase TripLeg_Edge::has_traversability_case() const {
-  return TripLeg_Edge::HasTraversabilityCase(_impl_._oneof_case_[7]);
-}
-inline TripLeg_Edge::HasUseCase TripLeg_Edge::has_use_case() const {
-  return TripLeg_Edge::HasUseCase(_impl_._oneof_case_[8]);
-}
-inline TripLeg_Edge::HasTollCase TripLeg_Edge::has_toll_case() const {
-  return TripLeg_Edge::HasTollCase(_impl_._oneof_case_[9]);
-}
-inline TripLeg_Edge::HasUnpavedCase TripLeg_Edge::has_unpaved_case() const {
-  return TripLeg_Edge::HasUnpavedCase(_impl_._oneof_case_[10]);
-}
-inline TripLeg_Edge::HasTunnelCase TripLeg_Edge::has_tunnel_case() const {
-  return TripLeg_Edge::HasTunnelCase(_impl_._oneof_case_[11]);
-}
-inline TripLeg_Edge::HasBridgeCase TripLeg_Edge::has_bridge_case() const {
-  return TripLeg_Edge::HasBridgeCase(_impl_._oneof_case_[12]);
-}
-inline TripLeg_Edge::HasRoundaboutCase TripLeg_Edge::has_roundabout_case() const {
-  return TripLeg_Edge::HasRoundaboutCase(_impl_._oneof_case_[13]);
-}
-inline TripLeg_Edge::HasInternalIntersectionCase TripLeg_Edge::has_internal_intersection_case() const {
-  return TripLeg_Edge::HasInternalIntersectionCase(_impl_._oneof_case_[14]);
-}
-inline TripLeg_Edge::HasDriveOnLeftCase TripLeg_Edge::has_drive_on_left_case() const {
-  return TripLeg_Edge::HasDriveOnLeftCase(_impl_._oneof_case_[15]);
-}
-inline TripLeg_Edge::HasSurfaceCase TripLeg_Edge::has_surface_case() const {
-  return TripLeg_Edge::HasSurfaceCase(_impl_._oneof_case_[16]);
-}
-inline TripLeg_Edge::HasTravelModeCase TripLeg_Edge::has_travel_mode_case() const {
-  return TripLeg_Edge::HasTravelModeCase(_impl_._oneof_case_[17]);
-}
-inline TripLeg_Edge::HasVehicleTypeCase TripLeg_Edge::has_vehicle_type_case() const {
-  return TripLeg_Edge::HasVehicleTypeCase(_impl_._oneof_case_[18]);
-}
-inline TripLeg_Edge::HasPedestrianTypeCase TripLeg_Edge::has_pedestrian_type_case() const {
-  return TripLeg_Edge::HasPedestrianTypeCase(_impl_._oneof_case_[19]);
-}
-inline TripLeg_Edge::HasBicycleTypeCase TripLeg_Edge::has_bicycle_type_case() const {
-  return TripLeg_Edge::HasBicycleTypeCase(_impl_._oneof_case_[20]);
-}
-inline TripLeg_Edge::HasTransitTypeCase TripLeg_Edge::has_transit_type_case() const {
-  return TripLeg_Edge::HasTransitTypeCase(_impl_._oneof_case_[21]);
-}
-inline TripLeg_Edge::HasIdCase TripLeg_Edge::has_id_case() const {
-  return TripLeg_Edge::HasIdCase(_impl_._oneof_case_[22]);
-}
-inline TripLeg_Edge::HasWayIdCase TripLeg_Edge::has_way_id_case() const {
-  return TripLeg_Edge::HasWayIdCase(_impl_._oneof_case_[23]);
-}
-inline TripLeg_Edge::HasWeightedGradeCase TripLeg_Edge::has_weighted_grade_case() const {
-  return TripLeg_Edge::HasWeightedGradeCase(_impl_._oneof_case_[24]);
-}
-inline TripLeg_Edge::HasMaxUpwardGradeCase TripLeg_Edge::has_max_upward_grade_case() const {
-  return TripLeg_Edge::HasMaxUpwardGradeCase(_impl_._oneof_case_[25]);
-}
-inline TripLeg_Edge::HasMaxDownwardGradeCase TripLeg_Edge::has_max_downward_grade_case() const {
-  return TripLeg_Edge::HasMaxDownwardGradeCase(_impl_._oneof_case_[26]);
-}
-inline TripLeg_Edge::HasLaneCountCase TripLeg_Edge::has_lane_count_case() const {
-  return TripLeg_Edge::HasLaneCountCase(_impl_._oneof_case_[27]);
-}
-inline TripLeg_Edge::HasCycleLaneCase TripLeg_Edge::has_cycle_lane_case() const {
-  return TripLeg_Edge::HasCycleLaneCase(_impl_._oneof_case_[28]);
-}
-inline TripLeg_Edge::HasBicycleNetworkCase TripLeg_Edge::has_bicycle_network_case() const {
-  return TripLeg_Edge::HasBicycleNetworkCase(_impl_._oneof_case_[29]);
-}
-inline TripLeg_Edge::HasSidewalkCase TripLeg_Edge::has_sidewalk_case() const {
-  return TripLeg_Edge::HasSidewalkCase(_impl_._oneof_case_[30]);
-}
-inline TripLeg_Edge::HasDensityCase TripLeg_Edge::has_density_case() const {
-  return TripLeg_Edge::HasDensityCase(_impl_._oneof_case_[31]);
-}
-inline TripLeg_Edge::HasSpeedLimitCase TripLeg_Edge::has_speed_limit_case() const {
-  return TripLeg_Edge::HasSpeedLimitCase(_impl_._oneof_case_[32]);
-}
-inline TripLeg_Edge::HasTruckSpeedCase TripLeg_Edge::has_truck_speed_case() const {
-  return TripLeg_Edge::HasTruckSpeedCase(_impl_._oneof_case_[33]);
-}
-inline TripLeg_Edge::HasTruckRouteCase TripLeg_Edge::has_truck_route_case() const {
-  return TripLeg_Edge::HasTruckRouteCase(_impl_._oneof_case_[34]);
-}
-inline TripLeg_Edge::HasMeanElevationCase TripLeg_Edge::has_mean_elevation_case() const {
-  return TripLeg_Edge::HasMeanElevationCase(_impl_._oneof_case_[35]);
-}
-inline TripLeg_Edge::HasHasTimeRestrictionsCase TripLeg_Edge::has_has_time_restrictions_case() const {
-  return TripLeg_Edge::HasHasTimeRestrictionsCase(_impl_._oneof_case_[36]);
-}
-inline TripLeg_Edge::HasDefaultSpeedCase TripLeg_Edge::has_default_speed_case() const {
-  return TripLeg_Edge::HasDefaultSpeedCase(_impl_._oneof_case_[37]);
-}
-inline TripLeg_Edge::HasDestinationOnlyCase TripLeg_Edge::has_destination_only_case() const {
-  return TripLeg_Edge::HasDestinationOnlyCase(_impl_._oneof_case_[38]);
-}
-inline TripLeg_Edge::HasIsUrbanCase TripLeg_Edge::has_is_urban_case() const {
-  return TripLeg_Edge::HasIsUrbanCase(_impl_._oneof_case_[39]);
-}
-inline TripLeg_Edge::HasSourceAlongEdgeCase TripLeg_Edge::has_source_along_edge_case() const {
-  return TripLeg_Edge::HasSourceAlongEdgeCase(_impl_._oneof_case_[40]);
-}
-inline TripLeg_Edge::HasTargetAlongEdgeCase TripLeg_Edge::has_target_along_edge_case() const {
-  return TripLeg_Edge::HasTargetAlongEdgeCase(_impl_._oneof_case_[41]);
-}
-inline TripLeg_Edge::HasSacScaleCase TripLeg_Edge::has_sac_scale_case() const {
-  return TripLeg_Edge::HasSacScaleCase(_impl_._oneof_case_[42]);
-}
-inline TripLeg_Edge::HasShoulderCase TripLeg_Edge::has_shoulder_case() const {
-  return TripLeg_Edge::HasShoulderCase(_impl_._oneof_case_[43]);
-}
+
 // -------------------------------------------------------------------
 
 // TripLeg_IntersectingEdge
 
 // uint32 begin_heading = 1;
-inline bool TripLeg_IntersectingEdge::_internal_has_begin_heading() const {
-  return has_begin_heading_case() == kBeginHeading;
-}
-inline bool TripLeg_IntersectingEdge::has_begin_heading() const {
-  return _internal_has_begin_heading();
-}
-inline void TripLeg_IntersectingEdge::set_has_begin_heading() {
-  _impl_._oneof_case_[0] = kBeginHeading;
-}
 inline void TripLeg_IntersectingEdge::clear_begin_heading() {
-  if (_internal_has_begin_heading()) {
-    _impl_.has_begin_heading_.begin_heading_ = 0u;
-    clear_has_has_begin_heading();
-  }
+  _impl_.begin_heading_ = 0u;
 }
 inline uint32_t TripLeg_IntersectingEdge::_internal_begin_heading() const {
-  if (_internal_has_begin_heading()) {
-    return _impl_.has_begin_heading_.begin_heading_;
-  }
-  return 0u;
-}
-inline void TripLeg_IntersectingEdge::_internal_set_begin_heading(uint32_t value) {
-  if (!_internal_has_begin_heading()) {
-    clear_has_begin_heading();
-    set_has_begin_heading();
-  }
-  _impl_.has_begin_heading_.begin_heading_ = value;
+  return _impl_.begin_heading_;
 }
 inline uint32_t TripLeg_IntersectingEdge::begin_heading() const {
   // @@protoc_insertion_point(field_get:valhalla.TripLeg.IntersectingEdge.begin_heading)
   return _internal_begin_heading();
+}
+inline void TripLeg_IntersectingEdge::_internal_set_begin_heading(uint32_t value) {
+  
+  _impl_.begin_heading_ = value;
 }
 inline void TripLeg_IntersectingEdge::set_begin_heading(uint32_t value) {
   _internal_set_begin_heading(value);
@@ -8693,37 +5751,19 @@ inline void TripLeg_IntersectingEdge::set_begin_heading(uint32_t value) {
 }
 
 // bool prev_name_consistency = 2;
-inline bool TripLeg_IntersectingEdge::_internal_has_prev_name_consistency() const {
-  return has_prev_name_consistency_case() == kPrevNameConsistency;
-}
-inline bool TripLeg_IntersectingEdge::has_prev_name_consistency() const {
-  return _internal_has_prev_name_consistency();
-}
-inline void TripLeg_IntersectingEdge::set_has_prev_name_consistency() {
-  _impl_._oneof_case_[1] = kPrevNameConsistency;
-}
 inline void TripLeg_IntersectingEdge::clear_prev_name_consistency() {
-  if (_internal_has_prev_name_consistency()) {
-    _impl_.has_prev_name_consistency_.prev_name_consistency_ = false;
-    clear_has_has_prev_name_consistency();
-  }
+  _impl_.prev_name_consistency_ = false;
 }
 inline bool TripLeg_IntersectingEdge::_internal_prev_name_consistency() const {
-  if (_internal_has_prev_name_consistency()) {
-    return _impl_.has_prev_name_consistency_.prev_name_consistency_;
-  }
-  return false;
-}
-inline void TripLeg_IntersectingEdge::_internal_set_prev_name_consistency(bool value) {
-  if (!_internal_has_prev_name_consistency()) {
-    clear_has_prev_name_consistency();
-    set_has_prev_name_consistency();
-  }
-  _impl_.has_prev_name_consistency_.prev_name_consistency_ = value;
+  return _impl_.prev_name_consistency_;
 }
 inline bool TripLeg_IntersectingEdge::prev_name_consistency() const {
   // @@protoc_insertion_point(field_get:valhalla.TripLeg.IntersectingEdge.prev_name_consistency)
   return _internal_prev_name_consistency();
+}
+inline void TripLeg_IntersectingEdge::_internal_set_prev_name_consistency(bool value) {
+  
+  _impl_.prev_name_consistency_ = value;
 }
 inline void TripLeg_IntersectingEdge::set_prev_name_consistency(bool value) {
   _internal_set_prev_name_consistency(value);
@@ -8731,37 +5771,19 @@ inline void TripLeg_IntersectingEdge::set_prev_name_consistency(bool value) {
 }
 
 // bool curr_name_consistency = 3;
-inline bool TripLeg_IntersectingEdge::_internal_has_curr_name_consistency() const {
-  return has_curr_name_consistency_case() == kCurrNameConsistency;
-}
-inline bool TripLeg_IntersectingEdge::has_curr_name_consistency() const {
-  return _internal_has_curr_name_consistency();
-}
-inline void TripLeg_IntersectingEdge::set_has_curr_name_consistency() {
-  _impl_._oneof_case_[2] = kCurrNameConsistency;
-}
 inline void TripLeg_IntersectingEdge::clear_curr_name_consistency() {
-  if (_internal_has_curr_name_consistency()) {
-    _impl_.has_curr_name_consistency_.curr_name_consistency_ = false;
-    clear_has_has_curr_name_consistency();
-  }
+  _impl_.curr_name_consistency_ = false;
 }
 inline bool TripLeg_IntersectingEdge::_internal_curr_name_consistency() const {
-  if (_internal_has_curr_name_consistency()) {
-    return _impl_.has_curr_name_consistency_.curr_name_consistency_;
-  }
-  return false;
-}
-inline void TripLeg_IntersectingEdge::_internal_set_curr_name_consistency(bool value) {
-  if (!_internal_has_curr_name_consistency()) {
-    clear_has_curr_name_consistency();
-    set_has_curr_name_consistency();
-  }
-  _impl_.has_curr_name_consistency_.curr_name_consistency_ = value;
+  return _impl_.curr_name_consistency_;
 }
 inline bool TripLeg_IntersectingEdge::curr_name_consistency() const {
   // @@protoc_insertion_point(field_get:valhalla.TripLeg.IntersectingEdge.curr_name_consistency)
   return _internal_curr_name_consistency();
+}
+inline void TripLeg_IntersectingEdge::_internal_set_curr_name_consistency(bool value) {
+  
+  _impl_.curr_name_consistency_ = value;
 }
 inline void TripLeg_IntersectingEdge::set_curr_name_consistency(bool value) {
   _internal_set_curr_name_consistency(value);
@@ -8769,37 +5791,19 @@ inline void TripLeg_IntersectingEdge::set_curr_name_consistency(bool value) {
 }
 
 // .valhalla.TripLeg.Traversability driveability = 4;
-inline bool TripLeg_IntersectingEdge::_internal_has_driveability() const {
-  return has_driveability_case() == kDriveability;
-}
-inline bool TripLeg_IntersectingEdge::has_driveability() const {
-  return _internal_has_driveability();
-}
-inline void TripLeg_IntersectingEdge::set_has_driveability() {
-  _impl_._oneof_case_[3] = kDriveability;
-}
 inline void TripLeg_IntersectingEdge::clear_driveability() {
-  if (_internal_has_driveability()) {
-    _impl_.has_driveability_.driveability_ = 0;
-    clear_has_has_driveability();
-  }
+  _impl_.driveability_ = 0;
 }
 inline ::valhalla::TripLeg_Traversability TripLeg_IntersectingEdge::_internal_driveability() const {
-  if (_internal_has_driveability()) {
-    return static_cast< ::valhalla::TripLeg_Traversability >(_impl_.has_driveability_.driveability_);
-  }
-  return static_cast< ::valhalla::TripLeg_Traversability >(0);
+  return static_cast< ::valhalla::TripLeg_Traversability >(_impl_.driveability_);
 }
 inline ::valhalla::TripLeg_Traversability TripLeg_IntersectingEdge::driveability() const {
   // @@protoc_insertion_point(field_get:valhalla.TripLeg.IntersectingEdge.driveability)
   return _internal_driveability();
 }
 inline void TripLeg_IntersectingEdge::_internal_set_driveability(::valhalla::TripLeg_Traversability value) {
-  if (!_internal_has_driveability()) {
-    clear_has_driveability();
-    set_has_driveability();
-  }
-  _impl_.has_driveability_.driveability_ = value;
+  
+  _impl_.driveability_ = value;
 }
 inline void TripLeg_IntersectingEdge::set_driveability(::valhalla::TripLeg_Traversability value) {
   _internal_set_driveability(value);
@@ -8807,37 +5811,19 @@ inline void TripLeg_IntersectingEdge::set_driveability(::valhalla::TripLeg_Trave
 }
 
 // .valhalla.TripLeg.Traversability cyclability = 5;
-inline bool TripLeg_IntersectingEdge::_internal_has_cyclability() const {
-  return has_cyclability_case() == kCyclability;
-}
-inline bool TripLeg_IntersectingEdge::has_cyclability() const {
-  return _internal_has_cyclability();
-}
-inline void TripLeg_IntersectingEdge::set_has_cyclability() {
-  _impl_._oneof_case_[4] = kCyclability;
-}
 inline void TripLeg_IntersectingEdge::clear_cyclability() {
-  if (_internal_has_cyclability()) {
-    _impl_.has_cyclability_.cyclability_ = 0;
-    clear_has_has_cyclability();
-  }
+  _impl_.cyclability_ = 0;
 }
 inline ::valhalla::TripLeg_Traversability TripLeg_IntersectingEdge::_internal_cyclability() const {
-  if (_internal_has_cyclability()) {
-    return static_cast< ::valhalla::TripLeg_Traversability >(_impl_.has_cyclability_.cyclability_);
-  }
-  return static_cast< ::valhalla::TripLeg_Traversability >(0);
+  return static_cast< ::valhalla::TripLeg_Traversability >(_impl_.cyclability_);
 }
 inline ::valhalla::TripLeg_Traversability TripLeg_IntersectingEdge::cyclability() const {
   // @@protoc_insertion_point(field_get:valhalla.TripLeg.IntersectingEdge.cyclability)
   return _internal_cyclability();
 }
 inline void TripLeg_IntersectingEdge::_internal_set_cyclability(::valhalla::TripLeg_Traversability value) {
-  if (!_internal_has_cyclability()) {
-    clear_has_cyclability();
-    set_has_cyclability();
-  }
-  _impl_.has_cyclability_.cyclability_ = value;
+  
+  _impl_.cyclability_ = value;
 }
 inline void TripLeg_IntersectingEdge::set_cyclability(::valhalla::TripLeg_Traversability value) {
   _internal_set_cyclability(value);
@@ -8845,37 +5831,19 @@ inline void TripLeg_IntersectingEdge::set_cyclability(::valhalla::TripLeg_Traver
 }
 
 // .valhalla.TripLeg.Traversability walkability = 6;
-inline bool TripLeg_IntersectingEdge::_internal_has_walkability() const {
-  return has_walkability_case() == kWalkability;
-}
-inline bool TripLeg_IntersectingEdge::has_walkability() const {
-  return _internal_has_walkability();
-}
-inline void TripLeg_IntersectingEdge::set_has_walkability() {
-  _impl_._oneof_case_[5] = kWalkability;
-}
 inline void TripLeg_IntersectingEdge::clear_walkability() {
-  if (_internal_has_walkability()) {
-    _impl_.has_walkability_.walkability_ = 0;
-    clear_has_has_walkability();
-  }
+  _impl_.walkability_ = 0;
 }
 inline ::valhalla::TripLeg_Traversability TripLeg_IntersectingEdge::_internal_walkability() const {
-  if (_internal_has_walkability()) {
-    return static_cast< ::valhalla::TripLeg_Traversability >(_impl_.has_walkability_.walkability_);
-  }
-  return static_cast< ::valhalla::TripLeg_Traversability >(0);
+  return static_cast< ::valhalla::TripLeg_Traversability >(_impl_.walkability_);
 }
 inline ::valhalla::TripLeg_Traversability TripLeg_IntersectingEdge::walkability() const {
   // @@protoc_insertion_point(field_get:valhalla.TripLeg.IntersectingEdge.walkability)
   return _internal_walkability();
 }
 inline void TripLeg_IntersectingEdge::_internal_set_walkability(::valhalla::TripLeg_Traversability value) {
-  if (!_internal_has_walkability()) {
-    clear_has_walkability();
-    set_has_walkability();
-  }
-  _impl_.has_walkability_.walkability_ = value;
+  
+  _impl_.walkability_ = value;
 }
 inline void TripLeg_IntersectingEdge::set_walkability(::valhalla::TripLeg_Traversability value) {
   _internal_set_walkability(value);
@@ -8883,37 +5851,19 @@ inline void TripLeg_IntersectingEdge::set_walkability(::valhalla::TripLeg_Traver
 }
 
 // .valhalla.TripLeg.Use use = 7;
-inline bool TripLeg_IntersectingEdge::_internal_has_use() const {
-  return has_use_case() == kUse;
-}
-inline bool TripLeg_IntersectingEdge::has_use() const {
-  return _internal_has_use();
-}
-inline void TripLeg_IntersectingEdge::set_has_use() {
-  _impl_._oneof_case_[6] = kUse;
-}
 inline void TripLeg_IntersectingEdge::clear_use() {
-  if (_internal_has_use()) {
-    _impl_.has_use_.use_ = 0;
-    clear_has_has_use();
-  }
+  _impl_.use_ = 0;
 }
 inline ::valhalla::TripLeg_Use TripLeg_IntersectingEdge::_internal_use() const {
-  if (_internal_has_use()) {
-    return static_cast< ::valhalla::TripLeg_Use >(_impl_.has_use_.use_);
-  }
-  return static_cast< ::valhalla::TripLeg_Use >(0);
+  return static_cast< ::valhalla::TripLeg_Use >(_impl_.use_);
 }
 inline ::valhalla::TripLeg_Use TripLeg_IntersectingEdge::use() const {
   // @@protoc_insertion_point(field_get:valhalla.TripLeg.IntersectingEdge.use)
   return _internal_use();
 }
 inline void TripLeg_IntersectingEdge::_internal_set_use(::valhalla::TripLeg_Use value) {
-  if (!_internal_has_use()) {
-    clear_has_use();
-    set_has_use();
-  }
-  _impl_.has_use_.use_ = value;
+  
+  _impl_.use_ = value;
 }
 inline void TripLeg_IntersectingEdge::set_use(::valhalla::TripLeg_Use value) {
   _internal_set_use(value);
@@ -8921,37 +5871,19 @@ inline void TripLeg_IntersectingEdge::set_use(::valhalla::TripLeg_Use value) {
 }
 
 // .valhalla.RoadClass road_class = 8;
-inline bool TripLeg_IntersectingEdge::_internal_has_road_class() const {
-  return has_road_class_case() == kRoadClass;
-}
-inline bool TripLeg_IntersectingEdge::has_road_class() const {
-  return _internal_has_road_class();
-}
-inline void TripLeg_IntersectingEdge::set_has_road_class() {
-  _impl_._oneof_case_[7] = kRoadClass;
-}
 inline void TripLeg_IntersectingEdge::clear_road_class() {
-  if (_internal_has_road_class()) {
-    _impl_.has_road_class_.road_class_ = 0;
-    clear_has_has_road_class();
-  }
+  _impl_.road_class_ = 0;
 }
 inline ::valhalla::RoadClass TripLeg_IntersectingEdge::_internal_road_class() const {
-  if (_internal_has_road_class()) {
-    return static_cast< ::valhalla::RoadClass >(_impl_.has_road_class_.road_class_);
-  }
-  return static_cast< ::valhalla::RoadClass >(0);
+  return static_cast< ::valhalla::RoadClass >(_impl_.road_class_);
 }
 inline ::valhalla::RoadClass TripLeg_IntersectingEdge::road_class() const {
   // @@protoc_insertion_point(field_get:valhalla.TripLeg.IntersectingEdge.road_class)
   return _internal_road_class();
 }
 inline void TripLeg_IntersectingEdge::_internal_set_road_class(::valhalla::RoadClass value) {
-  if (!_internal_has_road_class()) {
-    clear_has_road_class();
-    set_has_road_class();
-  }
-  _impl_.has_road_class_.road_class_ = value;
+  
+  _impl_.road_class_ = value;
 }
 inline void TripLeg_IntersectingEdge::set_road_class(::valhalla::RoadClass value) {
   _internal_set_road_class(value);
@@ -8959,37 +5891,19 @@ inline void TripLeg_IntersectingEdge::set_road_class(::valhalla::RoadClass value
 }
 
 // uint32 lane_count = 9;
-inline bool TripLeg_IntersectingEdge::_internal_has_lane_count() const {
-  return has_lane_count_case() == kLaneCount;
-}
-inline bool TripLeg_IntersectingEdge::has_lane_count() const {
-  return _internal_has_lane_count();
-}
-inline void TripLeg_IntersectingEdge::set_has_lane_count() {
-  _impl_._oneof_case_[8] = kLaneCount;
-}
 inline void TripLeg_IntersectingEdge::clear_lane_count() {
-  if (_internal_has_lane_count()) {
-    _impl_.has_lane_count_.lane_count_ = 0u;
-    clear_has_has_lane_count();
-  }
+  _impl_.lane_count_ = 0u;
 }
 inline uint32_t TripLeg_IntersectingEdge::_internal_lane_count() const {
-  if (_internal_has_lane_count()) {
-    return _impl_.has_lane_count_.lane_count_;
-  }
-  return 0u;
-}
-inline void TripLeg_IntersectingEdge::_internal_set_lane_count(uint32_t value) {
-  if (!_internal_has_lane_count()) {
-    clear_has_lane_count();
-    set_has_lane_count();
-  }
-  _impl_.has_lane_count_.lane_count_ = value;
+  return _impl_.lane_count_;
 }
 inline uint32_t TripLeg_IntersectingEdge::lane_count() const {
   // @@protoc_insertion_point(field_get:valhalla.TripLeg.IntersectingEdge.lane_count)
   return _internal_lane_count();
+}
+inline void TripLeg_IntersectingEdge::_internal_set_lane_count(uint32_t value) {
+  
+  _impl_.lane_count_ = value;
 }
 inline void TripLeg_IntersectingEdge::set_lane_count(uint32_t value) {
   _internal_set_lane_count(value);
@@ -9081,123 +5995,24 @@ inline void TripLeg_IntersectingEdge::set_allocated_sign(::valhalla::TripSign* s
   // @@protoc_insertion_point(field_set_allocated:valhalla.TripLeg.IntersectingEdge.sign)
 }
 
-inline bool TripLeg_IntersectingEdge::has_has_begin_heading() const {
-  return has_begin_heading_case() != HAS_BEGIN_HEADING_NOT_SET;
-}
-inline void TripLeg_IntersectingEdge::clear_has_has_begin_heading() {
-  _impl_._oneof_case_[0] = HAS_BEGIN_HEADING_NOT_SET;
-}
-inline bool TripLeg_IntersectingEdge::has_has_prev_name_consistency() const {
-  return has_prev_name_consistency_case() != HAS_PREV_NAME_CONSISTENCY_NOT_SET;
-}
-inline void TripLeg_IntersectingEdge::clear_has_has_prev_name_consistency() {
-  _impl_._oneof_case_[1] = HAS_PREV_NAME_CONSISTENCY_NOT_SET;
-}
-inline bool TripLeg_IntersectingEdge::has_has_curr_name_consistency() const {
-  return has_curr_name_consistency_case() != HAS_CURR_NAME_CONSISTENCY_NOT_SET;
-}
-inline void TripLeg_IntersectingEdge::clear_has_has_curr_name_consistency() {
-  _impl_._oneof_case_[2] = HAS_CURR_NAME_CONSISTENCY_NOT_SET;
-}
-inline bool TripLeg_IntersectingEdge::has_has_driveability() const {
-  return has_driveability_case() != HAS_DRIVEABILITY_NOT_SET;
-}
-inline void TripLeg_IntersectingEdge::clear_has_has_driveability() {
-  _impl_._oneof_case_[3] = HAS_DRIVEABILITY_NOT_SET;
-}
-inline bool TripLeg_IntersectingEdge::has_has_cyclability() const {
-  return has_cyclability_case() != HAS_CYCLABILITY_NOT_SET;
-}
-inline void TripLeg_IntersectingEdge::clear_has_has_cyclability() {
-  _impl_._oneof_case_[4] = HAS_CYCLABILITY_NOT_SET;
-}
-inline bool TripLeg_IntersectingEdge::has_has_walkability() const {
-  return has_walkability_case() != HAS_WALKABILITY_NOT_SET;
-}
-inline void TripLeg_IntersectingEdge::clear_has_has_walkability() {
-  _impl_._oneof_case_[5] = HAS_WALKABILITY_NOT_SET;
-}
-inline bool TripLeg_IntersectingEdge::has_has_use() const {
-  return has_use_case() != HAS_USE_NOT_SET;
-}
-inline void TripLeg_IntersectingEdge::clear_has_has_use() {
-  _impl_._oneof_case_[6] = HAS_USE_NOT_SET;
-}
-inline bool TripLeg_IntersectingEdge::has_has_road_class() const {
-  return has_road_class_case() != HAS_ROAD_CLASS_NOT_SET;
-}
-inline void TripLeg_IntersectingEdge::clear_has_has_road_class() {
-  _impl_._oneof_case_[7] = HAS_ROAD_CLASS_NOT_SET;
-}
-inline bool TripLeg_IntersectingEdge::has_has_lane_count() const {
-  return has_lane_count_case() != HAS_LANE_COUNT_NOT_SET;
-}
-inline void TripLeg_IntersectingEdge::clear_has_has_lane_count() {
-  _impl_._oneof_case_[8] = HAS_LANE_COUNT_NOT_SET;
-}
-inline TripLeg_IntersectingEdge::HasBeginHeadingCase TripLeg_IntersectingEdge::has_begin_heading_case() const {
-  return TripLeg_IntersectingEdge::HasBeginHeadingCase(_impl_._oneof_case_[0]);
-}
-inline TripLeg_IntersectingEdge::HasPrevNameConsistencyCase TripLeg_IntersectingEdge::has_prev_name_consistency_case() const {
-  return TripLeg_IntersectingEdge::HasPrevNameConsistencyCase(_impl_._oneof_case_[1]);
-}
-inline TripLeg_IntersectingEdge::HasCurrNameConsistencyCase TripLeg_IntersectingEdge::has_curr_name_consistency_case() const {
-  return TripLeg_IntersectingEdge::HasCurrNameConsistencyCase(_impl_._oneof_case_[2]);
-}
-inline TripLeg_IntersectingEdge::HasDriveabilityCase TripLeg_IntersectingEdge::has_driveability_case() const {
-  return TripLeg_IntersectingEdge::HasDriveabilityCase(_impl_._oneof_case_[3]);
-}
-inline TripLeg_IntersectingEdge::HasCyclabilityCase TripLeg_IntersectingEdge::has_cyclability_case() const {
-  return TripLeg_IntersectingEdge::HasCyclabilityCase(_impl_._oneof_case_[4]);
-}
-inline TripLeg_IntersectingEdge::HasWalkabilityCase TripLeg_IntersectingEdge::has_walkability_case() const {
-  return TripLeg_IntersectingEdge::HasWalkabilityCase(_impl_._oneof_case_[5]);
-}
-inline TripLeg_IntersectingEdge::HasUseCase TripLeg_IntersectingEdge::has_use_case() const {
-  return TripLeg_IntersectingEdge::HasUseCase(_impl_._oneof_case_[6]);
-}
-inline TripLeg_IntersectingEdge::HasRoadClassCase TripLeg_IntersectingEdge::has_road_class_case() const {
-  return TripLeg_IntersectingEdge::HasRoadClassCase(_impl_._oneof_case_[7]);
-}
-inline TripLeg_IntersectingEdge::HasLaneCountCase TripLeg_IntersectingEdge::has_lane_count_case() const {
-  return TripLeg_IntersectingEdge::HasLaneCountCase(_impl_._oneof_case_[8]);
-}
 // -------------------------------------------------------------------
 
 // TripLeg_Cost
 
 // double seconds = 1;
-inline bool TripLeg_Cost::_internal_has_seconds() const {
-  return has_seconds_case() == kSeconds;
-}
-inline bool TripLeg_Cost::has_seconds() const {
-  return _internal_has_seconds();
-}
-inline void TripLeg_Cost::set_has_seconds() {
-  _impl_._oneof_case_[0] = kSeconds;
-}
 inline void TripLeg_Cost::clear_seconds() {
-  if (_internal_has_seconds()) {
-    _impl_.has_seconds_.seconds_ = 0;
-    clear_has_has_seconds();
-  }
+  _impl_.seconds_ = 0;
 }
 inline double TripLeg_Cost::_internal_seconds() const {
-  if (_internal_has_seconds()) {
-    return _impl_.has_seconds_.seconds_;
-  }
-  return 0;
-}
-inline void TripLeg_Cost::_internal_set_seconds(double value) {
-  if (!_internal_has_seconds()) {
-    clear_has_seconds();
-    set_has_seconds();
-  }
-  _impl_.has_seconds_.seconds_ = value;
+  return _impl_.seconds_;
 }
 inline double TripLeg_Cost::seconds() const {
   // @@protoc_insertion_point(field_get:valhalla.TripLeg.Cost.seconds)
   return _internal_seconds();
+}
+inline void TripLeg_Cost::_internal_set_seconds(double value) {
+  
+  _impl_.seconds_ = value;
 }
 inline void TripLeg_Cost::set_seconds(double value) {
   _internal_set_seconds(value);
@@ -9205,61 +6020,25 @@ inline void TripLeg_Cost::set_seconds(double value) {
 }
 
 // double cost = 2;
-inline bool TripLeg_Cost::_internal_has_cost() const {
-  return has_cost_case() == kCost;
-}
-inline bool TripLeg_Cost::has_cost() const {
-  return _internal_has_cost();
-}
-inline void TripLeg_Cost::set_has_cost() {
-  _impl_._oneof_case_[1] = kCost;
-}
 inline void TripLeg_Cost::clear_cost() {
-  if (_internal_has_cost()) {
-    _impl_.has_cost_.cost_ = 0;
-    clear_has_has_cost();
-  }
+  _impl_.cost_ = 0;
 }
 inline double TripLeg_Cost::_internal_cost() const {
-  if (_internal_has_cost()) {
-    return _impl_.has_cost_.cost_;
-  }
-  return 0;
-}
-inline void TripLeg_Cost::_internal_set_cost(double value) {
-  if (!_internal_has_cost()) {
-    clear_has_cost();
-    set_has_cost();
-  }
-  _impl_.has_cost_.cost_ = value;
+  return _impl_.cost_;
 }
 inline double TripLeg_Cost::cost() const {
   // @@protoc_insertion_point(field_get:valhalla.TripLeg.Cost.cost)
   return _internal_cost();
+}
+inline void TripLeg_Cost::_internal_set_cost(double value) {
+  
+  _impl_.cost_ = value;
 }
 inline void TripLeg_Cost::set_cost(double value) {
   _internal_set_cost(value);
   // @@protoc_insertion_point(field_set:valhalla.TripLeg.Cost.cost)
 }
 
-inline bool TripLeg_Cost::has_has_seconds() const {
-  return has_seconds_case() != HAS_SECONDS_NOT_SET;
-}
-inline void TripLeg_Cost::clear_has_has_seconds() {
-  _impl_._oneof_case_[0] = HAS_SECONDS_NOT_SET;
-}
-inline bool TripLeg_Cost::has_has_cost() const {
-  return has_cost_case() != HAS_COST_NOT_SET;
-}
-inline void TripLeg_Cost::clear_has_has_cost() {
-  _impl_._oneof_case_[1] = HAS_COST_NOT_SET;
-}
-inline TripLeg_Cost::HasSecondsCase TripLeg_Cost::has_seconds_case() const {
-  return TripLeg_Cost::HasSecondsCase(_impl_._oneof_case_[0]);
-}
-inline TripLeg_Cost::HasCostCase TripLeg_Cost::has_cost_case() const {
-  return TripLeg_Cost::HasCostCase(_impl_._oneof_case_[1]);
-}
 // -------------------------------------------------------------------
 
 // TripLeg_PathCost
@@ -9579,37 +6358,19 @@ TripLeg_Node::intersecting_edge() const {
 }
 
 // uint32 admin_index = 3;
-inline bool TripLeg_Node::_internal_has_admin_index() const {
-  return has_admin_index_case() == kAdminIndex;
-}
-inline bool TripLeg_Node::has_admin_index() const {
-  return _internal_has_admin_index();
-}
-inline void TripLeg_Node::set_has_admin_index() {
-  _impl_._oneof_case_[0] = kAdminIndex;
-}
 inline void TripLeg_Node::clear_admin_index() {
-  if (_internal_has_admin_index()) {
-    _impl_.has_admin_index_.admin_index_ = 0u;
-    clear_has_has_admin_index();
-  }
+  _impl_.admin_index_ = 0u;
 }
 inline uint32_t TripLeg_Node::_internal_admin_index() const {
-  if (_internal_has_admin_index()) {
-    return _impl_.has_admin_index_.admin_index_;
-  }
-  return 0u;
-}
-inline void TripLeg_Node::_internal_set_admin_index(uint32_t value) {
-  if (!_internal_has_admin_index()) {
-    clear_has_admin_index();
-    set_has_admin_index();
-  }
-  _impl_.has_admin_index_.admin_index_ = value;
+  return _impl_.admin_index_;
 }
 inline uint32_t TripLeg_Node::admin_index() const {
   // @@protoc_insertion_point(field_get:valhalla.TripLeg.Node.admin_index)
   return _internal_admin_index();
+}
+inline void TripLeg_Node::_internal_set_admin_index(uint32_t value) {
+  
+  _impl_.admin_index_ = value;
 }
 inline void TripLeg_Node::set_admin_index(uint32_t value) {
   _internal_set_admin_index(value);
@@ -9617,37 +6378,19 @@ inline void TripLeg_Node::set_admin_index(uint32_t value) {
 }
 
 // .valhalla.TripLeg.Node.Type type = 4;
-inline bool TripLeg_Node::_internal_has_type() const {
-  return has_type_case() == kType;
-}
-inline bool TripLeg_Node::has_type() const {
-  return _internal_has_type();
-}
-inline void TripLeg_Node::set_has_type() {
-  _impl_._oneof_case_[1] = kType;
-}
 inline void TripLeg_Node::clear_type() {
-  if (_internal_has_type()) {
-    _impl_.has_type_.type_ = 0;
-    clear_has_has_type();
-  }
+  _impl_.type_ = 0;
 }
 inline ::valhalla::TripLeg_Node_Type TripLeg_Node::_internal_type() const {
-  if (_internal_has_type()) {
-    return static_cast< ::valhalla::TripLeg_Node_Type >(_impl_.has_type_.type_);
-  }
-  return static_cast< ::valhalla::TripLeg_Node_Type >(0);
+  return static_cast< ::valhalla::TripLeg_Node_Type >(_impl_.type_);
 }
 inline ::valhalla::TripLeg_Node_Type TripLeg_Node::type() const {
   // @@protoc_insertion_point(field_get:valhalla.TripLeg.Node.type)
   return _internal_type();
 }
 inline void TripLeg_Node::_internal_set_type(::valhalla::TripLeg_Node_Type value) {
-  if (!_internal_has_type()) {
-    clear_has_type();
-    set_has_type();
-  }
-  _impl_.has_type_.type_ = value;
+  
+  _impl_.type_ = value;
 }
 inline void TripLeg_Node::set_type(::valhalla::TripLeg_Node_Type value) {
   _internal_set_type(value);
@@ -9655,37 +6398,19 @@ inline void TripLeg_Node::set_type(::valhalla::TripLeg_Node_Type value) {
 }
 
 // bool fork = 5;
-inline bool TripLeg_Node::_internal_has_fork() const {
-  return has_fork_case() == kFork;
-}
-inline bool TripLeg_Node::has_fork() const {
-  return _internal_has_fork();
-}
-inline void TripLeg_Node::set_has_fork() {
-  _impl_._oneof_case_[2] = kFork;
-}
 inline void TripLeg_Node::clear_fork() {
-  if (_internal_has_fork()) {
-    _impl_.has_fork_.fork_ = false;
-    clear_has_has_fork();
-  }
+  _impl_.fork_ = false;
 }
 inline bool TripLeg_Node::_internal_fork() const {
-  if (_internal_has_fork()) {
-    return _impl_.has_fork_.fork_;
-  }
-  return false;
-}
-inline void TripLeg_Node::_internal_set_fork(bool value) {
-  if (!_internal_has_fork()) {
-    clear_has_fork();
-    set_has_fork();
-  }
-  _impl_.has_fork_.fork_ = value;
+  return _impl_.fork_;
 }
 inline bool TripLeg_Node::fork() const {
   // @@protoc_insertion_point(field_get:valhalla.TripLeg.Node.fork)
   return _internal_fork();
+}
+inline void TripLeg_Node::_internal_set_fork(bool value) {
+  
+  _impl_.fork_ = value;
 }
 inline void TripLeg_Node::set_fork(bool value) {
   _internal_set_fork(value);
@@ -9948,33 +6673,18 @@ inline void TripLeg_Node::set_allocated_transit_egress_info(::valhalla::TransitE
 }
 
 // string time_zone = 11;
-inline bool TripLeg_Node::_internal_has_time_zone() const {
-  return has_time_zone_case() == kTimeZone;
-}
-inline bool TripLeg_Node::has_time_zone() const {
-  return _internal_has_time_zone();
-}
-inline void TripLeg_Node::set_has_time_zone() {
-  _impl_._oneof_case_[3] = kTimeZone;
-}
 inline void TripLeg_Node::clear_time_zone() {
-  if (_internal_has_time_zone()) {
-    _impl_.has_time_zone_.time_zone_.Destroy();
-    clear_has_has_time_zone();
-  }
+  _impl_.time_zone_.ClearToEmpty();
 }
 inline const std::string& TripLeg_Node::time_zone() const {
   // @@protoc_insertion_point(field_get:valhalla.TripLeg.Node.time_zone)
   return _internal_time_zone();
 }
 template <typename ArgT0, typename... ArgT>
-inline void TripLeg_Node::set_time_zone(ArgT0&& arg0, ArgT... args) {
-  if (!_internal_has_time_zone()) {
-    clear_has_time_zone();
-    set_has_time_zone();
-    _impl_.has_time_zone_.time_zone_.InitDefault();
-  }
-  _impl_.has_time_zone_.time_zone_.Set( static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+inline PROTOBUF_ALWAYS_INLINE
+void TripLeg_Node::set_time_zone(ArgT0&& arg0, ArgT... args) {
+ 
+ _impl_.time_zone_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
   // @@protoc_insertion_point(field_set:valhalla.TripLeg.Node.time_zone)
 }
 inline std::string* TripLeg_Node::mutable_time_zone() {
@@ -9983,44 +6693,32 @@ inline std::string* TripLeg_Node::mutable_time_zone() {
   return _s;
 }
 inline const std::string& TripLeg_Node::_internal_time_zone() const {
-  if (_internal_has_time_zone()) {
-    return _impl_.has_time_zone_.time_zone_.Get();
-  }
-  return ::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited();
+  return _impl_.time_zone_.Get();
 }
 inline void TripLeg_Node::_internal_set_time_zone(const std::string& value) {
-  if (!_internal_has_time_zone()) {
-    clear_has_time_zone();
-    set_has_time_zone();
-    _impl_.has_time_zone_.time_zone_.InitDefault();
-  }
-  _impl_.has_time_zone_.time_zone_.Set(value, GetArenaForAllocation());
+  
+  _impl_.time_zone_.Set(value, GetArenaForAllocation());
 }
 inline std::string* TripLeg_Node::_internal_mutable_time_zone() {
-  if (!_internal_has_time_zone()) {
-    clear_has_time_zone();
-    set_has_time_zone();
-    _impl_.has_time_zone_.time_zone_.InitDefault();
-  }
-  return _impl_.has_time_zone_.time_zone_.Mutable(      GetArenaForAllocation());
+  
+  return _impl_.time_zone_.Mutable(GetArenaForAllocation());
 }
 inline std::string* TripLeg_Node::release_time_zone() {
   // @@protoc_insertion_point(field_release:valhalla.TripLeg.Node.time_zone)
-  if (_internal_has_time_zone()) {
-    clear_has_has_time_zone();
-    return _impl_.has_time_zone_.time_zone_.Release();
-  } else {
-    return nullptr;
-  }
+  return _impl_.time_zone_.Release();
 }
 inline void TripLeg_Node::set_allocated_time_zone(std::string* time_zone) {
-  if (has_has_time_zone()) {
-    clear_has_time_zone();
-  }
   if (time_zone != nullptr) {
-    set_has_time_zone();
-    _impl_.has_time_zone_.time_zone_.InitAllocated(time_zone, GetArenaForAllocation());
+    
+  } else {
+    
   }
+  _impl_.time_zone_.SetAllocated(time_zone, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.time_zone_.IsDefault()) {
+    _impl_.time_zone_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:valhalla.TripLeg.Node.time_zone)
 }
 
@@ -10239,74 +6937,23 @@ inline void TripLeg_Node::set_allocated_bss_info(::valhalla::BikeShareStationInf
   // @@protoc_insertion_point(field_set_allocated:valhalla.TripLeg.Node.bss_info)
 }
 
-inline bool TripLeg_Node::has_has_admin_index() const {
-  return has_admin_index_case() != HAS_ADMIN_INDEX_NOT_SET;
-}
-inline void TripLeg_Node::clear_has_has_admin_index() {
-  _impl_._oneof_case_[0] = HAS_ADMIN_INDEX_NOT_SET;
-}
-inline bool TripLeg_Node::has_has_type() const {
-  return has_type_case() != HAS_TYPE_NOT_SET;
-}
-inline void TripLeg_Node::clear_has_has_type() {
-  _impl_._oneof_case_[1] = HAS_TYPE_NOT_SET;
-}
-inline bool TripLeg_Node::has_has_fork() const {
-  return has_fork_case() != HAS_FORK_NOT_SET;
-}
-inline void TripLeg_Node::clear_has_has_fork() {
-  _impl_._oneof_case_[2] = HAS_FORK_NOT_SET;
-}
-inline bool TripLeg_Node::has_has_time_zone() const {
-  return has_time_zone_case() != HAS_TIME_ZONE_NOT_SET;
-}
-inline void TripLeg_Node::clear_has_has_time_zone() {
-  _impl_._oneof_case_[3] = HAS_TIME_ZONE_NOT_SET;
-}
-inline TripLeg_Node::HasAdminIndexCase TripLeg_Node::has_admin_index_case() const {
-  return TripLeg_Node::HasAdminIndexCase(_impl_._oneof_case_[0]);
-}
-inline TripLeg_Node::HasTypeCase TripLeg_Node::has_type_case() const {
-  return TripLeg_Node::HasTypeCase(_impl_._oneof_case_[1]);
-}
-inline TripLeg_Node::HasForkCase TripLeg_Node::has_fork_case() const {
-  return TripLeg_Node::HasForkCase(_impl_._oneof_case_[2]);
-}
-inline TripLeg_Node::HasTimeZoneCase TripLeg_Node::has_time_zone_case() const {
-  return TripLeg_Node::HasTimeZoneCase(_impl_._oneof_case_[3]);
-}
 // -------------------------------------------------------------------
 
 // TripLeg_Admin
 
 // string country_code = 1;
-inline bool TripLeg_Admin::_internal_has_country_code() const {
-  return has_country_code_case() == kCountryCode;
-}
-inline bool TripLeg_Admin::has_country_code() const {
-  return _internal_has_country_code();
-}
-inline void TripLeg_Admin::set_has_country_code() {
-  _impl_._oneof_case_[0] = kCountryCode;
-}
 inline void TripLeg_Admin::clear_country_code() {
-  if (_internal_has_country_code()) {
-    _impl_.has_country_code_.country_code_.Destroy();
-    clear_has_has_country_code();
-  }
+  _impl_.country_code_.ClearToEmpty();
 }
 inline const std::string& TripLeg_Admin::country_code() const {
   // @@protoc_insertion_point(field_get:valhalla.TripLeg.Admin.country_code)
   return _internal_country_code();
 }
 template <typename ArgT0, typename... ArgT>
-inline void TripLeg_Admin::set_country_code(ArgT0&& arg0, ArgT... args) {
-  if (!_internal_has_country_code()) {
-    clear_has_country_code();
-    set_has_country_code();
-    _impl_.has_country_code_.country_code_.InitDefault();
-  }
-  _impl_.has_country_code_.country_code_.Set( static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+inline PROTOBUF_ALWAYS_INLINE
+void TripLeg_Admin::set_country_code(ArgT0&& arg0, ArgT... args) {
+ 
+ _impl_.country_code_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
   // @@protoc_insertion_point(field_set:valhalla.TripLeg.Admin.country_code)
 }
 inline std::string* TripLeg_Admin::mutable_country_code() {
@@ -10315,75 +6962,48 @@ inline std::string* TripLeg_Admin::mutable_country_code() {
   return _s;
 }
 inline const std::string& TripLeg_Admin::_internal_country_code() const {
-  if (_internal_has_country_code()) {
-    return _impl_.has_country_code_.country_code_.Get();
-  }
-  return ::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited();
+  return _impl_.country_code_.Get();
 }
 inline void TripLeg_Admin::_internal_set_country_code(const std::string& value) {
-  if (!_internal_has_country_code()) {
-    clear_has_country_code();
-    set_has_country_code();
-    _impl_.has_country_code_.country_code_.InitDefault();
-  }
-  _impl_.has_country_code_.country_code_.Set(value, GetArenaForAllocation());
+  
+  _impl_.country_code_.Set(value, GetArenaForAllocation());
 }
 inline std::string* TripLeg_Admin::_internal_mutable_country_code() {
-  if (!_internal_has_country_code()) {
-    clear_has_country_code();
-    set_has_country_code();
-    _impl_.has_country_code_.country_code_.InitDefault();
-  }
-  return _impl_.has_country_code_.country_code_.Mutable(      GetArenaForAllocation());
+  
+  return _impl_.country_code_.Mutable(GetArenaForAllocation());
 }
 inline std::string* TripLeg_Admin::release_country_code() {
   // @@protoc_insertion_point(field_release:valhalla.TripLeg.Admin.country_code)
-  if (_internal_has_country_code()) {
-    clear_has_has_country_code();
-    return _impl_.has_country_code_.country_code_.Release();
-  } else {
-    return nullptr;
-  }
+  return _impl_.country_code_.Release();
 }
 inline void TripLeg_Admin::set_allocated_country_code(std::string* country_code) {
-  if (has_has_country_code()) {
-    clear_has_country_code();
-  }
   if (country_code != nullptr) {
-    set_has_country_code();
-    _impl_.has_country_code_.country_code_.InitAllocated(country_code, GetArenaForAllocation());
+    
+  } else {
+    
   }
+  _impl_.country_code_.SetAllocated(country_code, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.country_code_.IsDefault()) {
+    _impl_.country_code_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:valhalla.TripLeg.Admin.country_code)
 }
 
 // string country_text = 2;
-inline bool TripLeg_Admin::_internal_has_country_text() const {
-  return has_country_text_case() == kCountryText;
-}
-inline bool TripLeg_Admin::has_country_text() const {
-  return _internal_has_country_text();
-}
-inline void TripLeg_Admin::set_has_country_text() {
-  _impl_._oneof_case_[1] = kCountryText;
-}
 inline void TripLeg_Admin::clear_country_text() {
-  if (_internal_has_country_text()) {
-    _impl_.has_country_text_.country_text_.Destroy();
-    clear_has_has_country_text();
-  }
+  _impl_.country_text_.ClearToEmpty();
 }
 inline const std::string& TripLeg_Admin::country_text() const {
   // @@protoc_insertion_point(field_get:valhalla.TripLeg.Admin.country_text)
   return _internal_country_text();
 }
 template <typename ArgT0, typename... ArgT>
-inline void TripLeg_Admin::set_country_text(ArgT0&& arg0, ArgT... args) {
-  if (!_internal_has_country_text()) {
-    clear_has_country_text();
-    set_has_country_text();
-    _impl_.has_country_text_.country_text_.InitDefault();
-  }
-  _impl_.has_country_text_.country_text_.Set( static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+inline PROTOBUF_ALWAYS_INLINE
+void TripLeg_Admin::set_country_text(ArgT0&& arg0, ArgT... args) {
+ 
+ _impl_.country_text_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
   // @@protoc_insertion_point(field_set:valhalla.TripLeg.Admin.country_text)
 }
 inline std::string* TripLeg_Admin::mutable_country_text() {
@@ -10392,75 +7012,48 @@ inline std::string* TripLeg_Admin::mutable_country_text() {
   return _s;
 }
 inline const std::string& TripLeg_Admin::_internal_country_text() const {
-  if (_internal_has_country_text()) {
-    return _impl_.has_country_text_.country_text_.Get();
-  }
-  return ::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited();
+  return _impl_.country_text_.Get();
 }
 inline void TripLeg_Admin::_internal_set_country_text(const std::string& value) {
-  if (!_internal_has_country_text()) {
-    clear_has_country_text();
-    set_has_country_text();
-    _impl_.has_country_text_.country_text_.InitDefault();
-  }
-  _impl_.has_country_text_.country_text_.Set(value, GetArenaForAllocation());
+  
+  _impl_.country_text_.Set(value, GetArenaForAllocation());
 }
 inline std::string* TripLeg_Admin::_internal_mutable_country_text() {
-  if (!_internal_has_country_text()) {
-    clear_has_country_text();
-    set_has_country_text();
-    _impl_.has_country_text_.country_text_.InitDefault();
-  }
-  return _impl_.has_country_text_.country_text_.Mutable(      GetArenaForAllocation());
+  
+  return _impl_.country_text_.Mutable(GetArenaForAllocation());
 }
 inline std::string* TripLeg_Admin::release_country_text() {
   // @@protoc_insertion_point(field_release:valhalla.TripLeg.Admin.country_text)
-  if (_internal_has_country_text()) {
-    clear_has_has_country_text();
-    return _impl_.has_country_text_.country_text_.Release();
-  } else {
-    return nullptr;
-  }
+  return _impl_.country_text_.Release();
 }
 inline void TripLeg_Admin::set_allocated_country_text(std::string* country_text) {
-  if (has_has_country_text()) {
-    clear_has_country_text();
-  }
   if (country_text != nullptr) {
-    set_has_country_text();
-    _impl_.has_country_text_.country_text_.InitAllocated(country_text, GetArenaForAllocation());
+    
+  } else {
+    
   }
+  _impl_.country_text_.SetAllocated(country_text, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.country_text_.IsDefault()) {
+    _impl_.country_text_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:valhalla.TripLeg.Admin.country_text)
 }
 
 // string state_code = 3;
-inline bool TripLeg_Admin::_internal_has_state_code() const {
-  return has_state_code_case() == kStateCode;
-}
-inline bool TripLeg_Admin::has_state_code() const {
-  return _internal_has_state_code();
-}
-inline void TripLeg_Admin::set_has_state_code() {
-  _impl_._oneof_case_[2] = kStateCode;
-}
 inline void TripLeg_Admin::clear_state_code() {
-  if (_internal_has_state_code()) {
-    _impl_.has_state_code_.state_code_.Destroy();
-    clear_has_has_state_code();
-  }
+  _impl_.state_code_.ClearToEmpty();
 }
 inline const std::string& TripLeg_Admin::state_code() const {
   // @@protoc_insertion_point(field_get:valhalla.TripLeg.Admin.state_code)
   return _internal_state_code();
 }
 template <typename ArgT0, typename... ArgT>
-inline void TripLeg_Admin::set_state_code(ArgT0&& arg0, ArgT... args) {
-  if (!_internal_has_state_code()) {
-    clear_has_state_code();
-    set_has_state_code();
-    _impl_.has_state_code_.state_code_.InitDefault();
-  }
-  _impl_.has_state_code_.state_code_.Set( static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+inline PROTOBUF_ALWAYS_INLINE
+void TripLeg_Admin::set_state_code(ArgT0&& arg0, ArgT... args) {
+ 
+ _impl_.state_code_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
   // @@protoc_insertion_point(field_set:valhalla.TripLeg.Admin.state_code)
 }
 inline std::string* TripLeg_Admin::mutable_state_code() {
@@ -10469,75 +7062,48 @@ inline std::string* TripLeg_Admin::mutable_state_code() {
   return _s;
 }
 inline const std::string& TripLeg_Admin::_internal_state_code() const {
-  if (_internal_has_state_code()) {
-    return _impl_.has_state_code_.state_code_.Get();
-  }
-  return ::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited();
+  return _impl_.state_code_.Get();
 }
 inline void TripLeg_Admin::_internal_set_state_code(const std::string& value) {
-  if (!_internal_has_state_code()) {
-    clear_has_state_code();
-    set_has_state_code();
-    _impl_.has_state_code_.state_code_.InitDefault();
-  }
-  _impl_.has_state_code_.state_code_.Set(value, GetArenaForAllocation());
+  
+  _impl_.state_code_.Set(value, GetArenaForAllocation());
 }
 inline std::string* TripLeg_Admin::_internal_mutable_state_code() {
-  if (!_internal_has_state_code()) {
-    clear_has_state_code();
-    set_has_state_code();
-    _impl_.has_state_code_.state_code_.InitDefault();
-  }
-  return _impl_.has_state_code_.state_code_.Mutable(      GetArenaForAllocation());
+  
+  return _impl_.state_code_.Mutable(GetArenaForAllocation());
 }
 inline std::string* TripLeg_Admin::release_state_code() {
   // @@protoc_insertion_point(field_release:valhalla.TripLeg.Admin.state_code)
-  if (_internal_has_state_code()) {
-    clear_has_has_state_code();
-    return _impl_.has_state_code_.state_code_.Release();
-  } else {
-    return nullptr;
-  }
+  return _impl_.state_code_.Release();
 }
 inline void TripLeg_Admin::set_allocated_state_code(std::string* state_code) {
-  if (has_has_state_code()) {
-    clear_has_state_code();
-  }
   if (state_code != nullptr) {
-    set_has_state_code();
-    _impl_.has_state_code_.state_code_.InitAllocated(state_code, GetArenaForAllocation());
+    
+  } else {
+    
   }
+  _impl_.state_code_.SetAllocated(state_code, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.state_code_.IsDefault()) {
+    _impl_.state_code_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:valhalla.TripLeg.Admin.state_code)
 }
 
 // string state_text = 4;
-inline bool TripLeg_Admin::_internal_has_state_text() const {
-  return has_state_text_case() == kStateText;
-}
-inline bool TripLeg_Admin::has_state_text() const {
-  return _internal_has_state_text();
-}
-inline void TripLeg_Admin::set_has_state_text() {
-  _impl_._oneof_case_[3] = kStateText;
-}
 inline void TripLeg_Admin::clear_state_text() {
-  if (_internal_has_state_text()) {
-    _impl_.has_state_text_.state_text_.Destroy();
-    clear_has_has_state_text();
-  }
+  _impl_.state_text_.ClearToEmpty();
 }
 inline const std::string& TripLeg_Admin::state_text() const {
   // @@protoc_insertion_point(field_get:valhalla.TripLeg.Admin.state_text)
   return _internal_state_text();
 }
 template <typename ArgT0, typename... ArgT>
-inline void TripLeg_Admin::set_state_text(ArgT0&& arg0, ArgT... args) {
-  if (!_internal_has_state_text()) {
-    clear_has_state_text();
-    set_has_state_text();
-    _impl_.has_state_text_.state_text_.InitDefault();
-  }
-  _impl_.has_state_text_.state_text_.Set( static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+inline PROTOBUF_ALWAYS_INLINE
+void TripLeg_Admin::set_state_text(ArgT0&& arg0, ArgT... args) {
+ 
+ _impl_.state_text_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
   // @@protoc_insertion_point(field_set:valhalla.TripLeg.Admin.state_text)
 }
 inline std::string* TripLeg_Admin::mutable_state_text() {
@@ -10546,83 +7112,35 @@ inline std::string* TripLeg_Admin::mutable_state_text() {
   return _s;
 }
 inline const std::string& TripLeg_Admin::_internal_state_text() const {
-  if (_internal_has_state_text()) {
-    return _impl_.has_state_text_.state_text_.Get();
-  }
-  return ::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited();
+  return _impl_.state_text_.Get();
 }
 inline void TripLeg_Admin::_internal_set_state_text(const std::string& value) {
-  if (!_internal_has_state_text()) {
-    clear_has_state_text();
-    set_has_state_text();
-    _impl_.has_state_text_.state_text_.InitDefault();
-  }
-  _impl_.has_state_text_.state_text_.Set(value, GetArenaForAllocation());
+  
+  _impl_.state_text_.Set(value, GetArenaForAllocation());
 }
 inline std::string* TripLeg_Admin::_internal_mutable_state_text() {
-  if (!_internal_has_state_text()) {
-    clear_has_state_text();
-    set_has_state_text();
-    _impl_.has_state_text_.state_text_.InitDefault();
-  }
-  return _impl_.has_state_text_.state_text_.Mutable(      GetArenaForAllocation());
+  
+  return _impl_.state_text_.Mutable(GetArenaForAllocation());
 }
 inline std::string* TripLeg_Admin::release_state_text() {
   // @@protoc_insertion_point(field_release:valhalla.TripLeg.Admin.state_text)
-  if (_internal_has_state_text()) {
-    clear_has_has_state_text();
-    return _impl_.has_state_text_.state_text_.Release();
-  } else {
-    return nullptr;
-  }
+  return _impl_.state_text_.Release();
 }
 inline void TripLeg_Admin::set_allocated_state_text(std::string* state_text) {
-  if (has_has_state_text()) {
-    clear_has_state_text();
-  }
   if (state_text != nullptr) {
-    set_has_state_text();
-    _impl_.has_state_text_.state_text_.InitAllocated(state_text, GetArenaForAllocation());
+    
+  } else {
+    
   }
+  _impl_.state_text_.SetAllocated(state_text, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.state_text_.IsDefault()) {
+    _impl_.state_text_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:valhalla.TripLeg.Admin.state_text)
 }
 
-inline bool TripLeg_Admin::has_has_country_code() const {
-  return has_country_code_case() != HAS_COUNTRY_CODE_NOT_SET;
-}
-inline void TripLeg_Admin::clear_has_has_country_code() {
-  _impl_._oneof_case_[0] = HAS_COUNTRY_CODE_NOT_SET;
-}
-inline bool TripLeg_Admin::has_has_country_text() const {
-  return has_country_text_case() != HAS_COUNTRY_TEXT_NOT_SET;
-}
-inline void TripLeg_Admin::clear_has_has_country_text() {
-  _impl_._oneof_case_[1] = HAS_COUNTRY_TEXT_NOT_SET;
-}
-inline bool TripLeg_Admin::has_has_state_code() const {
-  return has_state_code_case() != HAS_STATE_CODE_NOT_SET;
-}
-inline void TripLeg_Admin::clear_has_has_state_code() {
-  _impl_._oneof_case_[2] = HAS_STATE_CODE_NOT_SET;
-}
-inline bool TripLeg_Admin::has_has_state_text() const {
-  return has_state_text_case() != HAS_STATE_TEXT_NOT_SET;
-}
-inline void TripLeg_Admin::clear_has_has_state_text() {
-  _impl_._oneof_case_[3] = HAS_STATE_TEXT_NOT_SET;
-}
-inline TripLeg_Admin::HasCountryCodeCase TripLeg_Admin::has_country_code_case() const {
-  return TripLeg_Admin::HasCountryCodeCase(_impl_._oneof_case_[0]);
-}
-inline TripLeg_Admin::HasCountryTextCase TripLeg_Admin::has_country_text_case() const {
-  return TripLeg_Admin::HasCountryTextCase(_impl_._oneof_case_[1]);
-}
-inline TripLeg_Admin::HasStateCodeCase TripLeg_Admin::has_state_code_case() const {
-  return TripLeg_Admin::HasStateCodeCase(_impl_._oneof_case_[2]);
-}
-inline TripLeg_Admin::HasStateTextCase TripLeg_Admin::has_state_text_case() const {
-  return TripLeg_Admin::HasStateTextCase(_impl_._oneof_case_[3]);
-}
 // -------------------------------------------------------------------
 
 // TripLeg_ShapeAttributes
@@ -10905,37 +7423,19 @@ inline void TripLeg_Incident::set_allocated_metadata(::valhalla::IncidentsTile_M
 }
 
 // uint32 begin_shape_index = 3;
-inline bool TripLeg_Incident::_internal_has_begin_shape_index() const {
-  return has_begin_shape_index_case() == kBeginShapeIndex;
-}
-inline bool TripLeg_Incident::has_begin_shape_index() const {
-  return _internal_has_begin_shape_index();
-}
-inline void TripLeg_Incident::set_has_begin_shape_index() {
-  _impl_._oneof_case_[0] = kBeginShapeIndex;
-}
 inline void TripLeg_Incident::clear_begin_shape_index() {
-  if (_internal_has_begin_shape_index()) {
-    _impl_.has_begin_shape_index_.begin_shape_index_ = 0u;
-    clear_has_has_begin_shape_index();
-  }
+  _impl_.begin_shape_index_ = 0u;
 }
 inline uint32_t TripLeg_Incident::_internal_begin_shape_index() const {
-  if (_internal_has_begin_shape_index()) {
-    return _impl_.has_begin_shape_index_.begin_shape_index_;
-  }
-  return 0u;
-}
-inline void TripLeg_Incident::_internal_set_begin_shape_index(uint32_t value) {
-  if (!_internal_has_begin_shape_index()) {
-    clear_has_begin_shape_index();
-    set_has_begin_shape_index();
-  }
-  _impl_.has_begin_shape_index_.begin_shape_index_ = value;
+  return _impl_.begin_shape_index_;
 }
 inline uint32_t TripLeg_Incident::begin_shape_index() const {
   // @@protoc_insertion_point(field_get:valhalla.TripLeg.Incident.begin_shape_index)
   return _internal_begin_shape_index();
+}
+inline void TripLeg_Incident::_internal_set_begin_shape_index(uint32_t value) {
+  
+  _impl_.begin_shape_index_ = value;
 }
 inline void TripLeg_Incident::set_begin_shape_index(uint32_t value) {
   _internal_set_begin_shape_index(value);
@@ -10943,61 +7443,25 @@ inline void TripLeg_Incident::set_begin_shape_index(uint32_t value) {
 }
 
 // uint32 end_shape_index = 4;
-inline bool TripLeg_Incident::_internal_has_end_shape_index() const {
-  return has_end_shape_index_case() == kEndShapeIndex;
-}
-inline bool TripLeg_Incident::has_end_shape_index() const {
-  return _internal_has_end_shape_index();
-}
-inline void TripLeg_Incident::set_has_end_shape_index() {
-  _impl_._oneof_case_[1] = kEndShapeIndex;
-}
 inline void TripLeg_Incident::clear_end_shape_index() {
-  if (_internal_has_end_shape_index()) {
-    _impl_.has_end_shape_index_.end_shape_index_ = 0u;
-    clear_has_has_end_shape_index();
-  }
+  _impl_.end_shape_index_ = 0u;
 }
 inline uint32_t TripLeg_Incident::_internal_end_shape_index() const {
-  if (_internal_has_end_shape_index()) {
-    return _impl_.has_end_shape_index_.end_shape_index_;
-  }
-  return 0u;
-}
-inline void TripLeg_Incident::_internal_set_end_shape_index(uint32_t value) {
-  if (!_internal_has_end_shape_index()) {
-    clear_has_end_shape_index();
-    set_has_end_shape_index();
-  }
-  _impl_.has_end_shape_index_.end_shape_index_ = value;
+  return _impl_.end_shape_index_;
 }
 inline uint32_t TripLeg_Incident::end_shape_index() const {
   // @@protoc_insertion_point(field_get:valhalla.TripLeg.Incident.end_shape_index)
   return _internal_end_shape_index();
+}
+inline void TripLeg_Incident::_internal_set_end_shape_index(uint32_t value) {
+  
+  _impl_.end_shape_index_ = value;
 }
 inline void TripLeg_Incident::set_end_shape_index(uint32_t value) {
   _internal_set_end_shape_index(value);
   // @@protoc_insertion_point(field_set:valhalla.TripLeg.Incident.end_shape_index)
 }
 
-inline bool TripLeg_Incident::has_has_begin_shape_index() const {
-  return has_begin_shape_index_case() != HAS_BEGIN_SHAPE_INDEX_NOT_SET;
-}
-inline void TripLeg_Incident::clear_has_has_begin_shape_index() {
-  _impl_._oneof_case_[0] = HAS_BEGIN_SHAPE_INDEX_NOT_SET;
-}
-inline bool TripLeg_Incident::has_has_end_shape_index() const {
-  return has_end_shape_index_case() != HAS_END_SHAPE_INDEX_NOT_SET;
-}
-inline void TripLeg_Incident::clear_has_has_end_shape_index() {
-  _impl_._oneof_case_[1] = HAS_END_SHAPE_INDEX_NOT_SET;
-}
-inline TripLeg_Incident::HasBeginShapeIndexCase TripLeg_Incident::has_begin_shape_index_case() const {
-  return TripLeg_Incident::HasBeginShapeIndexCase(_impl_._oneof_case_[0]);
-}
-inline TripLeg_Incident::HasEndShapeIndexCase TripLeg_Incident::has_end_shape_index_case() const {
-  return TripLeg_Incident::HasEndShapeIndexCase(_impl_._oneof_case_[1]);
-}
 // -------------------------------------------------------------------
 
 // TripLeg_Closure
@@ -11101,37 +7565,19 @@ inline TripLeg_Closure::HasEndShapeIndexCase TripLeg_Closure::has_end_shape_inde
 // TripLeg
 
 // uint64 osm_changeset = 1;
-inline bool TripLeg::_internal_has_osm_changeset() const {
-  return has_osm_changeset_case() == kOsmChangeset;
-}
-inline bool TripLeg::has_osm_changeset() const {
-  return _internal_has_osm_changeset();
-}
-inline void TripLeg::set_has_osm_changeset() {
-  _impl_._oneof_case_[0] = kOsmChangeset;
-}
 inline void TripLeg::clear_osm_changeset() {
-  if (_internal_has_osm_changeset()) {
-    _impl_.has_osm_changeset_.osm_changeset_ = uint64_t{0u};
-    clear_has_has_osm_changeset();
-  }
+  _impl_.osm_changeset_ = uint64_t{0u};
 }
 inline uint64_t TripLeg::_internal_osm_changeset() const {
-  if (_internal_has_osm_changeset()) {
-    return _impl_.has_osm_changeset_.osm_changeset_;
-  }
-  return uint64_t{0u};
-}
-inline void TripLeg::_internal_set_osm_changeset(uint64_t value) {
-  if (!_internal_has_osm_changeset()) {
-    clear_has_osm_changeset();
-    set_has_osm_changeset();
-  }
-  _impl_.has_osm_changeset_.osm_changeset_ = value;
+  return _impl_.osm_changeset_;
 }
 inline uint64_t TripLeg::osm_changeset() const {
   // @@protoc_insertion_point(field_get:valhalla.TripLeg.osm_changeset)
   return _internal_osm_changeset();
+}
+inline void TripLeg::_internal_set_osm_changeset(uint64_t value) {
+  
+  _impl_.osm_changeset_ = value;
 }
 inline void TripLeg::set_osm_changeset(uint64_t value) {
   _internal_set_osm_changeset(value);
@@ -11139,37 +7585,19 @@ inline void TripLeg::set_osm_changeset(uint64_t value) {
 }
 
 // uint64 trip_id = 2;
-inline bool TripLeg::_internal_has_trip_id() const {
-  return has_trip_id_case() == kTripId;
-}
-inline bool TripLeg::has_trip_id() const {
-  return _internal_has_trip_id();
-}
-inline void TripLeg::set_has_trip_id() {
-  _impl_._oneof_case_[1] = kTripId;
-}
 inline void TripLeg::clear_trip_id() {
-  if (_internal_has_trip_id()) {
-    _impl_.has_trip_id_.trip_id_ = uint64_t{0u};
-    clear_has_has_trip_id();
-  }
+  _impl_.trip_id_ = uint64_t{0u};
 }
 inline uint64_t TripLeg::_internal_trip_id() const {
-  if (_internal_has_trip_id()) {
-    return _impl_.has_trip_id_.trip_id_;
-  }
-  return uint64_t{0u};
-}
-inline void TripLeg::_internal_set_trip_id(uint64_t value) {
-  if (!_internal_has_trip_id()) {
-    clear_has_trip_id();
-    set_has_trip_id();
-  }
-  _impl_.has_trip_id_.trip_id_ = value;
+  return _impl_.trip_id_;
 }
 inline uint64_t TripLeg::trip_id() const {
   // @@protoc_insertion_point(field_get:valhalla.TripLeg.trip_id)
   return _internal_trip_id();
+}
+inline void TripLeg::_internal_set_trip_id(uint64_t value) {
+  
+  _impl_.trip_id_ = value;
 }
 inline void TripLeg::set_trip_id(uint64_t value) {
   _internal_set_trip_id(value);
@@ -11177,37 +7605,19 @@ inline void TripLeg::set_trip_id(uint64_t value) {
 }
 
 // uint32 leg_id = 3;
-inline bool TripLeg::_internal_has_leg_id() const {
-  return has_leg_id_case() == kLegId;
-}
-inline bool TripLeg::has_leg_id() const {
-  return _internal_has_leg_id();
-}
-inline void TripLeg::set_has_leg_id() {
-  _impl_._oneof_case_[2] = kLegId;
-}
 inline void TripLeg::clear_leg_id() {
-  if (_internal_has_leg_id()) {
-    _impl_.has_leg_id_.leg_id_ = 0u;
-    clear_has_has_leg_id();
-  }
+  _impl_.leg_id_ = 0u;
 }
 inline uint32_t TripLeg::_internal_leg_id() const {
-  if (_internal_has_leg_id()) {
-    return _impl_.has_leg_id_.leg_id_;
-  }
-  return 0u;
-}
-inline void TripLeg::_internal_set_leg_id(uint32_t value) {
-  if (!_internal_has_leg_id()) {
-    clear_has_leg_id();
-    set_has_leg_id();
-  }
-  _impl_.has_leg_id_.leg_id_ = value;
+  return _impl_.leg_id_;
 }
 inline uint32_t TripLeg::leg_id() const {
   // @@protoc_insertion_point(field_get:valhalla.TripLeg.leg_id)
   return _internal_leg_id();
+}
+inline void TripLeg::_internal_set_leg_id(uint32_t value) {
+  
+  _impl_.leg_id_ = value;
 }
 inline void TripLeg::set_leg_id(uint32_t value) {
   _internal_set_leg_id(value);
@@ -11215,37 +7625,19 @@ inline void TripLeg::set_leg_id(uint32_t value) {
 }
 
 // uint32 leg_count = 4;
-inline bool TripLeg::_internal_has_leg_count() const {
-  return has_leg_count_case() == kLegCount;
-}
-inline bool TripLeg::has_leg_count() const {
-  return _internal_has_leg_count();
-}
-inline void TripLeg::set_has_leg_count() {
-  _impl_._oneof_case_[3] = kLegCount;
-}
 inline void TripLeg::clear_leg_count() {
-  if (_internal_has_leg_count()) {
-    _impl_.has_leg_count_.leg_count_ = 0u;
-    clear_has_has_leg_count();
-  }
+  _impl_.leg_count_ = 0u;
 }
 inline uint32_t TripLeg::_internal_leg_count() const {
-  if (_internal_has_leg_count()) {
-    return _impl_.has_leg_count_.leg_count_;
-  }
-  return 0u;
-}
-inline void TripLeg::_internal_set_leg_count(uint32_t value) {
-  if (!_internal_has_leg_count()) {
-    clear_has_leg_count();
-    set_has_leg_count();
-  }
-  _impl_.has_leg_count_.leg_count_ = value;
+  return _impl_.leg_count_;
 }
 inline uint32_t TripLeg::leg_count() const {
   // @@protoc_insertion_point(field_get:valhalla.TripLeg.leg_count)
   return _internal_leg_count();
+}
+inline void TripLeg::_internal_set_leg_count(uint32_t value) {
+  
+  _impl_.leg_count_ = value;
 }
 inline void TripLeg::set_leg_count(uint32_t value) {
   _internal_set_leg_count(value);
@@ -11370,33 +7762,18 @@ TripLeg::admin() const {
 }
 
 // string shape = 8;
-inline bool TripLeg::_internal_has_shape() const {
-  return has_shape_case() == kShape;
-}
-inline bool TripLeg::has_shape() const {
-  return _internal_has_shape();
-}
-inline void TripLeg::set_has_shape() {
-  _impl_._oneof_case_[4] = kShape;
-}
 inline void TripLeg::clear_shape() {
-  if (_internal_has_shape()) {
-    _impl_.has_shape_.shape_.Destroy();
-    clear_has_has_shape();
-  }
+  _impl_.shape_.ClearToEmpty();
 }
 inline const std::string& TripLeg::shape() const {
   // @@protoc_insertion_point(field_get:valhalla.TripLeg.shape)
   return _internal_shape();
 }
 template <typename ArgT0, typename... ArgT>
-inline void TripLeg::set_shape(ArgT0&& arg0, ArgT... args) {
-  if (!_internal_has_shape()) {
-    clear_has_shape();
-    set_has_shape();
-    _impl_.has_shape_.shape_.InitDefault();
-  }
-  _impl_.has_shape_.shape_.Set( static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+inline PROTOBUF_ALWAYS_INLINE
+void TripLeg::set_shape(ArgT0&& arg0, ArgT... args) {
+ 
+ _impl_.shape_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
   // @@protoc_insertion_point(field_set:valhalla.TripLeg.shape)
 }
 inline std::string* TripLeg::mutable_shape() {
@@ -11405,44 +7782,32 @@ inline std::string* TripLeg::mutable_shape() {
   return _s;
 }
 inline const std::string& TripLeg::_internal_shape() const {
-  if (_internal_has_shape()) {
-    return _impl_.has_shape_.shape_.Get();
-  }
-  return ::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited();
+  return _impl_.shape_.Get();
 }
 inline void TripLeg::_internal_set_shape(const std::string& value) {
-  if (!_internal_has_shape()) {
-    clear_has_shape();
-    set_has_shape();
-    _impl_.has_shape_.shape_.InitDefault();
-  }
-  _impl_.has_shape_.shape_.Set(value, GetArenaForAllocation());
+  
+  _impl_.shape_.Set(value, GetArenaForAllocation());
 }
 inline std::string* TripLeg::_internal_mutable_shape() {
-  if (!_internal_has_shape()) {
-    clear_has_shape();
-    set_has_shape();
-    _impl_.has_shape_.shape_.InitDefault();
-  }
-  return _impl_.has_shape_.shape_.Mutable(      GetArenaForAllocation());
+  
+  return _impl_.shape_.Mutable(GetArenaForAllocation());
 }
 inline std::string* TripLeg::release_shape() {
   // @@protoc_insertion_point(field_release:valhalla.TripLeg.shape)
-  if (_internal_has_shape()) {
-    clear_has_has_shape();
-    return _impl_.has_shape_.shape_.Release();
-  } else {
-    return nullptr;
-  }
+  return _impl_.shape_.Release();
 }
 inline void TripLeg::set_allocated_shape(std::string* shape) {
-  if (has_has_shape()) {
-    clear_has_shape();
-  }
   if (shape != nullptr) {
-    set_has_shape();
-    _impl_.has_shape_.shape_.InitAllocated(shape, GetArenaForAllocation());
+    
+  } else {
+    
   }
+  _impl_.shape_.SetAllocated(shape, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.shape_.IsDefault()) {
+    _impl_.shape_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:valhalla.TripLeg.shape)
 }
 
@@ -11776,51 +8141,6 @@ TripLeg::closures() const {
   return _impl_.closures_;
 }
 
-inline bool TripLeg::has_has_osm_changeset() const {
-  return has_osm_changeset_case() != HAS_OSM_CHANGESET_NOT_SET;
-}
-inline void TripLeg::clear_has_has_osm_changeset() {
-  _impl_._oneof_case_[0] = HAS_OSM_CHANGESET_NOT_SET;
-}
-inline bool TripLeg::has_has_trip_id() const {
-  return has_trip_id_case() != HAS_TRIP_ID_NOT_SET;
-}
-inline void TripLeg::clear_has_has_trip_id() {
-  _impl_._oneof_case_[1] = HAS_TRIP_ID_NOT_SET;
-}
-inline bool TripLeg::has_has_leg_id() const {
-  return has_leg_id_case() != HAS_LEG_ID_NOT_SET;
-}
-inline void TripLeg::clear_has_has_leg_id() {
-  _impl_._oneof_case_[2] = HAS_LEG_ID_NOT_SET;
-}
-inline bool TripLeg::has_has_leg_count() const {
-  return has_leg_count_case() != HAS_LEG_COUNT_NOT_SET;
-}
-inline void TripLeg::clear_has_has_leg_count() {
-  _impl_._oneof_case_[3] = HAS_LEG_COUNT_NOT_SET;
-}
-inline bool TripLeg::has_has_shape() const {
-  return has_shape_case() != HAS_SHAPE_NOT_SET;
-}
-inline void TripLeg::clear_has_has_shape() {
-  _impl_._oneof_case_[4] = HAS_SHAPE_NOT_SET;
-}
-inline TripLeg::HasOsmChangesetCase TripLeg::has_osm_changeset_case() const {
-  return TripLeg::HasOsmChangesetCase(_impl_._oneof_case_[0]);
-}
-inline TripLeg::HasTripIdCase TripLeg::has_trip_id_case() const {
-  return TripLeg::HasTripIdCase(_impl_._oneof_case_[1]);
-}
-inline TripLeg::HasLegIdCase TripLeg::has_leg_id_case() const {
-  return TripLeg::HasLegIdCase(_impl_._oneof_case_[2]);
-}
-inline TripLeg::HasLegCountCase TripLeg::has_leg_count_case() const {
-  return TripLeg::HasLegCountCase(_impl_._oneof_case_[3]);
-}
-inline TripLeg::HasShapeCase TripLeg::has_shape_case() const {
-  return TripLeg::HasShapeCase(_impl_._oneof_case_[4]);
-}
 // -------------------------------------------------------------------
 
 // TripRoute

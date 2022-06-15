@@ -21,11 +21,10 @@ namespace valhalla {
 PROTOBUF_CONSTEXPR DirectionsLeg_Summary::DirectionsLeg_Summary(
     ::_pbi::ConstantInitialized): _impl_{
     /*decltype(_impl_.bbox_)*/nullptr
-  , /*decltype(_impl_.has_length_)*/{}
-  , /*decltype(_impl_.has_time_)*/{}
-  , /*decltype(_impl_.has_has_time_restrictions_)*/{}
-  , /*decltype(_impl_._cached_size_)*/{}
-  , /*decltype(_impl_._oneof_case_)*/{}} {}
+  , /*decltype(_impl_.time_)*/0
+  , /*decltype(_impl_.length_)*/0
+  , /*decltype(_impl_.has_time_restrictions_)*/false
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct DirectionsLeg_SummaryDefaultTypeInternal {
   PROTOBUF_CONSTEXPR DirectionsLeg_SummaryDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -38,11 +37,10 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORIT
 PROTOBUF_CONSTEXPR DirectionsLeg_GuidanceView::DirectionsLeg_GuidanceView(
     ::_pbi::ConstantInitialized): _impl_{
     /*decltype(_impl_.overlay_ids_)*/{}
-  , /*decltype(_impl_.has_data_id_)*/{}
-  , /*decltype(_impl_.has_type_)*/{}
-  , /*decltype(_impl_.has_base_id_)*/{}
-  , /*decltype(_impl_._cached_size_)*/{}
-  , /*decltype(_impl_._oneof_case_)*/{}} {}
+  , /*decltype(_impl_.data_id_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.base_id_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.type_)*/0
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct DirectionsLeg_GuidanceViewDefaultTypeInternal {
   PROTOBUF_CONSTEXPR DirectionsLeg_GuidanceViewDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -58,42 +56,41 @@ PROTOBUF_CONSTEXPR DirectionsLeg_Maneuver::DirectionsLeg_Maneuver(
   , /*decltype(_impl_.begin_street_name_)*/{}
   , /*decltype(_impl_.roundabout_exit_street_names_)*/{}
   , /*decltype(_impl_.guidance_views_)*/{}
+  , /*decltype(_impl_.text_instruction_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.verbal_transition_alert_instruction_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.verbal_pre_transition_instruction_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.verbal_post_transition_instruction_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.depart_instruction_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.verbal_depart_instruction_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.arrive_instruction_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.verbal_arrive_instruction_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.verbal_succinct_transition_instruction_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
   , /*decltype(_impl_.sign_)*/nullptr
   , /*decltype(_impl_.transit_info_)*/nullptr
   , /*decltype(_impl_.bss_info_)*/nullptr
-  , /*decltype(_impl_.has_type_)*/{}
-  , /*decltype(_impl_.has_text_instruction_)*/{}
-  , /*decltype(_impl_.has_length_)*/{}
-  , /*decltype(_impl_.has_time_)*/{}
-  , /*decltype(_impl_.has_begin_cardinal_direction_)*/{}
-  , /*decltype(_impl_.has_begin_heading_)*/{}
-  , /*decltype(_impl_.has_begin_shape_index_)*/{}
-  , /*decltype(_impl_.has_end_shape_index_)*/{}
-  , /*decltype(_impl_.has_portions_toll_)*/{}
-  , /*decltype(_impl_.has_portions_unpaved_)*/{}
-  , /*decltype(_impl_.has_verbal_transition_alert_instruction_)*/{}
-  , /*decltype(_impl_.has_verbal_pre_transition_instruction_)*/{}
-  , /*decltype(_impl_.has_verbal_post_transition_instruction_)*/{}
-  , /*decltype(_impl_.has_roundabout_exit_count_)*/{}
-  , /*decltype(_impl_.has_depart_instruction_)*/{}
-  , /*decltype(_impl_.has_verbal_depart_instruction_)*/{}
-  , /*decltype(_impl_.has_arrive_instruction_)*/{}
-  , /*decltype(_impl_.has_verbal_arrive_instruction_)*/{}
-  , /*decltype(_impl_.has_verbal_multi_cue_)*/{}
-  , /*decltype(_impl_.has_travel_mode_)*/{}
-  , /*decltype(_impl_.has_vehicle_type_)*/{}
-  , /*decltype(_impl_.has_pedestrian_type_)*/{}
-  , /*decltype(_impl_.has_bicycle_type_)*/{}
-  , /*decltype(_impl_.has_transit_type_)*/{}
-  , /*decltype(_impl_.has_begin_path_index_)*/{}
-  , /*decltype(_impl_.has_end_path_index_)*/{}
-  , /*decltype(_impl_.has_to_stay_on_)*/{}
-  , /*decltype(_impl_.has_turn_degree_)*/{}
-  , /*decltype(_impl_.has_has_time_restrictions_)*/{}
-  , /*decltype(_impl_.has_bss_maneuver_type_)*/{}
-  , /*decltype(_impl_.has_verbal_succinct_transition_instruction_)*/{}
-  , /*decltype(_impl_._cached_size_)*/{}
-  , /*decltype(_impl_._oneof_case_)*/{}} {}
+  , /*decltype(_impl_.type_)*/0
+  , /*decltype(_impl_.length_)*/0
+  , /*decltype(_impl_.time_)*/0
+  , /*decltype(_impl_.begin_cardinal_direction_)*/0
+  , /*decltype(_impl_.begin_heading_)*/0u
+  , /*decltype(_impl_.begin_shape_index_)*/0u
+  , /*decltype(_impl_.end_shape_index_)*/0u
+  , /*decltype(_impl_.roundabout_exit_count_)*/0u
+  , /*decltype(_impl_.portions_toll_)*/false
+  , /*decltype(_impl_.portions_unpaved_)*/false
+  , /*decltype(_impl_.verbal_multi_cue_)*/false
+  , /*decltype(_impl_.to_stay_on_)*/false
+  , /*decltype(_impl_.travel_mode_)*/0
+  , /*decltype(_impl_.vehicle_type_)*/0
+  , /*decltype(_impl_.pedestrian_type_)*/0
+  , /*decltype(_impl_.bicycle_type_)*/0
+  , /*decltype(_impl_.transit_type_)*/0
+  , /*decltype(_impl_.begin_path_index_)*/0u
+  , /*decltype(_impl_.end_path_index_)*/0u
+  , /*decltype(_impl_.turn_degree_)*/0u
+  , /*decltype(_impl_.has_time_restrictions_)*/false
+  , /*decltype(_impl_.bss_maneuver_type_)*/0
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct DirectionsLeg_ManeuverDefaultTypeInternal {
   PROTOBUF_CONSTEXPR DirectionsLeg_ManeuverDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -107,13 +104,12 @@ PROTOBUF_CONSTEXPR DirectionsLeg::DirectionsLeg(
     ::_pbi::ConstantInitialized): _impl_{
     /*decltype(_impl_.location_)*/{}
   , /*decltype(_impl_.maneuver_)*/{}
+  , /*decltype(_impl_.shape_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
   , /*decltype(_impl_.summary_)*/nullptr
-  , /*decltype(_impl_.has_trip_id_)*/{}
-  , /*decltype(_impl_.has_leg_id_)*/{}
-  , /*decltype(_impl_.has_leg_count_)*/{}
-  , /*decltype(_impl_.has_shape_)*/{}
-  , /*decltype(_impl_._cached_size_)*/{}
-  , /*decltype(_impl_._oneof_case_)*/{}} {}
+  , /*decltype(_impl_.trip_id_)*/uint64_t{0u}
+  , /*decltype(_impl_.leg_id_)*/0u
+  , /*decltype(_impl_.leg_count_)*/0u
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct DirectionsLegDefaultTypeInternal {
   PROTOBUF_CONSTEXPR DirectionsLegDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -373,20 +369,29 @@ bool DirectionsLeg_Maneuver_Type_IsValid(int value) {
     case 36:
     case 37:
     case 38:
+    case 39:
+    case 40:
+    case 41:
+    case 42:
+    case 43:
       return true;
     default:
       return false;
   }
 }
 
-static ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<std::string> DirectionsLeg_Maneuver_Type_strings[39] = {};
+static ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<std::string> DirectionsLeg_Maneuver_Type_strings[44] = {};
 
 static const char DirectionsLeg_Maneuver_Type_names[] =
   "kBecomes"
+  "kBuildingEnter"
+  "kBuildingExit"
   "kContinue"
   "kDestination"
   "kDestinationLeft"
   "kDestinationRight"
+  "kElevatorEnter"
+  "kEscalatorEnter"
   "kExitLeft"
   "kExitRight"
   "kFerryEnter"
@@ -413,6 +418,7 @@ static const char DirectionsLeg_Maneuver_Type_names[] =
   "kStayLeft"
   "kStayRight"
   "kStayStraight"
+  "kStepsEnter"
   "kTransit"
   "kTransitConnectionDestination"
   "kTransitConnectionStart"
@@ -424,86 +430,96 @@ static const char DirectionsLeg_Maneuver_Type_names[] =
 
 static const ::PROTOBUF_NAMESPACE_ID::internal::EnumEntry DirectionsLeg_Maneuver_Type_entries[] = {
   { {DirectionsLeg_Maneuver_Type_names + 0, 8}, 7 },
-  { {DirectionsLeg_Maneuver_Type_names + 8, 9}, 8 },
-  { {DirectionsLeg_Maneuver_Type_names + 17, 12}, 4 },
-  { {DirectionsLeg_Maneuver_Type_names + 29, 16}, 6 },
-  { {DirectionsLeg_Maneuver_Type_names + 45, 17}, 5 },
-  { {DirectionsLeg_Maneuver_Type_names + 62, 9}, 21 },
-  { {DirectionsLeg_Maneuver_Type_names + 71, 10}, 20 },
-  { {DirectionsLeg_Maneuver_Type_names + 81, 11}, 28 },
-  { {DirectionsLeg_Maneuver_Type_names + 92, 10}, 29 },
-  { {DirectionsLeg_Maneuver_Type_names + 102, 5}, 15 },
-  { {DirectionsLeg_Maneuver_Type_names + 107, 6}, 25 },
-  { {DirectionsLeg_Maneuver_Type_names + 113, 10}, 38 },
-  { {DirectionsLeg_Maneuver_Type_names + 123, 11}, 37 },
-  { {DirectionsLeg_Maneuver_Type_names + 134, 5}, 0 },
-  { {DirectionsLeg_Maneuver_Type_names + 139, 33}, 36 },
-  { {DirectionsLeg_Maneuver_Type_names + 172, 9}, 19 },
-  { {DirectionsLeg_Maneuver_Type_names + 181, 10}, 18 },
-  { {DirectionsLeg_Maneuver_Type_names + 191, 13}, 17 },
-  { {DirectionsLeg_Maneuver_Type_names + 204, 6}, 10 },
-  { {DirectionsLeg_Maneuver_Type_names + 210, 16}, 26 },
-  { {DirectionsLeg_Maneuver_Type_names + 226, 15}, 27 },
-  { {DirectionsLeg_Maneuver_Type_names + 241, 10}, 14 },
-  { {DirectionsLeg_Maneuver_Type_names + 251, 11}, 11 },
-  { {DirectionsLeg_Maneuver_Type_names + 262, 11}, 16 },
-  { {DirectionsLeg_Maneuver_Type_names + 273, 12}, 9 },
-  { {DirectionsLeg_Maneuver_Type_names + 285, 6}, 1 },
-  { {DirectionsLeg_Maneuver_Type_names + 291, 10}, 3 },
-  { {DirectionsLeg_Maneuver_Type_names + 301, 11}, 2 },
-  { {DirectionsLeg_Maneuver_Type_names + 312, 9}, 24 },
-  { {DirectionsLeg_Maneuver_Type_names + 321, 10}, 23 },
-  { {DirectionsLeg_Maneuver_Type_names + 331, 13}, 22 },
-  { {DirectionsLeg_Maneuver_Type_names + 344, 8}, 30 },
-  { {DirectionsLeg_Maneuver_Type_names + 352, 29}, 35 },
-  { {DirectionsLeg_Maneuver_Type_names + 381, 23}, 33 },
-  { {DirectionsLeg_Maneuver_Type_names + 404, 26}, 34 },
-  { {DirectionsLeg_Maneuver_Type_names + 430, 16}, 32 },
-  { {DirectionsLeg_Maneuver_Type_names + 446, 16}, 31 },
-  { {DirectionsLeg_Maneuver_Type_names + 462, 10}, 13 },
-  { {DirectionsLeg_Maneuver_Type_names + 472, 11}, 12 },
+  { {DirectionsLeg_Maneuver_Type_names + 8, 14}, 42 },
+  { {DirectionsLeg_Maneuver_Type_names + 22, 13}, 43 },
+  { {DirectionsLeg_Maneuver_Type_names + 35, 9}, 8 },
+  { {DirectionsLeg_Maneuver_Type_names + 44, 12}, 4 },
+  { {DirectionsLeg_Maneuver_Type_names + 56, 16}, 6 },
+  { {DirectionsLeg_Maneuver_Type_names + 72, 17}, 5 },
+  { {DirectionsLeg_Maneuver_Type_names + 89, 14}, 39 },
+  { {DirectionsLeg_Maneuver_Type_names + 103, 15}, 41 },
+  { {DirectionsLeg_Maneuver_Type_names + 118, 9}, 21 },
+  { {DirectionsLeg_Maneuver_Type_names + 127, 10}, 20 },
+  { {DirectionsLeg_Maneuver_Type_names + 137, 11}, 28 },
+  { {DirectionsLeg_Maneuver_Type_names + 148, 10}, 29 },
+  { {DirectionsLeg_Maneuver_Type_names + 158, 5}, 15 },
+  { {DirectionsLeg_Maneuver_Type_names + 163, 6}, 25 },
+  { {DirectionsLeg_Maneuver_Type_names + 169, 10}, 38 },
+  { {DirectionsLeg_Maneuver_Type_names + 179, 11}, 37 },
+  { {DirectionsLeg_Maneuver_Type_names + 190, 5}, 0 },
+  { {DirectionsLeg_Maneuver_Type_names + 195, 33}, 36 },
+  { {DirectionsLeg_Maneuver_Type_names + 228, 9}, 19 },
+  { {DirectionsLeg_Maneuver_Type_names + 237, 10}, 18 },
+  { {DirectionsLeg_Maneuver_Type_names + 247, 13}, 17 },
+  { {DirectionsLeg_Maneuver_Type_names + 260, 6}, 10 },
+  { {DirectionsLeg_Maneuver_Type_names + 266, 16}, 26 },
+  { {DirectionsLeg_Maneuver_Type_names + 282, 15}, 27 },
+  { {DirectionsLeg_Maneuver_Type_names + 297, 10}, 14 },
+  { {DirectionsLeg_Maneuver_Type_names + 307, 11}, 11 },
+  { {DirectionsLeg_Maneuver_Type_names + 318, 11}, 16 },
+  { {DirectionsLeg_Maneuver_Type_names + 329, 12}, 9 },
+  { {DirectionsLeg_Maneuver_Type_names + 341, 6}, 1 },
+  { {DirectionsLeg_Maneuver_Type_names + 347, 10}, 3 },
+  { {DirectionsLeg_Maneuver_Type_names + 357, 11}, 2 },
+  { {DirectionsLeg_Maneuver_Type_names + 368, 9}, 24 },
+  { {DirectionsLeg_Maneuver_Type_names + 377, 10}, 23 },
+  { {DirectionsLeg_Maneuver_Type_names + 387, 13}, 22 },
+  { {DirectionsLeg_Maneuver_Type_names + 400, 11}, 40 },
+  { {DirectionsLeg_Maneuver_Type_names + 411, 8}, 30 },
+  { {DirectionsLeg_Maneuver_Type_names + 419, 29}, 35 },
+  { {DirectionsLeg_Maneuver_Type_names + 448, 23}, 33 },
+  { {DirectionsLeg_Maneuver_Type_names + 471, 26}, 34 },
+  { {DirectionsLeg_Maneuver_Type_names + 497, 16}, 32 },
+  { {DirectionsLeg_Maneuver_Type_names + 513, 16}, 31 },
+  { {DirectionsLeg_Maneuver_Type_names + 529, 10}, 13 },
+  { {DirectionsLeg_Maneuver_Type_names + 539, 11}, 12 },
 };
 
 static const int DirectionsLeg_Maneuver_Type_entries_by_number[] = {
-  13, // 0 -> kNone
-  25, // 1 -> kStart
-  27, // 2 -> kStartRight
-  26, // 3 -> kStartLeft
-  2, // 4 -> kDestination
-  4, // 5 -> kDestinationRight
-  3, // 6 -> kDestinationLeft
+  17, // 0 -> kNone
+  29, // 1 -> kStart
+  31, // 2 -> kStartRight
+  30, // 3 -> kStartLeft
+  4, // 4 -> kDestination
+  6, // 5 -> kDestinationRight
+  5, // 6 -> kDestinationLeft
   0, // 7 -> kBecomes
-  1, // 8 -> kContinue
-  24, // 9 -> kSlightRight
-  18, // 10 -> kRight
-  22, // 11 -> kSharpRight
-  38, // 12 -> kUturnRight
-  37, // 13 -> kUturnLeft
-  21, // 14 -> kSharpLeft
-  9, // 15 -> kLeft
-  23, // 16 -> kSlightLeft
-  17, // 17 -> kRampStraight
-  16, // 18 -> kRampRight
-  15, // 19 -> kRampLeft
-  6, // 20 -> kExitRight
-  5, // 21 -> kExitLeft
-  30, // 22 -> kStayStraight
-  29, // 23 -> kStayRight
-  28, // 24 -> kStayLeft
-  10, // 25 -> kMerge
-  19, // 26 -> kRoundaboutEnter
-  20, // 27 -> kRoundaboutExit
-  7, // 28 -> kFerryEnter
-  8, // 29 -> kFerryExit
-  31, // 30 -> kTransit
-  36, // 31 -> kTransitTransfer
-  35, // 32 -> kTransitRemainOn
-  33, // 33 -> kTransitConnectionStart
-  34, // 34 -> kTransitConnectionTransfer
-  32, // 35 -> kTransitConnectionDestination
-  14, // 36 -> kPostTransitConnectionDestination
-  12, // 37 -> kMergeRight
-  11, // 38 -> kMergeLeft
+  3, // 8 -> kContinue
+  28, // 9 -> kSlightRight
+  22, // 10 -> kRight
+  26, // 11 -> kSharpRight
+  43, // 12 -> kUturnRight
+  42, // 13 -> kUturnLeft
+  25, // 14 -> kSharpLeft
+  13, // 15 -> kLeft
+  27, // 16 -> kSlightLeft
+  21, // 17 -> kRampStraight
+  20, // 18 -> kRampRight
+  19, // 19 -> kRampLeft
+  10, // 20 -> kExitRight
+  9, // 21 -> kExitLeft
+  34, // 22 -> kStayStraight
+  33, // 23 -> kStayRight
+  32, // 24 -> kStayLeft
+  14, // 25 -> kMerge
+  23, // 26 -> kRoundaboutEnter
+  24, // 27 -> kRoundaboutExit
+  11, // 28 -> kFerryEnter
+  12, // 29 -> kFerryExit
+  36, // 30 -> kTransit
+  41, // 31 -> kTransitTransfer
+  40, // 32 -> kTransitRemainOn
+  38, // 33 -> kTransitConnectionStart
+  39, // 34 -> kTransitConnectionTransfer
+  37, // 35 -> kTransitConnectionDestination
+  18, // 36 -> kPostTransitConnectionDestination
+  16, // 37 -> kMergeRight
+  15, // 38 -> kMergeLeft
+  7, // 39 -> kElevatorEnter
+  35, // 40 -> kStepsEnter
+  8, // 41 -> kEscalatorEnter
+  1, // 42 -> kBuildingEnter
+  2, // 43 -> kBuildingExit
 };
 
 const std::string& DirectionsLeg_Maneuver_Type_Name(
@@ -512,12 +528,12 @@ const std::string& DirectionsLeg_Maneuver_Type_Name(
       ::PROTOBUF_NAMESPACE_ID::internal::InitializeEnumStrings(
           DirectionsLeg_Maneuver_Type_entries,
           DirectionsLeg_Maneuver_Type_entries_by_number,
-          39, DirectionsLeg_Maneuver_Type_strings);
+          44, DirectionsLeg_Maneuver_Type_strings);
   (void) dummy;
   int idx = ::PROTOBUF_NAMESPACE_ID::internal::LookUpEnumName(
       DirectionsLeg_Maneuver_Type_entries,
       DirectionsLeg_Maneuver_Type_entries_by_number,
-      39, value);
+      44, value);
   return idx == -1 ? ::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString() :
                      DirectionsLeg_Maneuver_Type_strings[idx].get();
 }
@@ -525,7 +541,7 @@ bool DirectionsLeg_Maneuver_Type_Parse(
     ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, DirectionsLeg_Maneuver_Type* value) {
   int int_value;
   bool success = ::PROTOBUF_NAMESPACE_ID::internal::LookUpEnumValue(
-      DirectionsLeg_Maneuver_Type_entries, 39, name, &int_value);
+      DirectionsLeg_Maneuver_Type_entries, 44, name, &int_value);
   if (success) {
     *value = static_cast<DirectionsLeg_Maneuver_Type>(int_value);
   }
@@ -571,6 +587,11 @@ constexpr DirectionsLeg_Maneuver_Type DirectionsLeg_Maneuver::kTransitConnection
 constexpr DirectionsLeg_Maneuver_Type DirectionsLeg_Maneuver::kPostTransitConnectionDestination;
 constexpr DirectionsLeg_Maneuver_Type DirectionsLeg_Maneuver::kMergeRight;
 constexpr DirectionsLeg_Maneuver_Type DirectionsLeg_Maneuver::kMergeLeft;
+constexpr DirectionsLeg_Maneuver_Type DirectionsLeg_Maneuver::kElevatorEnter;
+constexpr DirectionsLeg_Maneuver_Type DirectionsLeg_Maneuver::kStepsEnter;
+constexpr DirectionsLeg_Maneuver_Type DirectionsLeg_Maneuver::kEscalatorEnter;
+constexpr DirectionsLeg_Maneuver_Type DirectionsLeg_Maneuver::kBuildingEnter;
+constexpr DirectionsLeg_Maneuver_Type DirectionsLeg_Maneuver::kBuildingExit;
 constexpr DirectionsLeg_Maneuver_Type DirectionsLeg_Maneuver::Type_MIN;
 constexpr DirectionsLeg_Maneuver_Type DirectionsLeg_Maneuver::Type_MAX;
 constexpr int DirectionsLeg_Maneuver::Type_ARRAYSIZE;
@@ -667,46 +688,18 @@ DirectionsLeg_Summary::DirectionsLeg_Summary(const DirectionsLeg_Summary& from)
   DirectionsLeg_Summary* const _this = this; (void)_this;
   new (&_impl_) Impl_{
       decltype(_impl_.bbox_){nullptr}
-    , decltype(_impl_.has_length_){}
-    , decltype(_impl_.has_time_){}
-    , decltype(_impl_.has_has_time_restrictions_){}
-    , /*decltype(_impl_._cached_size_)*/{}
-    , /*decltype(_impl_._oneof_case_)*/{}};
+    , decltype(_impl_.time_){}
+    , decltype(_impl_.length_){}
+    , decltype(_impl_.has_time_restrictions_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
 
   _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
   if (from._internal_has_bbox()) {
     _this->_impl_.bbox_ = new ::valhalla::BoundingBox(*from._impl_.bbox_);
   }
-  clear_has_has_length();
-  switch (from.has_length_case()) {
-    case kLength: {
-      _this->_internal_set_length(from._internal_length());
-      break;
-    }
-    case HAS_LENGTH_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_time();
-  switch (from.has_time_case()) {
-    case kTime: {
-      _this->_internal_set_time(from._internal_time());
-      break;
-    }
-    case HAS_TIME_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_has_time_restrictions();
-  switch (from.has_has_time_restrictions_case()) {
-    case kHasTimeRestrictions: {
-      _this->_internal_set_has_time_restrictions(from._internal_has_time_restrictions());
-      break;
-    }
-    case HAS_HAS_TIME_RESTRICTIONS_NOT_SET: {
-      break;
-    }
-  }
+  ::memcpy(&_impl_.time_, &from._impl_.time_,
+    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.has_time_restrictions_) -
+    reinterpret_cast<char*>(&_impl_.time_)) + sizeof(_impl_.has_time_restrictions_));
   // @@protoc_insertion_point(copy_constructor:valhalla.DirectionsLeg.Summary)
 }
 
@@ -716,15 +709,11 @@ inline void DirectionsLeg_Summary::SharedCtor(
   (void)is_message_owned;
   new (&_impl_) Impl_{
       decltype(_impl_.bbox_){nullptr}
-    , decltype(_impl_.has_length_){}
-    , decltype(_impl_.has_time_){}
-    , decltype(_impl_.has_has_time_restrictions_){}
+    , decltype(_impl_.time_){0}
+    , decltype(_impl_.length_){0}
+    , decltype(_impl_.has_time_restrictions_){false}
     , /*decltype(_impl_._cached_size_)*/{}
-    , /*decltype(_impl_._oneof_case_)*/{}
   };
-  clear_has_has_length();
-  clear_has_has_time();
-  clear_has_has_has_time_restrictions();
 }
 
 DirectionsLeg_Summary::~DirectionsLeg_Summary() {
@@ -739,63 +728,11 @@ DirectionsLeg_Summary::~DirectionsLeg_Summary() {
 inline void DirectionsLeg_Summary::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   if (this != internal_default_instance()) delete _impl_.bbox_;
-  if (has_has_length()) {
-    clear_has_length();
-  }
-  if (has_has_time()) {
-    clear_has_time();
-  }
-  if (has_has_has_time_restrictions()) {
-    clear_has_has_time_restrictions();
-  }
 }
 
 void DirectionsLeg_Summary::SetCachedSize(int size) const {
   _impl_._cached_size_.Set(size);
 }
-
-void DirectionsLeg_Summary::clear_has_length() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.DirectionsLeg.Summary)
-  switch (has_length_case()) {
-    case kLength: {
-      // No need to clear
-      break;
-    }
-    case HAS_LENGTH_NOT_SET: {
-      break;
-    }
-  }
-  _impl_._oneof_case_[0] = HAS_LENGTH_NOT_SET;
-}
-
-void DirectionsLeg_Summary::clear_has_time() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.DirectionsLeg.Summary)
-  switch (has_time_case()) {
-    case kTime: {
-      // No need to clear
-      break;
-    }
-    case HAS_TIME_NOT_SET: {
-      break;
-    }
-  }
-  _impl_._oneof_case_[1] = HAS_TIME_NOT_SET;
-}
-
-void DirectionsLeg_Summary::clear_has_has_time_restrictions() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.DirectionsLeg.Summary)
-  switch (has_has_time_restrictions_case()) {
-    case kHasTimeRestrictions: {
-      // No need to clear
-      break;
-    }
-    case HAS_HAS_TIME_RESTRICTIONS_NOT_SET: {
-      break;
-    }
-  }
-  _impl_._oneof_case_[2] = HAS_HAS_TIME_RESTRICTIONS_NOT_SET;
-}
-
 
 void DirectionsLeg_Summary::Clear() {
 // @@protoc_insertion_point(message_clear_start:valhalla.DirectionsLeg.Summary)
@@ -807,9 +744,9 @@ void DirectionsLeg_Summary::Clear() {
     delete _impl_.bbox_;
   }
   _impl_.bbox_ = nullptr;
-  clear_has_length();
-  clear_has_time();
-  clear_has_has_time_restrictions();
+  ::memset(&_impl_.time_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&_impl_.has_time_restrictions_) -
+      reinterpret_cast<char*>(&_impl_.time_)) + sizeof(_impl_.has_time_restrictions_));
   _internal_metadata_.Clear<std::string>();
 }
 
@@ -822,7 +759,7 @@ const char* DirectionsLeg_Summary::_InternalParse(const char* ptr, ::_pbi::Parse
       // float length = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 13)) {
-          _internal_set_length(::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr));
+          _impl_.length_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
         } else
           goto handle_unusual;
@@ -830,7 +767,7 @@ const char* DirectionsLeg_Summary::_InternalParse(const char* ptr, ::_pbi::Parse
       // double time = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 17)) {
-          _internal_set_time(::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr));
+          _impl_.time_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
           ptr += sizeof(double);
         } else
           goto handle_unusual;
@@ -846,7 +783,7 @@ const char* DirectionsLeg_Summary::_InternalParse(const char* ptr, ::_pbi::Parse
       // bool has_time_restrictions = 4;
       case 4:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 32)) {
-          _internal_set_has_time_restrictions(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr));
+          _impl_.has_time_restrictions_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -881,13 +818,21 @@ uint8_t* DirectionsLeg_Summary::_InternalSerialize(
   (void) cached_has_bits;
 
   // float length = 1;
-  if (_internal_has_length()) {
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_length = this->_internal_length();
+  uint32_t raw_length;
+  memcpy(&raw_length, &tmp_length, sizeof(tmp_length));
+  if (raw_length != 0) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteFloatToArray(1, this->_internal_length(), target);
   }
 
   // double time = 2;
-  if (_internal_has_time()) {
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_time = this->_internal_time();
+  uint64_t raw_time;
+  memcpy(&raw_time, &tmp_time, sizeof(tmp_time));
+  if (raw_time != 0) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteDoubleToArray(2, this->_internal_time(), target);
   }
@@ -900,7 +845,7 @@ uint8_t* DirectionsLeg_Summary::_InternalSerialize(
   }
 
   // bool has_time_restrictions = 4;
-  if (_internal_has_has_time_restrictions()) {
+  if (this->_internal_has_time_restrictions() != 0) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteBoolToArray(4, this->_internal_has_time_restrictions(), target);
   }
@@ -928,36 +873,29 @@ size_t DirectionsLeg_Summary::ByteSizeLong() const {
         *_impl_.bbox_);
   }
 
-  switch (has_length_case()) {
-    // float length = 1;
-    case kLength: {
-      total_size += 1 + 4;
-      break;
-    }
-    case HAS_LENGTH_NOT_SET: {
-      break;
-    }
+  // double time = 2;
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_time = this->_internal_time();
+  uint64_t raw_time;
+  memcpy(&raw_time, &tmp_time, sizeof(tmp_time));
+  if (raw_time != 0) {
+    total_size += 1 + 8;
   }
-  switch (has_time_case()) {
-    // double time = 2;
-    case kTime: {
-      total_size += 1 + 8;
-      break;
-    }
-    case HAS_TIME_NOT_SET: {
-      break;
-    }
+
+  // float length = 1;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_length = this->_internal_length();
+  uint32_t raw_length;
+  memcpy(&raw_length, &tmp_length, sizeof(tmp_length));
+  if (raw_length != 0) {
+    total_size += 1 + 4;
   }
-  switch (has_has_time_restrictions_case()) {
-    // bool has_time_restrictions = 4;
-    case kHasTimeRestrictions: {
-      total_size += 1 + 1;
-      break;
-    }
-    case HAS_HAS_TIME_RESTRICTIONS_NOT_SET: {
-      break;
-    }
+
+  // bool has_time_restrictions = 4;
+  if (this->_internal_has_time_restrictions() != 0) {
+    total_size += 1 + 1;
   }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     total_size += _internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).size();
   }
@@ -983,32 +921,22 @@ void DirectionsLeg_Summary::MergeFrom(const DirectionsLeg_Summary& from) {
     _this->_internal_mutable_bbox()->::valhalla::BoundingBox::MergeFrom(
         from._internal_bbox());
   }
-  switch (from.has_length_case()) {
-    case kLength: {
-      _this->_internal_set_length(from._internal_length());
-      break;
-    }
-    case HAS_LENGTH_NOT_SET: {
-      break;
-    }
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_time = from._internal_time();
+  uint64_t raw_time;
+  memcpy(&raw_time, &tmp_time, sizeof(tmp_time));
+  if (raw_time != 0) {
+    _this->_internal_set_time(from._internal_time());
   }
-  switch (from.has_time_case()) {
-    case kTime: {
-      _this->_internal_set_time(from._internal_time());
-      break;
-    }
-    case HAS_TIME_NOT_SET: {
-      break;
-    }
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_length = from._internal_length();
+  uint32_t raw_length;
+  memcpy(&raw_length, &tmp_length, sizeof(tmp_length));
+  if (raw_length != 0) {
+    _this->_internal_set_length(from._internal_length());
   }
-  switch (from.has_has_time_restrictions_case()) {
-    case kHasTimeRestrictions: {
-      _this->_internal_set_has_time_restrictions(from._internal_has_time_restrictions());
-      break;
-    }
-    case HAS_HAS_TIME_RESTRICTIONS_NOT_SET: {
-      break;
-    }
+  if (from._internal_has_time_restrictions() != 0) {
+    _this->_internal_set_has_time_restrictions(from._internal_has_time_restrictions());
   }
   _this->_internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
 }
@@ -1027,13 +955,12 @@ bool DirectionsLeg_Summary::IsInitialized() const {
 void DirectionsLeg_Summary::InternalSwap(DirectionsLeg_Summary* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(_impl_.bbox_, other->_impl_.bbox_);
-  swap(_impl_.has_length_, other->_impl_.has_length_);
-  swap(_impl_.has_time_, other->_impl_.has_time_);
-  swap(_impl_.has_has_time_restrictions_, other->_impl_.has_has_time_restrictions_);
-  swap(_impl_._oneof_case_[0], other->_impl_._oneof_case_[0]);
-  swap(_impl_._oneof_case_[1], other->_impl_._oneof_case_[1]);
-  swap(_impl_._oneof_case_[2], other->_impl_._oneof_case_[2]);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(DirectionsLeg_Summary, _impl_.has_time_restrictions_)
+      + sizeof(DirectionsLeg_Summary::_impl_.has_time_restrictions_)
+      - PROTOBUF_FIELD_OFFSET(DirectionsLeg_Summary, _impl_.bbox_)>(
+          reinterpret_cast<char*>(&_impl_.bbox_),
+          reinterpret_cast<char*>(&other->_impl_.bbox_));
 }
 
 std::string DirectionsLeg_Summary::GetTypeName() const {
@@ -1058,43 +985,29 @@ DirectionsLeg_GuidanceView::DirectionsLeg_GuidanceView(const DirectionsLeg_Guida
   DirectionsLeg_GuidanceView* const _this = this; (void)_this;
   new (&_impl_) Impl_{
       decltype(_impl_.overlay_ids_){from._impl_.overlay_ids_}
-    , decltype(_impl_.has_data_id_){}
-    , decltype(_impl_.has_type_){}
-    , decltype(_impl_.has_base_id_){}
-    , /*decltype(_impl_._cached_size_)*/{}
-    , /*decltype(_impl_._oneof_case_)*/{}};
+    , decltype(_impl_.data_id_){}
+    , decltype(_impl_.base_id_){}
+    , decltype(_impl_.type_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
 
   _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
-  clear_has_has_data_id();
-  switch (from.has_data_id_case()) {
-    case kDataId: {
-      _this->_internal_set_data_id(from._internal_data_id());
-      break;
-    }
-    case HAS_DATA_ID_NOT_SET: {
-      break;
-    }
+  _impl_.data_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.data_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_data_id().empty()) {
+    _this->_impl_.data_id_.Set(from._internal_data_id(), 
+      _this->GetArenaForAllocation());
   }
-  clear_has_has_type();
-  switch (from.has_type_case()) {
-    case kType: {
-      _this->_internal_set_type(from._internal_type());
-      break;
-    }
-    case HAS_TYPE_NOT_SET: {
-      break;
-    }
+  _impl_.base_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.base_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_base_id().empty()) {
+    _this->_impl_.base_id_.Set(from._internal_base_id(), 
+      _this->GetArenaForAllocation());
   }
-  clear_has_has_base_id();
-  switch (from.has_base_id_case()) {
-    case kBaseId: {
-      _this->_internal_set_base_id(from._internal_base_id());
-      break;
-    }
-    case HAS_BASE_ID_NOT_SET: {
-      break;
-    }
-  }
+  _this->_impl_.type_ = from._impl_.type_;
   // @@protoc_insertion_point(copy_constructor:valhalla.DirectionsLeg.GuidanceView)
 }
 
@@ -1104,15 +1017,19 @@ inline void DirectionsLeg_GuidanceView::SharedCtor(
   (void)is_message_owned;
   new (&_impl_) Impl_{
       decltype(_impl_.overlay_ids_){arena}
-    , decltype(_impl_.has_data_id_){}
-    , decltype(_impl_.has_type_){}
-    , decltype(_impl_.has_base_id_){}
+    , decltype(_impl_.data_id_){}
+    , decltype(_impl_.base_id_){}
+    , decltype(_impl_.type_){0}
     , /*decltype(_impl_._cached_size_)*/{}
-    , /*decltype(_impl_._oneof_case_)*/{}
   };
-  clear_has_has_data_id();
-  clear_has_has_type();
-  clear_has_has_base_id();
+  _impl_.data_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.data_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.base_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.base_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 DirectionsLeg_GuidanceView::~DirectionsLeg_GuidanceView() {
@@ -1127,63 +1044,13 @@ DirectionsLeg_GuidanceView::~DirectionsLeg_GuidanceView() {
 inline void DirectionsLeg_GuidanceView::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   _impl_.overlay_ids_.~RepeatedPtrField();
-  if (has_has_data_id()) {
-    clear_has_data_id();
-  }
-  if (has_has_type()) {
-    clear_has_type();
-  }
-  if (has_has_base_id()) {
-    clear_has_base_id();
-  }
+  _impl_.data_id_.Destroy();
+  _impl_.base_id_.Destroy();
 }
 
 void DirectionsLeg_GuidanceView::SetCachedSize(int size) const {
   _impl_._cached_size_.Set(size);
 }
-
-void DirectionsLeg_GuidanceView::clear_has_data_id() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.DirectionsLeg.GuidanceView)
-  switch (has_data_id_case()) {
-    case kDataId: {
-      _impl_.has_data_id_.data_id_.Destroy();
-      break;
-    }
-    case HAS_DATA_ID_NOT_SET: {
-      break;
-    }
-  }
-  _impl_._oneof_case_[0] = HAS_DATA_ID_NOT_SET;
-}
-
-void DirectionsLeg_GuidanceView::clear_has_type() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.DirectionsLeg.GuidanceView)
-  switch (has_type_case()) {
-    case kType: {
-      // No need to clear
-      break;
-    }
-    case HAS_TYPE_NOT_SET: {
-      break;
-    }
-  }
-  _impl_._oneof_case_[1] = HAS_TYPE_NOT_SET;
-}
-
-void DirectionsLeg_GuidanceView::clear_has_base_id() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.DirectionsLeg.GuidanceView)
-  switch (has_base_id_case()) {
-    case kBaseId: {
-      _impl_.has_base_id_.base_id_.Destroy();
-      break;
-    }
-    case HAS_BASE_ID_NOT_SET: {
-      break;
-    }
-  }
-  _impl_._oneof_case_[2] = HAS_BASE_ID_NOT_SET;
-}
-
 
 void DirectionsLeg_GuidanceView::Clear() {
 // @@protoc_insertion_point(message_clear_start:valhalla.DirectionsLeg.GuidanceView)
@@ -1192,9 +1059,9 @@ void DirectionsLeg_GuidanceView::Clear() {
   (void) cached_has_bits;
 
   _impl_.overlay_ids_.Clear();
-  clear_has_data_id();
-  clear_has_type();
-  clear_has_base_id();
+  _impl_.data_id_.ClearToEmpty();
+  _impl_.base_id_.ClearToEmpty();
+  _impl_.type_ = 0;
   _internal_metadata_.Clear<std::string>();
 }
 
@@ -1278,7 +1145,7 @@ uint8_t* DirectionsLeg_GuidanceView::_InternalSerialize(
   (void) cached_has_bits;
 
   // string data_id = 1;
-  if (_internal_has_data_id()) {
+  if (!this->_internal_data_id().empty()) {
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_data_id().data(), static_cast<int>(this->_internal_data_id().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
@@ -1288,14 +1155,14 @@ uint8_t* DirectionsLeg_GuidanceView::_InternalSerialize(
   }
 
   // .valhalla.DirectionsLeg.GuidanceView.Type type = 2;
-  if (_internal_has_type()) {
+  if (this->_internal_type() != 0) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteEnumToArray(
       2, this->_internal_type(), target);
   }
 
   // string base_id = 3;
-  if (_internal_has_base_id()) {
+  if (!this->_internal_base_id().empty()) {
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_base_id().data(), static_cast<int>(this->_internal_base_id().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
@@ -1338,41 +1205,26 @@ size_t DirectionsLeg_GuidanceView::ByteSizeLong() const {
       _impl_.overlay_ids_.Get(i));
   }
 
-  switch (has_data_id_case()) {
-    // string data_id = 1;
-    case kDataId: {
-      total_size += 1 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-          this->_internal_data_id());
-      break;
-    }
-    case HAS_DATA_ID_NOT_SET: {
-      break;
-    }
+  // string data_id = 1;
+  if (!this->_internal_data_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_data_id());
   }
-  switch (has_type_case()) {
-    // .valhalla.DirectionsLeg.GuidanceView.Type type = 2;
-    case kType: {
-      total_size += 1 +
-        ::_pbi::WireFormatLite::EnumSize(this->_internal_type());
-      break;
-    }
-    case HAS_TYPE_NOT_SET: {
-      break;
-    }
+
+  // string base_id = 3;
+  if (!this->_internal_base_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_base_id());
   }
-  switch (has_base_id_case()) {
-    // string base_id = 3;
-    case kBaseId: {
-      total_size += 1 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-          this->_internal_base_id());
-      break;
-    }
-    case HAS_BASE_ID_NOT_SET: {
-      break;
-    }
+
+  // .valhalla.DirectionsLeg.GuidanceView.Type type = 2;
+  if (this->_internal_type() != 0) {
+    total_size += 1 +
+      ::_pbi::WireFormatLite::EnumSize(this->_internal_type());
   }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     total_size += _internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).size();
   }
@@ -1395,32 +1247,14 @@ void DirectionsLeg_GuidanceView::MergeFrom(const DirectionsLeg_GuidanceView& fro
   (void) cached_has_bits;
 
   _this->_impl_.overlay_ids_.MergeFrom(from._impl_.overlay_ids_);
-  switch (from.has_data_id_case()) {
-    case kDataId: {
-      _this->_internal_set_data_id(from._internal_data_id());
-      break;
-    }
-    case HAS_DATA_ID_NOT_SET: {
-      break;
-    }
+  if (!from._internal_data_id().empty()) {
+    _this->_internal_set_data_id(from._internal_data_id());
   }
-  switch (from.has_type_case()) {
-    case kType: {
-      _this->_internal_set_type(from._internal_type());
-      break;
-    }
-    case HAS_TYPE_NOT_SET: {
-      break;
-    }
+  if (!from._internal_base_id().empty()) {
+    _this->_internal_set_base_id(from._internal_base_id());
   }
-  switch (from.has_base_id_case()) {
-    case kBaseId: {
-      _this->_internal_set_base_id(from._internal_base_id());
-      break;
-    }
-    case HAS_BASE_ID_NOT_SET: {
-      break;
-    }
+  if (from._internal_type() != 0) {
+    _this->_internal_set_type(from._internal_type());
   }
   _this->_internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
 }
@@ -1438,14 +1272,19 @@ bool DirectionsLeg_GuidanceView::IsInitialized() const {
 
 void DirectionsLeg_GuidanceView::InternalSwap(DirectionsLeg_GuidanceView* other) {
   using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   _impl_.overlay_ids_.InternalSwap(&other->_impl_.overlay_ids_);
-  swap(_impl_.has_data_id_, other->_impl_.has_data_id_);
-  swap(_impl_.has_type_, other->_impl_.has_type_);
-  swap(_impl_.has_base_id_, other->_impl_.has_base_id_);
-  swap(_impl_._oneof_case_[0], other->_impl_._oneof_case_[0]);
-  swap(_impl_._oneof_case_[1], other->_impl_._oneof_case_[1]);
-  swap(_impl_._oneof_case_[2], other->_impl_._oneof_case_[2]);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.data_id_, lhs_arena,
+      &other->_impl_.data_id_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.base_id_, lhs_arena,
+      &other->_impl_.base_id_, rhs_arena
+  );
+  swap(_impl_.type_, other->_impl_.type_);
 }
 
 std::string DirectionsLeg_GuidanceView::GetTypeName() const {
@@ -1515,44 +1354,115 @@ DirectionsLeg_Maneuver::DirectionsLeg_Maneuver(const DirectionsLeg_Maneuver& fro
     , decltype(_impl_.begin_street_name_){from._impl_.begin_street_name_}
     , decltype(_impl_.roundabout_exit_street_names_){from._impl_.roundabout_exit_street_names_}
     , decltype(_impl_.guidance_views_){from._impl_.guidance_views_}
+    , decltype(_impl_.text_instruction_){}
+    , decltype(_impl_.verbal_transition_alert_instruction_){}
+    , decltype(_impl_.verbal_pre_transition_instruction_){}
+    , decltype(_impl_.verbal_post_transition_instruction_){}
+    , decltype(_impl_.depart_instruction_){}
+    , decltype(_impl_.verbal_depart_instruction_){}
+    , decltype(_impl_.arrive_instruction_){}
+    , decltype(_impl_.verbal_arrive_instruction_){}
+    , decltype(_impl_.verbal_succinct_transition_instruction_){}
     , decltype(_impl_.sign_){nullptr}
     , decltype(_impl_.transit_info_){nullptr}
     , decltype(_impl_.bss_info_){nullptr}
-    , decltype(_impl_.has_type_){}
-    , decltype(_impl_.has_text_instruction_){}
-    , decltype(_impl_.has_length_){}
-    , decltype(_impl_.has_time_){}
-    , decltype(_impl_.has_begin_cardinal_direction_){}
-    , decltype(_impl_.has_begin_heading_){}
-    , decltype(_impl_.has_begin_shape_index_){}
-    , decltype(_impl_.has_end_shape_index_){}
-    , decltype(_impl_.has_portions_toll_){}
-    , decltype(_impl_.has_portions_unpaved_){}
-    , decltype(_impl_.has_verbal_transition_alert_instruction_){}
-    , decltype(_impl_.has_verbal_pre_transition_instruction_){}
-    , decltype(_impl_.has_verbal_post_transition_instruction_){}
-    , decltype(_impl_.has_roundabout_exit_count_){}
-    , decltype(_impl_.has_depart_instruction_){}
-    , decltype(_impl_.has_verbal_depart_instruction_){}
-    , decltype(_impl_.has_arrive_instruction_){}
-    , decltype(_impl_.has_verbal_arrive_instruction_){}
-    , decltype(_impl_.has_verbal_multi_cue_){}
-    , decltype(_impl_.has_travel_mode_){}
-    , decltype(_impl_.has_vehicle_type_){}
-    , decltype(_impl_.has_pedestrian_type_){}
-    , decltype(_impl_.has_bicycle_type_){}
-    , decltype(_impl_.has_transit_type_){}
-    , decltype(_impl_.has_begin_path_index_){}
-    , decltype(_impl_.has_end_path_index_){}
-    , decltype(_impl_.has_to_stay_on_){}
-    , decltype(_impl_.has_turn_degree_){}
-    , decltype(_impl_.has_has_time_restrictions_){}
-    , decltype(_impl_.has_bss_maneuver_type_){}
-    , decltype(_impl_.has_verbal_succinct_transition_instruction_){}
-    , /*decltype(_impl_._cached_size_)*/{}
-    , /*decltype(_impl_._oneof_case_)*/{}};
+    , decltype(_impl_.type_){}
+    , decltype(_impl_.length_){}
+    , decltype(_impl_.time_){}
+    , decltype(_impl_.begin_cardinal_direction_){}
+    , decltype(_impl_.begin_heading_){}
+    , decltype(_impl_.begin_shape_index_){}
+    , decltype(_impl_.end_shape_index_){}
+    , decltype(_impl_.roundabout_exit_count_){}
+    , decltype(_impl_.portions_toll_){}
+    , decltype(_impl_.portions_unpaved_){}
+    , decltype(_impl_.verbal_multi_cue_){}
+    , decltype(_impl_.to_stay_on_){}
+    , decltype(_impl_.travel_mode_){}
+    , decltype(_impl_.vehicle_type_){}
+    , decltype(_impl_.pedestrian_type_){}
+    , decltype(_impl_.bicycle_type_){}
+    , decltype(_impl_.transit_type_){}
+    , decltype(_impl_.begin_path_index_){}
+    , decltype(_impl_.end_path_index_){}
+    , decltype(_impl_.turn_degree_){}
+    , decltype(_impl_.has_time_restrictions_){}
+    , decltype(_impl_.bss_maneuver_type_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
 
   _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
+  _impl_.text_instruction_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.text_instruction_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_text_instruction().empty()) {
+    _this->_impl_.text_instruction_.Set(from._internal_text_instruction(), 
+      _this->GetArenaForAllocation());
+  }
+  _impl_.verbal_transition_alert_instruction_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.verbal_transition_alert_instruction_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_verbal_transition_alert_instruction().empty()) {
+    _this->_impl_.verbal_transition_alert_instruction_.Set(from._internal_verbal_transition_alert_instruction(), 
+      _this->GetArenaForAllocation());
+  }
+  _impl_.verbal_pre_transition_instruction_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.verbal_pre_transition_instruction_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_verbal_pre_transition_instruction().empty()) {
+    _this->_impl_.verbal_pre_transition_instruction_.Set(from._internal_verbal_pre_transition_instruction(), 
+      _this->GetArenaForAllocation());
+  }
+  _impl_.verbal_post_transition_instruction_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.verbal_post_transition_instruction_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_verbal_post_transition_instruction().empty()) {
+    _this->_impl_.verbal_post_transition_instruction_.Set(from._internal_verbal_post_transition_instruction(), 
+      _this->GetArenaForAllocation());
+  }
+  _impl_.depart_instruction_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.depart_instruction_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_depart_instruction().empty()) {
+    _this->_impl_.depart_instruction_.Set(from._internal_depart_instruction(), 
+      _this->GetArenaForAllocation());
+  }
+  _impl_.verbal_depart_instruction_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.verbal_depart_instruction_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_verbal_depart_instruction().empty()) {
+    _this->_impl_.verbal_depart_instruction_.Set(from._internal_verbal_depart_instruction(), 
+      _this->GetArenaForAllocation());
+  }
+  _impl_.arrive_instruction_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.arrive_instruction_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_arrive_instruction().empty()) {
+    _this->_impl_.arrive_instruction_.Set(from._internal_arrive_instruction(), 
+      _this->GetArenaForAllocation());
+  }
+  _impl_.verbal_arrive_instruction_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.verbal_arrive_instruction_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_verbal_arrive_instruction().empty()) {
+    _this->_impl_.verbal_arrive_instruction_.Set(from._internal_verbal_arrive_instruction(), 
+      _this->GetArenaForAllocation());
+  }
+  _impl_.verbal_succinct_transition_instruction_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.verbal_succinct_transition_instruction_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_verbal_succinct_transition_instruction().empty()) {
+    _this->_impl_.verbal_succinct_transition_instruction_.Set(from._internal_verbal_succinct_transition_instruction(), 
+      _this->GetArenaForAllocation());
+  }
   if (from._internal_has_sign()) {
     _this->_impl_.sign_ = new ::valhalla::TripSign(*from._impl_.sign_);
   }
@@ -1562,316 +1472,9 @@ DirectionsLeg_Maneuver::DirectionsLeg_Maneuver(const DirectionsLeg_Maneuver& fro
   if (from._internal_has_bss_info()) {
     _this->_impl_.bss_info_ = new ::valhalla::BikeShareStationInfo(*from._impl_.bss_info_);
   }
-  clear_has_has_type();
-  switch (from.has_type_case()) {
-    case kType: {
-      _this->_internal_set_type(from._internal_type());
-      break;
-    }
-    case HAS_TYPE_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_text_instruction();
-  switch (from.has_text_instruction_case()) {
-    case kTextInstruction: {
-      _this->_internal_set_text_instruction(from._internal_text_instruction());
-      break;
-    }
-    case HAS_TEXT_INSTRUCTION_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_length();
-  switch (from.has_length_case()) {
-    case kLength: {
-      _this->_internal_set_length(from._internal_length());
-      break;
-    }
-    case HAS_LENGTH_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_time();
-  switch (from.has_time_case()) {
-    case kTime: {
-      _this->_internal_set_time(from._internal_time());
-      break;
-    }
-    case HAS_TIME_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_begin_cardinal_direction();
-  switch (from.has_begin_cardinal_direction_case()) {
-    case kBeginCardinalDirection: {
-      _this->_internal_set_begin_cardinal_direction(from._internal_begin_cardinal_direction());
-      break;
-    }
-    case HAS_BEGIN_CARDINAL_DIRECTION_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_begin_heading();
-  switch (from.has_begin_heading_case()) {
-    case kBeginHeading: {
-      _this->_internal_set_begin_heading(from._internal_begin_heading());
-      break;
-    }
-    case HAS_BEGIN_HEADING_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_begin_shape_index();
-  switch (from.has_begin_shape_index_case()) {
-    case kBeginShapeIndex: {
-      _this->_internal_set_begin_shape_index(from._internal_begin_shape_index());
-      break;
-    }
-    case HAS_BEGIN_SHAPE_INDEX_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_end_shape_index();
-  switch (from.has_end_shape_index_case()) {
-    case kEndShapeIndex: {
-      _this->_internal_set_end_shape_index(from._internal_end_shape_index());
-      break;
-    }
-    case HAS_END_SHAPE_INDEX_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_portions_toll();
-  switch (from.has_portions_toll_case()) {
-    case kPortionsToll: {
-      _this->_internal_set_portions_toll(from._internal_portions_toll());
-      break;
-    }
-    case HAS_PORTIONS_TOLL_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_portions_unpaved();
-  switch (from.has_portions_unpaved_case()) {
-    case kPortionsUnpaved: {
-      _this->_internal_set_portions_unpaved(from._internal_portions_unpaved());
-      break;
-    }
-    case HAS_PORTIONS_UNPAVED_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_verbal_transition_alert_instruction();
-  switch (from.has_verbal_transition_alert_instruction_case()) {
-    case kVerbalTransitionAlertInstruction: {
-      _this->_internal_set_verbal_transition_alert_instruction(from._internal_verbal_transition_alert_instruction());
-      break;
-    }
-    case HAS_VERBAL_TRANSITION_ALERT_INSTRUCTION_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_verbal_pre_transition_instruction();
-  switch (from.has_verbal_pre_transition_instruction_case()) {
-    case kVerbalPreTransitionInstruction: {
-      _this->_internal_set_verbal_pre_transition_instruction(from._internal_verbal_pre_transition_instruction());
-      break;
-    }
-    case HAS_VERBAL_PRE_TRANSITION_INSTRUCTION_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_verbal_post_transition_instruction();
-  switch (from.has_verbal_post_transition_instruction_case()) {
-    case kVerbalPostTransitionInstruction: {
-      _this->_internal_set_verbal_post_transition_instruction(from._internal_verbal_post_transition_instruction());
-      break;
-    }
-    case HAS_VERBAL_POST_TRANSITION_INSTRUCTION_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_roundabout_exit_count();
-  switch (from.has_roundabout_exit_count_case()) {
-    case kRoundaboutExitCount: {
-      _this->_internal_set_roundabout_exit_count(from._internal_roundabout_exit_count());
-      break;
-    }
-    case HAS_ROUNDABOUT_EXIT_COUNT_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_depart_instruction();
-  switch (from.has_depart_instruction_case()) {
-    case kDepartInstruction: {
-      _this->_internal_set_depart_instruction(from._internal_depart_instruction());
-      break;
-    }
-    case HAS_DEPART_INSTRUCTION_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_verbal_depart_instruction();
-  switch (from.has_verbal_depart_instruction_case()) {
-    case kVerbalDepartInstruction: {
-      _this->_internal_set_verbal_depart_instruction(from._internal_verbal_depart_instruction());
-      break;
-    }
-    case HAS_VERBAL_DEPART_INSTRUCTION_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_arrive_instruction();
-  switch (from.has_arrive_instruction_case()) {
-    case kArriveInstruction: {
-      _this->_internal_set_arrive_instruction(from._internal_arrive_instruction());
-      break;
-    }
-    case HAS_ARRIVE_INSTRUCTION_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_verbal_arrive_instruction();
-  switch (from.has_verbal_arrive_instruction_case()) {
-    case kVerbalArriveInstruction: {
-      _this->_internal_set_verbal_arrive_instruction(from._internal_verbal_arrive_instruction());
-      break;
-    }
-    case HAS_VERBAL_ARRIVE_INSTRUCTION_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_verbal_multi_cue();
-  switch (from.has_verbal_multi_cue_case()) {
-    case kVerbalMultiCue: {
-      _this->_internal_set_verbal_multi_cue(from._internal_verbal_multi_cue());
-      break;
-    }
-    case HAS_VERBAL_MULTI_CUE_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_travel_mode();
-  switch (from.has_travel_mode_case()) {
-    case kTravelMode: {
-      _this->_internal_set_travel_mode(from._internal_travel_mode());
-      break;
-    }
-    case HAS_TRAVEL_MODE_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_vehicle_type();
-  switch (from.has_vehicle_type_case()) {
-    case kVehicleType: {
-      _this->_internal_set_vehicle_type(from._internal_vehicle_type());
-      break;
-    }
-    case HAS_VEHICLE_TYPE_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_pedestrian_type();
-  switch (from.has_pedestrian_type_case()) {
-    case kPedestrianType: {
-      _this->_internal_set_pedestrian_type(from._internal_pedestrian_type());
-      break;
-    }
-    case HAS_PEDESTRIAN_TYPE_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_bicycle_type();
-  switch (from.has_bicycle_type_case()) {
-    case kBicycleType: {
-      _this->_internal_set_bicycle_type(from._internal_bicycle_type());
-      break;
-    }
-    case HAS_BICYCLE_TYPE_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_transit_type();
-  switch (from.has_transit_type_case()) {
-    case kTransitType: {
-      _this->_internal_set_transit_type(from._internal_transit_type());
-      break;
-    }
-    case HAS_TRANSIT_TYPE_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_begin_path_index();
-  switch (from.has_begin_path_index_case()) {
-    case kBeginPathIndex: {
-      _this->_internal_set_begin_path_index(from._internal_begin_path_index());
-      break;
-    }
-    case HAS_BEGIN_PATH_INDEX_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_end_path_index();
-  switch (from.has_end_path_index_case()) {
-    case kEndPathIndex: {
-      _this->_internal_set_end_path_index(from._internal_end_path_index());
-      break;
-    }
-    case HAS_END_PATH_INDEX_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_to_stay_on();
-  switch (from.has_to_stay_on_case()) {
-    case kToStayOn: {
-      _this->_internal_set_to_stay_on(from._internal_to_stay_on());
-      break;
-    }
-    case HAS_TO_STAY_ON_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_turn_degree();
-  switch (from.has_turn_degree_case()) {
-    case kTurnDegree: {
-      _this->_internal_set_turn_degree(from._internal_turn_degree());
-      break;
-    }
-    case HAS_TURN_DEGREE_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_has_time_restrictions();
-  switch (from.has_has_time_restrictions_case()) {
-    case kHasTimeRestrictions: {
-      _this->_internal_set_has_time_restrictions(from._internal_has_time_restrictions());
-      break;
-    }
-    case HAS_HAS_TIME_RESTRICTIONS_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_bss_maneuver_type();
-  switch (from.has_bss_maneuver_type_case()) {
-    case kBssManeuverType: {
-      _this->_internal_set_bss_maneuver_type(from._internal_bss_maneuver_type());
-      break;
-    }
-    case HAS_BSS_MANEUVER_TYPE_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_verbal_succinct_transition_instruction();
-  switch (from.has_verbal_succinct_transition_instruction_case()) {
-    case kVerbalSuccinctTransitionInstruction: {
-      _this->_internal_set_verbal_succinct_transition_instruction(from._internal_verbal_succinct_transition_instruction());
-      break;
-    }
-    case HAS_VERBAL_SUCCINCT_TRANSITION_INSTRUCTION_NOT_SET: {
-      break;
-    }
-  }
+  ::memcpy(&_impl_.type_, &from._impl_.type_,
+    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.bss_maneuver_type_) -
+    reinterpret_cast<char*>(&_impl_.type_)) + sizeof(_impl_.bss_maneuver_type_));
   // @@protoc_insertion_point(copy_constructor:valhalla.DirectionsLeg.Maneuver)
 }
 
@@ -1884,74 +1487,78 @@ inline void DirectionsLeg_Maneuver::SharedCtor(
     , decltype(_impl_.begin_street_name_){arena}
     , decltype(_impl_.roundabout_exit_street_names_){arena}
     , decltype(_impl_.guidance_views_){arena}
+    , decltype(_impl_.text_instruction_){}
+    , decltype(_impl_.verbal_transition_alert_instruction_){}
+    , decltype(_impl_.verbal_pre_transition_instruction_){}
+    , decltype(_impl_.verbal_post_transition_instruction_){}
+    , decltype(_impl_.depart_instruction_){}
+    , decltype(_impl_.verbal_depart_instruction_){}
+    , decltype(_impl_.arrive_instruction_){}
+    , decltype(_impl_.verbal_arrive_instruction_){}
+    , decltype(_impl_.verbal_succinct_transition_instruction_){}
     , decltype(_impl_.sign_){nullptr}
     , decltype(_impl_.transit_info_){nullptr}
     , decltype(_impl_.bss_info_){nullptr}
-    , decltype(_impl_.has_type_){}
-    , decltype(_impl_.has_text_instruction_){}
-    , decltype(_impl_.has_length_){}
-    , decltype(_impl_.has_time_){}
-    , decltype(_impl_.has_begin_cardinal_direction_){}
-    , decltype(_impl_.has_begin_heading_){}
-    , decltype(_impl_.has_begin_shape_index_){}
-    , decltype(_impl_.has_end_shape_index_){}
-    , decltype(_impl_.has_portions_toll_){}
-    , decltype(_impl_.has_portions_unpaved_){}
-    , decltype(_impl_.has_verbal_transition_alert_instruction_){}
-    , decltype(_impl_.has_verbal_pre_transition_instruction_){}
-    , decltype(_impl_.has_verbal_post_transition_instruction_){}
-    , decltype(_impl_.has_roundabout_exit_count_){}
-    , decltype(_impl_.has_depart_instruction_){}
-    , decltype(_impl_.has_verbal_depart_instruction_){}
-    , decltype(_impl_.has_arrive_instruction_){}
-    , decltype(_impl_.has_verbal_arrive_instruction_){}
-    , decltype(_impl_.has_verbal_multi_cue_){}
-    , decltype(_impl_.has_travel_mode_){}
-    , decltype(_impl_.has_vehicle_type_){}
-    , decltype(_impl_.has_pedestrian_type_){}
-    , decltype(_impl_.has_bicycle_type_){}
-    , decltype(_impl_.has_transit_type_){}
-    , decltype(_impl_.has_begin_path_index_){}
-    , decltype(_impl_.has_end_path_index_){}
-    , decltype(_impl_.has_to_stay_on_){}
-    , decltype(_impl_.has_turn_degree_){}
-    , decltype(_impl_.has_has_time_restrictions_){}
-    , decltype(_impl_.has_bss_maneuver_type_){}
-    , decltype(_impl_.has_verbal_succinct_transition_instruction_){}
+    , decltype(_impl_.type_){0}
+    , decltype(_impl_.length_){0}
+    , decltype(_impl_.time_){0}
+    , decltype(_impl_.begin_cardinal_direction_){0}
+    , decltype(_impl_.begin_heading_){0u}
+    , decltype(_impl_.begin_shape_index_){0u}
+    , decltype(_impl_.end_shape_index_){0u}
+    , decltype(_impl_.roundabout_exit_count_){0u}
+    , decltype(_impl_.portions_toll_){false}
+    , decltype(_impl_.portions_unpaved_){false}
+    , decltype(_impl_.verbal_multi_cue_){false}
+    , decltype(_impl_.to_stay_on_){false}
+    , decltype(_impl_.travel_mode_){0}
+    , decltype(_impl_.vehicle_type_){0}
+    , decltype(_impl_.pedestrian_type_){0}
+    , decltype(_impl_.bicycle_type_){0}
+    , decltype(_impl_.transit_type_){0}
+    , decltype(_impl_.begin_path_index_){0u}
+    , decltype(_impl_.end_path_index_){0u}
+    , decltype(_impl_.turn_degree_){0u}
+    , decltype(_impl_.has_time_restrictions_){false}
+    , decltype(_impl_.bss_maneuver_type_){0}
     , /*decltype(_impl_._cached_size_)*/{}
-    , /*decltype(_impl_._oneof_case_)*/{}
   };
-  clear_has_has_type();
-  clear_has_has_text_instruction();
-  clear_has_has_length();
-  clear_has_has_time();
-  clear_has_has_begin_cardinal_direction();
-  clear_has_has_begin_heading();
-  clear_has_has_begin_shape_index();
-  clear_has_has_end_shape_index();
-  clear_has_has_portions_toll();
-  clear_has_has_portions_unpaved();
-  clear_has_has_verbal_transition_alert_instruction();
-  clear_has_has_verbal_pre_transition_instruction();
-  clear_has_has_verbal_post_transition_instruction();
-  clear_has_has_roundabout_exit_count();
-  clear_has_has_depart_instruction();
-  clear_has_has_verbal_depart_instruction();
-  clear_has_has_arrive_instruction();
-  clear_has_has_verbal_arrive_instruction();
-  clear_has_has_verbal_multi_cue();
-  clear_has_has_travel_mode();
-  clear_has_has_vehicle_type();
-  clear_has_has_pedestrian_type();
-  clear_has_has_bicycle_type();
-  clear_has_has_transit_type();
-  clear_has_has_begin_path_index();
-  clear_has_has_end_path_index();
-  clear_has_has_to_stay_on();
-  clear_has_has_turn_degree();
-  clear_has_has_has_time_restrictions();
-  clear_has_has_bss_maneuver_type();
-  clear_has_has_verbal_succinct_transition_instruction();
+  _impl_.text_instruction_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.text_instruction_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.verbal_transition_alert_instruction_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.verbal_transition_alert_instruction_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.verbal_pre_transition_instruction_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.verbal_pre_transition_instruction_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.verbal_post_transition_instruction_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.verbal_post_transition_instruction_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.depart_instruction_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.depart_instruction_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.verbal_depart_instruction_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.verbal_depart_instruction_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.arrive_instruction_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.arrive_instruction_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.verbal_arrive_instruction_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.verbal_arrive_instruction_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.verbal_succinct_transition_instruction_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.verbal_succinct_transition_instruction_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 DirectionsLeg_Maneuver::~DirectionsLeg_Maneuver() {
@@ -1969,542 +1576,23 @@ inline void DirectionsLeg_Maneuver::SharedDtor() {
   _impl_.begin_street_name_.~RepeatedPtrField();
   _impl_.roundabout_exit_street_names_.~RepeatedPtrField();
   _impl_.guidance_views_.~RepeatedPtrField();
+  _impl_.text_instruction_.Destroy();
+  _impl_.verbal_transition_alert_instruction_.Destroy();
+  _impl_.verbal_pre_transition_instruction_.Destroy();
+  _impl_.verbal_post_transition_instruction_.Destroy();
+  _impl_.depart_instruction_.Destroy();
+  _impl_.verbal_depart_instruction_.Destroy();
+  _impl_.arrive_instruction_.Destroy();
+  _impl_.verbal_arrive_instruction_.Destroy();
+  _impl_.verbal_succinct_transition_instruction_.Destroy();
   if (this != internal_default_instance()) delete _impl_.sign_;
   if (this != internal_default_instance()) delete _impl_.transit_info_;
   if (this != internal_default_instance()) delete _impl_.bss_info_;
-  if (has_has_type()) {
-    clear_has_type();
-  }
-  if (has_has_text_instruction()) {
-    clear_has_text_instruction();
-  }
-  if (has_has_length()) {
-    clear_has_length();
-  }
-  if (has_has_time()) {
-    clear_has_time();
-  }
-  if (has_has_begin_cardinal_direction()) {
-    clear_has_begin_cardinal_direction();
-  }
-  if (has_has_begin_heading()) {
-    clear_has_begin_heading();
-  }
-  if (has_has_begin_shape_index()) {
-    clear_has_begin_shape_index();
-  }
-  if (has_has_end_shape_index()) {
-    clear_has_end_shape_index();
-  }
-  if (has_has_portions_toll()) {
-    clear_has_portions_toll();
-  }
-  if (has_has_portions_unpaved()) {
-    clear_has_portions_unpaved();
-  }
-  if (has_has_verbal_transition_alert_instruction()) {
-    clear_has_verbal_transition_alert_instruction();
-  }
-  if (has_has_verbal_pre_transition_instruction()) {
-    clear_has_verbal_pre_transition_instruction();
-  }
-  if (has_has_verbal_post_transition_instruction()) {
-    clear_has_verbal_post_transition_instruction();
-  }
-  if (has_has_roundabout_exit_count()) {
-    clear_has_roundabout_exit_count();
-  }
-  if (has_has_depart_instruction()) {
-    clear_has_depart_instruction();
-  }
-  if (has_has_verbal_depart_instruction()) {
-    clear_has_verbal_depart_instruction();
-  }
-  if (has_has_arrive_instruction()) {
-    clear_has_arrive_instruction();
-  }
-  if (has_has_verbal_arrive_instruction()) {
-    clear_has_verbal_arrive_instruction();
-  }
-  if (has_has_verbal_multi_cue()) {
-    clear_has_verbal_multi_cue();
-  }
-  if (has_has_travel_mode()) {
-    clear_has_travel_mode();
-  }
-  if (has_has_vehicle_type()) {
-    clear_has_vehicle_type();
-  }
-  if (has_has_pedestrian_type()) {
-    clear_has_pedestrian_type();
-  }
-  if (has_has_bicycle_type()) {
-    clear_has_bicycle_type();
-  }
-  if (has_has_transit_type()) {
-    clear_has_transit_type();
-  }
-  if (has_has_begin_path_index()) {
-    clear_has_begin_path_index();
-  }
-  if (has_has_end_path_index()) {
-    clear_has_end_path_index();
-  }
-  if (has_has_to_stay_on()) {
-    clear_has_to_stay_on();
-  }
-  if (has_has_turn_degree()) {
-    clear_has_turn_degree();
-  }
-  if (has_has_has_time_restrictions()) {
-    clear_has_has_time_restrictions();
-  }
-  if (has_has_bss_maneuver_type()) {
-    clear_has_bss_maneuver_type();
-  }
-  if (has_has_verbal_succinct_transition_instruction()) {
-    clear_has_verbal_succinct_transition_instruction();
-  }
 }
 
 void DirectionsLeg_Maneuver::SetCachedSize(int size) const {
   _impl_._cached_size_.Set(size);
 }
-
-void DirectionsLeg_Maneuver::clear_has_type() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.DirectionsLeg.Maneuver)
-  switch (has_type_case()) {
-    case kType: {
-      // No need to clear
-      break;
-    }
-    case HAS_TYPE_NOT_SET: {
-      break;
-    }
-  }
-  _impl_._oneof_case_[0] = HAS_TYPE_NOT_SET;
-}
-
-void DirectionsLeg_Maneuver::clear_has_text_instruction() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.DirectionsLeg.Maneuver)
-  switch (has_text_instruction_case()) {
-    case kTextInstruction: {
-      _impl_.has_text_instruction_.text_instruction_.Destroy();
-      break;
-    }
-    case HAS_TEXT_INSTRUCTION_NOT_SET: {
-      break;
-    }
-  }
-  _impl_._oneof_case_[1] = HAS_TEXT_INSTRUCTION_NOT_SET;
-}
-
-void DirectionsLeg_Maneuver::clear_has_length() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.DirectionsLeg.Maneuver)
-  switch (has_length_case()) {
-    case kLength: {
-      // No need to clear
-      break;
-    }
-    case HAS_LENGTH_NOT_SET: {
-      break;
-    }
-  }
-  _impl_._oneof_case_[2] = HAS_LENGTH_NOT_SET;
-}
-
-void DirectionsLeg_Maneuver::clear_has_time() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.DirectionsLeg.Maneuver)
-  switch (has_time_case()) {
-    case kTime: {
-      // No need to clear
-      break;
-    }
-    case HAS_TIME_NOT_SET: {
-      break;
-    }
-  }
-  _impl_._oneof_case_[3] = HAS_TIME_NOT_SET;
-}
-
-void DirectionsLeg_Maneuver::clear_has_begin_cardinal_direction() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.DirectionsLeg.Maneuver)
-  switch (has_begin_cardinal_direction_case()) {
-    case kBeginCardinalDirection: {
-      // No need to clear
-      break;
-    }
-    case HAS_BEGIN_CARDINAL_DIRECTION_NOT_SET: {
-      break;
-    }
-  }
-  _impl_._oneof_case_[4] = HAS_BEGIN_CARDINAL_DIRECTION_NOT_SET;
-}
-
-void DirectionsLeg_Maneuver::clear_has_begin_heading() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.DirectionsLeg.Maneuver)
-  switch (has_begin_heading_case()) {
-    case kBeginHeading: {
-      // No need to clear
-      break;
-    }
-    case HAS_BEGIN_HEADING_NOT_SET: {
-      break;
-    }
-  }
-  _impl_._oneof_case_[5] = HAS_BEGIN_HEADING_NOT_SET;
-}
-
-void DirectionsLeg_Maneuver::clear_has_begin_shape_index() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.DirectionsLeg.Maneuver)
-  switch (has_begin_shape_index_case()) {
-    case kBeginShapeIndex: {
-      // No need to clear
-      break;
-    }
-    case HAS_BEGIN_SHAPE_INDEX_NOT_SET: {
-      break;
-    }
-  }
-  _impl_._oneof_case_[6] = HAS_BEGIN_SHAPE_INDEX_NOT_SET;
-}
-
-void DirectionsLeg_Maneuver::clear_has_end_shape_index() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.DirectionsLeg.Maneuver)
-  switch (has_end_shape_index_case()) {
-    case kEndShapeIndex: {
-      // No need to clear
-      break;
-    }
-    case HAS_END_SHAPE_INDEX_NOT_SET: {
-      break;
-    }
-  }
-  _impl_._oneof_case_[7] = HAS_END_SHAPE_INDEX_NOT_SET;
-}
-
-void DirectionsLeg_Maneuver::clear_has_portions_toll() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.DirectionsLeg.Maneuver)
-  switch (has_portions_toll_case()) {
-    case kPortionsToll: {
-      // No need to clear
-      break;
-    }
-    case HAS_PORTIONS_TOLL_NOT_SET: {
-      break;
-    }
-  }
-  _impl_._oneof_case_[8] = HAS_PORTIONS_TOLL_NOT_SET;
-}
-
-void DirectionsLeg_Maneuver::clear_has_portions_unpaved() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.DirectionsLeg.Maneuver)
-  switch (has_portions_unpaved_case()) {
-    case kPortionsUnpaved: {
-      // No need to clear
-      break;
-    }
-    case HAS_PORTIONS_UNPAVED_NOT_SET: {
-      break;
-    }
-  }
-  _impl_._oneof_case_[9] = HAS_PORTIONS_UNPAVED_NOT_SET;
-}
-
-void DirectionsLeg_Maneuver::clear_has_verbal_transition_alert_instruction() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.DirectionsLeg.Maneuver)
-  switch (has_verbal_transition_alert_instruction_case()) {
-    case kVerbalTransitionAlertInstruction: {
-      _impl_.has_verbal_transition_alert_instruction_.verbal_transition_alert_instruction_.Destroy();
-      break;
-    }
-    case HAS_VERBAL_TRANSITION_ALERT_INSTRUCTION_NOT_SET: {
-      break;
-    }
-  }
-  _impl_._oneof_case_[10] = HAS_VERBAL_TRANSITION_ALERT_INSTRUCTION_NOT_SET;
-}
-
-void DirectionsLeg_Maneuver::clear_has_verbal_pre_transition_instruction() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.DirectionsLeg.Maneuver)
-  switch (has_verbal_pre_transition_instruction_case()) {
-    case kVerbalPreTransitionInstruction: {
-      _impl_.has_verbal_pre_transition_instruction_.verbal_pre_transition_instruction_.Destroy();
-      break;
-    }
-    case HAS_VERBAL_PRE_TRANSITION_INSTRUCTION_NOT_SET: {
-      break;
-    }
-  }
-  _impl_._oneof_case_[11] = HAS_VERBAL_PRE_TRANSITION_INSTRUCTION_NOT_SET;
-}
-
-void DirectionsLeg_Maneuver::clear_has_verbal_post_transition_instruction() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.DirectionsLeg.Maneuver)
-  switch (has_verbal_post_transition_instruction_case()) {
-    case kVerbalPostTransitionInstruction: {
-      _impl_.has_verbal_post_transition_instruction_.verbal_post_transition_instruction_.Destroy();
-      break;
-    }
-    case HAS_VERBAL_POST_TRANSITION_INSTRUCTION_NOT_SET: {
-      break;
-    }
-  }
-  _impl_._oneof_case_[12] = HAS_VERBAL_POST_TRANSITION_INSTRUCTION_NOT_SET;
-}
-
-void DirectionsLeg_Maneuver::clear_has_roundabout_exit_count() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.DirectionsLeg.Maneuver)
-  switch (has_roundabout_exit_count_case()) {
-    case kRoundaboutExitCount: {
-      // No need to clear
-      break;
-    }
-    case HAS_ROUNDABOUT_EXIT_COUNT_NOT_SET: {
-      break;
-    }
-  }
-  _impl_._oneof_case_[13] = HAS_ROUNDABOUT_EXIT_COUNT_NOT_SET;
-}
-
-void DirectionsLeg_Maneuver::clear_has_depart_instruction() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.DirectionsLeg.Maneuver)
-  switch (has_depart_instruction_case()) {
-    case kDepartInstruction: {
-      _impl_.has_depart_instruction_.depart_instruction_.Destroy();
-      break;
-    }
-    case HAS_DEPART_INSTRUCTION_NOT_SET: {
-      break;
-    }
-  }
-  _impl_._oneof_case_[14] = HAS_DEPART_INSTRUCTION_NOT_SET;
-}
-
-void DirectionsLeg_Maneuver::clear_has_verbal_depart_instruction() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.DirectionsLeg.Maneuver)
-  switch (has_verbal_depart_instruction_case()) {
-    case kVerbalDepartInstruction: {
-      _impl_.has_verbal_depart_instruction_.verbal_depart_instruction_.Destroy();
-      break;
-    }
-    case HAS_VERBAL_DEPART_INSTRUCTION_NOT_SET: {
-      break;
-    }
-  }
-  _impl_._oneof_case_[15] = HAS_VERBAL_DEPART_INSTRUCTION_NOT_SET;
-}
-
-void DirectionsLeg_Maneuver::clear_has_arrive_instruction() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.DirectionsLeg.Maneuver)
-  switch (has_arrive_instruction_case()) {
-    case kArriveInstruction: {
-      _impl_.has_arrive_instruction_.arrive_instruction_.Destroy();
-      break;
-    }
-    case HAS_ARRIVE_INSTRUCTION_NOT_SET: {
-      break;
-    }
-  }
-  _impl_._oneof_case_[16] = HAS_ARRIVE_INSTRUCTION_NOT_SET;
-}
-
-void DirectionsLeg_Maneuver::clear_has_verbal_arrive_instruction() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.DirectionsLeg.Maneuver)
-  switch (has_verbal_arrive_instruction_case()) {
-    case kVerbalArriveInstruction: {
-      _impl_.has_verbal_arrive_instruction_.verbal_arrive_instruction_.Destroy();
-      break;
-    }
-    case HAS_VERBAL_ARRIVE_INSTRUCTION_NOT_SET: {
-      break;
-    }
-  }
-  _impl_._oneof_case_[17] = HAS_VERBAL_ARRIVE_INSTRUCTION_NOT_SET;
-}
-
-void DirectionsLeg_Maneuver::clear_has_verbal_multi_cue() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.DirectionsLeg.Maneuver)
-  switch (has_verbal_multi_cue_case()) {
-    case kVerbalMultiCue: {
-      // No need to clear
-      break;
-    }
-    case HAS_VERBAL_MULTI_CUE_NOT_SET: {
-      break;
-    }
-  }
-  _impl_._oneof_case_[18] = HAS_VERBAL_MULTI_CUE_NOT_SET;
-}
-
-void DirectionsLeg_Maneuver::clear_has_travel_mode() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.DirectionsLeg.Maneuver)
-  switch (has_travel_mode_case()) {
-    case kTravelMode: {
-      // No need to clear
-      break;
-    }
-    case HAS_TRAVEL_MODE_NOT_SET: {
-      break;
-    }
-  }
-  _impl_._oneof_case_[19] = HAS_TRAVEL_MODE_NOT_SET;
-}
-
-void DirectionsLeg_Maneuver::clear_has_vehicle_type() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.DirectionsLeg.Maneuver)
-  switch (has_vehicle_type_case()) {
-    case kVehicleType: {
-      // No need to clear
-      break;
-    }
-    case HAS_VEHICLE_TYPE_NOT_SET: {
-      break;
-    }
-  }
-  _impl_._oneof_case_[20] = HAS_VEHICLE_TYPE_NOT_SET;
-}
-
-void DirectionsLeg_Maneuver::clear_has_pedestrian_type() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.DirectionsLeg.Maneuver)
-  switch (has_pedestrian_type_case()) {
-    case kPedestrianType: {
-      // No need to clear
-      break;
-    }
-    case HAS_PEDESTRIAN_TYPE_NOT_SET: {
-      break;
-    }
-  }
-  _impl_._oneof_case_[21] = HAS_PEDESTRIAN_TYPE_NOT_SET;
-}
-
-void DirectionsLeg_Maneuver::clear_has_bicycle_type() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.DirectionsLeg.Maneuver)
-  switch (has_bicycle_type_case()) {
-    case kBicycleType: {
-      // No need to clear
-      break;
-    }
-    case HAS_BICYCLE_TYPE_NOT_SET: {
-      break;
-    }
-  }
-  _impl_._oneof_case_[22] = HAS_BICYCLE_TYPE_NOT_SET;
-}
-
-void DirectionsLeg_Maneuver::clear_has_transit_type() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.DirectionsLeg.Maneuver)
-  switch (has_transit_type_case()) {
-    case kTransitType: {
-      // No need to clear
-      break;
-    }
-    case HAS_TRANSIT_TYPE_NOT_SET: {
-      break;
-    }
-  }
-  _impl_._oneof_case_[23] = HAS_TRANSIT_TYPE_NOT_SET;
-}
-
-void DirectionsLeg_Maneuver::clear_has_begin_path_index() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.DirectionsLeg.Maneuver)
-  switch (has_begin_path_index_case()) {
-    case kBeginPathIndex: {
-      // No need to clear
-      break;
-    }
-    case HAS_BEGIN_PATH_INDEX_NOT_SET: {
-      break;
-    }
-  }
-  _impl_._oneof_case_[24] = HAS_BEGIN_PATH_INDEX_NOT_SET;
-}
-
-void DirectionsLeg_Maneuver::clear_has_end_path_index() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.DirectionsLeg.Maneuver)
-  switch (has_end_path_index_case()) {
-    case kEndPathIndex: {
-      // No need to clear
-      break;
-    }
-    case HAS_END_PATH_INDEX_NOT_SET: {
-      break;
-    }
-  }
-  _impl_._oneof_case_[25] = HAS_END_PATH_INDEX_NOT_SET;
-}
-
-void DirectionsLeg_Maneuver::clear_has_to_stay_on() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.DirectionsLeg.Maneuver)
-  switch (has_to_stay_on_case()) {
-    case kToStayOn: {
-      // No need to clear
-      break;
-    }
-    case HAS_TO_STAY_ON_NOT_SET: {
-      break;
-    }
-  }
-  _impl_._oneof_case_[26] = HAS_TO_STAY_ON_NOT_SET;
-}
-
-void DirectionsLeg_Maneuver::clear_has_turn_degree() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.DirectionsLeg.Maneuver)
-  switch (has_turn_degree_case()) {
-    case kTurnDegree: {
-      // No need to clear
-      break;
-    }
-    case HAS_TURN_DEGREE_NOT_SET: {
-      break;
-    }
-  }
-  _impl_._oneof_case_[27] = HAS_TURN_DEGREE_NOT_SET;
-}
-
-void DirectionsLeg_Maneuver::clear_has_has_time_restrictions() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.DirectionsLeg.Maneuver)
-  switch (has_has_time_restrictions_case()) {
-    case kHasTimeRestrictions: {
-      // No need to clear
-      break;
-    }
-    case HAS_HAS_TIME_RESTRICTIONS_NOT_SET: {
-      break;
-    }
-  }
-  _impl_._oneof_case_[28] = HAS_HAS_TIME_RESTRICTIONS_NOT_SET;
-}
-
-void DirectionsLeg_Maneuver::clear_has_bss_maneuver_type() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.DirectionsLeg.Maneuver)
-  switch (has_bss_maneuver_type_case()) {
-    case kBssManeuverType: {
-      // No need to clear
-      break;
-    }
-    case HAS_BSS_MANEUVER_TYPE_NOT_SET: {
-      break;
-    }
-  }
-  _impl_._oneof_case_[29] = HAS_BSS_MANEUVER_TYPE_NOT_SET;
-}
-
-void DirectionsLeg_Maneuver::clear_has_verbal_succinct_transition_instruction() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.DirectionsLeg.Maneuver)
-  switch (has_verbal_succinct_transition_instruction_case()) {
-    case kVerbalSuccinctTransitionInstruction: {
-      _impl_.has_verbal_succinct_transition_instruction_.verbal_succinct_transition_instruction_.Destroy();
-      break;
-    }
-    case HAS_VERBAL_SUCCINCT_TRANSITION_INSTRUCTION_NOT_SET: {
-      break;
-    }
-  }
-  _impl_._oneof_case_[30] = HAS_VERBAL_SUCCINCT_TRANSITION_INSTRUCTION_NOT_SET;
-}
-
 
 void DirectionsLeg_Maneuver::Clear() {
 // @@protoc_insertion_point(message_clear_start:valhalla.DirectionsLeg.Maneuver)
@@ -2516,6 +1604,15 @@ void DirectionsLeg_Maneuver::Clear() {
   _impl_.begin_street_name_.Clear();
   _impl_.roundabout_exit_street_names_.Clear();
   _impl_.guidance_views_.Clear();
+  _impl_.text_instruction_.ClearToEmpty();
+  _impl_.verbal_transition_alert_instruction_.ClearToEmpty();
+  _impl_.verbal_pre_transition_instruction_.ClearToEmpty();
+  _impl_.verbal_post_transition_instruction_.ClearToEmpty();
+  _impl_.depart_instruction_.ClearToEmpty();
+  _impl_.verbal_depart_instruction_.ClearToEmpty();
+  _impl_.arrive_instruction_.ClearToEmpty();
+  _impl_.verbal_arrive_instruction_.ClearToEmpty();
+  _impl_.verbal_succinct_transition_instruction_.ClearToEmpty();
   if (GetArenaForAllocation() == nullptr && _impl_.sign_ != nullptr) {
     delete _impl_.sign_;
   }
@@ -2528,37 +1625,9 @@ void DirectionsLeg_Maneuver::Clear() {
     delete _impl_.bss_info_;
   }
   _impl_.bss_info_ = nullptr;
-  clear_has_type();
-  clear_has_text_instruction();
-  clear_has_length();
-  clear_has_time();
-  clear_has_begin_cardinal_direction();
-  clear_has_begin_heading();
-  clear_has_begin_shape_index();
-  clear_has_end_shape_index();
-  clear_has_portions_toll();
-  clear_has_portions_unpaved();
-  clear_has_verbal_transition_alert_instruction();
-  clear_has_verbal_pre_transition_instruction();
-  clear_has_verbal_post_transition_instruction();
-  clear_has_roundabout_exit_count();
-  clear_has_depart_instruction();
-  clear_has_verbal_depart_instruction();
-  clear_has_arrive_instruction();
-  clear_has_verbal_arrive_instruction();
-  clear_has_verbal_multi_cue();
-  clear_has_travel_mode();
-  clear_has_vehicle_type();
-  clear_has_pedestrian_type();
-  clear_has_bicycle_type();
-  clear_has_transit_type();
-  clear_has_begin_path_index();
-  clear_has_end_path_index();
-  clear_has_to_stay_on();
-  clear_has_turn_degree();
-  clear_has_has_time_restrictions();
-  clear_has_bss_maneuver_type();
-  clear_has_verbal_succinct_transition_instruction();
+  ::memset(&_impl_.type_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&_impl_.bss_maneuver_type_) -
+      reinterpret_cast<char*>(&_impl_.type_)) + sizeof(_impl_.bss_maneuver_type_));
   _internal_metadata_.Clear<std::string>();
 }
 
@@ -2603,7 +1672,7 @@ const char* DirectionsLeg_Maneuver::_InternalParse(const char* ptr, ::_pbi::Pars
       // float length = 4;
       case 4:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 37)) {
-          _internal_set_length(::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr));
+          _impl_.length_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
         } else
           goto handle_unusual;
@@ -2611,7 +1680,7 @@ const char* DirectionsLeg_Maneuver::_InternalParse(const char* ptr, ::_pbi::Pars
       // double time = 5;
       case 5:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 41)) {
-          _internal_set_time(::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr));
+          _impl_.time_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
           ptr += sizeof(double);
         } else
           goto handle_unusual;
@@ -2628,7 +1697,7 @@ const char* DirectionsLeg_Maneuver::_InternalParse(const char* ptr, ::_pbi::Pars
       // uint32 begin_heading = 7;
       case 7:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 56)) {
-          _internal_set_begin_heading(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr));
+          _impl_.begin_heading_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -2636,7 +1705,7 @@ const char* DirectionsLeg_Maneuver::_InternalParse(const char* ptr, ::_pbi::Pars
       // uint32 begin_shape_index = 8;
       case 8:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 64)) {
-          _internal_set_begin_shape_index(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr));
+          _impl_.begin_shape_index_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -2644,7 +1713,7 @@ const char* DirectionsLeg_Maneuver::_InternalParse(const char* ptr, ::_pbi::Pars
       // uint32 end_shape_index = 9;
       case 9:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 72)) {
-          _internal_set_end_shape_index(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr));
+          _impl_.end_shape_index_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -2652,7 +1721,7 @@ const char* DirectionsLeg_Maneuver::_InternalParse(const char* ptr, ::_pbi::Pars
       // bool portions_toll = 10;
       case 10:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 80)) {
-          _internal_set_portions_toll(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr));
+          _impl_.portions_toll_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -2660,7 +1729,7 @@ const char* DirectionsLeg_Maneuver::_InternalParse(const char* ptr, ::_pbi::Pars
       // bool portions_unpaved = 11;
       case 11:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 88)) {
-          _internal_set_portions_unpaved(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr));
+          _impl_.portions_unpaved_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -2719,7 +1788,7 @@ const char* DirectionsLeg_Maneuver::_InternalParse(const char* ptr, ::_pbi::Pars
       // uint32 roundabout_exit_count = 17;
       case 17:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 136)) {
-          _internal_set_roundabout_exit_count(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr));
+          _impl_.roundabout_exit_count_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -2775,7 +1844,7 @@ const char* DirectionsLeg_Maneuver::_InternalParse(const char* ptr, ::_pbi::Pars
       // bool verbal_multi_cue = 23;
       case 23:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 184)) {
-          _internal_set_verbal_multi_cue(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr));
+          _impl_.verbal_multi_cue_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -2828,7 +1897,7 @@ const char* DirectionsLeg_Maneuver::_InternalParse(const char* ptr, ::_pbi::Pars
       // uint32 begin_path_index = 29;
       case 29:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 232)) {
-          _internal_set_begin_path_index(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr));
+          _impl_.begin_path_index_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -2836,7 +1905,7 @@ const char* DirectionsLeg_Maneuver::_InternalParse(const char* ptr, ::_pbi::Pars
       // uint32 end_path_index = 30;
       case 30:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 240)) {
-          _internal_set_end_path_index(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr));
+          _impl_.end_path_index_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -2844,7 +1913,7 @@ const char* DirectionsLeg_Maneuver::_InternalParse(const char* ptr, ::_pbi::Pars
       // bool to_stay_on = 31;
       case 31:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 248)) {
-          _internal_set_to_stay_on(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr));
+          _impl_.to_stay_on_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -2865,7 +1934,7 @@ const char* DirectionsLeg_Maneuver::_InternalParse(const char* ptr, ::_pbi::Pars
       // uint32 turn_degree = 33;
       case 33:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
-          _internal_set_turn_degree(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr));
+          _impl_.turn_degree_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -2873,7 +1942,7 @@ const char* DirectionsLeg_Maneuver::_InternalParse(const char* ptr, ::_pbi::Pars
       // bool has_time_restrictions = 34;
       case 34:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
-          _internal_set_has_time_restrictions(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr));
+          _impl_.has_time_restrictions_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -2948,14 +2017,14 @@ uint8_t* DirectionsLeg_Maneuver::_InternalSerialize(
   (void) cached_has_bits;
 
   // .valhalla.DirectionsLeg.Maneuver.Type type = 1;
-  if (_internal_has_type()) {
+  if (this->_internal_type() != 0) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteEnumToArray(
       1, this->_internal_type(), target);
   }
 
   // string text_instruction = 2;
-  if (_internal_has_text_instruction()) {
+  if (!this->_internal_text_instruction().empty()) {
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_text_instruction().data(), static_cast<int>(this->_internal_text_instruction().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
@@ -2973,56 +2042,64 @@ uint8_t* DirectionsLeg_Maneuver::_InternalSerialize(
   }
 
   // float length = 4;
-  if (_internal_has_length()) {
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_length = this->_internal_length();
+  uint32_t raw_length;
+  memcpy(&raw_length, &tmp_length, sizeof(tmp_length));
+  if (raw_length != 0) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteFloatToArray(4, this->_internal_length(), target);
   }
 
   // double time = 5;
-  if (_internal_has_time()) {
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_time = this->_internal_time();
+  uint64_t raw_time;
+  memcpy(&raw_time, &tmp_time, sizeof(tmp_time));
+  if (raw_time != 0) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteDoubleToArray(5, this->_internal_time(), target);
   }
 
   // .valhalla.DirectionsLeg.Maneuver.CardinalDirection begin_cardinal_direction = 6;
-  if (_internal_has_begin_cardinal_direction()) {
+  if (this->_internal_begin_cardinal_direction() != 0) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteEnumToArray(
       6, this->_internal_begin_cardinal_direction(), target);
   }
 
   // uint32 begin_heading = 7;
-  if (_internal_has_begin_heading()) {
+  if (this->_internal_begin_heading() != 0) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteUInt32ToArray(7, this->_internal_begin_heading(), target);
   }
 
   // uint32 begin_shape_index = 8;
-  if (_internal_has_begin_shape_index()) {
+  if (this->_internal_begin_shape_index() != 0) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteUInt32ToArray(8, this->_internal_begin_shape_index(), target);
   }
 
   // uint32 end_shape_index = 9;
-  if (_internal_has_end_shape_index()) {
+  if (this->_internal_end_shape_index() != 0) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteUInt32ToArray(9, this->_internal_end_shape_index(), target);
   }
 
   // bool portions_toll = 10;
-  if (_internal_has_portions_toll()) {
+  if (this->_internal_portions_toll() != 0) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteBoolToArray(10, this->_internal_portions_toll(), target);
   }
 
   // bool portions_unpaved = 11;
-  if (_internal_has_portions_unpaved()) {
+  if (this->_internal_portions_unpaved() != 0) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteBoolToArray(11, this->_internal_portions_unpaved(), target);
   }
 
   // string verbal_transition_alert_instruction = 12;
-  if (_internal_has_verbal_transition_alert_instruction()) {
+  if (!this->_internal_verbal_transition_alert_instruction().empty()) {
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_verbal_transition_alert_instruction().data(), static_cast<int>(this->_internal_verbal_transition_alert_instruction().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
@@ -3032,7 +2109,7 @@ uint8_t* DirectionsLeg_Maneuver::_InternalSerialize(
   }
 
   // string verbal_pre_transition_instruction = 13;
-  if (_internal_has_verbal_pre_transition_instruction()) {
+  if (!this->_internal_verbal_pre_transition_instruction().empty()) {
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_verbal_pre_transition_instruction().data(), static_cast<int>(this->_internal_verbal_pre_transition_instruction().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
@@ -3042,7 +2119,7 @@ uint8_t* DirectionsLeg_Maneuver::_InternalSerialize(
   }
 
   // string verbal_post_transition_instruction = 14;
-  if (_internal_has_verbal_post_transition_instruction()) {
+  if (!this->_internal_verbal_post_transition_instruction().empty()) {
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_verbal_post_transition_instruction().data(), static_cast<int>(this->_internal_verbal_post_transition_instruction().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
@@ -3067,13 +2144,13 @@ uint8_t* DirectionsLeg_Maneuver::_InternalSerialize(
   }
 
   // uint32 roundabout_exit_count = 17;
-  if (_internal_has_roundabout_exit_count()) {
+  if (this->_internal_roundabout_exit_count() != 0) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteUInt32ToArray(17, this->_internal_roundabout_exit_count(), target);
   }
 
   // string depart_instruction = 18;
-  if (_internal_has_depart_instruction()) {
+  if (!this->_internal_depart_instruction().empty()) {
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_depart_instruction().data(), static_cast<int>(this->_internal_depart_instruction().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
@@ -3083,7 +2160,7 @@ uint8_t* DirectionsLeg_Maneuver::_InternalSerialize(
   }
 
   // string verbal_depart_instruction = 19;
-  if (_internal_has_verbal_depart_instruction()) {
+  if (!this->_internal_verbal_depart_instruction().empty()) {
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_verbal_depart_instruction().data(), static_cast<int>(this->_internal_verbal_depart_instruction().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
@@ -3093,7 +2170,7 @@ uint8_t* DirectionsLeg_Maneuver::_InternalSerialize(
   }
 
   // string arrive_instruction = 20;
-  if (_internal_has_arrive_instruction()) {
+  if (!this->_internal_arrive_instruction().empty()) {
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_arrive_instruction().data(), static_cast<int>(this->_internal_arrive_instruction().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
@@ -3103,7 +2180,7 @@ uint8_t* DirectionsLeg_Maneuver::_InternalSerialize(
   }
 
   // string verbal_arrive_instruction = 21;
-  if (_internal_has_verbal_arrive_instruction()) {
+  if (!this->_internal_verbal_arrive_instruction().empty()) {
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_verbal_arrive_instruction().data(), static_cast<int>(this->_internal_verbal_arrive_instruction().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
@@ -3120,60 +2197,60 @@ uint8_t* DirectionsLeg_Maneuver::_InternalSerialize(
   }
 
   // bool verbal_multi_cue = 23;
-  if (_internal_has_verbal_multi_cue()) {
+  if (this->_internal_verbal_multi_cue() != 0) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteBoolToArray(23, this->_internal_verbal_multi_cue(), target);
   }
 
   // .valhalla.TravelMode travel_mode = 24;
-  if (_internal_has_travel_mode()) {
+  if (this->_internal_travel_mode() != 0) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteEnumToArray(
       24, this->_internal_travel_mode(), target);
   }
 
   // .valhalla.VehicleType vehicle_type = 25;
-  if (_internal_has_vehicle_type()) {
+  if (this->_internal_vehicle_type() != 0) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteEnumToArray(
       25, this->_internal_vehicle_type(), target);
   }
 
   // .valhalla.PedestrianType pedestrian_type = 26;
-  if (_internal_has_pedestrian_type()) {
+  if (this->_internal_pedestrian_type() != 0) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteEnumToArray(
       26, this->_internal_pedestrian_type(), target);
   }
 
   // .valhalla.BicycleType bicycle_type = 27;
-  if (_internal_has_bicycle_type()) {
+  if (this->_internal_bicycle_type() != 0) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteEnumToArray(
       27, this->_internal_bicycle_type(), target);
   }
 
   // .valhalla.TransitType transit_type = 28;
-  if (_internal_has_transit_type()) {
+  if (this->_internal_transit_type() != 0) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteEnumToArray(
       28, this->_internal_transit_type(), target);
   }
 
   // uint32 begin_path_index = 29;
-  if (_internal_has_begin_path_index()) {
+  if (this->_internal_begin_path_index() != 0) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteUInt32ToArray(29, this->_internal_begin_path_index(), target);
   }
 
   // uint32 end_path_index = 30;
-  if (_internal_has_end_path_index()) {
+  if (this->_internal_end_path_index() != 0) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteUInt32ToArray(30, this->_internal_end_path_index(), target);
   }
 
   // bool to_stay_on = 31;
-  if (_internal_has_to_stay_on()) {
+  if (this->_internal_to_stay_on() != 0) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteBoolToArray(31, this->_internal_to_stay_on(), target);
   }
@@ -3187,13 +2264,13 @@ uint8_t* DirectionsLeg_Maneuver::_InternalSerialize(
   }
 
   // uint32 turn_degree = 33;
-  if (_internal_has_turn_degree()) {
+  if (this->_internal_turn_degree() != 0) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteUInt32ToArray(33, this->_internal_turn_degree(), target);
   }
 
   // bool has_time_restrictions = 34;
-  if (_internal_has_has_time_restrictions()) {
+  if (this->_internal_has_time_restrictions() != 0) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteBoolToArray(34, this->_internal_has_time_restrictions(), target);
   }
@@ -3207,14 +2284,14 @@ uint8_t* DirectionsLeg_Maneuver::_InternalSerialize(
   }
 
   // .valhalla.DirectionsLeg.Maneuver.BssManeuverType bss_maneuver_type = 36;
-  if (_internal_has_bss_maneuver_type()) {
+  if (this->_internal_bss_maneuver_type() != 0) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteEnumToArray(
       36, this->_internal_bss_maneuver_type(), target);
   }
 
   // string verbal_succinct_transition_instruction = 37;
-  if (_internal_has_verbal_succinct_transition_instruction()) {
+  if (!this->_internal_verbal_succinct_transition_instruction().empty()) {
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_verbal_succinct_transition_instruction().data(), static_cast<int>(this->_internal_verbal_succinct_transition_instruction().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
@@ -3274,6 +2351,69 @@ size_t DirectionsLeg_Maneuver::ByteSizeLong() const {
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
 
+  // string text_instruction = 2;
+  if (!this->_internal_text_instruction().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_text_instruction());
+  }
+
+  // string verbal_transition_alert_instruction = 12;
+  if (!this->_internal_verbal_transition_alert_instruction().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_verbal_transition_alert_instruction());
+  }
+
+  // string verbal_pre_transition_instruction = 13;
+  if (!this->_internal_verbal_pre_transition_instruction().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_verbal_pre_transition_instruction());
+  }
+
+  // string verbal_post_transition_instruction = 14;
+  if (!this->_internal_verbal_post_transition_instruction().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_verbal_post_transition_instruction());
+  }
+
+  // string depart_instruction = 18;
+  if (!this->_internal_depart_instruction().empty()) {
+    total_size += 2 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_depart_instruction());
+  }
+
+  // string verbal_depart_instruction = 19;
+  if (!this->_internal_verbal_depart_instruction().empty()) {
+    total_size += 2 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_verbal_depart_instruction());
+  }
+
+  // string arrive_instruction = 20;
+  if (!this->_internal_arrive_instruction().empty()) {
+    total_size += 2 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_arrive_instruction());
+  }
+
+  // string verbal_arrive_instruction = 21;
+  if (!this->_internal_verbal_arrive_instruction().empty()) {
+    total_size += 2 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_verbal_arrive_instruction());
+  }
+
+  // string verbal_succinct_transition_instruction = 37;
+  if (!this->_internal_verbal_succinct_transition_instruction().empty()) {
+    total_size += 2 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_verbal_succinct_transition_instruction());
+  }
+
   // .valhalla.TripSign sign = 16;
   if (this->_internal_has_sign()) {
     total_size += 2 +
@@ -3295,350 +2435,140 @@ size_t DirectionsLeg_Maneuver::ByteSizeLong() const {
         *_impl_.bss_info_);
   }
 
-  switch (has_type_case()) {
-    // .valhalla.DirectionsLeg.Maneuver.Type type = 1;
-    case kType: {
-      total_size += 1 +
-        ::_pbi::WireFormatLite::EnumSize(this->_internal_type());
-      break;
-    }
-    case HAS_TYPE_NOT_SET: {
-      break;
-    }
+  // .valhalla.DirectionsLeg.Maneuver.Type type = 1;
+  if (this->_internal_type() != 0) {
+    total_size += 1 +
+      ::_pbi::WireFormatLite::EnumSize(this->_internal_type());
   }
-  switch (has_text_instruction_case()) {
-    // string text_instruction = 2;
-    case kTextInstruction: {
-      total_size += 1 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-          this->_internal_text_instruction());
-      break;
-    }
-    case HAS_TEXT_INSTRUCTION_NOT_SET: {
-      break;
-    }
+
+  // float length = 4;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_length = this->_internal_length();
+  uint32_t raw_length;
+  memcpy(&raw_length, &tmp_length, sizeof(tmp_length));
+  if (raw_length != 0) {
+    total_size += 1 + 4;
   }
-  switch (has_length_case()) {
-    // float length = 4;
-    case kLength: {
-      total_size += 1 + 4;
-      break;
-    }
-    case HAS_LENGTH_NOT_SET: {
-      break;
-    }
+
+  // double time = 5;
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_time = this->_internal_time();
+  uint64_t raw_time;
+  memcpy(&raw_time, &tmp_time, sizeof(tmp_time));
+  if (raw_time != 0) {
+    total_size += 1 + 8;
   }
-  switch (has_time_case()) {
-    // double time = 5;
-    case kTime: {
-      total_size += 1 + 8;
-      break;
-    }
-    case HAS_TIME_NOT_SET: {
-      break;
-    }
+
+  // .valhalla.DirectionsLeg.Maneuver.CardinalDirection begin_cardinal_direction = 6;
+  if (this->_internal_begin_cardinal_direction() != 0) {
+    total_size += 1 +
+      ::_pbi::WireFormatLite::EnumSize(this->_internal_begin_cardinal_direction());
   }
-  switch (has_begin_cardinal_direction_case()) {
-    // .valhalla.DirectionsLeg.Maneuver.CardinalDirection begin_cardinal_direction = 6;
-    case kBeginCardinalDirection: {
-      total_size += 1 +
-        ::_pbi::WireFormatLite::EnumSize(this->_internal_begin_cardinal_direction());
-      break;
-    }
-    case HAS_BEGIN_CARDINAL_DIRECTION_NOT_SET: {
-      break;
-    }
+
+  // uint32 begin_heading = 7;
+  if (this->_internal_begin_heading() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_begin_heading());
   }
-  switch (has_begin_heading_case()) {
-    // uint32 begin_heading = 7;
-    case kBeginHeading: {
-      total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_begin_heading());
-      break;
-    }
-    case HAS_BEGIN_HEADING_NOT_SET: {
-      break;
-    }
+
+  // uint32 begin_shape_index = 8;
+  if (this->_internal_begin_shape_index() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_begin_shape_index());
   }
-  switch (has_begin_shape_index_case()) {
-    // uint32 begin_shape_index = 8;
-    case kBeginShapeIndex: {
-      total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_begin_shape_index());
-      break;
-    }
-    case HAS_BEGIN_SHAPE_INDEX_NOT_SET: {
-      break;
-    }
+
+  // uint32 end_shape_index = 9;
+  if (this->_internal_end_shape_index() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_end_shape_index());
   }
-  switch (has_end_shape_index_case()) {
-    // uint32 end_shape_index = 9;
-    case kEndShapeIndex: {
-      total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_end_shape_index());
-      break;
-    }
-    case HAS_END_SHAPE_INDEX_NOT_SET: {
-      break;
-    }
+
+  // uint32 roundabout_exit_count = 17;
+  if (this->_internal_roundabout_exit_count() != 0) {
+    total_size += 2 +
+      ::_pbi::WireFormatLite::UInt32Size(
+        this->_internal_roundabout_exit_count());
   }
-  switch (has_portions_toll_case()) {
-    // bool portions_toll = 10;
-    case kPortionsToll: {
-      total_size += 1 + 1;
-      break;
-    }
-    case HAS_PORTIONS_TOLL_NOT_SET: {
-      break;
-    }
+
+  // bool portions_toll = 10;
+  if (this->_internal_portions_toll() != 0) {
+    total_size += 1 + 1;
   }
-  switch (has_portions_unpaved_case()) {
-    // bool portions_unpaved = 11;
-    case kPortionsUnpaved: {
-      total_size += 1 + 1;
-      break;
-    }
-    case HAS_PORTIONS_UNPAVED_NOT_SET: {
-      break;
-    }
+
+  // bool portions_unpaved = 11;
+  if (this->_internal_portions_unpaved() != 0) {
+    total_size += 1 + 1;
   }
-  switch (has_verbal_transition_alert_instruction_case()) {
-    // string verbal_transition_alert_instruction = 12;
-    case kVerbalTransitionAlertInstruction: {
-      total_size += 1 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-          this->_internal_verbal_transition_alert_instruction());
-      break;
-    }
-    case HAS_VERBAL_TRANSITION_ALERT_INSTRUCTION_NOT_SET: {
-      break;
-    }
+
+  // bool verbal_multi_cue = 23;
+  if (this->_internal_verbal_multi_cue() != 0) {
+    total_size += 2 + 1;
   }
-  switch (has_verbal_pre_transition_instruction_case()) {
-    // string verbal_pre_transition_instruction = 13;
-    case kVerbalPreTransitionInstruction: {
-      total_size += 1 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-          this->_internal_verbal_pre_transition_instruction());
-      break;
-    }
-    case HAS_VERBAL_PRE_TRANSITION_INSTRUCTION_NOT_SET: {
-      break;
-    }
+
+  // bool to_stay_on = 31;
+  if (this->_internal_to_stay_on() != 0) {
+    total_size += 2 + 1;
   }
-  switch (has_verbal_post_transition_instruction_case()) {
-    // string verbal_post_transition_instruction = 14;
-    case kVerbalPostTransitionInstruction: {
-      total_size += 1 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-          this->_internal_verbal_post_transition_instruction());
-      break;
-    }
-    case HAS_VERBAL_POST_TRANSITION_INSTRUCTION_NOT_SET: {
-      break;
-    }
+
+  // .valhalla.TravelMode travel_mode = 24;
+  if (this->_internal_travel_mode() != 0) {
+    total_size += 2 +
+      ::_pbi::WireFormatLite::EnumSize(this->_internal_travel_mode());
   }
-  switch (has_roundabout_exit_count_case()) {
-    // uint32 roundabout_exit_count = 17;
-    case kRoundaboutExitCount: {
-      total_size += 2 +
-        ::_pbi::WireFormatLite::UInt32Size(
-          this->_internal_roundabout_exit_count());
-      break;
-    }
-    case HAS_ROUNDABOUT_EXIT_COUNT_NOT_SET: {
-      break;
-    }
+
+  // .valhalla.VehicleType vehicle_type = 25;
+  if (this->_internal_vehicle_type() != 0) {
+    total_size += 2 +
+      ::_pbi::WireFormatLite::EnumSize(this->_internal_vehicle_type());
   }
-  switch (has_depart_instruction_case()) {
-    // string depart_instruction = 18;
-    case kDepartInstruction: {
-      total_size += 2 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-          this->_internal_depart_instruction());
-      break;
-    }
-    case HAS_DEPART_INSTRUCTION_NOT_SET: {
-      break;
-    }
+
+  // .valhalla.PedestrianType pedestrian_type = 26;
+  if (this->_internal_pedestrian_type() != 0) {
+    total_size += 2 +
+      ::_pbi::WireFormatLite::EnumSize(this->_internal_pedestrian_type());
   }
-  switch (has_verbal_depart_instruction_case()) {
-    // string verbal_depart_instruction = 19;
-    case kVerbalDepartInstruction: {
-      total_size += 2 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-          this->_internal_verbal_depart_instruction());
-      break;
-    }
-    case HAS_VERBAL_DEPART_INSTRUCTION_NOT_SET: {
-      break;
-    }
+
+  // .valhalla.BicycleType bicycle_type = 27;
+  if (this->_internal_bicycle_type() != 0) {
+    total_size += 2 +
+      ::_pbi::WireFormatLite::EnumSize(this->_internal_bicycle_type());
   }
-  switch (has_arrive_instruction_case()) {
-    // string arrive_instruction = 20;
-    case kArriveInstruction: {
-      total_size += 2 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-          this->_internal_arrive_instruction());
-      break;
-    }
-    case HAS_ARRIVE_INSTRUCTION_NOT_SET: {
-      break;
-    }
+
+  // .valhalla.TransitType transit_type = 28;
+  if (this->_internal_transit_type() != 0) {
+    total_size += 2 +
+      ::_pbi::WireFormatLite::EnumSize(this->_internal_transit_type());
   }
-  switch (has_verbal_arrive_instruction_case()) {
-    // string verbal_arrive_instruction = 21;
-    case kVerbalArriveInstruction: {
-      total_size += 2 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-          this->_internal_verbal_arrive_instruction());
-      break;
-    }
-    case HAS_VERBAL_ARRIVE_INSTRUCTION_NOT_SET: {
-      break;
-    }
+
+  // uint32 begin_path_index = 29;
+  if (this->_internal_begin_path_index() != 0) {
+    total_size += 2 +
+      ::_pbi::WireFormatLite::UInt32Size(
+        this->_internal_begin_path_index());
   }
-  switch (has_verbal_multi_cue_case()) {
-    // bool verbal_multi_cue = 23;
-    case kVerbalMultiCue: {
-      total_size += 2 + 1;
-      break;
-    }
-    case HAS_VERBAL_MULTI_CUE_NOT_SET: {
-      break;
-    }
+
+  // uint32 end_path_index = 30;
+  if (this->_internal_end_path_index() != 0) {
+    total_size += 2 +
+      ::_pbi::WireFormatLite::UInt32Size(
+        this->_internal_end_path_index());
   }
-  switch (has_travel_mode_case()) {
-    // .valhalla.TravelMode travel_mode = 24;
-    case kTravelMode: {
-      total_size += 2 +
-        ::_pbi::WireFormatLite::EnumSize(this->_internal_travel_mode());
-      break;
-    }
-    case HAS_TRAVEL_MODE_NOT_SET: {
-      break;
-    }
+
+  // uint32 turn_degree = 33;
+  if (this->_internal_turn_degree() != 0) {
+    total_size += 2 +
+      ::_pbi::WireFormatLite::UInt32Size(
+        this->_internal_turn_degree());
   }
-  switch (has_vehicle_type_case()) {
-    // .valhalla.VehicleType vehicle_type = 25;
-    case kVehicleType: {
-      total_size += 2 +
-        ::_pbi::WireFormatLite::EnumSize(this->_internal_vehicle_type());
-      break;
-    }
-    case HAS_VEHICLE_TYPE_NOT_SET: {
-      break;
-    }
+
+  // bool has_time_restrictions = 34;
+  if (this->_internal_has_time_restrictions() != 0) {
+    total_size += 2 + 1;
   }
-  switch (has_pedestrian_type_case()) {
-    // .valhalla.PedestrianType pedestrian_type = 26;
-    case kPedestrianType: {
-      total_size += 2 +
-        ::_pbi::WireFormatLite::EnumSize(this->_internal_pedestrian_type());
-      break;
-    }
-    case HAS_PEDESTRIAN_TYPE_NOT_SET: {
-      break;
-    }
+
+  // .valhalla.DirectionsLeg.Maneuver.BssManeuverType bss_maneuver_type = 36;
+  if (this->_internal_bss_maneuver_type() != 0) {
+    total_size += 2 +
+      ::_pbi::WireFormatLite::EnumSize(this->_internal_bss_maneuver_type());
   }
-  switch (has_bicycle_type_case()) {
-    // .valhalla.BicycleType bicycle_type = 27;
-    case kBicycleType: {
-      total_size += 2 +
-        ::_pbi::WireFormatLite::EnumSize(this->_internal_bicycle_type());
-      break;
-    }
-    case HAS_BICYCLE_TYPE_NOT_SET: {
-      break;
-    }
-  }
-  switch (has_transit_type_case()) {
-    // .valhalla.TransitType transit_type = 28;
-    case kTransitType: {
-      total_size += 2 +
-        ::_pbi::WireFormatLite::EnumSize(this->_internal_transit_type());
-      break;
-    }
-    case HAS_TRANSIT_TYPE_NOT_SET: {
-      break;
-    }
-  }
-  switch (has_begin_path_index_case()) {
-    // uint32 begin_path_index = 29;
-    case kBeginPathIndex: {
-      total_size += 2 +
-        ::_pbi::WireFormatLite::UInt32Size(
-          this->_internal_begin_path_index());
-      break;
-    }
-    case HAS_BEGIN_PATH_INDEX_NOT_SET: {
-      break;
-    }
-  }
-  switch (has_end_path_index_case()) {
-    // uint32 end_path_index = 30;
-    case kEndPathIndex: {
-      total_size += 2 +
-        ::_pbi::WireFormatLite::UInt32Size(
-          this->_internal_end_path_index());
-      break;
-    }
-    case HAS_END_PATH_INDEX_NOT_SET: {
-      break;
-    }
-  }
-  switch (has_to_stay_on_case()) {
-    // bool to_stay_on = 31;
-    case kToStayOn: {
-      total_size += 2 + 1;
-      break;
-    }
-    case HAS_TO_STAY_ON_NOT_SET: {
-      break;
-    }
-  }
-  switch (has_turn_degree_case()) {
-    // uint32 turn_degree = 33;
-    case kTurnDegree: {
-      total_size += 2 +
-        ::_pbi::WireFormatLite::UInt32Size(
-          this->_internal_turn_degree());
-      break;
-    }
-    case HAS_TURN_DEGREE_NOT_SET: {
-      break;
-    }
-  }
-  switch (has_has_time_restrictions_case()) {
-    // bool has_time_restrictions = 34;
-    case kHasTimeRestrictions: {
-      total_size += 2 + 1;
-      break;
-    }
-    case HAS_HAS_TIME_RESTRICTIONS_NOT_SET: {
-      break;
-    }
-  }
-  switch (has_bss_maneuver_type_case()) {
-    // .valhalla.DirectionsLeg.Maneuver.BssManeuverType bss_maneuver_type = 36;
-    case kBssManeuverType: {
-      total_size += 2 +
-        ::_pbi::WireFormatLite::EnumSize(this->_internal_bss_maneuver_type());
-      break;
-    }
-    case HAS_BSS_MANEUVER_TYPE_NOT_SET: {
-      break;
-    }
-  }
-  switch (has_verbal_succinct_transition_instruction_case()) {
-    // string verbal_succinct_transition_instruction = 37;
-    case kVerbalSuccinctTransitionInstruction: {
-      total_size += 2 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-          this->_internal_verbal_succinct_transition_instruction());
-      break;
-    }
-    case HAS_VERBAL_SUCCINCT_TRANSITION_INSTRUCTION_NOT_SET: {
-      break;
-    }
-  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     total_size += _internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).size();
   }
@@ -3664,6 +2594,33 @@ void DirectionsLeg_Maneuver::MergeFrom(const DirectionsLeg_Maneuver& from) {
   _this->_impl_.begin_street_name_.MergeFrom(from._impl_.begin_street_name_);
   _this->_impl_.roundabout_exit_street_names_.MergeFrom(from._impl_.roundabout_exit_street_names_);
   _this->_impl_.guidance_views_.MergeFrom(from._impl_.guidance_views_);
+  if (!from._internal_text_instruction().empty()) {
+    _this->_internal_set_text_instruction(from._internal_text_instruction());
+  }
+  if (!from._internal_verbal_transition_alert_instruction().empty()) {
+    _this->_internal_set_verbal_transition_alert_instruction(from._internal_verbal_transition_alert_instruction());
+  }
+  if (!from._internal_verbal_pre_transition_instruction().empty()) {
+    _this->_internal_set_verbal_pre_transition_instruction(from._internal_verbal_pre_transition_instruction());
+  }
+  if (!from._internal_verbal_post_transition_instruction().empty()) {
+    _this->_internal_set_verbal_post_transition_instruction(from._internal_verbal_post_transition_instruction());
+  }
+  if (!from._internal_depart_instruction().empty()) {
+    _this->_internal_set_depart_instruction(from._internal_depart_instruction());
+  }
+  if (!from._internal_verbal_depart_instruction().empty()) {
+    _this->_internal_set_verbal_depart_instruction(from._internal_verbal_depart_instruction());
+  }
+  if (!from._internal_arrive_instruction().empty()) {
+    _this->_internal_set_arrive_instruction(from._internal_arrive_instruction());
+  }
+  if (!from._internal_verbal_arrive_instruction().empty()) {
+    _this->_internal_set_verbal_arrive_instruction(from._internal_verbal_arrive_instruction());
+  }
+  if (!from._internal_verbal_succinct_transition_instruction().empty()) {
+    _this->_internal_set_verbal_succinct_transition_instruction(from._internal_verbal_succinct_transition_instruction());
+  }
   if (from._internal_has_sign()) {
     _this->_internal_mutable_sign()->::valhalla::TripSign::MergeFrom(
         from._internal_sign());
@@ -3676,284 +2633,79 @@ void DirectionsLeg_Maneuver::MergeFrom(const DirectionsLeg_Maneuver& from) {
     _this->_internal_mutable_bss_info()->::valhalla::BikeShareStationInfo::MergeFrom(
         from._internal_bss_info());
   }
-  switch (from.has_type_case()) {
-    case kType: {
-      _this->_internal_set_type(from._internal_type());
-      break;
-    }
-    case HAS_TYPE_NOT_SET: {
-      break;
-    }
+  if (from._internal_type() != 0) {
+    _this->_internal_set_type(from._internal_type());
   }
-  switch (from.has_text_instruction_case()) {
-    case kTextInstruction: {
-      _this->_internal_set_text_instruction(from._internal_text_instruction());
-      break;
-    }
-    case HAS_TEXT_INSTRUCTION_NOT_SET: {
-      break;
-    }
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_length = from._internal_length();
+  uint32_t raw_length;
+  memcpy(&raw_length, &tmp_length, sizeof(tmp_length));
+  if (raw_length != 0) {
+    _this->_internal_set_length(from._internal_length());
   }
-  switch (from.has_length_case()) {
-    case kLength: {
-      _this->_internal_set_length(from._internal_length());
-      break;
-    }
-    case HAS_LENGTH_NOT_SET: {
-      break;
-    }
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_time = from._internal_time();
+  uint64_t raw_time;
+  memcpy(&raw_time, &tmp_time, sizeof(tmp_time));
+  if (raw_time != 0) {
+    _this->_internal_set_time(from._internal_time());
   }
-  switch (from.has_time_case()) {
-    case kTime: {
-      _this->_internal_set_time(from._internal_time());
-      break;
-    }
-    case HAS_TIME_NOT_SET: {
-      break;
-    }
+  if (from._internal_begin_cardinal_direction() != 0) {
+    _this->_internal_set_begin_cardinal_direction(from._internal_begin_cardinal_direction());
   }
-  switch (from.has_begin_cardinal_direction_case()) {
-    case kBeginCardinalDirection: {
-      _this->_internal_set_begin_cardinal_direction(from._internal_begin_cardinal_direction());
-      break;
-    }
-    case HAS_BEGIN_CARDINAL_DIRECTION_NOT_SET: {
-      break;
-    }
+  if (from._internal_begin_heading() != 0) {
+    _this->_internal_set_begin_heading(from._internal_begin_heading());
   }
-  switch (from.has_begin_heading_case()) {
-    case kBeginHeading: {
-      _this->_internal_set_begin_heading(from._internal_begin_heading());
-      break;
-    }
-    case HAS_BEGIN_HEADING_NOT_SET: {
-      break;
-    }
+  if (from._internal_begin_shape_index() != 0) {
+    _this->_internal_set_begin_shape_index(from._internal_begin_shape_index());
   }
-  switch (from.has_begin_shape_index_case()) {
-    case kBeginShapeIndex: {
-      _this->_internal_set_begin_shape_index(from._internal_begin_shape_index());
-      break;
-    }
-    case HAS_BEGIN_SHAPE_INDEX_NOT_SET: {
-      break;
-    }
+  if (from._internal_end_shape_index() != 0) {
+    _this->_internal_set_end_shape_index(from._internal_end_shape_index());
   }
-  switch (from.has_end_shape_index_case()) {
-    case kEndShapeIndex: {
-      _this->_internal_set_end_shape_index(from._internal_end_shape_index());
-      break;
-    }
-    case HAS_END_SHAPE_INDEX_NOT_SET: {
-      break;
-    }
+  if (from._internal_roundabout_exit_count() != 0) {
+    _this->_internal_set_roundabout_exit_count(from._internal_roundabout_exit_count());
   }
-  switch (from.has_portions_toll_case()) {
-    case kPortionsToll: {
-      _this->_internal_set_portions_toll(from._internal_portions_toll());
-      break;
-    }
-    case HAS_PORTIONS_TOLL_NOT_SET: {
-      break;
-    }
+  if (from._internal_portions_toll() != 0) {
+    _this->_internal_set_portions_toll(from._internal_portions_toll());
   }
-  switch (from.has_portions_unpaved_case()) {
-    case kPortionsUnpaved: {
-      _this->_internal_set_portions_unpaved(from._internal_portions_unpaved());
-      break;
-    }
-    case HAS_PORTIONS_UNPAVED_NOT_SET: {
-      break;
-    }
+  if (from._internal_portions_unpaved() != 0) {
+    _this->_internal_set_portions_unpaved(from._internal_portions_unpaved());
   }
-  switch (from.has_verbal_transition_alert_instruction_case()) {
-    case kVerbalTransitionAlertInstruction: {
-      _this->_internal_set_verbal_transition_alert_instruction(from._internal_verbal_transition_alert_instruction());
-      break;
-    }
-    case HAS_VERBAL_TRANSITION_ALERT_INSTRUCTION_NOT_SET: {
-      break;
-    }
+  if (from._internal_verbal_multi_cue() != 0) {
+    _this->_internal_set_verbal_multi_cue(from._internal_verbal_multi_cue());
   }
-  switch (from.has_verbal_pre_transition_instruction_case()) {
-    case kVerbalPreTransitionInstruction: {
-      _this->_internal_set_verbal_pre_transition_instruction(from._internal_verbal_pre_transition_instruction());
-      break;
-    }
-    case HAS_VERBAL_PRE_TRANSITION_INSTRUCTION_NOT_SET: {
-      break;
-    }
+  if (from._internal_to_stay_on() != 0) {
+    _this->_internal_set_to_stay_on(from._internal_to_stay_on());
   }
-  switch (from.has_verbal_post_transition_instruction_case()) {
-    case kVerbalPostTransitionInstruction: {
-      _this->_internal_set_verbal_post_transition_instruction(from._internal_verbal_post_transition_instruction());
-      break;
-    }
-    case HAS_VERBAL_POST_TRANSITION_INSTRUCTION_NOT_SET: {
-      break;
-    }
+  if (from._internal_travel_mode() != 0) {
+    _this->_internal_set_travel_mode(from._internal_travel_mode());
   }
-  switch (from.has_roundabout_exit_count_case()) {
-    case kRoundaboutExitCount: {
-      _this->_internal_set_roundabout_exit_count(from._internal_roundabout_exit_count());
-      break;
-    }
-    case HAS_ROUNDABOUT_EXIT_COUNT_NOT_SET: {
-      break;
-    }
+  if (from._internal_vehicle_type() != 0) {
+    _this->_internal_set_vehicle_type(from._internal_vehicle_type());
   }
-  switch (from.has_depart_instruction_case()) {
-    case kDepartInstruction: {
-      _this->_internal_set_depart_instruction(from._internal_depart_instruction());
-      break;
-    }
-    case HAS_DEPART_INSTRUCTION_NOT_SET: {
-      break;
-    }
+  if (from._internal_pedestrian_type() != 0) {
+    _this->_internal_set_pedestrian_type(from._internal_pedestrian_type());
   }
-  switch (from.has_verbal_depart_instruction_case()) {
-    case kVerbalDepartInstruction: {
-      _this->_internal_set_verbal_depart_instruction(from._internal_verbal_depart_instruction());
-      break;
-    }
-    case HAS_VERBAL_DEPART_INSTRUCTION_NOT_SET: {
-      break;
-    }
+  if (from._internal_bicycle_type() != 0) {
+    _this->_internal_set_bicycle_type(from._internal_bicycle_type());
   }
-  switch (from.has_arrive_instruction_case()) {
-    case kArriveInstruction: {
-      _this->_internal_set_arrive_instruction(from._internal_arrive_instruction());
-      break;
-    }
-    case HAS_ARRIVE_INSTRUCTION_NOT_SET: {
-      break;
-    }
+  if (from._internal_transit_type() != 0) {
+    _this->_internal_set_transit_type(from._internal_transit_type());
   }
-  switch (from.has_verbal_arrive_instruction_case()) {
-    case kVerbalArriveInstruction: {
-      _this->_internal_set_verbal_arrive_instruction(from._internal_verbal_arrive_instruction());
-      break;
-    }
-    case HAS_VERBAL_ARRIVE_INSTRUCTION_NOT_SET: {
-      break;
-    }
+  if (from._internal_begin_path_index() != 0) {
+    _this->_internal_set_begin_path_index(from._internal_begin_path_index());
   }
-  switch (from.has_verbal_multi_cue_case()) {
-    case kVerbalMultiCue: {
-      _this->_internal_set_verbal_multi_cue(from._internal_verbal_multi_cue());
-      break;
-    }
-    case HAS_VERBAL_MULTI_CUE_NOT_SET: {
-      break;
-    }
+  if (from._internal_end_path_index() != 0) {
+    _this->_internal_set_end_path_index(from._internal_end_path_index());
   }
-  switch (from.has_travel_mode_case()) {
-    case kTravelMode: {
-      _this->_internal_set_travel_mode(from._internal_travel_mode());
-      break;
-    }
-    case HAS_TRAVEL_MODE_NOT_SET: {
-      break;
-    }
+  if (from._internal_turn_degree() != 0) {
+    _this->_internal_set_turn_degree(from._internal_turn_degree());
   }
-  switch (from.has_vehicle_type_case()) {
-    case kVehicleType: {
-      _this->_internal_set_vehicle_type(from._internal_vehicle_type());
-      break;
-    }
-    case HAS_VEHICLE_TYPE_NOT_SET: {
-      break;
-    }
+  if (from._internal_has_time_restrictions() != 0) {
+    _this->_internal_set_has_time_restrictions(from._internal_has_time_restrictions());
   }
-  switch (from.has_pedestrian_type_case()) {
-    case kPedestrianType: {
-      _this->_internal_set_pedestrian_type(from._internal_pedestrian_type());
-      break;
-    }
-    case HAS_PEDESTRIAN_TYPE_NOT_SET: {
-      break;
-    }
-  }
-  switch (from.has_bicycle_type_case()) {
-    case kBicycleType: {
-      _this->_internal_set_bicycle_type(from._internal_bicycle_type());
-      break;
-    }
-    case HAS_BICYCLE_TYPE_NOT_SET: {
-      break;
-    }
-  }
-  switch (from.has_transit_type_case()) {
-    case kTransitType: {
-      _this->_internal_set_transit_type(from._internal_transit_type());
-      break;
-    }
-    case HAS_TRANSIT_TYPE_NOT_SET: {
-      break;
-    }
-  }
-  switch (from.has_begin_path_index_case()) {
-    case kBeginPathIndex: {
-      _this->_internal_set_begin_path_index(from._internal_begin_path_index());
-      break;
-    }
-    case HAS_BEGIN_PATH_INDEX_NOT_SET: {
-      break;
-    }
-  }
-  switch (from.has_end_path_index_case()) {
-    case kEndPathIndex: {
-      _this->_internal_set_end_path_index(from._internal_end_path_index());
-      break;
-    }
-    case HAS_END_PATH_INDEX_NOT_SET: {
-      break;
-    }
-  }
-  switch (from.has_to_stay_on_case()) {
-    case kToStayOn: {
-      _this->_internal_set_to_stay_on(from._internal_to_stay_on());
-      break;
-    }
-    case HAS_TO_STAY_ON_NOT_SET: {
-      break;
-    }
-  }
-  switch (from.has_turn_degree_case()) {
-    case kTurnDegree: {
-      _this->_internal_set_turn_degree(from._internal_turn_degree());
-      break;
-    }
-    case HAS_TURN_DEGREE_NOT_SET: {
-      break;
-    }
-  }
-  switch (from.has_has_time_restrictions_case()) {
-    case kHasTimeRestrictions: {
-      _this->_internal_set_has_time_restrictions(from._internal_has_time_restrictions());
-      break;
-    }
-    case HAS_HAS_TIME_RESTRICTIONS_NOT_SET: {
-      break;
-    }
-  }
-  switch (from.has_bss_maneuver_type_case()) {
-    case kBssManeuverType: {
-      _this->_internal_set_bss_maneuver_type(from._internal_bss_maneuver_type());
-      break;
-    }
-    case HAS_BSS_MANEUVER_TYPE_NOT_SET: {
-      break;
-    }
-  }
-  switch (from.has_verbal_succinct_transition_instruction_case()) {
-    case kVerbalSuccinctTransitionInstruction: {
-      _this->_internal_set_verbal_succinct_transition_instruction(from._internal_verbal_succinct_transition_instruction());
-      break;
-    }
-    case HAS_VERBAL_SUCCINCT_TRANSITION_INSTRUCTION_NOT_SET: {
-      break;
-    }
+  if (from._internal_bss_maneuver_type() != 0) {
+    _this->_internal_set_bss_maneuver_type(from._internal_bss_maneuver_type());
   }
   _this->_internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
 }
@@ -3971,79 +2723,55 @@ bool DirectionsLeg_Maneuver::IsInitialized() const {
 
 void DirectionsLeg_Maneuver::InternalSwap(DirectionsLeg_Maneuver* other) {
   using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   _impl_.street_name_.InternalSwap(&other->_impl_.street_name_);
   _impl_.begin_street_name_.InternalSwap(&other->_impl_.begin_street_name_);
   _impl_.roundabout_exit_street_names_.InternalSwap(&other->_impl_.roundabout_exit_street_names_);
   _impl_.guidance_views_.InternalSwap(&other->_impl_.guidance_views_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.text_instruction_, lhs_arena,
+      &other->_impl_.text_instruction_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.verbal_transition_alert_instruction_, lhs_arena,
+      &other->_impl_.verbal_transition_alert_instruction_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.verbal_pre_transition_instruction_, lhs_arena,
+      &other->_impl_.verbal_pre_transition_instruction_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.verbal_post_transition_instruction_, lhs_arena,
+      &other->_impl_.verbal_post_transition_instruction_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.depart_instruction_, lhs_arena,
+      &other->_impl_.depart_instruction_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.verbal_depart_instruction_, lhs_arena,
+      &other->_impl_.verbal_depart_instruction_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.arrive_instruction_, lhs_arena,
+      &other->_impl_.arrive_instruction_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.verbal_arrive_instruction_, lhs_arena,
+      &other->_impl_.verbal_arrive_instruction_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.verbal_succinct_transition_instruction_, lhs_arena,
+      &other->_impl_.verbal_succinct_transition_instruction_, rhs_arena
+  );
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(DirectionsLeg_Maneuver, _impl_.bss_info_)
-      + sizeof(DirectionsLeg_Maneuver::_impl_.bss_info_)
+      PROTOBUF_FIELD_OFFSET(DirectionsLeg_Maneuver, _impl_.bss_maneuver_type_)
+      + sizeof(DirectionsLeg_Maneuver::_impl_.bss_maneuver_type_)
       - PROTOBUF_FIELD_OFFSET(DirectionsLeg_Maneuver, _impl_.sign_)>(
           reinterpret_cast<char*>(&_impl_.sign_),
           reinterpret_cast<char*>(&other->_impl_.sign_));
-  swap(_impl_.has_type_, other->_impl_.has_type_);
-  swap(_impl_.has_text_instruction_, other->_impl_.has_text_instruction_);
-  swap(_impl_.has_length_, other->_impl_.has_length_);
-  swap(_impl_.has_time_, other->_impl_.has_time_);
-  swap(_impl_.has_begin_cardinal_direction_, other->_impl_.has_begin_cardinal_direction_);
-  swap(_impl_.has_begin_heading_, other->_impl_.has_begin_heading_);
-  swap(_impl_.has_begin_shape_index_, other->_impl_.has_begin_shape_index_);
-  swap(_impl_.has_end_shape_index_, other->_impl_.has_end_shape_index_);
-  swap(_impl_.has_portions_toll_, other->_impl_.has_portions_toll_);
-  swap(_impl_.has_portions_unpaved_, other->_impl_.has_portions_unpaved_);
-  swap(_impl_.has_verbal_transition_alert_instruction_, other->_impl_.has_verbal_transition_alert_instruction_);
-  swap(_impl_.has_verbal_pre_transition_instruction_, other->_impl_.has_verbal_pre_transition_instruction_);
-  swap(_impl_.has_verbal_post_transition_instruction_, other->_impl_.has_verbal_post_transition_instruction_);
-  swap(_impl_.has_roundabout_exit_count_, other->_impl_.has_roundabout_exit_count_);
-  swap(_impl_.has_depart_instruction_, other->_impl_.has_depart_instruction_);
-  swap(_impl_.has_verbal_depart_instruction_, other->_impl_.has_verbal_depart_instruction_);
-  swap(_impl_.has_arrive_instruction_, other->_impl_.has_arrive_instruction_);
-  swap(_impl_.has_verbal_arrive_instruction_, other->_impl_.has_verbal_arrive_instruction_);
-  swap(_impl_.has_verbal_multi_cue_, other->_impl_.has_verbal_multi_cue_);
-  swap(_impl_.has_travel_mode_, other->_impl_.has_travel_mode_);
-  swap(_impl_.has_vehicle_type_, other->_impl_.has_vehicle_type_);
-  swap(_impl_.has_pedestrian_type_, other->_impl_.has_pedestrian_type_);
-  swap(_impl_.has_bicycle_type_, other->_impl_.has_bicycle_type_);
-  swap(_impl_.has_transit_type_, other->_impl_.has_transit_type_);
-  swap(_impl_.has_begin_path_index_, other->_impl_.has_begin_path_index_);
-  swap(_impl_.has_end_path_index_, other->_impl_.has_end_path_index_);
-  swap(_impl_.has_to_stay_on_, other->_impl_.has_to_stay_on_);
-  swap(_impl_.has_turn_degree_, other->_impl_.has_turn_degree_);
-  swap(_impl_.has_has_time_restrictions_, other->_impl_.has_has_time_restrictions_);
-  swap(_impl_.has_bss_maneuver_type_, other->_impl_.has_bss_maneuver_type_);
-  swap(_impl_.has_verbal_succinct_transition_instruction_, other->_impl_.has_verbal_succinct_transition_instruction_);
-  swap(_impl_._oneof_case_[0], other->_impl_._oneof_case_[0]);
-  swap(_impl_._oneof_case_[1], other->_impl_._oneof_case_[1]);
-  swap(_impl_._oneof_case_[2], other->_impl_._oneof_case_[2]);
-  swap(_impl_._oneof_case_[3], other->_impl_._oneof_case_[3]);
-  swap(_impl_._oneof_case_[4], other->_impl_._oneof_case_[4]);
-  swap(_impl_._oneof_case_[5], other->_impl_._oneof_case_[5]);
-  swap(_impl_._oneof_case_[6], other->_impl_._oneof_case_[6]);
-  swap(_impl_._oneof_case_[7], other->_impl_._oneof_case_[7]);
-  swap(_impl_._oneof_case_[8], other->_impl_._oneof_case_[8]);
-  swap(_impl_._oneof_case_[9], other->_impl_._oneof_case_[9]);
-  swap(_impl_._oneof_case_[10], other->_impl_._oneof_case_[10]);
-  swap(_impl_._oneof_case_[11], other->_impl_._oneof_case_[11]);
-  swap(_impl_._oneof_case_[12], other->_impl_._oneof_case_[12]);
-  swap(_impl_._oneof_case_[13], other->_impl_._oneof_case_[13]);
-  swap(_impl_._oneof_case_[14], other->_impl_._oneof_case_[14]);
-  swap(_impl_._oneof_case_[15], other->_impl_._oneof_case_[15]);
-  swap(_impl_._oneof_case_[16], other->_impl_._oneof_case_[16]);
-  swap(_impl_._oneof_case_[17], other->_impl_._oneof_case_[17]);
-  swap(_impl_._oneof_case_[18], other->_impl_._oneof_case_[18]);
-  swap(_impl_._oneof_case_[19], other->_impl_._oneof_case_[19]);
-  swap(_impl_._oneof_case_[20], other->_impl_._oneof_case_[20]);
-  swap(_impl_._oneof_case_[21], other->_impl_._oneof_case_[21]);
-  swap(_impl_._oneof_case_[22], other->_impl_._oneof_case_[22]);
-  swap(_impl_._oneof_case_[23], other->_impl_._oneof_case_[23]);
-  swap(_impl_._oneof_case_[24], other->_impl_._oneof_case_[24]);
-  swap(_impl_._oneof_case_[25], other->_impl_._oneof_case_[25]);
-  swap(_impl_._oneof_case_[26], other->_impl_._oneof_case_[26]);
-  swap(_impl_._oneof_case_[27], other->_impl_._oneof_case_[27]);
-  swap(_impl_._oneof_case_[28], other->_impl_._oneof_case_[28]);
-  swap(_impl_._oneof_case_[29], other->_impl_._oneof_case_[29]);
-  swap(_impl_._oneof_case_[30], other->_impl_._oneof_case_[30]);
 }
 
 std::string DirectionsLeg_Maneuver::GetTypeName() const {
@@ -4077,58 +2805,28 @@ DirectionsLeg::DirectionsLeg(const DirectionsLeg& from)
   new (&_impl_) Impl_{
       decltype(_impl_.location_){from._impl_.location_}
     , decltype(_impl_.maneuver_){from._impl_.maneuver_}
+    , decltype(_impl_.shape_){}
     , decltype(_impl_.summary_){nullptr}
-    , decltype(_impl_.has_trip_id_){}
-    , decltype(_impl_.has_leg_id_){}
-    , decltype(_impl_.has_leg_count_){}
-    , decltype(_impl_.has_shape_){}
-    , /*decltype(_impl_._cached_size_)*/{}
-    , /*decltype(_impl_._oneof_case_)*/{}};
+    , decltype(_impl_.trip_id_){}
+    , decltype(_impl_.leg_id_){}
+    , decltype(_impl_.leg_count_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
 
   _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
+  _impl_.shape_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.shape_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_shape().empty()) {
+    _this->_impl_.shape_.Set(from._internal_shape(), 
+      _this->GetArenaForAllocation());
+  }
   if (from._internal_has_summary()) {
     _this->_impl_.summary_ = new ::valhalla::DirectionsLeg_Summary(*from._impl_.summary_);
   }
-  clear_has_has_trip_id();
-  switch (from.has_trip_id_case()) {
-    case kTripId: {
-      _this->_internal_set_trip_id(from._internal_trip_id());
-      break;
-    }
-    case HAS_TRIP_ID_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_leg_id();
-  switch (from.has_leg_id_case()) {
-    case kLegId: {
-      _this->_internal_set_leg_id(from._internal_leg_id());
-      break;
-    }
-    case HAS_LEG_ID_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_leg_count();
-  switch (from.has_leg_count_case()) {
-    case kLegCount: {
-      _this->_internal_set_leg_count(from._internal_leg_count());
-      break;
-    }
-    case HAS_LEG_COUNT_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_shape();
-  switch (from.has_shape_case()) {
-    case kShape: {
-      _this->_internal_set_shape(from._internal_shape());
-      break;
-    }
-    case HAS_SHAPE_NOT_SET: {
-      break;
-    }
-  }
+  ::memcpy(&_impl_.trip_id_, &from._impl_.trip_id_,
+    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.leg_count_) -
+    reinterpret_cast<char*>(&_impl_.trip_id_)) + sizeof(_impl_.leg_count_));
   // @@protoc_insertion_point(copy_constructor:valhalla.DirectionsLeg)
 }
 
@@ -4139,18 +2837,17 @@ inline void DirectionsLeg::SharedCtor(
   new (&_impl_) Impl_{
       decltype(_impl_.location_){arena}
     , decltype(_impl_.maneuver_){arena}
+    , decltype(_impl_.shape_){}
     , decltype(_impl_.summary_){nullptr}
-    , decltype(_impl_.has_trip_id_){}
-    , decltype(_impl_.has_leg_id_){}
-    , decltype(_impl_.has_leg_count_){}
-    , decltype(_impl_.has_shape_){}
+    , decltype(_impl_.trip_id_){uint64_t{0u}}
+    , decltype(_impl_.leg_id_){0u}
+    , decltype(_impl_.leg_count_){0u}
     , /*decltype(_impl_._cached_size_)*/{}
-    , /*decltype(_impl_._oneof_case_)*/{}
   };
-  clear_has_has_trip_id();
-  clear_has_has_leg_id();
-  clear_has_has_leg_count();
-  clear_has_has_shape();
+  _impl_.shape_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.shape_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 DirectionsLeg::~DirectionsLeg() {
@@ -4166,81 +2863,13 @@ inline void DirectionsLeg::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   _impl_.location_.~RepeatedPtrField();
   _impl_.maneuver_.~RepeatedPtrField();
+  _impl_.shape_.Destroy();
   if (this != internal_default_instance()) delete _impl_.summary_;
-  if (has_has_trip_id()) {
-    clear_has_trip_id();
-  }
-  if (has_has_leg_id()) {
-    clear_has_leg_id();
-  }
-  if (has_has_leg_count()) {
-    clear_has_leg_count();
-  }
-  if (has_has_shape()) {
-    clear_has_shape();
-  }
 }
 
 void DirectionsLeg::SetCachedSize(int size) const {
   _impl_._cached_size_.Set(size);
 }
-
-void DirectionsLeg::clear_has_trip_id() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.DirectionsLeg)
-  switch (has_trip_id_case()) {
-    case kTripId: {
-      // No need to clear
-      break;
-    }
-    case HAS_TRIP_ID_NOT_SET: {
-      break;
-    }
-  }
-  _impl_._oneof_case_[0] = HAS_TRIP_ID_NOT_SET;
-}
-
-void DirectionsLeg::clear_has_leg_id() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.DirectionsLeg)
-  switch (has_leg_id_case()) {
-    case kLegId: {
-      // No need to clear
-      break;
-    }
-    case HAS_LEG_ID_NOT_SET: {
-      break;
-    }
-  }
-  _impl_._oneof_case_[1] = HAS_LEG_ID_NOT_SET;
-}
-
-void DirectionsLeg::clear_has_leg_count() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.DirectionsLeg)
-  switch (has_leg_count_case()) {
-    case kLegCount: {
-      // No need to clear
-      break;
-    }
-    case HAS_LEG_COUNT_NOT_SET: {
-      break;
-    }
-  }
-  _impl_._oneof_case_[2] = HAS_LEG_COUNT_NOT_SET;
-}
-
-void DirectionsLeg::clear_has_shape() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.DirectionsLeg)
-  switch (has_shape_case()) {
-    case kShape: {
-      _impl_.has_shape_.shape_.Destroy();
-      break;
-    }
-    case HAS_SHAPE_NOT_SET: {
-      break;
-    }
-  }
-  _impl_._oneof_case_[3] = HAS_SHAPE_NOT_SET;
-}
-
 
 void DirectionsLeg::Clear() {
 // @@protoc_insertion_point(message_clear_start:valhalla.DirectionsLeg)
@@ -4250,14 +2879,14 @@ void DirectionsLeg::Clear() {
 
   _impl_.location_.Clear();
   _impl_.maneuver_.Clear();
+  _impl_.shape_.ClearToEmpty();
   if (GetArenaForAllocation() == nullptr && _impl_.summary_ != nullptr) {
     delete _impl_.summary_;
   }
   _impl_.summary_ = nullptr;
-  clear_has_trip_id();
-  clear_has_leg_id();
-  clear_has_leg_count();
-  clear_has_shape();
+  ::memset(&_impl_.trip_id_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&_impl_.leg_count_) -
+      reinterpret_cast<char*>(&_impl_.trip_id_)) + sizeof(_impl_.leg_count_));
   _internal_metadata_.Clear<std::string>();
 }
 
@@ -4270,7 +2899,7 @@ const char* DirectionsLeg::_InternalParse(const char* ptr, ::_pbi::ParseContext*
       // uint64 trip_id = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
-          _internal_set_trip_id(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr));
+          _impl_.trip_id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -4278,7 +2907,7 @@ const char* DirectionsLeg::_InternalParse(const char* ptr, ::_pbi::ParseContext*
       // uint32 leg_id = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
-          _internal_set_leg_id(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr));
+          _impl_.leg_id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -4286,7 +2915,7 @@ const char* DirectionsLeg::_InternalParse(const char* ptr, ::_pbi::ParseContext*
       // uint32 leg_count = 3;
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
-          _internal_set_leg_count(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr));
+          _impl_.leg_count_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -4365,19 +2994,19 @@ uint8_t* DirectionsLeg::_InternalSerialize(
   (void) cached_has_bits;
 
   // uint64 trip_id = 1;
-  if (_internal_has_trip_id()) {
+  if (this->_internal_trip_id() != 0) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteUInt64ToArray(1, this->_internal_trip_id(), target);
   }
 
   // uint32 leg_id = 2;
-  if (_internal_has_leg_id()) {
+  if (this->_internal_leg_id() != 0) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteUInt32ToArray(2, this->_internal_leg_id(), target);
   }
 
   // uint32 leg_count = 3;
-  if (_internal_has_leg_count()) {
+  if (this->_internal_leg_count() != 0) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteUInt32ToArray(3, this->_internal_leg_count(), target);
   }
@@ -4406,7 +3035,7 @@ uint8_t* DirectionsLeg::_InternalSerialize(
   }
 
   // string shape = 7;
-  if (_internal_has_shape()) {
+  if (!this->_internal_shape().empty()) {
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_shape().data(), static_cast<int>(this->_internal_shape().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
@@ -4445,6 +3074,13 @@ size_t DirectionsLeg::ByteSizeLong() const {
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
 
+  // string shape = 7;
+  if (!this->_internal_shape().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_shape());
+  }
+
   // .valhalla.DirectionsLeg.Summary summary = 5;
   if (this->_internal_has_summary()) {
     total_size += 1 +
@@ -4452,48 +3088,21 @@ size_t DirectionsLeg::ByteSizeLong() const {
         *_impl_.summary_);
   }
 
-  switch (has_trip_id_case()) {
-    // uint64 trip_id = 1;
-    case kTripId: {
-      total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_trip_id());
-      break;
-    }
-    case HAS_TRIP_ID_NOT_SET: {
-      break;
-    }
+  // uint64 trip_id = 1;
+  if (this->_internal_trip_id() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_trip_id());
   }
-  switch (has_leg_id_case()) {
-    // uint32 leg_id = 2;
-    case kLegId: {
-      total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_leg_id());
-      break;
-    }
-    case HAS_LEG_ID_NOT_SET: {
-      break;
-    }
+
+  // uint32 leg_id = 2;
+  if (this->_internal_leg_id() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_leg_id());
   }
-  switch (has_leg_count_case()) {
-    // uint32 leg_count = 3;
-    case kLegCount: {
-      total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_leg_count());
-      break;
-    }
-    case HAS_LEG_COUNT_NOT_SET: {
-      break;
-    }
+
+  // uint32 leg_count = 3;
+  if (this->_internal_leg_count() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_leg_count());
   }
-  switch (has_shape_case()) {
-    // string shape = 7;
-    case kShape: {
-      total_size += 1 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-          this->_internal_shape());
-      break;
-    }
-    case HAS_SHAPE_NOT_SET: {
-      break;
-    }
-  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     total_size += _internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).size();
   }
@@ -4517,45 +3126,21 @@ void DirectionsLeg::MergeFrom(const DirectionsLeg& from) {
 
   _this->_impl_.location_.MergeFrom(from._impl_.location_);
   _this->_impl_.maneuver_.MergeFrom(from._impl_.maneuver_);
+  if (!from._internal_shape().empty()) {
+    _this->_internal_set_shape(from._internal_shape());
+  }
   if (from._internal_has_summary()) {
     _this->_internal_mutable_summary()->::valhalla::DirectionsLeg_Summary::MergeFrom(
         from._internal_summary());
   }
-  switch (from.has_trip_id_case()) {
-    case kTripId: {
-      _this->_internal_set_trip_id(from._internal_trip_id());
-      break;
-    }
-    case HAS_TRIP_ID_NOT_SET: {
-      break;
-    }
+  if (from._internal_trip_id() != 0) {
+    _this->_internal_set_trip_id(from._internal_trip_id());
   }
-  switch (from.has_leg_id_case()) {
-    case kLegId: {
-      _this->_internal_set_leg_id(from._internal_leg_id());
-      break;
-    }
-    case HAS_LEG_ID_NOT_SET: {
-      break;
-    }
+  if (from._internal_leg_id() != 0) {
+    _this->_internal_set_leg_id(from._internal_leg_id());
   }
-  switch (from.has_leg_count_case()) {
-    case kLegCount: {
-      _this->_internal_set_leg_count(from._internal_leg_count());
-      break;
-    }
-    case HAS_LEG_COUNT_NOT_SET: {
-      break;
-    }
-  }
-  switch (from.has_shape_case()) {
-    case kShape: {
-      _this->_internal_set_shape(from._internal_shape());
-      break;
-    }
-    case HAS_SHAPE_NOT_SET: {
-      break;
-    }
+  if (from._internal_leg_count() != 0) {
+    _this->_internal_set_leg_count(from._internal_leg_count());
   }
   _this->_internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
 }
@@ -4573,18 +3158,21 @@ bool DirectionsLeg::IsInitialized() const {
 
 void DirectionsLeg::InternalSwap(DirectionsLeg* other) {
   using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   _impl_.location_.InternalSwap(&other->_impl_.location_);
   _impl_.maneuver_.InternalSwap(&other->_impl_.maneuver_);
-  swap(_impl_.summary_, other->_impl_.summary_);
-  swap(_impl_.has_trip_id_, other->_impl_.has_trip_id_);
-  swap(_impl_.has_leg_id_, other->_impl_.has_leg_id_);
-  swap(_impl_.has_leg_count_, other->_impl_.has_leg_count_);
-  swap(_impl_.has_shape_, other->_impl_.has_shape_);
-  swap(_impl_._oneof_case_[0], other->_impl_._oneof_case_[0]);
-  swap(_impl_._oneof_case_[1], other->_impl_._oneof_case_[1]);
-  swap(_impl_._oneof_case_[2], other->_impl_._oneof_case_[2]);
-  swap(_impl_._oneof_case_[3], other->_impl_._oneof_case_[3]);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.shape_, lhs_arena,
+      &other->_impl_.shape_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(DirectionsLeg, _impl_.leg_count_)
+      + sizeof(DirectionsLeg::_impl_.leg_count_)
+      - PROTOBUF_FIELD_OFFSET(DirectionsLeg, _impl_.summary_)>(
+          reinterpret_cast<char*>(&_impl_.summary_),
+          reinterpret_cast<char*>(&other->_impl_.summary_));
 }
 
 std::string DirectionsLeg::GetTypeName() const {

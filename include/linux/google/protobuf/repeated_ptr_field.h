@@ -612,16 +612,7 @@ class PROTOBUF_EXPORT RepeatedPtrFieldBase {
     temp.Destroy<TypeHandler>();  // Frees rep_ if `other` had no arena.
   }
 
-  // Gets the Arena on which this RepeatedPtrField stores its elements.
-  // Message-owned arenas are not exposed by this method, which will return
-  // nullptr for messages owned by MOAs.
-  inline Arena* GetArena() const {
-    Arena* arena = GetOwningArena();
-    if (arena == nullptr || arena->InternalIsMessageOwnedArena()) {
-      return nullptr;
-    }
-    return arena;
-  }
+  inline Arena* GetArena() const { return arena_; }
 
  protected:
   inline Arena* GetOwningArena() const { return arena_; }
@@ -771,7 +762,7 @@ class GenericTypeHandler {
     }
   }
   static inline Arena* GetOwningArena(GenericType* value) {
-    return Arena::InternalGetOwningArena(value);
+    return Arena::GetOwningArena<Type>(value);
   }
 
   static inline void Clear(GenericType* value) { value->Clear(); }

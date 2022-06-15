@@ -72,16 +72,6 @@ class DefaultEmptyOneof;
 class ExtensionSet;  // extension_set.h
 class WeakFieldMap;  // weak_field_map.h
 
-// Tag used on offsets for fields that don't have a real offset.
-// For example, weak message fields go into the WeakFieldMap and not in an
-// actual field.
-constexpr uint32_t kInvalidFieldOffsetTag = 0x40000000u;
-
-// Mask used on offsets for split fields.
-constexpr uint32_t kSplitFieldOffsetMask = 0x80000000u;
-constexpr uint32_t kLazyMask = 0x1u;
-constexpr uint32_t kInlinedMask = 0x1u;
-
 // This struct describes the internal layout of the message, hence this is
 // used to act on the message reflectively.
 //   default_instance:  The default instance of the message.  This is only
@@ -244,24 +234,6 @@ struct ReflectionSchema {
     return false;
   }
 
-  bool IsSplit() const { return split_offset_ != -1; }
-
-  bool IsSplit(const FieldDescriptor* field) const {
-    return split_offset_ != -1 &&
-           (offsets_[field->index()] & kSplitFieldOffsetMask) != 0;
-  }
-
-  // Byte offset of _split_.
-  uint32_t SplitOffset() const {
-    GOOGLE_DCHECK(IsSplit());
-    return static_cast<uint32_t>(split_offset_);
-  }
-
-  uint32_t SizeofSplit() const {
-    GOOGLE_DCHECK(IsSplit());
-    return static_cast<uint32_t>(sizeof_split_);
-  }
-
 
   bool HasWeakFields() const { return weak_field_map_offset_ > 0; }
 
@@ -282,8 +254,6 @@ struct ReflectionSchema {
   int weak_field_map_offset_;
   const uint32_t* inlined_string_indices_;
   int inlined_string_donated_offset_;
-  int split_offset_;
-  int sizeof_split_;
 
   // We tag offset values to provide additional data about fields (such as
   // "unused" or "lazy" or "inlined").
@@ -291,15 +261,15 @@ struct ReflectionSchema {
     if (type == FieldDescriptor::TYPE_MESSAGE ||
         type == FieldDescriptor::TYPE_STRING ||
         type == FieldDescriptor::TYPE_BYTES) {
-      return v & (~kSplitFieldOffsetMask) & (~kInlinedMask) & (~kLazyMask);
+      return v & 0xFFFFFFFEu;
     }
-    return v & (~kSplitFieldOffsetMask);
+    return v;
   }
 
   static bool Inlined(uint32_t v, FieldDescriptor::Type type) {
     if (type == FieldDescriptor::TYPE_STRING ||
         type == FieldDescriptor::TYPE_BYTES) {
-      return (v & kInlinedMask) != 0u;
+      return (v & 1u) != 0u;
     } else {
       // Non string/byte fields are not inlined.
       return false;
@@ -340,6 +310,13 @@ struct PROTOBUF_EXPORT DescriptorTable {
   Metadata* file_level_metadata;
   const EnumDescriptor** file_level_enum_descriptors;
   const ServiceDescriptor** file_level_service_descriptors;
+};
+
+enum {
+  // Tag used on offsets for fields that don't have a real offset.
+  // For example, weak message fields go into the WeakFieldMap and not in an
+  // actual field.
+  kInvalidFieldOffsetTag = 0x40000000u,
 };
 
 // AssignDescriptors() pulls the compiled FileDescriptor from the DescriptorPool

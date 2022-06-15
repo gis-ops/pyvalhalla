@@ -228,8 +228,6 @@ constexpr int Transit_Fetch::VehicleType_ARRAYSIZE;
 class Transit_Fetch_Stop::_Internal {
  public:
   using HasBits = decltype(std::declval<Transit_Fetch_Stop>()._impl_._has_bits_);
-  static constexpr int32_t kHasBitsOffset =
-    8 * PROTOBUF_FIELD_OFFSET(Transit_Fetch_Stop, _impl_._has_bits_);
   static void set_has_lon(HasBits* has_bits) {
     (*has_bits)[0] |= 8u;
   }
@@ -707,8 +705,6 @@ std::string Transit_Fetch_Stop::GetTypeName() const {
 class Transit_Fetch_StopPair::_Internal {
  public:
   using HasBits = decltype(std::declval<Transit_Fetch_StopPair>()._impl_._has_bits_);
-  static constexpr int32_t kHasBitsOffset =
-    8 * PROTOBUF_FIELD_OFFSET(Transit_Fetch_StopPair, _impl_._has_bits_);
   static void set_has_bikes_allowed(HasBits* has_bits) {
     (*has_bits)[0] |= 512u;
   }
@@ -1683,8 +1679,6 @@ std::string Transit_Fetch_StopPair::GetTypeName() const {
 class Transit_Fetch_Route::_Internal {
  public:
   using HasBits = decltype(std::declval<Transit_Fetch_Route>()._impl_._has_bits_);
-  static constexpr int32_t kHasBitsOffset =
-    8 * PROTOBUF_FIELD_OFFSET(Transit_Fetch_Route, _impl_._has_bits_);
   static void set_has_name(HasBits* has_bits) {
     (*has_bits)[0] |= 1u;
   }
@@ -2318,8 +2312,6 @@ std::string Transit_Fetch_Route::GetTypeName() const {
 class Transit_Fetch_Shape::_Internal {
  public:
   using HasBits = decltype(std::declval<Transit_Fetch_Shape>()._impl_._has_bits_);
-  static constexpr int32_t kHasBitsOffset =
-    8 * PROTOBUF_FIELD_OFFSET(Transit_Fetch_Shape, _impl_._has_bits_);
   static void set_has_shape_id(HasBits* has_bits) {
     (*has_bits)[0] |= 2u;
   }

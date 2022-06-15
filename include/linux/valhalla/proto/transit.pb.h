@@ -1858,7 +1858,9 @@ inline std::string* Transit_Node::release_name() {
   _impl_._has_bits_[0] &= ~0x00000001u;
   auto* p = _impl_.name_.Release();
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.name_.Set("", GetArenaForAllocation());
+  if (_impl_.name_.IsDefault()) {
+    _impl_.name_.Set("", GetArenaForAllocation());
+  }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   return p;
 }
@@ -1924,7 +1926,9 @@ inline std::string* Transit_Node::release_onestop_id() {
   _impl_._has_bits_[0] &= ~0x00000002u;
   auto* p = _impl_.onestop_id_.Release();
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.onestop_id_.Set("", GetArenaForAllocation());
+  if (_impl_.onestop_id_.IsDefault()) {
+    _impl_.onestop_id_.Set("", GetArenaForAllocation());
+  }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   return p;
 }
@@ -2018,7 +2022,9 @@ inline std::string* Transit_Node::release_timezone() {
   _impl_._has_bits_[0] &= ~0x00000004u;
   auto* p = _impl_.timezone_.Release();
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.timezone_.Set("", GetArenaForAllocation());
+  if (_impl_.timezone_.IsDefault()) {
+    _impl_.timezone_.Set("", GetArenaForAllocation());
+  }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   return p;
 }
@@ -2284,7 +2290,9 @@ inline std::string* Transit_StopPair::release_destination_onestop_id() {
   _impl_._has_bits_[0] &= ~0x00000001u;
   auto* p = _impl_.destination_onestop_id_.Release();
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.destination_onestop_id_.Set("", GetArenaForAllocation());
+  if (_impl_.destination_onestop_id_.IsDefault()) {
+    _impl_.destination_onestop_id_.Set("", GetArenaForAllocation());
+  }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   return p;
 }
@@ -2350,7 +2358,9 @@ inline std::string* Transit_StopPair::release_operated_by_onestop_id() {
   _impl_._has_bits_[0] &= ~0x00000002u;
   auto* p = _impl_.operated_by_onestop_id_.Release();
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.operated_by_onestop_id_.Set("", GetArenaForAllocation());
+  if (_impl_.operated_by_onestop_id_.IsDefault()) {
+    _impl_.operated_by_onestop_id_.Set("", GetArenaForAllocation());
+  }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   return p;
 }
@@ -2472,7 +2482,9 @@ inline std::string* Transit_StopPair::release_origin_onestop_id() {
   _impl_._has_bits_[0] &= ~0x00000004u;
   auto* p = _impl_.origin_onestop_id_.Release();
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.origin_onestop_id_.Set("", GetArenaForAllocation());
+  if (_impl_.origin_onestop_id_.IsDefault()) {
+    _impl_.origin_onestop_id_.Set("", GetArenaForAllocation());
+  }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   return p;
 }
@@ -2763,7 +2775,9 @@ inline std::string* Transit_StopPair::release_trip_headsign() {
   _impl_._has_bits_[0] &= ~0x00000008u;
   auto* p = _impl_.trip_headsign_.Release();
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.trip_headsign_.Set("", GetArenaForAllocation());
+  if (_impl_.trip_headsign_.IsDefault()) {
+    _impl_.trip_headsign_.Set("", GetArenaForAllocation());
+  }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   return p;
 }
@@ -3029,7 +3043,9 @@ inline std::string* Transit_Route::release_name() {
   _impl_._has_bits_[0] &= ~0x00000001u;
   auto* p = _impl_.name_.Release();
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.name_.Set("", GetArenaForAllocation());
+  if (_impl_.name_.IsDefault()) {
+    _impl_.name_.Set("", GetArenaForAllocation());
+  }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   return p;
 }
@@ -3095,7 +3111,9 @@ inline std::string* Transit_Route::release_onestop_id() {
   _impl_._has_bits_[0] &= ~0x00000002u;
   auto* p = _impl_.onestop_id_.Release();
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.onestop_id_.Set("", GetArenaForAllocation());
+  if (_impl_.onestop_id_.IsDefault()) {
+    _impl_.onestop_id_.Set("", GetArenaForAllocation());
+  }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   return p;
 }
@@ -3161,7 +3179,9 @@ inline std::string* Transit_Route::release_operated_by_name() {
   _impl_._has_bits_[0] &= ~0x00000004u;
   auto* p = _impl_.operated_by_name_.Release();
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.operated_by_name_.Set("", GetArenaForAllocation());
+  if (_impl_.operated_by_name_.IsDefault()) {
+    _impl_.operated_by_name_.Set("", GetArenaForAllocation());
+  }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   return p;
 }
@@ -3227,7 +3247,9 @@ inline std::string* Transit_Route::release_operated_by_onestop_id() {
   _impl_._has_bits_[0] &= ~0x00000008u;
   auto* p = _impl_.operated_by_onestop_id_.Release();
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.operated_by_onestop_id_.Set("", GetArenaForAllocation());
+  if (_impl_.operated_by_onestop_id_.IsDefault()) {
+    _impl_.operated_by_onestop_id_.Set("", GetArenaForAllocation());
+  }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   return p;
 }
@@ -3293,7 +3315,9 @@ inline std::string* Transit_Route::release_operated_by_website() {
   _impl_._has_bits_[0] &= ~0x00000010u;
   auto* p = _impl_.operated_by_website_.Release();
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.operated_by_website_.Set("", GetArenaForAllocation());
+  if (_impl_.operated_by_website_.IsDefault()) {
+    _impl_.operated_by_website_.Set("", GetArenaForAllocation());
+  }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   return p;
 }
@@ -3387,7 +3411,9 @@ inline std::string* Transit_Route::release_route_desc() {
   _impl_._has_bits_[0] &= ~0x00000020u;
   auto* p = _impl_.route_desc_.Release();
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.route_desc_.Set("", GetArenaForAllocation());
+  if (_impl_.route_desc_.IsDefault()) {
+    _impl_.route_desc_.Set("", GetArenaForAllocation());
+  }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   return p;
 }
@@ -3453,7 +3479,9 @@ inline std::string* Transit_Route::release_route_long_name() {
   _impl_._has_bits_[0] &= ~0x00000040u;
   auto* p = _impl_.route_long_name_.Release();
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.route_long_name_.Set("", GetArenaForAllocation());
+  if (_impl_.route_long_name_.IsDefault()) {
+    _impl_.route_long_name_.Set("", GetArenaForAllocation());
+  }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   return p;
 }
@@ -3608,7 +3636,9 @@ inline std::string* Transit_Shape::release_encoded_shape() {
   _impl_._has_bits_[0] &= ~0x00000001u;
   auto* p = _impl_.encoded_shape_.Release();
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.encoded_shape_.Set("", GetArenaForAllocation());
+  if (_impl_.encoded_shape_.IsDefault()) {
+    _impl_.encoded_shape_.Set("", GetArenaForAllocation());
+  }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   return p;
 }

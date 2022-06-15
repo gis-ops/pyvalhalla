@@ -94,6 +94,23 @@ constexpr int RepeatedFieldLowerClampLimit() {
 constexpr int kRepeatedFieldUpperClampLimit =
     (std::numeric_limits<int>::max() / 2) + 1;
 
+template <typename Iter>
+inline int CalculateReserve(Iter begin, Iter end, std::forward_iterator_tag) {
+  return static_cast<int>(std::distance(begin, end));
+}
+
+template <typename Iter>
+inline int CalculateReserve(Iter /*begin*/, Iter /*end*/,
+                            std::input_iterator_tag /*unused*/) {
+  return -1;
+}
+
+template <typename Iter>
+inline int CalculateReserve(Iter begin, Iter end) {
+  typedef typename std::iterator_traits<Iter>::iterator_category Category;
+  return CalculateReserve(begin, end, Category());
+}
+
 // Swaps two blocks of memory of size sizeof(T).
 template <typename T>
 inline void SwapBlock(char* p, char* q) {
@@ -229,7 +246,7 @@ class RepeatedField final {
   Element* mutable_data();
   const Element* data() const;
 
-  // Swaps entire contents with "other". If they are separate arenas, then
+  // Swaps entire contents with "other". If they are separate arenas then,
   // copies data between each other.
   void Swap(RepeatedField* other);
 
@@ -296,14 +313,8 @@ class RepeatedField final {
   iterator erase(const_iterator first, const_iterator last);
 
   // Gets the Arena on which this RepeatedField stores its elements.
-  // Message-owned arenas are not exposed by this method, which will return
-  // nullptr for messages owned by MOAs.
   inline Arena* GetArena() const {
-    Arena* arena = GetOwningArena();
-    if (arena == nullptr || arena->InternalIsMessageOwnedArena()) {
-      return nullptr;
-    }
-    return arena;
+    return GetOwningArena();
   }
 
   // For internal use only.
@@ -437,13 +448,8 @@ class RepeatedField final {
   //
   // Typically, due to the fact that adder is a local stack variable, the
   // compiler will be successful in mem-to-reg transformation and the machine
-  // code will be
-  // loop:
-  // cmp %size, %capacity
-  // jae fallback
-  // mov dword ptr [%buffer + %size * 4], %val
-  // inc %size
-  // jmp loop
+  // code will be loop: cmp %size, %capacity jae fallback mov dword ptr [%buffer
+  // + %size * 4], %val inc %size jmp loop
   //
   // The first version executes at 7 cycles per iteration while the second
   // version executes at only 1 or 2 cycles.
@@ -455,8 +461,6 @@ class RepeatedField final {
       capacity_ = repeated_field_->total_size_;
       buffer_ = repeated_field_->unsafe_elements();
     }
-    FastAdderImpl(const FastAdderImpl&) = delete;
-    FastAdderImpl& operator=(const FastAdderImpl&) = delete;
     ~FastAdderImpl() { repeated_field_->current_size_ = index_; }
 
     void Add(Element val) {
@@ -474,6 +478,8 @@ class RepeatedField final {
     int index_;
     int capacity_;
     Element* buffer_;
+
+    GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(FastAdderImpl);
   };
 
   // FastAdder is a wrapper for adding fields. The specialization above handles
@@ -482,12 +488,11 @@ class RepeatedField final {
   class FastAdderImpl<I, false> {
    public:
     explicit FastAdderImpl(RepeatedField* rf) : repeated_field_(rf) {}
-    FastAdderImpl(const FastAdderImpl&) = delete;
-    FastAdderImpl& operator=(const FastAdderImpl&) = delete;
     void Add(const Element& val) { repeated_field_->Add(val); }
 
    private:
     RepeatedField* repeated_field_;
+    GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(FastAdderImpl);
   };
 
   using FastAdder = FastAdderImpl<>;
@@ -705,13 +710,13 @@ inline Element* RepeatedField<Element>::Add() {
 template <typename Element>
 template <typename Iter>
 inline void RepeatedField<Element>::Add(Iter begin, Iter end) {
-  if (std::is_base_of<
-          std::forward_iterator_tag,
-          typename std::iterator_traits<Iter>::iterator_category>::value) {
-    int additional = std::distance(begin, end);
-    if (additional == 0) return;
+  int reserve = internal::CalculateReserve(begin, end);
+  if (reserve != -1) {
+    if (reserve == 0) {
+      return;
+    }
 
-    Reserve(size() + additional);
+    Reserve(reserve + size());
     // TODO(ckennelly):  The compiler loses track of the buffer freshly
     // allocated by Reserve() by the time we call elements, so it cannot
     // guarantee that elements does not alias [begin(), end()).
@@ -719,7 +724,7 @@ inline void RepeatedField<Element>::Add(Iter begin, Iter end) {
     // If restrict is available, annotating the pointer obtained from elements()
     // causes this to lower to memcpy instead of memmove.
     std::copy(begin, end, elements() + size());
-    current_size_ = size() + additional;
+    current_size_ = reserve + size();
   } else {
     FastAdder fast_adder(this);
     for (; begin != end; ++begin) fast_adder.Add(*begin);

@@ -34,6 +34,35 @@ struct ContourDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ContourDefaultTypeInternal _Contour_default_instance_;
+PROTOBUF_CONSTEXPR Ring::Ring(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.coords_)*/{}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
+struct RingDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR RingDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~RingDefaultTypeInternal() {}
+  union {
+    Ring _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 RingDefaultTypeInternal _Ring_default_instance_;
+PROTOBUF_CONSTEXPR PbfFieldSelector::PbfFieldSelector(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.options_)*/false
+  , /*decltype(_impl_.trip_)*/false
+  , /*decltype(_impl_.directions_)*/false
+  , /*decltype(_impl_.status_)*/false
+  , /*decltype(_impl_._cached_size_)*/{}} {}
+struct PbfFieldSelectorDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR PbfFieldSelectorDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~PbfFieldSelectorDefaultTypeInternal() {}
+  union {
+    PbfFieldSelector _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PbfFieldSelectorDefaultTypeInternal _PbfFieldSelector_default_instance_;
 PROTOBUF_CONSTEXPR AvoidEdge::AvoidEdge(
     ::_pbi::ConstantInitialized): _impl_{
     /*decltype(_impl_.has_id_)*/{}
@@ -49,7 +78,7 @@ struct AvoidEdgeDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 AvoidEdgeDefaultTypeInternal _AvoidEdge_default_instance_;
-PROTOBUF_CONSTEXPR CostingOptions::CostingOptions(
+PROTOBUF_CONSTEXPR Costing_Options::Costing_Options(
     ::_pbi::ConstantInitialized): _impl_{
     /*decltype(_impl_.filter_stop_ids_)*/{}
   , /*decltype(_impl_.filter_operator_ids_)*/{}
@@ -129,47 +158,49 @@ PROTOBUF_CONSTEXPR CostingOptions::CostingOptions(
   , /*decltype(_impl_.has_include_hov3_)*/{}
   , /*decltype(_impl_.has_exclude_cash_only_tolls_)*/{}
   , /*decltype(_impl_.has_restriction_probability_)*/{}
-  , /*decltype(_impl_.has_costing_)*/{}
+  , /*decltype(_impl_.has_elevator_penalty_)*/{}
+  , /*decltype(_impl_._cached_size_)*/{}
+  , /*decltype(_impl_._oneof_case_)*/{}} {}
+struct Costing_OptionsDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR Costing_OptionsDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~Costing_OptionsDefaultTypeInternal() {}
+  union {
+    Costing_Options _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Costing_OptionsDefaultTypeInternal _Costing_Options_default_instance_;
+PROTOBUF_CONSTEXPR Costing::Costing(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.type_)*/0
+  , /*decltype(_impl_.has_options_)*/{}
   , /*decltype(_impl_.has_name_)*/{}
   , /*decltype(_impl_.has_filter_closures_)*/{}
   , /*decltype(_impl_._cached_size_)*/{}
   , /*decltype(_impl_._oneof_case_)*/{}} {}
-struct CostingOptionsDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR CostingOptionsDefaultTypeInternal()
+struct CostingDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR CostingDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
-  ~CostingOptionsDefaultTypeInternal() {}
+  ~CostingDefaultTypeInternal() {}
   union {
-    CostingOptions _instance;
+    Costing _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 CostingOptionsDefaultTypeInternal _CostingOptions_default_instance_;
-PROTOBUF_CONSTEXPR Options_Ring::Options_Ring(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.coords_)*/{}
-  , /*decltype(_impl_._cached_size_)*/{}} {}
-struct Options_RingDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR Options_RingDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
-  ~Options_RingDefaultTypeInternal() {}
-  union {
-    Options_Ring _instance;
-  };
-};
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Options_RingDefaultTypeInternal _Options_Ring_default_instance_;
-PROTOBUF_CONSTEXPR Options_CostingOptionsEntry_DoNotUse::Options_CostingOptionsEntry_DoNotUse(
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 CostingDefaultTypeInternal _Costing_default_instance_;
+PROTOBUF_CONSTEXPR Options_CostingsEntry_DoNotUse::Options_CostingsEntry_DoNotUse(
     ::_pbi::ConstantInitialized) {}
-struct Options_CostingOptionsEntry_DoNotUseDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR Options_CostingOptionsEntry_DoNotUseDefaultTypeInternal()
+struct Options_CostingsEntry_DoNotUseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR Options_CostingsEntry_DoNotUseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
-  ~Options_CostingOptionsEntry_DoNotUseDefaultTypeInternal() {}
+  ~Options_CostingsEntry_DoNotUseDefaultTypeInternal() {}
   union {
-    Options_CostingOptionsEntry_DoNotUse _instance;
+    Options_CostingsEntry_DoNotUse _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Options_CostingOptionsEntry_DoNotUseDefaultTypeInternal _Options_CostingOptionsEntry_DoNotUse_default_instance_;
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Options_CostingsEntry_DoNotUseDefaultTypeInternal _Options_CostingsEntry_DoNotUse_default_instance_;
 PROTOBUF_CONSTEXPR Options::Options(
     ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.costing_options_)*/{}
+    /*decltype(_impl_.costings_)*/{}
   , /*decltype(_impl_.locations_)*/{}
   , /*decltype(_impl_.exclude_locations_)*/{}
   , /*decltype(_impl_.sources_)*/{}
@@ -182,32 +213,35 @@ PROTOBUF_CONSTEXPR Options::Options(
   , /*decltype(_impl_.exclude_polygons_)*/{}
   , /*decltype(_impl_.expansion_properties_)*/{}
   , /*decltype(_impl_._expansion_properties_cached_byte_size_)*/{0}
+  , /*decltype(_impl_.pbf_field_selector_)*/nullptr
+  , /*decltype(_impl_.units_)*/0
+  , /*decltype(_impl_.directions_type_)*/0
+  , /*decltype(_impl_.format_)*/0
+  , /*decltype(_impl_.action_)*/0
+  , /*decltype(_impl_.costing_type_)*/0
+  , /*decltype(_impl_.date_time_type_)*/0
+  , /*decltype(_impl_.shape_match_)*/0
   , /*decltype(_impl_.filter_action_)*/0
-  , /*decltype(_impl_.has_units_)*/{}
+  , /*decltype(_impl_.shape_format_)*/0
+  , /*decltype(_impl_.reverse_)*/false
+  , /*decltype(_impl_.matrix_locations_)*/0u
   , /*decltype(_impl_.has_language_)*/{}
-  , /*decltype(_impl_.has_directions_type_)*/{}
-  , /*decltype(_impl_.has_format_)*/{}
   , /*decltype(_impl_.has_id_)*/{}
   , /*decltype(_impl_.has_jsonp_)*/{}
   , /*decltype(_impl_.has_encoded_polyline_)*/{}
-  , /*decltype(_impl_.has_action_)*/{}
   , /*decltype(_impl_.has_range_)*/{}
   , /*decltype(_impl_.has_verbose_)*/{}
-  , /*decltype(_impl_.has_costing_)*/{}
-  , /*decltype(_impl_.has_date_time_type_)*/{}
   , /*decltype(_impl_.has_date_time_)*/{}
   , /*decltype(_impl_.has_resample_distance_)*/{}
   , /*decltype(_impl_.has_polygons_)*/{}
   , /*decltype(_impl_.has_denoise_)*/{}
   , /*decltype(_impl_.has_generalize_)*/{}
   , /*decltype(_impl_.has_show_locations_)*/{}
-  , /*decltype(_impl_.has_shape_match_)*/{}
   , /*decltype(_impl_.has_gps_accuracy_)*/{}
   , /*decltype(_impl_.has_search_radius_)*/{}
   , /*decltype(_impl_.has_turn_penalty_factor_)*/{}
   , /*decltype(_impl_.has_breakage_distance_)*/{}
   , /*decltype(_impl_.has_use_timestamps_)*/{}
-  , /*decltype(_impl_.has_shape_format_)*/{}
   , /*decltype(_impl_.has_alternates_)*/{}
   , /*decltype(_impl_.has_interpolation_distance_)*/{}
   , /*decltype(_impl_.has_guidance_views_)*/{}
@@ -230,6 +264,114 @@ struct OptionsDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 OptionsDefaultTypeInternal _Options_default_instance_;
 }  // namespace valhalla
 namespace valhalla {
+bool Costing_Type_IsValid(int value) {
+  switch (value) {
+    case 0:
+    case 1:
+    case 2:
+    case 3:
+    case 4:
+    case 5:
+    case 6:
+    case 7:
+    case 8:
+    case 9:
+    case 10:
+    case 11:
+      return true;
+    default:
+      return false;
+  }
+}
+
+static ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<std::string> Costing_Type_strings[12] = {};
+
+static const char Costing_Type_names[] =
+  "auto_"
+  "bicycle"
+  "bikeshare"
+  "bus"
+  "motor_scooter"
+  "motorcycle"
+  "multimodal"
+  "none_"
+  "pedestrian"
+  "taxi"
+  "transit"
+  "truck";
+
+static const ::PROTOBUF_NAMESPACE_ID::internal::EnumEntry Costing_Type_entries[] = {
+  { {Costing_Type_names + 0, 5}, 10 },
+  { {Costing_Type_names + 5, 7}, 1 },
+  { {Costing_Type_names + 12, 9}, 11 },
+  { {Costing_Type_names + 21, 3}, 2 },
+  { {Costing_Type_names + 24, 13}, 3 },
+  { {Costing_Type_names + 37, 10}, 8 },
+  { {Costing_Type_names + 47, 10}, 4 },
+  { {Costing_Type_names + 57, 5}, 0 },
+  { {Costing_Type_names + 62, 10}, 5 },
+  { {Costing_Type_names + 72, 4}, 9 },
+  { {Costing_Type_names + 76, 7}, 6 },
+  { {Costing_Type_names + 83, 5}, 7 },
+};
+
+static const int Costing_Type_entries_by_number[] = {
+  7, // 0 -> none_
+  1, // 1 -> bicycle
+  3, // 2 -> bus
+  4, // 3 -> motor_scooter
+  6, // 4 -> multimodal
+  8, // 5 -> pedestrian
+  10, // 6 -> transit
+  11, // 7 -> truck
+  5, // 8 -> motorcycle
+  9, // 9 -> taxi
+  0, // 10 -> auto_
+  2, // 11 -> bikeshare
+};
+
+const std::string& Costing_Type_Name(
+    Costing_Type value) {
+  static const bool dummy =
+      ::PROTOBUF_NAMESPACE_ID::internal::InitializeEnumStrings(
+          Costing_Type_entries,
+          Costing_Type_entries_by_number,
+          12, Costing_Type_strings);
+  (void) dummy;
+  int idx = ::PROTOBUF_NAMESPACE_ID::internal::LookUpEnumName(
+      Costing_Type_entries,
+      Costing_Type_entries_by_number,
+      12, value);
+  return idx == -1 ? ::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString() :
+                     Costing_Type_strings[idx].get();
+}
+bool Costing_Type_Parse(
+    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, Costing_Type* value) {
+  int int_value;
+  bool success = ::PROTOBUF_NAMESPACE_ID::internal::LookUpEnumValue(
+      Costing_Type_entries, 12, name, &int_value);
+  if (success) {
+    *value = static_cast<Costing_Type>(int_value);
+  }
+  return success;
+}
+#if (__cplusplus < 201703) && (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
+constexpr Costing_Type Costing::none_;
+constexpr Costing_Type Costing::bicycle;
+constexpr Costing_Type Costing::bus;
+constexpr Costing_Type Costing::motor_scooter;
+constexpr Costing_Type Costing::multimodal;
+constexpr Costing_Type Costing::pedestrian;
+constexpr Costing_Type Costing::transit;
+constexpr Costing_Type Costing::truck;
+constexpr Costing_Type Costing::motorcycle;
+constexpr Costing_Type Costing::taxi;
+constexpr Costing_Type Costing::auto_;
+constexpr Costing_Type Costing::bikeshare;
+constexpr Costing_Type Costing::Type_MIN;
+constexpr Costing_Type Costing::Type_MAX;
+constexpr int Costing::Type_ARRAYSIZE;
+#endif  // (__cplusplus < 201703) && (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
 bool Options_Units_IsValid(int value) {
   switch (value) {
     case 0:
@@ -370,13 +512,14 @@ bool Options_Action_IsValid(int value) {
     case 9:
     case 10:
     case 11:
+    case 12:
       return true;
     default:
       return false;
   }
 }
 
-static ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<std::string> Options_Action_strings[12] = {};
+static ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<std::string> Options_Action_strings[13] = {};
 
 static const char Options_Action_names[] =
   "centroid"
@@ -384,6 +527,7 @@ static const char Options_Action_names[] =
   "height"
   "isochrone"
   "locate"
+  "no_action"
   "optimized_route"
   "route"
   "sources_to_targets"
@@ -393,33 +537,35 @@ static const char Options_Action_names[] =
   "transit_available";
 
 static const ::PROTOBUF_NAMESPACE_ID::internal::EnumEntry Options_Action_entries[] = {
-  { {Options_Action_names + 0, 8}, 10 },
-  { {Options_Action_names + 8, 9}, 9 },
-  { {Options_Action_names + 17, 6}, 7 },
-  { {Options_Action_names + 23, 9}, 4 },
-  { {Options_Action_names + 32, 6}, 1 },
-  { {Options_Action_names + 38, 15}, 3 },
-  { {Options_Action_names + 53, 5}, 0 },
-  { {Options_Action_names + 58, 18}, 2 },
-  { {Options_Action_names + 76, 6}, 11 },
-  { {Options_Action_names + 82, 16}, 6 },
-  { {Options_Action_names + 98, 11}, 5 },
-  { {Options_Action_names + 109, 17}, 8 },
+  { {Options_Action_names + 0, 8}, 11 },
+  { {Options_Action_names + 8, 9}, 10 },
+  { {Options_Action_names + 17, 6}, 8 },
+  { {Options_Action_names + 23, 9}, 5 },
+  { {Options_Action_names + 32, 6}, 2 },
+  { {Options_Action_names + 38, 9}, 0 },
+  { {Options_Action_names + 47, 15}, 4 },
+  { {Options_Action_names + 62, 5}, 1 },
+  { {Options_Action_names + 67, 18}, 3 },
+  { {Options_Action_names + 85, 6}, 12 },
+  { {Options_Action_names + 91, 16}, 7 },
+  { {Options_Action_names + 107, 11}, 6 },
+  { {Options_Action_names + 118, 17}, 9 },
 };
 
 static const int Options_Action_entries_by_number[] = {
-  6, // 0 -> route
-  4, // 1 -> locate
-  7, // 2 -> sources_to_targets
-  5, // 3 -> optimized_route
-  3, // 4 -> isochrone
-  10, // 5 -> trace_route
-  9, // 6 -> trace_attributes
-  2, // 7 -> height
-  11, // 8 -> transit_available
-  1, // 9 -> expansion
-  0, // 10 -> centroid
-  8, // 11 -> status
+  5, // 0 -> no_action
+  7, // 1 -> route
+  4, // 2 -> locate
+  8, // 3 -> sources_to_targets
+  6, // 4 -> optimized_route
+  3, // 5 -> isochrone
+  11, // 6 -> trace_route
+  10, // 7 -> trace_attributes
+  2, // 8 -> height
+  12, // 9 -> transit_available
+  1, // 10 -> expansion
+  0, // 11 -> centroid
+  9, // 12 -> status
 };
 
 const std::string& Options_Action_Name(
@@ -428,12 +574,12 @@ const std::string& Options_Action_Name(
       ::PROTOBUF_NAMESPACE_ID::internal::InitializeEnumStrings(
           Options_Action_entries,
           Options_Action_entries_by_number,
-          12, Options_Action_strings);
+          13, Options_Action_strings);
   (void) dummy;
   int idx = ::PROTOBUF_NAMESPACE_ID::internal::LookUpEnumName(
       Options_Action_entries,
       Options_Action_entries_by_number,
-      12, value);
+      13, value);
   return idx == -1 ? ::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString() :
                      Options_Action_strings[idx].get();
 }
@@ -441,13 +587,14 @@ bool Options_Action_Parse(
     ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, Options_Action* value) {
   int int_value;
   bool success = ::PROTOBUF_NAMESPACE_ID::internal::LookUpEnumValue(
-      Options_Action_entries, 12, name, &int_value);
+      Options_Action_entries, 13, name, &int_value);
   if (success) {
     *value = static_cast<Options_Action>(int_value);
   }
   return success;
 }
 #if (__cplusplus < 201703) && (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
+constexpr Options_Action Options::no_action;
 constexpr Options_Action Options::route;
 constexpr Options_Action Options::locate;
 constexpr Options_Action Options::sources_to_targets;
@@ -470,32 +617,36 @@ bool Options_DateTimeType_IsValid(int value) {
     case 1:
     case 2:
     case 3:
+    case 4:
       return true;
     default:
       return false;
   }
 }
 
-static ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<std::string> Options_DateTimeType_strings[4] = {};
+static ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<std::string> Options_DateTimeType_strings[5] = {};
 
 static const char Options_DateTimeType_names[] =
   "arrive_by"
   "current"
   "depart_at"
-  "invariant";
+  "invariant"
+  "no_time";
 
 static const ::PROTOBUF_NAMESPACE_ID::internal::EnumEntry Options_DateTimeType_entries[] = {
-  { {Options_DateTimeType_names + 0, 9}, 2 },
-  { {Options_DateTimeType_names + 9, 7}, 0 },
-  { {Options_DateTimeType_names + 16, 9}, 1 },
-  { {Options_DateTimeType_names + 25, 9}, 3 },
+  { {Options_DateTimeType_names + 0, 9}, 3 },
+  { {Options_DateTimeType_names + 9, 7}, 1 },
+  { {Options_DateTimeType_names + 16, 9}, 2 },
+  { {Options_DateTimeType_names + 25, 9}, 4 },
+  { {Options_DateTimeType_names + 34, 7}, 0 },
 };
 
 static const int Options_DateTimeType_entries_by_number[] = {
-  1, // 0 -> current
-  2, // 1 -> depart_at
-  0, // 2 -> arrive_by
-  3, // 3 -> invariant
+  4, // 0 -> no_time
+  1, // 1 -> current
+  2, // 2 -> depart_at
+  0, // 3 -> arrive_by
+  3, // 4 -> invariant
 };
 
 const std::string& Options_DateTimeType_Name(
@@ -504,12 +655,12 @@ const std::string& Options_DateTimeType_Name(
       ::PROTOBUF_NAMESPACE_ID::internal::InitializeEnumStrings(
           Options_DateTimeType_entries,
           Options_DateTimeType_entries_by_number,
-          4, Options_DateTimeType_strings);
+          5, Options_DateTimeType_strings);
   (void) dummy;
   int idx = ::PROTOBUF_NAMESPACE_ID::internal::LookUpEnumName(
       Options_DateTimeType_entries,
       Options_DateTimeType_entries_by_number,
-      4, value);
+      5, value);
   return idx == -1 ? ::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString() :
                      Options_DateTimeType_strings[idx].get();
 }
@@ -517,13 +668,14 @@ bool Options_DateTimeType_Parse(
     ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, Options_DateTimeType* value) {
   int int_value;
   bool success = ::PROTOBUF_NAMESPACE_ID::internal::LookUpEnumValue(
-      Options_DateTimeType_entries, 4, name, &int_value);
+      Options_DateTimeType_entries, 5, name, &int_value);
   if (success) {
     *value = static_cast<Options_DateTimeType>(int_value);
   }
   return success;
 }
 #if (__cplusplus < 201703) && (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
+constexpr Options_DateTimeType Options::no_time;
 constexpr Options_DateTimeType Options::current;
 constexpr Options_DateTimeType Options::depart_at;
 constexpr Options_DateTimeType Options::arrive_by;
@@ -822,97 +974,6 @@ bool ShapeFormat_Parse(
       ShapeFormat_entries, 3, name, &int_value);
   if (success) {
     *value = static_cast<ShapeFormat>(int_value);
-  }
-  return success;
-}
-bool Costing_IsValid(int value) {
-  switch (value) {
-    case 0:
-    case 1:
-    case 2:
-    case 3:
-    case 4:
-    case 5:
-    case 6:
-    case 7:
-    case 8:
-    case 9:
-    case 10:
-    case 11:
-      return true;
-    default:
-      return false;
-  }
-}
-
-static ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<std::string> Costing_strings[12] = {};
-
-static const char Costing_names[] =
-  "auto_"
-  "bicycle"
-  "bikeshare"
-  "bus"
-  "motor_scooter"
-  "motorcycle"
-  "multimodal"
-  "none_"
-  "pedestrian"
-  "taxi"
-  "transit"
-  "truck";
-
-static const ::PROTOBUF_NAMESPACE_ID::internal::EnumEntry Costing_entries[] = {
-  { {Costing_names + 0, 5}, 0 },
-  { {Costing_names + 5, 7}, 1 },
-  { {Costing_names + 12, 9}, 11 },
-  { {Costing_names + 21, 3}, 2 },
-  { {Costing_names + 24, 13}, 3 },
-  { {Costing_names + 37, 10}, 8 },
-  { {Costing_names + 47, 10}, 4 },
-  { {Costing_names + 57, 5}, 10 },
-  { {Costing_names + 62, 10}, 5 },
-  { {Costing_names + 72, 4}, 9 },
-  { {Costing_names + 76, 7}, 6 },
-  { {Costing_names + 83, 5}, 7 },
-};
-
-static const int Costing_entries_by_number[] = {
-  0, // 0 -> auto_
-  1, // 1 -> bicycle
-  3, // 2 -> bus
-  4, // 3 -> motor_scooter
-  6, // 4 -> multimodal
-  8, // 5 -> pedestrian
-  10, // 6 -> transit
-  11, // 7 -> truck
-  5, // 8 -> motorcycle
-  9, // 9 -> taxi
-  7, // 10 -> none_
-  2, // 11 -> bikeshare
-};
-
-const std::string& Costing_Name(
-    Costing value) {
-  static const bool dummy =
-      ::PROTOBUF_NAMESPACE_ID::internal::InitializeEnumStrings(
-          Costing_entries,
-          Costing_entries_by_number,
-          12, Costing_strings);
-  (void) dummy;
-  int idx = ::PROTOBUF_NAMESPACE_ID::internal::LookUpEnumName(
-      Costing_entries,
-      Costing_entries_by_number,
-      12, value);
-  return idx == -1 ? ::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString() :
-                     Costing_strings[idx].get();
-}
-bool Costing_Parse(
-    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, Costing* value) {
-  int int_value;
-  bool success = ::PROTOBUF_NAMESPACE_ID::internal::LookUpEnumValue(
-      Costing_entries, 12, name, &int_value);
-  if (success) {
-    *value = static_cast<Costing>(int_value);
   }
   return success;
 }
@@ -1281,6 +1342,457 @@ std::string Contour::GetTypeName() const {
 
 // ===================================================================
 
+class Ring::_Internal {
+ public:
+};
+
+void Ring::clear_coords() {
+  _impl_.coords_.Clear();
+}
+Ring::Ring(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::MessageLite(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:valhalla.Ring)
+}
+Ring::Ring(const Ring& from)
+  : ::PROTOBUF_NAMESPACE_ID::MessageLite() {
+  Ring* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.coords_){from._impl_.coords_}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
+  _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:valhalla.Ring)
+}
+
+inline void Ring::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.coords_){arena}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+}
+
+Ring::~Ring() {
+  // @@protoc_insertion_point(destructor:valhalla.Ring)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<std::string>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void Ring::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.coords_.~RepeatedPtrField();
+}
+
+void Ring::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void Ring::Clear() {
+// @@protoc_insertion_point(message_clear_start:valhalla.Ring)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.coords_.Clear();
+  _internal_metadata_.Clear<std::string>();
+}
+
+const char* Ring::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // repeated .valhalla.LatLng coords = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(_internal_add_coords(), ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<std::string>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* Ring::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:valhalla.Ring)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // repeated .valhalla.LatLng coords = 1;
+  for (unsigned i = 0,
+      n = static_cast<unsigned>(this->_internal_coords_size()); i < n; i++) {
+    const auto& repfield = this->_internal_coords(i);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+        InternalWriteMessage(1, repfield, repfield.GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = stream->WriteRaw(_internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).data(),
+        static_cast<int>(_internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).size()), target);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:valhalla.Ring)
+  return target;
+}
+
+size_t Ring::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:valhalla.Ring)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated .valhalla.LatLng coords = 1;
+  total_size += 1UL * this->_internal_coords_size();
+  for (const auto& msg : this->_impl_.coords_) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    total_size += _internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).size();
+  }
+  int cached_size = ::_pbi::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void Ring::CheckTypeAndMergeFrom(
+    const ::PROTOBUF_NAMESPACE_ID::MessageLite& from) {
+  MergeFrom(*::_pbi::DownCast<const Ring*>(
+      &from));
+}
+
+void Ring::MergeFrom(const Ring& from) {
+  Ring* const _this = this;
+  // @@protoc_insertion_point(class_specific_merge_from_start:valhalla.Ring)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  _this->_impl_.coords_.MergeFrom(from._impl_.coords_);
+  _this->_internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
+}
+
+void Ring::CopyFrom(const Ring& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:valhalla.Ring)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool Ring::IsInitialized() const {
+  return true;
+}
+
+void Ring::InternalSwap(Ring* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  _impl_.coords_.InternalSwap(&other->_impl_.coords_);
+}
+
+std::string Ring::GetTypeName() const {
+  return "valhalla.Ring";
+}
+
+
+// ===================================================================
+
+class PbfFieldSelector::_Internal {
+ public:
+};
+
+PbfFieldSelector::PbfFieldSelector(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::MessageLite(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:valhalla.PbfFieldSelector)
+}
+PbfFieldSelector::PbfFieldSelector(const PbfFieldSelector& from)
+  : ::PROTOBUF_NAMESPACE_ID::MessageLite() {
+  PbfFieldSelector* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.options_){}
+    , decltype(_impl_.trip_){}
+    , decltype(_impl_.directions_){}
+    , decltype(_impl_.status_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
+  _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
+  ::memcpy(&_impl_.options_, &from._impl_.options_,
+    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.status_) -
+    reinterpret_cast<char*>(&_impl_.options_)) + sizeof(_impl_.status_));
+  // @@protoc_insertion_point(copy_constructor:valhalla.PbfFieldSelector)
+}
+
+inline void PbfFieldSelector::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.options_){false}
+    , decltype(_impl_.trip_){false}
+    , decltype(_impl_.directions_){false}
+    , decltype(_impl_.status_){false}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+}
+
+PbfFieldSelector::~PbfFieldSelector() {
+  // @@protoc_insertion_point(destructor:valhalla.PbfFieldSelector)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<std::string>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void PbfFieldSelector::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+}
+
+void PbfFieldSelector::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void PbfFieldSelector::Clear() {
+// @@protoc_insertion_point(message_clear_start:valhalla.PbfFieldSelector)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  ::memset(&_impl_.options_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&_impl_.status_) -
+      reinterpret_cast<char*>(&_impl_.options_)) + sizeof(_impl_.status_));
+  _internal_metadata_.Clear<std::string>();
+}
+
+const char* PbfFieldSelector::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // bool options = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
+          _impl_.options_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // bool trip = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
+          _impl_.trip_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // bool directions = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
+          _impl_.directions_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // bool status = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 32)) {
+          _impl_.status_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<std::string>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* PbfFieldSelector::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:valhalla.PbfFieldSelector)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // bool options = 1;
+  if (this->_internal_options() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(1, this->_internal_options(), target);
+  }
+
+  // bool trip = 2;
+  if (this->_internal_trip() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(2, this->_internal_trip(), target);
+  }
+
+  // bool directions = 3;
+  if (this->_internal_directions() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(3, this->_internal_directions(), target);
+  }
+
+  // bool status = 4;
+  if (this->_internal_status() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(4, this->_internal_status(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = stream->WriteRaw(_internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).data(),
+        static_cast<int>(_internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).size()), target);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:valhalla.PbfFieldSelector)
+  return target;
+}
+
+size_t PbfFieldSelector::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:valhalla.PbfFieldSelector)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // bool options = 1;
+  if (this->_internal_options() != 0) {
+    total_size += 1 + 1;
+  }
+
+  // bool trip = 2;
+  if (this->_internal_trip() != 0) {
+    total_size += 1 + 1;
+  }
+
+  // bool directions = 3;
+  if (this->_internal_directions() != 0) {
+    total_size += 1 + 1;
+  }
+
+  // bool status = 4;
+  if (this->_internal_status() != 0) {
+    total_size += 1 + 1;
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    total_size += _internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).size();
+  }
+  int cached_size = ::_pbi::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void PbfFieldSelector::CheckTypeAndMergeFrom(
+    const ::PROTOBUF_NAMESPACE_ID::MessageLite& from) {
+  MergeFrom(*::_pbi::DownCast<const PbfFieldSelector*>(
+      &from));
+}
+
+void PbfFieldSelector::MergeFrom(const PbfFieldSelector& from) {
+  PbfFieldSelector* const _this = this;
+  // @@protoc_insertion_point(class_specific_merge_from_start:valhalla.PbfFieldSelector)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from._internal_options() != 0) {
+    _this->_internal_set_options(from._internal_options());
+  }
+  if (from._internal_trip() != 0) {
+    _this->_internal_set_trip(from._internal_trip());
+  }
+  if (from._internal_directions() != 0) {
+    _this->_internal_set_directions(from._internal_directions());
+  }
+  if (from._internal_status() != 0) {
+    _this->_internal_set_status(from._internal_status());
+  }
+  _this->_internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
+}
+
+void PbfFieldSelector::CopyFrom(const PbfFieldSelector& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:valhalla.PbfFieldSelector)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool PbfFieldSelector::IsInitialized() const {
+  return true;
+}
+
+void PbfFieldSelector::InternalSwap(PbfFieldSelector* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(PbfFieldSelector, _impl_.status_)
+      + sizeof(PbfFieldSelector::_impl_.status_)
+      - PROTOBUF_FIELD_OFFSET(PbfFieldSelector, _impl_.options_)>(
+          reinterpret_cast<char*>(&_impl_.options_),
+          reinterpret_cast<char*>(&other->_impl_.options_));
+}
+
+std::string PbfFieldSelector::GetTypeName() const {
+  return "valhalla.PbfFieldSelector";
+}
+
+
+// ===================================================================
+
 class AvoidEdge::_Internal {
  public:
 };
@@ -1569,19 +2081,19 @@ std::string AvoidEdge::GetTypeName() const {
 
 // ===================================================================
 
-class CostingOptions::_Internal {
+class Costing_Options::_Internal {
  public:
 };
 
-CostingOptions::CostingOptions(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+Costing_Options::Costing_Options(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::MessageLite(arena, is_message_owned) {
   SharedCtor(arena, is_message_owned);
-  // @@protoc_insertion_point(arena_constructor:valhalla.CostingOptions)
+  // @@protoc_insertion_point(arena_constructor:valhalla.Costing.Options)
 }
-CostingOptions::CostingOptions(const CostingOptions& from)
+Costing_Options::Costing_Options(const Costing_Options& from)
   : ::PROTOBUF_NAMESPACE_ID::MessageLite() {
-  CostingOptions* const _this = this; (void)_this;
+  Costing_Options* const _this = this; (void)_this;
   new (&_impl_) Impl_{
       decltype(_impl_.filter_stop_ids_){from._impl_.filter_stop_ids_}
     , decltype(_impl_.filter_operator_ids_){from._impl_.filter_operator_ids_}
@@ -1661,9 +2173,7 @@ CostingOptions::CostingOptions(const CostingOptions& from)
     , decltype(_impl_.has_include_hov3_){}
     , decltype(_impl_.has_exclude_cash_only_tolls_){}
     , decltype(_impl_.has_restriction_probability_){}
-    , decltype(_impl_.has_costing_){}
-    , decltype(_impl_.has_name_){}
-    , decltype(_impl_.has_filter_closures_){}
+    , decltype(_impl_.has_elevator_penalty_){}
     , /*decltype(_impl_._cached_size_)*/{}
     , /*decltype(_impl_._oneof_case_)*/{}};
 
@@ -2381,40 +2891,20 @@ CostingOptions::CostingOptions(const CostingOptions& from)
       break;
     }
   }
-  clear_has_has_costing();
-  switch (from.has_costing_case()) {
-    case kCosting: {
-      _this->_internal_set_costing(from._internal_costing());
+  clear_has_has_elevator_penalty();
+  switch (from.has_elevator_penalty_case()) {
+    case kElevatorPenalty: {
+      _this->_internal_set_elevator_penalty(from._internal_elevator_penalty());
       break;
     }
-    case HAS_COSTING_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_name();
-  switch (from.has_name_case()) {
-    case kName: {
-      _this->_internal_set_name(from._internal_name());
-      break;
-    }
-    case HAS_NAME_NOT_SET: {
+    case HAS_ELEVATOR_PENALTY_NOT_SET: {
       break;
     }
   }
-  clear_has_has_filter_closures();
-  switch (from.has_filter_closures_case()) {
-    case kFilterClosures: {
-      _this->_internal_set_filter_closures(from._internal_filter_closures());
-      break;
-    }
-    case HAS_FILTER_CLOSURES_NOT_SET: {
-      break;
-    }
-  }
-  // @@protoc_insertion_point(copy_constructor:valhalla.CostingOptions)
+  // @@protoc_insertion_point(copy_constructor:valhalla.Costing.Options)
 }
 
-inline void CostingOptions::SharedCtor(
+inline void Costing_Options::SharedCtor(
     ::_pb::Arena* arena, bool is_message_owned) {
   (void)arena;
   (void)is_message_owned;
@@ -2497,9 +2987,7 @@ inline void CostingOptions::SharedCtor(
     , decltype(_impl_.has_include_hov3_){}
     , decltype(_impl_.has_exclude_cash_only_tolls_){}
     , decltype(_impl_.has_restriction_probability_){}
-    , decltype(_impl_.has_costing_){}
-    , decltype(_impl_.has_name_){}
-    , decltype(_impl_.has_filter_closures_){}
+    , decltype(_impl_.has_elevator_penalty_){}
     , /*decltype(_impl_._cached_size_)*/{}
     , /*decltype(_impl_._oneof_case_)*/{}
   };
@@ -2574,13 +3062,11 @@ inline void CostingOptions::SharedCtor(
   clear_has_has_include_hov3();
   clear_has_has_exclude_cash_only_tolls();
   clear_has_has_restriction_probability();
-  clear_has_has_costing();
-  clear_has_has_name();
-  clear_has_has_filter_closures();
+  clear_has_has_elevator_penalty();
 }
 
-CostingOptions::~CostingOptions() {
-  // @@protoc_insertion_point(destructor:valhalla.CostingOptions)
+Costing_Options::~Costing_Options() {
+  // @@protoc_insertion_point(destructor:valhalla.Costing.Options)
   if (auto *arena = _internal_metadata_.DeleteReturnArena<std::string>()) {
   (void)arena;
     return;
@@ -2588,7 +3074,7 @@ CostingOptions::~CostingOptions() {
   SharedDtor();
 }
 
-inline void CostingOptions::SharedDtor() {
+inline void Costing_Options::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   _impl_.filter_stop_ids_.~RepeatedPtrField();
   _impl_.filter_operator_ids_.~RepeatedPtrField();
@@ -2807,23 +3293,17 @@ inline void CostingOptions::SharedDtor() {
   if (has_has_restriction_probability()) {
     clear_has_restriction_probability();
   }
-  if (has_has_costing()) {
-    clear_has_costing();
-  }
-  if (has_has_name()) {
-    clear_has_name();
-  }
-  if (has_has_filter_closures()) {
-    clear_has_filter_closures();
+  if (has_has_elevator_penalty()) {
+    clear_has_elevator_penalty();
   }
 }
 
-void CostingOptions::SetCachedSize(int size) const {
+void Costing_Options::SetCachedSize(int size) const {
   _impl_._cached_size_.Set(size);
 }
 
-void CostingOptions::clear_has_maneuver_penalty() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.CostingOptions)
+void Costing_Options::clear_has_maneuver_penalty() {
+// @@protoc_insertion_point(one_of_clear_start:valhalla.Costing.Options)
   switch (has_maneuver_penalty_case()) {
     case kManeuverPenalty: {
       // No need to clear
@@ -2836,8 +3316,8 @@ void CostingOptions::clear_has_maneuver_penalty() {
   _impl_._oneof_case_[0] = HAS_MANEUVER_PENALTY_NOT_SET;
 }
 
-void CostingOptions::clear_has_destination_only_penalty() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.CostingOptions)
+void Costing_Options::clear_has_destination_only_penalty() {
+// @@protoc_insertion_point(one_of_clear_start:valhalla.Costing.Options)
   switch (has_destination_only_penalty_case()) {
     case kDestinationOnlyPenalty: {
       // No need to clear
@@ -2850,8 +3330,8 @@ void CostingOptions::clear_has_destination_only_penalty() {
   _impl_._oneof_case_[1] = HAS_DESTINATION_ONLY_PENALTY_NOT_SET;
 }
 
-void CostingOptions::clear_has_gate_cost() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.CostingOptions)
+void Costing_Options::clear_has_gate_cost() {
+// @@protoc_insertion_point(one_of_clear_start:valhalla.Costing.Options)
   switch (has_gate_cost_case()) {
     case kGateCost: {
       // No need to clear
@@ -2864,8 +3344,8 @@ void CostingOptions::clear_has_gate_cost() {
   _impl_._oneof_case_[2] = HAS_GATE_COST_NOT_SET;
 }
 
-void CostingOptions::clear_has_gate_penalty() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.CostingOptions)
+void Costing_Options::clear_has_gate_penalty() {
+// @@protoc_insertion_point(one_of_clear_start:valhalla.Costing.Options)
   switch (has_gate_penalty_case()) {
     case kGatePenalty: {
       // No need to clear
@@ -2878,8 +3358,8 @@ void CostingOptions::clear_has_gate_penalty() {
   _impl_._oneof_case_[3] = HAS_GATE_PENALTY_NOT_SET;
 }
 
-void CostingOptions::clear_has_toll_booth_cost() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.CostingOptions)
+void Costing_Options::clear_has_toll_booth_cost() {
+// @@protoc_insertion_point(one_of_clear_start:valhalla.Costing.Options)
   switch (has_toll_booth_cost_case()) {
     case kTollBoothCost: {
       // No need to clear
@@ -2892,8 +3372,8 @@ void CostingOptions::clear_has_toll_booth_cost() {
   _impl_._oneof_case_[4] = HAS_TOLL_BOOTH_COST_NOT_SET;
 }
 
-void CostingOptions::clear_has_toll_booth_penalty() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.CostingOptions)
+void Costing_Options::clear_has_toll_booth_penalty() {
+// @@protoc_insertion_point(one_of_clear_start:valhalla.Costing.Options)
   switch (has_toll_booth_penalty_case()) {
     case kTollBoothPenalty: {
       // No need to clear
@@ -2906,8 +3386,8 @@ void CostingOptions::clear_has_toll_booth_penalty() {
   _impl_._oneof_case_[5] = HAS_TOLL_BOOTH_PENALTY_NOT_SET;
 }
 
-void CostingOptions::clear_has_alley_penalty() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.CostingOptions)
+void Costing_Options::clear_has_alley_penalty() {
+// @@protoc_insertion_point(one_of_clear_start:valhalla.Costing.Options)
   switch (has_alley_penalty_case()) {
     case kAlleyPenalty: {
       // No need to clear
@@ -2920,8 +3400,8 @@ void CostingOptions::clear_has_alley_penalty() {
   _impl_._oneof_case_[6] = HAS_ALLEY_PENALTY_NOT_SET;
 }
 
-void CostingOptions::clear_has_country_crossing_cost() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.CostingOptions)
+void Costing_Options::clear_has_country_crossing_cost() {
+// @@protoc_insertion_point(one_of_clear_start:valhalla.Costing.Options)
   switch (has_country_crossing_cost_case()) {
     case kCountryCrossingCost: {
       // No need to clear
@@ -2934,8 +3414,8 @@ void CostingOptions::clear_has_country_crossing_cost() {
   _impl_._oneof_case_[7] = HAS_COUNTRY_CROSSING_COST_NOT_SET;
 }
 
-void CostingOptions::clear_has_country_crossing_penalty() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.CostingOptions)
+void Costing_Options::clear_has_country_crossing_penalty() {
+// @@protoc_insertion_point(one_of_clear_start:valhalla.Costing.Options)
   switch (has_country_crossing_penalty_case()) {
     case kCountryCrossingPenalty: {
       // No need to clear
@@ -2948,8 +3428,8 @@ void CostingOptions::clear_has_country_crossing_penalty() {
   _impl_._oneof_case_[8] = HAS_COUNTRY_CROSSING_PENALTY_NOT_SET;
 }
 
-void CostingOptions::clear_has_ferry_cost() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.CostingOptions)
+void Costing_Options::clear_has_ferry_cost() {
+// @@protoc_insertion_point(one_of_clear_start:valhalla.Costing.Options)
   switch (has_ferry_cost_case()) {
     case kFerryCost: {
       // No need to clear
@@ -2962,8 +3442,8 @@ void CostingOptions::clear_has_ferry_cost() {
   _impl_._oneof_case_[9] = HAS_FERRY_COST_NOT_SET;
 }
 
-void CostingOptions::clear_has_avoid_bad_surfaces() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.CostingOptions)
+void Costing_Options::clear_has_avoid_bad_surfaces() {
+// @@protoc_insertion_point(one_of_clear_start:valhalla.Costing.Options)
   switch (has_avoid_bad_surfaces_case()) {
     case kAvoidBadSurfaces: {
       // No need to clear
@@ -2976,8 +3456,8 @@ void CostingOptions::clear_has_avoid_bad_surfaces() {
   _impl_._oneof_case_[10] = HAS_AVOID_BAD_SURFACES_NOT_SET;
 }
 
-void CostingOptions::clear_has_use_ferry() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.CostingOptions)
+void Costing_Options::clear_has_use_ferry() {
+// @@protoc_insertion_point(one_of_clear_start:valhalla.Costing.Options)
   switch (has_use_ferry_case()) {
     case kUseFerry: {
       // No need to clear
@@ -2990,8 +3470,8 @@ void CostingOptions::clear_has_use_ferry() {
   _impl_._oneof_case_[11] = HAS_USE_FERRY_NOT_SET;
 }
 
-void CostingOptions::clear_has_use_highways() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.CostingOptions)
+void Costing_Options::clear_has_use_highways() {
+// @@protoc_insertion_point(one_of_clear_start:valhalla.Costing.Options)
   switch (has_use_highways_case()) {
     case kUseHighways: {
       // No need to clear
@@ -3004,8 +3484,8 @@ void CostingOptions::clear_has_use_highways() {
   _impl_._oneof_case_[12] = HAS_USE_HIGHWAYS_NOT_SET;
 }
 
-void CostingOptions::clear_has_use_tolls() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.CostingOptions)
+void Costing_Options::clear_has_use_tolls() {
+// @@protoc_insertion_point(one_of_clear_start:valhalla.Costing.Options)
   switch (has_use_tolls_case()) {
     case kUseTolls: {
       // No need to clear
@@ -3018,8 +3498,8 @@ void CostingOptions::clear_has_use_tolls() {
   _impl_._oneof_case_[13] = HAS_USE_TOLLS_NOT_SET;
 }
 
-void CostingOptions::clear_has_use_roads() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.CostingOptions)
+void Costing_Options::clear_has_use_roads() {
+// @@protoc_insertion_point(one_of_clear_start:valhalla.Costing.Options)
   switch (has_use_roads_case()) {
     case kUseRoads: {
       // No need to clear
@@ -3032,8 +3512,8 @@ void CostingOptions::clear_has_use_roads() {
   _impl_._oneof_case_[14] = HAS_USE_ROADS_NOT_SET;
 }
 
-void CostingOptions::clear_has_max_distance() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.CostingOptions)
+void Costing_Options::clear_has_max_distance() {
+// @@protoc_insertion_point(one_of_clear_start:valhalla.Costing.Options)
   switch (has_max_distance_case()) {
     case kMaxDistance: {
       // No need to clear
@@ -3046,8 +3526,8 @@ void CostingOptions::clear_has_max_distance() {
   _impl_._oneof_case_[15] = HAS_MAX_DISTANCE_NOT_SET;
 }
 
-void CostingOptions::clear_has_walking_speed() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.CostingOptions)
+void Costing_Options::clear_has_walking_speed() {
+// @@protoc_insertion_point(one_of_clear_start:valhalla.Costing.Options)
   switch (has_walking_speed_case()) {
     case kWalkingSpeed: {
       // No need to clear
@@ -3060,8 +3540,8 @@ void CostingOptions::clear_has_walking_speed() {
   _impl_._oneof_case_[16] = HAS_WALKING_SPEED_NOT_SET;
 }
 
-void CostingOptions::clear_has_step_penalty() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.CostingOptions)
+void Costing_Options::clear_has_step_penalty() {
+// @@protoc_insertion_point(one_of_clear_start:valhalla.Costing.Options)
   switch (has_step_penalty_case()) {
     case kStepPenalty: {
       // No need to clear
@@ -3074,8 +3554,8 @@ void CostingOptions::clear_has_step_penalty() {
   _impl_._oneof_case_[17] = HAS_STEP_PENALTY_NOT_SET;
 }
 
-void CostingOptions::clear_has_max_grade() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.CostingOptions)
+void Costing_Options::clear_has_max_grade() {
+// @@protoc_insertion_point(one_of_clear_start:valhalla.Costing.Options)
   switch (has_max_grade_case()) {
     case kMaxGrade: {
       // No need to clear
@@ -3088,8 +3568,8 @@ void CostingOptions::clear_has_max_grade() {
   _impl_._oneof_case_[18] = HAS_MAX_GRADE_NOT_SET;
 }
 
-void CostingOptions::clear_has_max_hiking_difficulty() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.CostingOptions)
+void Costing_Options::clear_has_max_hiking_difficulty() {
+// @@protoc_insertion_point(one_of_clear_start:valhalla.Costing.Options)
   switch (has_max_hiking_difficulty_case()) {
     case kMaxHikingDifficulty: {
       // No need to clear
@@ -3102,8 +3582,8 @@ void CostingOptions::clear_has_max_hiking_difficulty() {
   _impl_._oneof_case_[19] = HAS_MAX_HIKING_DIFFICULTY_NOT_SET;
 }
 
-void CostingOptions::clear_has_mode_factor() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.CostingOptions)
+void Costing_Options::clear_has_mode_factor() {
+// @@protoc_insertion_point(one_of_clear_start:valhalla.Costing.Options)
   switch (has_mode_factor_case()) {
     case kModeFactor: {
       // No need to clear
@@ -3116,8 +3596,8 @@ void CostingOptions::clear_has_mode_factor() {
   _impl_._oneof_case_[20] = HAS_MODE_FACTOR_NOT_SET;
 }
 
-void CostingOptions::clear_has_walkway_factor() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.CostingOptions)
+void Costing_Options::clear_has_walkway_factor() {
+// @@protoc_insertion_point(one_of_clear_start:valhalla.Costing.Options)
   switch (has_walkway_factor_case()) {
     case kWalkwayFactor: {
       // No need to clear
@@ -3130,8 +3610,8 @@ void CostingOptions::clear_has_walkway_factor() {
   _impl_._oneof_case_[21] = HAS_WALKWAY_FACTOR_NOT_SET;
 }
 
-void CostingOptions::clear_has_sidewalk_factor() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.CostingOptions)
+void Costing_Options::clear_has_sidewalk_factor() {
+// @@protoc_insertion_point(one_of_clear_start:valhalla.Costing.Options)
   switch (has_sidewalk_factor_case()) {
     case kSidewalkFactor: {
       // No need to clear
@@ -3144,8 +3624,8 @@ void CostingOptions::clear_has_sidewalk_factor() {
   _impl_._oneof_case_[22] = HAS_SIDEWALK_FACTOR_NOT_SET;
 }
 
-void CostingOptions::clear_has_alley_factor() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.CostingOptions)
+void Costing_Options::clear_has_alley_factor() {
+// @@protoc_insertion_point(one_of_clear_start:valhalla.Costing.Options)
   switch (has_alley_factor_case()) {
     case kAlleyFactor: {
       // No need to clear
@@ -3158,8 +3638,8 @@ void CostingOptions::clear_has_alley_factor() {
   _impl_._oneof_case_[23] = HAS_ALLEY_FACTOR_NOT_SET;
 }
 
-void CostingOptions::clear_has_driveway_factor() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.CostingOptions)
+void Costing_Options::clear_has_driveway_factor() {
+// @@protoc_insertion_point(one_of_clear_start:valhalla.Costing.Options)
   switch (has_driveway_factor_case()) {
     case kDrivewayFactor: {
       // No need to clear
@@ -3172,8 +3652,8 @@ void CostingOptions::clear_has_driveway_factor() {
   _impl_._oneof_case_[24] = HAS_DRIVEWAY_FACTOR_NOT_SET;
 }
 
-void CostingOptions::clear_has_driveway_penalty() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.CostingOptions)
+void Costing_Options::clear_has_driveway_penalty() {
+// @@protoc_insertion_point(one_of_clear_start:valhalla.Costing.Options)
   switch (has_driveway_penalty_case()) {
     case kDrivewayPenalty: {
       // No need to clear
@@ -3186,8 +3666,8 @@ void CostingOptions::clear_has_driveway_penalty() {
   _impl_._oneof_case_[25] = HAS_DRIVEWAY_PENALTY_NOT_SET;
 }
 
-void CostingOptions::clear_has_transit_start_end_max_distance() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.CostingOptions)
+void Costing_Options::clear_has_transit_start_end_max_distance() {
+// @@protoc_insertion_point(one_of_clear_start:valhalla.Costing.Options)
   switch (has_transit_start_end_max_distance_case()) {
     case kTransitStartEndMaxDistance: {
       // No need to clear
@@ -3200,8 +3680,8 @@ void CostingOptions::clear_has_transit_start_end_max_distance() {
   _impl_._oneof_case_[26] = HAS_TRANSIT_START_END_MAX_DISTANCE_NOT_SET;
 }
 
-void CostingOptions::clear_has_transit_transfer_max_distance() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.CostingOptions)
+void Costing_Options::clear_has_transit_transfer_max_distance() {
+// @@protoc_insertion_point(one_of_clear_start:valhalla.Costing.Options)
   switch (has_transit_transfer_max_distance_case()) {
     case kTransitTransferMaxDistance: {
       // No need to clear
@@ -3214,8 +3694,8 @@ void CostingOptions::clear_has_transit_transfer_max_distance() {
   _impl_._oneof_case_[27] = HAS_TRANSIT_TRANSFER_MAX_DISTANCE_NOT_SET;
 }
 
-void CostingOptions::clear_has_transport_type() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.CostingOptions)
+void Costing_Options::clear_has_transport_type() {
+// @@protoc_insertion_point(one_of_clear_start:valhalla.Costing.Options)
   switch (has_transport_type_case()) {
     case kTransportType: {
       _impl_.has_transport_type_.transport_type_.Destroy();
@@ -3228,8 +3708,8 @@ void CostingOptions::clear_has_transport_type() {
   _impl_._oneof_case_[28] = HAS_TRANSPORT_TYPE_NOT_SET;
 }
 
-void CostingOptions::clear_has_top_speed() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.CostingOptions)
+void Costing_Options::clear_has_top_speed() {
+// @@protoc_insertion_point(one_of_clear_start:valhalla.Costing.Options)
   switch (has_top_speed_case()) {
     case kTopSpeed: {
       // No need to clear
@@ -3242,8 +3722,8 @@ void CostingOptions::clear_has_top_speed() {
   _impl_._oneof_case_[29] = HAS_TOP_SPEED_NOT_SET;
 }
 
-void CostingOptions::clear_has_use_hills() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.CostingOptions)
+void Costing_Options::clear_has_use_hills() {
+// @@protoc_insertion_point(one_of_clear_start:valhalla.Costing.Options)
   switch (has_use_hills_case()) {
     case kUseHills: {
       // No need to clear
@@ -3256,8 +3736,8 @@ void CostingOptions::clear_has_use_hills() {
   _impl_._oneof_case_[30] = HAS_USE_HILLS_NOT_SET;
 }
 
-void CostingOptions::clear_has_use_primary() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.CostingOptions)
+void Costing_Options::clear_has_use_primary() {
+// @@protoc_insertion_point(one_of_clear_start:valhalla.Costing.Options)
   switch (has_use_primary_case()) {
     case kUsePrimary: {
       // No need to clear
@@ -3270,8 +3750,8 @@ void CostingOptions::clear_has_use_primary() {
   _impl_._oneof_case_[31] = HAS_USE_PRIMARY_NOT_SET;
 }
 
-void CostingOptions::clear_has_use_trails() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.CostingOptions)
+void Costing_Options::clear_has_use_trails() {
+// @@protoc_insertion_point(one_of_clear_start:valhalla.Costing.Options)
   switch (has_use_trails_case()) {
     case kUseTrails: {
       // No need to clear
@@ -3284,8 +3764,8 @@ void CostingOptions::clear_has_use_trails() {
   _impl_._oneof_case_[32] = HAS_USE_TRAILS_NOT_SET;
 }
 
-void CostingOptions::clear_has_low_class_penalty() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.CostingOptions)
+void Costing_Options::clear_has_low_class_penalty() {
+// @@protoc_insertion_point(one_of_clear_start:valhalla.Costing.Options)
   switch (has_low_class_penalty_case()) {
     case kLowClassPenalty: {
       // No need to clear
@@ -3298,8 +3778,8 @@ void CostingOptions::clear_has_low_class_penalty() {
   _impl_._oneof_case_[33] = HAS_LOW_CLASS_PENALTY_NOT_SET;
 }
 
-void CostingOptions::clear_has_hazmat() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.CostingOptions)
+void Costing_Options::clear_has_hazmat() {
+// @@protoc_insertion_point(one_of_clear_start:valhalla.Costing.Options)
   switch (has_hazmat_case()) {
     case kHazmat: {
       // No need to clear
@@ -3312,8 +3792,8 @@ void CostingOptions::clear_has_hazmat() {
   _impl_._oneof_case_[34] = HAS_HAZMAT_NOT_SET;
 }
 
-void CostingOptions::clear_has_weight() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.CostingOptions)
+void Costing_Options::clear_has_weight() {
+// @@protoc_insertion_point(one_of_clear_start:valhalla.Costing.Options)
   switch (has_weight_case()) {
     case kWeight: {
       // No need to clear
@@ -3326,8 +3806,8 @@ void CostingOptions::clear_has_weight() {
   _impl_._oneof_case_[35] = HAS_WEIGHT_NOT_SET;
 }
 
-void CostingOptions::clear_has_axle_load() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.CostingOptions)
+void Costing_Options::clear_has_axle_load() {
+// @@protoc_insertion_point(one_of_clear_start:valhalla.Costing.Options)
   switch (has_axle_load_case()) {
     case kAxleLoad: {
       // No need to clear
@@ -3340,8 +3820,8 @@ void CostingOptions::clear_has_axle_load() {
   _impl_._oneof_case_[36] = HAS_AXLE_LOAD_NOT_SET;
 }
 
-void CostingOptions::clear_has_height() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.CostingOptions)
+void Costing_Options::clear_has_height() {
+// @@protoc_insertion_point(one_of_clear_start:valhalla.Costing.Options)
   switch (has_height_case()) {
     case kHeight: {
       // No need to clear
@@ -3354,8 +3834,8 @@ void CostingOptions::clear_has_height() {
   _impl_._oneof_case_[37] = HAS_HEIGHT_NOT_SET;
 }
 
-void CostingOptions::clear_has_width() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.CostingOptions)
+void Costing_Options::clear_has_width() {
+// @@protoc_insertion_point(one_of_clear_start:valhalla.Costing.Options)
   switch (has_width_case()) {
     case kWidth: {
       // No need to clear
@@ -3368,8 +3848,8 @@ void CostingOptions::clear_has_width() {
   _impl_._oneof_case_[38] = HAS_WIDTH_NOT_SET;
 }
 
-void CostingOptions::clear_has_length() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.CostingOptions)
+void Costing_Options::clear_has_length() {
+// @@protoc_insertion_point(one_of_clear_start:valhalla.Costing.Options)
   switch (has_length_case()) {
     case kLength: {
       // No need to clear
@@ -3382,8 +3862,8 @@ void CostingOptions::clear_has_length() {
   _impl_._oneof_case_[39] = HAS_LENGTH_NOT_SET;
 }
 
-void CostingOptions::clear_has_cycling_speed() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.CostingOptions)
+void Costing_Options::clear_has_cycling_speed() {
+// @@protoc_insertion_point(one_of_clear_start:valhalla.Costing.Options)
   switch (has_cycling_speed_case()) {
     case kCyclingSpeed: {
       // No need to clear
@@ -3396,8 +3876,8 @@ void CostingOptions::clear_has_cycling_speed() {
   _impl_._oneof_case_[40] = HAS_CYCLING_SPEED_NOT_SET;
 }
 
-void CostingOptions::clear_has_wheelchair() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.CostingOptions)
+void Costing_Options::clear_has_wheelchair() {
+// @@protoc_insertion_point(one_of_clear_start:valhalla.Costing.Options)
   switch (has_wheelchair_case()) {
     case kWheelchair: {
       // No need to clear
@@ -3410,8 +3890,8 @@ void CostingOptions::clear_has_wheelchair() {
   _impl_._oneof_case_[41] = HAS_WHEELCHAIR_NOT_SET;
 }
 
-void CostingOptions::clear_has_bicycle() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.CostingOptions)
+void Costing_Options::clear_has_bicycle() {
+// @@protoc_insertion_point(one_of_clear_start:valhalla.Costing.Options)
   switch (has_bicycle_case()) {
     case kBicycle: {
       // No need to clear
@@ -3424,8 +3904,8 @@ void CostingOptions::clear_has_bicycle() {
   _impl_._oneof_case_[42] = HAS_BICYCLE_NOT_SET;
 }
 
-void CostingOptions::clear_has_use_bus() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.CostingOptions)
+void Costing_Options::clear_has_use_bus() {
+// @@protoc_insertion_point(one_of_clear_start:valhalla.Costing.Options)
   switch (has_use_bus_case()) {
     case kUseBus: {
       // No need to clear
@@ -3438,8 +3918,8 @@ void CostingOptions::clear_has_use_bus() {
   _impl_._oneof_case_[43] = HAS_USE_BUS_NOT_SET;
 }
 
-void CostingOptions::clear_has_use_rail() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.CostingOptions)
+void Costing_Options::clear_has_use_rail() {
+// @@protoc_insertion_point(one_of_clear_start:valhalla.Costing.Options)
   switch (has_use_rail_case()) {
     case kUseRail: {
       // No need to clear
@@ -3452,8 +3932,8 @@ void CostingOptions::clear_has_use_rail() {
   _impl_._oneof_case_[44] = HAS_USE_RAIL_NOT_SET;
 }
 
-void CostingOptions::clear_has_use_transfers() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.CostingOptions)
+void Costing_Options::clear_has_use_transfers() {
+// @@protoc_insertion_point(one_of_clear_start:valhalla.Costing.Options)
   switch (has_use_transfers_case()) {
     case kUseTransfers: {
       // No need to clear
@@ -3466,8 +3946,8 @@ void CostingOptions::clear_has_use_transfers() {
   _impl_._oneof_case_[45] = HAS_USE_TRANSFERS_NOT_SET;
 }
 
-void CostingOptions::clear_has_transfer_cost() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.CostingOptions)
+void Costing_Options::clear_has_transfer_cost() {
+// @@protoc_insertion_point(one_of_clear_start:valhalla.Costing.Options)
   switch (has_transfer_cost_case()) {
     case kTransferCost: {
       // No need to clear
@@ -3480,8 +3960,8 @@ void CostingOptions::clear_has_transfer_cost() {
   _impl_._oneof_case_[46] = HAS_TRANSFER_COST_NOT_SET;
 }
 
-void CostingOptions::clear_has_transfer_penalty() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.CostingOptions)
+void Costing_Options::clear_has_transfer_penalty() {
+// @@protoc_insertion_point(one_of_clear_start:valhalla.Costing.Options)
   switch (has_transfer_penalty_case()) {
     case kTransferPenalty: {
       // No need to clear
@@ -3494,8 +3974,8 @@ void CostingOptions::clear_has_transfer_penalty() {
   _impl_._oneof_case_[47] = HAS_TRANSFER_PENALTY_NOT_SET;
 }
 
-void CostingOptions::clear_has_flow_mask() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.CostingOptions)
+void Costing_Options::clear_has_flow_mask() {
+// @@protoc_insertion_point(one_of_clear_start:valhalla.Costing.Options)
   switch (has_flow_mask_case()) {
     case kFlowMask: {
       // No need to clear
@@ -3508,8 +3988,8 @@ void CostingOptions::clear_has_flow_mask() {
   _impl_._oneof_case_[48] = HAS_FLOW_MASK_NOT_SET;
 }
 
-void CostingOptions::clear_has_bike_share_cost() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.CostingOptions)
+void Costing_Options::clear_has_bike_share_cost() {
+// @@protoc_insertion_point(one_of_clear_start:valhalla.Costing.Options)
   switch (has_bike_share_cost_case()) {
     case kBikeShareCost: {
       // No need to clear
@@ -3522,8 +4002,8 @@ void CostingOptions::clear_has_bike_share_cost() {
   _impl_._oneof_case_[49] = HAS_BIKE_SHARE_COST_NOT_SET;
 }
 
-void CostingOptions::clear_has_bike_share_penalty() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.CostingOptions)
+void Costing_Options::clear_has_bike_share_penalty() {
+// @@protoc_insertion_point(one_of_clear_start:valhalla.Costing.Options)
   switch (has_bike_share_penalty_case()) {
     case kBikeSharePenalty: {
       // No need to clear
@@ -3536,8 +4016,8 @@ void CostingOptions::clear_has_bike_share_penalty() {
   _impl_._oneof_case_[50] = HAS_BIKE_SHARE_PENALTY_NOT_SET;
 }
 
-void CostingOptions::clear_has_rail_ferry_cost() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.CostingOptions)
+void Costing_Options::clear_has_rail_ferry_cost() {
+// @@protoc_insertion_point(one_of_clear_start:valhalla.Costing.Options)
   switch (has_rail_ferry_cost_case()) {
     case kRailFerryCost: {
       // No need to clear
@@ -3550,8 +4030,8 @@ void CostingOptions::clear_has_rail_ferry_cost() {
   _impl_._oneof_case_[51] = HAS_RAIL_FERRY_COST_NOT_SET;
 }
 
-void CostingOptions::clear_has_use_rail_ferry() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.CostingOptions)
+void Costing_Options::clear_has_use_rail_ferry() {
+// @@protoc_insertion_point(one_of_clear_start:valhalla.Costing.Options)
   switch (has_use_rail_ferry_case()) {
     case kUseRailFerry: {
       // No need to clear
@@ -3564,8 +4044,8 @@ void CostingOptions::clear_has_use_rail_ferry() {
   _impl_._oneof_case_[52] = HAS_USE_RAIL_FERRY_NOT_SET;
 }
 
-void CostingOptions::clear_has_ignore_restrictions() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.CostingOptions)
+void Costing_Options::clear_has_ignore_restrictions() {
+// @@protoc_insertion_point(one_of_clear_start:valhalla.Costing.Options)
   switch (has_ignore_restrictions_case()) {
     case kIgnoreRestrictions: {
       // No need to clear
@@ -3578,8 +4058,8 @@ void CostingOptions::clear_has_ignore_restrictions() {
   _impl_._oneof_case_[53] = HAS_IGNORE_RESTRICTIONS_NOT_SET;
 }
 
-void CostingOptions::clear_has_ignore_oneways() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.CostingOptions)
+void Costing_Options::clear_has_ignore_oneways() {
+// @@protoc_insertion_point(one_of_clear_start:valhalla.Costing.Options)
   switch (has_ignore_oneways_case()) {
     case kIgnoreOneways: {
       // No need to clear
@@ -3592,8 +4072,8 @@ void CostingOptions::clear_has_ignore_oneways() {
   _impl_._oneof_case_[54] = HAS_IGNORE_ONEWAYS_NOT_SET;
 }
 
-void CostingOptions::clear_has_ignore_access() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.CostingOptions)
+void Costing_Options::clear_has_ignore_access() {
+// @@protoc_insertion_point(one_of_clear_start:valhalla.Costing.Options)
   switch (has_ignore_access_case()) {
     case kIgnoreAccess: {
       // No need to clear
@@ -3606,8 +4086,8 @@ void CostingOptions::clear_has_ignore_access() {
   _impl_._oneof_case_[55] = HAS_IGNORE_ACCESS_NOT_SET;
 }
 
-void CostingOptions::clear_has_ignore_closures() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.CostingOptions)
+void Costing_Options::clear_has_ignore_closures() {
+// @@protoc_insertion_point(one_of_clear_start:valhalla.Costing.Options)
   switch (has_ignore_closures_case()) {
     case kIgnoreClosures: {
       // No need to clear
@@ -3620,8 +4100,8 @@ void CostingOptions::clear_has_ignore_closures() {
   _impl_._oneof_case_[56] = HAS_IGNORE_CLOSURES_NOT_SET;
 }
 
-void CostingOptions::clear_has_shortest() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.CostingOptions)
+void Costing_Options::clear_has_shortest() {
+// @@protoc_insertion_point(one_of_clear_start:valhalla.Costing.Options)
   switch (has_shortest_case()) {
     case kShortest: {
       // No need to clear
@@ -3634,8 +4114,8 @@ void CostingOptions::clear_has_shortest() {
   _impl_._oneof_case_[57] = HAS_SHORTEST_NOT_SET;
 }
 
-void CostingOptions::clear_has_service_penalty() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.CostingOptions)
+void Costing_Options::clear_has_service_penalty() {
+// @@protoc_insertion_point(one_of_clear_start:valhalla.Costing.Options)
   switch (has_service_penalty_case()) {
     case kServicePenalty: {
       // No need to clear
@@ -3648,8 +4128,8 @@ void CostingOptions::clear_has_service_penalty() {
   _impl_._oneof_case_[58] = HAS_SERVICE_PENALTY_NOT_SET;
 }
 
-void CostingOptions::clear_has_use_tracks() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.CostingOptions)
+void Costing_Options::clear_has_use_tracks() {
+// @@protoc_insertion_point(one_of_clear_start:valhalla.Costing.Options)
   switch (has_use_tracks_case()) {
     case kUseTracks: {
       // No need to clear
@@ -3662,8 +4142,8 @@ void CostingOptions::clear_has_use_tracks() {
   _impl_._oneof_case_[59] = HAS_USE_TRACKS_NOT_SET;
 }
 
-void CostingOptions::clear_has_use_distance() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.CostingOptions)
+void Costing_Options::clear_has_use_distance() {
+// @@protoc_insertion_point(one_of_clear_start:valhalla.Costing.Options)
   switch (has_use_distance_case()) {
     case kUseDistance: {
       // No need to clear
@@ -3676,8 +4156,8 @@ void CostingOptions::clear_has_use_distance() {
   _impl_._oneof_case_[60] = HAS_USE_DISTANCE_NOT_SET;
 }
 
-void CostingOptions::clear_has_use_living_streets() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.CostingOptions)
+void Costing_Options::clear_has_use_living_streets() {
+// @@protoc_insertion_point(one_of_clear_start:valhalla.Costing.Options)
   switch (has_use_living_streets_case()) {
     case kUseLivingStreets: {
       // No need to clear
@@ -3690,8 +4170,8 @@ void CostingOptions::clear_has_use_living_streets() {
   _impl_._oneof_case_[61] = HAS_USE_LIVING_STREETS_NOT_SET;
 }
 
-void CostingOptions::clear_has_service_factor() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.CostingOptions)
+void Costing_Options::clear_has_service_factor() {
+// @@protoc_insertion_point(one_of_clear_start:valhalla.Costing.Options)
   switch (has_service_factor_case()) {
     case kServiceFactor: {
       // No need to clear
@@ -3704,8 +4184,8 @@ void CostingOptions::clear_has_service_factor() {
   _impl_._oneof_case_[62] = HAS_SERVICE_FACTOR_NOT_SET;
 }
 
-void CostingOptions::clear_has_closure_factor() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.CostingOptions)
+void Costing_Options::clear_has_closure_factor() {
+// @@protoc_insertion_point(one_of_clear_start:valhalla.Costing.Options)
   switch (has_closure_factor_case()) {
     case kClosureFactor: {
       // No need to clear
@@ -3718,8 +4198,8 @@ void CostingOptions::clear_has_closure_factor() {
   _impl_._oneof_case_[63] = HAS_CLOSURE_FACTOR_NOT_SET;
 }
 
-void CostingOptions::clear_has_private_access_penalty() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.CostingOptions)
+void Costing_Options::clear_has_private_access_penalty() {
+// @@protoc_insertion_point(one_of_clear_start:valhalla.Costing.Options)
   switch (has_private_access_penalty_case()) {
     case kPrivateAccessPenalty: {
       // No need to clear
@@ -3732,8 +4212,8 @@ void CostingOptions::clear_has_private_access_penalty() {
   _impl_._oneof_case_[64] = HAS_PRIVATE_ACCESS_PENALTY_NOT_SET;
 }
 
-void CostingOptions::clear_has_exclude_unpaved() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.CostingOptions)
+void Costing_Options::clear_has_exclude_unpaved() {
+// @@protoc_insertion_point(one_of_clear_start:valhalla.Costing.Options)
   switch (has_exclude_unpaved_case()) {
     case kExcludeUnpaved: {
       // No need to clear
@@ -3746,8 +4226,8 @@ void CostingOptions::clear_has_exclude_unpaved() {
   _impl_._oneof_case_[65] = HAS_EXCLUDE_UNPAVED_NOT_SET;
 }
 
-void CostingOptions::clear_has_include_hot() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.CostingOptions)
+void Costing_Options::clear_has_include_hot() {
+// @@protoc_insertion_point(one_of_clear_start:valhalla.Costing.Options)
   switch (has_include_hot_case()) {
     case kIncludeHot: {
       // No need to clear
@@ -3760,8 +4240,8 @@ void CostingOptions::clear_has_include_hot() {
   _impl_._oneof_case_[66] = HAS_INCLUDE_HOT_NOT_SET;
 }
 
-void CostingOptions::clear_has_include_hov2() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.CostingOptions)
+void Costing_Options::clear_has_include_hov2() {
+// @@protoc_insertion_point(one_of_clear_start:valhalla.Costing.Options)
   switch (has_include_hov2_case()) {
     case kIncludeHov2: {
       // No need to clear
@@ -3774,8 +4254,8 @@ void CostingOptions::clear_has_include_hov2() {
   _impl_._oneof_case_[67] = HAS_INCLUDE_HOV2_NOT_SET;
 }
 
-void CostingOptions::clear_has_include_hov3() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.CostingOptions)
+void Costing_Options::clear_has_include_hov3() {
+// @@protoc_insertion_point(one_of_clear_start:valhalla.Costing.Options)
   switch (has_include_hov3_case()) {
     case kIncludeHov3: {
       // No need to clear
@@ -3788,8 +4268,8 @@ void CostingOptions::clear_has_include_hov3() {
   _impl_._oneof_case_[68] = HAS_INCLUDE_HOV3_NOT_SET;
 }
 
-void CostingOptions::clear_has_exclude_cash_only_tolls() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.CostingOptions)
+void Costing_Options::clear_has_exclude_cash_only_tolls() {
+// @@protoc_insertion_point(one_of_clear_start:valhalla.Costing.Options)
   switch (has_exclude_cash_only_tolls_case()) {
     case kExcludeCashOnlyTolls: {
       // No need to clear
@@ -3802,8 +4282,8 @@ void CostingOptions::clear_has_exclude_cash_only_tolls() {
   _impl_._oneof_case_[69] = HAS_EXCLUDE_CASH_ONLY_TOLLS_NOT_SET;
 }
 
-void CostingOptions::clear_has_restriction_probability() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.CostingOptions)
+void Costing_Options::clear_has_restriction_probability() {
+// @@protoc_insertion_point(one_of_clear_start:valhalla.Costing.Options)
   switch (has_restriction_probability_case()) {
     case kRestrictionProbability: {
       // No need to clear
@@ -3816,51 +4296,23 @@ void CostingOptions::clear_has_restriction_probability() {
   _impl_._oneof_case_[70] = HAS_RESTRICTION_PROBABILITY_NOT_SET;
 }
 
-void CostingOptions::clear_has_costing() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.CostingOptions)
-  switch (has_costing_case()) {
-    case kCosting: {
+void Costing_Options::clear_has_elevator_penalty() {
+// @@protoc_insertion_point(one_of_clear_start:valhalla.Costing.Options)
+  switch (has_elevator_penalty_case()) {
+    case kElevatorPenalty: {
       // No need to clear
       break;
     }
-    case HAS_COSTING_NOT_SET: {
+    case HAS_ELEVATOR_PENALTY_NOT_SET: {
       break;
     }
   }
-  _impl_._oneof_case_[71] = HAS_COSTING_NOT_SET;
-}
-
-void CostingOptions::clear_has_name() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.CostingOptions)
-  switch (has_name_case()) {
-    case kName: {
-      _impl_.has_name_.name_.Destroy();
-      break;
-    }
-    case HAS_NAME_NOT_SET: {
-      break;
-    }
-  }
-  _impl_._oneof_case_[72] = HAS_NAME_NOT_SET;
-}
-
-void CostingOptions::clear_has_filter_closures() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.CostingOptions)
-  switch (has_filter_closures_case()) {
-    case kFilterClosures: {
-      // No need to clear
-      break;
-    }
-    case HAS_FILTER_CLOSURES_NOT_SET: {
-      break;
-    }
-  }
-  _impl_._oneof_case_[73] = HAS_FILTER_CLOSURES_NOT_SET;
+  _impl_._oneof_case_[71] = HAS_ELEVATOR_PENALTY_NOT_SET;
 }
 
 
-void CostingOptions::Clear() {
-// @@protoc_insertion_point(message_clear_start:valhalla.CostingOptions)
+void Costing_Options::Clear() {
+// @@protoc_insertion_point(message_clear_start:valhalla.Costing.Options)
   uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
@@ -3943,13 +4395,11 @@ void CostingOptions::Clear() {
   clear_has_include_hov3();
   clear_has_exclude_cash_only_tolls();
   clear_has_restriction_probability();
-  clear_has_costing();
-  clear_has_name();
-  clear_has_filter_closures();
+  clear_has_elevator_penalty();
   _internal_metadata_.Clear<std::string>();
 }
 
-const char* CostingOptions::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+const char* Costing_Options::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
   while (!ctx->Done(&ptr)) {
     uint32_t tag;
@@ -4597,43 +5047,24 @@ const char* CostingOptions::_InternalParse(const char* ptr, ::_pbi::ParseContext
         } else
           goto handle_unusual;
         continue;
-      // .valhalla.Costing costing = 90;
-      case 90:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 208)) {
-          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-          _internal_set_costing(static_cast<::valhalla::Costing>(val));
-        } else
-          goto handle_unusual;
-        continue;
-      // string name = 91;
-      case 91:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 218)) {
-          auto str = _internal_mutable_name();
-          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, nullptr));
-        } else
-          goto handle_unusual;
-        continue;
-      // repeated .valhalla.AvoidEdge exclude_edges = 92;
-      case 92:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 226)) {
+      // repeated .valhalla.AvoidEdge exclude_edges = 78;
+      case 78:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 114)) {
           ptr -= 2;
           do {
             ptr += 2;
             ptr = ctx->ParseMessage(_internal_add_exclude_edges(), ptr);
             CHK_(ptr);
             if (!ctx->DataAvailable(ptr)) break;
-          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<738>(ptr));
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<626>(ptr));
         } else
           goto handle_unusual;
         continue;
-      // bool filter_closures = 93;
-      case 93:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 232)) {
-          _internal_set_filter_closures(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr));
-          CHK_(ptr);
+      // float elevator_penalty = 79;
+      case 79:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 125)) {
+          _internal_set_elevator_penalty(::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr));
+          ptr += sizeof(float);
         } else
           goto handle_unusual;
         continue;
@@ -4660,9 +5091,9 @@ failure:
 #undef CHK_
 }
 
-uint8_t* CostingOptions::_InternalSerialize(
+uint8_t* Costing_Options::_InternalSerialize(
     uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:valhalla.CostingOptions)
+  // @@protoc_insertion_point(serialize_to_array_start:valhalla.Costing.Options)
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -4839,7 +5270,7 @@ uint8_t* CostingOptions::_InternalSerialize(
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_transport_type().data(), static_cast<int>(this->_internal_transport_type().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "valhalla.CostingOptions.transport_type");
+      "valhalla.Costing.Options.transport_type");
     target = stream->WriteStringMaybeAliased(
         29, this->_internal_transport_type(), target);
   }
@@ -4971,7 +5402,7 @@ uint8_t* CostingOptions::_InternalSerialize(
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       s.data(), static_cast<int>(s.length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "valhalla.CostingOptions.filter_stop_ids");
+      "valhalla.Costing.Options.filter_stop_ids");
     target = stream->WriteString(50, s, target);
   }
 
@@ -4988,7 +5419,7 @@ uint8_t* CostingOptions::_InternalSerialize(
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       s.data(), static_cast<int>(s.length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "valhalla.CostingOptions.filter_operator_ids");
+      "valhalla.Costing.Options.filter_operator_ids");
     target = stream->WriteString(52, s, target);
   }
 
@@ -5005,7 +5436,7 @@ uint8_t* CostingOptions::_InternalSerialize(
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       s.data(), static_cast<int>(s.length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "valhalla.CostingOptions.filter_route_ids");
+      "valhalla.Costing.Options.filter_route_ids");
     target = stream->WriteString(54, s, target);
   }
 
@@ -5147,47 +5578,30 @@ uint8_t* CostingOptions::_InternalSerialize(
     target = ::_pbi::WireFormatLite::WriteUInt32ToArray(77, this->_internal_restriction_probability(), target);
   }
 
-  // .valhalla.Costing costing = 90;
-  if (_internal_has_costing()) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteEnumToArray(
-      90, this->_internal_costing(), target);
-  }
-
-  // string name = 91;
-  if (_internal_has_name()) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_name().data(), static_cast<int>(this->_internal_name().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "valhalla.CostingOptions.name");
-    target = stream->WriteStringMaybeAliased(
-        91, this->_internal_name(), target);
-  }
-
-  // repeated .valhalla.AvoidEdge exclude_edges = 92;
+  // repeated .valhalla.AvoidEdge exclude_edges = 78;
   for (unsigned i = 0,
       n = static_cast<unsigned>(this->_internal_exclude_edges_size()); i < n; i++) {
     const auto& repfield = this->_internal_exclude_edges(i);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-        InternalWriteMessage(92, repfield, repfield.GetCachedSize(), target, stream);
+        InternalWriteMessage(78, repfield, repfield.GetCachedSize(), target, stream);
   }
 
-  // bool filter_closures = 93;
-  if (_internal_has_filter_closures()) {
+  // float elevator_penalty = 79;
+  if (_internal_has_elevator_penalty()) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteBoolToArray(93, this->_internal_filter_closures(), target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(79, this->_internal_elevator_penalty(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = stream->WriteRaw(_internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).data(),
         static_cast<int>(_internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).size()), target);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:valhalla.CostingOptions)
+  // @@protoc_insertion_point(serialize_to_array_end:valhalla.Costing.Options)
   return target;
 }
 
-size_t CostingOptions::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:valhalla.CostingOptions)
+size_t Costing_Options::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:valhalla.Costing.Options)
   size_t total_size = 0;
 
   uint32_t cached_has_bits = 0;
@@ -5218,7 +5632,7 @@ size_t CostingOptions::ByteSizeLong() const {
       _impl_.filter_route_ids_.Get(i));
   }
 
-  // repeated .valhalla.AvoidEdge exclude_edges = 92;
+  // repeated .valhalla.AvoidEdge exclude_edges = 78;
   total_size += 2UL * this->_internal_exclude_edges_size();
   for (const auto& msg : this->_impl_.exclude_edges_) {
     total_size +=
@@ -5969,36 +6383,13 @@ size_t CostingOptions::ByteSizeLong() const {
       break;
     }
   }
-  switch (has_costing_case()) {
-    // .valhalla.Costing costing = 90;
-    case kCosting: {
-      total_size += 2 +
-        ::_pbi::WireFormatLite::EnumSize(this->_internal_costing());
+  switch (has_elevator_penalty_case()) {
+    // float elevator_penalty = 79;
+    case kElevatorPenalty: {
+      total_size += 2 + 4;
       break;
     }
-    case HAS_COSTING_NOT_SET: {
-      break;
-    }
-  }
-  switch (has_name_case()) {
-    // string name = 91;
-    case kName: {
-      total_size += 2 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-          this->_internal_name());
-      break;
-    }
-    case HAS_NAME_NOT_SET: {
-      break;
-    }
-  }
-  switch (has_filter_closures_case()) {
-    // bool filter_closures = 93;
-    case kFilterClosures: {
-      total_size += 2 + 1;
-      break;
-    }
-    case HAS_FILTER_CLOSURES_NOT_SET: {
+    case HAS_ELEVATOR_PENALTY_NOT_SET: {
       break;
     }
   }
@@ -6010,15 +6401,15 @@ size_t CostingOptions::ByteSizeLong() const {
   return total_size;
 }
 
-void CostingOptions::CheckTypeAndMergeFrom(
+void Costing_Options::CheckTypeAndMergeFrom(
     const ::PROTOBUF_NAMESPACE_ID::MessageLite& from) {
-  MergeFrom(*::_pbi::DownCast<const CostingOptions*>(
+  MergeFrom(*::_pbi::DownCast<const Costing_Options*>(
       &from));
 }
 
-void CostingOptions::MergeFrom(const CostingOptions& from) {
-  CostingOptions* const _this = this;
-  // @@protoc_insertion_point(class_specific_merge_from_start:valhalla.CostingOptions)
+void Costing_Options::MergeFrom(const Costing_Options& from) {
+  Costing_Options* const _this = this;
+  // @@protoc_insertion_point(class_specific_merge_from_start:valhalla.Costing.Options)
   GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
@@ -6675,48 +7066,30 @@ void CostingOptions::MergeFrom(const CostingOptions& from) {
       break;
     }
   }
-  switch (from.has_costing_case()) {
-    case kCosting: {
-      _this->_internal_set_costing(from._internal_costing());
+  switch (from.has_elevator_penalty_case()) {
+    case kElevatorPenalty: {
+      _this->_internal_set_elevator_penalty(from._internal_elevator_penalty());
       break;
     }
-    case HAS_COSTING_NOT_SET: {
-      break;
-    }
-  }
-  switch (from.has_name_case()) {
-    case kName: {
-      _this->_internal_set_name(from._internal_name());
-      break;
-    }
-    case HAS_NAME_NOT_SET: {
-      break;
-    }
-  }
-  switch (from.has_filter_closures_case()) {
-    case kFilterClosures: {
-      _this->_internal_set_filter_closures(from._internal_filter_closures());
-      break;
-    }
-    case HAS_FILTER_CLOSURES_NOT_SET: {
+    case HAS_ELEVATOR_PENALTY_NOT_SET: {
       break;
     }
   }
   _this->_internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
 }
 
-void CostingOptions::CopyFrom(const CostingOptions& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:valhalla.CostingOptions)
+void Costing_Options::CopyFrom(const Costing_Options& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:valhalla.Costing.Options)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-bool CostingOptions::IsInitialized() const {
+bool Costing_Options::IsInitialized() const {
   return true;
 }
 
-void CostingOptions::InternalSwap(CostingOptions* other) {
+void Costing_Options::InternalSwap(Costing_Options* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   _impl_.filter_stop_ids_.InternalSwap(&other->_impl_.filter_stop_ids_);
@@ -6724,9 +7097,9 @@ void CostingOptions::InternalSwap(CostingOptions* other) {
   _impl_.filter_route_ids_.InternalSwap(&other->_impl_.filter_route_ids_);
   _impl_.exclude_edges_.InternalSwap(&other->_impl_.exclude_edges_);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(CostingOptions, _impl_.filter_route_action_)
-      + sizeof(CostingOptions::_impl_.filter_route_action_)
-      - PROTOBUF_FIELD_OFFSET(CostingOptions, _impl_.filter_stop_action_)>(
+      PROTOBUF_FIELD_OFFSET(Costing_Options, _impl_.filter_route_action_)
+      + sizeof(Costing_Options::_impl_.filter_route_action_)
+      - PROTOBUF_FIELD_OFFSET(Costing_Options, _impl_.filter_stop_action_)>(
           reinterpret_cast<char*>(&_impl_.filter_stop_action_),
           reinterpret_cast<char*>(&other->_impl_.filter_stop_action_));
   swap(_impl_.has_maneuver_penalty_, other->_impl_.has_maneuver_penalty_);
@@ -6800,9 +7173,7 @@ void CostingOptions::InternalSwap(CostingOptions* other) {
   swap(_impl_.has_include_hov3_, other->_impl_.has_include_hov3_);
   swap(_impl_.has_exclude_cash_only_tolls_, other->_impl_.has_exclude_cash_only_tolls_);
   swap(_impl_.has_restriction_probability_, other->_impl_.has_restriction_probability_);
-  swap(_impl_.has_costing_, other->_impl_.has_costing_);
-  swap(_impl_.has_name_, other->_impl_.has_name_);
-  swap(_impl_.has_filter_closures_, other->_impl_.has_filter_closures_);
+  swap(_impl_.has_elevator_penalty_, other->_impl_.has_elevator_penalty_);
   swap(_impl_._oneof_case_[0], other->_impl_._oneof_case_[0]);
   swap(_impl_._oneof_case_[1], other->_impl_._oneof_case_[1]);
   swap(_impl_._oneof_case_[2], other->_impl_._oneof_case_[2]);
@@ -6875,53 +7246,111 @@ void CostingOptions::InternalSwap(CostingOptions* other) {
   swap(_impl_._oneof_case_[69], other->_impl_._oneof_case_[69]);
   swap(_impl_._oneof_case_[70], other->_impl_._oneof_case_[70]);
   swap(_impl_._oneof_case_[71], other->_impl_._oneof_case_[71]);
-  swap(_impl_._oneof_case_[72], other->_impl_._oneof_case_[72]);
-  swap(_impl_._oneof_case_[73], other->_impl_._oneof_case_[73]);
 }
 
-std::string CostingOptions::GetTypeName() const {
-  return "valhalla.CostingOptions";
+std::string Costing_Options::GetTypeName() const {
+  return "valhalla.Costing.Options";
 }
 
 
 // ===================================================================
 
-class Options_Ring::_Internal {
+class Costing::_Internal {
  public:
+  static const ::valhalla::Costing_Options& options(const Costing* msg);
 };
 
-void Options_Ring::clear_coords() {
-  _impl_.coords_.Clear();
+const ::valhalla::Costing_Options&
+Costing::_Internal::options(const Costing* msg) {
+  return *msg->_impl_.has_options_.options_;
 }
-Options_Ring::Options_Ring(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+void Costing::set_allocated_options(::valhalla::Costing_Options* options) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  clear_has_options();
+  if (options) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(options);
+    if (message_arena != submessage_arena) {
+      options = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, options, submessage_arena);
+    }
+    set_has_options();
+    _impl_.has_options_.options_ = options;
+  }
+  // @@protoc_insertion_point(field_set_allocated:valhalla.Costing.options)
+}
+Costing::Costing(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::MessageLite(arena, is_message_owned) {
   SharedCtor(arena, is_message_owned);
-  // @@protoc_insertion_point(arena_constructor:valhalla.Options.Ring)
+  // @@protoc_insertion_point(arena_constructor:valhalla.Costing)
 }
-Options_Ring::Options_Ring(const Options_Ring& from)
+Costing::Costing(const Costing& from)
   : ::PROTOBUF_NAMESPACE_ID::MessageLite() {
-  Options_Ring* const _this = this; (void)_this;
+  Costing* const _this = this; (void)_this;
   new (&_impl_) Impl_{
-      decltype(_impl_.coords_){from._impl_.coords_}
-    , /*decltype(_impl_._cached_size_)*/{}};
+      decltype(_impl_.type_){}
+    , decltype(_impl_.has_options_){}
+    , decltype(_impl_.has_name_){}
+    , decltype(_impl_.has_filter_closures_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+    , /*decltype(_impl_._oneof_case_)*/{}};
 
   _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
-  // @@protoc_insertion_point(copy_constructor:valhalla.Options.Ring)
+  _this->_impl_.type_ = from._impl_.type_;
+  clear_has_has_options();
+  switch (from.has_options_case()) {
+    case kOptions: {
+      _this->_internal_mutable_options()->::valhalla::Costing_Options::MergeFrom(
+          from._internal_options());
+      break;
+    }
+    case HAS_OPTIONS_NOT_SET: {
+      break;
+    }
+  }
+  clear_has_has_name();
+  switch (from.has_name_case()) {
+    case kName: {
+      _this->_internal_set_name(from._internal_name());
+      break;
+    }
+    case HAS_NAME_NOT_SET: {
+      break;
+    }
+  }
+  clear_has_has_filter_closures();
+  switch (from.has_filter_closures_case()) {
+    case kFilterClosures: {
+      _this->_internal_set_filter_closures(from._internal_filter_closures());
+      break;
+    }
+    case HAS_FILTER_CLOSURES_NOT_SET: {
+      break;
+    }
+  }
+  // @@protoc_insertion_point(copy_constructor:valhalla.Costing)
 }
 
-inline void Options_Ring::SharedCtor(
+inline void Costing::SharedCtor(
     ::_pb::Arena* arena, bool is_message_owned) {
   (void)arena;
   (void)is_message_owned;
   new (&_impl_) Impl_{
-      decltype(_impl_.coords_){arena}
+      decltype(_impl_.type_){0}
+    , decltype(_impl_.has_options_){}
+    , decltype(_impl_.has_name_){}
+    , decltype(_impl_.has_filter_closures_){}
     , /*decltype(_impl_._cached_size_)*/{}
+    , /*decltype(_impl_._oneof_case_)*/{}
   };
+  clear_has_has_options();
+  clear_has_has_name();
+  clear_has_has_filter_closures();
 }
 
-Options_Ring::~Options_Ring() {
-  // @@protoc_insertion_point(destructor:valhalla.Options.Ring)
+Costing::~Costing() {
+  // @@protoc_insertion_point(destructor:valhalla.Costing)
   if (auto *arena = _internal_metadata_.DeleteReturnArena<std::string>()) {
   (void)arena;
     return;
@@ -6929,41 +7358,119 @@ Options_Ring::~Options_Ring() {
   SharedDtor();
 }
 
-inline void Options_Ring::SharedDtor() {
+inline void Costing::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.coords_.~RepeatedPtrField();
+  if (has_has_options()) {
+    clear_has_options();
+  }
+  if (has_has_name()) {
+    clear_has_name();
+  }
+  if (has_has_filter_closures()) {
+    clear_has_filter_closures();
+  }
 }
 
-void Options_Ring::SetCachedSize(int size) const {
+void Costing::SetCachedSize(int size) const {
   _impl_._cached_size_.Set(size);
 }
 
-void Options_Ring::Clear() {
-// @@protoc_insertion_point(message_clear_start:valhalla.Options.Ring)
+void Costing::clear_has_options() {
+// @@protoc_insertion_point(one_of_clear_start:valhalla.Costing)
+  switch (has_options_case()) {
+    case kOptions: {
+      if (GetArenaForAllocation() == nullptr) {
+        delete _impl_.has_options_.options_;
+      }
+      break;
+    }
+    case HAS_OPTIONS_NOT_SET: {
+      break;
+    }
+  }
+  _impl_._oneof_case_[0] = HAS_OPTIONS_NOT_SET;
+}
+
+void Costing::clear_has_name() {
+// @@protoc_insertion_point(one_of_clear_start:valhalla.Costing)
+  switch (has_name_case()) {
+    case kName: {
+      _impl_.has_name_.name_.Destroy();
+      break;
+    }
+    case HAS_NAME_NOT_SET: {
+      break;
+    }
+  }
+  _impl_._oneof_case_[1] = HAS_NAME_NOT_SET;
+}
+
+void Costing::clear_has_filter_closures() {
+// @@protoc_insertion_point(one_of_clear_start:valhalla.Costing)
+  switch (has_filter_closures_case()) {
+    case kFilterClosures: {
+      // No need to clear
+      break;
+    }
+    case HAS_FILTER_CLOSURES_NOT_SET: {
+      break;
+    }
+  }
+  _impl_._oneof_case_[2] = HAS_FILTER_CLOSURES_NOT_SET;
+}
+
+
+void Costing::Clear() {
+// @@protoc_insertion_point(message_clear_start:valhalla.Costing)
   uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.coords_.Clear();
+  _impl_.type_ = 0;
+  clear_has_options();
+  clear_has_name();
+  clear_has_filter_closures();
   _internal_metadata_.Clear<std::string>();
 }
 
-const char* Options_Ring::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+const char* Costing::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
   while (!ctx->Done(&ptr)) {
     uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // repeated .valhalla.LatLng coords = 1;
+      // .valhalla.Costing.Options options = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
-          ptr -= 1;
-          do {
-            ptr += 1;
-            ptr = ctx->ParseMessage(_internal_add_coords(), ptr);
-            CHK_(ptr);
-            if (!ctx->DataAvailable(ptr)) break;
-          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
+          ptr = ctx->ParseMessage(_internal_mutable_options(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // .valhalla.Costing.Type type = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
+          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+          _internal_set_type(static_cast<::valhalla::Costing_Type>(val));
+        } else
+          goto handle_unusual;
+        continue;
+      // string name = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          auto str = _internal_mutable_name();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, nullptr));
+        } else
+          goto handle_unusual;
+        continue;
+      // bool filter_closures = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 32)) {
+          _internal_set_filter_closures(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr));
+          CHK_(ptr);
         } else
           goto handle_unusual;
         continue;
@@ -6990,43 +7497,98 @@ failure:
 #undef CHK_
 }
 
-uint8_t* Options_Ring::_InternalSerialize(
+uint8_t* Costing::_InternalSerialize(
     uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:valhalla.Options.Ring)
+  // @@protoc_insertion_point(serialize_to_array_start:valhalla.Costing)
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // repeated .valhalla.LatLng coords = 1;
-  for (unsigned i = 0,
-      n = static_cast<unsigned>(this->_internal_coords_size()); i < n; i++) {
-    const auto& repfield = this->_internal_coords(i);
+  // .valhalla.Costing.Options options = 1;
+  if (_internal_has_options()) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-        InternalWriteMessage(1, repfield, repfield.GetCachedSize(), target, stream);
+      InternalWriteMessage(1, _Internal::options(this),
+        _Internal::options(this).GetCachedSize(), target, stream);
+  }
+
+  // .valhalla.Costing.Type type = 2;
+  if (this->_internal_type() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+      2, this->_internal_type(), target);
+  }
+
+  // string name = 3;
+  if (_internal_has_name()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_name().data(), static_cast<int>(this->_internal_name().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "valhalla.Costing.name");
+    target = stream->WriteStringMaybeAliased(
+        3, this->_internal_name(), target);
+  }
+
+  // bool filter_closures = 4;
+  if (_internal_has_filter_closures()) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(4, this->_internal_filter_closures(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = stream->WriteRaw(_internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).data(),
         static_cast<int>(_internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).size()), target);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:valhalla.Options.Ring)
+  // @@protoc_insertion_point(serialize_to_array_end:valhalla.Costing)
   return target;
 }
 
-size_t Options_Ring::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:valhalla.Options.Ring)
+size_t Costing::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:valhalla.Costing)
   size_t total_size = 0;
 
   uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // repeated .valhalla.LatLng coords = 1;
-  total_size += 1UL * this->_internal_coords_size();
-  for (const auto& msg : this->_impl_.coords_) {
-    total_size +=
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+  // .valhalla.Costing.Type type = 2;
+  if (this->_internal_type() != 0) {
+    total_size += 1 +
+      ::_pbi::WireFormatLite::EnumSize(this->_internal_type());
   }
 
+  switch (has_options_case()) {
+    // .valhalla.Costing.Options options = 1;
+    case kOptions: {
+      total_size += 1 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+          *_impl_.has_options_.options_);
+      break;
+    }
+    case HAS_OPTIONS_NOT_SET: {
+      break;
+    }
+  }
+  switch (has_name_case()) {
+    // string name = 3;
+    case kName: {
+      total_size += 1 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+          this->_internal_name());
+      break;
+    }
+    case HAS_NAME_NOT_SET: {
+      break;
+    }
+  }
+  switch (has_filter_closures_case()) {
+    // bool filter_closures = 4;
+    case kFilterClosures: {
+      total_size += 1 + 1;
+      break;
+    }
+    case HAS_FILTER_CLOSURES_NOT_SET: {
+      break;
+    }
+  }
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     total_size += _internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).size();
   }
@@ -7035,51 +7597,87 @@ size_t Options_Ring::ByteSizeLong() const {
   return total_size;
 }
 
-void Options_Ring::CheckTypeAndMergeFrom(
+void Costing::CheckTypeAndMergeFrom(
     const ::PROTOBUF_NAMESPACE_ID::MessageLite& from) {
-  MergeFrom(*::_pbi::DownCast<const Options_Ring*>(
+  MergeFrom(*::_pbi::DownCast<const Costing*>(
       &from));
 }
 
-void Options_Ring::MergeFrom(const Options_Ring& from) {
-  Options_Ring* const _this = this;
-  // @@protoc_insertion_point(class_specific_merge_from_start:valhalla.Options.Ring)
+void Costing::MergeFrom(const Costing& from) {
+  Costing* const _this = this;
+  // @@protoc_insertion_point(class_specific_merge_from_start:valhalla.Costing)
   GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  _this->_impl_.coords_.MergeFrom(from._impl_.coords_);
+  if (from._internal_type() != 0) {
+    _this->_internal_set_type(from._internal_type());
+  }
+  switch (from.has_options_case()) {
+    case kOptions: {
+      _this->_internal_mutable_options()->::valhalla::Costing_Options::MergeFrom(
+          from._internal_options());
+      break;
+    }
+    case HAS_OPTIONS_NOT_SET: {
+      break;
+    }
+  }
+  switch (from.has_name_case()) {
+    case kName: {
+      _this->_internal_set_name(from._internal_name());
+      break;
+    }
+    case HAS_NAME_NOT_SET: {
+      break;
+    }
+  }
+  switch (from.has_filter_closures_case()) {
+    case kFilterClosures: {
+      _this->_internal_set_filter_closures(from._internal_filter_closures());
+      break;
+    }
+    case HAS_FILTER_CLOSURES_NOT_SET: {
+      break;
+    }
+  }
   _this->_internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
 }
 
-void Options_Ring::CopyFrom(const Options_Ring& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:valhalla.Options.Ring)
+void Costing::CopyFrom(const Costing& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:valhalla.Costing)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-bool Options_Ring::IsInitialized() const {
+bool Costing::IsInitialized() const {
   return true;
 }
 
-void Options_Ring::InternalSwap(Options_Ring* other) {
+void Costing::InternalSwap(Costing* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  _impl_.coords_.InternalSwap(&other->_impl_.coords_);
+  swap(_impl_.type_, other->_impl_.type_);
+  swap(_impl_.has_options_, other->_impl_.has_options_);
+  swap(_impl_.has_name_, other->_impl_.has_name_);
+  swap(_impl_.has_filter_closures_, other->_impl_.has_filter_closures_);
+  swap(_impl_._oneof_case_[0], other->_impl_._oneof_case_[0]);
+  swap(_impl_._oneof_case_[1], other->_impl_._oneof_case_[1]);
+  swap(_impl_._oneof_case_[2], other->_impl_._oneof_case_[2]);
 }
 
-std::string Options_Ring::GetTypeName() const {
-  return "valhalla.Options.Ring";
+std::string Costing::GetTypeName() const {
+  return "valhalla.Costing";
 }
 
 
 // ===================================================================
 
-Options_CostingOptionsEntry_DoNotUse::Options_CostingOptionsEntry_DoNotUse() {}
-Options_CostingOptionsEntry_DoNotUse::Options_CostingOptionsEntry_DoNotUse(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+Options_CostingsEntry_DoNotUse::Options_CostingsEntry_DoNotUse() {}
+Options_CostingsEntry_DoNotUse::Options_CostingsEntry_DoNotUse(::PROTOBUF_NAMESPACE_ID::Arena* arena)
     : SuperType(arena) {}
-void Options_CostingOptionsEntry_DoNotUse::MergeFrom(const Options_CostingOptionsEntry_DoNotUse& other) {
+void Options_CostingsEntry_DoNotUse::MergeFrom(const Options_CostingsEntry_DoNotUse& other) {
   MergeFromInternal(other);
 }
 
@@ -7087,8 +7685,13 @@ void Options_CostingOptionsEntry_DoNotUse::MergeFrom(const Options_CostingOption
 
 class Options::_Internal {
  public:
+  static const ::valhalla::PbfFieldSelector& pbf_field_selector(const Options* msg);
 };
 
+const ::valhalla::PbfFieldSelector&
+Options::_Internal::pbf_field_selector(const Options* msg) {
+  return *msg->_impl_.pbf_field_selector_;
+}
 void Options::clear_locations() {
   _impl_.locations_.Clear();
 }
@@ -7117,7 +7720,7 @@ Options::Options(const Options& from)
   : ::PROTOBUF_NAMESPACE_ID::MessageLite() {
   Options* const _this = this; (void)_this;
   new (&_impl_) Impl_{
-      /*decltype(_impl_.costing_options_)*/{}
+      /*decltype(_impl_.costings_)*/{}
     , decltype(_impl_.locations_){from._impl_.locations_}
     , decltype(_impl_.exclude_locations_){from._impl_.exclude_locations_}
     , decltype(_impl_.sources_){from._impl_.sources_}
@@ -7130,32 +7733,35 @@ Options::Options(const Options& from)
     , decltype(_impl_.exclude_polygons_){from._impl_.exclude_polygons_}
     , decltype(_impl_.expansion_properties_){from._impl_.expansion_properties_}
     , /*decltype(_impl_._expansion_properties_cached_byte_size_)*/{0}
+    , decltype(_impl_.pbf_field_selector_){nullptr}
+    , decltype(_impl_.units_){}
+    , decltype(_impl_.directions_type_){}
+    , decltype(_impl_.format_){}
+    , decltype(_impl_.action_){}
+    , decltype(_impl_.costing_type_){}
+    , decltype(_impl_.date_time_type_){}
+    , decltype(_impl_.shape_match_){}
     , decltype(_impl_.filter_action_){}
-    , decltype(_impl_.has_units_){}
+    , decltype(_impl_.shape_format_){}
+    , decltype(_impl_.reverse_){}
+    , decltype(_impl_.matrix_locations_){}
     , decltype(_impl_.has_language_){}
-    , decltype(_impl_.has_directions_type_){}
-    , decltype(_impl_.has_format_){}
     , decltype(_impl_.has_id_){}
     , decltype(_impl_.has_jsonp_){}
     , decltype(_impl_.has_encoded_polyline_){}
-    , decltype(_impl_.has_action_){}
     , decltype(_impl_.has_range_){}
     , decltype(_impl_.has_verbose_){}
-    , decltype(_impl_.has_costing_){}
-    , decltype(_impl_.has_date_time_type_){}
     , decltype(_impl_.has_date_time_){}
     , decltype(_impl_.has_resample_distance_){}
     , decltype(_impl_.has_polygons_){}
     , decltype(_impl_.has_denoise_){}
     , decltype(_impl_.has_generalize_){}
     , decltype(_impl_.has_show_locations_){}
-    , decltype(_impl_.has_shape_match_){}
     , decltype(_impl_.has_gps_accuracy_){}
     , decltype(_impl_.has_search_radius_){}
     , decltype(_impl_.has_turn_penalty_factor_){}
     , decltype(_impl_.has_breakage_distance_){}
     , decltype(_impl_.has_use_timestamps_){}
-    , decltype(_impl_.has_shape_format_){}
     , decltype(_impl_.has_alternates_){}
     , decltype(_impl_.has_interpolation_distance_){}
     , decltype(_impl_.has_guidance_views_){}
@@ -7169,18 +7775,13 @@ Options::Options(const Options& from)
     , /*decltype(_impl_._oneof_case_)*/{}};
 
   _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
-  _this->_impl_.costing_options_.MergeFrom(from._impl_.costing_options_);
-  _this->_impl_.filter_action_ = from._impl_.filter_action_;
-  clear_has_has_units();
-  switch (from.has_units_case()) {
-    case kUnits: {
-      _this->_internal_set_units(from._internal_units());
-      break;
-    }
-    case HAS_UNITS_NOT_SET: {
-      break;
-    }
+  _this->_impl_.costings_.MergeFrom(from._impl_.costings_);
+  if (from._internal_has_pbf_field_selector()) {
+    _this->_impl_.pbf_field_selector_ = new ::valhalla::PbfFieldSelector(*from._impl_.pbf_field_selector_);
   }
+  ::memcpy(&_impl_.units_, &from._impl_.units_,
+    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.matrix_locations_) -
+    reinterpret_cast<char*>(&_impl_.units_)) + sizeof(_impl_.matrix_locations_));
   clear_has_has_language();
   switch (from.has_language_case()) {
     case kLanguage: {
@@ -7188,26 +7789,6 @@ Options::Options(const Options& from)
       break;
     }
     case HAS_LANGUAGE_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_directions_type();
-  switch (from.has_directions_type_case()) {
-    case kDirectionsType: {
-      _this->_internal_set_directions_type(from._internal_directions_type());
-      break;
-    }
-    case HAS_DIRECTIONS_TYPE_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_format();
-  switch (from.has_format_case()) {
-    case kFormat: {
-      _this->_internal_set_format(from._internal_format());
-      break;
-    }
-    case HAS_FORMAT_NOT_SET: {
       break;
     }
   }
@@ -7241,16 +7822,6 @@ Options::Options(const Options& from)
       break;
     }
   }
-  clear_has_has_action();
-  switch (from.has_action_case()) {
-    case kAction: {
-      _this->_internal_set_action(from._internal_action());
-      break;
-    }
-    case HAS_ACTION_NOT_SET: {
-      break;
-    }
-  }
   clear_has_has_range();
   switch (from.has_range_case()) {
     case kRange: {
@@ -7268,26 +7839,6 @@ Options::Options(const Options& from)
       break;
     }
     case HAS_VERBOSE_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_costing();
-  switch (from.has_costing_case()) {
-    case kCosting: {
-      _this->_internal_set_costing(from._internal_costing());
-      break;
-    }
-    case HAS_COSTING_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_date_time_type();
-  switch (from.has_date_time_type_case()) {
-    case kDateTimeType: {
-      _this->_internal_set_date_time_type(from._internal_date_time_type());
-      break;
-    }
-    case HAS_DATE_TIME_TYPE_NOT_SET: {
       break;
     }
   }
@@ -7351,16 +7902,6 @@ Options::Options(const Options& from)
       break;
     }
   }
-  clear_has_has_shape_match();
-  switch (from.has_shape_match_case()) {
-    case kShapeMatch: {
-      _this->_internal_set_shape_match(from._internal_shape_match());
-      break;
-    }
-    case HAS_SHAPE_MATCH_NOT_SET: {
-      break;
-    }
-  }
   clear_has_has_gps_accuracy();
   switch (from.has_gps_accuracy_case()) {
     case kGpsAccuracy: {
@@ -7408,16 +7949,6 @@ Options::Options(const Options& from)
       break;
     }
     case HAS_USE_TIMESTAMPS_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_shape_format();
-  switch (from.has_shape_format_case()) {
-    case kShapeFormat: {
-      _this->_internal_set_shape_format(from._internal_shape_format());
-      break;
-    }
-    case HAS_SHAPE_FORMAT_NOT_SET: {
       break;
     }
   }
@@ -7519,7 +8050,7 @@ inline void Options::SharedCtor(
   (void)arena;
   (void)is_message_owned;
   new (&_impl_) Impl_{
-      /*decltype(_impl_.costing_options_)*/{::_pbi::ArenaInitialized(), arena}
+      /*decltype(_impl_.costings_)*/{::_pbi::ArenaInitialized(), arena}
     , decltype(_impl_.locations_){arena}
     , decltype(_impl_.exclude_locations_){arena}
     , decltype(_impl_.sources_){arena}
@@ -7532,32 +8063,35 @@ inline void Options::SharedCtor(
     , decltype(_impl_.exclude_polygons_){arena}
     , decltype(_impl_.expansion_properties_){arena}
     , /*decltype(_impl_._expansion_properties_cached_byte_size_)*/{0}
+    , decltype(_impl_.pbf_field_selector_){nullptr}
+    , decltype(_impl_.units_){0}
+    , decltype(_impl_.directions_type_){0}
+    , decltype(_impl_.format_){0}
+    , decltype(_impl_.action_){0}
+    , decltype(_impl_.costing_type_){0}
+    , decltype(_impl_.date_time_type_){0}
+    , decltype(_impl_.shape_match_){0}
     , decltype(_impl_.filter_action_){0}
-    , decltype(_impl_.has_units_){}
+    , decltype(_impl_.shape_format_){0}
+    , decltype(_impl_.reverse_){false}
+    , decltype(_impl_.matrix_locations_){0u}
     , decltype(_impl_.has_language_){}
-    , decltype(_impl_.has_directions_type_){}
-    , decltype(_impl_.has_format_){}
     , decltype(_impl_.has_id_){}
     , decltype(_impl_.has_jsonp_){}
     , decltype(_impl_.has_encoded_polyline_){}
-    , decltype(_impl_.has_action_){}
     , decltype(_impl_.has_range_){}
     , decltype(_impl_.has_verbose_){}
-    , decltype(_impl_.has_costing_){}
-    , decltype(_impl_.has_date_time_type_){}
     , decltype(_impl_.has_date_time_){}
     , decltype(_impl_.has_resample_distance_){}
     , decltype(_impl_.has_polygons_){}
     , decltype(_impl_.has_denoise_){}
     , decltype(_impl_.has_generalize_){}
     , decltype(_impl_.has_show_locations_){}
-    , decltype(_impl_.has_shape_match_){}
     , decltype(_impl_.has_gps_accuracy_){}
     , decltype(_impl_.has_search_radius_){}
     , decltype(_impl_.has_turn_penalty_factor_){}
     , decltype(_impl_.has_breakage_distance_){}
     , decltype(_impl_.has_use_timestamps_){}
-    , decltype(_impl_.has_shape_format_){}
     , decltype(_impl_.has_alternates_){}
     , decltype(_impl_.has_interpolation_distance_){}
     , decltype(_impl_.has_guidance_views_){}
@@ -7570,31 +8104,23 @@ inline void Options::SharedCtor(
     , /*decltype(_impl_._cached_size_)*/{}
     , /*decltype(_impl_._oneof_case_)*/{}
   };
-  clear_has_has_units();
   clear_has_has_language();
-  clear_has_has_directions_type();
-  clear_has_has_format();
   clear_has_has_id();
   clear_has_has_jsonp();
   clear_has_has_encoded_polyline();
-  clear_has_has_action();
   clear_has_has_range();
   clear_has_has_verbose();
-  clear_has_has_costing();
-  clear_has_has_date_time_type();
   clear_has_has_date_time();
   clear_has_has_resample_distance();
   clear_has_has_polygons();
   clear_has_has_denoise();
   clear_has_has_generalize();
   clear_has_has_show_locations();
-  clear_has_has_shape_match();
   clear_has_has_gps_accuracy();
   clear_has_has_search_radius();
   clear_has_has_turn_penalty_factor();
   clear_has_has_breakage_distance();
   clear_has_has_use_timestamps();
-  clear_has_has_shape_format();
   clear_has_has_alternates();
   clear_has_has_interpolation_distance();
   clear_has_has_guidance_views();
@@ -7617,8 +8143,8 @@ Options::~Options() {
 
 inline void Options::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.costing_options_.Destruct();
-  _impl_.costing_options_.~MapFieldLite();
+  _impl_.costings_.Destruct();
+  _impl_.costings_.~MapFieldLite();
   _impl_.locations_.~RepeatedPtrField();
   _impl_.exclude_locations_.~RepeatedPtrField();
   _impl_.sources_.~RepeatedPtrField();
@@ -7630,17 +8156,9 @@ inline void Options::SharedDtor() {
   _impl_.recostings_.~RepeatedPtrField();
   _impl_.exclude_polygons_.~RepeatedPtrField();
   _impl_.expansion_properties_.~RepeatedField();
-  if (has_has_units()) {
-    clear_has_units();
-  }
+  if (this != internal_default_instance()) delete _impl_.pbf_field_selector_;
   if (has_has_language()) {
     clear_has_language();
-  }
-  if (has_has_directions_type()) {
-    clear_has_directions_type();
-  }
-  if (has_has_format()) {
-    clear_has_format();
   }
   if (has_has_id()) {
     clear_has_id();
@@ -7651,20 +8169,11 @@ inline void Options::SharedDtor() {
   if (has_has_encoded_polyline()) {
     clear_has_encoded_polyline();
   }
-  if (has_has_action()) {
-    clear_has_action();
-  }
   if (has_has_range()) {
     clear_has_range();
   }
   if (has_has_verbose()) {
     clear_has_verbose();
-  }
-  if (has_has_costing()) {
-    clear_has_costing();
-  }
-  if (has_has_date_time_type()) {
-    clear_has_date_time_type();
   }
   if (has_has_date_time()) {
     clear_has_date_time();
@@ -7684,9 +8193,6 @@ inline void Options::SharedDtor() {
   if (has_has_show_locations()) {
     clear_has_show_locations();
   }
-  if (has_has_shape_match()) {
-    clear_has_shape_match();
-  }
   if (has_has_gps_accuracy()) {
     clear_has_gps_accuracy();
   }
@@ -7701,9 +8207,6 @@ inline void Options::SharedDtor() {
   }
   if (has_has_use_timestamps()) {
     clear_has_use_timestamps();
-  }
-  if (has_has_shape_format()) {
-    clear_has_shape_format();
   }
   if (has_has_alternates()) {
     clear_has_alternates();
@@ -7738,20 +8241,6 @@ void Options::SetCachedSize(int size) const {
   _impl_._cached_size_.Set(size);
 }
 
-void Options::clear_has_units() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.Options)
-  switch (has_units_case()) {
-    case kUnits: {
-      // No need to clear
-      break;
-    }
-    case HAS_UNITS_NOT_SET: {
-      break;
-    }
-  }
-  _impl_._oneof_case_[0] = HAS_UNITS_NOT_SET;
-}
-
 void Options::clear_has_language() {
 // @@protoc_insertion_point(one_of_clear_start:valhalla.Options)
   switch (has_language_case()) {
@@ -7763,35 +8252,7 @@ void Options::clear_has_language() {
       break;
     }
   }
-  _impl_._oneof_case_[1] = HAS_LANGUAGE_NOT_SET;
-}
-
-void Options::clear_has_directions_type() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.Options)
-  switch (has_directions_type_case()) {
-    case kDirectionsType: {
-      // No need to clear
-      break;
-    }
-    case HAS_DIRECTIONS_TYPE_NOT_SET: {
-      break;
-    }
-  }
-  _impl_._oneof_case_[2] = HAS_DIRECTIONS_TYPE_NOT_SET;
-}
-
-void Options::clear_has_format() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.Options)
-  switch (has_format_case()) {
-    case kFormat: {
-      // No need to clear
-      break;
-    }
-    case HAS_FORMAT_NOT_SET: {
-      break;
-    }
-  }
-  _impl_._oneof_case_[3] = HAS_FORMAT_NOT_SET;
+  _impl_._oneof_case_[0] = HAS_LANGUAGE_NOT_SET;
 }
 
 void Options::clear_has_id() {
@@ -7805,7 +8266,7 @@ void Options::clear_has_id() {
       break;
     }
   }
-  _impl_._oneof_case_[4] = HAS_ID_NOT_SET;
+  _impl_._oneof_case_[1] = HAS_ID_NOT_SET;
 }
 
 void Options::clear_has_jsonp() {
@@ -7819,7 +8280,7 @@ void Options::clear_has_jsonp() {
       break;
     }
   }
-  _impl_._oneof_case_[5] = HAS_JSONP_NOT_SET;
+  _impl_._oneof_case_[2] = HAS_JSONP_NOT_SET;
 }
 
 void Options::clear_has_encoded_polyline() {
@@ -7833,21 +8294,7 @@ void Options::clear_has_encoded_polyline() {
       break;
     }
   }
-  _impl_._oneof_case_[6] = HAS_ENCODED_POLYLINE_NOT_SET;
-}
-
-void Options::clear_has_action() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.Options)
-  switch (has_action_case()) {
-    case kAction: {
-      // No need to clear
-      break;
-    }
-    case HAS_ACTION_NOT_SET: {
-      break;
-    }
-  }
-  _impl_._oneof_case_[7] = HAS_ACTION_NOT_SET;
+  _impl_._oneof_case_[3] = HAS_ENCODED_POLYLINE_NOT_SET;
 }
 
 void Options::clear_has_range() {
@@ -7861,7 +8308,7 @@ void Options::clear_has_range() {
       break;
     }
   }
-  _impl_._oneof_case_[8] = HAS_RANGE_NOT_SET;
+  _impl_._oneof_case_[4] = HAS_RANGE_NOT_SET;
 }
 
 void Options::clear_has_verbose() {
@@ -7875,35 +8322,7 @@ void Options::clear_has_verbose() {
       break;
     }
   }
-  _impl_._oneof_case_[9] = HAS_VERBOSE_NOT_SET;
-}
-
-void Options::clear_has_costing() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.Options)
-  switch (has_costing_case()) {
-    case kCosting: {
-      // No need to clear
-      break;
-    }
-    case HAS_COSTING_NOT_SET: {
-      break;
-    }
-  }
-  _impl_._oneof_case_[10] = HAS_COSTING_NOT_SET;
-}
-
-void Options::clear_has_date_time_type() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.Options)
-  switch (has_date_time_type_case()) {
-    case kDateTimeType: {
-      // No need to clear
-      break;
-    }
-    case HAS_DATE_TIME_TYPE_NOT_SET: {
-      break;
-    }
-  }
-  _impl_._oneof_case_[11] = HAS_DATE_TIME_TYPE_NOT_SET;
+  _impl_._oneof_case_[5] = HAS_VERBOSE_NOT_SET;
 }
 
 void Options::clear_has_date_time() {
@@ -7917,7 +8336,7 @@ void Options::clear_has_date_time() {
       break;
     }
   }
-  _impl_._oneof_case_[12] = HAS_DATE_TIME_NOT_SET;
+  _impl_._oneof_case_[6] = HAS_DATE_TIME_NOT_SET;
 }
 
 void Options::clear_has_resample_distance() {
@@ -7931,7 +8350,7 @@ void Options::clear_has_resample_distance() {
       break;
     }
   }
-  _impl_._oneof_case_[13] = HAS_RESAMPLE_DISTANCE_NOT_SET;
+  _impl_._oneof_case_[7] = HAS_RESAMPLE_DISTANCE_NOT_SET;
 }
 
 void Options::clear_has_polygons() {
@@ -7945,7 +8364,7 @@ void Options::clear_has_polygons() {
       break;
     }
   }
-  _impl_._oneof_case_[14] = HAS_POLYGONS_NOT_SET;
+  _impl_._oneof_case_[8] = HAS_POLYGONS_NOT_SET;
 }
 
 void Options::clear_has_denoise() {
@@ -7959,7 +8378,7 @@ void Options::clear_has_denoise() {
       break;
     }
   }
-  _impl_._oneof_case_[15] = HAS_DENOISE_NOT_SET;
+  _impl_._oneof_case_[9] = HAS_DENOISE_NOT_SET;
 }
 
 void Options::clear_has_generalize() {
@@ -7973,7 +8392,7 @@ void Options::clear_has_generalize() {
       break;
     }
   }
-  _impl_._oneof_case_[16] = HAS_GENERALIZE_NOT_SET;
+  _impl_._oneof_case_[10] = HAS_GENERALIZE_NOT_SET;
 }
 
 void Options::clear_has_show_locations() {
@@ -7987,21 +8406,7 @@ void Options::clear_has_show_locations() {
       break;
     }
   }
-  _impl_._oneof_case_[17] = HAS_SHOW_LOCATIONS_NOT_SET;
-}
-
-void Options::clear_has_shape_match() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.Options)
-  switch (has_shape_match_case()) {
-    case kShapeMatch: {
-      // No need to clear
-      break;
-    }
-    case HAS_SHAPE_MATCH_NOT_SET: {
-      break;
-    }
-  }
-  _impl_._oneof_case_[18] = HAS_SHAPE_MATCH_NOT_SET;
+  _impl_._oneof_case_[11] = HAS_SHOW_LOCATIONS_NOT_SET;
 }
 
 void Options::clear_has_gps_accuracy() {
@@ -8015,7 +8420,7 @@ void Options::clear_has_gps_accuracy() {
       break;
     }
   }
-  _impl_._oneof_case_[19] = HAS_GPS_ACCURACY_NOT_SET;
+  _impl_._oneof_case_[12] = HAS_GPS_ACCURACY_NOT_SET;
 }
 
 void Options::clear_has_search_radius() {
@@ -8029,7 +8434,7 @@ void Options::clear_has_search_radius() {
       break;
     }
   }
-  _impl_._oneof_case_[20] = HAS_SEARCH_RADIUS_NOT_SET;
+  _impl_._oneof_case_[13] = HAS_SEARCH_RADIUS_NOT_SET;
 }
 
 void Options::clear_has_turn_penalty_factor() {
@@ -8043,7 +8448,7 @@ void Options::clear_has_turn_penalty_factor() {
       break;
     }
   }
-  _impl_._oneof_case_[21] = HAS_TURN_PENALTY_FACTOR_NOT_SET;
+  _impl_._oneof_case_[14] = HAS_TURN_PENALTY_FACTOR_NOT_SET;
 }
 
 void Options::clear_has_breakage_distance() {
@@ -8057,7 +8462,7 @@ void Options::clear_has_breakage_distance() {
       break;
     }
   }
-  _impl_._oneof_case_[22] = HAS_BREAKAGE_DISTANCE_NOT_SET;
+  _impl_._oneof_case_[15] = HAS_BREAKAGE_DISTANCE_NOT_SET;
 }
 
 void Options::clear_has_use_timestamps() {
@@ -8071,21 +8476,7 @@ void Options::clear_has_use_timestamps() {
       break;
     }
   }
-  _impl_._oneof_case_[23] = HAS_USE_TIMESTAMPS_NOT_SET;
-}
-
-void Options::clear_has_shape_format() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.Options)
-  switch (has_shape_format_case()) {
-    case kShapeFormat: {
-      // No need to clear
-      break;
-    }
-    case HAS_SHAPE_FORMAT_NOT_SET: {
-      break;
-    }
-  }
-  _impl_._oneof_case_[24] = HAS_SHAPE_FORMAT_NOT_SET;
+  _impl_._oneof_case_[16] = HAS_USE_TIMESTAMPS_NOT_SET;
 }
 
 void Options::clear_has_alternates() {
@@ -8099,7 +8490,7 @@ void Options::clear_has_alternates() {
       break;
     }
   }
-  _impl_._oneof_case_[25] = HAS_ALTERNATES_NOT_SET;
+  _impl_._oneof_case_[17] = HAS_ALTERNATES_NOT_SET;
 }
 
 void Options::clear_has_interpolation_distance() {
@@ -8113,7 +8504,7 @@ void Options::clear_has_interpolation_distance() {
       break;
     }
   }
-  _impl_._oneof_case_[26] = HAS_INTERPOLATION_DISTANCE_NOT_SET;
+  _impl_._oneof_case_[18] = HAS_INTERPOLATION_DISTANCE_NOT_SET;
 }
 
 void Options::clear_has_guidance_views() {
@@ -8127,7 +8518,7 @@ void Options::clear_has_guidance_views() {
       break;
     }
   }
-  _impl_._oneof_case_[27] = HAS_GUIDANCE_VIEWS_NOT_SET;
+  _impl_._oneof_case_[19] = HAS_GUIDANCE_VIEWS_NOT_SET;
 }
 
 void Options::clear_has_height_precision() {
@@ -8141,7 +8532,7 @@ void Options::clear_has_height_precision() {
       break;
     }
   }
-  _impl_._oneof_case_[28] = HAS_HEIGHT_PRECISION_NOT_SET;
+  _impl_._oneof_case_[20] = HAS_HEIGHT_PRECISION_NOT_SET;
 }
 
 void Options::clear_has_roundabout_exits() {
@@ -8155,7 +8546,7 @@ void Options::clear_has_roundabout_exits() {
       break;
     }
   }
-  _impl_._oneof_case_[29] = HAS_ROUNDABOUT_EXITS_NOT_SET;
+  _impl_._oneof_case_[21] = HAS_ROUNDABOUT_EXITS_NOT_SET;
 }
 
 void Options::clear_has_linear_references() {
@@ -8169,7 +8560,7 @@ void Options::clear_has_linear_references() {
       break;
     }
   }
-  _impl_._oneof_case_[30] = HAS_LINEAR_REFERENCES_NOT_SET;
+  _impl_._oneof_case_[22] = HAS_LINEAR_REFERENCES_NOT_SET;
 }
 
 void Options::clear_has_prioritize_bidirectional() {
@@ -8183,7 +8574,7 @@ void Options::clear_has_prioritize_bidirectional() {
       break;
     }
   }
-  _impl_._oneof_case_[31] = HAS_PRIORITIZE_BIDIRECTIONAL_NOT_SET;
+  _impl_._oneof_case_[23] = HAS_PRIORITIZE_BIDIRECTIONAL_NOT_SET;
 }
 
 void Options::clear_has_expansion_action() {
@@ -8197,7 +8588,7 @@ void Options::clear_has_expansion_action() {
       break;
     }
   }
-  _impl_._oneof_case_[32] = HAS_EXPANSION_ACTION_NOT_SET;
+  _impl_._oneof_case_[24] = HAS_EXPANSION_ACTION_NOT_SET;
 }
 
 void Options::clear_has_skip_opposites() {
@@ -8211,7 +8602,7 @@ void Options::clear_has_skip_opposites() {
       break;
     }
   }
-  _impl_._oneof_case_[33] = HAS_SKIP_OPPOSITES_NOT_SET;
+  _impl_._oneof_case_[25] = HAS_SKIP_OPPOSITES_NOT_SET;
 }
 
 
@@ -8221,7 +8612,7 @@ void Options::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.costing_options_.Clear();
+  _impl_.costings_.Clear();
   _impl_.locations_.Clear();
   _impl_.exclude_locations_.Clear();
   _impl_.sources_.Clear();
@@ -8233,32 +8624,30 @@ void Options::Clear() {
   _impl_.recostings_.Clear();
   _impl_.exclude_polygons_.Clear();
   _impl_.expansion_properties_.Clear();
-  _impl_.filter_action_ = 0;
-  clear_has_units();
+  if (GetArenaForAllocation() == nullptr && _impl_.pbf_field_selector_ != nullptr) {
+    delete _impl_.pbf_field_selector_;
+  }
+  _impl_.pbf_field_selector_ = nullptr;
+  ::memset(&_impl_.units_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&_impl_.matrix_locations_) -
+      reinterpret_cast<char*>(&_impl_.units_)) + sizeof(_impl_.matrix_locations_));
   clear_has_language();
-  clear_has_directions_type();
-  clear_has_format();
   clear_has_id();
   clear_has_jsonp();
   clear_has_encoded_polyline();
-  clear_has_action();
   clear_has_range();
   clear_has_verbose();
-  clear_has_costing();
-  clear_has_date_time_type();
   clear_has_date_time();
   clear_has_resample_distance();
   clear_has_polygons();
   clear_has_denoise();
   clear_has_generalize();
   clear_has_show_locations();
-  clear_has_shape_match();
   clear_has_gps_accuracy();
   clear_has_search_radius();
   clear_has_turn_penalty_factor();
   clear_has_breakage_distance();
   clear_has_use_timestamps();
-  clear_has_shape_format();
   clear_has_alternates();
   clear_has_interpolation_distance();
   clear_has_guidance_views();
@@ -8369,22 +8758,22 @@ const char* Options::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) 
         } else
           goto handle_unusual;
         continue;
-      // .valhalla.Costing costing = 12;
+      // .valhalla.Costing.Type costing_type = 12;
       case 12:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 96)) {
           uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
-          _internal_set_costing(static_cast<::valhalla::Costing>(val));
+          _internal_set_costing_type(static_cast<::valhalla::Costing_Type>(val));
         } else
           goto handle_unusual;
         continue;
-      // map<int32, .valhalla.CostingOptions> costing_options = 13;
+      // map<int32, .valhalla.Costing> costings = 13;
       case 13:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 106)) {
           ptr -= 1;
           do {
             ptr += 1;
-            ptr = ctx->ParseMessage(&_impl_.costing_options_, ptr);
+            ptr = ctx->ParseMessage(&_impl_.costings_, ptr);
             CHK_(ptr);
             if (!ctx->DataAvailable(ptr)) break;
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<106>(ptr));
@@ -8671,7 +9060,7 @@ const char* Options::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) 
         } else
           goto handle_unusual;
         continue;
-      // repeated .valhalla.CostingOptions recostings = 46;
+      // repeated .valhalla.Costing recostings = 46;
       case 46:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 114)) {
           ptr -= 2;
@@ -8684,7 +9073,7 @@ const char* Options::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) 
         } else
           goto handle_unusual;
         continue;
-      // repeated .valhalla.Options.Ring exclude_polygons = 47;
+      // repeated .valhalla.Ring exclude_polygons = 47;
       case 47:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 122)) {
           ptr -= 2;
@@ -8734,6 +9123,30 @@ const char* Options::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) 
         } else
           goto handle_unusual;
         continue;
+      // .valhalla.PbfFieldSelector pbf_field_selector = 52;
+      case 52:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 162)) {
+          ptr = ctx->ParseMessage(_internal_mutable_pbf_field_selector(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // bool reverse = 53;
+      case 53:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 168)) {
+          _impl_.reverse_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // uint32 matrix_locations = 54;
+      case 54:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 176)) {
+          _impl_.matrix_locations_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
       default:
         goto handle_unusual;
     }  // switch
@@ -8764,7 +9177,7 @@ uint8_t* Options::_InternalSerialize(
   (void) cached_has_bits;
 
   // .valhalla.Options.Units units = 1;
-  if (_internal_has_units()) {
+  if (this->_internal_units() != 0) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteEnumToArray(
       1, this->_internal_units(), target);
@@ -8781,14 +9194,14 @@ uint8_t* Options::_InternalSerialize(
   }
 
   // .valhalla.DirectionsType directions_type = 3;
-  if (_internal_has_directions_type()) {
+  if (this->_internal_directions_type() != 0) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteEnumToArray(
       3, this->_internal_directions_type(), target);
   }
 
   // .valhalla.Options.Format format = 4;
-  if (_internal_has_format()) {
+  if (this->_internal_format() != 0) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteEnumToArray(
       4, this->_internal_format(), target);
@@ -8825,7 +9238,7 @@ uint8_t* Options::_InternalSerialize(
   }
 
   // .valhalla.Options.Action action = 8;
-  if (_internal_has_action()) {
+  if (this->_internal_action() != 0) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteEnumToArray(
       8, this->_internal_action(), target);
@@ -8843,18 +9256,18 @@ uint8_t* Options::_InternalSerialize(
     target = ::_pbi::WireFormatLite::WriteBoolToArray(11, this->_internal_verbose(), target);
   }
 
-  // .valhalla.Costing costing = 12;
-  if (_internal_has_costing()) {
+  // .valhalla.Costing.Type costing_type = 12;
+  if (this->_internal_costing_type() != 0) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteEnumToArray(
-      12, this->_internal_costing(), target);
+      12, this->_internal_costing_type(), target);
   }
 
-  // map<int32, .valhalla.CostingOptions> costing_options = 13;
-  if (!this->_internal_costing_options().empty()) {
-    using MapType = ::_pb::Map<int32_t, ::valhalla::CostingOptions>;
-    using WireHelper = Options_CostingOptionsEntry_DoNotUse::Funcs;
-    const auto& map_field = this->_internal_costing_options();
+  // map<int32, .valhalla.Costing> costings = 13;
+  if (!this->_internal_costings().empty()) {
+    using MapType = ::_pb::Map<int32_t, ::valhalla::Costing>;
+    using WireHelper = Options_CostingsEntry_DoNotUse::Funcs;
+    const auto& map_field = this->_internal_costings();
 
     if (stream->IsSerializationDeterministic() && map_field.size() > 1) {
       for (const auto& entry : ::_pbi::MapSorterFlat<MapType>(map_field)) {
@@ -8900,7 +9313,7 @@ uint8_t* Options::_InternalSerialize(
   }
 
   // .valhalla.Options.DateTimeType date_time_type = 18;
-  if (_internal_has_date_time_type()) {
+  if (this->_internal_date_time_type() != 0) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteEnumToArray(
       18, this->_internal_date_time_type(), target);
@@ -8971,7 +9384,7 @@ uint8_t* Options::_InternalSerialize(
   }
 
   // .valhalla.ShapeMatch shape_match = 28;
-  if (_internal_has_shape_match()) {
+  if (this->_internal_shape_match() != 0) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteEnumToArray(
       28, this->_internal_shape_match(), target);
@@ -9025,7 +9438,7 @@ uint8_t* Options::_InternalSerialize(
   }
 
   // .valhalla.ShapeFormat shape_format = 38;
-  if (_internal_has_shape_format()) {
+  if (this->_internal_shape_format() != 0) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteEnumToArray(
       38, this->_internal_shape_format(), target);
@@ -9067,7 +9480,7 @@ uint8_t* Options::_InternalSerialize(
     target = ::_pbi::WireFormatLite::WriteBoolToArray(45, this->_internal_linear_references(), target);
   }
 
-  // repeated .valhalla.CostingOptions recostings = 46;
+  // repeated .valhalla.Costing recostings = 46;
   for (unsigned i = 0,
       n = static_cast<unsigned>(this->_internal_recostings_size()); i < n; i++) {
     const auto& repfield = this->_internal_recostings(i);
@@ -9075,7 +9488,7 @@ uint8_t* Options::_InternalSerialize(
         InternalWriteMessage(46, repfield, repfield.GetCachedSize(), target, stream);
   }
 
-  // repeated .valhalla.Options.Ring exclude_polygons = 47;
+  // repeated .valhalla.Ring exclude_polygons = 47;
   for (unsigned i = 0,
       n = static_cast<unsigned>(this->_internal_exclude_polygons_size()); i < n; i++) {
     const auto& repfield = this->_internal_exclude_polygons(i);
@@ -9111,6 +9524,25 @@ uint8_t* Options::_InternalSerialize(
     }
   }
 
+  // .valhalla.PbfFieldSelector pbf_field_selector = 52;
+  if (this->_internal_has_pbf_field_selector()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(52, _Internal::pbf_field_selector(this),
+        _Internal::pbf_field_selector(this).GetCachedSize(), target, stream);
+  }
+
+  // bool reverse = 53;
+  if (this->_internal_reverse() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(53, this->_internal_reverse(), target);
+  }
+
+  // uint32 matrix_locations = 54;
+  if (this->_internal_matrix_locations() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(54, this->_internal_matrix_locations(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = stream->WriteRaw(_internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).data(),
         static_cast<int>(_internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).size()), target);
@@ -9127,13 +9559,13 @@ size_t Options::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // map<int32, .valhalla.CostingOptions> costing_options = 13;
+  // map<int32, .valhalla.Costing> costings = 13;
   total_size += 1 *
-      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(this->_internal_costing_options_size());
-  for (::PROTOBUF_NAMESPACE_ID::Map< int32_t, ::valhalla::CostingOptions >::const_iterator
-      it = this->_internal_costing_options().begin();
-      it != this->_internal_costing_options().end(); ++it) {
-    total_size += Options_CostingOptionsEntry_DoNotUse::Funcs::ByteSizeLong(it->first, it->second);
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(this->_internal_costings_size());
+  for (::PROTOBUF_NAMESPACE_ID::Map< int32_t, ::valhalla::Costing >::const_iterator
+      it = this->_internal_costings().begin();
+      it != this->_internal_costings().end(); ++it) {
+    total_size += Options_CostingsEntry_DoNotUse::Funcs::ByteSizeLong(it->first, it->second);
   }
 
   // repeated .valhalla.Location locations = 14;
@@ -9193,14 +9625,14 @@ size_t Options::ByteSizeLong() const {
       _impl_.filter_attributes_.Get(i));
   }
 
-  // repeated .valhalla.CostingOptions recostings = 46;
+  // repeated .valhalla.Costing recostings = 46;
   total_size += 2UL * this->_internal_recostings_size();
   for (const auto& msg : this->_impl_.recostings_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
 
-  // repeated .valhalla.Options.Ring exclude_polygons = 47;
+  // repeated .valhalla.Ring exclude_polygons = 47;
   total_size += 2UL * this->_internal_exclude_polygons_size();
   for (const auto& msg : this->_impl_.exclude_polygons_) {
     total_size +=
@@ -9224,23 +9656,79 @@ size_t Options::ByteSizeLong() const {
     total_size += data_size;
   }
 
+  // .valhalla.PbfFieldSelector pbf_field_selector = 52;
+  if (this->_internal_has_pbf_field_selector()) {
+    total_size += 2 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *_impl_.pbf_field_selector_);
+  }
+
+  // .valhalla.Options.Units units = 1;
+  if (this->_internal_units() != 0) {
+    total_size += 1 +
+      ::_pbi::WireFormatLite::EnumSize(this->_internal_units());
+  }
+
+  // .valhalla.DirectionsType directions_type = 3;
+  if (this->_internal_directions_type() != 0) {
+    total_size += 1 +
+      ::_pbi::WireFormatLite::EnumSize(this->_internal_directions_type());
+  }
+
+  // .valhalla.Options.Format format = 4;
+  if (this->_internal_format() != 0) {
+    total_size += 1 +
+      ::_pbi::WireFormatLite::EnumSize(this->_internal_format());
+  }
+
+  // .valhalla.Options.Action action = 8;
+  if (this->_internal_action() != 0) {
+    total_size += 1 +
+      ::_pbi::WireFormatLite::EnumSize(this->_internal_action());
+  }
+
+  // .valhalla.Costing.Type costing_type = 12;
+  if (this->_internal_costing_type() != 0) {
+    total_size += 1 +
+      ::_pbi::WireFormatLite::EnumSize(this->_internal_costing_type());
+  }
+
+  // .valhalla.Options.DateTimeType date_time_type = 18;
+  if (this->_internal_date_time_type() != 0) {
+    total_size += 2 +
+      ::_pbi::WireFormatLite::EnumSize(this->_internal_date_time_type());
+  }
+
+  // .valhalla.ShapeMatch shape_match = 28;
+  if (this->_internal_shape_match() != 0) {
+    total_size += 2 +
+      ::_pbi::WireFormatLite::EnumSize(this->_internal_shape_match());
+  }
+
   // .valhalla.FilterAction filter_action = 33;
   if (this->_internal_filter_action() != 0) {
     total_size += 2 +
       ::_pbi::WireFormatLite::EnumSize(this->_internal_filter_action());
   }
 
-  switch (has_units_case()) {
-    // .valhalla.Options.Units units = 1;
-    case kUnits: {
-      total_size += 1 +
-        ::_pbi::WireFormatLite::EnumSize(this->_internal_units());
-      break;
-    }
-    case HAS_UNITS_NOT_SET: {
-      break;
-    }
+  // .valhalla.ShapeFormat shape_format = 38;
+  if (this->_internal_shape_format() != 0) {
+    total_size += 2 +
+      ::_pbi::WireFormatLite::EnumSize(this->_internal_shape_format());
   }
+
+  // bool reverse = 53;
+  if (this->_internal_reverse() != 0) {
+    total_size += 2 + 1;
+  }
+
+  // uint32 matrix_locations = 54;
+  if (this->_internal_matrix_locations() != 0) {
+    total_size += 2 +
+      ::_pbi::WireFormatLite::UInt32Size(
+        this->_internal_matrix_locations());
+  }
+
   switch (has_language_case()) {
     // string language = 2;
     case kLanguage: {
@@ -9250,28 +9738,6 @@ size_t Options::ByteSizeLong() const {
       break;
     }
     case HAS_LANGUAGE_NOT_SET: {
-      break;
-    }
-  }
-  switch (has_directions_type_case()) {
-    // .valhalla.DirectionsType directions_type = 3;
-    case kDirectionsType: {
-      total_size += 1 +
-        ::_pbi::WireFormatLite::EnumSize(this->_internal_directions_type());
-      break;
-    }
-    case HAS_DIRECTIONS_TYPE_NOT_SET: {
-      break;
-    }
-  }
-  switch (has_format_case()) {
-    // .valhalla.Options.Format format = 4;
-    case kFormat: {
-      total_size += 1 +
-        ::_pbi::WireFormatLite::EnumSize(this->_internal_format());
-      break;
-    }
-    case HAS_FORMAT_NOT_SET: {
       break;
     }
   }
@@ -9311,17 +9777,6 @@ size_t Options::ByteSizeLong() const {
       break;
     }
   }
-  switch (has_action_case()) {
-    // .valhalla.Options.Action action = 8;
-    case kAction: {
-      total_size += 1 +
-        ::_pbi::WireFormatLite::EnumSize(this->_internal_action());
-      break;
-    }
-    case HAS_ACTION_NOT_SET: {
-      break;
-    }
-  }
   switch (has_range_case()) {
     // bool range = 10;
     case kRange: {
@@ -9339,28 +9794,6 @@ size_t Options::ByteSizeLong() const {
       break;
     }
     case HAS_VERBOSE_NOT_SET: {
-      break;
-    }
-  }
-  switch (has_costing_case()) {
-    // .valhalla.Costing costing = 12;
-    case kCosting: {
-      total_size += 1 +
-        ::_pbi::WireFormatLite::EnumSize(this->_internal_costing());
-      break;
-    }
-    case HAS_COSTING_NOT_SET: {
-      break;
-    }
-  }
-  switch (has_date_time_type_case()) {
-    // .valhalla.Options.DateTimeType date_time_type = 18;
-    case kDateTimeType: {
-      total_size += 2 +
-        ::_pbi::WireFormatLite::EnumSize(this->_internal_date_time_type());
-      break;
-    }
-    case HAS_DATE_TIME_TYPE_NOT_SET: {
       break;
     }
   }
@@ -9426,17 +9859,6 @@ size_t Options::ByteSizeLong() const {
       break;
     }
   }
-  switch (has_shape_match_case()) {
-    // .valhalla.ShapeMatch shape_match = 28;
-    case kShapeMatch: {
-      total_size += 2 +
-        ::_pbi::WireFormatLite::EnumSize(this->_internal_shape_match());
-      break;
-    }
-    case HAS_SHAPE_MATCH_NOT_SET: {
-      break;
-    }
-  }
   switch (has_gps_accuracy_case()) {
     // float gps_accuracy = 30;
     case kGpsAccuracy: {
@@ -9484,17 +9906,6 @@ size_t Options::ByteSizeLong() const {
       break;
     }
     case HAS_USE_TIMESTAMPS_NOT_SET: {
-      break;
-    }
-  }
-  switch (has_shape_format_case()) {
-    // .valhalla.ShapeFormat shape_format = 38;
-    case kShapeFormat: {
-      total_size += 2 +
-        ::_pbi::WireFormatLite::EnumSize(this->_internal_shape_format());
-      break;
-    }
-    case HAS_SHAPE_FORMAT_NOT_SET: {
       break;
     }
   }
@@ -9614,7 +10025,7 @@ void Options::MergeFrom(const Options& from) {
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  _this->_impl_.costing_options_.MergeFrom(from._impl_.costing_options_);
+  _this->_impl_.costings_.MergeFrom(from._impl_.costings_);
   _this->_impl_.locations_.MergeFrom(from._impl_.locations_);
   _this->_impl_.exclude_locations_.MergeFrom(from._impl_.exclude_locations_);
   _this->_impl_.sources_.MergeFrom(from._impl_.sources_);
@@ -9626,17 +10037,42 @@ void Options::MergeFrom(const Options& from) {
   _this->_impl_.recostings_.MergeFrom(from._impl_.recostings_);
   _this->_impl_.exclude_polygons_.MergeFrom(from._impl_.exclude_polygons_);
   _this->_impl_.expansion_properties_.MergeFrom(from._impl_.expansion_properties_);
+  if (from._internal_has_pbf_field_selector()) {
+    _this->_internal_mutable_pbf_field_selector()->::valhalla::PbfFieldSelector::MergeFrom(
+        from._internal_pbf_field_selector());
+  }
+  if (from._internal_units() != 0) {
+    _this->_internal_set_units(from._internal_units());
+  }
+  if (from._internal_directions_type() != 0) {
+    _this->_internal_set_directions_type(from._internal_directions_type());
+  }
+  if (from._internal_format() != 0) {
+    _this->_internal_set_format(from._internal_format());
+  }
+  if (from._internal_action() != 0) {
+    _this->_internal_set_action(from._internal_action());
+  }
+  if (from._internal_costing_type() != 0) {
+    _this->_internal_set_costing_type(from._internal_costing_type());
+  }
+  if (from._internal_date_time_type() != 0) {
+    _this->_internal_set_date_time_type(from._internal_date_time_type());
+  }
+  if (from._internal_shape_match() != 0) {
+    _this->_internal_set_shape_match(from._internal_shape_match());
+  }
   if (from._internal_filter_action() != 0) {
     _this->_internal_set_filter_action(from._internal_filter_action());
   }
-  switch (from.has_units_case()) {
-    case kUnits: {
-      _this->_internal_set_units(from._internal_units());
-      break;
-    }
-    case HAS_UNITS_NOT_SET: {
-      break;
-    }
+  if (from._internal_shape_format() != 0) {
+    _this->_internal_set_shape_format(from._internal_shape_format());
+  }
+  if (from._internal_reverse() != 0) {
+    _this->_internal_set_reverse(from._internal_reverse());
+  }
+  if (from._internal_matrix_locations() != 0) {
+    _this->_internal_set_matrix_locations(from._internal_matrix_locations());
   }
   switch (from.has_language_case()) {
     case kLanguage: {
@@ -9644,24 +10080,6 @@ void Options::MergeFrom(const Options& from) {
       break;
     }
     case HAS_LANGUAGE_NOT_SET: {
-      break;
-    }
-  }
-  switch (from.has_directions_type_case()) {
-    case kDirectionsType: {
-      _this->_internal_set_directions_type(from._internal_directions_type());
-      break;
-    }
-    case HAS_DIRECTIONS_TYPE_NOT_SET: {
-      break;
-    }
-  }
-  switch (from.has_format_case()) {
-    case kFormat: {
-      _this->_internal_set_format(from._internal_format());
-      break;
-    }
-    case HAS_FORMAT_NOT_SET: {
       break;
     }
   }
@@ -9692,15 +10110,6 @@ void Options::MergeFrom(const Options& from) {
       break;
     }
   }
-  switch (from.has_action_case()) {
-    case kAction: {
-      _this->_internal_set_action(from._internal_action());
-      break;
-    }
-    case HAS_ACTION_NOT_SET: {
-      break;
-    }
-  }
   switch (from.has_range_case()) {
     case kRange: {
       _this->_internal_set_range(from._internal_range());
@@ -9716,24 +10125,6 @@ void Options::MergeFrom(const Options& from) {
       break;
     }
     case HAS_VERBOSE_NOT_SET: {
-      break;
-    }
-  }
-  switch (from.has_costing_case()) {
-    case kCosting: {
-      _this->_internal_set_costing(from._internal_costing());
-      break;
-    }
-    case HAS_COSTING_NOT_SET: {
-      break;
-    }
-  }
-  switch (from.has_date_time_type_case()) {
-    case kDateTimeType: {
-      _this->_internal_set_date_time_type(from._internal_date_time_type());
-      break;
-    }
-    case HAS_DATE_TIME_TYPE_NOT_SET: {
       break;
     }
   }
@@ -9791,15 +10182,6 @@ void Options::MergeFrom(const Options& from) {
       break;
     }
   }
-  switch (from.has_shape_match_case()) {
-    case kShapeMatch: {
-      _this->_internal_set_shape_match(from._internal_shape_match());
-      break;
-    }
-    case HAS_SHAPE_MATCH_NOT_SET: {
-      break;
-    }
-  }
   switch (from.has_gps_accuracy_case()) {
     case kGpsAccuracy: {
       _this->_internal_set_gps_accuracy(from._internal_gps_accuracy());
@@ -9842,15 +10224,6 @@ void Options::MergeFrom(const Options& from) {
       break;
     }
     case HAS_USE_TIMESTAMPS_NOT_SET: {
-      break;
-    }
-  }
-  switch (from.has_shape_format_case()) {
-    case kShapeFormat: {
-      _this->_internal_set_shape_format(from._internal_shape_format());
-      break;
-    }
-    case HAS_SHAPE_FORMAT_NOT_SET: {
       break;
     }
   }
@@ -9952,7 +10325,7 @@ bool Options::IsInitialized() const {
 void Options::InternalSwap(Options* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  _impl_.costing_options_.InternalSwap(&other->_impl_.costing_options_);
+  _impl_.costings_.InternalSwap(&other->_impl_.costings_);
   _impl_.locations_.InternalSwap(&other->_impl_.locations_);
   _impl_.exclude_locations_.InternalSwap(&other->_impl_.exclude_locations_);
   _impl_.sources_.InternalSwap(&other->_impl_.sources_);
@@ -9964,32 +10337,29 @@ void Options::InternalSwap(Options* other) {
   _impl_.recostings_.InternalSwap(&other->_impl_.recostings_);
   _impl_.exclude_polygons_.InternalSwap(&other->_impl_.exclude_polygons_);
   _impl_.expansion_properties_.InternalSwap(&other->_impl_.expansion_properties_);
-  swap(_impl_.filter_action_, other->_impl_.filter_action_);
-  swap(_impl_.has_units_, other->_impl_.has_units_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(Options, _impl_.matrix_locations_)
+      + sizeof(Options::_impl_.matrix_locations_)
+      - PROTOBUF_FIELD_OFFSET(Options, _impl_.pbf_field_selector_)>(
+          reinterpret_cast<char*>(&_impl_.pbf_field_selector_),
+          reinterpret_cast<char*>(&other->_impl_.pbf_field_selector_));
   swap(_impl_.has_language_, other->_impl_.has_language_);
-  swap(_impl_.has_directions_type_, other->_impl_.has_directions_type_);
-  swap(_impl_.has_format_, other->_impl_.has_format_);
   swap(_impl_.has_id_, other->_impl_.has_id_);
   swap(_impl_.has_jsonp_, other->_impl_.has_jsonp_);
   swap(_impl_.has_encoded_polyline_, other->_impl_.has_encoded_polyline_);
-  swap(_impl_.has_action_, other->_impl_.has_action_);
   swap(_impl_.has_range_, other->_impl_.has_range_);
   swap(_impl_.has_verbose_, other->_impl_.has_verbose_);
-  swap(_impl_.has_costing_, other->_impl_.has_costing_);
-  swap(_impl_.has_date_time_type_, other->_impl_.has_date_time_type_);
   swap(_impl_.has_date_time_, other->_impl_.has_date_time_);
   swap(_impl_.has_resample_distance_, other->_impl_.has_resample_distance_);
   swap(_impl_.has_polygons_, other->_impl_.has_polygons_);
   swap(_impl_.has_denoise_, other->_impl_.has_denoise_);
   swap(_impl_.has_generalize_, other->_impl_.has_generalize_);
   swap(_impl_.has_show_locations_, other->_impl_.has_show_locations_);
-  swap(_impl_.has_shape_match_, other->_impl_.has_shape_match_);
   swap(_impl_.has_gps_accuracy_, other->_impl_.has_gps_accuracy_);
   swap(_impl_.has_search_radius_, other->_impl_.has_search_radius_);
   swap(_impl_.has_turn_penalty_factor_, other->_impl_.has_turn_penalty_factor_);
   swap(_impl_.has_breakage_distance_, other->_impl_.has_breakage_distance_);
   swap(_impl_.has_use_timestamps_, other->_impl_.has_use_timestamps_);
-  swap(_impl_.has_shape_format_, other->_impl_.has_shape_format_);
   swap(_impl_.has_alternates_, other->_impl_.has_alternates_);
   swap(_impl_.has_interpolation_distance_, other->_impl_.has_interpolation_distance_);
   swap(_impl_.has_guidance_views_, other->_impl_.has_guidance_views_);
@@ -10025,14 +10395,6 @@ void Options::InternalSwap(Options* other) {
   swap(_impl_._oneof_case_[23], other->_impl_._oneof_case_[23]);
   swap(_impl_._oneof_case_[24], other->_impl_._oneof_case_[24]);
   swap(_impl_._oneof_case_[25], other->_impl_._oneof_case_[25]);
-  swap(_impl_._oneof_case_[26], other->_impl_._oneof_case_[26]);
-  swap(_impl_._oneof_case_[27], other->_impl_._oneof_case_[27]);
-  swap(_impl_._oneof_case_[28], other->_impl_._oneof_case_[28]);
-  swap(_impl_._oneof_case_[29], other->_impl_._oneof_case_[29]);
-  swap(_impl_._oneof_case_[30], other->_impl_._oneof_case_[30]);
-  swap(_impl_._oneof_case_[31], other->_impl_._oneof_case_[31]);
-  swap(_impl_._oneof_case_[32], other->_impl_._oneof_case_[32]);
-  swap(_impl_._oneof_case_[33], other->_impl_._oneof_case_[33]);
 }
 
 std::string Options::GetTypeName() const {
@@ -10047,21 +10409,29 @@ template<> PROTOBUF_NOINLINE ::valhalla::Contour*
 Arena::CreateMaybeMessage< ::valhalla::Contour >(Arena* arena) {
   return Arena::CreateMessageInternal< ::valhalla::Contour >(arena);
 }
+template<> PROTOBUF_NOINLINE ::valhalla::Ring*
+Arena::CreateMaybeMessage< ::valhalla::Ring >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::valhalla::Ring >(arena);
+}
+template<> PROTOBUF_NOINLINE ::valhalla::PbfFieldSelector*
+Arena::CreateMaybeMessage< ::valhalla::PbfFieldSelector >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::valhalla::PbfFieldSelector >(arena);
+}
 template<> PROTOBUF_NOINLINE ::valhalla::AvoidEdge*
 Arena::CreateMaybeMessage< ::valhalla::AvoidEdge >(Arena* arena) {
   return Arena::CreateMessageInternal< ::valhalla::AvoidEdge >(arena);
 }
-template<> PROTOBUF_NOINLINE ::valhalla::CostingOptions*
-Arena::CreateMaybeMessage< ::valhalla::CostingOptions >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::valhalla::CostingOptions >(arena);
+template<> PROTOBUF_NOINLINE ::valhalla::Costing_Options*
+Arena::CreateMaybeMessage< ::valhalla::Costing_Options >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::valhalla::Costing_Options >(arena);
 }
-template<> PROTOBUF_NOINLINE ::valhalla::Options_Ring*
-Arena::CreateMaybeMessage< ::valhalla::Options_Ring >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::valhalla::Options_Ring >(arena);
+template<> PROTOBUF_NOINLINE ::valhalla::Costing*
+Arena::CreateMaybeMessage< ::valhalla::Costing >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::valhalla::Costing >(arena);
 }
-template<> PROTOBUF_NOINLINE ::valhalla::Options_CostingOptionsEntry_DoNotUse*
-Arena::CreateMaybeMessage< ::valhalla::Options_CostingOptionsEntry_DoNotUse >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::valhalla::Options_CostingOptionsEntry_DoNotUse >(arena);
+template<> PROTOBUF_NOINLINE ::valhalla::Options_CostingsEntry_DoNotUse*
+Arena::CreateMaybeMessage< ::valhalla::Options_CostingsEntry_DoNotUse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::valhalla::Options_CostingsEntry_DoNotUse >(arena);
 }
 template<> PROTOBUF_NOINLINE ::valhalla::Options*
 Arena::CreateMaybeMessage< ::valhalla::Options >(Arena* arena) {

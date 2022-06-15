@@ -64,11 +64,10 @@ namespace internal {
 //     |15        ..          8|7         ..          0|
 //     +-----------------------+-----------------------+
 //     :  .  :  .  :  .  :  .  :  .  :  .  : 3|========| [3] FieldType
-//     :     :     :     :     :     :  . 4|==|  :     : [1] FieldSplit
-//     :     :     :     :     :    6|=====|  .  :     : [2] FieldCardinality
-//     :  .  :  .  :  .  : 9|========|  .  :  .  :  .  : [3] FieldRep
-//     :     :     :11|=====|  :     :     :     :     : [2] TransformValidation
-//     :  .  :13|=====|  :  .  :  .  :  .  :  .  :  .  : [2] FormatDiscriminator
+//     :     :     :     :     :     : 5|=====|  :     : [2] FieldCardinality
+//     :  .  :  .  :  .  :  . 8|========|  :  .  :  .  : [3] FieldRep
+//     :     :     :   10|=====|     :     :     :     : [2] TransformValidation
+//     :  .  :  .12|=====|  .  :  .  :  .  :  .  :  .  : [2] FormatDiscriminator
 //     +-----------------------+-----------------------+
 //     |15        ..          8|7         ..          0|
 //     +-----------------------+-----------------------+
@@ -96,21 +95,11 @@ enum FieldKind : uint16_t {
 
 static_assert(kFkMap < (1 << kFkBits), "too many types");
 
-// Split (1 bit):
-enum FieldSplit : uint16_t {
-  kSplitShift = kFkShift+ kFkBits,
-  kSplitBits  = 1,
-  kSplitMask  = ((1 << kSplitBits) - 1) << kSplitShift,
-
-  kSplitFalse = 0,
-  kSplitTrue  = 1 << kSplitShift,
-};
-
 // Cardinality (2 bits):
 // These values determine how many values a field can have and its presence.
 // Packed fields are represented in FieldType.
 enum Cardinality : uint16_t {
-  kFcShift    = kSplitShift+ kSplitBits,
+  kFcShift    = kFkShift + kFkBits,
   kFcBits     = 2,
   kFcMask     = ((1 << kFcBits) - 1) << kFcShift,
 
@@ -158,10 +147,6 @@ enum TransformValidation : uint16_t {
   // String fields:
   kTvUtf8Debug = 1 << kTvShift,  // proto2
   kTvUtf8      = 2 << kTvShift,  // proto3
-
-  // Message fields:
-  kTvDefault   = 1 << kTvShift,  // Aux has default_instance
-  kTvTable     = 2 << kTvShift,  // Aux has TcParseTableBase*
 };
 
 static_assert((kTvEnum & kTvRange) != 0,
@@ -190,7 +175,7 @@ enum FormatDiscriminator : uint16_t {
 };
 
 // Update this assertion (and comments above) when adding or removing bits:
-static_assert(kFmtShift + kFmtBits == 13, "number of bits changed");
+static_assert(kFmtShift + kFmtBits == 12, "number of bits changed");
 
 // This assertion should not change unless the storage width changes:
 static_assert(kFmtShift + kFmtBits <= 16, "too many bits");
@@ -198,48 +183,48 @@ static_assert(kFmtShift + kFmtBits <= 16, "too many bits");
 // Convenience aliases (16 bits, with format):
 enum FieldType : uint16_t {
   // Numeric types:
-  kBool            = 0 | kFkVarint | kRep8Bits,
+  kBool            = kFkVarint | kRep8Bits,
 
-  kFixed32         = 0 | kFkFixed  | kRep32Bits | kFmtUnsigned,
-  kUInt32          = 0 | kFkVarint | kRep32Bits | kFmtUnsigned,
-  kSFixed32        = 0 | kFkFixed  | kRep32Bits | kFmtSigned,
-  kInt32           = 0 | kFkVarint | kRep32Bits | kFmtSigned,
-  kSInt32          = 0 | kFkVarint | kRep32Bits | kFmtSigned | kTvZigZag,
-  kFloat           = 0 | kFkFixed  | kRep32Bits | kFmtFloating,
-  kEnum            = 0 | kFkVarint | kRep32Bits | kFmtEnum   | kTvEnum,
-  kEnumRange       = 0 | kFkVarint | kRep32Bits | kFmtEnum   | kTvRange,
-  kOpenEnum        = 0 | kFkVarint | kRep32Bits | kFmtEnum,
+  kFixed32         = kFkFixed  | kRep32Bits | kFmtUnsigned,
+  kUInt32          = kFkVarint | kRep32Bits | kFmtUnsigned,
+  kSFixed32        = kFkFixed  | kRep32Bits | kFmtSigned,
+  kInt32           = kFkVarint | kRep32Bits | kFmtSigned,
+  kSInt32          = kFkVarint | kRep32Bits | kFmtSigned | kTvZigZag,
+  kFloat           = kFkFixed  | kRep32Bits | kFmtFloating,
+  kEnum            = kFkVarint | kRep32Bits | kFmtEnum   | kTvEnum,
+  kEnumRange       = kFkVarint | kRep32Bits | kFmtEnum   | kTvRange,
+  kOpenEnum        = kFkVarint | kRep32Bits | kFmtEnum,
 
-  kFixed64         = 0 | kFkFixed  | kRep64Bits | kFmtUnsigned,
-  kUInt64          = 0 | kFkVarint | kRep64Bits | kFmtUnsigned,
-  kSFixed64        = 0 | kFkFixed  | kRep64Bits | kFmtSigned,
-  kInt64           = 0 | kFkVarint | kRep64Bits | kFmtSigned,
-  kSInt64          = 0 | kFkVarint | kRep64Bits | kFmtSigned | kTvZigZag,
-  kDouble          = 0 | kFkFixed  | kRep64Bits | kFmtFloating,
+  kFixed64         = kFkFixed  | kRep64Bits | kFmtUnsigned,
+  kUInt64          = kFkVarint | kRep64Bits | kFmtUnsigned,
+  kSFixed64        = kFkFixed  | kRep64Bits | kFmtSigned,
+  kInt64           = kFkVarint | kRep64Bits | kFmtSigned,
+  kSInt64          = kFkVarint | kRep64Bits | kFmtSigned | kTvZigZag,
+  kDouble          = kFkFixed  | kRep64Bits | kFmtFloating,
 
-  kPackedBool      = 0 | kFkPackedVarint | kRep8Bits,
+  kPackedBool      = kFkPackedVarint | kRep8Bits,
 
-  kPackedFixed32   = 0 | kFkPackedFixed  | kRep32Bits | kFmtUnsigned,
-  kPackedUInt32    = 0 | kFkPackedVarint | kRep32Bits | kFmtUnsigned,
-  kPackedSFixed32  = 0 | kFkPackedFixed  | kRep32Bits | kFmtSigned,
-  kPackedInt32     = 0 | kFkPackedVarint | kRep32Bits | kFmtSigned,
-  kPackedSInt32    = 0 | kFkPackedVarint | kRep32Bits | kFmtSigned | kTvZigZag,
-  kPackedFloat     = 0 | kFkPackedFixed  | kRep32Bits | kFmtFloating,
-  kPackedEnum      = 0 | kFkPackedVarint | kRep32Bits | kFmtEnum   | kTvEnum,
-  kPackedEnumRange = 0 | kFkPackedVarint | kRep32Bits | kFmtEnum   | kTvRange,
-  kPackedOpenEnum  = 0 | kFkPackedVarint | kRep32Bits | kFmtEnum,
+  kPackedFixed32   = kFkPackedFixed  | kRep32Bits | kFmtUnsigned,
+  kPackedUInt32    = kFkPackedVarint | kRep32Bits | kFmtUnsigned,
+  kPackedSFixed32  = kFkPackedFixed  | kRep32Bits | kFmtSigned,
+  kPackedInt32     = kFkPackedVarint | kRep32Bits | kFmtSigned,
+  kPackedSInt32    = kFkPackedVarint | kRep32Bits | kFmtSigned | kTvZigZag,
+  kPackedFloat     = kFkPackedFixed  | kRep32Bits | kFmtFloating,
+  kPackedEnum      = kFkPackedVarint | kRep32Bits | kFmtEnum   | kTvEnum,
+  kPackedEnumRange = kFkPackedVarint | kRep32Bits | kFmtEnum   | kTvRange,
+  kPackedOpenEnum  = kFkPackedVarint | kRep32Bits | kFmtEnum,
 
-  kPackedFixed64   = 0 | kFkPackedFixed  | kRep64Bits | kFmtUnsigned,
-  kPackedUInt64    = 0 | kFkPackedVarint | kRep64Bits | kFmtUnsigned,
-  kPackedSFixed64  = 0 | kFkPackedFixed  | kRep64Bits | kFmtSigned,
-  kPackedInt64     = 0 | kFkPackedVarint | kRep64Bits | kFmtSigned,
-  kPackedSInt64    = 0 | kFkPackedVarint | kRep64Bits | kFmtSigned | kTvZigZag,
-  kPackedDouble    = 0 | kFkPackedFixed  | kRep64Bits | kFmtFloating,
+  kPackedFixed64   = kFkPackedFixed  | kRep64Bits | kFmtUnsigned,
+  kPackedUInt64    = kFkPackedVarint | kRep64Bits | kFmtUnsigned,
+  kPackedSFixed64  = kFkPackedFixed  | kRep64Bits | kFmtSigned,
+  kPackedInt64     = kFkPackedVarint | kRep64Bits | kFmtSigned,
+  kPackedSInt64    = kFkPackedVarint | kRep64Bits | kFmtSigned | kTvZigZag,
+  kPackedDouble    = kFkPackedFixed  | kRep64Bits | kFmtFloating,
 
   // String types:
-  kBytes           = 0 | kFkString | kFmtArray,
-  kRawString       = 0 | kFkString | kFmtUtf8  | kTvUtf8Debug,
-  kUtf8String      = 0 | kFkString | kFmtUtf8  | kTvUtf8,
+  kBytes           = kFkString | kFmtArray,
+  kRawString       = kFkString | kFmtUtf8  | kTvUtf8Debug,
+  kUtf8String      = kFkString | kFmtUtf8  | kTvUtf8,
 
   // Message types:
   kMessage         = kFkMessage,
@@ -247,6 +232,7 @@ enum FieldType : uint16_t {
   // Map types:
   kMap             = kFkMap,
 };
+
 // clang-format on
 }  // namespace field_layout
 
@@ -276,11 +262,6 @@ extern template void AlignFail<8>(uintptr_t);
 // TcParser implements most of the parsing logic for tailcall tables.
 class PROTOBUF_EXPORT TcParser final {
  public:
-  template <typename T>
-  static constexpr const TcParseTableBase* GetTable() {
-    return &T::_table_.header;
-  }
-
   static const char* GenericFallback(PROTOBUF_TC_PARAM_DECL);
   static const char* GenericFallbackLite(PROTOBUF_TC_PARAM_DECL);
 
@@ -383,26 +364,16 @@ class PROTOBUF_EXPORT TcParser final {
 
   // Functions referenced by generated fast tables (message types):
   //   M: message    G: group
-  //   d: default*   t: TcParseTable* (the contents of aux)
   //   S: singular   R: repeated
   //   1/2: tag length (bytes)
-  static const char* FastMdS1(PROTOBUF_TC_PARAM_DECL);
-  static const char* FastMdS2(PROTOBUF_TC_PARAM_DECL);
-  static const char* FastGdS1(PROTOBUF_TC_PARAM_DECL);
-  static const char* FastGdS2(PROTOBUF_TC_PARAM_DECL);
-  static const char* FastMtS1(PROTOBUF_TC_PARAM_DECL);
-  static const char* FastMtS2(PROTOBUF_TC_PARAM_DECL);
-  static const char* FastGtS1(PROTOBUF_TC_PARAM_DECL);
-  static const char* FastGtS2(PROTOBUF_TC_PARAM_DECL);
-
-  static const char* FastMdR1(PROTOBUF_TC_PARAM_DECL);
-  static const char* FastMdR2(PROTOBUF_TC_PARAM_DECL);
-  static const char* FastGdR1(PROTOBUF_TC_PARAM_DECL);
-  static const char* FastGdR2(PROTOBUF_TC_PARAM_DECL);
-  static const char* FastMtR1(PROTOBUF_TC_PARAM_DECL);
-  static const char* FastMtR2(PROTOBUF_TC_PARAM_DECL);
-  static const char* FastGtR1(PROTOBUF_TC_PARAM_DECL);
-  static const char* FastGtR2(PROTOBUF_TC_PARAM_DECL);
+  static const char* FastMS1(PROTOBUF_TC_PARAM_DECL);
+  static const char* FastMS2(PROTOBUF_TC_PARAM_DECL);
+  static const char* FastMR1(PROTOBUF_TC_PARAM_DECL);
+  static const char* FastMR2(PROTOBUF_TC_PARAM_DECL);
+  static const char* FastGS1(PROTOBUF_TC_PARAM_DECL);
+  static const char* FastGS2(PROTOBUF_TC_PARAM_DECL);
+  static const char* FastGR1(PROTOBUF_TC_PARAM_DECL);
+  static const char* FastGR2(PROTOBUF_TC_PARAM_DECL);
 
   template <typename T>
   static inline T& RefAt(void* x, size_t offset) {
@@ -450,9 +421,9 @@ class PROTOBUF_EXPORT TcParser final {
  private:
   friend class GeneratedTcTableLiteTest;
 
-  template <typename TagType, bool group_coding, bool aux_is_table>
+  template <typename TagType, bool group_coding>
   static inline const char* SingularParseMessageAuxImpl(PROTOBUF_TC_PARAM_DECL);
-  template <typename TagType, bool group_coding, bool aux_is_table>
+  template <typename TagType, bool group_coding>
   static inline const char* RepeatedParseMessageAuxImpl(PROTOBUF_TC_PARAM_DECL);
 
   static inline PROTOBUF_ALWAYS_INLINE void SyncHasbits(
@@ -461,7 +432,7 @@ class PROTOBUF_EXPORT TcParser final {
     if (has_bits_offset) {
       // Only the first 32 has-bits are updated. Nothing above those is stored,
       // but e.g. messages without has-bits update the upper bits.
-      RefAt<uint32_t>(msg, has_bits_offset) |= static_cast<uint32_t>(hasbits);
+      RefAt<uint32_t>(msg, has_bits_offset) = static_cast<uint32_t>(hasbits);
     }
   }
 
@@ -560,18 +531,14 @@ class PROTOBUF_EXPORT TcParser final {
   static constexpr const uint32_t kMtSmallScanSize = 4;
 
   // Mini parsing:
-  template <bool is_split>
   static const char* MpVarint(PROTOBUF_TC_PARAM_DECL);
   static const char* MpRepeatedVarint(PROTOBUF_TC_PARAM_DECL);
   static const char* MpPackedVarint(PROTOBUF_TC_PARAM_DECL);
-  template <bool is_split>
   static const char* MpFixed(PROTOBUF_TC_PARAM_DECL);
   static const char* MpRepeatedFixed(PROTOBUF_TC_PARAM_DECL);
   static const char* MpPackedFixed(PROTOBUF_TC_PARAM_DECL);
-  template <bool is_split>
   static const char* MpString(PROTOBUF_TC_PARAM_DECL);
   static const char* MpRepeatedString(PROTOBUF_TC_PARAM_DECL);
-  template <bool is_split>
   static const char* MpMessage(PROTOBUF_TC_PARAM_DECL);
   static const char* MpRepeatedMessage(PROTOBUF_TC_PARAM_DECL);
   static const char* MpMap(PROTOBUF_TC_PARAM_DECL);

@@ -232,8 +232,6 @@ constexpr int Transit::VehicleType_ARRAYSIZE;
 class Transit_Node::_Internal {
  public:
   using HasBits = decltype(std::declval<Transit_Node>()._impl_._has_bits_);
-  static constexpr int32_t kHasBitsOffset =
-    8 * PROTOBUF_FIELD_OFFSET(Transit_Node, _impl_._has_bits_);
   static void set_has_lon(HasBits* has_bits) {
     (*has_bits)[0] |= 8u;
   }
@@ -833,8 +831,6 @@ std::string Transit_Node::GetTypeName() const {
 class Transit_StopPair::_Internal {
  public:
   using HasBits = decltype(std::declval<Transit_StopPair>()._impl_._has_bits_);
-  static constexpr int32_t kHasBitsOffset =
-    8 * PROTOBUF_FIELD_OFFSET(Transit_StopPair, _impl_._has_bits_);
   static void set_has_bikes_allowed(HasBits* has_bits) {
     (*has_bits)[0] |= 512u;
   }
@@ -1809,8 +1805,6 @@ std::string Transit_StopPair::GetTypeName() const {
 class Transit_Route::_Internal {
  public:
   using HasBits = decltype(std::declval<Transit_Route>()._impl_._has_bits_);
-  static constexpr int32_t kHasBitsOffset =
-    8 * PROTOBUF_FIELD_OFFSET(Transit_Route, _impl_._has_bits_);
   static void set_has_name(HasBits* has_bits) {
     (*has_bits)[0] |= 1u;
   }
@@ -2444,8 +2438,6 @@ std::string Transit_Route::GetTypeName() const {
 class Transit_Shape::_Internal {
  public:
   using HasBits = decltype(std::declval<Transit_Shape>()._impl_._has_bits_);
-  static constexpr int32_t kHasBitsOffset =
-    8 * PROTOBUF_FIELD_OFFSET(Transit_Shape, _impl_._has_bits_);
   static void set_has_shape_id(HasBits* has_bits) {
     (*has_bits)[0] |= 2u;
   }
