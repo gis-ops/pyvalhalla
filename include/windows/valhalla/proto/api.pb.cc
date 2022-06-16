@@ -13,7 +13,7 @@
 #include <google/protobuf/port_def.inc>
 extern PROTOBUF_INTERNAL_EXPORT_directions_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_Directions_directions_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_info_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<2> scc_info_Info_info_2eproto;
-extern PROTOBUF_INTERNAL_EXPORT_options_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<5> scc_info_Options_options_2eproto;
+extern PROTOBUF_INTERNAL_EXPORT_options_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<6> scc_info_Options_options_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_status_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Status_status_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_trip_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_Trip_trip_2eproto;
 namespace valhalla {

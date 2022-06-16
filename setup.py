@@ -26,7 +26,7 @@ if platform.system() == "Windows":
     libraries.extend(["libprotobuf-lite", "valhalla", "libcurl", "zlib", "Ws2_32", "ole32", "Shell32"])
     extra_compile_args.extend(["-DNOMINMAX", "-DWIN32_LEAN_AND_MEAN", "-DNOGDI"])
 else:
-    protobuf_lib = THIS_DIR.joinpath("lib", platform.system().lower(), "libprotobuf-lite.a")
+    protobuf_lib = str(THIS_DIR.joinpath("lib", platform.system().lower(), "libprotobuf-lite.a"))
     libraries.extend([protobuf_lib, "valhalla", "curl", "z"])
     extra_link_args.extend(["-lvalhalla", "-lprotobuf-lite", "-lcurl", "-lz"])
     extra_objects.append(protobuf_lib)
