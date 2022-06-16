@@ -14,22 +14,22 @@ include_dirs = [
     str(THIS_DIR.joinpath("include", "common")),
     # some includes are referencing like <baldr/..> instead of <valhalla/baldr/..>
     str(THIS_DIR.joinpath("include", "common", "valhalla")),
-    str("/usr/local/include/google"),
     str(THIS_DIR.joinpath("include", platform.system().lower())),
 ]
 library_dirs = [str(THIS_DIR.joinpath("lib", platform.system().lower()))]
 libraries = list()
 extra_link_args = list()
 extra_compile_args = list()
+extra_objects = list()
 
 if platform.system() == "Windows":
     libraries.extend(["libprotobuf-lite", "valhalla", "libcurl", "zlib", "Ws2_32", "ole32", "Shell32"])
     extra_compile_args.extend(["-DNOMINMAX", "-DWIN32_LEAN_AND_MEAN", "-DNOGDI"])
-    extra_objects = []
 else:
-    libraries.extend(["/usr/local/lib/libprotobuf-lite.a", "valhalla", "curl", "z"])
+    protobuf_lib = THIS_DIR.joinpath("lib", platform.system().lower(), "libprotobuf-lite.a")
+    libraries.extend([protobuf_lib, "valhalla", "curl", "z"])
     extra_link_args.extend(["-lvalhalla", "-lprotobuf-lite", "-lcurl", "-lz"])
-    extra_objects = ["/usr/local/lib/libprotobuf-lite.a"]
+    extra_objects.append(protobuf_lib)
 
 # do conan dependency resolution
 # locally there will be 2 conanbuildinfo.json, one here and one in ./upstream/conan_build
