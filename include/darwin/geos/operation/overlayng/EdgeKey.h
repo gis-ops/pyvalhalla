@@ -80,7 +80,3 @@ public:
 } // namespace geos.operation
 } // namespace geos
 
-#ifdef GEOS_INLINE
-#include "geos/operation/overlayng/EdgeKey.inl"
-#endif
-

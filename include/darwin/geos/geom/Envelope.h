@@ -91,13 +91,19 @@ public:
      *
      * @param  p  the Coordinate
      */
-    explicit Envelope(const Coordinate& p);
+    Envelope(const Coordinate& p);
+
+    /// Copy constructor
+    Envelope(const Envelope& env);
+
+    /// Assignment operator
+    Envelope& operator=(const Envelope& e);
 
     /** \brief
      * Create an Envelope from an Envelope string representation produced
      * by Envelope::toString()
      */
-    explicit Envelope(const std::string& str);
+    Envelope(const std::string& str);
 
     /** \brief
      * Test the point `q` to see whether it intersects the Envelope
@@ -138,7 +144,7 @@ public:
     /** \brief
      *  Initialize to a null Envelope.
      */
-    void init();
+    void init(void);
 
     /** \brief
      * Initialize an Envelope for a region defined by maximum and minimum values.
@@ -172,7 +178,7 @@ public:
      * Makes this `Envelope` a "null" envelope, that is, the envelope
      * of the empty geometry.
      */
-    void setToNull();
+    void setToNull(void);
 
     /** \brief
      * Returns `true` if this Envelope is a "null" envelope.
@@ -180,21 +186,21 @@ public:
      * @return `true` if this Envelope is uninitialized or is the
      *                envelope of the empty geometry.
      */
-    bool isNull() const;
+    bool isNull(void) const;
 
     /** \brief
      * Returns the difference between the maximum and minimum x values.
      *
      * @return  `max x - min x`, or 0 if this is a null Envelope
      */
-    double getWidth() const;
+    double getWidth(void) const;
 
     /** \brief
      * Returns the difference between the maximum and minimum y values.
      *
      * @return `max y - min y`, or 0 if this is a null Envelope
      */
-    double getHeight() const;
+    double getHeight(void) const;
 
     /** \brief
      * Gets the area of this envelope.
@@ -449,7 +455,7 @@ public:
      *
      * @return a `string` of the form `Env[minx:maxx,miny:maxy]`
      */
-    std::string toString() const;
+    std::string toString(void) const;
 
     /** \brief
      * Computes the distance between this and another Envelope.
@@ -489,7 +495,7 @@ public:
      */
     static double distanceSquaredToCoordinate(const Coordinate & c, const Coordinate & p1, const Coordinate & p2);
 
-    std::size_t hashCode() const;
+    size_t hashCode() const;
 
 private:
 
@@ -499,7 +505,7 @@ private:
      * This is a generic function that really belongs in a utility
      * file somewhere
      */
-    static std::vector<std::string> split(const std::string& str,
+    std::vector<std::string> split(const std::string& str,
                                    const std::string& delimiters = " ");
 
     static double distance(double x0, double y0, double x1, double y1);
@@ -519,13 +525,6 @@ private:
 
 /// Checks if two Envelopes are equal (2D only check)
 GEOS_DLL bool operator==(const Envelope& a, const Envelope& b);
-
-GEOS_DLL bool operator!=(const Envelope& a, const Envelope& b);
-
-/// Strict weak ordering operator for Envelope
-/// This is the C++ equivalent of JTS's compareTo
-GEOS_DLL bool operator< (const Envelope& a, const Envelope& b);
-
 
 } // namespace geos::geom
 } // namespace geos

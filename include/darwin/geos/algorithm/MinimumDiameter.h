@@ -69,7 +69,7 @@ private:
 
     geom::LineSegment minBaseSeg;
     geom::Coordinate minWidthPt;
-    std::size_t minPtIndex;
+    size_t minPtIndex;
     double minWidth;
     void computeMinimumDiameter();
     void computeWidthConvex(const geom::Geometry* geom);

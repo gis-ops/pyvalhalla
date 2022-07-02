@@ -13,7 +13,8 @@
  *
  **********************************************************************/
 
-#pragma once
+#ifndef GEOS_GEOM_UTIL_GEOMETRYEDITOROPERATION_H
+#define GEOS_GEOM_UTIL_GEOMETRYEDITOROPERATION_H
 
 #include <geos/export.h>
 #include <memory>
@@ -57,9 +58,8 @@ public:
     ~GeometryEditorOperation() {}
 };
 
-
-
 } // namespace geos.geom.util
 } // namespace geos.geom
 } // namespace geos
 
+#endif

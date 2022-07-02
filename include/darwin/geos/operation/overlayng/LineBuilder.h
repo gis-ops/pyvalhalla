@@ -76,7 +76,7 @@ private:
     int opCode;
     const geom::GeometryFactory* geometryFactory;
     bool hasResultArea;
-    int8_t inputAreaIndex;
+    int inputAreaIndex;
     std::vector<std::unique_ptr<geom::LineString>> lines;
 
     /**
@@ -116,12 +116,12 @@ private:
     * (For instance, the intersection of line edge and a collapsed boundary
     * is included in the result).
     */
-    static geom::Location effectiveLocation(const OverlayLabel* lbl, uint8_t geomIndex);
+    geom::Location effectiveLocation(const OverlayLabel* lbl, int geomIndex) const;
 
     void addResultLines();
     void addResultLinesMerged();
 
-    std::unique_ptr<geom::LineString> toLine(OverlayEdge* edge) const;
+    std::unique_ptr<geom::LineString> toLine(OverlayEdge* edge);
 
     void addResultLinesForNodes();
 
@@ -149,12 +149,12 @@ private:
     * Finds the next edge around a node which forms
     * part of a result line.
     */
-    static OverlayEdge* nextLineEdgeUnvisited(OverlayEdge* node) ;
+    OverlayEdge* nextLineEdgeUnvisited(OverlayEdge* node) const;
 
     /**
     * Computes the degree of the line edges incident on a node
     */
-    static int degreeOfLines(OverlayEdge* node) ;
+    int degreeOfLines(OverlayEdge* node) const;
 
 
 
@@ -165,7 +165,7 @@ public:
         , opCode(p_opCode)
         , geometryFactory(geomFact)
         , hasResultArea(p_hasResultArea)
-        , inputAreaIndex((int8_t)inputGeom->getAreaIndex())
+        , inputAreaIndex(inputGeom->getAreaIndex())
         , isAllowMixedResult(! OverlayNG::STRICT_MODE_DEFAULT)
         , isAllowCollapseLines(! OverlayNG::STRICT_MODE_DEFAULT)
         {}
@@ -187,3 +187,4 @@ public:
 } // namespace geos.operation.overlayng
 } // namespace geos.operation
 } // namespace geos
+

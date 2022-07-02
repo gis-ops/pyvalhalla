@@ -112,22 +112,22 @@ private:
     *   In this case, a validation step is applied to the output from the noder.
     */
     Noder* getNoder();
-    static std::unique_ptr<Noder> createFixedPrecisionNoder(const PrecisionModel* pm);
+    std::unique_ptr<Noder> createFixedPrecisionNoder(const PrecisionModel* pm);
     std::unique_ptr<Noder> createFloatingPrecisionNoder(bool doValidation);
 
 
-    void addCollection(const GeometryCollection* gc, uint8_t geomIndex);
-    void addGeometryCollection(const GeometryCollection* gc, uint8_t geomIndex, int expectedDim);
-    void addPolygon(const Polygon* poly, uint8_t geomIndex);
-    void addPolygonRing(const LinearRing* ring, bool isHole, uint8_t geomIndex);
-    void addLine(const LineString* line, uint8_t geomIndex);
-    void addLine(std::unique_ptr<CoordinateArraySequence>& pts, uint8_t geomIndex);
+    void addCollection(const GeometryCollection* gc, int geomIndex);
+    void addGeometryCollection(const GeometryCollection* gc, int geomIndex, int expectedDim);
+    void addPolygon(const Polygon* poly, int geomIndex);
+    void addPolygonRing(const LinearRing* ring, bool isHole, int geomIndex);
+    void addLine(const LineString* line, int geomIndex);
+    void addLine(std::unique_ptr<CoordinateArraySequence>& pts, int geomIndex);
     void addEdge(std::unique_ptr<std::vector<Coordinate>> pts, const EdgeSourceInfo* info);
     void addEdge(std::unique_ptr<CoordinateArraySequence>& cas, const EdgeSourceInfo* info);
 
     // Create a EdgeSourceInfo* owned by EdgeNodingBuilder
-    const EdgeSourceInfo* createEdgeSourceInfo(uint8_t index, int depthDelta, bool isHole);
-    const EdgeSourceInfo* createEdgeSourceInfo(uint8_t index);
+    const EdgeSourceInfo* createEdgeSourceInfo(int index, int depthDelta, bool isHole);
+    const EdgeSourceInfo* createEdgeSourceInfo(int index);
 
     /**
     * Tests whether a geometry (represented by its envelope)
@@ -172,11 +172,11 @@ private:
     * @param line the line to process
     * @return the points of the line with repeated points removed
     */
-    static std::unique_ptr<CoordinateArraySequence> removeRepeatedPoints(const LineString* line);
+    std::unique_ptr<CoordinateArraySequence> removeRepeatedPoints(const LineString* line);
 
-    static int computeDepthDelta(const LinearRing* ring, bool isHole);
+    int computeDepthDelta(const LinearRing* ring, bool isHole);
 
-    void add(const Geometry* g, uint8_t geomIndex);
+    void add(const Geometry* g, int geomIndex);
 
     /**
     * Nodes a set of segment strings and creates {@link Edge}s from the result.
@@ -199,7 +199,7 @@ public:
         : pm(p_pm)
         , inputEdges(new std::vector<SegmentString*>)
         , customNoder(p_customNoder)
-        , hasEdges{{false,false}}
+        , hasEdges({false,false})
         , clipEnv(nullptr)
         , intAdder(lineInt)
         {};
@@ -226,7 +226,7 @@ public:
     * @param geomIndex index of input geometry
     * @return true if there are edges for the geometry
     */
-    bool hasEdgesFor(uint8_t geomIndex) const;
+    bool hasEdgesFor(int geomIndex) const;
 
     /**
     * Creates a set of labelled {Edge}s.

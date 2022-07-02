@@ -80,16 +80,17 @@ public:
      *
      * @return a clone of this instance
      */
-    std::unique_ptr<Point> clone() const
+    std::unique_ptr<Geometry>
+    clone() const override
     {
-        return std::unique_ptr<Point>(cloneImpl());
+        return std::unique_ptr<Geometry>(new Point(*this));
     }
 
     std::unique_ptr<CoordinateSequence> getCoordinates(void) const override;
 
     const CoordinateSequence* getCoordinatesRO() const;
 
-    std::size_t getNumPoints() const override;
+    size_t getNumPoints() const override;
     bool isEmpty() const override;
     bool isSimple() const override;
 
@@ -135,9 +136,10 @@ public:
         // a Point is always in normalized form
     }
 
-    std::unique_ptr<Point> reverse() const
+    std::unique_ptr<Geometry>
+    reverse() const override
     {
-        return std::unique_ptr<Point>(reverseImpl());
+        return clone();
     }
 
 protected:
@@ -159,10 +161,6 @@ protected:
     Point(const Coordinate& c, const GeometryFactory* newFactory);
 
     Point(const Point& p);
-
-    Point* cloneImpl() const override { return new Point(*this); }
-
-    Point* reverseImpl() const override { return new Point(*this); }
 
     Envelope::Ptr computeEnvelopeInternal() const override;
 

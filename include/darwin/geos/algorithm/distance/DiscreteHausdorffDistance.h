@@ -123,7 +123,16 @@ public:
      *
      * @param dFrac
      */
-    void setDensifyFraction(double dFrac);
+    void
+    setDensifyFraction(double dFrac)
+    {
+        if(dFrac > 1.0 || dFrac <= 0.0) {
+            throw util::IllegalArgumentException(
+                "Fraction is not in range (0.0 - 1.0]");
+        }
+
+        densifyFrac = dFrac;
+    }
 
     double
     distance()
@@ -186,7 +195,6 @@ public:
             const geom::Geometry& p_geom, double fraction)
             :
             geom(p_geom),
-            // Validity of the cast to size_t has been verified in setDensifyFraction()
             numSubSegs(std::size_t(util::round(1.0 / fraction)))
         {
         }

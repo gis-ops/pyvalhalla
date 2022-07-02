@@ -50,9 +50,6 @@ public:
     */
     virtual std::unique_ptr<geom::Geometry> Union(const geom::Geometry*, const geom::Geometry*) = 0;
 
-    virtual std::unique_ptr<geom::Geometry> Union(std::unique_ptr<geom::Geometry> &&,
-                                                  std::unique_ptr<geom::Geometry> &&);
-
     /**
     * Indicates whether the union function operates using
     * a floating (full) precision model.

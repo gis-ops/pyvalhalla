@@ -82,9 +82,9 @@ public:
 
     unsigned int depth() const;
 
-    std::size_t size() const;
+    size_t size() const;
 
-    std::size_t getNodeCount() const;
+    size_t getNodeCount() const;
 
     virtual std::string toString() const;
 

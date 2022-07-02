@@ -98,13 +98,13 @@ Depth::isNull() const
 }
 
 INLINE bool
-Depth::isNull(uint8_t geomIndex) const
+Depth::isNull(int geomIndex) const
 {
     return depth[geomIndex][1] == NULL_VALUE;
 }
 
 INLINE bool
-Depth::isNull(uint8_t geomIndex, uint8_t posIndex) const
+Depth::isNull(int geomIndex, int posIndex) const
 {
     return depth[geomIndex][posIndex] == NULL_VALUE;
 }

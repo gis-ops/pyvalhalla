@@ -32,10 +32,10 @@ MultiPolygon::MultiPolygon(const MultiPolygon& mp)
 {
 }
 
-INLINE std::unique_ptr<MultiPolygon>
+INLINE std::unique_ptr<Geometry>
 MultiPolygon::clone() const
 {
-    return std::unique_ptr<MultiPolygon>(cloneImpl());
+    return std::unique_ptr<Geometry>(new MultiPolygon(*this));
 }
 
 } // namespace geos::geom

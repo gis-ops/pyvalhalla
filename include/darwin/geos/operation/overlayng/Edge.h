@@ -14,10 +14,8 @@
 
 #pragma once
 
-#include <geos/inline.h>
 #include <geos/operation/overlayng/OverlayLabel.h>
 #include <geos/geom/Coordinate.h>
-#include <geos/geom/CoordinateSequence.h>
 #include <geos/export.h>
 
 #include <memory>
@@ -26,6 +24,7 @@
 namespace geos {
 namespace geom {
 class Coordinate;
+class CoordinateSequence;
 }
 namespace operation {
 namespace overlayng {
@@ -90,9 +89,9 @@ private:
     * For line edges the line location is not significant
     * (since there is no parent area for which to determine location).
     */
-    static void initLabel(OverlayLabel& lbl, uint8_t geomIndex, int dim, int depthDelta, bool p_isHole);
+    void initLabel(OverlayLabel& lbl, int geomIndex, int dim, int depthDelta, bool isHole) const;
 
-    static int labelDim(int dim, int depthDelta);
+    int labelDim(int dim, int depthDelta) const;
     bool isHole(int index) const;
     bool isBoundary(int geomIndex) const;
 
@@ -102,12 +101,12 @@ private:
     */
     bool isShell(int geomIndex) const;
 
-    static geom::Location locationRight(int depthDelta);
-    static geom::Location locationLeft(int depthDelta);
+    geom::Location locationRight(int depthDelta) const;
+    geom::Location locationLeft(int depthDelta) const;
 
-    static int delSign(int depthDel);
+    int delSign(int depthDel) const;
     void copyInfo(const EdgeSourceInfo* info);
-    static bool isHoleMerged(int geomIndex, const Edge* edge1, const Edge* edge2);
+    bool isHoleMerged(int geomIndex, const Edge* edge1, const Edge* edge2) const;
 
 
 public:
@@ -136,7 +135,7 @@ public:
     // release the underlying points to the caller
     geom::CoordinateSequence* releaseCoordinates();
 
-    const geom::Coordinate& getCoordinate(std::size_t index)  const;
+    const geom::Coordinate& getCoordinate(size_t index)  const;
 
     std::size_t size() const;
     bool direction() const;
@@ -154,7 +153,7 @@ public:
     */
     void merge(const Edge* edge);
 
-    void populateLabel(OverlayLabel &lbl) const;
+    void populateLabel(OverlayLabel &ovl) const;
 
     /*public*/
     bool compareTo(const Edge& e) const
@@ -192,6 +191,3 @@ bool EdgeComparator(const Edge* a, const Edge* b);
 } // namespace geos.operation
 } // namespace geos
 
-#ifdef GEOS_INLINE
-#include "geos/operation/overlayng/Edge.inl"
-#endif

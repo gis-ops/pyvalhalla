@@ -21,7 +21,6 @@
 #define GEOS_IO_BYTEORDERDATAINSTREAM_H
 
 #include <geos/export.h>
-#include <cstdint>
 
 //#include <geos/io/ParseException.h>
 //#include <geos/io/ByteOrderValues.h>
@@ -43,28 +42,33 @@ class GEOS_DLL ByteOrderDataInStream {
 
 public:
 
-    ByteOrderDataInStream(const unsigned char* buff = nullptr, size_t buff_sz = 0);
+    ByteOrderDataInStream(std::istream* s = nullptr);
 
     ~ByteOrderDataInStream();
+
+    /**
+     * Allows a single ByteOrderDataInStream to be reused
+     * on multiple istream.
+     */
+    void setInStream(std::istream* s);
 
     void setOrder(int order);
 
     unsigned char readByte(); // throws ParseException
 
-    int32_t readInt(); // throws ParseException
+    int readInt(); // throws ParseException
 
-    uint32_t readUnsigned(); // throws ParseException
-
-    int64_t readLong(); // throws ParseException
+    long readLong(); // throws ParseException
 
     double readDouble(); // throws ParseException
 
-    size_t size() const;
-
 private:
     int byteOrder;
-    const unsigned char* buf;
-    const unsigned char* end;
+    std::istream* stream;
+
+    // buffers to hold primitive datatypes
+    unsigned char buf[8];
+
 };
 
 } // namespace io

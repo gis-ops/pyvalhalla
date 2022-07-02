@@ -99,7 +99,7 @@ private:
      */
     std::vector<BoundableList*>* verticalSlices(
         BoundableList* childBoundables,
-        std::size_t sliceCount);
+        size_t sliceCount);
 
     bool isWithinDistance(BoundablePair* initBndPair, double maxDistance);
 

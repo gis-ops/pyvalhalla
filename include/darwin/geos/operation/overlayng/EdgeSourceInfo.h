@@ -16,7 +16,7 @@
 
 #include <geos/geom/Dimension.h>
 #include <geos/export.h>
-#include <cstdint>
+
 
 namespace geos {      // geos.
 namespace operation { // geos.operation
@@ -40,18 +40,18 @@ class GEOS_DLL EdgeSourceInfo {
 private:
 
     // Members
-    uint8_t index;
-    int8_t dim;
+    int index;
+    int dim;
     bool edgeIsHole;
     int depthDelta;
 
 
 public:
 
-    EdgeSourceInfo(uint8_t p_index, int p_depthDelta, bool p_isHole);
-    EdgeSourceInfo(uint8_t p_index);
+    EdgeSourceInfo(int p_index, int p_depthDelta, bool p_isHole);
+    EdgeSourceInfo(int p_index);
 
-    uint8_t getIndex() const { return index; }
+    int getIndex() const { return index; }
     int getDimension() const { return dim; }
     int getDepthDelta() const { return depthDelta; }
     bool isHole() const { return edgeIsHole; }

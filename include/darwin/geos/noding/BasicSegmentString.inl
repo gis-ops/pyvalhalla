@@ -29,7 +29,7 @@ namespace noding {
 
 /*public*/
 INLINE int
-BasicSegmentString::getSegmentOctant(std::size_t index) const
+BasicSegmentString::getSegmentOctant(size_t index) const
 {
     if(index >= size() - 1) {
         return -1;
@@ -39,7 +39,7 @@ BasicSegmentString::getSegmentOctant(std::size_t index) const
 
 /* virtual public */
 INLINE const geom::Coordinate&
-BasicSegmentString::getCoordinate(std::size_t i) const
+BasicSegmentString::getCoordinate(size_t i) const
 {
     return pts->getAt(i);
 }

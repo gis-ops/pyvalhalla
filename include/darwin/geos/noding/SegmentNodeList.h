@@ -55,14 +55,8 @@ namespace noding { // geos::noding
  */
 class GEOS_DLL SegmentNodeList {
 private:
-    // Since we are adding frequently to the SegmentNodeList and iterating infrequently,
-    // it is faster to store all the SegmentNodes in a vector and sort/remove duplicates
-    // before iteration, rather than storing them in a set and continuously maintaining
-    // a sorted order.
-    mutable std::vector<SegmentNode> nodeMap;
-    mutable bool ready = false;
-
-    void prepare() const;
+    std::set<SegmentNode*, SegmentNodeLT> nodeMap;
+    std::deque<SegmentNode> nodeQue;
 
     // the parent edge
     const NodedSegmentString& edge;
@@ -95,7 +89,7 @@ private:
     * @param ei1 the end node of the split edge
     * @return the points for the split edge
     */
-    std::unique_ptr<geom::CoordinateSequence> createSplitEdgePts(const SegmentNode* ei0, const SegmentNode* ei1) const;
+    void createSplitEdgePts(const SegmentNode* ei0, const SegmentNode* ei1, std::vector<geom::Coordinate>& pts) const;
 
     /**
      * Adds nodes for any collapsed edge pairs.
@@ -124,28 +118,28 @@ private:
     void findCollapsesFromInsertedNodes(
         std::vector<std::size_t>& collapsedVertexIndexes) const;
 
-    static bool findCollapseIndex(const SegmentNode& ei0, const SegmentNode& ei1,
-                           size_t& collapsedVertexIndex);
+    bool findCollapseIndex(const SegmentNode& ei0, const SegmentNode& ei1,
+                           size_t& collapsedVertexIndex) const;
 
     void addEdgeCoordinates(const SegmentNode* ei0, const SegmentNode* ei1, std::vector<geom::Coordinate>& coordList) const;
-
-public:
 
     // Declare type as noncopyable
     SegmentNodeList(const SegmentNodeList& other) = delete;
     SegmentNodeList& operator=(const SegmentNodeList& rhs) = delete;
 
+public:
+
     friend std::ostream& operator<< (std::ostream& os, const SegmentNodeList& l);
 
-    using container = decltype(nodeMap);
-    using iterator = container::iterator;
-    using const_iterator = container::const_iterator;
+    typedef std::set<SegmentNode*, SegmentNodeLT> container;
+    typedef container::iterator iterator;
+    typedef container::const_iterator const_iterator;
 
-    explicit SegmentNodeList(const NodedSegmentString* newEdge): edge(*newEdge) {}
+    SegmentNodeList(const NodedSegmentString* newEdge): edge(*newEdge) {}
 
-    explicit SegmentNodeList(const NodedSegmentString& newEdge): edge(newEdge) {}
+    SegmentNodeList(const NodedSegmentString& newEdge): edge(newEdge) {}
 
-    ~SegmentNodeList() = default;
+    ~SegmentNodeList();
 
     const NodedSegmentString&
     getEdge() const
@@ -163,39 +157,50 @@ public:
      * @param intPt the intersection Coordinate, will be copied
      * @param segmentIndex
      */
-    void add(const geom::Coordinate& intPt, std::size_t segmentIndex);
+    SegmentNode* add(const geom::Coordinate& intPt, std::size_t segmentIndex);
 
-    void
+    SegmentNode*
     add(const geom::Coordinate* intPt, std::size_t segmentIndex)
     {
-        add(*intPt, segmentIndex);
+        return add(*intPt, segmentIndex);
+    }
+
+    /*
+     * returns the set of SegmentNodes
+     */
+    //replaces iterator()
+    // TODO: obsolete this function
+    std::set<SegmentNode*, SegmentNodeLT>*
+    getNodes()
+    {
+        return &nodeMap;
     }
 
     /// Return the number of nodes in this list
     size_t
     size() const
     {
-        prepare();
         return nodeMap.size();
     }
 
-    iterator begin() {
-        prepare();
+    container::iterator
+    begin()
+    {
         return nodeMap.begin();
     }
-
-    const_iterator begin() const {
-        prepare();
+    container::const_iterator
+    begin() const
+    {
         return nodeMap.begin();
     }
-
-    iterator end() {
-        prepare();
+    container::iterator
+    end()
+    {
         return nodeMap.end();
     }
-
-    const_iterator end() const {
-        prepare();
+    container::const_iterator
+    end() const
+    {
         return nodeMap.end();
     }
 
@@ -228,7 +233,7 @@ public:
     * @return an array of Coordinates
     *
     */
-    std::vector<geom::Coordinate> getSplitCoordinates();
+    std::unique_ptr<std::vector<geom::Coordinate>> getSplitCoordinates();
 
 
 };

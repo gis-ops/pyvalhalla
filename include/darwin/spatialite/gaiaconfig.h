@@ -56,7 +56,7 @@
 #define PROJ_NEW 1
 
 /* Should contain a text-string describing the intended target CPU */
-#define SPATIALITE_TARGET_CPU "x86_64-apple-darwin19.6.0"
+#define SPATIALITE_TARGET_CPU "x86_64-apple-darwin20.4.0"
 
 /* the Version of this package */
 #define SPATIALITE_VERSION "5.0.1"

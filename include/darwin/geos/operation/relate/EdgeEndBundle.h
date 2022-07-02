@@ -93,11 +93,11 @@ protected:
      *  - otherwise, the attribute is NULL.
      *
      */
-    void computeLabelOn(uint8_t geomIndex,
+    void computeLabelOn(int geomIndex,
                         const algorithm::BoundaryNodeRule& boundaryNodeRule);
 
-    void computeLabelSides(uint8_t geomIndex);
-    void computeLabelSide(uint8_t geomIndex, uint32_t side);
+    void computeLabelSides(int geomIndex);
+    void computeLabelSide(int geomIndex, int side);
 };
 
 } // namespace geos:operation:relate

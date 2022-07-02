@@ -71,9 +71,10 @@ public:
      *
      * @return a clone of this instance
      */
-    std::unique_ptr<GeometryCollection> clone() const
+    std::unique_ptr<Geometry>
+    clone() const override
     {
-        return std::unique_ptr<GeometryCollection>(cloneImpl());
+        return std::unique_ptr<Geometry>(new GeometryCollection(*this));
     }
 
     ~GeometryCollection() override = default;
@@ -162,22 +163,13 @@ public:
     const Geometry* getGeometryN(std::size_t n) const override;
 
     /**
-     * \brief
-     * Take ownership of the sub-geometries managed by this GeometryCollection.
-     * After releasing the sub-geometries, the collection should be considered
-     * in a moved-from state and should not be accessed.
-     * @return vector of sub-geometries
-     */
-    std::vector<std::unique_ptr<Geometry>> releaseGeometries();
-
-    /**
      * Creates a GeometryCollection with
      * every component reversed.
      * The order of the components in the collection are not reversed.
      *
      * @return a GeometryCollection in the reverse order
      */
-    std::unique_ptr<GeometryCollection> reverse() const { return std::unique_ptr<GeometryCollection>(reverseImpl()); }
+    std::unique_ptr<Geometry> reverse() const override;
 
 protected:
 
@@ -215,10 +207,6 @@ protected:
     template<typename T>
     GeometryCollection(std::vector<std::unique_ptr<T>> && newGeoms, const GeometryFactory& newFactory) :
         GeometryCollection(toGeometryArray(std::move(newGeoms)), newFactory) {}
-
-    GeometryCollection* cloneImpl() const override { return new GeometryCollection(*this); }
-
-    GeometryCollection* reverseImpl() const override;
 
     int
     getSortIndex() const override

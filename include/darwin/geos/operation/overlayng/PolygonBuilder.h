@@ -55,17 +55,17 @@ private:
     // Storage
     std::vector<std::unique_ptr<OverlayEdgeRing>> vecOER;
 
-    std::vector<std::unique_ptr<geom::Polygon>> computePolygons(const std::vector<OverlayEdgeRing*>& shellList) const;
+    std::vector<std::unique_ptr<geom::Polygon>> computePolygons(std::vector<OverlayEdgeRing*> shellList);
 
-    void buildRings(const std::vector<OverlayEdge*>& resultAreaEdges);
+    void buildRings(std::vector<OverlayEdge*>& resultAreaEdges);
 
-    static void linkResultAreaEdgesMax(const std::vector<OverlayEdge*>& resultEdges);
+    void linkResultAreaEdgesMax(std::vector<OverlayEdge*>& resultEdges);
 
     /**
     * For all OverlayEdge*s in result, form them into MaximalEdgeRings
     */
-    static std::vector<std::unique_ptr<MaximalEdgeRing>>
-        buildMaximalRings(const std::vector<OverlayEdge *> &edges);
+    std::vector<std::unique_ptr<MaximalEdgeRing>>
+        buildMaximalRings(std::vector<OverlayEdge*>& edges);
 
     /**
     * The lifespan of the OverlayEdgeRings is tieds to the lifespan
@@ -74,9 +74,9 @@ private:
     */
     std::vector<OverlayEdgeRing*> storeMinimalRings(std::vector<std::unique_ptr<OverlayEdgeRing>>& minRings);
 
-    void buildMinimalRings(const std::vector<std::unique_ptr<MaximalEdgeRing>>& maxRings);
+    void buildMinimalRings(std::vector<std::unique_ptr<MaximalEdgeRing>>& maxRings);
 
-    void assignShellsAndHoles(const std::vector<OverlayEdgeRing *> &minRings);
+    void assignShellsAndHoles(std::vector<OverlayEdgeRing*>& minRings);
 
     /**
     * Finds the single shell, if any, out of
@@ -87,7 +87,7 @@ private:
     * @return the shell ring, if there is one
     * or null, if all rings are holes
     */
-    static OverlayEdgeRing* findSingleShell(const std::vector<OverlayEdgeRing *> &edgeRings) ;
+    OverlayEdgeRing* findSingleShell(std::vector<OverlayEdgeRing*>& edgeRings) const;
 
     /**
     * For the set of minimal rings comprising a maximal ring,
@@ -99,7 +99,7 @@ private:
     * chosen might lie on the shell, which might return an incorrect result from the
     * PIP test
     */
-    static void assignHoles(OverlayEdgeRing* shell, const std::vector<OverlayEdgeRing *> &edgeRings);
+    void assignHoles(OverlayEdgeRing* shell, std::vector<OverlayEdgeRing*>& edgeRings);
 
 
     /**
@@ -114,7 +114,7 @@ private:
     *
     * @throws TopologyException if a hole cannot be assigned to a shell
     */
-    void placeFreeHoles(const std::vector<OverlayEdgeRing*> & shellList, const std::vector<OverlayEdgeRing*>& freeHoleList) const;
+    void placeFreeHoles(std::vector<OverlayEdgeRing*> shellList, std::vector<OverlayEdgeRing*> freeHoleList);
 
 
 
@@ -138,8 +138,8 @@ public:
     PolygonBuilder& operator=(const PolygonBuilder&) = delete;
 
     // Methods
-    std::vector<std::unique_ptr<geom::Polygon>> getPolygons() const;
-    std::vector<OverlayEdgeRing*> getShellRings() const;
+    std::vector<std::unique_ptr<geom::Polygon>> getPolygons();
+    std::vector<OverlayEdgeRing*> getShellRings();
 
 
 };

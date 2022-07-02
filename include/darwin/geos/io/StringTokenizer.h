@@ -45,8 +45,8 @@ public:
     ~StringTokenizer() {}
     int nextToken();
     int peekNextToken();
-    double getNVal() const;
-    std::string getSVal() const;
+    double getNVal();
+    std::string getSVal();
 private:
     const std::string& str;
     std::string stok;

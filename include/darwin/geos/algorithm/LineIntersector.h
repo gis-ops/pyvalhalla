@@ -20,7 +20,6 @@
 #ifndef GEOS_ALGORITHM_LINEINTERSECTOR_H
 #define GEOS_ALGORITHM_LINEINTERSECTOR_H
 
-#include <geos/inline.h>
 #include <geos/export.h>
 #include <string>
 
@@ -79,14 +78,14 @@ public:
     static double nonRobustComputeEdgeDistance(const geom::Coordinate& p, const geom::Coordinate& p1,
             const geom::Coordinate& p2);
 
-    explicit LineIntersector(const geom::PrecisionModel* initialPrecisionModel = nullptr)
+    LineIntersector(const geom::PrecisionModel* initialPrecisionModel = nullptr)
         :
         precisionModel(initialPrecisionModel),
         result(0),
         isProperVar(false)
     {}
 
-    ~LineIntersector() = default;
+    ~LineIntersector() {}
 
     /** \brief
      * Tests whether either intersection point is an interior point of
@@ -104,7 +103,7 @@ public:
      * @return <code>true</code> if either intersection point is in
      * the interior of the input segment
      */
-    bool isInteriorIntersection(std::size_t inputLineIndex);
+    bool isInteriorIntersection(size_t inputLineIndex);
 
     /// Force computed intersection to be rounded to a given precision model.
     ///
@@ -157,20 +156,6 @@ public:
         return result != NO_INTERSECTION;
     }
 
-
-    /**
-    * Gets an endpoint of an input segment.
-    *
-    * @param segmentIndex the index of the input segment (0 or 1)
-    * @param ptIndex the index of the endpoint (0 or 1)
-    * @return the specified endpoint
-    */
-    const geom::Coordinate*
-    getEndpoint(std::size_t segmentIndex, std::size_t ptIndex) const
-    {
-        return inputLines[segmentIndex][ptIndex];
-    }
-
     /// Returns the number of intersection points found.
     ///
     /// This will be either 0, 1 or 2.
@@ -189,7 +174,7 @@ public:
     /// @return the intIndex'th intersection point
     ///
     const geom::Coordinate&
-    getIntersection(std::size_t intIndex) const
+    getIntersection(size_t intIndex) const
     {
         return intPt[intIndex];
     }
@@ -242,7 +227,7 @@ public:
      * @return the intIndex'th intersection point in the direction of the
      *         specified input line segment
      */
-    const geom::Coordinate& getIntersectionAlongSegment(std::size_t segmentIndex, std::size_t intIndex);
+    const geom::Coordinate& getIntersectionAlongSegment(size_t segmentIndex, size_t intIndex);
 
     /** \brief
      * Computes the index of the intIndex'th intersection point in the direction of
@@ -253,7 +238,7 @@ public:
      *
      * @return the index of the intersection point along the segment (0 or 1)
      */
-    std::size_t getIndexAlongSegment(std::size_t segmentIndex, std::size_t intIndex);
+    size_t getIndexAlongSegment(size_t segmentIndex, size_t intIndex);
 
     /** \brief
      * Computes the "edge distance" of an intersection point along the specified
@@ -264,7 +249,7 @@ public:
      *
      * @return the edge distance of the intersection point
      */
-    double getEdgeDistance(std::size_t geomIndex, std::size_t intIndex) const;
+    double getEdgeDistance(size_t geomIndex, size_t intIndex) const;
 
 private:
 
@@ -274,7 +259,7 @@ private:
      */
     const geom::PrecisionModel* precisionModel;
 
-    std::size_t result;
+    size_t result;
 
     const geom::Coordinate* inputLines[2][2];
 
@@ -288,7 +273,7 @@ private:
      * The indexes of the endpoints of the intersection lines, in order along
      * the corresponding line
      */
-    std::size_t intLineIndex[2][2];
+    size_t intLineIndex[2][2];
 
     bool isProperVar;
     //Coordinate &pa;
@@ -311,7 +296,7 @@ private:
 
     void computeIntLineIndex();
 
-    void computeIntLineIndex(std::size_t segmentIndex);
+    void computeIntLineIndex(size_t segmentIndex);
 
     uint8_t computeCollinearIntersection(const geom::Coordinate& p1, const geom::Coordinate& p2,
                                          const geom::Coordinate& q1, const geom::Coordinate& q2);
@@ -411,9 +396,6 @@ private:
 } // namespace geos::algorithm
 } // namespace geos
 
-#ifdef GEOS_INLINE
-# include "geos/algorithm/LineIntersector.inl"
-#endif
 
 #endif // GEOS_ALGORITHM_LINEINTERSECTOR_H
 

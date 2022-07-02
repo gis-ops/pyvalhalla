@@ -23,7 +23,6 @@
 #include <vector> // for typedefs
 #include <set> // for typedefs
 #include <iosfwd> // ostream
-#include <cstdint>
 
 #ifdef _MSC_VER
 #pragma warning(push)

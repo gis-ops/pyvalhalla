@@ -100,7 +100,7 @@ public:
     double getAvg() const;
 
     /** \brief Return number of timings */
-    std::size_t getNumTimings() const;
+    size_t getNumTimings() const;
 
     /** \brief Profile name */
     std::string name;

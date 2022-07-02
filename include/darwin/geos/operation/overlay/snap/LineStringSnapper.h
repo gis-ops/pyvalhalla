@@ -66,7 +66,7 @@ public:
         snapTolerance(nSnapTol),
         allowSnappingToSourceVertices(false)
     {
-        std::size_t s = srcPts.size();
+        size_t s = srcPts.size();
         isClosed = s < 2 ? false : srcPts[0].equals2D(srcPts[s - 1]);
     }
 

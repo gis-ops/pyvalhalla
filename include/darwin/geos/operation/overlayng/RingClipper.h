@@ -74,7 +74,11 @@ private:
     static constexpr int BOX_BOTTOM = 0;
 
     // Members
-    const Envelope clipEnv;
+    // const Envelope* clipEnv;
+    double clipEnvMinY;
+    double clipEnvMaxY;
+    double clipEnvMinX;
+    double clipEnvMaxX;
 
     // Methods
 
@@ -97,7 +101,10 @@ private:
 public:
 
     RingClipper(const Envelope* env)
-        : clipEnv(*env)
+        : clipEnvMinY(env->getMinY())
+        , clipEnvMaxY(env->getMaxY())
+        , clipEnvMinX(env->getMinX())
+        , clipEnvMaxX(env->getMaxX())
         {};
 
     /**

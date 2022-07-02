@@ -131,7 +131,7 @@ public:
      * \brief Returns the remainder when i is divided by the number of
      * edges in this DirectedEdgeStar.
      */
-    unsigned int getIndex(int i) const;
+    int getIndex(int i) const;
 
     /**
      * \brief Returns the DirectedEdge on the left-hand side
