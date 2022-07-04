@@ -122,26 +122,6 @@ class Statistic PROTOBUF_FINAL :
 
   static const Statistic& default_instance();
 
-  enum HasKeyCase {
-    kKey = 1,
-    HAS_KEY_NOT_SET = 0,
-  };
-
-  enum HasValueCase {
-    kValue = 2,
-    HAS_VALUE_NOT_SET = 0,
-  };
-
-  enum HasFrequencyCase {
-    kFrequency = 3,
-    HAS_FREQUENCY_NOT_SET = 0,
-  };
-
-  enum HasTypeCase {
-    kType = 4,
-    HAS_TYPE_NOT_SET = 0,
-  };
-
   static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
   static inline const Statistic* internal_default_instance() {
     return reinterpret_cast<const Statistic*>(
@@ -219,9 +199,6 @@ class Statistic PROTOBUF_FINAL :
     kTypeFieldNumber = 4,
   };
   // string key = 1;
-  private:
-  bool _internal_has_key() const;
-  public:
   void clear_key();
   const std::string& key() const;
   void set_key(const std::string& value);
@@ -247,9 +224,6 @@ class Statistic PROTOBUF_FINAL :
   public:
 
   // double value = 2;
-  private:
-  bool _internal_has_value() const;
-  public:
   void clear_value();
   double value() const;
   void set_value(double value);
@@ -259,9 +233,6 @@ class Statistic PROTOBUF_FINAL :
   public:
 
   // float frequency = 3;
-  private:
-  bool _internal_has_frequency() const;
-  public:
   void clear_frequency();
   float frequency() const;
   void set_frequency(float value);
@@ -271,9 +242,6 @@ class Statistic PROTOBUF_FINAL :
   public:
 
   // .valhalla.StatisticType type = 4;
-  private:
-  bool _internal_has_type() const;
-  public:
   void clear_type();
   ::valhalla::StatisticType type() const;
   void set_type(::valhalla::StatisticType value);
@@ -282,56 +250,18 @@ class Statistic PROTOBUF_FINAL :
   void _internal_set_type(::valhalla::StatisticType value);
   public:
 
-  void clear_has_key();
-  HasKeyCase has_key_case() const;
-  void clear_has_value();
-  HasValueCase has_value_case() const;
-  void clear_has_frequency();
-  HasFrequencyCase has_frequency_case() const;
-  void clear_has_type();
-  HasTypeCase has_type_case() const;
   // @@protoc_insertion_point(class_scope:valhalla.Statistic)
  private:
   class _Internal;
-  void set_has_key();
-  void set_has_value();
-  void set_has_frequency();
-  void set_has_type();
-
-  inline bool has_has_key() const;
-  inline void clear_has_has_key();
-
-  inline bool has_has_value() const;
-  inline void clear_has_has_value();
-
-  inline bool has_has_frequency() const;
-  inline void clear_has_has_frequency();
-
-  inline bool has_has_type() const;
-  inline void clear_has_has_type();
 
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  union HasKeyUnion {
-    HasKeyUnion() {}
-    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr key_;
-  } has_key_;
-  union HasValueUnion {
-    HasValueUnion() {}
-    double value_;
-  } has_value_;
-  union HasFrequencyUnion {
-    HasFrequencyUnion() {}
-    float frequency_;
-  } has_frequency_;
-  union HasTypeUnion {
-    HasTypeUnion() {}
-    int type_;
-  } has_type_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr key_;
+  double value_;
+  float frequency_;
+  int type_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  ::PROTOBUF_NAMESPACE_ID::uint32 _oneof_case_[4];
-
   friend struct ::TableStruct_info_2eproto;
 };
 // -------------------------------------------------------------------
@@ -362,16 +292,6 @@ class CodedDescription PROTOBUF_FINAL :
   }
 
   static const CodedDescription& default_instance();
-
-  enum HasDescriptionCase {
-    kDescription = 1,
-    HAS_DESCRIPTION_NOT_SET = 0,
-  };
-
-  enum HasCodeCase {
-    kCode = 2,
-    HAS_CODE_NOT_SET = 0,
-  };
 
   static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
   static inline const CodedDescription* internal_default_instance() {
@@ -448,9 +368,6 @@ class CodedDescription PROTOBUF_FINAL :
     kCodeFieldNumber = 2,
   };
   // string description = 1;
-  private:
-  bool _internal_has_description() const;
-  public:
   void clear_description();
   const std::string& description() const;
   void set_description(const std::string& value);
@@ -476,9 +393,6 @@ class CodedDescription PROTOBUF_FINAL :
   public:
 
   // uint64 code = 2;
-  private:
-  bool _internal_has_code() const;
-  public:
   void clear_code();
   ::PROTOBUF_NAMESPACE_ID::uint64 code() const;
   void set_code(::PROTOBUF_NAMESPACE_ID::uint64 value);
@@ -487,36 +401,16 @@ class CodedDescription PROTOBUF_FINAL :
   void _internal_set_code(::PROTOBUF_NAMESPACE_ID::uint64 value);
   public:
 
-  void clear_has_description();
-  HasDescriptionCase has_description_case() const;
-  void clear_has_code();
-  HasCodeCase has_code_case() const;
   // @@protoc_insertion_point(class_scope:valhalla.CodedDescription)
  private:
   class _Internal;
-  void set_has_description();
-  void set_has_code();
-
-  inline bool has_has_description() const;
-  inline void clear_has_has_description();
-
-  inline bool has_has_code() const;
-  inline void clear_has_has_code();
 
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  union HasDescriptionUnion {
-    HasDescriptionUnion() {}
-    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr description_;
-  } has_description_;
-  union HasCodeUnion {
-    HasCodeUnion() {}
-    ::PROTOBUF_NAMESPACE_ID::uint64 code_;
-  } has_code_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr description_;
+  ::PROTOBUF_NAMESPACE_ID::uint64 code_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  ::PROTOBUF_NAMESPACE_ID::uint32 _oneof_case_[2];
-
   friend struct ::TableStruct_info_2eproto;
 };
 // -------------------------------------------------------------------
@@ -622,6 +516,7 @@ class Info PROTOBUF_FINAL :
     kStatisticsFieldNumber = 1,
     kErrorsFieldNumber = 2,
     kWarningsFieldNumber = 3,
+    kIsServiceFieldNumber = 4,
   };
   // repeated .valhalla.Statistic statistics = 1;
   int statistics_size() const;
@@ -677,6 +572,15 @@ class Info PROTOBUF_FINAL :
   const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::valhalla::CodedDescription >&
       warnings() const;
 
+  // bool is_service = 4;
+  void clear_is_service();
+  bool is_service() const;
+  void set_is_service(bool value);
+  private:
+  bool _internal_is_service() const;
+  void _internal_set_is_service(bool value);
+  public:
+
   // @@protoc_insertion_point(class_scope:valhalla.Info)
  private:
   class _Internal;
@@ -687,6 +591,7 @@ class Info PROTOBUF_FINAL :
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::valhalla::Statistic > statistics_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::valhalla::CodedDescription > errors_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::valhalla::CodedDescription > warnings_;
+  bool is_service_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_info_2eproto;
 };
@@ -702,17 +607,8 @@ class Info PROTOBUF_FINAL :
 // Statistic
 
 // string key = 1;
-inline bool Statistic::_internal_has_key() const {
-  return has_key_case() == kKey;
-}
-inline void Statistic::set_has_key() {
-  _oneof_case_[0] = kKey;
-}
 inline void Statistic::clear_key() {
-  if (_internal_has_key()) {
-    has_key_.key_.Destroy(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
-    clear_has_has_key();
-  }
+  key_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
 inline const std::string& Statistic::key() const {
   // @@protoc_insertion_point(field_get:valhalla.Statistic.key)
@@ -727,134 +623,84 @@ inline std::string* Statistic::mutable_key() {
   return _internal_mutable_key();
 }
 inline const std::string& Statistic::_internal_key() const {
-  if (_internal_has_key()) {
-    return has_key_.key_.Get();
-  }
-  return *&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited();
+  return key_.Get();
 }
 inline void Statistic::_internal_set_key(const std::string& value) {
-  if (!_internal_has_key()) {
-    clear_has_key();
-    set_has_key();
-    has_key_.key_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  }
-  has_key_.key_.SetLite(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value, GetArena());
+  
+  key_.SetLite(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value, GetArena());
 }
 inline void Statistic::set_key(std::string&& value) {
-  // @@protoc_insertion_point(field_set:valhalla.Statistic.key)
-  if (!_internal_has_key()) {
-    clear_has_key();
-    set_has_key();
-    has_key_.key_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  }
-  has_key_.key_.SetLite(
+  
+  key_.SetLite(
     &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value), GetArena());
   // @@protoc_insertion_point(field_set_rvalue:valhalla.Statistic.key)
 }
 inline void Statistic::set_key(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
-  if (!_internal_has_key()) {
-    clear_has_key();
-    set_has_key();
-    has_key_.key_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  }
-  has_key_.key_.SetLite(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-      ::std::string(value), GetArena());
+  
+  key_.SetLite(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value),
+              GetArena());
   // @@protoc_insertion_point(field_set_char:valhalla.Statistic.key)
 }
 inline void Statistic::set_key(const char* value,
-                             size_t size) {
-  if (!_internal_has_key()) {
-    clear_has_key();
-    set_has_key();
-    has_key_.key_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  }
-  has_key_.key_.SetLite(
-      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(
-      reinterpret_cast<const char*>(value), size),
-      GetArena());
+    size_t size) {
+  
+  key_.SetLite(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
   // @@protoc_insertion_point(field_set_pointer:valhalla.Statistic.key)
 }
 inline std::string* Statistic::_internal_mutable_key() {
-  if (!_internal_has_key()) {
-    clear_has_key();
-    set_has_key();
-    has_key_.key_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  }
-  return has_key_.key_.Mutable(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  
+  return key_.Mutable(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
 inline std::string* Statistic::release_key() {
   // @@protoc_insertion_point(field_release:valhalla.Statistic.key)
-  if (_internal_has_key()) {
-    clear_has_has_key();
-    return has_key_.key_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
-  } else {
-    return nullptr;
-  }
+  return key_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
 inline void Statistic::set_allocated_key(std::string* key) {
-  if (has_has_key()) {
-    clear_has_key();
-  }
   if (key != nullptr) {
-    set_has_key();
-    has_key_.key_.UnsafeSetDefault(key);
+    
+  } else {
+    
   }
+  key_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), key,
+      GetArena());
   // @@protoc_insertion_point(field_set_allocated:valhalla.Statistic.key)
 }
 inline std::string* Statistic::unsafe_arena_release_key() {
   // @@protoc_insertion_point(field_unsafe_arena_release:valhalla.Statistic.key)
   GOOGLE_DCHECK(GetArena() != nullptr);
-  if (_internal_has_key()) {
-    clear_has_has_key();
-    return has_key_.key_.UnsafeArenaRelease(
-        &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
-  } else {
-    return nullptr;
-  }
+  
+  return key_.UnsafeArenaRelease(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      GetArena());
 }
-inline void Statistic::unsafe_arena_set_allocated_key(std::string* key) {
+inline void Statistic::unsafe_arena_set_allocated_key(
+    std::string* key) {
   GOOGLE_DCHECK(GetArena() != nullptr);
-  if (!_internal_has_key()) {
-    has_key_.key_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (key != nullptr) {
+    
+  } else {
+    
   }
-  clear_has_key();
-  if (key) {
-    set_has_key();
-    has_key_.key_.UnsafeArenaSetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), key, GetArena());
-  }
+  key_.UnsafeArenaSetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      key, GetArena());
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:valhalla.Statistic.key)
 }
 
 // double value = 2;
-inline bool Statistic::_internal_has_value() const {
-  return has_value_case() == kValue;
-}
-inline void Statistic::set_has_value() {
-  _oneof_case_[1] = kValue;
-}
 inline void Statistic::clear_value() {
-  if (_internal_has_value()) {
-    has_value_.value_ = 0;
-    clear_has_has_value();
-  }
+  value_ = 0;
 }
 inline double Statistic::_internal_value() const {
-  if (_internal_has_value()) {
-    return has_value_.value_;
-  }
-  return 0;
-}
-inline void Statistic::_internal_set_value(double value) {
-  if (!_internal_has_value()) {
-    clear_has_value();
-    set_has_value();
-  }
-  has_value_.value_ = value;
+  return value_;
 }
 inline double Statistic::value() const {
   // @@protoc_insertion_point(field_get:valhalla.Statistic.value)
   return _internal_value();
+}
+inline void Statistic::_internal_set_value(double value) {
+  
+  value_ = value;
 }
 inline void Statistic::set_value(double value) {
   _internal_set_value(value);
@@ -862,34 +708,19 @@ inline void Statistic::set_value(double value) {
 }
 
 // float frequency = 3;
-inline bool Statistic::_internal_has_frequency() const {
-  return has_frequency_case() == kFrequency;
-}
-inline void Statistic::set_has_frequency() {
-  _oneof_case_[2] = kFrequency;
-}
 inline void Statistic::clear_frequency() {
-  if (_internal_has_frequency()) {
-    has_frequency_.frequency_ = 0;
-    clear_has_has_frequency();
-  }
+  frequency_ = 0;
 }
 inline float Statistic::_internal_frequency() const {
-  if (_internal_has_frequency()) {
-    return has_frequency_.frequency_;
-  }
-  return 0;
-}
-inline void Statistic::_internal_set_frequency(float value) {
-  if (!_internal_has_frequency()) {
-    clear_has_frequency();
-    set_has_frequency();
-  }
-  has_frequency_.frequency_ = value;
+  return frequency_;
 }
 inline float Statistic::frequency() const {
   // @@protoc_insertion_point(field_get:valhalla.Statistic.frequency)
   return _internal_frequency();
+}
+inline void Statistic::_internal_set_frequency(float value) {
+  
+  frequency_ = value;
 }
 inline void Statistic::set_frequency(float value) {
   _internal_set_frequency(value);
@@ -897,92 +728,32 @@ inline void Statistic::set_frequency(float value) {
 }
 
 // .valhalla.StatisticType type = 4;
-inline bool Statistic::_internal_has_type() const {
-  return has_type_case() == kType;
-}
-inline void Statistic::set_has_type() {
-  _oneof_case_[3] = kType;
-}
 inline void Statistic::clear_type() {
-  if (_internal_has_type()) {
-    has_type_.type_ = 0;
-    clear_has_has_type();
-  }
+  type_ = 0;
 }
 inline ::valhalla::StatisticType Statistic::_internal_type() const {
-  if (_internal_has_type()) {
-    return static_cast< ::valhalla::StatisticType >(has_type_.type_);
-  }
-  return static_cast< ::valhalla::StatisticType >(0);
+  return static_cast< ::valhalla::StatisticType >(type_);
 }
 inline ::valhalla::StatisticType Statistic::type() const {
   // @@protoc_insertion_point(field_get:valhalla.Statistic.type)
   return _internal_type();
 }
 inline void Statistic::_internal_set_type(::valhalla::StatisticType value) {
-  if (!_internal_has_type()) {
-    clear_has_type();
-    set_has_type();
-  }
-  has_type_.type_ = value;
+  
+  type_ = value;
 }
 inline void Statistic::set_type(::valhalla::StatisticType value) {
-  // @@protoc_insertion_point(field_set:valhalla.Statistic.type)
   _internal_set_type(value);
+  // @@protoc_insertion_point(field_set:valhalla.Statistic.type)
 }
 
-inline bool Statistic::has_has_key() const {
-  return has_key_case() != HAS_KEY_NOT_SET;
-}
-inline void Statistic::clear_has_has_key() {
-  _oneof_case_[0] = HAS_KEY_NOT_SET;
-}
-inline bool Statistic::has_has_value() const {
-  return has_value_case() != HAS_VALUE_NOT_SET;
-}
-inline void Statistic::clear_has_has_value() {
-  _oneof_case_[1] = HAS_VALUE_NOT_SET;
-}
-inline bool Statistic::has_has_frequency() const {
-  return has_frequency_case() != HAS_FREQUENCY_NOT_SET;
-}
-inline void Statistic::clear_has_has_frequency() {
-  _oneof_case_[2] = HAS_FREQUENCY_NOT_SET;
-}
-inline bool Statistic::has_has_type() const {
-  return has_type_case() != HAS_TYPE_NOT_SET;
-}
-inline void Statistic::clear_has_has_type() {
-  _oneof_case_[3] = HAS_TYPE_NOT_SET;
-}
-inline Statistic::HasKeyCase Statistic::has_key_case() const {
-  return Statistic::HasKeyCase(_oneof_case_[0]);
-}
-inline Statistic::HasValueCase Statistic::has_value_case() const {
-  return Statistic::HasValueCase(_oneof_case_[1]);
-}
-inline Statistic::HasFrequencyCase Statistic::has_frequency_case() const {
-  return Statistic::HasFrequencyCase(_oneof_case_[2]);
-}
-inline Statistic::HasTypeCase Statistic::has_type_case() const {
-  return Statistic::HasTypeCase(_oneof_case_[3]);
-}
 // -------------------------------------------------------------------
 
 // CodedDescription
 
 // string description = 1;
-inline bool CodedDescription::_internal_has_description() const {
-  return has_description_case() == kDescription;
-}
-inline void CodedDescription::set_has_description() {
-  _oneof_case_[0] = kDescription;
-}
 inline void CodedDescription::clear_description() {
-  if (_internal_has_description()) {
-    has_description_.description_.Destroy(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
-    clear_has_has_description();
-  }
+  description_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
 inline const std::string& CodedDescription::description() const {
   // @@protoc_insertion_point(field_get:valhalla.CodedDescription.description)
@@ -997,158 +768,90 @@ inline std::string* CodedDescription::mutable_description() {
   return _internal_mutable_description();
 }
 inline const std::string& CodedDescription::_internal_description() const {
-  if (_internal_has_description()) {
-    return has_description_.description_.Get();
-  }
-  return *&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited();
+  return description_.Get();
 }
 inline void CodedDescription::_internal_set_description(const std::string& value) {
-  if (!_internal_has_description()) {
-    clear_has_description();
-    set_has_description();
-    has_description_.description_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  }
-  has_description_.description_.SetLite(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value, GetArena());
+  
+  description_.SetLite(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value, GetArena());
 }
 inline void CodedDescription::set_description(std::string&& value) {
-  // @@protoc_insertion_point(field_set:valhalla.CodedDescription.description)
-  if (!_internal_has_description()) {
-    clear_has_description();
-    set_has_description();
-    has_description_.description_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  }
-  has_description_.description_.SetLite(
+  
+  description_.SetLite(
     &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value), GetArena());
   // @@protoc_insertion_point(field_set_rvalue:valhalla.CodedDescription.description)
 }
 inline void CodedDescription::set_description(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
-  if (!_internal_has_description()) {
-    clear_has_description();
-    set_has_description();
-    has_description_.description_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  }
-  has_description_.description_.SetLite(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-      ::std::string(value), GetArena());
+  
+  description_.SetLite(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value),
+              GetArena());
   // @@protoc_insertion_point(field_set_char:valhalla.CodedDescription.description)
 }
 inline void CodedDescription::set_description(const char* value,
-                             size_t size) {
-  if (!_internal_has_description()) {
-    clear_has_description();
-    set_has_description();
-    has_description_.description_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  }
-  has_description_.description_.SetLite(
-      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(
-      reinterpret_cast<const char*>(value), size),
-      GetArena());
+    size_t size) {
+  
+  description_.SetLite(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
   // @@protoc_insertion_point(field_set_pointer:valhalla.CodedDescription.description)
 }
 inline std::string* CodedDescription::_internal_mutable_description() {
-  if (!_internal_has_description()) {
-    clear_has_description();
-    set_has_description();
-    has_description_.description_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  }
-  return has_description_.description_.Mutable(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  
+  return description_.Mutable(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
 inline std::string* CodedDescription::release_description() {
   // @@protoc_insertion_point(field_release:valhalla.CodedDescription.description)
-  if (_internal_has_description()) {
-    clear_has_has_description();
-    return has_description_.description_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
-  } else {
-    return nullptr;
-  }
+  return description_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
 inline void CodedDescription::set_allocated_description(std::string* description) {
-  if (has_has_description()) {
-    clear_has_description();
-  }
   if (description != nullptr) {
-    set_has_description();
-    has_description_.description_.UnsafeSetDefault(description);
+    
+  } else {
+    
   }
+  description_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), description,
+      GetArena());
   // @@protoc_insertion_point(field_set_allocated:valhalla.CodedDescription.description)
 }
 inline std::string* CodedDescription::unsafe_arena_release_description() {
   // @@protoc_insertion_point(field_unsafe_arena_release:valhalla.CodedDescription.description)
   GOOGLE_DCHECK(GetArena() != nullptr);
-  if (_internal_has_description()) {
-    clear_has_has_description();
-    return has_description_.description_.UnsafeArenaRelease(
-        &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
-  } else {
-    return nullptr;
-  }
+  
+  return description_.UnsafeArenaRelease(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      GetArena());
 }
-inline void CodedDescription::unsafe_arena_set_allocated_description(std::string* description) {
+inline void CodedDescription::unsafe_arena_set_allocated_description(
+    std::string* description) {
   GOOGLE_DCHECK(GetArena() != nullptr);
-  if (!_internal_has_description()) {
-    has_description_.description_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (description != nullptr) {
+    
+  } else {
+    
   }
-  clear_has_description();
-  if (description) {
-    set_has_description();
-    has_description_.description_.UnsafeArenaSetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), description, GetArena());
-  }
+  description_.UnsafeArenaSetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      description, GetArena());
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:valhalla.CodedDescription.description)
 }
 
 // uint64 code = 2;
-inline bool CodedDescription::_internal_has_code() const {
-  return has_code_case() == kCode;
-}
-inline void CodedDescription::set_has_code() {
-  _oneof_case_[1] = kCode;
-}
 inline void CodedDescription::clear_code() {
-  if (_internal_has_code()) {
-    has_code_.code_ = PROTOBUF_ULONGLONG(0);
-    clear_has_has_code();
-  }
+  code_ = PROTOBUF_ULONGLONG(0);
 }
 inline ::PROTOBUF_NAMESPACE_ID::uint64 CodedDescription::_internal_code() const {
-  if (_internal_has_code()) {
-    return has_code_.code_;
-  }
-  return PROTOBUF_ULONGLONG(0);
-}
-inline void CodedDescription::_internal_set_code(::PROTOBUF_NAMESPACE_ID::uint64 value) {
-  if (!_internal_has_code()) {
-    clear_has_code();
-    set_has_code();
-  }
-  has_code_.code_ = value;
+  return code_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::uint64 CodedDescription::code() const {
   // @@protoc_insertion_point(field_get:valhalla.CodedDescription.code)
   return _internal_code();
+}
+inline void CodedDescription::_internal_set_code(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  
+  code_ = value;
 }
 inline void CodedDescription::set_code(::PROTOBUF_NAMESPACE_ID::uint64 value) {
   _internal_set_code(value);
   // @@protoc_insertion_point(field_set:valhalla.CodedDescription.code)
 }
 
-inline bool CodedDescription::has_has_description() const {
-  return has_description_case() != HAS_DESCRIPTION_NOT_SET;
-}
-inline void CodedDescription::clear_has_has_description() {
-  _oneof_case_[0] = HAS_DESCRIPTION_NOT_SET;
-}
-inline bool CodedDescription::has_has_code() const {
-  return has_code_case() != HAS_CODE_NOT_SET;
-}
-inline void CodedDescription::clear_has_has_code() {
-  _oneof_case_[1] = HAS_CODE_NOT_SET;
-}
-inline CodedDescription::HasDescriptionCase CodedDescription::has_description_case() const {
-  return CodedDescription::HasDescriptionCase(_oneof_case_[0]);
-}
-inline CodedDescription::HasCodeCase CodedDescription::has_code_case() const {
-  return CodedDescription::HasCodeCase(_oneof_case_[1]);
-}
 // -------------------------------------------------------------------
 
 // Info
@@ -1268,6 +971,26 @@ inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::valhalla::CodedDescrip
 Info::warnings() const {
   // @@protoc_insertion_point(field_list:valhalla.Info.warnings)
   return warnings_;
+}
+
+// bool is_service = 4;
+inline void Info::clear_is_service() {
+  is_service_ = false;
+}
+inline bool Info::_internal_is_service() const {
+  return is_service_;
+}
+inline bool Info::is_service() const {
+  // @@protoc_insertion_point(field_get:valhalla.Info.is_service)
+  return _internal_is_service();
+}
+inline void Info::_internal_set_is_service(bool value) {
+  
+  is_service_ = value;
+}
+inline void Info::set_is_service(bool value) {
+  _internal_set_is_service(value);
+  // @@protoc_insertion_point(field_set:valhalla.Info.is_service)
 }
 
 #ifdef __GNUC__

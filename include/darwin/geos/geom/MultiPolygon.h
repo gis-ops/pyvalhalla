@@ -87,9 +87,11 @@ public:
 
     GeometryTypeId getGeometryTypeId() const override;
 
-    std::unique_ptr<MultiPolygon> clone() const;
+    bool equalsExact(const Geometry* other, double tolerance = 0) const override;
 
-    std::unique_ptr<MultiPolygon> reverse() const { return std::unique_ptr<MultiPolygon>(reverseImpl()); }
+    std::unique_ptr<Geometry> clone() const override;
+
+    std::unique_ptr<Geometry> reverse() const override;
 
 protected:
 
@@ -123,10 +125,6 @@ protected:
                  const GeometryFactory& newFactory);
 
     MultiPolygon(const MultiPolygon& mp);
-
-    MultiPolygon* cloneImpl() const override { return new MultiPolygon(*this); }
-
-    MultiPolygon* reverseImpl() const override;
 
     int
     getSortIndex() const override

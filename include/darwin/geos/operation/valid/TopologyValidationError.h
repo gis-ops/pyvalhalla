@@ -52,22 +52,21 @@ public:
         eDuplicatedRings,
         eTooFewPoints,
         eInvalidCoordinate,
-        eRingNotClosed,
-        oNoInvalidIntersection = -1
+        eRingNotClosed
     };
 
     TopologyValidationError(int newErrorType, const geom::Coordinate& newPt);
     TopologyValidationError(int newErrorType);
-    const geom::Coordinate& getCoordinate() const;
-    std::string getMessage() const;
-    int getErrorType() const;
-    std::string toString() const;
+    geom::Coordinate& getCoordinate();
+    std::string getMessage();
+    int getErrorType();
+    std::string toString();
 
 private:
     // Used const char* to reduce dynamic allocations
     static const char* errMsg[];
     int errorType;
-    const geom::Coordinate pt;
+    geom::Coordinate pt;
 };
 
 

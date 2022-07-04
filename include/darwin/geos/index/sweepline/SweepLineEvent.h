@@ -49,9 +49,9 @@ public:
 
     SweepLineEvent* getInsertEvent();
 
-    std::size_t getDeleteEventIndex();
+    size_t getDeleteEventIndex();
 
-    void setDeleteEventIndex(std::size_t newDeleteEventIndex);
+    void setDeleteEventIndex(size_t newDeleteEventIndex);
 
     SweepLineInterval* getInterval();
 
@@ -74,7 +74,7 @@ private:
     /// null if this is an INSERT_EVENT event
     SweepLineEvent* insertEvent;
 
-    std::size_t deleteEventIndex;
+    size_t deleteEventIndex;
 
     SweepLineInterval* sweepInt;
 

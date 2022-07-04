@@ -82,7 +82,7 @@ public:
     }
 
     void
-    setDeleteEventIndex(std::size_t newDeleteEventIndex)
+    setDeleteEventIndex(size_t newDeleteEventIndex)
     {
         deleteEventIndex = newDeleteEventIndex;
     }
@@ -109,7 +109,7 @@ private:
 
     SweepLineEvent* insertEvent; // null if this is an INSERT_EVENT event
 
-    std::size_t deleteEventIndex;
+    size_t deleteEventIndex;
 };
 
 class GEOS_DLL SweepLineEventLessThen {

@@ -58,7 +58,7 @@ private:
 
     std::deque<KdNode> nodeQue;
     KdNode *root;
-    std::size_t numberOfNodes;
+    size_t numberOfNodes;
     double tolerance;
 
     KdNode* findBestMatchNode(const geom::Coordinate& p);

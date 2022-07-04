@@ -59,7 +59,7 @@ class GEOS_DLL Densifier {
 public:
     Densifier(const Geometry* inputGeom);
 
-    static Geometry::Ptr densify(const Geometry* geom, double distanceTolerance);
+    Geometry::Ptr densify(const Geometry* geom, double distanceTolerance);
     void setDistanceTolerance(double distanceTolerance);
     Geometry::Ptr getResultGeometry() const;
 

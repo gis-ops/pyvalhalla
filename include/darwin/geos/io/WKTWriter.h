@@ -220,7 +220,7 @@ protected:
     void appendCoordinate(const geom::Coordinate* coordinate,
                           Writer* writer);
 
-    std::string writeNumber(double d) const;
+    std::string writeNumber(double d);
 
     void appendLineStringText(
         const geom::LineString* lineString,
@@ -270,7 +270,7 @@ private:
         const geom::Geometry* geometry,
         bool isFormatted, Writer* writer);
 
-    void indent(int level, Writer* writer) const;
+    void indent(int level, Writer* writer);
 };
 
 } // namespace geos::io

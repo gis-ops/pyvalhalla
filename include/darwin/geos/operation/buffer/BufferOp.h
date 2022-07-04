@@ -21,9 +21,6 @@
 #ifndef GEOS_OP_BUFFER_BUFFEROP_H
 #define GEOS_OP_BUFFER_BUFFEROP_H
 
-#include <memory> // for unique_ptr
-#include <vector> // for vector
-
 #include <geos/export.h>
 #include <geos/operation/buffer/BufferParameters.h> // for enum values
 
@@ -89,19 +86,7 @@ private:
      *
      *  This value should be less than the decimal precision of double-precision values (16).
      */
-    static constexpr int MAX_PRECISION_DIGITS = 12;
-
-    const geom::Geometry* argGeom;
-
-    util::TopologyException saveException;
-
-    double distance;
-
-    BufferParameters bufParams;
-
-    std::unique_ptr<geom::Geometry> resultGeometry;
-
-    bool isInvertOrientation = false;
+    static const int MAX_PRECISION_DIGITS = 12;
 
     /**
      * Compute a reasonable scale factor to limit the precision of
@@ -122,6 +107,17 @@ private:
     static double precisionScaleFactor(const geom::Geometry* g,
                                        double distance, int maxPrecisionDigits);
 
+    const geom::Geometry* argGeom;
+
+    util::TopologyException saveException;
+
+    double distance;
+
+    //int quadrantSegments;
+    //int endCapStyle;
+    BufferParameters bufParams;
+
+    geom::Geometry* resultGeometry;
 
     void computeGeometry();
 
@@ -132,10 +128,6 @@ private:
     void bufferReducedPrecision();
 
     void bufferFixedPrecision(const geom::PrecisionModel& fixedPM);
-
-    static void extractPolygons(
-        geom::Geometry* poly0,
-        std::vector<std::unique_ptr<geom::Geometry>>& polys);
 
 public:
 
@@ -165,11 +157,11 @@ public:
      * @return the buffer of the input geometry
      *
      */
-    static std::unique_ptr<geom::Geometry> bufferOp(
-        const geom::Geometry* g,
-        double distance,
-        int quadrantSegments = BufferParameters::DEFAULT_QUADRANT_SEGMENTS,
-        int endCapStyle = BufferParameters::CAP_ROUND);
+    static geom::Geometry* bufferOp(const geom::Geometry* g,
+                                    double distance,
+                                    int quadrantSegments =
+                                        BufferParameters::DEFAULT_QUADRANT_SEGMENTS,
+                                    int endCapStyle = BufferParameters::CAP_ROUND);
 
     /** \brief
      * Initializes a buffer computation for the given geometry.
@@ -180,8 +172,7 @@ public:
         :
         argGeom(g),
         bufParams(),
-        resultGeometry(nullptr),
-        isInvertOrientation(false)
+        resultGeometry(nullptr)
     {
     }
 
@@ -197,8 +188,7 @@ public:
         :
         argGeom(g),
         bufParams(params),
-        resultGeometry(nullptr),
-        isInvertOrientation(false)
+        resultGeometry(nullptr)
     {
     }
 
@@ -248,28 +238,7 @@ public:
      * @param nDistance the buffer distance
      * @return the buffer of the input geometry
      */
-    std::unique_ptr<geom::Geometry> getResultGeometry(double nDistance);
-
-    /**
-    * Buffers a geometry with distance zero.
-    * The result can be computed using the maximum-signed-area orientation,
-    * or by combining both orientations.
-    *
-    * This can be used to fix an invalid polygonal geometry to be valid
-    * (i.e. with no self-intersections).
-    * For some uses (e.g. fixing the result of a simplification)
-    * a better result is produced by using only the max-area orientation.
-    * Other uses (e.g. fixing geometry) require both orientations to be used.
-    *
-    * This function is for INTERNAL use only.
-    *
-    * @param geom the polygonal geometry to buffer by zero
-    * @param isBothOrientations true if both orientations of input rings should be used
-    * @return the buffered polygonal geometry
-    */
-    static std::unique_ptr<geom::Geometry> bufferByZero(
-        const geom::Geometry* geom,
-        bool isBothOrientations);
+    geom::Geometry* getResultGeometry(double nDistance);
 
 };
 

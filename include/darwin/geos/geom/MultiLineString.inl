@@ -35,10 +35,10 @@ MultiLineString::MultiLineString(const MultiLineString& mp)
 {
 }
 
-INLINE std::unique_ptr<MultiLineString>
+INLINE std::unique_ptr<Geometry>
 MultiLineString::clone() const
 {
-    return std::unique_ptr<MultiLineString>(cloneImpl());
+    return std::unique_ptr<Geometry>(new MultiLineString(*this));
 }
 
 } // namespace geos::geom

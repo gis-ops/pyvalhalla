@@ -24,9 +24,8 @@
 #include <geos/inline.h>
 
 #include <geos/index/chain/MonotoneChainOverlapAction.h> // for inheritance
-#include <geos/index/chain/MonotoneChain.h>
 #include <geos/noding/SinglePassNoder.h> // for inheritance
-#include <geos/index/strtree/TemplateSTRtree.h> // for composition
+#include <geos/index/strtree/SimpleSTRtree.h> // for composition
 #include <geos/util.h>
 
 #include <vector>
@@ -66,13 +65,13 @@ namespace noding { // geos.noding
 class GEOS_DLL MCIndexNoder : public SinglePassNoder {
 
 private:
-    std::vector<index::chain::MonotoneChain> monoChains;
-    index::strtree::TemplateSTRtree<const index::chain::MonotoneChain*> index;
+    std::vector<index::chain::MonotoneChain*> monoChains;
+    index::strtree::SimpleSTRtree index;
+    int idCounter;
     std::vector<SegmentString*>* nodedSegStrings;
     // statistics
     int nOverlaps;
     double overlapTolerance;
-    bool indexBuilt;
 
     void intersectChains();
 
@@ -81,18 +80,18 @@ private:
 public:
 
     MCIndexNoder(SegmentIntersector* nSegInt = nullptr, double p_overlapTolerance = 0.0)
-        : SinglePassNoder(nSegInt)
-        , nodedSegStrings(nullptr)
-        , nOverlaps(0)
-        , overlapTolerance(p_overlapTolerance)
-        , indexBuilt(false)
+        :
+        SinglePassNoder(nSegInt),
+        idCounter(0),
+        nodedSegStrings(nullptr),
+        nOverlaps(0),
+        overlapTolerance(p_overlapTolerance)
     {}
 
-    ~MCIndexNoder() override {};
-
+    ~MCIndexNoder() override;
 
     /// \brief Return a reference to this instance's std::vector of MonotoneChains
-    std::vector<index::chain::MonotoneChain>&
+    std::vector<index::chain::MonotoneChain*>&
     getMonotoneChains()
     {
         return monoChains;
@@ -112,8 +111,8 @@ public:
             si(newSi)
         {}
 
-        void overlap(const index::chain::MonotoneChain& mc1, std::size_t start1,
-                     const index::chain::MonotoneChain& mc2, std::size_t start2) override;
+        void overlap(index::chain::MonotoneChain& mc1, std::size_t start1,
+                     index::chain::MonotoneChain& mc2, std::size_t start2) override;
     private:
         SegmentIntersector& si;
 

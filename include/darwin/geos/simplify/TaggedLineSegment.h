@@ -58,7 +58,7 @@ public:
     TaggedLineSegment(const geom::Coordinate& p0,
                       const geom::Coordinate& p1,
                       const geom::Geometry* parent,
-                      std::size_t index);
+                      size_t index);
 
     TaggedLineSegment(const geom::Coordinate& p0,
                       const geom::Coordinate& p1);
@@ -67,13 +67,13 @@ public:
 
     const geom::Geometry* getParent() const;
 
-    std::size_t getIndex() const;
+    size_t getIndex() const;
 
 private:
 
     const geom::Geometry* parent;
 
-    std::size_t index;
+    size_t index;
 
 };
 

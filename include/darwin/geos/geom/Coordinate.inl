@@ -38,16 +38,6 @@ Coordinate::isNull() const
     return (std::isnan(x) && std::isnan(y) && std::isnan(z));
 }
 
-INLINE bool
-Coordinate::isValid() const
-{
-    return std::isfinite(x) && std::isfinite(y);
-}
-
-INLINE
-Coordinate::Coordinate() : x(0.0), y(0.0), z(DoubleNotANumber)
-{}
-
 INLINE
 Coordinate::Coordinate(double xNew, double yNew, double zNew)
     :
@@ -63,18 +53,6 @@ Coordinate::equals2D(const Coordinate& other) const
         return false;
     }
     if(y != other.y) {
-        return false;
-    }
-    return true;
-}
-
-INLINE bool
-Coordinate::equals2D(const Coordinate& other, double tolerance) const
-{
-    if (std::abs(x - other.x) > tolerance) {
-        return false;
-    }
-    if (std::abs(y - other.y) > tolerance) {
         return false;
     }
     return true;

@@ -86,14 +86,18 @@ public:
 
     GeometryTypeId getGeometryTypeId() const override;
 
-    std::unique_ptr<MultiPoint> clone() const
+    bool equalsExact(const Geometry* other, double tolerance = 0) const override;
+
+    std::unique_ptr<Geometry>
+    clone() const override
     {
-        return std::unique_ptr<MultiPoint>(cloneImpl());
+        return std::unique_ptr<Geometry>(new MultiPoint(*this));
     }
 
-    std::unique_ptr<MultiPoint> reverse() const
+    std::unique_ptr<Geometry>
+    reverse() const override
     {
-        return std::unique_ptr<MultiPoint>(reverseImpl());
+        return clone();
     }
 
 protected:
@@ -124,11 +128,7 @@ protected:
 
     MultiPoint(const MultiPoint& mp): GeometryCollection(mp) {}
 
-    MultiPoint* cloneImpl() const override { return new MultiPoint(*this); }
-
-    MultiPoint* reverseImpl() const override { return new MultiPoint(*this); }
-
-    const Coordinate* getCoordinateN(std::size_t n) const;
+    const Coordinate* getCoordinateN(size_t n) const;
 
     int
     getSortIndex() const override

@@ -17,7 +17,8 @@
  *
  *********************************************************************/
 
-#pragma once
+#ifndef INCLUDE_GEOS_CONSTANTS_H_
+#define INCLUDE_GEOS_CONSTANTS_H_
 
 #ifdef _MSC_VER
 #ifndef NOMINMAX
@@ -30,16 +31,22 @@ typedef __int64 int64;
 #include <limits>
 #include <cinttypes>
 
+
+typedef int64_t int64;
+
 namespace geos {
 
 constexpr double MATH_PI = 3.14159265358979323846;
+
+
 
 // Some handy constants
 constexpr double DoubleNotANumber = std::numeric_limits<double>::quiet_NaN();
 constexpr double DoubleMax = (std::numeric_limits<double>::max)();
 constexpr double DoubleInfinity = (std::numeric_limits<double>::infinity)();
 constexpr double DoubleNegInfinity = (-(std::numeric_limits<double>::infinity)());
-constexpr double DoubleEpsilon = std::numeric_limits<double>::epsilon();
 
-} // namespace geos
+}  // namespace geos
 
+
+#endif  // INCLUDE_GEOS_CONSTANTS_H_

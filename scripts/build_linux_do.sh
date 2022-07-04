@@ -6,6 +6,7 @@ cd valhalla-py
 # install conan
 apt-get update
 apt-get install -y python3-pip
+pip3 install --upgrade pip
 pip3 install conan
 conan config set "storage.path=$PWD/upstream/conan_data"
 conan install --install-folder conan_build .
@@ -20,7 +21,7 @@ cmake -B upstream/build -S upstream/ -DENABLE_CCACHE=OFF -DBUILD_SHARED_LIBS=OFF
 cmake --build upstream/build -- -j$(nproc)
 
 echo "copying all headers"
-deps="libcurl4-openssl-dev libgeos++-dev libgeos-dev libluajit-5.1-dev libprotobuf-dev libspatialite-dev libsqlite3-dev"
+deps="libcurl4-openssl-dev libgeos++-dev libgeos-dev libluajit-5.1-dev libspatialite-dev libsqlite3-dev"
 for dep in $deps; do
   for path in $(dpkg -L ${dep}); do
     # find and copy the headers
@@ -33,34 +34,37 @@ for dep in $deps; do
     fi
     if [[ -f $path ]]; then
       mkdir -p $(dirname ${rel_dest})
-      cp $path $(dirname ${rel_dest})
+      cp -arf $path $(dirname ${rel_dest})
     fi
   done
 done
+
+# protobuf is installed in /usr/local
+rm -r include/linux/google
+cp -arf /usr/local/include/google include/linux
 
 # copy valhalla headers from upstream to include/common after deleting the old ones for safety reasons
 # also rm the old setup.py build folder: if the version doesn't change, setuptools simply won't update the .so,
 # so we'd get old builds fact.. wtf..
 rm -r include/common/valhalla
+cp -r upstream/valhalla include/common
 if [[ -d build ]]; then
   rm -r build
 fi
-cp -r upstream/valhalla include/common
-mv include/common/valhalla/config.h.cmake include/common/valhalla/config.h
-mv include/common/valhalla/valhalla.h.in include/common/valhalla/valhalla.h
 
 # copy most recent valhalla_build_config.py
 cp upstream/scripts/valhalla_build_config valhalla/valhalla_build_config.py
 
-# copy libvalhalla so it's available for setup.py in its most recent version
+# copy libvalhalla and libprotobuf-dev so it's available for setup.py in its most recent version
 cp -f upstream/build/src/libvalhalla.a lib/linux
+cp -f /usr/local/lib/libprotobuf-lite.a lib/linux
 
 # make the bindings so we can see which libraries it exactly links to and also for testing
 /opt/python/cp310-cp310/bin/pip install -r build-requirements.txt
 /opt/python/cp310-cp310/bin/python3 setup.py bdist_wheel
 
 echo "copying all libraries"
-deps="libprotobuf-lite libcurl libz"
+deps="libcurl libz"
 # prints all linked library paths
 for path in $(ldd build/lib.linux-x86_64-3.10/valhalla/_valhalla.cpython-310-x86_64-linux-gnu.so | awk 'NF == 4 {print $3}; NF == 2 {print $1}'); do
   for dep in ${deps}; do
@@ -79,8 +83,11 @@ for path in $(ldd build/lib.linux-x86_64-3.10/valhalla/_valhalla.cpython-310-x86
 done
 
 # build the proto files into the include/linux/valhalla/proto directory
+if [[ -d include/linux/valhalla/proto ]]; then
+  rm -r include/linux/valhalla/proto
+fi
 mkdir -p include/linux/valhalla/proto
-/usr/bin/protoc --proto_path=upstream/proto --cpp_out=include/linux/valhalla/proto upstream/proto/*.proto
+/usr/local/bin/protoc --proto_path=$PWD/upstream/proto --cpp_out=$PWD/include/linux/valhalla/proto $PWD/upstream/proto/*.proto
 
 # now checkout the unpatched valhalla version again
 git -C upstream checkout .

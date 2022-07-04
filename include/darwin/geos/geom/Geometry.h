@@ -201,7 +201,7 @@ public:
     using Ptr = std::unique_ptr<Geometry> ;
 
     /// Make a deep-copy of this Geometry
-    std::unique_ptr<Geometry> clone() const { return std::unique_ptr<Geometry>(cloneImpl()); }
+    virtual std::unique_ptr<Geometry> clone() const = 0;
 
     /// Destroy Geometry and all components
     virtual ~Geometry();
@@ -654,7 +654,7 @@ public:
      *
      * @return a reversed geometry
      */
-    std::unique_ptr<Geometry> reverse() const { return std::unique_ptr<Geometry>(reverseImpl()); }
+    virtual std::unique_ptr<Geometry> reverse() const = 0;
 
     /** \brief
      * Returns a Geometry representing the points shared by
@@ -856,12 +856,6 @@ protected:
     /// The bounding box of this Geometry
     mutable std::unique_ptr<Envelope> envelope;
 
-    /// Make a deep-copy of this Geometry
-    virtual Geometry* cloneImpl() const = 0;
-
-    /// Make a geometry with coordinates in reverse order
-    virtual Geometry* reverseImpl() const = 0;
-
     /// Returns true if the array contains any non-empty Geometrys.
     template<typename T>
     static bool hasNonEmptyElements(const std::vector<T>* geometries) {
@@ -926,7 +920,7 @@ protected:
     static std::vector<std::unique_ptr<Geometry>> toGeometryArray(std::vector<std::unique_ptr<T>> && v) {
         static_assert(std::is_base_of<Geometry, T>::value, "");
         std::vector<std::unique_ptr<Geometry>> gv(v.size());
-        for (std::size_t i = 0; i < v.size(); i++) {
+        for (size_t i = 0; i < v.size(); i++) {
             gv[i] = std::move(v[i]);
         }
         return gv;

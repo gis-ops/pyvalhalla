@@ -44,25 +44,22 @@ namespace geom { // geos::geom
  * closed and simple.
  *
  * In other words, the first and last coordinate in the ring must be equal,
- * and the ring must not self-intersect.  Either orientation
+ * and the interior of the ring must not self-intersect.  Either orientation
  * of the ring is allowed.
  *
- * A ring must have either 0 or 3 or more points. The first and last points
+ * A ring must have either 0 or 4 or more points. The first and last points
  * must be equal (in 2D). If these conditions are not met, the constructors
  * throw an {@link geos::util::IllegalArgumentException}
- * A ring with 3 points is invalid, because it is collapsed
- * and thus has a self-intersection.  It is allowed to be constructed
- * so that it can be represented, and repaired if needed.
  */
 class GEOS_DLL LinearRing : public LineString {
 
 public:
 
     /** \brief
-     * The minimum number of vertices allowed in a valid non-empty ring.
+     * The minimum number of vertices allowed in a valid non-empty ring (= 4).
      * Empty rings with 0 vertices are also valid.
      */
-    static const unsigned int MINIMUM_VALID_SIZE = 3;
+    static const unsigned int MINIMUM_VALID_SIZE = 4;
 
     LinearRing(const LinearRing& lr);
 
@@ -85,9 +82,10 @@ public:
     LinearRing(CoordinateSequence::Ptr && points,
             const GeometryFactory& newFactory);
 
-    std::unique_ptr<LinearRing> clone() const
+    std::unique_ptr<Geometry>
+    clone() const override
     {
-        return std::unique_ptr<LinearRing>(cloneImpl());
+        return std::unique_ptr<Geometry>(new LinearRing(*this));
     }
 
     ~LinearRing() override = default;
@@ -108,7 +106,7 @@ public:
 
     void setPoints(const CoordinateSequence* cl);
 
-    std::unique_ptr<LinearRing> reverse() const { return std::unique_ptr<LinearRing>(reverseImpl()); }
+    std::unique_ptr<Geometry> reverse() const override;
 
 protected:
 
@@ -118,9 +116,6 @@ protected:
         return SORTINDEX_LINEARRING;
     };
 
-    LinearRing* cloneImpl() const override { return new LinearRing(*this); }
-
-    LinearRing* reverseImpl() const override;
 
 private:
 

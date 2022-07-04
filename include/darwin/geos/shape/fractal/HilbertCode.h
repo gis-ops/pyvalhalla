@@ -113,7 +113,7 @@ private:
 
     static uint32_t descan(uint32_t x);
 
-    static void checkLevel(uint32_t level);
+    static void checkLevel(int level);
 
 
 };

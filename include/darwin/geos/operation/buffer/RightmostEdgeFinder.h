@@ -64,7 +64,7 @@ private:
 
     int getRightmostSide(geomgraph::DirectedEdge* de, int index);
 
-    static int getRightmostSideOfSegment(geomgraph::DirectedEdge* de, int i);
+    int getRightmostSideOfSegment(geomgraph::DirectedEdge* de, int i);
 
 public:
 

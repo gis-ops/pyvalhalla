@@ -144,12 +144,12 @@ public:
     addPts(const geom::CoordinateSequence& pts, bool isForward)
     {
         if(isForward) {
-            for(std::size_t i = 0, n = pts.size(); i < n; ++i) {
+            for(size_t i = 0, n = pts.size(); i < n; ++i) {
                 addPt(pts[i]);
             }
         }
         else {
-            for(std::size_t i = pts.size(); i > 0; --i) {
+            for(size_t i = pts.size(); i > 0; --i) {
                 addPt(pts[i - 1]);
             }
         }

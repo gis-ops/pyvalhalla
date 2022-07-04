@@ -62,7 +62,7 @@ protoc --proto_path=upstream/proto --cpp_out=include/darwin/valhalla/proto upstr
 git -C upstream checkout .
 
 # patch the paths delocate sees
-LIBRARY_PATH="$(pwd)/lib/darwin/:$LIBRARY_PATH
+LIBRARY_PATH="$(pwd)/lib/darwin/:$LIBRARY_PATH"
 
 for dylib in dist/*; do
   DYLD_LIBRARY_PATH=$LIBRARY_PATH delocate-wheel -w wheelhouse "${dylib}"

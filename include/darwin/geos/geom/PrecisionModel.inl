@@ -21,7 +21,6 @@
 #define GEOS_GEOM_PRECISIONMODEL_INL
 
 #include <geos/geom/PrecisionModel.h>
-#include <geos/geom/Coordinate.h>
 
 #include <cassert>
 
@@ -34,18 +33,6 @@ PrecisionModel::makePrecise(Coordinate* coord) const
 {
     assert(coord);
     return makePrecise(*coord);
-}
-
-INLINE void
-PrecisionModel::makePrecise(Coordinate& coord) const
-{
-    // optimization for full precision
-    if(modelType == FLOATING) {
-        return;
-    }
-
-    coord.x = makePrecise(coord.x);
-    coord.y = makePrecise(coord.y);
 }
 
 /*public*/

@@ -31,17 +31,22 @@ namespace geos {
 namespace io {
 
 INLINE
-ByteOrderDataInStream::ByteOrderDataInStream(const unsigned char* buff, size_t buffsz)
+ByteOrderDataInStream::ByteOrderDataInStream(std::istream* s)
     :
     byteOrder(getMachineByteOrder()),
-    buf(buff),
-    end(buff + buffsz)
+    stream(s)
 {
 }
 
 INLINE
 ByteOrderDataInStream::~ByteOrderDataInStream()
 {
+}
+
+INLINE void
+ByteOrderDataInStream::setInStream(std::istream* s)
+{
+    stream = s;
 }
 
 INLINE void
@@ -53,63 +58,41 @@ ByteOrderDataInStream::setOrder(int order)
 INLINE unsigned char
 ByteOrderDataInStream::readByte() // throws ParseException
 {
-    if(size() < 1) {
+    stream->read(reinterpret_cast<char*>(buf), 1);
+    if(stream->eof()) {
         throw  ParseException("Unexpected EOF parsing WKB");
     }
-    auto ret = buf[0];
-    buf++;
-    return ret;
+    return buf[0];
 }
 
-INLINE int32_t
+INLINE int
 ByteOrderDataInStream::readInt()
 {
-    if(size() < 4) {
-        throw ParseException("Unexpected EOF parsing WKB");
+    stream->read(reinterpret_cast<char*>(buf), 4);
+    if(stream->eof()) {
+        throw  ParseException("Unexpected EOF parsing WKB");
     }
-    auto ret =  ByteOrderValues::getInt(buf , byteOrder);
-    buf += 4;
-    return ret;
+    return ByteOrderValues::getInt(buf, byteOrder);
 }
 
-INLINE uint32_t
-ByteOrderDataInStream::readUnsigned()
-{
-    if(size() < 4) {
-        throw ParseException("Unexpected EOF parsing WKB");
-    }
-    auto ret =  ByteOrderValues::getUnsigned(buf , byteOrder);
-    buf += 4;
-    return ret;
-}
-
-INLINE int64_t
+INLINE long
 ByteOrderDataInStream::readLong()
 {
-    if(size() < 8) {
-        throw ParseException("Unexpected EOF parsing WKB");
+    stream->read(reinterpret_cast<char*>(buf), 8);
+    if(stream->eof()) {
+        throw  ParseException("Unexpected EOF parsing WKB");
     }
-
-    auto ret = ByteOrderValues::getLong(buf, byteOrder);
-    buf += 8;
-    return ret;
+    return static_cast<long>(ByteOrderValues::getLong(buf, byteOrder));
 }
 
 INLINE double
 ByteOrderDataInStream::readDouble()
 {
-    if(size() < 8) {
+    stream->read(reinterpret_cast<char*>(buf), 8);
+    if(stream->eof()) {
         throw  ParseException("Unexpected EOF parsing WKB");
     }
-    auto ret = ByteOrderValues::getDouble(buf, byteOrder);
-    buf += 8;
-    return ret;
-}
-
-INLINE size_t
-ByteOrderDataInStream::size() const
-{
-    return static_cast<size_t>(end - buf);
+    return ByteOrderValues::getDouble(buf, byteOrder);
 }
 
 } // namespace io
