@@ -17,8 +17,7 @@
  *
  **********************************************************************/
 
-#ifndef GEOS_GEOM_COORDINATELIST_H
-#define GEOS_GEOM_COORDINATELIST_H
+#pragma once
 
 #include <geos/export.h>
 #include <geos/geom/Coordinate.h>
@@ -146,6 +145,12 @@ public:
     }
 
     iterator
+    add(const Coordinate& c, bool allowRepeated)
+    {
+        return insert(coords.end(), c, allowRepeated);
+    }
+
+    iterator
     insert(iterator pos, const Coordinate& c)
     {
         return coords.insert(pos, c);
@@ -179,6 +184,14 @@ public:
         }
     }
 
+    static void
+    closeRing(std::vector<Coordinate>& coords)
+    {
+        if(!coords.empty() && !(*(coords.begin())).equals(*(coords.rbegin()))) {
+            const Coordinate& c = *(coords.begin());
+            coords.insert(coords.end(), c);
+        }
+    }
 
 private:
 
@@ -212,4 +225,3 @@ operator<< (std::ostream& os, const CoordinateList& cl)
 #pragma warning(pop)
 #endif
 
-#endif // ndef GEOS_GEOM_COORDINATELIST_H

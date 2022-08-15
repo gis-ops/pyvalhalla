@@ -17,8 +17,7 @@
  *
  **********************************************************************/
 
-#ifndef GEOS_IO_WKBREADER_H
-#define GEOS_IO_WKBREADER_H
+#pragma once
 
 #include <geos/export.h>
 
@@ -86,6 +85,8 @@ public:
     /// Inizialize parser with default GeometryFactory.
     WKBReader();
 
+    void setFixStructure(bool doFixStructure);
+
     /**
      * \brief Reads a Geometry from an istream.
      *
@@ -95,6 +96,17 @@ public:
      * @throws ParseException
      */
     std::unique_ptr<geom::Geometry> read(std::istream& is);
+
+    /**
+     * \brief Reads a Geometry from a buffer
+     *
+     * @param buf the buffer to read from
+     * @param size the size of the buffer in bytes
+     * @return the Geometry read
+     * @throws IOException
+     * @throws ParseException
+     */
+    std::unique_ptr<geom::Geometry> read(const unsigned char* buf, size_t size);
 
     /**
      * \brief Reads a Geometry from an istream in hex format.
@@ -122,6 +134,7 @@ private:
     unsigned int inputDimension;
     bool hasZ;
     bool hasM;
+    bool fixStructure;
 
     ByteOrderDataInStream dis;
 
@@ -145,7 +158,9 @@ private:
 
     std::unique_ptr<geom::GeometryCollection> readGeometryCollection();
 
-    std::unique_ptr<geom::CoordinateSequence> readCoordinateSequence(int); // throws IOException
+    std::unique_ptr<geom::CoordinateSequence> readCoordinateSequence(unsigned int); // throws IOException
+
+    void minMemSize(int geomType, uint64_t size);
 
     void readCoordinate(); // throws IOException
 
@@ -161,4 +176,3 @@ private:
 #pragma warning(pop)
 #endif
 
-#endif // #ifndef GEOS_IO_WKBREADER_H

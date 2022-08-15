@@ -16,8 +16,7 @@
  *
  **********************************************************************/
 
-#ifndef GEOS_TRIANGULATE_QUADEDGE_TRIANGLEVISITOR_H
-#define GEOS_TRIANGULATE_QUADEDGE_TRIANGLEVISITOR_H
+#pragma once
 
 #include <geos/triangulate/quadedge/QuadEdge.h>
 
@@ -38,7 +37,7 @@ public:
      *
      * @param triEdges an array of the 3 quad edges in a triangle (in CCW order)
      */
-    virtual void visit(QuadEdge* triEdges[3]) = 0;
+    virtual void visit(std::array<QuadEdge*, 3> & triEdges) = 0;
     virtual ~TriangleVisitor() = default;
 private:
 } ;
@@ -47,4 +46,3 @@ private:
 } //namespace geos.triangulate
 } //namespace goes
 
-#endif // GEOS_TRIANGULATE_QUADEDGE_TRIANGLEVISITOR_H

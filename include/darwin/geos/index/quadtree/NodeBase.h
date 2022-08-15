@@ -16,8 +16,7 @@
  *
  **********************************************************************/
 
-#ifndef GEOS_IDX_QUADTREE_NODEBASE_H
-#define GEOS_IDX_QUADTREE_NODEBASE_H
+#pragma once
 
 #include <geos/export.h>
 #include <array>
@@ -82,9 +81,9 @@ public:
 
     unsigned int depth() const;
 
-    size_t size() const;
+    std::size_t size() const;
 
-    size_t getNodeCount() const;
+    std::size_t getNodeCount() const;
 
     virtual std::string toString() const;
 
@@ -160,4 +159,3 @@ NodeBase::hasItems() const
 #pragma warning(pop)
 #endif
 
-#endif // GEOS_IDX_QUADTREE_NODEBASE_H

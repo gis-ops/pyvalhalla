@@ -43,6 +43,7 @@
 #include <vector>
 #include <google/protobuf/stubs/common.h>
 
+// Must be included last.
 #include <google/protobuf/port_def.inc>
 
 namespace google {
@@ -103,14 +104,15 @@ class PROTOC_EXPORT CodeGenerator {
                            GeneratorContext* generator_context,
                            std::string* error) const;
 
-  // Sync with plugin.proto.
+  // This must be kept in sync with plugin.proto. See that file for
+  // documentation on each value.
   enum Feature {
     FEATURE_PROTO3_OPTIONAL = 1,
   };
 
   // Implement this to indicate what features this code generator supports.
-  // This should be a bitwise OR of features from the Features enum in
-  // plugin.proto.
+  //
+  // This must be a bitwise OR of values from the Feature enum above (or zero).
   virtual uint64_t GetSupportedFeatures() const { return 0; }
 
   // This is no longer used, but this class is part of the opensource protobuf
@@ -187,9 +189,9 @@ typedef GeneratorContext OutputDirectory;
 // Several code generators treat the parameter argument as holding a
 // list of options separated by commas.  This helper function parses
 // a set of comma-delimited name/value pairs: e.g.,
-//   "foo=bar,baz,qux=corge"
+//   "foo=bar,baz,moo=corge"
 // parses to the pairs:
-//   ("foo", "bar"), ("baz", ""), ("qux", "corge")
+//   ("foo", "bar"), ("baz", ""), ("moo", "corge")
 PROTOC_EXPORT void ParseGeneratorParameter(
     const std::string&, std::vector<std::pair<std::string, std::string> >*);
 

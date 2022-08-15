@@ -17,18 +17,18 @@
  *
  **********************************************************************/
 
-#ifndef GEOS_NODING_MCINDEXSEGMENTSETMUTUALINTERSECTOR_H
-#define GEOS_NODING_MCINDEXSEGMENTSETMUTUALINTERSECTOR_H
+#pragma once
 
 #include <geos/noding/SegmentSetMutualIntersector.h> // inherited
 #include <geos/index/chain/MonotoneChainOverlapAction.h> // inherited
+#include <geos/index/chain/MonotoneChain.h> // inherited
+#include <geos/index/strtree/TemplateSTRtree.h> // inherited
 
 namespace geos {
 namespace index {
 class SpatialIndex;
 
 namespace chain {
-class MonotoneChain;
 }
 namespace strtree {
 //class STRtree;
@@ -55,14 +55,21 @@ namespace noding { // geos::noding
 class MCIndexSegmentSetMutualIntersector : public SegmentSetMutualIntersector {
 public:
 
-    MCIndexSegmentSetMutualIntersector();
+    MCIndexSegmentSetMutualIntersector()
+        : monoChains()
+        , indexCounter(0)
+        , processCounter(0)
+        , nOverlaps(0)
+        , indexBuilt(false)
+    {}
 
-    ~MCIndexSegmentSetMutualIntersector() override;
+    ~MCIndexSegmentSetMutualIntersector() override
+    {};
 
     index::SpatialIndex*
     getIndex()
     {
-        return index;
+        return &index;
     }
 
     void setBaseSegments(SegmentString::ConstVect* segStrings) override;
@@ -83,8 +90,8 @@ public:
             index::chain::MonotoneChainOverlapAction(), si(p_si)
         {}
 
-        void overlap(index::chain::MonotoneChain& mc1, std::size_t start1,
-                     index::chain::MonotoneChain& mc2, std::size_t start2) override;
+        void overlap(const index::chain::MonotoneChain& mc1, std::size_t start1,
+                     const index::chain::MonotoneChain& mc2, std::size_t start2) override;
     };
 
     /**
@@ -96,7 +103,7 @@ public:
 
 private:
 
-    typedef std::vector<std::unique_ptr<index::chain::MonotoneChain>> MonoChains;
+    typedef std::vector<index::chain::MonotoneChain> MonoChains;
     MonoChains monoChains;
 
     /*
@@ -104,7 +111,7 @@ private:
      * envelope (range) queries efficiently (such as a index::quadtree::Quadtree
      * or index::strtree::STRtree).
      */
-    index::SpatialIndex* index;
+    index::strtree::TemplateSTRtree<const index::chain::MonotoneChain*> index;
     int indexCounter;
     int processCounter;
     // statistics
@@ -113,7 +120,8 @@ private:
     /* memory management helper, holds MonotoneChain objects used
      * in the SpatialIndex. It's cleared when the SpatialIndex is
      */
-    MonoChains chainStore;
+    bool indexBuilt;
+    MonoChains indexChains;
 
     void addToIndex(SegmentString* segStr);
 
@@ -126,4 +134,3 @@ private:
 } // namespace geos::noding
 } // namespace geos
 
-#endif // GEOS_NODING_MCINDEXSEGMENTSETMUTUALINTERSECTOR_H

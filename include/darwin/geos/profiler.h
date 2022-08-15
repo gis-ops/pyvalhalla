@@ -12,8 +12,7 @@
  *
  **********************************************************************/
 
-#ifndef GEOS_PROFILER_H
-#define GEOS_PROFILER_H
+#pragma once
 
 #include <geos/export.h>
 #include <chrono>
@@ -100,7 +99,7 @@ public:
     double getAvg() const;
 
     /** \brief Return number of timings */
-    size_t getNumTimings() const;
+    std::size_t getNumTimings() const;
 
     /** \brief Profile name */
     std::string name;
@@ -184,4 +183,3 @@ GEOS_DLL std::ostream& operator<< (std::ostream& os, const Profiler&);
 #pragma warning(pop)
 #endif
 
-#endif // ndef GEOS_PROFILER_H

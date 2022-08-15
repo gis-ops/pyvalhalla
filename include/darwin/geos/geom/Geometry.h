@@ -18,8 +18,7 @@
  *
  **********************************************************************/
 
-#ifndef GEOS_GEOM_GEOMETRY_H
-#define GEOS_GEOM_GEOMETRY_H
+#pragma once
 
 #ifndef USE_UNSTABLE_GEOS_CPP_API
 #ifndef _MSC_VER
@@ -32,11 +31,9 @@
 #endif
 
 #include <geos/export.h>
-#include <geos/inline.h>
 #include <geos/geom/Envelope.h>
 #include <geos/geom/Dimension.h> // for Dimension::DimensionType
 #include <geos/geom/GeometryComponentFilter.h> // for inheritance
-#include <geos/geom/IntersectionMatrix.h>
 
 #include <algorithm>
 #include <string>
@@ -62,6 +59,7 @@ class GeometryFactory;
 class GeometryFilter;
 class PrecisionModel;
 class Point;
+class IntersectionMatrix;
 }
 namespace io { // geos.io
 class Unload;
@@ -201,7 +199,7 @@ public:
     using Ptr = std::unique_ptr<Geometry> ;
 
     /// Make a deep-copy of this Geometry
-    virtual std::unique_ptr<Geometry> clone() const = 0;
+    std::unique_ptr<Geometry> clone() const { return std::unique_ptr<Geometry>(cloneImpl()); }
 
     /// Destroy Geometry and all components
     virtual ~Geometry();
@@ -495,10 +493,7 @@ public:
     /// Returns the DE-9IM intersection matrix for the two Geometrys.
     std::unique_ptr<IntersectionMatrix> relate(const Geometry* g) const;
 
-    std::unique_ptr<IntersectionMatrix> relate(const Geometry& g) const
-    {
-        return relate(&g);
-    }
+    std::unique_ptr<IntersectionMatrix> relate(const Geometry& g) const;
 
     /**
      * \brief
@@ -654,7 +649,7 @@ public:
      *
      * @return a reversed geometry
      */
-    virtual std::unique_ptr<Geometry> reverse() const = 0;
+    std::unique_ptr<Geometry> reverse() const { return std::unique_ptr<Geometry>(reverseImpl()); }
 
     /** \brief
      * Returns a Geometry representing the points shared by
@@ -856,6 +851,12 @@ protected:
     /// The bounding box of this Geometry
     mutable std::unique_ptr<Envelope> envelope;
 
+    /// Make a deep-copy of this Geometry
+    virtual Geometry* cloneImpl() const = 0;
+
+    /// Make a geometry with coordinates in reverse order
+    virtual Geometry* reverseImpl() const = 0;
+
     /// Returns true if the array contains any non-empty Geometrys.
     template<typename T>
     static bool hasNonEmptyElements(const std::vector<T>* geometries) {
@@ -920,7 +921,7 @@ protected:
     static std::vector<std::unique_ptr<Geometry>> toGeometryArray(std::vector<std::unique_ptr<T>> && v) {
         static_assert(std::is_base_of<Geometry, T>::value, "");
         std::vector<std::unique_ptr<Geometry>> gv(v.size());
-        for (size_t i = 0; i < v.size(); i++) {
+        for (std::size_t i = 0; i < v.size(); i++) {
             gv[i] = std::move(v[i]);
         }
         return gv;
@@ -986,4 +987,3 @@ struct GeomPtrPair {
 #pragma warning(pop)
 #endif
 
-#endif // ndef GEOS_GEOM_GEOMETRY_H

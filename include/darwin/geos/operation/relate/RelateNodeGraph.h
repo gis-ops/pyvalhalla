@@ -16,8 +16,7 @@
  *
  **********************************************************************/
 
-#ifndef GEOS_OP_RELATE_RELATENODEGRAPH_H
-#define GEOS_OP_RELATE_RELATENODEGRAPH_H
+#pragma once
 
 #include <geos/export.h>
 #include <geos/geomgraph/NodeMap.h>
@@ -78,9 +77,9 @@ public:
     void build(geomgraph::GeometryGraph* geomGraph);
 
     void computeIntersectionNodes(geomgraph::GeometryGraph* geomGraph,
-                                  int argIndex);
+                                  uint8_t argIndex);
 
-    void copyNodesAndLabels(geomgraph::GeometryGraph* geomGraph, int argIndex);
+    void copyNodesAndLabels(geomgraph::GeometryGraph* geomGraph, uint8_t argIndex);
 
     void insertEdgeEnds(std::vector<geomgraph::EdgeEnd*>* ee);
 
@@ -97,5 +96,3 @@ private:
 } // namespace geos:operation:relate
 } // namespace geos:operation
 } // namespace geos
-
-#endif // GEOS_OP_RELATE_RELATENODEGRAPH_H

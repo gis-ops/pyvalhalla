@@ -16,8 +16,7 @@
  *
  **********************************************************************/
 
-#ifndef GEOS_OP_OVERLAY_OVERLAYOP_H
-#define GEOS_OP_OVERLAY_OVERLAYOP_H
+#pragma once
 
 #include <geos/export.h>
 
@@ -264,7 +263,7 @@ private:
      * but in the original arg Geometry it is actually
      * in the interior due to the Boundary Determination Rule)
      */
-    void copyPoints(int argIndex, const geom::Envelope* env = nullptr);
+    void copyPoints(uint8_t argIndex, const geom::Envelope* env = nullptr);
 
     /** \brief
      * Compute initial labelling for all DirectedEdges at each node.
@@ -309,7 +308,7 @@ private:
     /** \brief
      * Label an isolated node with its relationship to the target geometry.
      */
-    void labelIncompleteNode(geomgraph::Node* n, int targetIndex);
+    void labelIncompleteNode(geomgraph::Node* n, uint8_t targetIndex);
 
     /** \brief
      * Find all edges whose label indicates that they are in the result
@@ -389,7 +388,7 @@ private:
     double avgz[2];
     bool avgzcomputed[2];
 
-    double getAverageZ(int targetIndex);
+    double getAverageZ(uint8_t targetIndex);
     static double getAverageZ(const geom::Polygon* poly);
 
     ElevationMatrix* elevationMatrix;
@@ -408,4 +407,3 @@ private:
 #pragma warning(pop)
 #endif
 
-#endif // ndef GEOS_OP_OVERLAY_OVERLAYOP_H

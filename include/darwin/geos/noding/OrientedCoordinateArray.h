@@ -16,8 +16,7 @@
  *
  **********************************************************************/
 
-#ifndef GEOS_NODING_ORIENTEDCOORDINATEARRAY_H
-#define GEOS_NODING_ORIENTEDCOORDINATEARRAY_H
+#pragma once
 
 #include <geos/export.h>
 
@@ -72,7 +71,7 @@ public:
     bool operator==(const OrientedCoordinateArray& other) const;
 
     struct GEOS_DLL HashCode {
-        size_t operator()(const OrientedCoordinateArray & oca) const;
+        std::size_t operator()(const OrientedCoordinateArray & oca) const;
     };
 
 private:
@@ -111,7 +110,4 @@ operator< (const OrientedCoordinateArray& oca1,
 
 } // namespace geos.noding
 } // namespace geos
-
-
-#endif // GEOS_NODING_ORIENTEDCOORDINATEARRAY_H
 

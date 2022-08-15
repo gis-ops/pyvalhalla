@@ -18,8 +18,7 @@
  *
  **********************************************************************/
 
-#ifndef GEOS_IO_WKTWRITER_H
-#define GEOS_IO_WKTWRITER_H
+#pragma once
 
 #include <geos/export.h>
 
@@ -220,7 +219,7 @@ protected:
     void appendCoordinate(const geom::Coordinate* coordinate,
                           Writer* writer);
 
-    std::string writeNumber(double d);
+    std::string writeNumber(double d) const;
 
     void appendLineStringText(
         const geom::LineString* lineString,
@@ -270,7 +269,7 @@ private:
         const geom::Geometry* geometry,
         bool isFormatted, Writer* writer);
 
-    void indent(int level, Writer* writer);
+    void indent(int level, Writer* writer) const;
 };
 
 } // namespace geos::io
@@ -280,4 +279,3 @@ private:
 #pragma warning(pop)
 #endif
 
-#endif // #ifndef GEOS_IO_WKTWRITER_H

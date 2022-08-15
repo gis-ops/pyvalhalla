@@ -13,221 +13,312 @@
 #include <google/protobuf/port_def.inc>
 
 PROTOBUF_PRAGMA_INIT_SEG
+
+namespace _pb = ::PROTOBUF_NAMESPACE_ID;
+namespace _pbi = _pb::internal;
+
 namespace valhalla {
-constexpr TripLeg_LaneConnectivity::TripLeg_LaneConnectivity(
-  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
-  : _oneof_case_{}{}
+PROTOBUF_CONSTEXPR TripLeg_LaneConnectivity::TripLeg_LaneConnectivity(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.from_lanes_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.to_lanes_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.from_way_id_)*/uint64_t{0u}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct TripLeg_LaneConnectivityDefaultTypeInternal {
-  constexpr TripLeg_LaneConnectivityDefaultTypeInternal()
-    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  PROTOBUF_CONSTEXPR TripLeg_LaneConnectivityDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
   ~TripLeg_LaneConnectivityDefaultTypeInternal() {}
   union {
     TripLeg_LaneConnectivity _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT TripLeg_LaneConnectivityDefaultTypeInternal _TripLeg_LaneConnectivity_default_instance_;
-constexpr TripLeg_TrafficSegment::TripLeg_TrafficSegment(
-  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
-  : _oneof_case_{}{}
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 TripLeg_LaneConnectivityDefaultTypeInternal _TripLeg_LaneConnectivity_default_instance_;
+PROTOBUF_CONSTEXPR TripLeg_TrafficSegment::TripLeg_TrafficSegment(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.segment_id_)*/uint64_t{0u}
+  , /*decltype(_impl_.begin_percent_)*/0
+  , /*decltype(_impl_.end_percent_)*/0
+  , /*decltype(_impl_.starts_segment_)*/false
+  , /*decltype(_impl_.ends_segment_)*/false
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct TripLeg_TrafficSegmentDefaultTypeInternal {
-  constexpr TripLeg_TrafficSegmentDefaultTypeInternal()
-    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  PROTOBUF_CONSTEXPR TripLeg_TrafficSegmentDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
   ~TripLeg_TrafficSegmentDefaultTypeInternal() {}
   union {
     TripLeg_TrafficSegment _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT TripLeg_TrafficSegmentDefaultTypeInternal _TripLeg_TrafficSegment_default_instance_;
-constexpr TripLeg_Restriction::TripLeg_Restriction(
-  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
-  : _oneof_case_{}{}
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 TripLeg_TrafficSegmentDefaultTypeInternal _TripLeg_TrafficSegment_default_instance_;
+PROTOBUF_CONSTEXPR TripLeg_Restriction::TripLeg_Restriction(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.type_)*/0u
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct TripLeg_RestrictionDefaultTypeInternal {
-  constexpr TripLeg_RestrictionDefaultTypeInternal()
-    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  PROTOBUF_CONSTEXPR TripLeg_RestrictionDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
   ~TripLeg_RestrictionDefaultTypeInternal() {}
   union {
     TripLeg_Restriction _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT TripLeg_RestrictionDefaultTypeInternal _TripLeg_Restriction_default_instance_;
-constexpr TripLeg_Edge::TripLeg_Edge(
-  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
-  : name_()
-  , lane_connectivity_()
-  , traffic_segment_()
-  , turn_lanes_()
-  , tagged_value_()
-  , sign_(nullptr)
-  , transit_route_info_(nullptr)
-  , restriction_(nullptr)
-  , _oneof_case_{}{}
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 TripLeg_RestrictionDefaultTypeInternal _TripLeg_Restriction_default_instance_;
+PROTOBUF_CONSTEXPR TripLeg_Edge::TripLeg_Edge(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.name_)*/{}
+  , /*decltype(_impl_.lane_connectivity_)*/{}
+  , /*decltype(_impl_.traffic_segment_)*/{}
+  , /*decltype(_impl_.turn_lanes_)*/{}
+  , /*decltype(_impl_.tagged_value_)*/{}
+  , /*decltype(_impl_.sign_)*/nullptr
+  , /*decltype(_impl_.transit_route_info_)*/nullptr
+  , /*decltype(_impl_.restriction_)*/nullptr
+  , /*decltype(_impl_.length_km_)*/0
+  , /*decltype(_impl_.speed_)*/0
+  , /*decltype(_impl_.road_class_)*/0
+  , /*decltype(_impl_.begin_heading_)*/0u
+  , /*decltype(_impl_.end_heading_)*/0u
+  , /*decltype(_impl_.begin_shape_index_)*/0u
+  , /*decltype(_impl_.end_shape_index_)*/0u
+  , /*decltype(_impl_.traversability_)*/0
+  , /*decltype(_impl_.use_)*/0
+  , /*decltype(_impl_.toll_)*/false
+  , /*decltype(_impl_.unpaved_)*/false
+  , /*decltype(_impl_.tunnel_)*/false
+  , /*decltype(_impl_.bridge_)*/false
+  , /*decltype(_impl_.surface_)*/0
+  , /*decltype(_impl_.travel_mode_)*/0
+  , /*decltype(_impl_.roundabout_)*/false
+  , /*decltype(_impl_.internal_intersection_)*/false
+  , /*decltype(_impl_.drive_on_left_)*/false
+  , /*decltype(_impl_.bicycle_network_)*/false
+  , /*decltype(_impl_.vehicle_type_)*/0
+  , /*decltype(_impl_.pedestrian_type_)*/0
+  , /*decltype(_impl_.bicycle_type_)*/0
+  , /*decltype(_impl_.id_)*/uint64_t{0u}
+  , /*decltype(_impl_.transit_type_)*/0
+  , /*decltype(_impl_.weighted_grade_)*/0
+  , /*decltype(_impl_.way_id_)*/uint64_t{0u}
+  , /*decltype(_impl_.max_upward_grade_)*/0
+  , /*decltype(_impl_.max_downward_grade_)*/0
+  , /*decltype(_impl_.lane_count_)*/0u
+  , /*decltype(_impl_.cycle_lane_)*/0
+  , /*decltype(_impl_.sidewalk_)*/0
+  , /*decltype(_impl_.density_)*/0u
+  , /*decltype(_impl_.speed_limit_)*/0u
+  , /*decltype(_impl_.truck_speed_)*/0
+  , /*decltype(_impl_.mean_elevation_)*/0
+  , /*decltype(_impl_.truck_route_)*/false
+  , /*decltype(_impl_.has_time_restrictions_)*/false
+  , /*decltype(_impl_.destination_only_)*/false
+  , /*decltype(_impl_.is_urban_)*/false
+  , /*decltype(_impl_.default_speed_)*/0
+  , /*decltype(_impl_.source_along_edge_)*/0
+  , /*decltype(_impl_.target_along_edge_)*/0
+  , /*decltype(_impl_.sac_scale_)*/0
+  , /*decltype(_impl_.shoulder_)*/false
+  , /*decltype(_impl_.indoor_)*/false
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct TripLeg_EdgeDefaultTypeInternal {
-  constexpr TripLeg_EdgeDefaultTypeInternal()
-    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  PROTOBUF_CONSTEXPR TripLeg_EdgeDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
   ~TripLeg_EdgeDefaultTypeInternal() {}
   union {
     TripLeg_Edge _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT TripLeg_EdgeDefaultTypeInternal _TripLeg_Edge_default_instance_;
-constexpr TripLeg_IntersectingEdge::TripLeg_IntersectingEdge(
-  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
-  : sign_(nullptr)
-  , _oneof_case_{}{}
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 TripLeg_EdgeDefaultTypeInternal _TripLeg_Edge_default_instance_;
+PROTOBUF_CONSTEXPR TripLeg_IntersectingEdge::TripLeg_IntersectingEdge(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.sign_)*/nullptr
+  , /*decltype(_impl_.begin_heading_)*/0u
+  , /*decltype(_impl_.prev_name_consistency_)*/false
+  , /*decltype(_impl_.curr_name_consistency_)*/false
+  , /*decltype(_impl_.driveability_)*/0
+  , /*decltype(_impl_.cyclability_)*/0
+  , /*decltype(_impl_.walkability_)*/0
+  , /*decltype(_impl_.use_)*/0
+  , /*decltype(_impl_.road_class_)*/0
+  , /*decltype(_impl_.lane_count_)*/0u
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct TripLeg_IntersectingEdgeDefaultTypeInternal {
-  constexpr TripLeg_IntersectingEdgeDefaultTypeInternal()
-    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  PROTOBUF_CONSTEXPR TripLeg_IntersectingEdgeDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
   ~TripLeg_IntersectingEdgeDefaultTypeInternal() {}
   union {
     TripLeg_IntersectingEdge _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT TripLeg_IntersectingEdgeDefaultTypeInternal _TripLeg_IntersectingEdge_default_instance_;
-constexpr TripLeg_Cost::TripLeg_Cost(
-  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
-  : _oneof_case_{}{}
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 TripLeg_IntersectingEdgeDefaultTypeInternal _TripLeg_IntersectingEdge_default_instance_;
+PROTOBUF_CONSTEXPR TripLeg_Cost::TripLeg_Cost(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.seconds_)*/0
+  , /*decltype(_impl_.cost_)*/0
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct TripLeg_CostDefaultTypeInternal {
-  constexpr TripLeg_CostDefaultTypeInternal()
-    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  PROTOBUF_CONSTEXPR TripLeg_CostDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
   ~TripLeg_CostDefaultTypeInternal() {}
   union {
     TripLeg_Cost _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT TripLeg_CostDefaultTypeInternal _TripLeg_Cost_default_instance_;
-constexpr TripLeg_PathCost::TripLeg_PathCost(
-  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
-  : elapsed_cost_(nullptr)
-  , transition_cost_(nullptr){}
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 TripLeg_CostDefaultTypeInternal _TripLeg_Cost_default_instance_;
+PROTOBUF_CONSTEXPR TripLeg_PathCost::TripLeg_PathCost(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.elapsed_cost_)*/nullptr
+  , /*decltype(_impl_.transition_cost_)*/nullptr
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct TripLeg_PathCostDefaultTypeInternal {
-  constexpr TripLeg_PathCostDefaultTypeInternal()
-    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  PROTOBUF_CONSTEXPR TripLeg_PathCostDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
   ~TripLeg_PathCostDefaultTypeInternal() {}
   union {
     TripLeg_PathCost _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT TripLeg_PathCostDefaultTypeInternal _TripLeg_PathCost_default_instance_;
-constexpr TripLeg_Node::TripLeg_Node(
-  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
-  : intersecting_edge_()
-  , recosts_()
-  , edge_(nullptr)
-  , transit_platform_info_(nullptr)
-  , transit_station_info_(nullptr)
-  , transit_egress_info_(nullptr)
-  , cost_(nullptr)
-  , bss_info_(nullptr)
-  , _oneof_case_{}{}
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 TripLeg_PathCostDefaultTypeInternal _TripLeg_PathCost_default_instance_;
+PROTOBUF_CONSTEXPR TripLeg_Node::TripLeg_Node(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.intersecting_edge_)*/{}
+  , /*decltype(_impl_.recosts_)*/{}
+  , /*decltype(_impl_.time_zone_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.edge_)*/nullptr
+  , /*decltype(_impl_.transit_platform_info_)*/nullptr
+  , /*decltype(_impl_.transit_station_info_)*/nullptr
+  , /*decltype(_impl_.transit_egress_info_)*/nullptr
+  , /*decltype(_impl_.cost_)*/nullptr
+  , /*decltype(_impl_.bss_info_)*/nullptr
+  , /*decltype(_impl_.admin_index_)*/0u
+  , /*decltype(_impl_.type_)*/0
+  , /*decltype(_impl_.fork_)*/false
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct TripLeg_NodeDefaultTypeInternal {
-  constexpr TripLeg_NodeDefaultTypeInternal()
-    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  PROTOBUF_CONSTEXPR TripLeg_NodeDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
   ~TripLeg_NodeDefaultTypeInternal() {}
   union {
     TripLeg_Node _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT TripLeg_NodeDefaultTypeInternal _TripLeg_Node_default_instance_;
-constexpr TripLeg_Admin::TripLeg_Admin(
-  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
-  : _oneof_case_{}{}
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 TripLeg_NodeDefaultTypeInternal _TripLeg_Node_default_instance_;
+PROTOBUF_CONSTEXPR TripLeg_Admin::TripLeg_Admin(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.country_code_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.country_text_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.state_code_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.state_text_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct TripLeg_AdminDefaultTypeInternal {
-  constexpr TripLeg_AdminDefaultTypeInternal()
-    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  PROTOBUF_CONSTEXPR TripLeg_AdminDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
   ~TripLeg_AdminDefaultTypeInternal() {}
   union {
     TripLeg_Admin _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT TripLeg_AdminDefaultTypeInternal _TripLeg_Admin_default_instance_;
-constexpr TripLeg_ShapeAttributes::TripLeg_ShapeAttributes(
-  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
-  : time_()
-  , _time_cached_byte_size_(0)
-  , length_()
-  , _length_cached_byte_size_(0)
-  , speed_()
-  , _speed_cached_byte_size_(0)
-  , speed_limit_()
-  , _speed_limit_cached_byte_size_(0){}
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 TripLeg_AdminDefaultTypeInternal _TripLeg_Admin_default_instance_;
+PROTOBUF_CONSTEXPR TripLeg_ShapeAttributes::TripLeg_ShapeAttributes(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.time_)*/{}
+  , /*decltype(_impl_._time_cached_byte_size_)*/{0}
+  , /*decltype(_impl_.length_)*/{}
+  , /*decltype(_impl_._length_cached_byte_size_)*/{0}
+  , /*decltype(_impl_.speed_)*/{}
+  , /*decltype(_impl_._speed_cached_byte_size_)*/{0}
+  , /*decltype(_impl_.speed_limit_)*/{}
+  , /*decltype(_impl_._speed_limit_cached_byte_size_)*/{0}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct TripLeg_ShapeAttributesDefaultTypeInternal {
-  constexpr TripLeg_ShapeAttributesDefaultTypeInternal()
-    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  PROTOBUF_CONSTEXPR TripLeg_ShapeAttributesDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
   ~TripLeg_ShapeAttributesDefaultTypeInternal() {}
   union {
     TripLeg_ShapeAttributes _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT TripLeg_ShapeAttributesDefaultTypeInternal _TripLeg_ShapeAttributes_default_instance_;
-constexpr TripLeg_Incident::TripLeg_Incident(
-  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
-  : metadata_(nullptr)
-  , _oneof_case_{}{}
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 TripLeg_ShapeAttributesDefaultTypeInternal _TripLeg_ShapeAttributes_default_instance_;
+PROTOBUF_CONSTEXPR TripLeg_Incident::TripLeg_Incident(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.metadata_)*/nullptr
+  , /*decltype(_impl_.begin_shape_index_)*/0u
+  , /*decltype(_impl_.end_shape_index_)*/0u
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct TripLeg_IncidentDefaultTypeInternal {
-  constexpr TripLeg_IncidentDefaultTypeInternal()
-    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  PROTOBUF_CONSTEXPR TripLeg_IncidentDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
   ~TripLeg_IncidentDefaultTypeInternal() {}
   union {
     TripLeg_Incident _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT TripLeg_IncidentDefaultTypeInternal _TripLeg_Incident_default_instance_;
-constexpr TripLeg_Closure::TripLeg_Closure(
-  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
-  : _oneof_case_{}{}
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 TripLeg_IncidentDefaultTypeInternal _TripLeg_Incident_default_instance_;
+PROTOBUF_CONSTEXPR TripLeg_Closure::TripLeg_Closure(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.has_begin_shape_index_)*/{}
+  , /*decltype(_impl_.has_end_shape_index_)*/{}
+  , /*decltype(_impl_._cached_size_)*/{}
+  , /*decltype(_impl_._oneof_case_)*/{}} {}
 struct TripLeg_ClosureDefaultTypeInternal {
-  constexpr TripLeg_ClosureDefaultTypeInternal()
-    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  PROTOBUF_CONSTEXPR TripLeg_ClosureDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
   ~TripLeg_ClosureDefaultTypeInternal() {}
   union {
     TripLeg_Closure _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT TripLeg_ClosureDefaultTypeInternal _TripLeg_Closure_default_instance_;
-constexpr TripLeg::TripLeg(
-  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
-  : location_()
-  , node_()
-  , admin_()
-  , incidents_()
-  , algorithms_()
-  , closures_()
-  , bbox_(nullptr)
-  , shape_attributes_(nullptr)
-  , _oneof_case_{}{}
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 TripLeg_ClosureDefaultTypeInternal _TripLeg_Closure_default_instance_;
+PROTOBUF_CONSTEXPR TripLeg::TripLeg(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.location_)*/{}
+  , /*decltype(_impl_.node_)*/{}
+  , /*decltype(_impl_.admin_)*/{}
+  , /*decltype(_impl_.incidents_)*/{}
+  , /*decltype(_impl_.algorithms_)*/{}
+  , /*decltype(_impl_.closures_)*/{}
+  , /*decltype(_impl_.shape_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.bbox_)*/nullptr
+  , /*decltype(_impl_.shape_attributes_)*/nullptr
+  , /*decltype(_impl_.osm_changeset_)*/uint64_t{0u}
+  , /*decltype(_impl_.trip_id_)*/uint64_t{0u}
+  , /*decltype(_impl_.leg_id_)*/0u
+  , /*decltype(_impl_.leg_count_)*/0u
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct TripLegDefaultTypeInternal {
-  constexpr TripLegDefaultTypeInternal()
-    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  PROTOBUF_CONSTEXPR TripLegDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
   ~TripLegDefaultTypeInternal() {}
   union {
     TripLeg _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT TripLegDefaultTypeInternal _TripLeg_default_instance_;
-constexpr TripRoute::TripRoute(
-  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
-  : legs_(){}
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 TripLegDefaultTypeInternal _TripLeg_default_instance_;
+PROTOBUF_CONSTEXPR TripRoute::TripRoute(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.legs_)*/{}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct TripRouteDefaultTypeInternal {
-  constexpr TripRouteDefaultTypeInternal()
-    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  PROTOBUF_CONSTEXPR TripRouteDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
   ~TripRouteDefaultTypeInternal() {}
   union {
     TripRoute _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT TripRouteDefaultTypeInternal _TripRoute_default_instance_;
-constexpr Trip::Trip(
-  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
-  : routes_(){}
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 TripRouteDefaultTypeInternal _TripRoute_default_instance_;
+PROTOBUF_CONSTEXPR Trip::Trip(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.routes_)*/{}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct TripDefaultTypeInternal {
-  constexpr TripDefaultTypeInternal()
-    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  PROTOBUF_CONSTEXPR TripDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
   ~TripDefaultTypeInternal() {}
   union {
     Trip _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT TripDefaultTypeInternal _Trip_default_instance_;
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 TripDefaultTypeInternal _Trip_default_instance_;
 }  // namespace valhalla
 namespace valhalla {
 bool TripLeg_Node_Type_IsValid(int value) {
@@ -245,18 +336,22 @@ bool TripLeg_Node_Type_IsValid(int value) {
     case 10:
     case 11:
     case 12:
+    case 13:
+    case 14:
       return true;
     default:
       return false;
   }
 }
 
-static ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<std::string> TripLeg_Node_Type_strings[13] = {};
+static ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<std::string> TripLeg_Node_Type_strings[15] = {};
 
 static const char TripLeg_Node_Type_names[] =
   "kBikeShare"
   "kBollard"
   "kBorderControl"
+  "kBuildingEntrance"
+  "kElevator"
   "kGate"
   "kMotorwayJunction"
   "kParking"
@@ -272,32 +367,36 @@ static const ::PROTOBUF_NAMESPACE_ID::internal::EnumEntry TripLeg_Node_Type_entr
   { {TripLeg_Node_Type_names + 0, 10}, 7 },
   { {TripLeg_Node_Type_names + 10, 8}, 2 },
   { {TripLeg_Node_Type_names + 18, 14}, 10 },
-  { {TripLeg_Node_Type_names + 32, 5}, 1 },
-  { {TripLeg_Node_Type_names + 37, 17}, 9 },
-  { {TripLeg_Node_Type_names + 54, 8}, 8 },
-  { {TripLeg_Node_Type_names + 62, 19}, 0 },
-  { {TripLeg_Node_Type_names + 81, 11}, 12 },
-  { {TripLeg_Node_Type_names + 92, 10}, 3 },
-  { {TripLeg_Node_Type_names + 102, 11}, 11 },
-  { {TripLeg_Node_Type_names + 113, 14}, 4 },
-  { {TripLeg_Node_Type_names + 127, 16}, 6 },
-  { {TripLeg_Node_Type_names + 143, 15}, 5 },
+  { {TripLeg_Node_Type_names + 32, 17}, 13 },
+  { {TripLeg_Node_Type_names + 49, 9}, 14 },
+  { {TripLeg_Node_Type_names + 58, 5}, 1 },
+  { {TripLeg_Node_Type_names + 63, 17}, 9 },
+  { {TripLeg_Node_Type_names + 80, 8}, 8 },
+  { {TripLeg_Node_Type_names + 88, 19}, 0 },
+  { {TripLeg_Node_Type_names + 107, 11}, 12 },
+  { {TripLeg_Node_Type_names + 118, 10}, 3 },
+  { {TripLeg_Node_Type_names + 128, 11}, 11 },
+  { {TripLeg_Node_Type_names + 139, 14}, 4 },
+  { {TripLeg_Node_Type_names + 153, 16}, 6 },
+  { {TripLeg_Node_Type_names + 169, 15}, 5 },
 };
 
 static const int TripLeg_Node_Type_entries_by_number[] = {
-  6, // 0 -> kStreetIntersection
-  3, // 1 -> kGate
+  8, // 0 -> kStreetIntersection
+  5, // 1 -> kGate
   1, // 2 -> kBollard
-  8, // 3 -> kTollBooth
-  10, // 4 -> kTransitEgress
-  12, // 5 -> kTransitStation
-  11, // 6 -> kTransitPlatform
+  10, // 3 -> kTollBooth
+  12, // 4 -> kTransitEgress
+  14, // 5 -> kTransitStation
+  13, // 6 -> kTransitPlatform
   0, // 7 -> kBikeShare
-  5, // 8 -> kParking
-  4, // 9 -> kMotorwayJunction
+  7, // 8 -> kParking
+  6, // 9 -> kMotorwayJunction
   2, // 10 -> kBorderControl
-  9, // 11 -> kTollGantry
-  7, // 12 -> kSumpBuster
+  11, // 11 -> kTollGantry
+  9, // 12 -> kSumpBuster
+  3, // 13 -> kBuildingEntrance
+  4, // 14 -> kElevator
 };
 
 const std::string& TripLeg_Node_Type_Name(
@@ -306,12 +405,12 @@ const std::string& TripLeg_Node_Type_Name(
       ::PROTOBUF_NAMESPACE_ID::internal::InitializeEnumStrings(
           TripLeg_Node_Type_entries,
           TripLeg_Node_Type_entries_by_number,
-          13, TripLeg_Node_Type_strings);
+          15, TripLeg_Node_Type_strings);
   (void) dummy;
   int idx = ::PROTOBUF_NAMESPACE_ID::internal::LookUpEnumName(
       TripLeg_Node_Type_entries,
       TripLeg_Node_Type_entries_by_number,
-      13, value);
+      15, value);
   return idx == -1 ? ::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString() :
                      TripLeg_Node_Type_strings[idx].get();
 }
@@ -319,13 +418,13 @@ bool TripLeg_Node_Type_Parse(
     ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, TripLeg_Node_Type* value) {
   int int_value;
   bool success = ::PROTOBUF_NAMESPACE_ID::internal::LookUpEnumValue(
-      TripLeg_Node_Type_entries, 13, name, &int_value);
+      TripLeg_Node_Type_entries, 15, name, &int_value);
   if (success) {
     *value = static_cast<TripLeg_Node_Type>(int_value);
   }
   return success;
 }
-#if (__cplusplus < 201703) && (!defined(_MSC_VER) || _MSC_VER >= 1900)
+#if (__cplusplus < 201703) && (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
 constexpr TripLeg_Node_Type TripLeg_Node::kStreetIntersection;
 constexpr TripLeg_Node_Type TripLeg_Node::kGate;
 constexpr TripLeg_Node_Type TripLeg_Node::kBollard;
@@ -339,10 +438,12 @@ constexpr TripLeg_Node_Type TripLeg_Node::kMotorwayJunction;
 constexpr TripLeg_Node_Type TripLeg_Node::kBorderControl;
 constexpr TripLeg_Node_Type TripLeg_Node::kTollGantry;
 constexpr TripLeg_Node_Type TripLeg_Node::kSumpBuster;
+constexpr TripLeg_Node_Type TripLeg_Node::kBuildingEntrance;
+constexpr TripLeg_Node_Type TripLeg_Node::kElevator;
 constexpr TripLeg_Node_Type TripLeg_Node::Type_MIN;
 constexpr TripLeg_Node_Type TripLeg_Node::Type_MAX;
 constexpr int TripLeg_Node::Type_ARRAYSIZE;
-#endif  // (__cplusplus < 201703) && (!defined(_MSC_VER) || _MSC_VER >= 1900)
+#endif  // (__cplusplus < 201703) && (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
 bool TripLeg_Traversability_IsValid(int value) {
   switch (value) {
     case 0:
@@ -402,7 +503,7 @@ bool TripLeg_Traversability_Parse(
   }
   return success;
 }
-#if (__cplusplus < 201703) && (!defined(_MSC_VER) || _MSC_VER >= 1900)
+#if (__cplusplus < 201703) && (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
 constexpr TripLeg_Traversability TripLeg::kNone;
 constexpr TripLeg_Traversability TripLeg::kForward;
 constexpr TripLeg_Traversability TripLeg::kBackward;
@@ -410,7 +511,7 @@ constexpr TripLeg_Traversability TripLeg::kBoth;
 constexpr TripLeg_Traversability TripLeg::Traversability_MIN;
 constexpr TripLeg_Traversability TripLeg::Traversability_MAX;
 constexpr int TripLeg::Traversability_ARRAYSIZE;
-#endif  // (__cplusplus < 201703) && (!defined(_MSC_VER) || _MSC_VER >= 1900)
+#endif  // (__cplusplus < 201703) && (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
 bool TripLeg_Use_IsValid(int value) {
   switch (value) {
     case 0:
@@ -436,9 +537,12 @@ bool TripLeg_Use_IsValid(int value) {
     case 30:
     case 31:
     case 32:
+    case 33:
+    case 34:
     case 40:
     case 41:
     case 42:
+    case 43:
     case 50:
     case 51:
     case 52:
@@ -450,18 +554,21 @@ bool TripLeg_Use_IsValid(int value) {
   }
 }
 
-static ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<std::string> TripLeg_Use_strings[31] = {};
+static ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<std::string> TripLeg_Use_strings[34] = {};
 
 static const char TripLeg_Use_names[] =
   "kAlleyUse"
   "kBridlewayUse"
   "kBusUse"
+  "kConstructionUse"
   "kCuldesacUse"
   "kCyclewayUse"
   "kDriveThruUse"
   "kDrivewayUse"
   "kEgressConnectionUse"
+  "kElevatorUse"
   "kEmergencyAccessUse"
+  "kEscalatorUse"
   "kFerryUse"
   "kFootwayUse"
   "kLivingStreetUse"
@@ -489,68 +596,74 @@ static const ::PROTOBUF_NAMESPACE_ID::internal::EnumEntry TripLeg_Use_entries[] 
   { {TripLeg_Use_names + 0, 9}, 5 },
   { {TripLeg_Use_names + 9, 13}, 29 },
   { {TripLeg_Use_names + 22, 7}, 51 },
-  { {TripLeg_Use_names + 29, 12}, 9 },
-  { {TripLeg_Use_names + 41, 12}, 20 },
-  { {TripLeg_Use_names + 53, 13}, 8 },
-  { {TripLeg_Use_names + 66, 12}, 4 },
-  { {TripLeg_Use_names + 78, 20}, 52 },
-  { {TripLeg_Use_names + 98, 19}, 7 },
-  { {TripLeg_Use_names + 117, 9}, 41 },
-  { {TripLeg_Use_names + 126, 11}, 25 },
-  { {TripLeg_Use_names + 137, 16}, 10 },
-  { {TripLeg_Use_names + 153, 16}, 21 },
-  { {TripLeg_Use_names + 169, 9}, 40 },
-  { {TripLeg_Use_names + 178, 16}, 6 },
-  { {TripLeg_Use_names + 194, 8}, 27 },
-  { {TripLeg_Use_names + 202, 22}, 32 },
-  { {TripLeg_Use_names + 224, 14}, 28 },
-  { {TripLeg_Use_names + 238, 22}, 53 },
-  { {TripLeg_Use_names + 260, 13}, 42 },
-  { {TripLeg_Use_names + 273, 8}, 50 },
-  { {TripLeg_Use_names + 281, 8}, 1 },
-  { {TripLeg_Use_names + 289, 12}, 30 },
-  { {TripLeg_Use_names + 301, 8}, 0 },
-  { {TripLeg_Use_names + 309, 15}, 31 },
-  { {TripLeg_Use_names + 324, 15}, 11 },
-  { {TripLeg_Use_names + 339, 12}, 24 },
-  { {TripLeg_Use_names + 351, 9}, 26 },
-  { {TripLeg_Use_names + 360, 9}, 3 },
-  { {TripLeg_Use_names + 369, 21}, 54 },
-  { {TripLeg_Use_names + 390, 15}, 2 },
+  { {TripLeg_Use_names + 29, 16}, 43 },
+  { {TripLeg_Use_names + 45, 12}, 9 },
+  { {TripLeg_Use_names + 57, 12}, 20 },
+  { {TripLeg_Use_names + 69, 13}, 8 },
+  { {TripLeg_Use_names + 82, 12}, 4 },
+  { {TripLeg_Use_names + 94, 20}, 52 },
+  { {TripLeg_Use_names + 114, 12}, 33 },
+  { {TripLeg_Use_names + 126, 19}, 7 },
+  { {TripLeg_Use_names + 145, 13}, 34 },
+  { {TripLeg_Use_names + 158, 9}, 41 },
+  { {TripLeg_Use_names + 167, 11}, 25 },
+  { {TripLeg_Use_names + 178, 16}, 10 },
+  { {TripLeg_Use_names + 194, 16}, 21 },
+  { {TripLeg_Use_names + 210, 9}, 40 },
+  { {TripLeg_Use_names + 219, 16}, 6 },
+  { {TripLeg_Use_names + 235, 8}, 27 },
+  { {TripLeg_Use_names + 243, 22}, 32 },
+  { {TripLeg_Use_names + 265, 14}, 28 },
+  { {TripLeg_Use_names + 279, 22}, 53 },
+  { {TripLeg_Use_names + 301, 13}, 42 },
+  { {TripLeg_Use_names + 314, 8}, 50 },
+  { {TripLeg_Use_names + 322, 8}, 1 },
+  { {TripLeg_Use_names + 330, 12}, 30 },
+  { {TripLeg_Use_names + 342, 8}, 0 },
+  { {TripLeg_Use_names + 350, 15}, 31 },
+  { {TripLeg_Use_names + 365, 15}, 11 },
+  { {TripLeg_Use_names + 380, 12}, 24 },
+  { {TripLeg_Use_names + 392, 9}, 26 },
+  { {TripLeg_Use_names + 401, 9}, 3 },
+  { {TripLeg_Use_names + 410, 21}, 54 },
+  { {TripLeg_Use_names + 431, 15}, 2 },
 };
 
 static const int TripLeg_Use_entries_by_number[] = {
-  23, // 0 -> kRoadUse
-  21, // 1 -> kRampUse
-  30, // 2 -> kTurnChannelUse
-  28, // 3 -> kTrackUse
-  6, // 4 -> kDrivewayUse
+  26, // 0 -> kRoadUse
+  24, // 1 -> kRampUse
+  33, // 2 -> kTurnChannelUse
+  31, // 3 -> kTrackUse
+  7, // 4 -> kDrivewayUse
   0, // 5 -> kAlleyUse
-  14, // 6 -> kParkingAisleUse
-  8, // 7 -> kEmergencyAccessUse
-  5, // 8 -> kDriveThruUse
-  3, // 9 -> kCuldesacUse
-  11, // 10 -> kLivingStreetUse
-  25, // 11 -> kServiceRoadUse
-  4, // 20 -> kCyclewayUse
-  12, // 21 -> kMountainBikeUse
-  26, // 24 -> kSidewalkUse
-  10, // 25 -> kFootwayUse
-  27, // 26 -> kStepsUse
-  15, // 27 -> kPathUse
-  17, // 28 -> kPedestrianUse
+  17, // 6 -> kParkingAisleUse
+  10, // 7 -> kEmergencyAccessUse
+  6, // 8 -> kDriveThruUse
+  4, // 9 -> kCuldesacUse
+  14, // 10 -> kLivingStreetUse
+  28, // 11 -> kServiceRoadUse
+  5, // 20 -> kCyclewayUse
+  15, // 21 -> kMountainBikeUse
+  29, // 24 -> kSidewalkUse
+  13, // 25 -> kFootwayUse
+  30, // 26 -> kStepsUse
+  18, // 27 -> kPathUse
+  20, // 28 -> kPedestrianUse
   1, // 29 -> kBridlewayUse
-  22, // 30 -> kRestAreaUse
-  24, // 31 -> kServiceAreaUse
-  16, // 32 -> kPedestrianCrossingUse
-  13, // 40 -> kOtherUse
-  9, // 41 -> kFerryUse
-  19, // 42 -> kRailFerryUse
-  20, // 50 -> kRailUse
+  25, // 30 -> kRestAreaUse
+  27, // 31 -> kServiceAreaUse
+  19, // 32 -> kPedestrianCrossingUse
+  9, // 33 -> kElevatorUse
+  11, // 34 -> kEscalatorUse
+  16, // 40 -> kOtherUse
+  12, // 41 -> kFerryUse
+  22, // 42 -> kRailFerryUse
+  3, // 43 -> kConstructionUse
+  23, // 50 -> kRailUse
   2, // 51 -> kBusUse
-  7, // 52 -> kEgressConnectionUse
-  18, // 53 -> kPlatformConnectionUse
-  29, // 54 -> kTransitConnectionUse
+  8, // 52 -> kEgressConnectionUse
+  21, // 53 -> kPlatformConnectionUse
+  32, // 54 -> kTransitConnectionUse
 };
 
 const std::string& TripLeg_Use_Name(
@@ -559,12 +672,12 @@ const std::string& TripLeg_Use_Name(
       ::PROTOBUF_NAMESPACE_ID::internal::InitializeEnumStrings(
           TripLeg_Use_entries,
           TripLeg_Use_entries_by_number,
-          31, TripLeg_Use_strings);
+          34, TripLeg_Use_strings);
   (void) dummy;
   int idx = ::PROTOBUF_NAMESPACE_ID::internal::LookUpEnumName(
       TripLeg_Use_entries,
       TripLeg_Use_entries_by_number,
-      31, value);
+      34, value);
   return idx == -1 ? ::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString() :
                      TripLeg_Use_strings[idx].get();
 }
@@ -572,13 +685,13 @@ bool TripLeg_Use_Parse(
     ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, TripLeg_Use* value) {
   int int_value;
   bool success = ::PROTOBUF_NAMESPACE_ID::internal::LookUpEnumValue(
-      TripLeg_Use_entries, 31, name, &int_value);
+      TripLeg_Use_entries, 34, name, &int_value);
   if (success) {
     *value = static_cast<TripLeg_Use>(int_value);
   }
   return success;
 }
-#if (__cplusplus < 201703) && (!defined(_MSC_VER) || _MSC_VER >= 1900)
+#if (__cplusplus < 201703) && (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
 constexpr TripLeg_Use TripLeg::kRoadUse;
 constexpr TripLeg_Use TripLeg::kRampUse;
 constexpr TripLeg_Use TripLeg::kTurnChannelUse;
@@ -600,11 +713,14 @@ constexpr TripLeg_Use TripLeg::kPathUse;
 constexpr TripLeg_Use TripLeg::kPedestrianUse;
 constexpr TripLeg_Use TripLeg::kBridlewayUse;
 constexpr TripLeg_Use TripLeg::kPedestrianCrossingUse;
+constexpr TripLeg_Use TripLeg::kElevatorUse;
+constexpr TripLeg_Use TripLeg::kEscalatorUse;
 constexpr TripLeg_Use TripLeg::kRestAreaUse;
 constexpr TripLeg_Use TripLeg::kServiceAreaUse;
 constexpr TripLeg_Use TripLeg::kOtherUse;
 constexpr TripLeg_Use TripLeg::kFerryUse;
 constexpr TripLeg_Use TripLeg::kRailFerryUse;
+constexpr TripLeg_Use TripLeg::kConstructionUse;
 constexpr TripLeg_Use TripLeg::kRailUse;
 constexpr TripLeg_Use TripLeg::kBusUse;
 constexpr TripLeg_Use TripLeg::kEgressConnectionUse;
@@ -613,7 +729,7 @@ constexpr TripLeg_Use TripLeg::kTransitConnectionUse;
 constexpr TripLeg_Use TripLeg::Use_MIN;
 constexpr TripLeg_Use TripLeg::Use_MAX;
 constexpr int TripLeg::Use_ARRAYSIZE;
-#endif  // (__cplusplus < 201703) && (!defined(_MSC_VER) || _MSC_VER >= 1900)
+#endif  // (__cplusplus < 201703) && (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
 bool TripLeg_Surface_IsValid(int value) {
   switch (value) {
     case 0:
@@ -689,7 +805,7 @@ bool TripLeg_Surface_Parse(
   }
   return success;
 }
-#if (__cplusplus < 201703) && (!defined(_MSC_VER) || _MSC_VER >= 1900)
+#if (__cplusplus < 201703) && (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
 constexpr TripLeg_Surface TripLeg::kPavedSmooth;
 constexpr TripLeg_Surface TripLeg::kPaved;
 constexpr TripLeg_Surface TripLeg::kPavedRough;
@@ -701,7 +817,7 @@ constexpr TripLeg_Surface TripLeg::kImpassable;
 constexpr TripLeg_Surface TripLeg::Surface_MIN;
 constexpr TripLeg_Surface TripLeg::Surface_MAX;
 constexpr int TripLeg::Surface_ARRAYSIZE;
-#endif  // (__cplusplus < 201703) && (!defined(_MSC_VER) || _MSC_VER >= 1900)
+#endif  // (__cplusplus < 201703) && (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
 bool TripLeg_CycleLane_IsValid(int value) {
   switch (value) {
     case 0:
@@ -761,7 +877,7 @@ bool TripLeg_CycleLane_Parse(
   }
   return success;
 }
-#if (__cplusplus < 201703) && (!defined(_MSC_VER) || _MSC_VER >= 1900)
+#if (__cplusplus < 201703) && (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
 constexpr TripLeg_CycleLane TripLeg::kNoCycleLane;
 constexpr TripLeg_CycleLane TripLeg::kShared;
 constexpr TripLeg_CycleLane TripLeg::kDedicated;
@@ -769,7 +885,7 @@ constexpr TripLeg_CycleLane TripLeg::kSeparated;
 constexpr TripLeg_CycleLane TripLeg::CycleLane_MIN;
 constexpr TripLeg_CycleLane TripLeg::CycleLane_MAX;
 constexpr int TripLeg::CycleLane_ARRAYSIZE;
-#endif  // (__cplusplus < 201703) && (!defined(_MSC_VER) || _MSC_VER >= 1900)
+#endif  // (__cplusplus < 201703) && (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
 bool TripLeg_SacScale_IsValid(int value) {
   switch (value) {
     case 0:
@@ -841,7 +957,7 @@ bool TripLeg_SacScale_Parse(
   }
   return success;
 }
-#if (__cplusplus < 201703) && (!defined(_MSC_VER) || _MSC_VER >= 1900)
+#if (__cplusplus < 201703) && (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
 constexpr TripLeg_SacScale TripLeg::kNoSacScale;
 constexpr TripLeg_SacScale TripLeg::kHiking;
 constexpr TripLeg_SacScale TripLeg::kMountainHiking;
@@ -852,7 +968,7 @@ constexpr TripLeg_SacScale TripLeg::kDifficultAlpineHiking;
 constexpr TripLeg_SacScale TripLeg::SacScale_MIN;
 constexpr TripLeg_SacScale TripLeg::SacScale_MAX;
 constexpr int TripLeg::SacScale_ARRAYSIZE;
-#endif  // (__cplusplus < 201703) && (!defined(_MSC_VER) || _MSC_VER >= 1900)
+#endif  // (__cplusplus < 201703) && (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
 bool TripLeg_Sidewalk_IsValid(int value) {
   switch (value) {
     case 0:
@@ -912,7 +1028,7 @@ bool TripLeg_Sidewalk_Parse(
   }
   return success;
 }
-#if (__cplusplus < 201703) && (!defined(_MSC_VER) || _MSC_VER >= 1900)
+#if (__cplusplus < 201703) && (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
 constexpr TripLeg_Sidewalk TripLeg::kNoSidewalk;
 constexpr TripLeg_Sidewalk TripLeg::kLeft;
 constexpr TripLeg_Sidewalk TripLeg::kRight;
@@ -920,7 +1036,7 @@ constexpr TripLeg_Sidewalk TripLeg::kBothSides;
 constexpr TripLeg_Sidewalk TripLeg::Sidewalk_MIN;
 constexpr TripLeg_Sidewalk TripLeg::Sidewalk_MAX;
 constexpr int TripLeg::Sidewalk_ARRAYSIZE;
-#endif  // (__cplusplus < 201703) && (!defined(_MSC_VER) || _MSC_VER >= 1900)
+#endif  // (__cplusplus < 201703) && (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
 
 // ===================================================================
 
@@ -931,207 +1047,161 @@ class TripLeg_LaneConnectivity::_Internal {
 TripLeg_LaneConnectivity::TripLeg_LaneConnectivity(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::MessageLite(arena, is_message_owned) {
-  SharedCtor();
-  if (!is_message_owned) {
-    RegisterArenaDtor(arena);
-  }
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:valhalla.TripLeg.LaneConnectivity)
 }
 TripLeg_LaneConnectivity::TripLeg_LaneConnectivity(const TripLeg_LaneConnectivity& from)
   : ::PROTOBUF_NAMESPACE_ID::MessageLite() {
+  TripLeg_LaneConnectivity* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.from_lanes_){}
+    , decltype(_impl_.to_lanes_){}
+    , decltype(_impl_.from_way_id_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
-  clear_has_has_from_way_id();
-  switch (from.has_from_way_id_case()) {
-    case kFromWayId: {
-      _internal_set_from_way_id(from._internal_from_way_id());
-      break;
-    }
-    case HAS_FROM_WAY_ID_NOT_SET: {
-      break;
-    }
+  _impl_.from_lanes_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.from_lanes_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_from_lanes().empty()) {
+    _this->_impl_.from_lanes_.Set(from._internal_from_lanes(), 
+      _this->GetArenaForAllocation());
   }
-  clear_has_has_from_lanes();
-  switch (from.has_from_lanes_case()) {
-    case kFromLanes: {
-      _internal_set_from_lanes(from._internal_from_lanes());
-      break;
-    }
-    case HAS_FROM_LANES_NOT_SET: {
-      break;
-    }
+  _impl_.to_lanes_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.to_lanes_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_to_lanes().empty()) {
+    _this->_impl_.to_lanes_.Set(from._internal_to_lanes(), 
+      _this->GetArenaForAllocation());
   }
-  clear_has_has_to_lanes();
-  switch (from.has_to_lanes_case()) {
-    case kToLanes: {
-      _internal_set_to_lanes(from._internal_to_lanes());
-      break;
-    }
-    case HAS_TO_LANES_NOT_SET: {
-      break;
-    }
-  }
+  _this->_impl_.from_way_id_ = from._impl_.from_way_id_;
   // @@protoc_insertion_point(copy_constructor:valhalla.TripLeg.LaneConnectivity)
 }
 
-inline void TripLeg_LaneConnectivity::SharedCtor() {
-clear_has_has_from_way_id();
-clear_has_has_from_lanes();
-clear_has_has_to_lanes();
+inline void TripLeg_LaneConnectivity::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.from_lanes_){}
+    , decltype(_impl_.to_lanes_){}
+    , decltype(_impl_.from_way_id_){uint64_t{0u}}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.from_lanes_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.from_lanes_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.to_lanes_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.to_lanes_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 TripLeg_LaneConnectivity::~TripLeg_LaneConnectivity() {
   // @@protoc_insertion_point(destructor:valhalla.TripLeg.LaneConnectivity)
-  if (GetArenaForAllocation() != nullptr) return;
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<std::string>()) {
+  (void)arena;
+    return;
+  }
   SharedDtor();
-  _internal_metadata_.Delete<std::string>();
 }
 
 inline void TripLeg_LaneConnectivity::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  if (has_has_from_way_id()) {
-    clear_has_from_way_id();
-  }
-  if (has_has_from_lanes()) {
-    clear_has_from_lanes();
-  }
-  if (has_has_to_lanes()) {
-    clear_has_to_lanes();
-  }
+  _impl_.from_lanes_.Destroy();
+  _impl_.to_lanes_.Destroy();
 }
 
-void TripLeg_LaneConnectivity::ArenaDtor(void* object) {
-  TripLeg_LaneConnectivity* _this = reinterpret_cast< TripLeg_LaneConnectivity* >(object);
-  (void)_this;
-}
-void TripLeg_LaneConnectivity::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
-}
 void TripLeg_LaneConnectivity::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
-
-void TripLeg_LaneConnectivity::clear_has_from_way_id() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.TripLeg.LaneConnectivity)
-  switch (has_from_way_id_case()) {
-    case kFromWayId: {
-      // No need to clear
-      break;
-    }
-    case HAS_FROM_WAY_ID_NOT_SET: {
-      break;
-    }
-  }
-  _oneof_case_[0] = HAS_FROM_WAY_ID_NOT_SET;
-}
-
-void TripLeg_LaneConnectivity::clear_has_from_lanes() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.TripLeg.LaneConnectivity)
-  switch (has_from_lanes_case()) {
-    case kFromLanes: {
-      has_from_lanes_.from_lanes_.Destroy(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
-      break;
-    }
-    case HAS_FROM_LANES_NOT_SET: {
-      break;
-    }
-  }
-  _oneof_case_[1] = HAS_FROM_LANES_NOT_SET;
-}
-
-void TripLeg_LaneConnectivity::clear_has_to_lanes() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.TripLeg.LaneConnectivity)
-  switch (has_to_lanes_case()) {
-    case kToLanes: {
-      has_to_lanes_.to_lanes_.Destroy(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
-      break;
-    }
-    case HAS_TO_LANES_NOT_SET: {
-      break;
-    }
-  }
-  _oneof_case_[2] = HAS_TO_LANES_NOT_SET;
-}
-
 
 void TripLeg_LaneConnectivity::Clear() {
 // @@protoc_insertion_point(message_clear_start:valhalla.TripLeg.LaneConnectivity)
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  clear_has_from_way_id();
-  clear_has_from_lanes();
-  clear_has_to_lanes();
+  _impl_.from_lanes_.ClearToEmpty();
+  _impl_.to_lanes_.ClearToEmpty();
+  _impl_.from_way_id_ = uint64_t{0u};
   _internal_metadata_.Clear<std::string>();
 }
 
-const char* TripLeg_LaneConnectivity::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+const char* TripLeg_LaneConnectivity::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
   while (!ctx->Done(&ptr)) {
-    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
-    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
       // uint64 from_way_id = 1;
       case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
-          _internal_set_from_way_id(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr));
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
+          _impl_.from_way_id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // string from_lanes = 2;
       case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
           auto str = _internal_mutable_from_lanes();
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, nullptr));
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
-        } else goto handle_unusual;
+          CHK_(::_pbi::VerifyUTF8(str, nullptr));
+        } else
+          goto handle_unusual;
         continue;
       // string to_lanes = 3;
       case 3:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
           auto str = _internal_mutable_to_lanes();
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, nullptr));
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
-        } else goto handle_unusual;
+          CHK_(::_pbi::VerifyUTF8(str, nullptr));
+        } else
+          goto handle_unusual;
         continue;
-      default: {
-      handle_unusual:
-        if ((tag == 0) || ((tag & 7) == 4)) {
-          CHK_(ptr);
-          ctx->SetLastTag(tag);
-          goto success;
-        }
-        ptr = UnknownFieldParse(tag,
-            _internal_metadata_.mutable_unknown_fields<std::string>(),
-            ptr, ctx);
-        CHK_(ptr != nullptr);
-        continue;
-      }
+      default:
+        goto handle_unusual;
     }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<std::string>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
   }  // while
-success:
+message_done:
   return ptr;
 failure:
   ptr = nullptr;
-  goto success;
+  goto message_done;
 #undef CHK_
 }
 
-::PROTOBUF_NAMESPACE_ID::uint8* TripLeg_LaneConnectivity::_InternalSerialize(
-    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+uint8_t* TripLeg_LaneConnectivity::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:valhalla.TripLeg.LaneConnectivity)
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   // uint64 from_way_id = 1;
-  if (_internal_has_from_way_id()) {
+  if (this->_internal_from_way_id() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt64ToArray(1, this->_internal_from_way_id(), target);
+    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(1, this->_internal_from_way_id(), target);
   }
 
   // string from_lanes = 2;
-  if (_internal_has_from_lanes()) {
+  if (!this->_internal_from_lanes().empty()) {
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_from_lanes().data(), static_cast<int>(this->_internal_from_lanes().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
@@ -1141,7 +1211,7 @@ failure:
   }
 
   // string to_lanes = 3;
-  if (_internal_has_to_lanes()) {
+  if (!this->_internal_to_lanes().empty()) {
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_to_lanes().data(), static_cast<int>(this->_internal_to_lanes().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
@@ -1162,94 +1232,60 @@ size_t TripLeg_LaneConnectivity::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:valhalla.TripLeg.LaneConnectivity)
   size_t total_size = 0;
 
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  switch (has_from_way_id_case()) {
-    // uint64 from_way_id = 1;
-    case kFromWayId: {
-      total_size += 1 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt64Size(
-          this->_internal_from_way_id());
-      break;
-    }
-    case HAS_FROM_WAY_ID_NOT_SET: {
-      break;
-    }
+  // string from_lanes = 2;
+  if (!this->_internal_from_lanes().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_from_lanes());
   }
-  switch (has_from_lanes_case()) {
-    // string from_lanes = 2;
-    case kFromLanes: {
-      total_size += 1 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-          this->_internal_from_lanes());
-      break;
-    }
-    case HAS_FROM_LANES_NOT_SET: {
-      break;
-    }
+
+  // string to_lanes = 3;
+  if (!this->_internal_to_lanes().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_to_lanes());
   }
-  switch (has_to_lanes_case()) {
-    // string to_lanes = 3;
-    case kToLanes: {
-      total_size += 1 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-          this->_internal_to_lanes());
-      break;
-    }
-    case HAS_TO_LANES_NOT_SET: {
-      break;
-    }
+
+  // uint64 from_way_id = 1;
+  if (this->_internal_from_way_id() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_from_way_id());
   }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     total_size += _internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).size();
   }
-  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  int cached_size = ::_pbi::ToCachedSize(total_size);
   SetCachedSize(cached_size);
   return total_size;
 }
 
 void TripLeg_LaneConnectivity::CheckTypeAndMergeFrom(
     const ::PROTOBUF_NAMESPACE_ID::MessageLite& from) {
-  MergeFrom(*::PROTOBUF_NAMESPACE_ID::internal::DownCast<const TripLeg_LaneConnectivity*>(
+  MergeFrom(*::_pbi::DownCast<const TripLeg_LaneConnectivity*>(
       &from));
 }
 
 void TripLeg_LaneConnectivity::MergeFrom(const TripLeg_LaneConnectivity& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:valhalla.TripLeg.LaneConnectivity)
-  GOOGLE_DCHECK_NE(&from, this);
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  TripLeg_LaneConnectivity* const _this = this;
+  // @@protoc_insertion_point(class_specific_merge_from_start:valhalla.TripLeg.LaneConnectivity)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  switch (from.has_from_way_id_case()) {
-    case kFromWayId: {
-      _internal_set_from_way_id(from._internal_from_way_id());
-      break;
-    }
-    case HAS_FROM_WAY_ID_NOT_SET: {
-      break;
-    }
+  if (!from._internal_from_lanes().empty()) {
+    _this->_internal_set_from_lanes(from._internal_from_lanes());
   }
-  switch (from.has_from_lanes_case()) {
-    case kFromLanes: {
-      _internal_set_from_lanes(from._internal_from_lanes());
-      break;
-    }
-    case HAS_FROM_LANES_NOT_SET: {
-      break;
-    }
+  if (!from._internal_to_lanes().empty()) {
+    _this->_internal_set_to_lanes(from._internal_to_lanes());
   }
-  switch (from.has_to_lanes_case()) {
-    case kToLanes: {
-      _internal_set_to_lanes(from._internal_to_lanes());
-      break;
-    }
-    case HAS_TO_LANES_NOT_SET: {
-      break;
-    }
+  if (from._internal_from_way_id() != 0) {
+    _this->_internal_set_from_way_id(from._internal_from_way_id());
   }
-  _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
 }
 
 void TripLeg_LaneConnectivity::CopyFrom(const TripLeg_LaneConnectivity& from) {
@@ -1265,13 +1301,18 @@ bool TripLeg_LaneConnectivity::IsInitialized() const {
 
 void TripLeg_LaneConnectivity::InternalSwap(TripLeg_LaneConnectivity* other) {
   using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(has_from_way_id_, other->has_from_way_id_);
-  swap(has_from_lanes_, other->has_from_lanes_);
-  swap(has_to_lanes_, other->has_to_lanes_);
-  swap(_oneof_case_[0], other->_oneof_case_[0]);
-  swap(_oneof_case_[1], other->_oneof_case_[1]);
-  swap(_oneof_case_[2], other->_oneof_case_[2]);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.from_lanes_, lhs_arena,
+      &other->_impl_.from_lanes_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.to_lanes_, lhs_arena,
+      &other->_impl_.to_lanes_, rhs_arena
+  );
+  swap(_impl_.from_way_id_, other->_impl_.from_way_id_);
 }
 
 std::string TripLeg_LaneConnectivity::GetTypeName() const {
@@ -1288,295 +1329,181 @@ class TripLeg_TrafficSegment::_Internal {
 TripLeg_TrafficSegment::TripLeg_TrafficSegment(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::MessageLite(arena, is_message_owned) {
-  SharedCtor();
-  if (!is_message_owned) {
-    RegisterArenaDtor(arena);
-  }
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:valhalla.TripLeg.TrafficSegment)
 }
 TripLeg_TrafficSegment::TripLeg_TrafficSegment(const TripLeg_TrafficSegment& from)
   : ::PROTOBUF_NAMESPACE_ID::MessageLite() {
+  TripLeg_TrafficSegment* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.segment_id_){}
+    , decltype(_impl_.begin_percent_){}
+    , decltype(_impl_.end_percent_){}
+    , decltype(_impl_.starts_segment_){}
+    , decltype(_impl_.ends_segment_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
-  clear_has_has_segment_id();
-  switch (from.has_segment_id_case()) {
-    case kSegmentId: {
-      _internal_set_segment_id(from._internal_segment_id());
-      break;
-    }
-    case HAS_SEGMENT_ID_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_begin_percent();
-  switch (from.has_begin_percent_case()) {
-    case kBeginPercent: {
-      _internal_set_begin_percent(from._internal_begin_percent());
-      break;
-    }
-    case HAS_BEGIN_PERCENT_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_end_percent();
-  switch (from.has_end_percent_case()) {
-    case kEndPercent: {
-      _internal_set_end_percent(from._internal_end_percent());
-      break;
-    }
-    case HAS_END_PERCENT_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_starts_segment();
-  switch (from.has_starts_segment_case()) {
-    case kStartsSegment: {
-      _internal_set_starts_segment(from._internal_starts_segment());
-      break;
-    }
-    case HAS_STARTS_SEGMENT_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_ends_segment();
-  switch (from.has_ends_segment_case()) {
-    case kEndsSegment: {
-      _internal_set_ends_segment(from._internal_ends_segment());
-      break;
-    }
-    case HAS_ENDS_SEGMENT_NOT_SET: {
-      break;
-    }
-  }
+  ::memcpy(&_impl_.segment_id_, &from._impl_.segment_id_,
+    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.ends_segment_) -
+    reinterpret_cast<char*>(&_impl_.segment_id_)) + sizeof(_impl_.ends_segment_));
   // @@protoc_insertion_point(copy_constructor:valhalla.TripLeg.TrafficSegment)
 }
 
-inline void TripLeg_TrafficSegment::SharedCtor() {
-clear_has_has_segment_id();
-clear_has_has_begin_percent();
-clear_has_has_end_percent();
-clear_has_has_starts_segment();
-clear_has_has_ends_segment();
+inline void TripLeg_TrafficSegment::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.segment_id_){uint64_t{0u}}
+    , decltype(_impl_.begin_percent_){0}
+    , decltype(_impl_.end_percent_){0}
+    , decltype(_impl_.starts_segment_){false}
+    , decltype(_impl_.ends_segment_){false}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
 }
 
 TripLeg_TrafficSegment::~TripLeg_TrafficSegment() {
   // @@protoc_insertion_point(destructor:valhalla.TripLeg.TrafficSegment)
-  if (GetArenaForAllocation() != nullptr) return;
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<std::string>()) {
+  (void)arena;
+    return;
+  }
   SharedDtor();
-  _internal_metadata_.Delete<std::string>();
 }
 
 inline void TripLeg_TrafficSegment::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  if (has_has_segment_id()) {
-    clear_has_segment_id();
-  }
-  if (has_has_begin_percent()) {
-    clear_has_begin_percent();
-  }
-  if (has_has_end_percent()) {
-    clear_has_end_percent();
-  }
-  if (has_has_starts_segment()) {
-    clear_has_starts_segment();
-  }
-  if (has_has_ends_segment()) {
-    clear_has_ends_segment();
-  }
 }
 
-void TripLeg_TrafficSegment::ArenaDtor(void* object) {
-  TripLeg_TrafficSegment* _this = reinterpret_cast< TripLeg_TrafficSegment* >(object);
-  (void)_this;
-}
-void TripLeg_TrafficSegment::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
-}
 void TripLeg_TrafficSegment::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
-
-void TripLeg_TrafficSegment::clear_has_segment_id() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.TripLeg.TrafficSegment)
-  switch (has_segment_id_case()) {
-    case kSegmentId: {
-      // No need to clear
-      break;
-    }
-    case HAS_SEGMENT_ID_NOT_SET: {
-      break;
-    }
-  }
-  _oneof_case_[0] = HAS_SEGMENT_ID_NOT_SET;
-}
-
-void TripLeg_TrafficSegment::clear_has_begin_percent() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.TripLeg.TrafficSegment)
-  switch (has_begin_percent_case()) {
-    case kBeginPercent: {
-      // No need to clear
-      break;
-    }
-    case HAS_BEGIN_PERCENT_NOT_SET: {
-      break;
-    }
-  }
-  _oneof_case_[1] = HAS_BEGIN_PERCENT_NOT_SET;
-}
-
-void TripLeg_TrafficSegment::clear_has_end_percent() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.TripLeg.TrafficSegment)
-  switch (has_end_percent_case()) {
-    case kEndPercent: {
-      // No need to clear
-      break;
-    }
-    case HAS_END_PERCENT_NOT_SET: {
-      break;
-    }
-  }
-  _oneof_case_[2] = HAS_END_PERCENT_NOT_SET;
-}
-
-void TripLeg_TrafficSegment::clear_has_starts_segment() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.TripLeg.TrafficSegment)
-  switch (has_starts_segment_case()) {
-    case kStartsSegment: {
-      // No need to clear
-      break;
-    }
-    case HAS_STARTS_SEGMENT_NOT_SET: {
-      break;
-    }
-  }
-  _oneof_case_[3] = HAS_STARTS_SEGMENT_NOT_SET;
-}
-
-void TripLeg_TrafficSegment::clear_has_ends_segment() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.TripLeg.TrafficSegment)
-  switch (has_ends_segment_case()) {
-    case kEndsSegment: {
-      // No need to clear
-      break;
-    }
-    case HAS_ENDS_SEGMENT_NOT_SET: {
-      break;
-    }
-  }
-  _oneof_case_[4] = HAS_ENDS_SEGMENT_NOT_SET;
-}
-
 
 void TripLeg_TrafficSegment::Clear() {
 // @@protoc_insertion_point(message_clear_start:valhalla.TripLeg.TrafficSegment)
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  clear_has_segment_id();
-  clear_has_begin_percent();
-  clear_has_end_percent();
-  clear_has_starts_segment();
-  clear_has_ends_segment();
+  ::memset(&_impl_.segment_id_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&_impl_.ends_segment_) -
+      reinterpret_cast<char*>(&_impl_.segment_id_)) + sizeof(_impl_.ends_segment_));
   _internal_metadata_.Clear<std::string>();
 }
 
-const char* TripLeg_TrafficSegment::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+const char* TripLeg_TrafficSegment::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
   while (!ctx->Done(&ptr)) {
-    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
-    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
       // uint64 segment_id = 1;
       case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
-          _internal_set_segment_id(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr));
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
+          _impl_.segment_id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // float begin_percent = 2;
       case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 21)) {
-          _internal_set_begin_percent(::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr));
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 21)) {
+          _impl_.begin_percent_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // float end_percent = 3;
       case 3:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 29)) {
-          _internal_set_end_percent(::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr));
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 29)) {
+          _impl_.end_percent_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // bool starts_segment = 4;
       case 4:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 32)) {
-          _internal_set_starts_segment(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr));
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 32)) {
+          _impl_.starts_segment_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // bool ends_segment = 5;
       case 5:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 40)) {
-          _internal_set_ends_segment(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr));
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 40)) {
+          _impl_.ends_segment_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
-      default: {
-      handle_unusual:
-        if ((tag == 0) || ((tag & 7) == 4)) {
-          CHK_(ptr);
-          ctx->SetLastTag(tag);
-          goto success;
-        }
-        ptr = UnknownFieldParse(tag,
-            _internal_metadata_.mutable_unknown_fields<std::string>(),
-            ptr, ctx);
-        CHK_(ptr != nullptr);
-        continue;
-      }
+      default:
+        goto handle_unusual;
     }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<std::string>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
   }  // while
-success:
+message_done:
   return ptr;
 failure:
   ptr = nullptr;
-  goto success;
+  goto message_done;
 #undef CHK_
 }
 
-::PROTOBUF_NAMESPACE_ID::uint8* TripLeg_TrafficSegment::_InternalSerialize(
-    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+uint8_t* TripLeg_TrafficSegment::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:valhalla.TripLeg.TrafficSegment)
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   // uint64 segment_id = 1;
-  if (_internal_has_segment_id()) {
+  if (this->_internal_segment_id() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt64ToArray(1, this->_internal_segment_id(), target);
+    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(1, this->_internal_segment_id(), target);
   }
 
   // float begin_percent = 2;
-  if (_internal_has_begin_percent()) {
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_begin_percent = this->_internal_begin_percent();
+  uint32_t raw_begin_percent;
+  memcpy(&raw_begin_percent, &tmp_begin_percent, sizeof(tmp_begin_percent));
+  if (raw_begin_percent != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(2, this->_internal_begin_percent(), target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(2, this->_internal_begin_percent(), target);
   }
 
   // float end_percent = 3;
-  if (_internal_has_end_percent()) {
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_end_percent = this->_internal_end_percent();
+  uint32_t raw_end_percent;
+  memcpy(&raw_end_percent, &tmp_end_percent, sizeof(tmp_end_percent));
+  if (raw_end_percent != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(3, this->_internal_end_percent(), target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(3, this->_internal_end_percent(), target);
   }
 
   // bool starts_segment = 4;
-  if (_internal_has_starts_segment()) {
+  if (this->_internal_starts_segment() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(4, this->_internal_starts_segment(), target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(4, this->_internal_starts_segment(), target);
   }
 
   // bool ends_segment = 5;
-  if (_internal_has_ends_segment()) {
+  if (this->_internal_ends_segment() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(5, this->_internal_ends_segment(), target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(5, this->_internal_ends_segment(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -1591,128 +1518,88 @@ size_t TripLeg_TrafficSegment::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:valhalla.TripLeg.TrafficSegment)
   size_t total_size = 0;
 
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  switch (has_segment_id_case()) {
-    // uint64 segment_id = 1;
-    case kSegmentId: {
-      total_size += 1 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt64Size(
-          this->_internal_segment_id());
-      break;
-    }
-    case HAS_SEGMENT_ID_NOT_SET: {
-      break;
-    }
+  // uint64 segment_id = 1;
+  if (this->_internal_segment_id() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_segment_id());
   }
-  switch (has_begin_percent_case()) {
-    // float begin_percent = 2;
-    case kBeginPercent: {
-      total_size += 1 + 4;
-      break;
-    }
-    case HAS_BEGIN_PERCENT_NOT_SET: {
-      break;
-    }
+
+  // float begin_percent = 2;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_begin_percent = this->_internal_begin_percent();
+  uint32_t raw_begin_percent;
+  memcpy(&raw_begin_percent, &tmp_begin_percent, sizeof(tmp_begin_percent));
+  if (raw_begin_percent != 0) {
+    total_size += 1 + 4;
   }
-  switch (has_end_percent_case()) {
-    // float end_percent = 3;
-    case kEndPercent: {
-      total_size += 1 + 4;
-      break;
-    }
-    case HAS_END_PERCENT_NOT_SET: {
-      break;
-    }
+
+  // float end_percent = 3;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_end_percent = this->_internal_end_percent();
+  uint32_t raw_end_percent;
+  memcpy(&raw_end_percent, &tmp_end_percent, sizeof(tmp_end_percent));
+  if (raw_end_percent != 0) {
+    total_size += 1 + 4;
   }
-  switch (has_starts_segment_case()) {
-    // bool starts_segment = 4;
-    case kStartsSegment: {
-      total_size += 1 + 1;
-      break;
-    }
-    case HAS_STARTS_SEGMENT_NOT_SET: {
-      break;
-    }
+
+  // bool starts_segment = 4;
+  if (this->_internal_starts_segment() != 0) {
+    total_size += 1 + 1;
   }
-  switch (has_ends_segment_case()) {
-    // bool ends_segment = 5;
-    case kEndsSegment: {
-      total_size += 1 + 1;
-      break;
-    }
-    case HAS_ENDS_SEGMENT_NOT_SET: {
-      break;
-    }
+
+  // bool ends_segment = 5;
+  if (this->_internal_ends_segment() != 0) {
+    total_size += 1 + 1;
   }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     total_size += _internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).size();
   }
-  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  int cached_size = ::_pbi::ToCachedSize(total_size);
   SetCachedSize(cached_size);
   return total_size;
 }
 
 void TripLeg_TrafficSegment::CheckTypeAndMergeFrom(
     const ::PROTOBUF_NAMESPACE_ID::MessageLite& from) {
-  MergeFrom(*::PROTOBUF_NAMESPACE_ID::internal::DownCast<const TripLeg_TrafficSegment*>(
+  MergeFrom(*::_pbi::DownCast<const TripLeg_TrafficSegment*>(
       &from));
 }
 
 void TripLeg_TrafficSegment::MergeFrom(const TripLeg_TrafficSegment& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:valhalla.TripLeg.TrafficSegment)
-  GOOGLE_DCHECK_NE(&from, this);
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  TripLeg_TrafficSegment* const _this = this;
+  // @@protoc_insertion_point(class_specific_merge_from_start:valhalla.TripLeg.TrafficSegment)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  switch (from.has_segment_id_case()) {
-    case kSegmentId: {
-      _internal_set_segment_id(from._internal_segment_id());
-      break;
-    }
-    case HAS_SEGMENT_ID_NOT_SET: {
-      break;
-    }
+  if (from._internal_segment_id() != 0) {
+    _this->_internal_set_segment_id(from._internal_segment_id());
   }
-  switch (from.has_begin_percent_case()) {
-    case kBeginPercent: {
-      _internal_set_begin_percent(from._internal_begin_percent());
-      break;
-    }
-    case HAS_BEGIN_PERCENT_NOT_SET: {
-      break;
-    }
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_begin_percent = from._internal_begin_percent();
+  uint32_t raw_begin_percent;
+  memcpy(&raw_begin_percent, &tmp_begin_percent, sizeof(tmp_begin_percent));
+  if (raw_begin_percent != 0) {
+    _this->_internal_set_begin_percent(from._internal_begin_percent());
   }
-  switch (from.has_end_percent_case()) {
-    case kEndPercent: {
-      _internal_set_end_percent(from._internal_end_percent());
-      break;
-    }
-    case HAS_END_PERCENT_NOT_SET: {
-      break;
-    }
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_end_percent = from._internal_end_percent();
+  uint32_t raw_end_percent;
+  memcpy(&raw_end_percent, &tmp_end_percent, sizeof(tmp_end_percent));
+  if (raw_end_percent != 0) {
+    _this->_internal_set_end_percent(from._internal_end_percent());
   }
-  switch (from.has_starts_segment_case()) {
-    case kStartsSegment: {
-      _internal_set_starts_segment(from._internal_starts_segment());
-      break;
-    }
-    case HAS_STARTS_SEGMENT_NOT_SET: {
-      break;
-    }
+  if (from._internal_starts_segment() != 0) {
+    _this->_internal_set_starts_segment(from._internal_starts_segment());
   }
-  switch (from.has_ends_segment_case()) {
-    case kEndsSegment: {
-      _internal_set_ends_segment(from._internal_ends_segment());
-      break;
-    }
-    case HAS_ENDS_SEGMENT_NOT_SET: {
-      break;
-    }
+  if (from._internal_ends_segment() != 0) {
+    _this->_internal_set_ends_segment(from._internal_ends_segment());
   }
-  _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
 }
 
 void TripLeg_TrafficSegment::CopyFrom(const TripLeg_TrafficSegment& from) {
@@ -1729,16 +1616,12 @@ bool TripLeg_TrafficSegment::IsInitialized() const {
 void TripLeg_TrafficSegment::InternalSwap(TripLeg_TrafficSegment* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(has_segment_id_, other->has_segment_id_);
-  swap(has_begin_percent_, other->has_begin_percent_);
-  swap(has_end_percent_, other->has_end_percent_);
-  swap(has_starts_segment_, other->has_starts_segment_);
-  swap(has_ends_segment_, other->has_ends_segment_);
-  swap(_oneof_case_[0], other->_oneof_case_[0]);
-  swap(_oneof_case_[1], other->_oneof_case_[1]);
-  swap(_oneof_case_[2], other->_oneof_case_[2]);
-  swap(_oneof_case_[3], other->_oneof_case_[3]);
-  swap(_oneof_case_[4], other->_oneof_case_[4]);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(TripLeg_TrafficSegment, _impl_.ends_segment_)
+      + sizeof(TripLeg_TrafficSegment::_impl_.ends_segment_)
+      - PROTOBUF_FIELD_OFFSET(TripLeg_TrafficSegment, _impl_.segment_id_)>(
+          reinterpret_cast<char*>(&_impl_.segment_id_),
+          reinterpret_cast<char*>(&other->_impl_.segment_id_));
 }
 
 std::string TripLeg_TrafficSegment::GetTypeName() const {
@@ -1755,127 +1638,105 @@ class TripLeg_Restriction::_Internal {
 TripLeg_Restriction::TripLeg_Restriction(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::MessageLite(arena, is_message_owned) {
-  SharedCtor();
-  if (!is_message_owned) {
-    RegisterArenaDtor(arena);
-  }
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:valhalla.TripLeg.Restriction)
 }
 TripLeg_Restriction::TripLeg_Restriction(const TripLeg_Restriction& from)
   : ::PROTOBUF_NAMESPACE_ID::MessageLite() {
+  TripLeg_Restriction* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.type_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
-  clear_has_has_type();
-  switch (from.has_type_case()) {
-    case kType: {
-      _internal_set_type(from._internal_type());
-      break;
-    }
-    case HAS_TYPE_NOT_SET: {
-      break;
-    }
-  }
+  _this->_impl_.type_ = from._impl_.type_;
   // @@protoc_insertion_point(copy_constructor:valhalla.TripLeg.Restriction)
 }
 
-inline void TripLeg_Restriction::SharedCtor() {
-clear_has_has_type();
+inline void TripLeg_Restriction::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.type_){0u}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
 }
 
 TripLeg_Restriction::~TripLeg_Restriction() {
   // @@protoc_insertion_point(destructor:valhalla.TripLeg.Restriction)
-  if (GetArenaForAllocation() != nullptr) return;
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<std::string>()) {
+  (void)arena;
+    return;
+  }
   SharedDtor();
-  _internal_metadata_.Delete<std::string>();
 }
 
 inline void TripLeg_Restriction::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  if (has_has_type()) {
-    clear_has_type();
-  }
 }
 
-void TripLeg_Restriction::ArenaDtor(void* object) {
-  TripLeg_Restriction* _this = reinterpret_cast< TripLeg_Restriction* >(object);
-  (void)_this;
-}
-void TripLeg_Restriction::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
-}
 void TripLeg_Restriction::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
-
-void TripLeg_Restriction::clear_has_type() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.TripLeg.Restriction)
-  switch (has_type_case()) {
-    case kType: {
-      // No need to clear
-      break;
-    }
-    case HAS_TYPE_NOT_SET: {
-      break;
-    }
-  }
-  _oneof_case_[0] = HAS_TYPE_NOT_SET;
-}
-
 
 void TripLeg_Restriction::Clear() {
 // @@protoc_insertion_point(message_clear_start:valhalla.TripLeg.Restriction)
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  clear_has_type();
+  _impl_.type_ = 0u;
   _internal_metadata_.Clear<std::string>();
 }
 
-const char* TripLeg_Restriction::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+const char* TripLeg_Restriction::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
   while (!ctx->Done(&ptr)) {
-    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
-    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
       // uint32 type = 1;
       case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
-          _internal_set_type(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr));
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
+          _impl_.type_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
-      default: {
-      handle_unusual:
-        if ((tag == 0) || ((tag & 7) == 4)) {
-          CHK_(ptr);
-          ctx->SetLastTag(tag);
-          goto success;
-        }
-        ptr = UnknownFieldParse(tag,
-            _internal_metadata_.mutable_unknown_fields<std::string>(),
-            ptr, ctx);
-        CHK_(ptr != nullptr);
-        continue;
-      }
+      default:
+        goto handle_unusual;
     }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<std::string>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
   }  // while
-success:
+message_done:
   return ptr;
 failure:
   ptr = nullptr;
-  goto success;
+  goto message_done;
 #undef CHK_
 }
 
-::PROTOBUF_NAMESPACE_ID::uint8* TripLeg_Restriction::_InternalSerialize(
-    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+uint8_t* TripLeg_Restriction::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:valhalla.TripLeg.Restriction)
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   // uint32 type = 1;
-  if (_internal_has_type()) {
+  if (this->_internal_type() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt32ToArray(1, this->_internal_type(), target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(1, this->_internal_type(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -1890,52 +1751,40 @@ size_t TripLeg_Restriction::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:valhalla.TripLeg.Restriction)
   size_t total_size = 0;
 
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  switch (has_type_case()) {
-    // uint32 type = 1;
-    case kType: {
-      total_size += 1 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt32Size(
-          this->_internal_type());
-      break;
-    }
-    case HAS_TYPE_NOT_SET: {
-      break;
-    }
+  // uint32 type = 1;
+  if (this->_internal_type() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_type());
   }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     total_size += _internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).size();
   }
-  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  int cached_size = ::_pbi::ToCachedSize(total_size);
   SetCachedSize(cached_size);
   return total_size;
 }
 
 void TripLeg_Restriction::CheckTypeAndMergeFrom(
     const ::PROTOBUF_NAMESPACE_ID::MessageLite& from) {
-  MergeFrom(*::PROTOBUF_NAMESPACE_ID::internal::DownCast<const TripLeg_Restriction*>(
+  MergeFrom(*::_pbi::DownCast<const TripLeg_Restriction*>(
       &from));
 }
 
 void TripLeg_Restriction::MergeFrom(const TripLeg_Restriction& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:valhalla.TripLeg.Restriction)
-  GOOGLE_DCHECK_NE(&from, this);
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  TripLeg_Restriction* const _this = this;
+  // @@protoc_insertion_point(class_specific_merge_from_start:valhalla.TripLeg.Restriction)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  switch (from.has_type_case()) {
-    case kType: {
-      _internal_set_type(from._internal_type());
-      break;
-    }
-    case HAS_TYPE_NOT_SET: {
-      break;
-    }
+  if (from._internal_type() != 0) {
+    _this->_internal_set_type(from._internal_type());
   }
-  _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
 }
 
 void TripLeg_Restriction::CopyFrom(const TripLeg_Restriction& from) {
@@ -1952,8 +1801,7 @@ bool TripLeg_Restriction::IsInitialized() const {
 void TripLeg_Restriction::InternalSwap(TripLeg_Restriction* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(has_type_, other->has_type_);
-  swap(_oneof_case_[0], other->_oneof_case_[0]);
+  swap(_impl_.type_, other->_impl_.type_);
 }
 
 std::string TripLeg_Restriction::GetTypeName() const {
@@ -1972,1420 +1820,243 @@ class TripLeg_Edge::_Internal {
 
 const ::valhalla::TripSign&
 TripLeg_Edge::_Internal::sign(const TripLeg_Edge* msg) {
-  return *msg->sign_;
+  return *msg->_impl_.sign_;
 }
 const ::valhalla::TransitRouteInfo&
 TripLeg_Edge::_Internal::transit_route_info(const TripLeg_Edge* msg) {
-  return *msg->transit_route_info_;
+  return *msg->_impl_.transit_route_info_;
 }
 const ::valhalla::TripLeg_Restriction&
 TripLeg_Edge::_Internal::restriction(const TripLeg_Edge* msg) {
-  return *msg->restriction_;
+  return *msg->_impl_.restriction_;
 }
 void TripLeg_Edge::clear_name() {
-  name_.Clear();
+  _impl_.name_.Clear();
 }
 void TripLeg_Edge::clear_sign() {
-  if (GetArenaForAllocation() == nullptr && sign_ != nullptr) {
-    delete sign_;
+  if (GetArenaForAllocation() == nullptr && _impl_.sign_ != nullptr) {
+    delete _impl_.sign_;
   }
-  sign_ = nullptr;
+  _impl_.sign_ = nullptr;
 }
 void TripLeg_Edge::clear_transit_route_info() {
-  if (GetArenaForAllocation() == nullptr && transit_route_info_ != nullptr) {
-    delete transit_route_info_;
+  if (GetArenaForAllocation() == nullptr && _impl_.transit_route_info_ != nullptr) {
+    delete _impl_.transit_route_info_;
   }
-  transit_route_info_ = nullptr;
+  _impl_.transit_route_info_ = nullptr;
 }
 void TripLeg_Edge::clear_turn_lanes() {
-  turn_lanes_.Clear();
+  _impl_.turn_lanes_.Clear();
 }
 void TripLeg_Edge::clear_tagged_value() {
-  tagged_value_.Clear();
+  _impl_.tagged_value_.Clear();
 }
 TripLeg_Edge::TripLeg_Edge(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::MessageLite(arena, is_message_owned),
-  name_(arena),
-  lane_connectivity_(arena),
-  traffic_segment_(arena),
-  turn_lanes_(arena),
-  tagged_value_(arena) {
-  SharedCtor();
-  if (!is_message_owned) {
-    RegisterArenaDtor(arena);
-  }
+  : ::PROTOBUF_NAMESPACE_ID::MessageLite(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:valhalla.TripLeg.Edge)
 }
 TripLeg_Edge::TripLeg_Edge(const TripLeg_Edge& from)
-  : ::PROTOBUF_NAMESPACE_ID::MessageLite(),
-      name_(from.name_),
-      lane_connectivity_(from.lane_connectivity_),
-      traffic_segment_(from.traffic_segment_),
-      turn_lanes_(from.turn_lanes_),
-      tagged_value_(from.tagged_value_) {
+  : ::PROTOBUF_NAMESPACE_ID::MessageLite() {
+  TripLeg_Edge* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.name_){from._impl_.name_}
+    , decltype(_impl_.lane_connectivity_){from._impl_.lane_connectivity_}
+    , decltype(_impl_.traffic_segment_){from._impl_.traffic_segment_}
+    , decltype(_impl_.turn_lanes_){from._impl_.turn_lanes_}
+    , decltype(_impl_.tagged_value_){from._impl_.tagged_value_}
+    , decltype(_impl_.sign_){nullptr}
+    , decltype(_impl_.transit_route_info_){nullptr}
+    , decltype(_impl_.restriction_){nullptr}
+    , decltype(_impl_.length_km_){}
+    , decltype(_impl_.speed_){}
+    , decltype(_impl_.road_class_){}
+    , decltype(_impl_.begin_heading_){}
+    , decltype(_impl_.end_heading_){}
+    , decltype(_impl_.begin_shape_index_){}
+    , decltype(_impl_.end_shape_index_){}
+    , decltype(_impl_.traversability_){}
+    , decltype(_impl_.use_){}
+    , decltype(_impl_.toll_){}
+    , decltype(_impl_.unpaved_){}
+    , decltype(_impl_.tunnel_){}
+    , decltype(_impl_.bridge_){}
+    , decltype(_impl_.surface_){}
+    , decltype(_impl_.travel_mode_){}
+    , decltype(_impl_.roundabout_){}
+    , decltype(_impl_.internal_intersection_){}
+    , decltype(_impl_.drive_on_left_){}
+    , decltype(_impl_.bicycle_network_){}
+    , decltype(_impl_.vehicle_type_){}
+    , decltype(_impl_.pedestrian_type_){}
+    , decltype(_impl_.bicycle_type_){}
+    , decltype(_impl_.id_){}
+    , decltype(_impl_.transit_type_){}
+    , decltype(_impl_.weighted_grade_){}
+    , decltype(_impl_.way_id_){}
+    , decltype(_impl_.max_upward_grade_){}
+    , decltype(_impl_.max_downward_grade_){}
+    , decltype(_impl_.lane_count_){}
+    , decltype(_impl_.cycle_lane_){}
+    , decltype(_impl_.sidewalk_){}
+    , decltype(_impl_.density_){}
+    , decltype(_impl_.speed_limit_){}
+    , decltype(_impl_.truck_speed_){}
+    , decltype(_impl_.mean_elevation_){}
+    , decltype(_impl_.truck_route_){}
+    , decltype(_impl_.has_time_restrictions_){}
+    , decltype(_impl_.destination_only_){}
+    , decltype(_impl_.is_urban_){}
+    , decltype(_impl_.default_speed_){}
+    , decltype(_impl_.source_along_edge_){}
+    , decltype(_impl_.target_along_edge_){}
+    , decltype(_impl_.sac_scale_){}
+    , decltype(_impl_.shoulder_){}
+    , decltype(_impl_.indoor_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
   if (from._internal_has_sign()) {
-    sign_ = new ::valhalla::TripSign(*from.sign_);
-  } else {
-    sign_ = nullptr;
+    _this->_impl_.sign_ = new ::valhalla::TripSign(*from._impl_.sign_);
   }
   if (from._internal_has_transit_route_info()) {
-    transit_route_info_ = new ::valhalla::TransitRouteInfo(*from.transit_route_info_);
-  } else {
-    transit_route_info_ = nullptr;
+    _this->_impl_.transit_route_info_ = new ::valhalla::TransitRouteInfo(*from._impl_.transit_route_info_);
   }
   if (from._internal_has_restriction()) {
-    restriction_ = new ::valhalla::TripLeg_Restriction(*from.restriction_);
-  } else {
-    restriction_ = nullptr;
+    _this->_impl_.restriction_ = new ::valhalla::TripLeg_Restriction(*from._impl_.restriction_);
   }
-  clear_has_has_length_km();
-  switch (from.has_length_km_case()) {
-    case kLengthKm: {
-      _internal_set_length_km(from._internal_length_km());
-      break;
-    }
-    case HAS_LENGTH_KM_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_speed();
-  switch (from.has_speed_case()) {
-    case kSpeed: {
-      _internal_set_speed(from._internal_speed());
-      break;
-    }
-    case HAS_SPEED_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_road_class();
-  switch (from.has_road_class_case()) {
-    case kRoadClass: {
-      _internal_set_road_class(from._internal_road_class());
-      break;
-    }
-    case HAS_ROAD_CLASS_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_begin_heading();
-  switch (from.has_begin_heading_case()) {
-    case kBeginHeading: {
-      _internal_set_begin_heading(from._internal_begin_heading());
-      break;
-    }
-    case HAS_BEGIN_HEADING_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_end_heading();
-  switch (from.has_end_heading_case()) {
-    case kEndHeading: {
-      _internal_set_end_heading(from._internal_end_heading());
-      break;
-    }
-    case HAS_END_HEADING_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_begin_shape_index();
-  switch (from.has_begin_shape_index_case()) {
-    case kBeginShapeIndex: {
-      _internal_set_begin_shape_index(from._internal_begin_shape_index());
-      break;
-    }
-    case HAS_BEGIN_SHAPE_INDEX_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_end_shape_index();
-  switch (from.has_end_shape_index_case()) {
-    case kEndShapeIndex: {
-      _internal_set_end_shape_index(from._internal_end_shape_index());
-      break;
-    }
-    case HAS_END_SHAPE_INDEX_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_traversability();
-  switch (from.has_traversability_case()) {
-    case kTraversability: {
-      _internal_set_traversability(from._internal_traversability());
-      break;
-    }
-    case HAS_TRAVERSABILITY_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_use();
-  switch (from.has_use_case()) {
-    case kUse: {
-      _internal_set_use(from._internal_use());
-      break;
-    }
-    case HAS_USE_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_toll();
-  switch (from.has_toll_case()) {
-    case kToll: {
-      _internal_set_toll(from._internal_toll());
-      break;
-    }
-    case HAS_TOLL_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_unpaved();
-  switch (from.has_unpaved_case()) {
-    case kUnpaved: {
-      _internal_set_unpaved(from._internal_unpaved());
-      break;
-    }
-    case HAS_UNPAVED_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_tunnel();
-  switch (from.has_tunnel_case()) {
-    case kTunnel: {
-      _internal_set_tunnel(from._internal_tunnel());
-      break;
-    }
-    case HAS_TUNNEL_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_bridge();
-  switch (from.has_bridge_case()) {
-    case kBridge: {
-      _internal_set_bridge(from._internal_bridge());
-      break;
-    }
-    case HAS_BRIDGE_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_roundabout();
-  switch (from.has_roundabout_case()) {
-    case kRoundabout: {
-      _internal_set_roundabout(from._internal_roundabout());
-      break;
-    }
-    case HAS_ROUNDABOUT_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_internal_intersection();
-  switch (from.has_internal_intersection_case()) {
-    case kInternalIntersection: {
-      _internal_set_internal_intersection(from._internal_internal_intersection());
-      break;
-    }
-    case HAS_INTERNAL_INTERSECTION_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_drive_on_left();
-  switch (from.has_drive_on_left_case()) {
-    case kDriveOnLeft: {
-      _internal_set_drive_on_left(from._internal_drive_on_left());
-      break;
-    }
-    case HAS_DRIVE_ON_LEFT_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_surface();
-  switch (from.has_surface_case()) {
-    case kSurface: {
-      _internal_set_surface(from._internal_surface());
-      break;
-    }
-    case HAS_SURFACE_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_travel_mode();
-  switch (from.has_travel_mode_case()) {
-    case kTravelMode: {
-      _internal_set_travel_mode(from._internal_travel_mode());
-      break;
-    }
-    case HAS_TRAVEL_MODE_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_vehicle_type();
-  switch (from.has_vehicle_type_case()) {
-    case kVehicleType: {
-      _internal_set_vehicle_type(from._internal_vehicle_type());
-      break;
-    }
-    case HAS_VEHICLE_TYPE_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_pedestrian_type();
-  switch (from.has_pedestrian_type_case()) {
-    case kPedestrianType: {
-      _internal_set_pedestrian_type(from._internal_pedestrian_type());
-      break;
-    }
-    case HAS_PEDESTRIAN_TYPE_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_bicycle_type();
-  switch (from.has_bicycle_type_case()) {
-    case kBicycleType: {
-      _internal_set_bicycle_type(from._internal_bicycle_type());
-      break;
-    }
-    case HAS_BICYCLE_TYPE_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_transit_type();
-  switch (from.has_transit_type_case()) {
-    case kTransitType: {
-      _internal_set_transit_type(from._internal_transit_type());
-      break;
-    }
-    case HAS_TRANSIT_TYPE_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_id();
-  switch (from.has_id_case()) {
-    case kId: {
-      _internal_set_id(from._internal_id());
-      break;
-    }
-    case HAS_ID_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_way_id();
-  switch (from.has_way_id_case()) {
-    case kWayId: {
-      _internal_set_way_id(from._internal_way_id());
-      break;
-    }
-    case HAS_WAY_ID_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_weighted_grade();
-  switch (from.has_weighted_grade_case()) {
-    case kWeightedGrade: {
-      _internal_set_weighted_grade(from._internal_weighted_grade());
-      break;
-    }
-    case HAS_WEIGHTED_GRADE_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_max_upward_grade();
-  switch (from.has_max_upward_grade_case()) {
-    case kMaxUpwardGrade: {
-      _internal_set_max_upward_grade(from._internal_max_upward_grade());
-      break;
-    }
-    case HAS_MAX_UPWARD_GRADE_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_max_downward_grade();
-  switch (from.has_max_downward_grade_case()) {
-    case kMaxDownwardGrade: {
-      _internal_set_max_downward_grade(from._internal_max_downward_grade());
-      break;
-    }
-    case HAS_MAX_DOWNWARD_GRADE_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_lane_count();
-  switch (from.has_lane_count_case()) {
-    case kLaneCount: {
-      _internal_set_lane_count(from._internal_lane_count());
-      break;
-    }
-    case HAS_LANE_COUNT_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_cycle_lane();
-  switch (from.has_cycle_lane_case()) {
-    case kCycleLane: {
-      _internal_set_cycle_lane(from._internal_cycle_lane());
-      break;
-    }
-    case HAS_CYCLE_LANE_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_bicycle_network();
-  switch (from.has_bicycle_network_case()) {
-    case kBicycleNetwork: {
-      _internal_set_bicycle_network(from._internal_bicycle_network());
-      break;
-    }
-    case HAS_BICYCLE_NETWORK_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_sidewalk();
-  switch (from.has_sidewalk_case()) {
-    case kSidewalk: {
-      _internal_set_sidewalk(from._internal_sidewalk());
-      break;
-    }
-    case HAS_SIDEWALK_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_density();
-  switch (from.has_density_case()) {
-    case kDensity: {
-      _internal_set_density(from._internal_density());
-      break;
-    }
-    case HAS_DENSITY_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_speed_limit();
-  switch (from.has_speed_limit_case()) {
-    case kSpeedLimit: {
-      _internal_set_speed_limit(from._internal_speed_limit());
-      break;
-    }
-    case HAS_SPEED_LIMIT_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_truck_speed();
-  switch (from.has_truck_speed_case()) {
-    case kTruckSpeed: {
-      _internal_set_truck_speed(from._internal_truck_speed());
-      break;
-    }
-    case HAS_TRUCK_SPEED_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_truck_route();
-  switch (from.has_truck_route_case()) {
-    case kTruckRoute: {
-      _internal_set_truck_route(from._internal_truck_route());
-      break;
-    }
-    case HAS_TRUCK_ROUTE_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_mean_elevation();
-  switch (from.has_mean_elevation_case()) {
-    case kMeanElevation: {
-      _internal_set_mean_elevation(from._internal_mean_elevation());
-      break;
-    }
-    case HAS_MEAN_ELEVATION_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_has_time_restrictions();
-  switch (from.has_has_time_restrictions_case()) {
-    case kHasTimeRestrictions: {
-      _internal_set_has_time_restrictions(from._internal_has_time_restrictions());
-      break;
-    }
-    case HAS_HAS_TIME_RESTRICTIONS_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_default_speed();
-  switch (from.has_default_speed_case()) {
-    case kDefaultSpeed: {
-      _internal_set_default_speed(from._internal_default_speed());
-      break;
-    }
-    case HAS_DEFAULT_SPEED_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_destination_only();
-  switch (from.has_destination_only_case()) {
-    case kDestinationOnly: {
-      _internal_set_destination_only(from._internal_destination_only());
-      break;
-    }
-    case HAS_DESTINATION_ONLY_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_is_urban();
-  switch (from.has_is_urban_case()) {
-    case kIsUrban: {
-      _internal_set_is_urban(from._internal_is_urban());
-      break;
-    }
-    case HAS_IS_URBAN_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_source_along_edge();
-  switch (from.has_source_along_edge_case()) {
-    case kSourceAlongEdge: {
-      _internal_set_source_along_edge(from._internal_source_along_edge());
-      break;
-    }
-    case HAS_SOURCE_ALONG_EDGE_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_target_along_edge();
-  switch (from.has_target_along_edge_case()) {
-    case kTargetAlongEdge: {
-      _internal_set_target_along_edge(from._internal_target_along_edge());
-      break;
-    }
-    case HAS_TARGET_ALONG_EDGE_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_sac_scale();
-  switch (from.has_sac_scale_case()) {
-    case kSacScale: {
-      _internal_set_sac_scale(from._internal_sac_scale());
-      break;
-    }
-    case HAS_SAC_SCALE_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_shoulder();
-  switch (from.has_shoulder_case()) {
-    case kShoulder: {
-      _internal_set_shoulder(from._internal_shoulder());
-      break;
-    }
-    case HAS_SHOULDER_NOT_SET: {
-      break;
-    }
-  }
+  ::memcpy(&_impl_.length_km_, &from._impl_.length_km_,
+    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.indoor_) -
+    reinterpret_cast<char*>(&_impl_.length_km_)) + sizeof(_impl_.indoor_));
   // @@protoc_insertion_point(copy_constructor:valhalla.TripLeg.Edge)
 }
 
-inline void TripLeg_Edge::SharedCtor() {
-::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
-    reinterpret_cast<char*>(&sign_) - reinterpret_cast<char*>(this)),
-    0, static_cast<size_t>(reinterpret_cast<char*>(&restriction_) -
-    reinterpret_cast<char*>(&sign_)) + sizeof(restriction_));
-clear_has_has_length_km();
-clear_has_has_speed();
-clear_has_has_road_class();
-clear_has_has_begin_heading();
-clear_has_has_end_heading();
-clear_has_has_begin_shape_index();
-clear_has_has_end_shape_index();
-clear_has_has_traversability();
-clear_has_has_use();
-clear_has_has_toll();
-clear_has_has_unpaved();
-clear_has_has_tunnel();
-clear_has_has_bridge();
-clear_has_has_roundabout();
-clear_has_has_internal_intersection();
-clear_has_has_drive_on_left();
-clear_has_has_surface();
-clear_has_has_travel_mode();
-clear_has_has_vehicle_type();
-clear_has_has_pedestrian_type();
-clear_has_has_bicycle_type();
-clear_has_has_transit_type();
-clear_has_has_id();
-clear_has_has_way_id();
-clear_has_has_weighted_grade();
-clear_has_has_max_upward_grade();
-clear_has_has_max_downward_grade();
-clear_has_has_lane_count();
-clear_has_has_cycle_lane();
-clear_has_has_bicycle_network();
-clear_has_has_sidewalk();
-clear_has_has_density();
-clear_has_has_speed_limit();
-clear_has_has_truck_speed();
-clear_has_has_truck_route();
-clear_has_has_mean_elevation();
-clear_has_has_has_time_restrictions();
-clear_has_has_default_speed();
-clear_has_has_destination_only();
-clear_has_has_is_urban();
-clear_has_has_source_along_edge();
-clear_has_has_target_along_edge();
-clear_has_has_sac_scale();
-clear_has_has_shoulder();
+inline void TripLeg_Edge::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.name_){arena}
+    , decltype(_impl_.lane_connectivity_){arena}
+    , decltype(_impl_.traffic_segment_){arena}
+    , decltype(_impl_.turn_lanes_){arena}
+    , decltype(_impl_.tagged_value_){arena}
+    , decltype(_impl_.sign_){nullptr}
+    , decltype(_impl_.transit_route_info_){nullptr}
+    , decltype(_impl_.restriction_){nullptr}
+    , decltype(_impl_.length_km_){0}
+    , decltype(_impl_.speed_){0}
+    , decltype(_impl_.road_class_){0}
+    , decltype(_impl_.begin_heading_){0u}
+    , decltype(_impl_.end_heading_){0u}
+    , decltype(_impl_.begin_shape_index_){0u}
+    , decltype(_impl_.end_shape_index_){0u}
+    , decltype(_impl_.traversability_){0}
+    , decltype(_impl_.use_){0}
+    , decltype(_impl_.toll_){false}
+    , decltype(_impl_.unpaved_){false}
+    , decltype(_impl_.tunnel_){false}
+    , decltype(_impl_.bridge_){false}
+    , decltype(_impl_.surface_){0}
+    , decltype(_impl_.travel_mode_){0}
+    , decltype(_impl_.roundabout_){false}
+    , decltype(_impl_.internal_intersection_){false}
+    , decltype(_impl_.drive_on_left_){false}
+    , decltype(_impl_.bicycle_network_){false}
+    , decltype(_impl_.vehicle_type_){0}
+    , decltype(_impl_.pedestrian_type_){0}
+    , decltype(_impl_.bicycle_type_){0}
+    , decltype(_impl_.id_){uint64_t{0u}}
+    , decltype(_impl_.transit_type_){0}
+    , decltype(_impl_.weighted_grade_){0}
+    , decltype(_impl_.way_id_){uint64_t{0u}}
+    , decltype(_impl_.max_upward_grade_){0}
+    , decltype(_impl_.max_downward_grade_){0}
+    , decltype(_impl_.lane_count_){0u}
+    , decltype(_impl_.cycle_lane_){0}
+    , decltype(_impl_.sidewalk_){0}
+    , decltype(_impl_.density_){0u}
+    , decltype(_impl_.speed_limit_){0u}
+    , decltype(_impl_.truck_speed_){0}
+    , decltype(_impl_.mean_elevation_){0}
+    , decltype(_impl_.truck_route_){false}
+    , decltype(_impl_.has_time_restrictions_){false}
+    , decltype(_impl_.destination_only_){false}
+    , decltype(_impl_.is_urban_){false}
+    , decltype(_impl_.default_speed_){0}
+    , decltype(_impl_.source_along_edge_){0}
+    , decltype(_impl_.target_along_edge_){0}
+    , decltype(_impl_.sac_scale_){0}
+    , decltype(_impl_.shoulder_){false}
+    , decltype(_impl_.indoor_){false}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
 }
 
 TripLeg_Edge::~TripLeg_Edge() {
   // @@protoc_insertion_point(destructor:valhalla.TripLeg.Edge)
-  if (GetArenaForAllocation() != nullptr) return;
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<std::string>()) {
+  (void)arena;
+    return;
+  }
   SharedDtor();
-  _internal_metadata_.Delete<std::string>();
 }
 
 inline void TripLeg_Edge::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  if (this != internal_default_instance()) delete sign_;
-  if (this != internal_default_instance()) delete transit_route_info_;
-  if (this != internal_default_instance()) delete restriction_;
-  if (has_has_length_km()) {
-    clear_has_length_km();
-  }
-  if (has_has_speed()) {
-    clear_has_speed();
-  }
-  if (has_has_road_class()) {
-    clear_has_road_class();
-  }
-  if (has_has_begin_heading()) {
-    clear_has_begin_heading();
-  }
-  if (has_has_end_heading()) {
-    clear_has_end_heading();
-  }
-  if (has_has_begin_shape_index()) {
-    clear_has_begin_shape_index();
-  }
-  if (has_has_end_shape_index()) {
-    clear_has_end_shape_index();
-  }
-  if (has_has_traversability()) {
-    clear_has_traversability();
-  }
-  if (has_has_use()) {
-    clear_has_use();
-  }
-  if (has_has_toll()) {
-    clear_has_toll();
-  }
-  if (has_has_unpaved()) {
-    clear_has_unpaved();
-  }
-  if (has_has_tunnel()) {
-    clear_has_tunnel();
-  }
-  if (has_has_bridge()) {
-    clear_has_bridge();
-  }
-  if (has_has_roundabout()) {
-    clear_has_roundabout();
-  }
-  if (has_has_internal_intersection()) {
-    clear_has_internal_intersection();
-  }
-  if (has_has_drive_on_left()) {
-    clear_has_drive_on_left();
-  }
-  if (has_has_surface()) {
-    clear_has_surface();
-  }
-  if (has_has_travel_mode()) {
-    clear_has_travel_mode();
-  }
-  if (has_has_vehicle_type()) {
-    clear_has_vehicle_type();
-  }
-  if (has_has_pedestrian_type()) {
-    clear_has_pedestrian_type();
-  }
-  if (has_has_bicycle_type()) {
-    clear_has_bicycle_type();
-  }
-  if (has_has_transit_type()) {
-    clear_has_transit_type();
-  }
-  if (has_has_id()) {
-    clear_has_id();
-  }
-  if (has_has_way_id()) {
-    clear_has_way_id();
-  }
-  if (has_has_weighted_grade()) {
-    clear_has_weighted_grade();
-  }
-  if (has_has_max_upward_grade()) {
-    clear_has_max_upward_grade();
-  }
-  if (has_has_max_downward_grade()) {
-    clear_has_max_downward_grade();
-  }
-  if (has_has_lane_count()) {
-    clear_has_lane_count();
-  }
-  if (has_has_cycle_lane()) {
-    clear_has_cycle_lane();
-  }
-  if (has_has_bicycle_network()) {
-    clear_has_bicycle_network();
-  }
-  if (has_has_sidewalk()) {
-    clear_has_sidewalk();
-  }
-  if (has_has_density()) {
-    clear_has_density();
-  }
-  if (has_has_speed_limit()) {
-    clear_has_speed_limit();
-  }
-  if (has_has_truck_speed()) {
-    clear_has_truck_speed();
-  }
-  if (has_has_truck_route()) {
-    clear_has_truck_route();
-  }
-  if (has_has_mean_elevation()) {
-    clear_has_mean_elevation();
-  }
-  if (has_has_has_time_restrictions()) {
-    clear_has_has_time_restrictions();
-  }
-  if (has_has_default_speed()) {
-    clear_has_default_speed();
-  }
-  if (has_has_destination_only()) {
-    clear_has_destination_only();
-  }
-  if (has_has_is_urban()) {
-    clear_has_is_urban();
-  }
-  if (has_has_source_along_edge()) {
-    clear_has_source_along_edge();
-  }
-  if (has_has_target_along_edge()) {
-    clear_has_target_along_edge();
-  }
-  if (has_has_sac_scale()) {
-    clear_has_sac_scale();
-  }
-  if (has_has_shoulder()) {
-    clear_has_shoulder();
-  }
+  _impl_.name_.~RepeatedPtrField();
+  _impl_.lane_connectivity_.~RepeatedPtrField();
+  _impl_.traffic_segment_.~RepeatedPtrField();
+  _impl_.turn_lanes_.~RepeatedPtrField();
+  _impl_.tagged_value_.~RepeatedPtrField();
+  if (this != internal_default_instance()) delete _impl_.sign_;
+  if (this != internal_default_instance()) delete _impl_.transit_route_info_;
+  if (this != internal_default_instance()) delete _impl_.restriction_;
 }
 
-void TripLeg_Edge::ArenaDtor(void* object) {
-  TripLeg_Edge* _this = reinterpret_cast< TripLeg_Edge* >(object);
-  (void)_this;
-}
-void TripLeg_Edge::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
-}
 void TripLeg_Edge::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
-
-void TripLeg_Edge::clear_has_length_km() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.TripLeg.Edge)
-  switch (has_length_km_case()) {
-    case kLengthKm: {
-      // No need to clear
-      break;
-    }
-    case HAS_LENGTH_KM_NOT_SET: {
-      break;
-    }
-  }
-  _oneof_case_[0] = HAS_LENGTH_KM_NOT_SET;
-}
-
-void TripLeg_Edge::clear_has_speed() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.TripLeg.Edge)
-  switch (has_speed_case()) {
-    case kSpeed: {
-      // No need to clear
-      break;
-    }
-    case HAS_SPEED_NOT_SET: {
-      break;
-    }
-  }
-  _oneof_case_[1] = HAS_SPEED_NOT_SET;
-}
-
-void TripLeg_Edge::clear_has_road_class() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.TripLeg.Edge)
-  switch (has_road_class_case()) {
-    case kRoadClass: {
-      // No need to clear
-      break;
-    }
-    case HAS_ROAD_CLASS_NOT_SET: {
-      break;
-    }
-  }
-  _oneof_case_[2] = HAS_ROAD_CLASS_NOT_SET;
-}
-
-void TripLeg_Edge::clear_has_begin_heading() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.TripLeg.Edge)
-  switch (has_begin_heading_case()) {
-    case kBeginHeading: {
-      // No need to clear
-      break;
-    }
-    case HAS_BEGIN_HEADING_NOT_SET: {
-      break;
-    }
-  }
-  _oneof_case_[3] = HAS_BEGIN_HEADING_NOT_SET;
-}
-
-void TripLeg_Edge::clear_has_end_heading() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.TripLeg.Edge)
-  switch (has_end_heading_case()) {
-    case kEndHeading: {
-      // No need to clear
-      break;
-    }
-    case HAS_END_HEADING_NOT_SET: {
-      break;
-    }
-  }
-  _oneof_case_[4] = HAS_END_HEADING_NOT_SET;
-}
-
-void TripLeg_Edge::clear_has_begin_shape_index() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.TripLeg.Edge)
-  switch (has_begin_shape_index_case()) {
-    case kBeginShapeIndex: {
-      // No need to clear
-      break;
-    }
-    case HAS_BEGIN_SHAPE_INDEX_NOT_SET: {
-      break;
-    }
-  }
-  _oneof_case_[5] = HAS_BEGIN_SHAPE_INDEX_NOT_SET;
-}
-
-void TripLeg_Edge::clear_has_end_shape_index() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.TripLeg.Edge)
-  switch (has_end_shape_index_case()) {
-    case kEndShapeIndex: {
-      // No need to clear
-      break;
-    }
-    case HAS_END_SHAPE_INDEX_NOT_SET: {
-      break;
-    }
-  }
-  _oneof_case_[6] = HAS_END_SHAPE_INDEX_NOT_SET;
-}
-
-void TripLeg_Edge::clear_has_traversability() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.TripLeg.Edge)
-  switch (has_traversability_case()) {
-    case kTraversability: {
-      // No need to clear
-      break;
-    }
-    case HAS_TRAVERSABILITY_NOT_SET: {
-      break;
-    }
-  }
-  _oneof_case_[7] = HAS_TRAVERSABILITY_NOT_SET;
-}
-
-void TripLeg_Edge::clear_has_use() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.TripLeg.Edge)
-  switch (has_use_case()) {
-    case kUse: {
-      // No need to clear
-      break;
-    }
-    case HAS_USE_NOT_SET: {
-      break;
-    }
-  }
-  _oneof_case_[8] = HAS_USE_NOT_SET;
-}
-
-void TripLeg_Edge::clear_has_toll() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.TripLeg.Edge)
-  switch (has_toll_case()) {
-    case kToll: {
-      // No need to clear
-      break;
-    }
-    case HAS_TOLL_NOT_SET: {
-      break;
-    }
-  }
-  _oneof_case_[9] = HAS_TOLL_NOT_SET;
-}
-
-void TripLeg_Edge::clear_has_unpaved() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.TripLeg.Edge)
-  switch (has_unpaved_case()) {
-    case kUnpaved: {
-      // No need to clear
-      break;
-    }
-    case HAS_UNPAVED_NOT_SET: {
-      break;
-    }
-  }
-  _oneof_case_[10] = HAS_UNPAVED_NOT_SET;
-}
-
-void TripLeg_Edge::clear_has_tunnel() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.TripLeg.Edge)
-  switch (has_tunnel_case()) {
-    case kTunnel: {
-      // No need to clear
-      break;
-    }
-    case HAS_TUNNEL_NOT_SET: {
-      break;
-    }
-  }
-  _oneof_case_[11] = HAS_TUNNEL_NOT_SET;
-}
-
-void TripLeg_Edge::clear_has_bridge() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.TripLeg.Edge)
-  switch (has_bridge_case()) {
-    case kBridge: {
-      // No need to clear
-      break;
-    }
-    case HAS_BRIDGE_NOT_SET: {
-      break;
-    }
-  }
-  _oneof_case_[12] = HAS_BRIDGE_NOT_SET;
-}
-
-void TripLeg_Edge::clear_has_roundabout() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.TripLeg.Edge)
-  switch (has_roundabout_case()) {
-    case kRoundabout: {
-      // No need to clear
-      break;
-    }
-    case HAS_ROUNDABOUT_NOT_SET: {
-      break;
-    }
-  }
-  _oneof_case_[13] = HAS_ROUNDABOUT_NOT_SET;
-}
-
-void TripLeg_Edge::clear_has_internal_intersection() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.TripLeg.Edge)
-  switch (has_internal_intersection_case()) {
-    case kInternalIntersection: {
-      // No need to clear
-      break;
-    }
-    case HAS_INTERNAL_INTERSECTION_NOT_SET: {
-      break;
-    }
-  }
-  _oneof_case_[14] = HAS_INTERNAL_INTERSECTION_NOT_SET;
-}
-
-void TripLeg_Edge::clear_has_drive_on_left() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.TripLeg.Edge)
-  switch (has_drive_on_left_case()) {
-    case kDriveOnLeft: {
-      // No need to clear
-      break;
-    }
-    case HAS_DRIVE_ON_LEFT_NOT_SET: {
-      break;
-    }
-  }
-  _oneof_case_[15] = HAS_DRIVE_ON_LEFT_NOT_SET;
-}
-
-void TripLeg_Edge::clear_has_surface() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.TripLeg.Edge)
-  switch (has_surface_case()) {
-    case kSurface: {
-      // No need to clear
-      break;
-    }
-    case HAS_SURFACE_NOT_SET: {
-      break;
-    }
-  }
-  _oneof_case_[16] = HAS_SURFACE_NOT_SET;
-}
-
-void TripLeg_Edge::clear_has_travel_mode() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.TripLeg.Edge)
-  switch (has_travel_mode_case()) {
-    case kTravelMode: {
-      // No need to clear
-      break;
-    }
-    case HAS_TRAVEL_MODE_NOT_SET: {
-      break;
-    }
-  }
-  _oneof_case_[17] = HAS_TRAVEL_MODE_NOT_SET;
-}
-
-void TripLeg_Edge::clear_has_vehicle_type() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.TripLeg.Edge)
-  switch (has_vehicle_type_case()) {
-    case kVehicleType: {
-      // No need to clear
-      break;
-    }
-    case HAS_VEHICLE_TYPE_NOT_SET: {
-      break;
-    }
-  }
-  _oneof_case_[18] = HAS_VEHICLE_TYPE_NOT_SET;
-}
-
-void TripLeg_Edge::clear_has_pedestrian_type() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.TripLeg.Edge)
-  switch (has_pedestrian_type_case()) {
-    case kPedestrianType: {
-      // No need to clear
-      break;
-    }
-    case HAS_PEDESTRIAN_TYPE_NOT_SET: {
-      break;
-    }
-  }
-  _oneof_case_[19] = HAS_PEDESTRIAN_TYPE_NOT_SET;
-}
-
-void TripLeg_Edge::clear_has_bicycle_type() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.TripLeg.Edge)
-  switch (has_bicycle_type_case()) {
-    case kBicycleType: {
-      // No need to clear
-      break;
-    }
-    case HAS_BICYCLE_TYPE_NOT_SET: {
-      break;
-    }
-  }
-  _oneof_case_[20] = HAS_BICYCLE_TYPE_NOT_SET;
-}
-
-void TripLeg_Edge::clear_has_transit_type() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.TripLeg.Edge)
-  switch (has_transit_type_case()) {
-    case kTransitType: {
-      // No need to clear
-      break;
-    }
-    case HAS_TRANSIT_TYPE_NOT_SET: {
-      break;
-    }
-  }
-  _oneof_case_[21] = HAS_TRANSIT_TYPE_NOT_SET;
-}
-
-void TripLeg_Edge::clear_has_id() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.TripLeg.Edge)
-  switch (has_id_case()) {
-    case kId: {
-      // No need to clear
-      break;
-    }
-    case HAS_ID_NOT_SET: {
-      break;
-    }
-  }
-  _oneof_case_[22] = HAS_ID_NOT_SET;
-}
-
-void TripLeg_Edge::clear_has_way_id() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.TripLeg.Edge)
-  switch (has_way_id_case()) {
-    case kWayId: {
-      // No need to clear
-      break;
-    }
-    case HAS_WAY_ID_NOT_SET: {
-      break;
-    }
-  }
-  _oneof_case_[23] = HAS_WAY_ID_NOT_SET;
-}
-
-void TripLeg_Edge::clear_has_weighted_grade() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.TripLeg.Edge)
-  switch (has_weighted_grade_case()) {
-    case kWeightedGrade: {
-      // No need to clear
-      break;
-    }
-    case HAS_WEIGHTED_GRADE_NOT_SET: {
-      break;
-    }
-  }
-  _oneof_case_[24] = HAS_WEIGHTED_GRADE_NOT_SET;
-}
-
-void TripLeg_Edge::clear_has_max_upward_grade() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.TripLeg.Edge)
-  switch (has_max_upward_grade_case()) {
-    case kMaxUpwardGrade: {
-      // No need to clear
-      break;
-    }
-    case HAS_MAX_UPWARD_GRADE_NOT_SET: {
-      break;
-    }
-  }
-  _oneof_case_[25] = HAS_MAX_UPWARD_GRADE_NOT_SET;
-}
-
-void TripLeg_Edge::clear_has_max_downward_grade() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.TripLeg.Edge)
-  switch (has_max_downward_grade_case()) {
-    case kMaxDownwardGrade: {
-      // No need to clear
-      break;
-    }
-    case HAS_MAX_DOWNWARD_GRADE_NOT_SET: {
-      break;
-    }
-  }
-  _oneof_case_[26] = HAS_MAX_DOWNWARD_GRADE_NOT_SET;
-}
-
-void TripLeg_Edge::clear_has_lane_count() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.TripLeg.Edge)
-  switch (has_lane_count_case()) {
-    case kLaneCount: {
-      // No need to clear
-      break;
-    }
-    case HAS_LANE_COUNT_NOT_SET: {
-      break;
-    }
-  }
-  _oneof_case_[27] = HAS_LANE_COUNT_NOT_SET;
-}
-
-void TripLeg_Edge::clear_has_cycle_lane() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.TripLeg.Edge)
-  switch (has_cycle_lane_case()) {
-    case kCycleLane: {
-      // No need to clear
-      break;
-    }
-    case HAS_CYCLE_LANE_NOT_SET: {
-      break;
-    }
-  }
-  _oneof_case_[28] = HAS_CYCLE_LANE_NOT_SET;
-}
-
-void TripLeg_Edge::clear_has_bicycle_network() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.TripLeg.Edge)
-  switch (has_bicycle_network_case()) {
-    case kBicycleNetwork: {
-      // No need to clear
-      break;
-    }
-    case HAS_BICYCLE_NETWORK_NOT_SET: {
-      break;
-    }
-  }
-  _oneof_case_[29] = HAS_BICYCLE_NETWORK_NOT_SET;
-}
-
-void TripLeg_Edge::clear_has_sidewalk() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.TripLeg.Edge)
-  switch (has_sidewalk_case()) {
-    case kSidewalk: {
-      // No need to clear
-      break;
-    }
-    case HAS_SIDEWALK_NOT_SET: {
-      break;
-    }
-  }
-  _oneof_case_[30] = HAS_SIDEWALK_NOT_SET;
-}
-
-void TripLeg_Edge::clear_has_density() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.TripLeg.Edge)
-  switch (has_density_case()) {
-    case kDensity: {
-      // No need to clear
-      break;
-    }
-    case HAS_DENSITY_NOT_SET: {
-      break;
-    }
-  }
-  _oneof_case_[31] = HAS_DENSITY_NOT_SET;
-}
-
-void TripLeg_Edge::clear_has_speed_limit() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.TripLeg.Edge)
-  switch (has_speed_limit_case()) {
-    case kSpeedLimit: {
-      // No need to clear
-      break;
-    }
-    case HAS_SPEED_LIMIT_NOT_SET: {
-      break;
-    }
-  }
-  _oneof_case_[32] = HAS_SPEED_LIMIT_NOT_SET;
-}
-
-void TripLeg_Edge::clear_has_truck_speed() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.TripLeg.Edge)
-  switch (has_truck_speed_case()) {
-    case kTruckSpeed: {
-      // No need to clear
-      break;
-    }
-    case HAS_TRUCK_SPEED_NOT_SET: {
-      break;
-    }
-  }
-  _oneof_case_[33] = HAS_TRUCK_SPEED_NOT_SET;
-}
-
-void TripLeg_Edge::clear_has_truck_route() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.TripLeg.Edge)
-  switch (has_truck_route_case()) {
-    case kTruckRoute: {
-      // No need to clear
-      break;
-    }
-    case HAS_TRUCK_ROUTE_NOT_SET: {
-      break;
-    }
-  }
-  _oneof_case_[34] = HAS_TRUCK_ROUTE_NOT_SET;
-}
-
-void TripLeg_Edge::clear_has_mean_elevation() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.TripLeg.Edge)
-  switch (has_mean_elevation_case()) {
-    case kMeanElevation: {
-      // No need to clear
-      break;
-    }
-    case HAS_MEAN_ELEVATION_NOT_SET: {
-      break;
-    }
-  }
-  _oneof_case_[35] = HAS_MEAN_ELEVATION_NOT_SET;
-}
-
-void TripLeg_Edge::clear_has_has_time_restrictions() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.TripLeg.Edge)
-  switch (has_has_time_restrictions_case()) {
-    case kHasTimeRestrictions: {
-      // No need to clear
-      break;
-    }
-    case HAS_HAS_TIME_RESTRICTIONS_NOT_SET: {
-      break;
-    }
-  }
-  _oneof_case_[36] = HAS_HAS_TIME_RESTRICTIONS_NOT_SET;
-}
-
-void TripLeg_Edge::clear_has_default_speed() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.TripLeg.Edge)
-  switch (has_default_speed_case()) {
-    case kDefaultSpeed: {
-      // No need to clear
-      break;
-    }
-    case HAS_DEFAULT_SPEED_NOT_SET: {
-      break;
-    }
-  }
-  _oneof_case_[37] = HAS_DEFAULT_SPEED_NOT_SET;
-}
-
-void TripLeg_Edge::clear_has_destination_only() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.TripLeg.Edge)
-  switch (has_destination_only_case()) {
-    case kDestinationOnly: {
-      // No need to clear
-      break;
-    }
-    case HAS_DESTINATION_ONLY_NOT_SET: {
-      break;
-    }
-  }
-  _oneof_case_[38] = HAS_DESTINATION_ONLY_NOT_SET;
-}
-
-void TripLeg_Edge::clear_has_is_urban() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.TripLeg.Edge)
-  switch (has_is_urban_case()) {
-    case kIsUrban: {
-      // No need to clear
-      break;
-    }
-    case HAS_IS_URBAN_NOT_SET: {
-      break;
-    }
-  }
-  _oneof_case_[39] = HAS_IS_URBAN_NOT_SET;
-}
-
-void TripLeg_Edge::clear_has_source_along_edge() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.TripLeg.Edge)
-  switch (has_source_along_edge_case()) {
-    case kSourceAlongEdge: {
-      // No need to clear
-      break;
-    }
-    case HAS_SOURCE_ALONG_EDGE_NOT_SET: {
-      break;
-    }
-  }
-  _oneof_case_[40] = HAS_SOURCE_ALONG_EDGE_NOT_SET;
-}
-
-void TripLeg_Edge::clear_has_target_along_edge() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.TripLeg.Edge)
-  switch (has_target_along_edge_case()) {
-    case kTargetAlongEdge: {
-      // No need to clear
-      break;
-    }
-    case HAS_TARGET_ALONG_EDGE_NOT_SET: {
-      break;
-    }
-  }
-  _oneof_case_[41] = HAS_TARGET_ALONG_EDGE_NOT_SET;
-}
-
-void TripLeg_Edge::clear_has_sac_scale() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.TripLeg.Edge)
-  switch (has_sac_scale_case()) {
-    case kSacScale: {
-      // No need to clear
-      break;
-    }
-    case HAS_SAC_SCALE_NOT_SET: {
-      break;
-    }
-  }
-  _oneof_case_[42] = HAS_SAC_SCALE_NOT_SET;
-}
-
-void TripLeg_Edge::clear_has_shoulder() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.TripLeg.Edge)
-  switch (has_shoulder_case()) {
-    case kShoulder: {
-      // No need to clear
-      break;
-    }
-    case HAS_SHOULDER_NOT_SET: {
-      break;
-    }
-  }
-  _oneof_case_[43] = HAS_SHOULDER_NOT_SET;
-}
-
 
 void TripLeg_Edge::Clear() {
 // @@protoc_insertion_point(message_clear_start:valhalla.TripLeg.Edge)
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  name_.Clear();
-  lane_connectivity_.Clear();
-  traffic_segment_.Clear();
-  turn_lanes_.Clear();
-  tagged_value_.Clear();
-  if (GetArenaForAllocation() == nullptr && sign_ != nullptr) {
-    delete sign_;
+  _impl_.name_.Clear();
+  _impl_.lane_connectivity_.Clear();
+  _impl_.traffic_segment_.Clear();
+  _impl_.turn_lanes_.Clear();
+  _impl_.tagged_value_.Clear();
+  if (GetArenaForAllocation() == nullptr && _impl_.sign_ != nullptr) {
+    delete _impl_.sign_;
   }
-  sign_ = nullptr;
-  if (GetArenaForAllocation() == nullptr && transit_route_info_ != nullptr) {
-    delete transit_route_info_;
+  _impl_.sign_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && _impl_.transit_route_info_ != nullptr) {
+    delete _impl_.transit_route_info_;
   }
-  transit_route_info_ = nullptr;
-  if (GetArenaForAllocation() == nullptr && restriction_ != nullptr) {
-    delete restriction_;
+  _impl_.transit_route_info_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && _impl_.restriction_ != nullptr) {
+    delete _impl_.restriction_;
   }
-  restriction_ = nullptr;
-  clear_has_length_km();
-  clear_has_speed();
-  clear_has_road_class();
-  clear_has_begin_heading();
-  clear_has_end_heading();
-  clear_has_begin_shape_index();
-  clear_has_end_shape_index();
-  clear_has_traversability();
-  clear_has_use();
-  clear_has_toll();
-  clear_has_unpaved();
-  clear_has_tunnel();
-  clear_has_bridge();
-  clear_has_roundabout();
-  clear_has_internal_intersection();
-  clear_has_drive_on_left();
-  clear_has_surface();
-  clear_has_travel_mode();
-  clear_has_vehicle_type();
-  clear_has_pedestrian_type();
-  clear_has_bicycle_type();
-  clear_has_transit_type();
-  clear_has_id();
-  clear_has_way_id();
-  clear_has_weighted_grade();
-  clear_has_max_upward_grade();
-  clear_has_max_downward_grade();
-  clear_has_lane_count();
-  clear_has_cycle_lane();
-  clear_has_bicycle_network();
-  clear_has_sidewalk();
-  clear_has_density();
-  clear_has_speed_limit();
-  clear_has_truck_speed();
-  clear_has_truck_route();
-  clear_has_mean_elevation();
-  clear_has_has_time_restrictions();
-  clear_has_default_speed();
-  clear_has_destination_only();
-  clear_has_is_urban();
-  clear_has_source_along_edge();
-  clear_has_target_along_edge();
-  clear_has_sac_scale();
-  clear_has_shoulder();
+  _impl_.restriction_ = nullptr;
+  ::memset(&_impl_.length_km_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&_impl_.indoor_) -
+      reinterpret_cast<char*>(&_impl_.length_km_)) + sizeof(_impl_.indoor_));
   _internal_metadata_.Clear<std::string>();
 }
 
-const char* TripLeg_Edge::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+const char* TripLeg_Edge::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
   while (!ctx->Done(&ptr)) {
-    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
-    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
       // repeated .valhalla.StreetName name = 1;
       case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
           ptr -= 1;
           do {
             ptr += 1;
@@ -3393,281 +2064,319 @@ const char* TripLeg_Edge::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_I
             CHK_(ptr);
             if (!ctx->DataAvailable(ptr)) break;
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // float length_km = 2;
       case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 21)) {
-          _internal_set_length_km(::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr));
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 21)) {
+          _impl_.length_km_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // float speed = 3;
       case 3:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 29)) {
-          _internal_set_speed(::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr));
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 29)) {
+          _impl_.speed_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // .valhalla.RoadClass road_class = 4;
       case 4:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 32)) {
-          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 32)) {
+          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
           _internal_set_road_class(static_cast<::valhalla::RoadClass>(val));
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // uint32 begin_heading = 5;
       case 5:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 40)) {
-          _internal_set_begin_heading(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr));
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 40)) {
+          _impl_.begin_heading_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // uint32 end_heading = 6;
       case 6:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 48)) {
-          _internal_set_end_heading(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr));
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 48)) {
+          _impl_.end_heading_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // uint32 begin_shape_index = 7;
       case 7:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 56)) {
-          _internal_set_begin_shape_index(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr));
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 56)) {
+          _impl_.begin_shape_index_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // uint32 end_shape_index = 8;
       case 8:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 64)) {
-          _internal_set_end_shape_index(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr));
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 64)) {
+          _impl_.end_shape_index_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // .valhalla.TripLeg.Traversability traversability = 9;
       case 9:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 72)) {
-          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 72)) {
+          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
           _internal_set_traversability(static_cast<::valhalla::TripLeg_Traversability>(val));
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // .valhalla.TripLeg.Use use = 10;
       case 10:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 80)) {
-          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 80)) {
+          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
           _internal_set_use(static_cast<::valhalla::TripLeg_Use>(val));
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // bool toll = 11;
       case 11:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 88)) {
-          _internal_set_toll(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr));
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 88)) {
+          _impl_.toll_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // bool unpaved = 12;
       case 12:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 96)) {
-          _internal_set_unpaved(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr));
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 96)) {
+          _impl_.unpaved_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // bool tunnel = 13;
       case 13:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 104)) {
-          _internal_set_tunnel(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr));
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 104)) {
+          _impl_.tunnel_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // bool bridge = 14;
       case 14:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 112)) {
-          _internal_set_bridge(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr));
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 112)) {
+          _impl_.bridge_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // bool roundabout = 15;
       case 15:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 120)) {
-          _internal_set_roundabout(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr));
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 120)) {
+          _impl_.roundabout_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // bool internal_intersection = 16;
       case 16:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 128)) {
-          _internal_set_internal_intersection(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr));
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 128)) {
+          _impl_.internal_intersection_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // bool drive_on_left = 17;
       case 17:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 136)) {
-          _internal_set_drive_on_left(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr));
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 136)) {
+          _impl_.drive_on_left_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // .valhalla.TripLeg.Surface surface = 18;
       case 18:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 144)) {
-          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 144)) {
+          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
           _internal_set_surface(static_cast<::valhalla::TripLeg_Surface>(val));
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // .valhalla.TripSign sign = 19;
       case 19:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 154)) {
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 154)) {
           ptr = ctx->ParseMessage(_internal_mutable_sign(), ptr);
           CHK_(ptr);
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // .valhalla.TravelMode travel_mode = 20;
       case 20:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 160)) {
-          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 160)) {
+          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
           _internal_set_travel_mode(static_cast<::valhalla::TravelMode>(val));
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // .valhalla.VehicleType vehicle_type = 21;
       case 21:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 168)) {
-          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 168)) {
+          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
           _internal_set_vehicle_type(static_cast<::valhalla::VehicleType>(val));
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // .valhalla.PedestrianType pedestrian_type = 22;
       case 22:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 176)) {
-          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 176)) {
+          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
           _internal_set_pedestrian_type(static_cast<::valhalla::PedestrianType>(val));
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // .valhalla.BicycleType bicycle_type = 23;
       case 23:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 184)) {
-          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 184)) {
+          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
           _internal_set_bicycle_type(static_cast<::valhalla::BicycleType>(val));
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // .valhalla.TransitType transit_type = 24;
       case 24:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 192)) {
-          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 192)) {
+          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
           _internal_set_transit_type(static_cast<::valhalla::TransitType>(val));
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // .valhalla.TransitRouteInfo transit_route_info = 25;
       case 25:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 202)) {
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 202)) {
           ptr = ctx->ParseMessage(_internal_mutable_transit_route_info(), ptr);
           CHK_(ptr);
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // uint64 id = 26;
       case 26:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 208)) {
-          _internal_set_id(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr));
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 208)) {
+          _impl_.id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // uint64 way_id = 27;
       case 27:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 216)) {
-          _internal_set_way_id(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr));
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 216)) {
+          _impl_.way_id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // float weighted_grade = 28;
       case 28:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 229)) {
-          _internal_set_weighted_grade(::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr));
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 229)) {
+          _impl_.weighted_grade_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // int32 max_upward_grade = 29;
       case 29:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 232)) {
-          _internal_set_max_upward_grade(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr));
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 232)) {
+          _impl_.max_upward_grade_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // int32 max_downward_grade = 30;
       case 30:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 240)) {
-          _internal_set_max_downward_grade(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr));
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 240)) {
+          _impl_.max_downward_grade_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // uint32 lane_count = 31;
       case 31:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 248)) {
-          _internal_set_lane_count(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr));
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 248)) {
+          _impl_.lane_count_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // .valhalla.TripLeg.CycleLane cycle_lane = 32;
       case 32:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 0)) {
-          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 0)) {
+          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
           _internal_set_cycle_lane(static_cast<::valhalla::TripLeg_CycleLane>(val));
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
-      // uint32 bicycle_network = 33;
+      // bool bicycle_network = 33;
       case 33:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
-          _internal_set_bicycle_network(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr));
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
+          _impl_.bicycle_network_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // .valhalla.TripLeg.Sidewalk sidewalk = 34;
       case 34:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
-          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
+          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
           _internal_set_sidewalk(static_cast<::valhalla::TripLeg_Sidewalk>(val));
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // uint32 density = 35;
       case 35:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 24)) {
-          _internal_set_density(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr));
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
+          _impl_.density_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // uint32 speed_limit = 36;
       case 36:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 32)) {
-          _internal_set_speed_limit(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr));
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 32)) {
+          _impl_.speed_limit_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // float truck_speed = 37;
       case 37:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 45)) {
-          _internal_set_truck_speed(::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr));
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 45)) {
+          _impl_.truck_speed_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // bool truck_route = 38;
       case 38:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 48)) {
-          _internal_set_truck_route(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr));
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 48)) {
+          _impl_.truck_route_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // repeated .valhalla.TripLeg.LaneConnectivity lane_connectivity = 39;
       case 39:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 58)) {
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 58)) {
           ptr -= 2;
           do {
             ptr += 2;
@@ -3675,18 +2384,20 @@ const char* TripLeg_Edge::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_I
             CHK_(ptr);
             if (!ctx->DataAvailable(ptr)) break;
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<314>(ptr));
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // int32 mean_elevation = 40;
       case 40:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 64)) {
-          _internal_set_mean_elevation(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr));
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 64)) {
+          _impl_.mean_elevation_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // repeated .valhalla.TripLeg.TrafficSegment traffic_segment = 41;
       case 41:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 74)) {
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 74)) {
           ptr -= 2;
           do {
             ptr += 2;
@@ -3694,11 +2405,12 @@ const char* TripLeg_Edge::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_I
             CHK_(ptr);
             if (!ctx->DataAvailable(ptr)) break;
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<330>(ptr));
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // repeated .valhalla.TurnLane turn_lanes = 42;
       case 42:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 82)) {
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 82)) {
           ptr -= 2;
           do {
             ptr += 2;
@@ -3706,46 +2418,52 @@ const char* TripLeg_Edge::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_I
             CHK_(ptr);
             if (!ctx->DataAvailable(ptr)) break;
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<338>(ptr));
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // bool has_time_restrictions = 43;
       case 43:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 88)) {
-          _internal_set_has_time_restrictions(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr));
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 88)) {
+          _impl_.has_time_restrictions_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // float default_speed = 44;
       case 44:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 101)) {
-          _internal_set_default_speed(::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr));
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 101)) {
+          _impl_.default_speed_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // .valhalla.TripLeg.Restriction restriction = 45;
       case 45:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 106)) {
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 106)) {
           ptr = ctx->ParseMessage(_internal_mutable_restriction(), ptr);
           CHK_(ptr);
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // bool destination_only = 46;
       case 46:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 112)) {
-          _internal_set_destination_only(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr));
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 112)) {
+          _impl_.destination_only_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // bool is_urban = 47;
       case 47:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 120)) {
-          _internal_set_is_urban(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr));
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 120)) {
+          _impl_.is_urban_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // repeated .valhalla.TaggedValue tagged_value = 48;
       case 48:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 130)) {
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 130)) {
           ptr -= 2;
           do {
             ptr += 2;
@@ -3753,404 +2471,448 @@ const char* TripLeg_Edge::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_I
             CHK_(ptr);
             if (!ctx->DataAvailable(ptr)) break;
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<386>(ptr));
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // float source_along_edge = 49;
       case 49:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 141)) {
-          _internal_set_source_along_edge(::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr));
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 141)) {
+          _impl_.source_along_edge_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // float target_along_edge = 50;
       case 50:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 149)) {
-          _internal_set_target_along_edge(::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr));
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 149)) {
+          _impl_.target_along_edge_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // .valhalla.TripLeg.SacScale sac_scale = 51;
       case 51:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 152)) {
-          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 152)) {
+          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
           _internal_set_sac_scale(static_cast<::valhalla::TripLeg_SacScale>(val));
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // bool shoulder = 52;
       case 52:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 160)) {
-          _internal_set_shoulder(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr));
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 160)) {
+          _impl_.shoulder_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
-      default: {
-      handle_unusual:
-        if ((tag == 0) || ((tag & 7) == 4)) {
+      // bool indoor = 53;
+      case 53:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 168)) {
+          _impl_.indoor_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
-          ctx->SetLastTag(tag);
-          goto success;
-        }
-        ptr = UnknownFieldParse(tag,
-            _internal_metadata_.mutable_unknown_fields<std::string>(),
-            ptr, ctx);
-        CHK_(ptr != nullptr);
+        } else
+          goto handle_unusual;
         continue;
-      }
+      default:
+        goto handle_unusual;
     }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<std::string>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
   }  // while
-success:
+message_done:
   return ptr;
 failure:
   ptr = nullptr;
-  goto success;
+  goto message_done;
 #undef CHK_
 }
 
-::PROTOBUF_NAMESPACE_ID::uint8* TripLeg_Edge::_InternalSerialize(
-    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+uint8_t* TripLeg_Edge::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:valhalla.TripLeg.Edge)
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   // repeated .valhalla.StreetName name = 1;
-  for (unsigned int i = 0,
-      n = static_cast<unsigned int>(this->_internal_name_size()); i < n; i++) {
-    target = stream->EnsureSpace(target);
+  for (unsigned i = 0,
+      n = static_cast<unsigned>(this->_internal_name_size()); i < n; i++) {
+    const auto& repfield = this->_internal_name(i);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(1, this->_internal_name(i), target, stream);
+        InternalWriteMessage(1, repfield, repfield.GetCachedSize(), target, stream);
   }
 
   // float length_km = 2;
-  if (_internal_has_length_km()) {
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_length_km = this->_internal_length_km();
+  uint32_t raw_length_km;
+  memcpy(&raw_length_km, &tmp_length_km, sizeof(tmp_length_km));
+  if (raw_length_km != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(2, this->_internal_length_km(), target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(2, this->_internal_length_km(), target);
   }
 
   // float speed = 3;
-  if (_internal_has_speed()) {
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_speed = this->_internal_speed();
+  uint32_t raw_speed;
+  memcpy(&raw_speed, &tmp_speed, sizeof(tmp_speed));
+  if (raw_speed != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(3, this->_internal_speed(), target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(3, this->_internal_speed(), target);
   }
 
   // .valhalla.RoadClass road_class = 4;
-  if (_internal_has_road_class()) {
+  if (this->_internal_road_class() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnumToArray(
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
       4, this->_internal_road_class(), target);
   }
 
   // uint32 begin_heading = 5;
-  if (_internal_has_begin_heading()) {
+  if (this->_internal_begin_heading() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt32ToArray(5, this->_internal_begin_heading(), target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(5, this->_internal_begin_heading(), target);
   }
 
   // uint32 end_heading = 6;
-  if (_internal_has_end_heading()) {
+  if (this->_internal_end_heading() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt32ToArray(6, this->_internal_end_heading(), target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(6, this->_internal_end_heading(), target);
   }
 
   // uint32 begin_shape_index = 7;
-  if (_internal_has_begin_shape_index()) {
+  if (this->_internal_begin_shape_index() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt32ToArray(7, this->_internal_begin_shape_index(), target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(7, this->_internal_begin_shape_index(), target);
   }
 
   // uint32 end_shape_index = 8;
-  if (_internal_has_end_shape_index()) {
+  if (this->_internal_end_shape_index() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt32ToArray(8, this->_internal_end_shape_index(), target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(8, this->_internal_end_shape_index(), target);
   }
 
   // .valhalla.TripLeg.Traversability traversability = 9;
-  if (_internal_has_traversability()) {
+  if (this->_internal_traversability() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnumToArray(
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
       9, this->_internal_traversability(), target);
   }
 
   // .valhalla.TripLeg.Use use = 10;
-  if (_internal_has_use()) {
+  if (this->_internal_use() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnumToArray(
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
       10, this->_internal_use(), target);
   }
 
   // bool toll = 11;
-  if (_internal_has_toll()) {
+  if (this->_internal_toll() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(11, this->_internal_toll(), target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(11, this->_internal_toll(), target);
   }
 
   // bool unpaved = 12;
-  if (_internal_has_unpaved()) {
+  if (this->_internal_unpaved() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(12, this->_internal_unpaved(), target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(12, this->_internal_unpaved(), target);
   }
 
   // bool tunnel = 13;
-  if (_internal_has_tunnel()) {
+  if (this->_internal_tunnel() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(13, this->_internal_tunnel(), target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(13, this->_internal_tunnel(), target);
   }
 
   // bool bridge = 14;
-  if (_internal_has_bridge()) {
+  if (this->_internal_bridge() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(14, this->_internal_bridge(), target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(14, this->_internal_bridge(), target);
   }
 
   // bool roundabout = 15;
-  if (_internal_has_roundabout()) {
+  if (this->_internal_roundabout() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(15, this->_internal_roundabout(), target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(15, this->_internal_roundabout(), target);
   }
 
   // bool internal_intersection = 16;
-  if (_internal_has_internal_intersection()) {
+  if (this->_internal_internal_intersection() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(16, this->_internal_internal_intersection(), target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(16, this->_internal_internal_intersection(), target);
   }
 
   // bool drive_on_left = 17;
-  if (_internal_has_drive_on_left()) {
+  if (this->_internal_drive_on_left() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(17, this->_internal_drive_on_left(), target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(17, this->_internal_drive_on_left(), target);
   }
 
   // .valhalla.TripLeg.Surface surface = 18;
-  if (_internal_has_surface()) {
+  if (this->_internal_surface() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnumToArray(
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
       18, this->_internal_surface(), target);
   }
 
   // .valhalla.TripSign sign = 19;
   if (this->_internal_has_sign()) {
-    target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(
-        19, _Internal::sign(this), target, stream);
+      InternalWriteMessage(19, _Internal::sign(this),
+        _Internal::sign(this).GetCachedSize(), target, stream);
   }
 
   // .valhalla.TravelMode travel_mode = 20;
-  if (_internal_has_travel_mode()) {
+  if (this->_internal_travel_mode() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnumToArray(
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
       20, this->_internal_travel_mode(), target);
   }
 
   // .valhalla.VehicleType vehicle_type = 21;
-  if (_internal_has_vehicle_type()) {
+  if (this->_internal_vehicle_type() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnumToArray(
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
       21, this->_internal_vehicle_type(), target);
   }
 
   // .valhalla.PedestrianType pedestrian_type = 22;
-  if (_internal_has_pedestrian_type()) {
+  if (this->_internal_pedestrian_type() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnumToArray(
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
       22, this->_internal_pedestrian_type(), target);
   }
 
   // .valhalla.BicycleType bicycle_type = 23;
-  if (_internal_has_bicycle_type()) {
+  if (this->_internal_bicycle_type() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnumToArray(
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
       23, this->_internal_bicycle_type(), target);
   }
 
   // .valhalla.TransitType transit_type = 24;
-  if (_internal_has_transit_type()) {
+  if (this->_internal_transit_type() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnumToArray(
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
       24, this->_internal_transit_type(), target);
   }
 
   // .valhalla.TransitRouteInfo transit_route_info = 25;
   if (this->_internal_has_transit_route_info()) {
-    target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(
-        25, _Internal::transit_route_info(this), target, stream);
+      InternalWriteMessage(25, _Internal::transit_route_info(this),
+        _Internal::transit_route_info(this).GetCachedSize(), target, stream);
   }
 
   // uint64 id = 26;
-  if (_internal_has_id()) {
+  if (this->_internal_id() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt64ToArray(26, this->_internal_id(), target);
+    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(26, this->_internal_id(), target);
   }
 
   // uint64 way_id = 27;
-  if (_internal_has_way_id()) {
+  if (this->_internal_way_id() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt64ToArray(27, this->_internal_way_id(), target);
+    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(27, this->_internal_way_id(), target);
   }
 
   // float weighted_grade = 28;
-  if (_internal_has_weighted_grade()) {
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_weighted_grade = this->_internal_weighted_grade();
+  uint32_t raw_weighted_grade;
+  memcpy(&raw_weighted_grade, &tmp_weighted_grade, sizeof(tmp_weighted_grade));
+  if (raw_weighted_grade != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(28, this->_internal_weighted_grade(), target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(28, this->_internal_weighted_grade(), target);
   }
 
   // int32 max_upward_grade = 29;
-  if (_internal_has_max_upward_grade()) {
+  if (this->_internal_max_upward_grade() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(29, this->_internal_max_upward_grade(), target);
+    target = ::_pbi::WireFormatLite::WriteInt32ToArray(29, this->_internal_max_upward_grade(), target);
   }
 
   // int32 max_downward_grade = 30;
-  if (_internal_has_max_downward_grade()) {
+  if (this->_internal_max_downward_grade() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(30, this->_internal_max_downward_grade(), target);
+    target = ::_pbi::WireFormatLite::WriteInt32ToArray(30, this->_internal_max_downward_grade(), target);
   }
 
   // uint32 lane_count = 31;
-  if (_internal_has_lane_count()) {
+  if (this->_internal_lane_count() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt32ToArray(31, this->_internal_lane_count(), target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(31, this->_internal_lane_count(), target);
   }
 
   // .valhalla.TripLeg.CycleLane cycle_lane = 32;
-  if (_internal_has_cycle_lane()) {
+  if (this->_internal_cycle_lane() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnumToArray(
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
       32, this->_internal_cycle_lane(), target);
   }
 
-  // uint32 bicycle_network = 33;
-  if (_internal_has_bicycle_network()) {
+  // bool bicycle_network = 33;
+  if (this->_internal_bicycle_network() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt32ToArray(33, this->_internal_bicycle_network(), target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(33, this->_internal_bicycle_network(), target);
   }
 
   // .valhalla.TripLeg.Sidewalk sidewalk = 34;
-  if (_internal_has_sidewalk()) {
+  if (this->_internal_sidewalk() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnumToArray(
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
       34, this->_internal_sidewalk(), target);
   }
 
   // uint32 density = 35;
-  if (_internal_has_density()) {
+  if (this->_internal_density() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt32ToArray(35, this->_internal_density(), target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(35, this->_internal_density(), target);
   }
 
   // uint32 speed_limit = 36;
-  if (_internal_has_speed_limit()) {
+  if (this->_internal_speed_limit() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt32ToArray(36, this->_internal_speed_limit(), target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(36, this->_internal_speed_limit(), target);
   }
 
   // float truck_speed = 37;
-  if (_internal_has_truck_speed()) {
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_truck_speed = this->_internal_truck_speed();
+  uint32_t raw_truck_speed;
+  memcpy(&raw_truck_speed, &tmp_truck_speed, sizeof(tmp_truck_speed));
+  if (raw_truck_speed != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(37, this->_internal_truck_speed(), target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(37, this->_internal_truck_speed(), target);
   }
 
   // bool truck_route = 38;
-  if (_internal_has_truck_route()) {
+  if (this->_internal_truck_route() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(38, this->_internal_truck_route(), target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(38, this->_internal_truck_route(), target);
   }
 
   // repeated .valhalla.TripLeg.LaneConnectivity lane_connectivity = 39;
-  for (unsigned int i = 0,
-      n = static_cast<unsigned int>(this->_internal_lane_connectivity_size()); i < n; i++) {
-    target = stream->EnsureSpace(target);
+  for (unsigned i = 0,
+      n = static_cast<unsigned>(this->_internal_lane_connectivity_size()); i < n; i++) {
+    const auto& repfield = this->_internal_lane_connectivity(i);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(39, this->_internal_lane_connectivity(i), target, stream);
+        InternalWriteMessage(39, repfield, repfield.GetCachedSize(), target, stream);
   }
 
   // int32 mean_elevation = 40;
-  if (_internal_has_mean_elevation()) {
+  if (this->_internal_mean_elevation() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(40, this->_internal_mean_elevation(), target);
+    target = ::_pbi::WireFormatLite::WriteInt32ToArray(40, this->_internal_mean_elevation(), target);
   }
 
   // repeated .valhalla.TripLeg.TrafficSegment traffic_segment = 41;
-  for (unsigned int i = 0,
-      n = static_cast<unsigned int>(this->_internal_traffic_segment_size()); i < n; i++) {
-    target = stream->EnsureSpace(target);
+  for (unsigned i = 0,
+      n = static_cast<unsigned>(this->_internal_traffic_segment_size()); i < n; i++) {
+    const auto& repfield = this->_internal_traffic_segment(i);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(41, this->_internal_traffic_segment(i), target, stream);
+        InternalWriteMessage(41, repfield, repfield.GetCachedSize(), target, stream);
   }
 
   // repeated .valhalla.TurnLane turn_lanes = 42;
-  for (unsigned int i = 0,
-      n = static_cast<unsigned int>(this->_internal_turn_lanes_size()); i < n; i++) {
-    target = stream->EnsureSpace(target);
+  for (unsigned i = 0,
+      n = static_cast<unsigned>(this->_internal_turn_lanes_size()); i < n; i++) {
+    const auto& repfield = this->_internal_turn_lanes(i);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(42, this->_internal_turn_lanes(i), target, stream);
+        InternalWriteMessage(42, repfield, repfield.GetCachedSize(), target, stream);
   }
 
   // bool has_time_restrictions = 43;
-  if (_internal_has_has_time_restrictions()) {
+  if (this->_internal_has_time_restrictions() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(43, this->_internal_has_time_restrictions(), target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(43, this->_internal_has_time_restrictions(), target);
   }
 
   // float default_speed = 44;
-  if (_internal_has_default_speed()) {
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_default_speed = this->_internal_default_speed();
+  uint32_t raw_default_speed;
+  memcpy(&raw_default_speed, &tmp_default_speed, sizeof(tmp_default_speed));
+  if (raw_default_speed != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(44, this->_internal_default_speed(), target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(44, this->_internal_default_speed(), target);
   }
 
   // .valhalla.TripLeg.Restriction restriction = 45;
   if (this->_internal_has_restriction()) {
-    target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(
-        45, _Internal::restriction(this), target, stream);
+      InternalWriteMessage(45, _Internal::restriction(this),
+        _Internal::restriction(this).GetCachedSize(), target, stream);
   }
 
   // bool destination_only = 46;
-  if (_internal_has_destination_only()) {
+  if (this->_internal_destination_only() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(46, this->_internal_destination_only(), target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(46, this->_internal_destination_only(), target);
   }
 
   // bool is_urban = 47;
-  if (_internal_has_is_urban()) {
+  if (this->_internal_is_urban() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(47, this->_internal_is_urban(), target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(47, this->_internal_is_urban(), target);
   }
 
   // repeated .valhalla.TaggedValue tagged_value = 48;
-  for (unsigned int i = 0,
-      n = static_cast<unsigned int>(this->_internal_tagged_value_size()); i < n; i++) {
-    target = stream->EnsureSpace(target);
+  for (unsigned i = 0,
+      n = static_cast<unsigned>(this->_internal_tagged_value_size()); i < n; i++) {
+    const auto& repfield = this->_internal_tagged_value(i);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(48, this->_internal_tagged_value(i), target, stream);
+        InternalWriteMessage(48, repfield, repfield.GetCachedSize(), target, stream);
   }
 
   // float source_along_edge = 49;
-  if (_internal_has_source_along_edge()) {
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_source_along_edge = this->_internal_source_along_edge();
+  uint32_t raw_source_along_edge;
+  memcpy(&raw_source_along_edge, &tmp_source_along_edge, sizeof(tmp_source_along_edge));
+  if (raw_source_along_edge != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(49, this->_internal_source_along_edge(), target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(49, this->_internal_source_along_edge(), target);
   }
 
   // float target_along_edge = 50;
-  if (_internal_has_target_along_edge()) {
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_target_along_edge = this->_internal_target_along_edge();
+  uint32_t raw_target_along_edge;
+  memcpy(&raw_target_along_edge, &tmp_target_along_edge, sizeof(tmp_target_along_edge));
+  if (raw_target_along_edge != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(50, this->_internal_target_along_edge(), target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(50, this->_internal_target_along_edge(), target);
   }
 
   // .valhalla.TripLeg.SacScale sac_scale = 51;
-  if (_internal_has_sac_scale()) {
+  if (this->_internal_sac_scale() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnumToArray(
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
       51, this->_internal_sac_scale(), target);
   }
 
   // bool shoulder = 52;
-  if (_internal_has_shoulder()) {
+  if (this->_internal_shoulder() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(52, this->_internal_shoulder(), target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(52, this->_internal_shoulder(), target);
+  }
+
+  // bool indoor = 53;
+  if (this->_internal_indoor() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(53, this->_internal_indoor(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -4165,41 +2927,41 @@ size_t TripLeg_Edge::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:valhalla.TripLeg.Edge)
   size_t total_size = 0;
 
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // repeated .valhalla.StreetName name = 1;
   total_size += 1UL * this->_internal_name_size();
-  for (const auto& msg : this->name_) {
+  for (const auto& msg : this->_impl_.name_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
 
   // repeated .valhalla.TripLeg.LaneConnectivity lane_connectivity = 39;
   total_size += 2UL * this->_internal_lane_connectivity_size();
-  for (const auto& msg : this->lane_connectivity_) {
+  for (const auto& msg : this->_impl_.lane_connectivity_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
 
   // repeated .valhalla.TripLeg.TrafficSegment traffic_segment = 41;
   total_size += 2UL * this->_internal_traffic_segment_size();
-  for (const auto& msg : this->traffic_segment_) {
+  for (const auto& msg : this->_impl_.traffic_segment_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
 
   // repeated .valhalla.TurnLane turn_lanes = 42;
   total_size += 2UL * this->_internal_turn_lanes_size();
-  for (const auto& msg : this->turn_lanes_) {
+  for (const auto& msg : this->_impl_.turn_lanes_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
 
   // repeated .valhalla.TaggedValue tagged_value = 48;
   total_size += 2UL * this->_internal_tagged_value_size();
-  for (const auto& msg : this->tagged_value_) {
+  for (const auto& msg : this->_impl_.tagged_value_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
@@ -4208,932 +2970,506 @@ size_t TripLeg_Edge::ByteSizeLong() const {
   if (this->_internal_has_sign()) {
     total_size += 2 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *sign_);
+        *_impl_.sign_);
   }
 
   // .valhalla.TransitRouteInfo transit_route_info = 25;
   if (this->_internal_has_transit_route_info()) {
     total_size += 2 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *transit_route_info_);
+        *_impl_.transit_route_info_);
   }
 
   // .valhalla.TripLeg.Restriction restriction = 45;
   if (this->_internal_has_restriction()) {
     total_size += 2 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *restriction_);
+        *_impl_.restriction_);
   }
 
-  switch (has_length_km_case()) {
-    // float length_km = 2;
-    case kLengthKm: {
-      total_size += 1 + 4;
-      break;
-    }
-    case HAS_LENGTH_KM_NOT_SET: {
-      break;
-    }
+  // float length_km = 2;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_length_km = this->_internal_length_km();
+  uint32_t raw_length_km;
+  memcpy(&raw_length_km, &tmp_length_km, sizeof(tmp_length_km));
+  if (raw_length_km != 0) {
+    total_size += 1 + 4;
   }
-  switch (has_speed_case()) {
-    // float speed = 3;
-    case kSpeed: {
-      total_size += 1 + 4;
-      break;
-    }
-    case HAS_SPEED_NOT_SET: {
-      break;
-    }
+
+  // float speed = 3;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_speed = this->_internal_speed();
+  uint32_t raw_speed;
+  memcpy(&raw_speed, &tmp_speed, sizeof(tmp_speed));
+  if (raw_speed != 0) {
+    total_size += 1 + 4;
   }
-  switch (has_road_class_case()) {
-    // .valhalla.RoadClass road_class = 4;
-    case kRoadClass: {
-      total_size += 1 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::EnumSize(this->_internal_road_class());
-      break;
-    }
-    case HAS_ROAD_CLASS_NOT_SET: {
-      break;
-    }
+
+  // .valhalla.RoadClass road_class = 4;
+  if (this->_internal_road_class() != 0) {
+    total_size += 1 +
+      ::_pbi::WireFormatLite::EnumSize(this->_internal_road_class());
   }
-  switch (has_begin_heading_case()) {
-    // uint32 begin_heading = 5;
-    case kBeginHeading: {
-      total_size += 1 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt32Size(
-          this->_internal_begin_heading());
-      break;
-    }
-    case HAS_BEGIN_HEADING_NOT_SET: {
-      break;
-    }
+
+  // uint32 begin_heading = 5;
+  if (this->_internal_begin_heading() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_begin_heading());
   }
-  switch (has_end_heading_case()) {
-    // uint32 end_heading = 6;
-    case kEndHeading: {
-      total_size += 1 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt32Size(
-          this->_internal_end_heading());
-      break;
-    }
-    case HAS_END_HEADING_NOT_SET: {
-      break;
-    }
+
+  // uint32 end_heading = 6;
+  if (this->_internal_end_heading() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_end_heading());
   }
-  switch (has_begin_shape_index_case()) {
-    // uint32 begin_shape_index = 7;
-    case kBeginShapeIndex: {
-      total_size += 1 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt32Size(
-          this->_internal_begin_shape_index());
-      break;
-    }
-    case HAS_BEGIN_SHAPE_INDEX_NOT_SET: {
-      break;
-    }
+
+  // uint32 begin_shape_index = 7;
+  if (this->_internal_begin_shape_index() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_begin_shape_index());
   }
-  switch (has_end_shape_index_case()) {
-    // uint32 end_shape_index = 8;
-    case kEndShapeIndex: {
-      total_size += 1 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt32Size(
-          this->_internal_end_shape_index());
-      break;
-    }
-    case HAS_END_SHAPE_INDEX_NOT_SET: {
-      break;
-    }
+
+  // uint32 end_shape_index = 8;
+  if (this->_internal_end_shape_index() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_end_shape_index());
   }
-  switch (has_traversability_case()) {
-    // .valhalla.TripLeg.Traversability traversability = 9;
-    case kTraversability: {
-      total_size += 1 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::EnumSize(this->_internal_traversability());
-      break;
-    }
-    case HAS_TRAVERSABILITY_NOT_SET: {
-      break;
-    }
+
+  // .valhalla.TripLeg.Traversability traversability = 9;
+  if (this->_internal_traversability() != 0) {
+    total_size += 1 +
+      ::_pbi::WireFormatLite::EnumSize(this->_internal_traversability());
   }
-  switch (has_use_case()) {
-    // .valhalla.TripLeg.Use use = 10;
-    case kUse: {
-      total_size += 1 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::EnumSize(this->_internal_use());
-      break;
-    }
-    case HAS_USE_NOT_SET: {
-      break;
-    }
+
+  // .valhalla.TripLeg.Use use = 10;
+  if (this->_internal_use() != 0) {
+    total_size += 1 +
+      ::_pbi::WireFormatLite::EnumSize(this->_internal_use());
   }
-  switch (has_toll_case()) {
-    // bool toll = 11;
-    case kToll: {
-      total_size += 1 + 1;
-      break;
-    }
-    case HAS_TOLL_NOT_SET: {
-      break;
-    }
+
+  // bool toll = 11;
+  if (this->_internal_toll() != 0) {
+    total_size += 1 + 1;
   }
-  switch (has_unpaved_case()) {
-    // bool unpaved = 12;
-    case kUnpaved: {
-      total_size += 1 + 1;
-      break;
-    }
-    case HAS_UNPAVED_NOT_SET: {
-      break;
-    }
+
+  // bool unpaved = 12;
+  if (this->_internal_unpaved() != 0) {
+    total_size += 1 + 1;
   }
-  switch (has_tunnel_case()) {
-    // bool tunnel = 13;
-    case kTunnel: {
-      total_size += 1 + 1;
-      break;
-    }
-    case HAS_TUNNEL_NOT_SET: {
-      break;
-    }
+
+  // bool tunnel = 13;
+  if (this->_internal_tunnel() != 0) {
+    total_size += 1 + 1;
   }
-  switch (has_bridge_case()) {
-    // bool bridge = 14;
-    case kBridge: {
-      total_size += 1 + 1;
-      break;
-    }
-    case HAS_BRIDGE_NOT_SET: {
-      break;
-    }
+
+  // bool bridge = 14;
+  if (this->_internal_bridge() != 0) {
+    total_size += 1 + 1;
   }
-  switch (has_roundabout_case()) {
-    // bool roundabout = 15;
-    case kRoundabout: {
-      total_size += 1 + 1;
-      break;
-    }
-    case HAS_ROUNDABOUT_NOT_SET: {
-      break;
-    }
+
+  // .valhalla.TripLeg.Surface surface = 18;
+  if (this->_internal_surface() != 0) {
+    total_size += 2 +
+      ::_pbi::WireFormatLite::EnumSize(this->_internal_surface());
   }
-  switch (has_internal_intersection_case()) {
-    // bool internal_intersection = 16;
-    case kInternalIntersection: {
-      total_size += 2 + 1;
-      break;
-    }
-    case HAS_INTERNAL_INTERSECTION_NOT_SET: {
-      break;
-    }
+
+  // .valhalla.TravelMode travel_mode = 20;
+  if (this->_internal_travel_mode() != 0) {
+    total_size += 2 +
+      ::_pbi::WireFormatLite::EnumSize(this->_internal_travel_mode());
   }
-  switch (has_drive_on_left_case()) {
-    // bool drive_on_left = 17;
-    case kDriveOnLeft: {
-      total_size += 2 + 1;
-      break;
-    }
-    case HAS_DRIVE_ON_LEFT_NOT_SET: {
-      break;
-    }
+
+  // bool roundabout = 15;
+  if (this->_internal_roundabout() != 0) {
+    total_size += 1 + 1;
   }
-  switch (has_surface_case()) {
-    // .valhalla.TripLeg.Surface surface = 18;
-    case kSurface: {
-      total_size += 2 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::EnumSize(this->_internal_surface());
-      break;
-    }
-    case HAS_SURFACE_NOT_SET: {
-      break;
-    }
+
+  // bool internal_intersection = 16;
+  if (this->_internal_internal_intersection() != 0) {
+    total_size += 2 + 1;
   }
-  switch (has_travel_mode_case()) {
-    // .valhalla.TravelMode travel_mode = 20;
-    case kTravelMode: {
-      total_size += 2 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::EnumSize(this->_internal_travel_mode());
-      break;
-    }
-    case HAS_TRAVEL_MODE_NOT_SET: {
-      break;
-    }
+
+  // bool drive_on_left = 17;
+  if (this->_internal_drive_on_left() != 0) {
+    total_size += 2 + 1;
   }
-  switch (has_vehicle_type_case()) {
-    // .valhalla.VehicleType vehicle_type = 21;
-    case kVehicleType: {
-      total_size += 2 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::EnumSize(this->_internal_vehicle_type());
-      break;
-    }
-    case HAS_VEHICLE_TYPE_NOT_SET: {
-      break;
-    }
+
+  // bool bicycle_network = 33;
+  if (this->_internal_bicycle_network() != 0) {
+    total_size += 2 + 1;
   }
-  switch (has_pedestrian_type_case()) {
-    // .valhalla.PedestrianType pedestrian_type = 22;
-    case kPedestrianType: {
-      total_size += 2 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::EnumSize(this->_internal_pedestrian_type());
-      break;
-    }
-    case HAS_PEDESTRIAN_TYPE_NOT_SET: {
-      break;
-    }
+
+  // .valhalla.VehicleType vehicle_type = 21;
+  if (this->_internal_vehicle_type() != 0) {
+    total_size += 2 +
+      ::_pbi::WireFormatLite::EnumSize(this->_internal_vehicle_type());
   }
-  switch (has_bicycle_type_case()) {
-    // .valhalla.BicycleType bicycle_type = 23;
-    case kBicycleType: {
-      total_size += 2 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::EnumSize(this->_internal_bicycle_type());
-      break;
-    }
-    case HAS_BICYCLE_TYPE_NOT_SET: {
-      break;
-    }
+
+  // .valhalla.PedestrianType pedestrian_type = 22;
+  if (this->_internal_pedestrian_type() != 0) {
+    total_size += 2 +
+      ::_pbi::WireFormatLite::EnumSize(this->_internal_pedestrian_type());
   }
-  switch (has_transit_type_case()) {
-    // .valhalla.TransitType transit_type = 24;
-    case kTransitType: {
-      total_size += 2 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::EnumSize(this->_internal_transit_type());
-      break;
-    }
-    case HAS_TRANSIT_TYPE_NOT_SET: {
-      break;
-    }
+
+  // .valhalla.BicycleType bicycle_type = 23;
+  if (this->_internal_bicycle_type() != 0) {
+    total_size += 2 +
+      ::_pbi::WireFormatLite::EnumSize(this->_internal_bicycle_type());
   }
-  switch (has_id_case()) {
-    // uint64 id = 26;
-    case kId: {
-      total_size += 2 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt64Size(
-          this->_internal_id());
-      break;
-    }
-    case HAS_ID_NOT_SET: {
-      break;
-    }
+
+  // uint64 id = 26;
+  if (this->_internal_id() != 0) {
+    total_size += 2 +
+      ::_pbi::WireFormatLite::UInt64Size(
+        this->_internal_id());
   }
-  switch (has_way_id_case()) {
-    // uint64 way_id = 27;
-    case kWayId: {
-      total_size += 2 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt64Size(
-          this->_internal_way_id());
-      break;
-    }
-    case HAS_WAY_ID_NOT_SET: {
-      break;
-    }
+
+  // .valhalla.TransitType transit_type = 24;
+  if (this->_internal_transit_type() != 0) {
+    total_size += 2 +
+      ::_pbi::WireFormatLite::EnumSize(this->_internal_transit_type());
   }
-  switch (has_weighted_grade_case()) {
-    // float weighted_grade = 28;
-    case kWeightedGrade: {
-      total_size += 2 + 4;
-      break;
-    }
-    case HAS_WEIGHTED_GRADE_NOT_SET: {
-      break;
-    }
+
+  // float weighted_grade = 28;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_weighted_grade = this->_internal_weighted_grade();
+  uint32_t raw_weighted_grade;
+  memcpy(&raw_weighted_grade, &tmp_weighted_grade, sizeof(tmp_weighted_grade));
+  if (raw_weighted_grade != 0) {
+    total_size += 2 + 4;
   }
-  switch (has_max_upward_grade_case()) {
-    // int32 max_upward_grade = 29;
-    case kMaxUpwardGrade: {
-      total_size += 2 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
-          this->_internal_max_upward_grade());
-      break;
-    }
-    case HAS_MAX_UPWARD_GRADE_NOT_SET: {
-      break;
-    }
+
+  // uint64 way_id = 27;
+  if (this->_internal_way_id() != 0) {
+    total_size += 2 +
+      ::_pbi::WireFormatLite::UInt64Size(
+        this->_internal_way_id());
   }
-  switch (has_max_downward_grade_case()) {
-    // int32 max_downward_grade = 30;
-    case kMaxDownwardGrade: {
-      total_size += 2 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
-          this->_internal_max_downward_grade());
-      break;
-    }
-    case HAS_MAX_DOWNWARD_GRADE_NOT_SET: {
-      break;
-    }
+
+  // int32 max_upward_grade = 29;
+  if (this->_internal_max_upward_grade() != 0) {
+    total_size += 2 +
+      ::_pbi::WireFormatLite::Int32Size(
+        this->_internal_max_upward_grade());
   }
-  switch (has_lane_count_case()) {
-    // uint32 lane_count = 31;
-    case kLaneCount: {
-      total_size += 2 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt32Size(
-          this->_internal_lane_count());
-      break;
-    }
-    case HAS_LANE_COUNT_NOT_SET: {
-      break;
-    }
+
+  // int32 max_downward_grade = 30;
+  if (this->_internal_max_downward_grade() != 0) {
+    total_size += 2 +
+      ::_pbi::WireFormatLite::Int32Size(
+        this->_internal_max_downward_grade());
   }
-  switch (has_cycle_lane_case()) {
-    // .valhalla.TripLeg.CycleLane cycle_lane = 32;
-    case kCycleLane: {
-      total_size += 2 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::EnumSize(this->_internal_cycle_lane());
-      break;
-    }
-    case HAS_CYCLE_LANE_NOT_SET: {
-      break;
-    }
+
+  // uint32 lane_count = 31;
+  if (this->_internal_lane_count() != 0) {
+    total_size += 2 +
+      ::_pbi::WireFormatLite::UInt32Size(
+        this->_internal_lane_count());
   }
-  switch (has_bicycle_network_case()) {
-    // uint32 bicycle_network = 33;
-    case kBicycleNetwork: {
-      total_size += 2 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt32Size(
-          this->_internal_bicycle_network());
-      break;
-    }
-    case HAS_BICYCLE_NETWORK_NOT_SET: {
-      break;
-    }
+
+  // .valhalla.TripLeg.CycleLane cycle_lane = 32;
+  if (this->_internal_cycle_lane() != 0) {
+    total_size += 2 +
+      ::_pbi::WireFormatLite::EnumSize(this->_internal_cycle_lane());
   }
-  switch (has_sidewalk_case()) {
-    // .valhalla.TripLeg.Sidewalk sidewalk = 34;
-    case kSidewalk: {
-      total_size += 2 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::EnumSize(this->_internal_sidewalk());
-      break;
-    }
-    case HAS_SIDEWALK_NOT_SET: {
-      break;
-    }
+
+  // .valhalla.TripLeg.Sidewalk sidewalk = 34;
+  if (this->_internal_sidewalk() != 0) {
+    total_size += 2 +
+      ::_pbi::WireFormatLite::EnumSize(this->_internal_sidewalk());
   }
-  switch (has_density_case()) {
-    // uint32 density = 35;
-    case kDensity: {
-      total_size += 2 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt32Size(
-          this->_internal_density());
-      break;
-    }
-    case HAS_DENSITY_NOT_SET: {
-      break;
-    }
+
+  // uint32 density = 35;
+  if (this->_internal_density() != 0) {
+    total_size += 2 +
+      ::_pbi::WireFormatLite::UInt32Size(
+        this->_internal_density());
   }
-  switch (has_speed_limit_case()) {
-    // uint32 speed_limit = 36;
-    case kSpeedLimit: {
-      total_size += 2 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt32Size(
-          this->_internal_speed_limit());
-      break;
-    }
-    case HAS_SPEED_LIMIT_NOT_SET: {
-      break;
-    }
+
+  // uint32 speed_limit = 36;
+  if (this->_internal_speed_limit() != 0) {
+    total_size += 2 +
+      ::_pbi::WireFormatLite::UInt32Size(
+        this->_internal_speed_limit());
   }
-  switch (has_truck_speed_case()) {
-    // float truck_speed = 37;
-    case kTruckSpeed: {
-      total_size += 2 + 4;
-      break;
-    }
-    case HAS_TRUCK_SPEED_NOT_SET: {
-      break;
-    }
+
+  // float truck_speed = 37;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_truck_speed = this->_internal_truck_speed();
+  uint32_t raw_truck_speed;
+  memcpy(&raw_truck_speed, &tmp_truck_speed, sizeof(tmp_truck_speed));
+  if (raw_truck_speed != 0) {
+    total_size += 2 + 4;
   }
-  switch (has_truck_route_case()) {
-    // bool truck_route = 38;
-    case kTruckRoute: {
-      total_size += 2 + 1;
-      break;
-    }
-    case HAS_TRUCK_ROUTE_NOT_SET: {
-      break;
-    }
+
+  // int32 mean_elevation = 40;
+  if (this->_internal_mean_elevation() != 0) {
+    total_size += 2 +
+      ::_pbi::WireFormatLite::Int32Size(
+        this->_internal_mean_elevation());
   }
-  switch (has_mean_elevation_case()) {
-    // int32 mean_elevation = 40;
-    case kMeanElevation: {
-      total_size += 2 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
-          this->_internal_mean_elevation());
-      break;
-    }
-    case HAS_MEAN_ELEVATION_NOT_SET: {
-      break;
-    }
+
+  // bool truck_route = 38;
+  if (this->_internal_truck_route() != 0) {
+    total_size += 2 + 1;
   }
-  switch (has_has_time_restrictions_case()) {
-    // bool has_time_restrictions = 43;
-    case kHasTimeRestrictions: {
-      total_size += 2 + 1;
-      break;
-    }
-    case HAS_HAS_TIME_RESTRICTIONS_NOT_SET: {
-      break;
-    }
+
+  // bool has_time_restrictions = 43;
+  if (this->_internal_has_time_restrictions() != 0) {
+    total_size += 2 + 1;
   }
-  switch (has_default_speed_case()) {
-    // float default_speed = 44;
-    case kDefaultSpeed: {
-      total_size += 2 + 4;
-      break;
-    }
-    case HAS_DEFAULT_SPEED_NOT_SET: {
-      break;
-    }
+
+  // bool destination_only = 46;
+  if (this->_internal_destination_only() != 0) {
+    total_size += 2 + 1;
   }
-  switch (has_destination_only_case()) {
-    // bool destination_only = 46;
-    case kDestinationOnly: {
-      total_size += 2 + 1;
-      break;
-    }
-    case HAS_DESTINATION_ONLY_NOT_SET: {
-      break;
-    }
+
+  // bool is_urban = 47;
+  if (this->_internal_is_urban() != 0) {
+    total_size += 2 + 1;
   }
-  switch (has_is_urban_case()) {
-    // bool is_urban = 47;
-    case kIsUrban: {
-      total_size += 2 + 1;
-      break;
-    }
-    case HAS_IS_URBAN_NOT_SET: {
-      break;
-    }
+
+  // float default_speed = 44;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_default_speed = this->_internal_default_speed();
+  uint32_t raw_default_speed;
+  memcpy(&raw_default_speed, &tmp_default_speed, sizeof(tmp_default_speed));
+  if (raw_default_speed != 0) {
+    total_size += 2 + 4;
   }
-  switch (has_source_along_edge_case()) {
-    // float source_along_edge = 49;
-    case kSourceAlongEdge: {
-      total_size += 2 + 4;
-      break;
-    }
-    case HAS_SOURCE_ALONG_EDGE_NOT_SET: {
-      break;
-    }
+
+  // float source_along_edge = 49;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_source_along_edge = this->_internal_source_along_edge();
+  uint32_t raw_source_along_edge;
+  memcpy(&raw_source_along_edge, &tmp_source_along_edge, sizeof(tmp_source_along_edge));
+  if (raw_source_along_edge != 0) {
+    total_size += 2 + 4;
   }
-  switch (has_target_along_edge_case()) {
-    // float target_along_edge = 50;
-    case kTargetAlongEdge: {
-      total_size += 2 + 4;
-      break;
-    }
-    case HAS_TARGET_ALONG_EDGE_NOT_SET: {
-      break;
-    }
+
+  // float target_along_edge = 50;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_target_along_edge = this->_internal_target_along_edge();
+  uint32_t raw_target_along_edge;
+  memcpy(&raw_target_along_edge, &tmp_target_along_edge, sizeof(tmp_target_along_edge));
+  if (raw_target_along_edge != 0) {
+    total_size += 2 + 4;
   }
-  switch (has_sac_scale_case()) {
-    // .valhalla.TripLeg.SacScale sac_scale = 51;
-    case kSacScale: {
-      total_size += 2 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::EnumSize(this->_internal_sac_scale());
-      break;
-    }
-    case HAS_SAC_SCALE_NOT_SET: {
-      break;
-    }
+
+  // .valhalla.TripLeg.SacScale sac_scale = 51;
+  if (this->_internal_sac_scale() != 0) {
+    total_size += 2 +
+      ::_pbi::WireFormatLite::EnumSize(this->_internal_sac_scale());
   }
-  switch (has_shoulder_case()) {
-    // bool shoulder = 52;
-    case kShoulder: {
-      total_size += 2 + 1;
-      break;
-    }
-    case HAS_SHOULDER_NOT_SET: {
-      break;
-    }
+
+  // bool shoulder = 52;
+  if (this->_internal_shoulder() != 0) {
+    total_size += 2 + 1;
   }
+
+  // bool indoor = 53;
+  if (this->_internal_indoor() != 0) {
+    total_size += 2 + 1;
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     total_size += _internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).size();
   }
-  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  int cached_size = ::_pbi::ToCachedSize(total_size);
   SetCachedSize(cached_size);
   return total_size;
 }
 
 void TripLeg_Edge::CheckTypeAndMergeFrom(
     const ::PROTOBUF_NAMESPACE_ID::MessageLite& from) {
-  MergeFrom(*::PROTOBUF_NAMESPACE_ID::internal::DownCast<const TripLeg_Edge*>(
+  MergeFrom(*::_pbi::DownCast<const TripLeg_Edge*>(
       &from));
 }
 
 void TripLeg_Edge::MergeFrom(const TripLeg_Edge& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:valhalla.TripLeg.Edge)
-  GOOGLE_DCHECK_NE(&from, this);
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  TripLeg_Edge* const _this = this;
+  // @@protoc_insertion_point(class_specific_merge_from_start:valhalla.TripLeg.Edge)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  name_.MergeFrom(from.name_);
-  lane_connectivity_.MergeFrom(from.lane_connectivity_);
-  traffic_segment_.MergeFrom(from.traffic_segment_);
-  turn_lanes_.MergeFrom(from.turn_lanes_);
-  tagged_value_.MergeFrom(from.tagged_value_);
+  _this->_impl_.name_.MergeFrom(from._impl_.name_);
+  _this->_impl_.lane_connectivity_.MergeFrom(from._impl_.lane_connectivity_);
+  _this->_impl_.traffic_segment_.MergeFrom(from._impl_.traffic_segment_);
+  _this->_impl_.turn_lanes_.MergeFrom(from._impl_.turn_lanes_);
+  _this->_impl_.tagged_value_.MergeFrom(from._impl_.tagged_value_);
   if (from._internal_has_sign()) {
-    _internal_mutable_sign()->::valhalla::TripSign::MergeFrom(from._internal_sign());
+    _this->_internal_mutable_sign()->::valhalla::TripSign::MergeFrom(
+        from._internal_sign());
   }
   if (from._internal_has_transit_route_info()) {
-    _internal_mutable_transit_route_info()->::valhalla::TransitRouteInfo::MergeFrom(from._internal_transit_route_info());
+    _this->_internal_mutable_transit_route_info()->::valhalla::TransitRouteInfo::MergeFrom(
+        from._internal_transit_route_info());
   }
   if (from._internal_has_restriction()) {
-    _internal_mutable_restriction()->::valhalla::TripLeg_Restriction::MergeFrom(from._internal_restriction());
+    _this->_internal_mutable_restriction()->::valhalla::TripLeg_Restriction::MergeFrom(
+        from._internal_restriction());
   }
-  switch (from.has_length_km_case()) {
-    case kLengthKm: {
-      _internal_set_length_km(from._internal_length_km());
-      break;
-    }
-    case HAS_LENGTH_KM_NOT_SET: {
-      break;
-    }
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_length_km = from._internal_length_km();
+  uint32_t raw_length_km;
+  memcpy(&raw_length_km, &tmp_length_km, sizeof(tmp_length_km));
+  if (raw_length_km != 0) {
+    _this->_internal_set_length_km(from._internal_length_km());
   }
-  switch (from.has_speed_case()) {
-    case kSpeed: {
-      _internal_set_speed(from._internal_speed());
-      break;
-    }
-    case HAS_SPEED_NOT_SET: {
-      break;
-    }
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_speed = from._internal_speed();
+  uint32_t raw_speed;
+  memcpy(&raw_speed, &tmp_speed, sizeof(tmp_speed));
+  if (raw_speed != 0) {
+    _this->_internal_set_speed(from._internal_speed());
   }
-  switch (from.has_road_class_case()) {
-    case kRoadClass: {
-      _internal_set_road_class(from._internal_road_class());
-      break;
-    }
-    case HAS_ROAD_CLASS_NOT_SET: {
-      break;
-    }
+  if (from._internal_road_class() != 0) {
+    _this->_internal_set_road_class(from._internal_road_class());
   }
-  switch (from.has_begin_heading_case()) {
-    case kBeginHeading: {
-      _internal_set_begin_heading(from._internal_begin_heading());
-      break;
-    }
-    case HAS_BEGIN_HEADING_NOT_SET: {
-      break;
-    }
+  if (from._internal_begin_heading() != 0) {
+    _this->_internal_set_begin_heading(from._internal_begin_heading());
   }
-  switch (from.has_end_heading_case()) {
-    case kEndHeading: {
-      _internal_set_end_heading(from._internal_end_heading());
-      break;
-    }
-    case HAS_END_HEADING_NOT_SET: {
-      break;
-    }
+  if (from._internal_end_heading() != 0) {
+    _this->_internal_set_end_heading(from._internal_end_heading());
   }
-  switch (from.has_begin_shape_index_case()) {
-    case kBeginShapeIndex: {
-      _internal_set_begin_shape_index(from._internal_begin_shape_index());
-      break;
-    }
-    case HAS_BEGIN_SHAPE_INDEX_NOT_SET: {
-      break;
-    }
+  if (from._internal_begin_shape_index() != 0) {
+    _this->_internal_set_begin_shape_index(from._internal_begin_shape_index());
   }
-  switch (from.has_end_shape_index_case()) {
-    case kEndShapeIndex: {
-      _internal_set_end_shape_index(from._internal_end_shape_index());
-      break;
-    }
-    case HAS_END_SHAPE_INDEX_NOT_SET: {
-      break;
-    }
+  if (from._internal_end_shape_index() != 0) {
+    _this->_internal_set_end_shape_index(from._internal_end_shape_index());
   }
-  switch (from.has_traversability_case()) {
-    case kTraversability: {
-      _internal_set_traversability(from._internal_traversability());
-      break;
-    }
-    case HAS_TRAVERSABILITY_NOT_SET: {
-      break;
-    }
+  if (from._internal_traversability() != 0) {
+    _this->_internal_set_traversability(from._internal_traversability());
   }
-  switch (from.has_use_case()) {
-    case kUse: {
-      _internal_set_use(from._internal_use());
-      break;
-    }
-    case HAS_USE_NOT_SET: {
-      break;
-    }
+  if (from._internal_use() != 0) {
+    _this->_internal_set_use(from._internal_use());
   }
-  switch (from.has_toll_case()) {
-    case kToll: {
-      _internal_set_toll(from._internal_toll());
-      break;
-    }
-    case HAS_TOLL_NOT_SET: {
-      break;
-    }
+  if (from._internal_toll() != 0) {
+    _this->_internal_set_toll(from._internal_toll());
   }
-  switch (from.has_unpaved_case()) {
-    case kUnpaved: {
-      _internal_set_unpaved(from._internal_unpaved());
-      break;
-    }
-    case HAS_UNPAVED_NOT_SET: {
-      break;
-    }
+  if (from._internal_unpaved() != 0) {
+    _this->_internal_set_unpaved(from._internal_unpaved());
   }
-  switch (from.has_tunnel_case()) {
-    case kTunnel: {
-      _internal_set_tunnel(from._internal_tunnel());
-      break;
-    }
-    case HAS_TUNNEL_NOT_SET: {
-      break;
-    }
+  if (from._internal_tunnel() != 0) {
+    _this->_internal_set_tunnel(from._internal_tunnel());
   }
-  switch (from.has_bridge_case()) {
-    case kBridge: {
-      _internal_set_bridge(from._internal_bridge());
-      break;
-    }
-    case HAS_BRIDGE_NOT_SET: {
-      break;
-    }
+  if (from._internal_bridge() != 0) {
+    _this->_internal_set_bridge(from._internal_bridge());
   }
-  switch (from.has_roundabout_case()) {
-    case kRoundabout: {
-      _internal_set_roundabout(from._internal_roundabout());
-      break;
-    }
-    case HAS_ROUNDABOUT_NOT_SET: {
-      break;
-    }
+  if (from._internal_surface() != 0) {
+    _this->_internal_set_surface(from._internal_surface());
   }
-  switch (from.has_internal_intersection_case()) {
-    case kInternalIntersection: {
-      _internal_set_internal_intersection(from._internal_internal_intersection());
-      break;
-    }
-    case HAS_INTERNAL_INTERSECTION_NOT_SET: {
-      break;
-    }
+  if (from._internal_travel_mode() != 0) {
+    _this->_internal_set_travel_mode(from._internal_travel_mode());
   }
-  switch (from.has_drive_on_left_case()) {
-    case kDriveOnLeft: {
-      _internal_set_drive_on_left(from._internal_drive_on_left());
-      break;
-    }
-    case HAS_DRIVE_ON_LEFT_NOT_SET: {
-      break;
-    }
+  if (from._internal_roundabout() != 0) {
+    _this->_internal_set_roundabout(from._internal_roundabout());
   }
-  switch (from.has_surface_case()) {
-    case kSurface: {
-      _internal_set_surface(from._internal_surface());
-      break;
-    }
-    case HAS_SURFACE_NOT_SET: {
-      break;
-    }
+  if (from._internal_internal_intersection() != 0) {
+    _this->_internal_set_internal_intersection(from._internal_internal_intersection());
   }
-  switch (from.has_travel_mode_case()) {
-    case kTravelMode: {
-      _internal_set_travel_mode(from._internal_travel_mode());
-      break;
-    }
-    case HAS_TRAVEL_MODE_NOT_SET: {
-      break;
-    }
+  if (from._internal_drive_on_left() != 0) {
+    _this->_internal_set_drive_on_left(from._internal_drive_on_left());
   }
-  switch (from.has_vehicle_type_case()) {
-    case kVehicleType: {
-      _internal_set_vehicle_type(from._internal_vehicle_type());
-      break;
-    }
-    case HAS_VEHICLE_TYPE_NOT_SET: {
-      break;
-    }
+  if (from._internal_bicycle_network() != 0) {
+    _this->_internal_set_bicycle_network(from._internal_bicycle_network());
   }
-  switch (from.has_pedestrian_type_case()) {
-    case kPedestrianType: {
-      _internal_set_pedestrian_type(from._internal_pedestrian_type());
-      break;
-    }
-    case HAS_PEDESTRIAN_TYPE_NOT_SET: {
-      break;
-    }
+  if (from._internal_vehicle_type() != 0) {
+    _this->_internal_set_vehicle_type(from._internal_vehicle_type());
   }
-  switch (from.has_bicycle_type_case()) {
-    case kBicycleType: {
-      _internal_set_bicycle_type(from._internal_bicycle_type());
-      break;
-    }
-    case HAS_BICYCLE_TYPE_NOT_SET: {
-      break;
-    }
+  if (from._internal_pedestrian_type() != 0) {
+    _this->_internal_set_pedestrian_type(from._internal_pedestrian_type());
   }
-  switch (from.has_transit_type_case()) {
-    case kTransitType: {
-      _internal_set_transit_type(from._internal_transit_type());
-      break;
-    }
-    case HAS_TRANSIT_TYPE_NOT_SET: {
-      break;
-    }
+  if (from._internal_bicycle_type() != 0) {
+    _this->_internal_set_bicycle_type(from._internal_bicycle_type());
   }
-  switch (from.has_id_case()) {
-    case kId: {
-      _internal_set_id(from._internal_id());
-      break;
-    }
-    case HAS_ID_NOT_SET: {
-      break;
-    }
+  if (from._internal_id() != 0) {
+    _this->_internal_set_id(from._internal_id());
   }
-  switch (from.has_way_id_case()) {
-    case kWayId: {
-      _internal_set_way_id(from._internal_way_id());
-      break;
-    }
-    case HAS_WAY_ID_NOT_SET: {
-      break;
-    }
+  if (from._internal_transit_type() != 0) {
+    _this->_internal_set_transit_type(from._internal_transit_type());
   }
-  switch (from.has_weighted_grade_case()) {
-    case kWeightedGrade: {
-      _internal_set_weighted_grade(from._internal_weighted_grade());
-      break;
-    }
-    case HAS_WEIGHTED_GRADE_NOT_SET: {
-      break;
-    }
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_weighted_grade = from._internal_weighted_grade();
+  uint32_t raw_weighted_grade;
+  memcpy(&raw_weighted_grade, &tmp_weighted_grade, sizeof(tmp_weighted_grade));
+  if (raw_weighted_grade != 0) {
+    _this->_internal_set_weighted_grade(from._internal_weighted_grade());
   }
-  switch (from.has_max_upward_grade_case()) {
-    case kMaxUpwardGrade: {
-      _internal_set_max_upward_grade(from._internal_max_upward_grade());
-      break;
-    }
-    case HAS_MAX_UPWARD_GRADE_NOT_SET: {
-      break;
-    }
+  if (from._internal_way_id() != 0) {
+    _this->_internal_set_way_id(from._internal_way_id());
   }
-  switch (from.has_max_downward_grade_case()) {
-    case kMaxDownwardGrade: {
-      _internal_set_max_downward_grade(from._internal_max_downward_grade());
-      break;
-    }
-    case HAS_MAX_DOWNWARD_GRADE_NOT_SET: {
-      break;
-    }
+  if (from._internal_max_upward_grade() != 0) {
+    _this->_internal_set_max_upward_grade(from._internal_max_upward_grade());
   }
-  switch (from.has_lane_count_case()) {
-    case kLaneCount: {
-      _internal_set_lane_count(from._internal_lane_count());
-      break;
-    }
-    case HAS_LANE_COUNT_NOT_SET: {
-      break;
-    }
+  if (from._internal_max_downward_grade() != 0) {
+    _this->_internal_set_max_downward_grade(from._internal_max_downward_grade());
   }
-  switch (from.has_cycle_lane_case()) {
-    case kCycleLane: {
-      _internal_set_cycle_lane(from._internal_cycle_lane());
-      break;
-    }
-    case HAS_CYCLE_LANE_NOT_SET: {
-      break;
-    }
+  if (from._internal_lane_count() != 0) {
+    _this->_internal_set_lane_count(from._internal_lane_count());
   }
-  switch (from.has_bicycle_network_case()) {
-    case kBicycleNetwork: {
-      _internal_set_bicycle_network(from._internal_bicycle_network());
-      break;
-    }
-    case HAS_BICYCLE_NETWORK_NOT_SET: {
-      break;
-    }
+  if (from._internal_cycle_lane() != 0) {
+    _this->_internal_set_cycle_lane(from._internal_cycle_lane());
   }
-  switch (from.has_sidewalk_case()) {
-    case kSidewalk: {
-      _internal_set_sidewalk(from._internal_sidewalk());
-      break;
-    }
-    case HAS_SIDEWALK_NOT_SET: {
-      break;
-    }
+  if (from._internal_sidewalk() != 0) {
+    _this->_internal_set_sidewalk(from._internal_sidewalk());
   }
-  switch (from.has_density_case()) {
-    case kDensity: {
-      _internal_set_density(from._internal_density());
-      break;
-    }
-    case HAS_DENSITY_NOT_SET: {
-      break;
-    }
+  if (from._internal_density() != 0) {
+    _this->_internal_set_density(from._internal_density());
   }
-  switch (from.has_speed_limit_case()) {
-    case kSpeedLimit: {
-      _internal_set_speed_limit(from._internal_speed_limit());
-      break;
-    }
-    case HAS_SPEED_LIMIT_NOT_SET: {
-      break;
-    }
+  if (from._internal_speed_limit() != 0) {
+    _this->_internal_set_speed_limit(from._internal_speed_limit());
   }
-  switch (from.has_truck_speed_case()) {
-    case kTruckSpeed: {
-      _internal_set_truck_speed(from._internal_truck_speed());
-      break;
-    }
-    case HAS_TRUCK_SPEED_NOT_SET: {
-      break;
-    }
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_truck_speed = from._internal_truck_speed();
+  uint32_t raw_truck_speed;
+  memcpy(&raw_truck_speed, &tmp_truck_speed, sizeof(tmp_truck_speed));
+  if (raw_truck_speed != 0) {
+    _this->_internal_set_truck_speed(from._internal_truck_speed());
   }
-  switch (from.has_truck_route_case()) {
-    case kTruckRoute: {
-      _internal_set_truck_route(from._internal_truck_route());
-      break;
-    }
-    case HAS_TRUCK_ROUTE_NOT_SET: {
-      break;
-    }
+  if (from._internal_mean_elevation() != 0) {
+    _this->_internal_set_mean_elevation(from._internal_mean_elevation());
   }
-  switch (from.has_mean_elevation_case()) {
-    case kMeanElevation: {
-      _internal_set_mean_elevation(from._internal_mean_elevation());
-      break;
-    }
-    case HAS_MEAN_ELEVATION_NOT_SET: {
-      break;
-    }
+  if (from._internal_truck_route() != 0) {
+    _this->_internal_set_truck_route(from._internal_truck_route());
   }
-  switch (from.has_has_time_restrictions_case()) {
-    case kHasTimeRestrictions: {
-      _internal_set_has_time_restrictions(from._internal_has_time_restrictions());
-      break;
-    }
-    case HAS_HAS_TIME_RESTRICTIONS_NOT_SET: {
-      break;
-    }
+  if (from._internal_has_time_restrictions() != 0) {
+    _this->_internal_set_has_time_restrictions(from._internal_has_time_restrictions());
   }
-  switch (from.has_default_speed_case()) {
-    case kDefaultSpeed: {
-      _internal_set_default_speed(from._internal_default_speed());
-      break;
-    }
-    case HAS_DEFAULT_SPEED_NOT_SET: {
-      break;
-    }
+  if (from._internal_destination_only() != 0) {
+    _this->_internal_set_destination_only(from._internal_destination_only());
   }
-  switch (from.has_destination_only_case()) {
-    case kDestinationOnly: {
-      _internal_set_destination_only(from._internal_destination_only());
-      break;
-    }
-    case HAS_DESTINATION_ONLY_NOT_SET: {
-      break;
-    }
+  if (from._internal_is_urban() != 0) {
+    _this->_internal_set_is_urban(from._internal_is_urban());
   }
-  switch (from.has_is_urban_case()) {
-    case kIsUrban: {
-      _internal_set_is_urban(from._internal_is_urban());
-      break;
-    }
-    case HAS_IS_URBAN_NOT_SET: {
-      break;
-    }
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_default_speed = from._internal_default_speed();
+  uint32_t raw_default_speed;
+  memcpy(&raw_default_speed, &tmp_default_speed, sizeof(tmp_default_speed));
+  if (raw_default_speed != 0) {
+    _this->_internal_set_default_speed(from._internal_default_speed());
   }
-  switch (from.has_source_along_edge_case()) {
-    case kSourceAlongEdge: {
-      _internal_set_source_along_edge(from._internal_source_along_edge());
-      break;
-    }
-    case HAS_SOURCE_ALONG_EDGE_NOT_SET: {
-      break;
-    }
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_source_along_edge = from._internal_source_along_edge();
+  uint32_t raw_source_along_edge;
+  memcpy(&raw_source_along_edge, &tmp_source_along_edge, sizeof(tmp_source_along_edge));
+  if (raw_source_along_edge != 0) {
+    _this->_internal_set_source_along_edge(from._internal_source_along_edge());
   }
-  switch (from.has_target_along_edge_case()) {
-    case kTargetAlongEdge: {
-      _internal_set_target_along_edge(from._internal_target_along_edge());
-      break;
-    }
-    case HAS_TARGET_ALONG_EDGE_NOT_SET: {
-      break;
-    }
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_target_along_edge = from._internal_target_along_edge();
+  uint32_t raw_target_along_edge;
+  memcpy(&raw_target_along_edge, &tmp_target_along_edge, sizeof(tmp_target_along_edge));
+  if (raw_target_along_edge != 0) {
+    _this->_internal_set_target_along_edge(from._internal_target_along_edge());
   }
-  switch (from.has_sac_scale_case()) {
-    case kSacScale: {
-      _internal_set_sac_scale(from._internal_sac_scale());
-      break;
-    }
-    case HAS_SAC_SCALE_NOT_SET: {
-      break;
-    }
+  if (from._internal_sac_scale() != 0) {
+    _this->_internal_set_sac_scale(from._internal_sac_scale());
   }
-  switch (from.has_shoulder_case()) {
-    case kShoulder: {
-      _internal_set_shoulder(from._internal_shoulder());
-      break;
-    }
-    case HAS_SHOULDER_NOT_SET: {
-      break;
-    }
+  if (from._internal_shoulder() != 0) {
+    _this->_internal_set_shoulder(from._internal_shoulder());
   }
-  _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
+  if (from._internal_indoor() != 0) {
+    _this->_internal_set_indoor(from._internal_indoor());
+  }
+  _this->_internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
 }
 
 void TripLeg_Edge::CopyFrom(const TripLeg_Edge& from) {
@@ -5150,105 +3486,17 @@ bool TripLeg_Edge::IsInitialized() const {
 void TripLeg_Edge::InternalSwap(TripLeg_Edge* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  name_.InternalSwap(&other->name_);
-  lane_connectivity_.InternalSwap(&other->lane_connectivity_);
-  traffic_segment_.InternalSwap(&other->traffic_segment_);
-  turn_lanes_.InternalSwap(&other->turn_lanes_);
-  tagged_value_.InternalSwap(&other->tagged_value_);
+  _impl_.name_.InternalSwap(&other->_impl_.name_);
+  _impl_.lane_connectivity_.InternalSwap(&other->_impl_.lane_connectivity_);
+  _impl_.traffic_segment_.InternalSwap(&other->_impl_.traffic_segment_);
+  _impl_.turn_lanes_.InternalSwap(&other->_impl_.turn_lanes_);
+  _impl_.tagged_value_.InternalSwap(&other->_impl_.tagged_value_);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(TripLeg_Edge, restriction_)
-      + sizeof(TripLeg_Edge::restriction_)
-      - PROTOBUF_FIELD_OFFSET(TripLeg_Edge, sign_)>(
-          reinterpret_cast<char*>(&sign_),
-          reinterpret_cast<char*>(&other->sign_));
-  swap(has_length_km_, other->has_length_km_);
-  swap(has_speed_, other->has_speed_);
-  swap(has_road_class_, other->has_road_class_);
-  swap(has_begin_heading_, other->has_begin_heading_);
-  swap(has_end_heading_, other->has_end_heading_);
-  swap(has_begin_shape_index_, other->has_begin_shape_index_);
-  swap(has_end_shape_index_, other->has_end_shape_index_);
-  swap(has_traversability_, other->has_traversability_);
-  swap(has_use_, other->has_use_);
-  swap(has_toll_, other->has_toll_);
-  swap(has_unpaved_, other->has_unpaved_);
-  swap(has_tunnel_, other->has_tunnel_);
-  swap(has_bridge_, other->has_bridge_);
-  swap(has_roundabout_, other->has_roundabout_);
-  swap(has_internal_intersection_, other->has_internal_intersection_);
-  swap(has_drive_on_left_, other->has_drive_on_left_);
-  swap(has_surface_, other->has_surface_);
-  swap(has_travel_mode_, other->has_travel_mode_);
-  swap(has_vehicle_type_, other->has_vehicle_type_);
-  swap(has_pedestrian_type_, other->has_pedestrian_type_);
-  swap(has_bicycle_type_, other->has_bicycle_type_);
-  swap(has_transit_type_, other->has_transit_type_);
-  swap(has_id_, other->has_id_);
-  swap(has_way_id_, other->has_way_id_);
-  swap(has_weighted_grade_, other->has_weighted_grade_);
-  swap(has_max_upward_grade_, other->has_max_upward_grade_);
-  swap(has_max_downward_grade_, other->has_max_downward_grade_);
-  swap(has_lane_count_, other->has_lane_count_);
-  swap(has_cycle_lane_, other->has_cycle_lane_);
-  swap(has_bicycle_network_, other->has_bicycle_network_);
-  swap(has_sidewalk_, other->has_sidewalk_);
-  swap(has_density_, other->has_density_);
-  swap(has_speed_limit_, other->has_speed_limit_);
-  swap(has_truck_speed_, other->has_truck_speed_);
-  swap(has_truck_route_, other->has_truck_route_);
-  swap(has_mean_elevation_, other->has_mean_elevation_);
-  swap(has_has_time_restrictions_, other->has_has_time_restrictions_);
-  swap(has_default_speed_, other->has_default_speed_);
-  swap(has_destination_only_, other->has_destination_only_);
-  swap(has_is_urban_, other->has_is_urban_);
-  swap(has_source_along_edge_, other->has_source_along_edge_);
-  swap(has_target_along_edge_, other->has_target_along_edge_);
-  swap(has_sac_scale_, other->has_sac_scale_);
-  swap(has_shoulder_, other->has_shoulder_);
-  swap(_oneof_case_[0], other->_oneof_case_[0]);
-  swap(_oneof_case_[1], other->_oneof_case_[1]);
-  swap(_oneof_case_[2], other->_oneof_case_[2]);
-  swap(_oneof_case_[3], other->_oneof_case_[3]);
-  swap(_oneof_case_[4], other->_oneof_case_[4]);
-  swap(_oneof_case_[5], other->_oneof_case_[5]);
-  swap(_oneof_case_[6], other->_oneof_case_[6]);
-  swap(_oneof_case_[7], other->_oneof_case_[7]);
-  swap(_oneof_case_[8], other->_oneof_case_[8]);
-  swap(_oneof_case_[9], other->_oneof_case_[9]);
-  swap(_oneof_case_[10], other->_oneof_case_[10]);
-  swap(_oneof_case_[11], other->_oneof_case_[11]);
-  swap(_oneof_case_[12], other->_oneof_case_[12]);
-  swap(_oneof_case_[13], other->_oneof_case_[13]);
-  swap(_oneof_case_[14], other->_oneof_case_[14]);
-  swap(_oneof_case_[15], other->_oneof_case_[15]);
-  swap(_oneof_case_[16], other->_oneof_case_[16]);
-  swap(_oneof_case_[17], other->_oneof_case_[17]);
-  swap(_oneof_case_[18], other->_oneof_case_[18]);
-  swap(_oneof_case_[19], other->_oneof_case_[19]);
-  swap(_oneof_case_[20], other->_oneof_case_[20]);
-  swap(_oneof_case_[21], other->_oneof_case_[21]);
-  swap(_oneof_case_[22], other->_oneof_case_[22]);
-  swap(_oneof_case_[23], other->_oneof_case_[23]);
-  swap(_oneof_case_[24], other->_oneof_case_[24]);
-  swap(_oneof_case_[25], other->_oneof_case_[25]);
-  swap(_oneof_case_[26], other->_oneof_case_[26]);
-  swap(_oneof_case_[27], other->_oneof_case_[27]);
-  swap(_oneof_case_[28], other->_oneof_case_[28]);
-  swap(_oneof_case_[29], other->_oneof_case_[29]);
-  swap(_oneof_case_[30], other->_oneof_case_[30]);
-  swap(_oneof_case_[31], other->_oneof_case_[31]);
-  swap(_oneof_case_[32], other->_oneof_case_[32]);
-  swap(_oneof_case_[33], other->_oneof_case_[33]);
-  swap(_oneof_case_[34], other->_oneof_case_[34]);
-  swap(_oneof_case_[35], other->_oneof_case_[35]);
-  swap(_oneof_case_[36], other->_oneof_case_[36]);
-  swap(_oneof_case_[37], other->_oneof_case_[37]);
-  swap(_oneof_case_[38], other->_oneof_case_[38]);
-  swap(_oneof_case_[39], other->_oneof_case_[39]);
-  swap(_oneof_case_[40], other->_oneof_case_[40]);
-  swap(_oneof_case_[41], other->_oneof_case_[41]);
-  swap(_oneof_case_[42], other->_oneof_case_[42]);
-  swap(_oneof_case_[43], other->_oneof_case_[43]);
+      PROTOBUF_FIELD_OFFSET(TripLeg_Edge, _impl_.indoor_)
+      + sizeof(TripLeg_Edge::_impl_.indoor_)
+      - PROTOBUF_FIELD_OFFSET(TripLeg_Edge, _impl_.sign_)>(
+          reinterpret_cast<char*>(&_impl_.sign_),
+          reinterpret_cast<char*>(&other->_impl_.sign_));
 }
 
 std::string TripLeg_Edge::GetTypeName() const {
@@ -5265,510 +3513,283 @@ class TripLeg_IntersectingEdge::_Internal {
 
 const ::valhalla::TripSign&
 TripLeg_IntersectingEdge::_Internal::sign(const TripLeg_IntersectingEdge* msg) {
-  return *msg->sign_;
+  return *msg->_impl_.sign_;
 }
 void TripLeg_IntersectingEdge::clear_sign() {
-  if (GetArenaForAllocation() == nullptr && sign_ != nullptr) {
-    delete sign_;
+  if (GetArenaForAllocation() == nullptr && _impl_.sign_ != nullptr) {
+    delete _impl_.sign_;
   }
-  sign_ = nullptr;
+  _impl_.sign_ = nullptr;
 }
 TripLeg_IntersectingEdge::TripLeg_IntersectingEdge(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::MessageLite(arena, is_message_owned) {
-  SharedCtor();
-  if (!is_message_owned) {
-    RegisterArenaDtor(arena);
-  }
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:valhalla.TripLeg.IntersectingEdge)
 }
 TripLeg_IntersectingEdge::TripLeg_IntersectingEdge(const TripLeg_IntersectingEdge& from)
   : ::PROTOBUF_NAMESPACE_ID::MessageLite() {
+  TripLeg_IntersectingEdge* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.sign_){nullptr}
+    , decltype(_impl_.begin_heading_){}
+    , decltype(_impl_.prev_name_consistency_){}
+    , decltype(_impl_.curr_name_consistency_){}
+    , decltype(_impl_.driveability_){}
+    , decltype(_impl_.cyclability_){}
+    , decltype(_impl_.walkability_){}
+    , decltype(_impl_.use_){}
+    , decltype(_impl_.road_class_){}
+    , decltype(_impl_.lane_count_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
   if (from._internal_has_sign()) {
-    sign_ = new ::valhalla::TripSign(*from.sign_);
-  } else {
-    sign_ = nullptr;
+    _this->_impl_.sign_ = new ::valhalla::TripSign(*from._impl_.sign_);
   }
-  clear_has_has_begin_heading();
-  switch (from.has_begin_heading_case()) {
-    case kBeginHeading: {
-      _internal_set_begin_heading(from._internal_begin_heading());
-      break;
-    }
-    case HAS_BEGIN_HEADING_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_prev_name_consistency();
-  switch (from.has_prev_name_consistency_case()) {
-    case kPrevNameConsistency: {
-      _internal_set_prev_name_consistency(from._internal_prev_name_consistency());
-      break;
-    }
-    case HAS_PREV_NAME_CONSISTENCY_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_curr_name_consistency();
-  switch (from.has_curr_name_consistency_case()) {
-    case kCurrNameConsistency: {
-      _internal_set_curr_name_consistency(from._internal_curr_name_consistency());
-      break;
-    }
-    case HAS_CURR_NAME_CONSISTENCY_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_driveability();
-  switch (from.has_driveability_case()) {
-    case kDriveability: {
-      _internal_set_driveability(from._internal_driveability());
-      break;
-    }
-    case HAS_DRIVEABILITY_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_cyclability();
-  switch (from.has_cyclability_case()) {
-    case kCyclability: {
-      _internal_set_cyclability(from._internal_cyclability());
-      break;
-    }
-    case HAS_CYCLABILITY_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_walkability();
-  switch (from.has_walkability_case()) {
-    case kWalkability: {
-      _internal_set_walkability(from._internal_walkability());
-      break;
-    }
-    case HAS_WALKABILITY_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_use();
-  switch (from.has_use_case()) {
-    case kUse: {
-      _internal_set_use(from._internal_use());
-      break;
-    }
-    case HAS_USE_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_road_class();
-  switch (from.has_road_class_case()) {
-    case kRoadClass: {
-      _internal_set_road_class(from._internal_road_class());
-      break;
-    }
-    case HAS_ROAD_CLASS_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_lane_count();
-  switch (from.has_lane_count_case()) {
-    case kLaneCount: {
-      _internal_set_lane_count(from._internal_lane_count());
-      break;
-    }
-    case HAS_LANE_COUNT_NOT_SET: {
-      break;
-    }
-  }
+  ::memcpy(&_impl_.begin_heading_, &from._impl_.begin_heading_,
+    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.lane_count_) -
+    reinterpret_cast<char*>(&_impl_.begin_heading_)) + sizeof(_impl_.lane_count_));
   // @@protoc_insertion_point(copy_constructor:valhalla.TripLeg.IntersectingEdge)
 }
 
-inline void TripLeg_IntersectingEdge::SharedCtor() {
-sign_ = nullptr;
-clear_has_has_begin_heading();
-clear_has_has_prev_name_consistency();
-clear_has_has_curr_name_consistency();
-clear_has_has_driveability();
-clear_has_has_cyclability();
-clear_has_has_walkability();
-clear_has_has_use();
-clear_has_has_road_class();
-clear_has_has_lane_count();
+inline void TripLeg_IntersectingEdge::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.sign_){nullptr}
+    , decltype(_impl_.begin_heading_){0u}
+    , decltype(_impl_.prev_name_consistency_){false}
+    , decltype(_impl_.curr_name_consistency_){false}
+    , decltype(_impl_.driveability_){0}
+    , decltype(_impl_.cyclability_){0}
+    , decltype(_impl_.walkability_){0}
+    , decltype(_impl_.use_){0}
+    , decltype(_impl_.road_class_){0}
+    , decltype(_impl_.lane_count_){0u}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
 }
 
 TripLeg_IntersectingEdge::~TripLeg_IntersectingEdge() {
   // @@protoc_insertion_point(destructor:valhalla.TripLeg.IntersectingEdge)
-  if (GetArenaForAllocation() != nullptr) return;
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<std::string>()) {
+  (void)arena;
+    return;
+  }
   SharedDtor();
-  _internal_metadata_.Delete<std::string>();
 }
 
 inline void TripLeg_IntersectingEdge::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  if (this != internal_default_instance()) delete sign_;
-  if (has_has_begin_heading()) {
-    clear_has_begin_heading();
-  }
-  if (has_has_prev_name_consistency()) {
-    clear_has_prev_name_consistency();
-  }
-  if (has_has_curr_name_consistency()) {
-    clear_has_curr_name_consistency();
-  }
-  if (has_has_driveability()) {
-    clear_has_driveability();
-  }
-  if (has_has_cyclability()) {
-    clear_has_cyclability();
-  }
-  if (has_has_walkability()) {
-    clear_has_walkability();
-  }
-  if (has_has_use()) {
-    clear_has_use();
-  }
-  if (has_has_road_class()) {
-    clear_has_road_class();
-  }
-  if (has_has_lane_count()) {
-    clear_has_lane_count();
-  }
+  if (this != internal_default_instance()) delete _impl_.sign_;
 }
 
-void TripLeg_IntersectingEdge::ArenaDtor(void* object) {
-  TripLeg_IntersectingEdge* _this = reinterpret_cast< TripLeg_IntersectingEdge* >(object);
-  (void)_this;
-}
-void TripLeg_IntersectingEdge::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
-}
 void TripLeg_IntersectingEdge::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
-
-void TripLeg_IntersectingEdge::clear_has_begin_heading() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.TripLeg.IntersectingEdge)
-  switch (has_begin_heading_case()) {
-    case kBeginHeading: {
-      // No need to clear
-      break;
-    }
-    case HAS_BEGIN_HEADING_NOT_SET: {
-      break;
-    }
-  }
-  _oneof_case_[0] = HAS_BEGIN_HEADING_NOT_SET;
-}
-
-void TripLeg_IntersectingEdge::clear_has_prev_name_consistency() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.TripLeg.IntersectingEdge)
-  switch (has_prev_name_consistency_case()) {
-    case kPrevNameConsistency: {
-      // No need to clear
-      break;
-    }
-    case HAS_PREV_NAME_CONSISTENCY_NOT_SET: {
-      break;
-    }
-  }
-  _oneof_case_[1] = HAS_PREV_NAME_CONSISTENCY_NOT_SET;
-}
-
-void TripLeg_IntersectingEdge::clear_has_curr_name_consistency() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.TripLeg.IntersectingEdge)
-  switch (has_curr_name_consistency_case()) {
-    case kCurrNameConsistency: {
-      // No need to clear
-      break;
-    }
-    case HAS_CURR_NAME_CONSISTENCY_NOT_SET: {
-      break;
-    }
-  }
-  _oneof_case_[2] = HAS_CURR_NAME_CONSISTENCY_NOT_SET;
-}
-
-void TripLeg_IntersectingEdge::clear_has_driveability() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.TripLeg.IntersectingEdge)
-  switch (has_driveability_case()) {
-    case kDriveability: {
-      // No need to clear
-      break;
-    }
-    case HAS_DRIVEABILITY_NOT_SET: {
-      break;
-    }
-  }
-  _oneof_case_[3] = HAS_DRIVEABILITY_NOT_SET;
-}
-
-void TripLeg_IntersectingEdge::clear_has_cyclability() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.TripLeg.IntersectingEdge)
-  switch (has_cyclability_case()) {
-    case kCyclability: {
-      // No need to clear
-      break;
-    }
-    case HAS_CYCLABILITY_NOT_SET: {
-      break;
-    }
-  }
-  _oneof_case_[4] = HAS_CYCLABILITY_NOT_SET;
-}
-
-void TripLeg_IntersectingEdge::clear_has_walkability() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.TripLeg.IntersectingEdge)
-  switch (has_walkability_case()) {
-    case kWalkability: {
-      // No need to clear
-      break;
-    }
-    case HAS_WALKABILITY_NOT_SET: {
-      break;
-    }
-  }
-  _oneof_case_[5] = HAS_WALKABILITY_NOT_SET;
-}
-
-void TripLeg_IntersectingEdge::clear_has_use() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.TripLeg.IntersectingEdge)
-  switch (has_use_case()) {
-    case kUse: {
-      // No need to clear
-      break;
-    }
-    case HAS_USE_NOT_SET: {
-      break;
-    }
-  }
-  _oneof_case_[6] = HAS_USE_NOT_SET;
-}
-
-void TripLeg_IntersectingEdge::clear_has_road_class() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.TripLeg.IntersectingEdge)
-  switch (has_road_class_case()) {
-    case kRoadClass: {
-      // No need to clear
-      break;
-    }
-    case HAS_ROAD_CLASS_NOT_SET: {
-      break;
-    }
-  }
-  _oneof_case_[7] = HAS_ROAD_CLASS_NOT_SET;
-}
-
-void TripLeg_IntersectingEdge::clear_has_lane_count() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.TripLeg.IntersectingEdge)
-  switch (has_lane_count_case()) {
-    case kLaneCount: {
-      // No need to clear
-      break;
-    }
-    case HAS_LANE_COUNT_NOT_SET: {
-      break;
-    }
-  }
-  _oneof_case_[8] = HAS_LANE_COUNT_NOT_SET;
-}
-
 
 void TripLeg_IntersectingEdge::Clear() {
 // @@protoc_insertion_point(message_clear_start:valhalla.TripLeg.IntersectingEdge)
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  if (GetArenaForAllocation() == nullptr && sign_ != nullptr) {
-    delete sign_;
+  if (GetArenaForAllocation() == nullptr && _impl_.sign_ != nullptr) {
+    delete _impl_.sign_;
   }
-  sign_ = nullptr;
-  clear_has_begin_heading();
-  clear_has_prev_name_consistency();
-  clear_has_curr_name_consistency();
-  clear_has_driveability();
-  clear_has_cyclability();
-  clear_has_walkability();
-  clear_has_use();
-  clear_has_road_class();
-  clear_has_lane_count();
+  _impl_.sign_ = nullptr;
+  ::memset(&_impl_.begin_heading_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&_impl_.lane_count_) -
+      reinterpret_cast<char*>(&_impl_.begin_heading_)) + sizeof(_impl_.lane_count_));
   _internal_metadata_.Clear<std::string>();
 }
 
-const char* TripLeg_IntersectingEdge::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+const char* TripLeg_IntersectingEdge::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
   while (!ctx->Done(&ptr)) {
-    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
-    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
       // uint32 begin_heading = 1;
       case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
-          _internal_set_begin_heading(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr));
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
+          _impl_.begin_heading_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // bool prev_name_consistency = 2;
       case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
-          _internal_set_prev_name_consistency(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr));
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
+          _impl_.prev_name_consistency_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // bool curr_name_consistency = 3;
       case 3:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 24)) {
-          _internal_set_curr_name_consistency(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr));
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
+          _impl_.curr_name_consistency_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // .valhalla.TripLeg.Traversability driveability = 4;
       case 4:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 32)) {
-          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 32)) {
+          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
           _internal_set_driveability(static_cast<::valhalla::TripLeg_Traversability>(val));
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // .valhalla.TripLeg.Traversability cyclability = 5;
       case 5:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 40)) {
-          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 40)) {
+          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
           _internal_set_cyclability(static_cast<::valhalla::TripLeg_Traversability>(val));
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // .valhalla.TripLeg.Traversability walkability = 6;
       case 6:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 48)) {
-          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 48)) {
+          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
           _internal_set_walkability(static_cast<::valhalla::TripLeg_Traversability>(val));
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // .valhalla.TripLeg.Use use = 7;
       case 7:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 56)) {
-          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 56)) {
+          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
           _internal_set_use(static_cast<::valhalla::TripLeg_Use>(val));
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // .valhalla.RoadClass road_class = 8;
       case 8:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 64)) {
-          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 64)) {
+          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
           _internal_set_road_class(static_cast<::valhalla::RoadClass>(val));
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // uint32 lane_count = 9;
       case 9:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 72)) {
-          _internal_set_lane_count(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr));
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 72)) {
+          _impl_.lane_count_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // .valhalla.TripSign sign = 10;
       case 10:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 82)) {
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 82)) {
           ptr = ctx->ParseMessage(_internal_mutable_sign(), ptr);
           CHK_(ptr);
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
-      default: {
-      handle_unusual:
-        if ((tag == 0) || ((tag & 7) == 4)) {
-          CHK_(ptr);
-          ctx->SetLastTag(tag);
-          goto success;
-        }
-        ptr = UnknownFieldParse(tag,
-            _internal_metadata_.mutable_unknown_fields<std::string>(),
-            ptr, ctx);
-        CHK_(ptr != nullptr);
-        continue;
-      }
+      default:
+        goto handle_unusual;
     }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<std::string>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
   }  // while
-success:
+message_done:
   return ptr;
 failure:
   ptr = nullptr;
-  goto success;
+  goto message_done;
 #undef CHK_
 }
 
-::PROTOBUF_NAMESPACE_ID::uint8* TripLeg_IntersectingEdge::_InternalSerialize(
-    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+uint8_t* TripLeg_IntersectingEdge::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:valhalla.TripLeg.IntersectingEdge)
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   // uint32 begin_heading = 1;
-  if (_internal_has_begin_heading()) {
+  if (this->_internal_begin_heading() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt32ToArray(1, this->_internal_begin_heading(), target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(1, this->_internal_begin_heading(), target);
   }
 
   // bool prev_name_consistency = 2;
-  if (_internal_has_prev_name_consistency()) {
+  if (this->_internal_prev_name_consistency() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(2, this->_internal_prev_name_consistency(), target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(2, this->_internal_prev_name_consistency(), target);
   }
 
   // bool curr_name_consistency = 3;
-  if (_internal_has_curr_name_consistency()) {
+  if (this->_internal_curr_name_consistency() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(3, this->_internal_curr_name_consistency(), target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(3, this->_internal_curr_name_consistency(), target);
   }
 
   // .valhalla.TripLeg.Traversability driveability = 4;
-  if (_internal_has_driveability()) {
+  if (this->_internal_driveability() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnumToArray(
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
       4, this->_internal_driveability(), target);
   }
 
   // .valhalla.TripLeg.Traversability cyclability = 5;
-  if (_internal_has_cyclability()) {
+  if (this->_internal_cyclability() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnumToArray(
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
       5, this->_internal_cyclability(), target);
   }
 
   // .valhalla.TripLeg.Traversability walkability = 6;
-  if (_internal_has_walkability()) {
+  if (this->_internal_walkability() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnumToArray(
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
       6, this->_internal_walkability(), target);
   }
 
   // .valhalla.TripLeg.Use use = 7;
-  if (_internal_has_use()) {
+  if (this->_internal_use() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnumToArray(
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
       7, this->_internal_use(), target);
   }
 
   // .valhalla.RoadClass road_class = 8;
-  if (_internal_has_road_class()) {
+  if (this->_internal_road_class() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnumToArray(
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
       8, this->_internal_road_class(), target);
   }
 
   // uint32 lane_count = 9;
-  if (_internal_has_lane_count()) {
+  if (this->_internal_lane_count() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt32ToArray(9, this->_internal_lane_count(), target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(9, this->_internal_lane_count(), target);
   }
 
   // .valhalla.TripSign sign = 10;
   if (this->_internal_has_sign()) {
-    target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(
-        10, _Internal::sign(this), target, stream);
+      InternalWriteMessage(10, _Internal::sign(this),
+        _Internal::sign(this).GetCachedSize(), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -5783,7 +3804,7 @@ size_t TripLeg_IntersectingEdge::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:valhalla.TripLeg.IntersectingEdge)
   size_t total_size = 0;
 
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
@@ -5791,213 +3812,112 @@ size_t TripLeg_IntersectingEdge::ByteSizeLong() const {
   if (this->_internal_has_sign()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *sign_);
+        *_impl_.sign_);
   }
 
-  switch (has_begin_heading_case()) {
-    // uint32 begin_heading = 1;
-    case kBeginHeading: {
-      total_size += 1 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt32Size(
-          this->_internal_begin_heading());
-      break;
-    }
-    case HAS_BEGIN_HEADING_NOT_SET: {
-      break;
-    }
+  // uint32 begin_heading = 1;
+  if (this->_internal_begin_heading() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_begin_heading());
   }
-  switch (has_prev_name_consistency_case()) {
-    // bool prev_name_consistency = 2;
-    case kPrevNameConsistency: {
-      total_size += 1 + 1;
-      break;
-    }
-    case HAS_PREV_NAME_CONSISTENCY_NOT_SET: {
-      break;
-    }
+
+  // bool prev_name_consistency = 2;
+  if (this->_internal_prev_name_consistency() != 0) {
+    total_size += 1 + 1;
   }
-  switch (has_curr_name_consistency_case()) {
-    // bool curr_name_consistency = 3;
-    case kCurrNameConsistency: {
-      total_size += 1 + 1;
-      break;
-    }
-    case HAS_CURR_NAME_CONSISTENCY_NOT_SET: {
-      break;
-    }
+
+  // bool curr_name_consistency = 3;
+  if (this->_internal_curr_name_consistency() != 0) {
+    total_size += 1 + 1;
   }
-  switch (has_driveability_case()) {
-    // .valhalla.TripLeg.Traversability driveability = 4;
-    case kDriveability: {
-      total_size += 1 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::EnumSize(this->_internal_driveability());
-      break;
-    }
-    case HAS_DRIVEABILITY_NOT_SET: {
-      break;
-    }
+
+  // .valhalla.TripLeg.Traversability driveability = 4;
+  if (this->_internal_driveability() != 0) {
+    total_size += 1 +
+      ::_pbi::WireFormatLite::EnumSize(this->_internal_driveability());
   }
-  switch (has_cyclability_case()) {
-    // .valhalla.TripLeg.Traversability cyclability = 5;
-    case kCyclability: {
-      total_size += 1 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::EnumSize(this->_internal_cyclability());
-      break;
-    }
-    case HAS_CYCLABILITY_NOT_SET: {
-      break;
-    }
+
+  // .valhalla.TripLeg.Traversability cyclability = 5;
+  if (this->_internal_cyclability() != 0) {
+    total_size += 1 +
+      ::_pbi::WireFormatLite::EnumSize(this->_internal_cyclability());
   }
-  switch (has_walkability_case()) {
-    // .valhalla.TripLeg.Traversability walkability = 6;
-    case kWalkability: {
-      total_size += 1 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::EnumSize(this->_internal_walkability());
-      break;
-    }
-    case HAS_WALKABILITY_NOT_SET: {
-      break;
-    }
+
+  // .valhalla.TripLeg.Traversability walkability = 6;
+  if (this->_internal_walkability() != 0) {
+    total_size += 1 +
+      ::_pbi::WireFormatLite::EnumSize(this->_internal_walkability());
   }
-  switch (has_use_case()) {
-    // .valhalla.TripLeg.Use use = 7;
-    case kUse: {
-      total_size += 1 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::EnumSize(this->_internal_use());
-      break;
-    }
-    case HAS_USE_NOT_SET: {
-      break;
-    }
+
+  // .valhalla.TripLeg.Use use = 7;
+  if (this->_internal_use() != 0) {
+    total_size += 1 +
+      ::_pbi::WireFormatLite::EnumSize(this->_internal_use());
   }
-  switch (has_road_class_case()) {
-    // .valhalla.RoadClass road_class = 8;
-    case kRoadClass: {
-      total_size += 1 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::EnumSize(this->_internal_road_class());
-      break;
-    }
-    case HAS_ROAD_CLASS_NOT_SET: {
-      break;
-    }
+
+  // .valhalla.RoadClass road_class = 8;
+  if (this->_internal_road_class() != 0) {
+    total_size += 1 +
+      ::_pbi::WireFormatLite::EnumSize(this->_internal_road_class());
   }
-  switch (has_lane_count_case()) {
-    // uint32 lane_count = 9;
-    case kLaneCount: {
-      total_size += 1 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt32Size(
-          this->_internal_lane_count());
-      break;
-    }
-    case HAS_LANE_COUNT_NOT_SET: {
-      break;
-    }
+
+  // uint32 lane_count = 9;
+  if (this->_internal_lane_count() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_lane_count());
   }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     total_size += _internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).size();
   }
-  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  int cached_size = ::_pbi::ToCachedSize(total_size);
   SetCachedSize(cached_size);
   return total_size;
 }
 
 void TripLeg_IntersectingEdge::CheckTypeAndMergeFrom(
     const ::PROTOBUF_NAMESPACE_ID::MessageLite& from) {
-  MergeFrom(*::PROTOBUF_NAMESPACE_ID::internal::DownCast<const TripLeg_IntersectingEdge*>(
+  MergeFrom(*::_pbi::DownCast<const TripLeg_IntersectingEdge*>(
       &from));
 }
 
 void TripLeg_IntersectingEdge::MergeFrom(const TripLeg_IntersectingEdge& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:valhalla.TripLeg.IntersectingEdge)
-  GOOGLE_DCHECK_NE(&from, this);
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  TripLeg_IntersectingEdge* const _this = this;
+  // @@protoc_insertion_point(class_specific_merge_from_start:valhalla.TripLeg.IntersectingEdge)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from._internal_has_sign()) {
-    _internal_mutable_sign()->::valhalla::TripSign::MergeFrom(from._internal_sign());
+    _this->_internal_mutable_sign()->::valhalla::TripSign::MergeFrom(
+        from._internal_sign());
   }
-  switch (from.has_begin_heading_case()) {
-    case kBeginHeading: {
-      _internal_set_begin_heading(from._internal_begin_heading());
-      break;
-    }
-    case HAS_BEGIN_HEADING_NOT_SET: {
-      break;
-    }
+  if (from._internal_begin_heading() != 0) {
+    _this->_internal_set_begin_heading(from._internal_begin_heading());
   }
-  switch (from.has_prev_name_consistency_case()) {
-    case kPrevNameConsistency: {
-      _internal_set_prev_name_consistency(from._internal_prev_name_consistency());
-      break;
-    }
-    case HAS_PREV_NAME_CONSISTENCY_NOT_SET: {
-      break;
-    }
+  if (from._internal_prev_name_consistency() != 0) {
+    _this->_internal_set_prev_name_consistency(from._internal_prev_name_consistency());
   }
-  switch (from.has_curr_name_consistency_case()) {
-    case kCurrNameConsistency: {
-      _internal_set_curr_name_consistency(from._internal_curr_name_consistency());
-      break;
-    }
-    case HAS_CURR_NAME_CONSISTENCY_NOT_SET: {
-      break;
-    }
+  if (from._internal_curr_name_consistency() != 0) {
+    _this->_internal_set_curr_name_consistency(from._internal_curr_name_consistency());
   }
-  switch (from.has_driveability_case()) {
-    case kDriveability: {
-      _internal_set_driveability(from._internal_driveability());
-      break;
-    }
-    case HAS_DRIVEABILITY_NOT_SET: {
-      break;
-    }
+  if (from._internal_driveability() != 0) {
+    _this->_internal_set_driveability(from._internal_driveability());
   }
-  switch (from.has_cyclability_case()) {
-    case kCyclability: {
-      _internal_set_cyclability(from._internal_cyclability());
-      break;
-    }
-    case HAS_CYCLABILITY_NOT_SET: {
-      break;
-    }
+  if (from._internal_cyclability() != 0) {
+    _this->_internal_set_cyclability(from._internal_cyclability());
   }
-  switch (from.has_walkability_case()) {
-    case kWalkability: {
-      _internal_set_walkability(from._internal_walkability());
-      break;
-    }
-    case HAS_WALKABILITY_NOT_SET: {
-      break;
-    }
+  if (from._internal_walkability() != 0) {
+    _this->_internal_set_walkability(from._internal_walkability());
   }
-  switch (from.has_use_case()) {
-    case kUse: {
-      _internal_set_use(from._internal_use());
-      break;
-    }
-    case HAS_USE_NOT_SET: {
-      break;
-    }
+  if (from._internal_use() != 0) {
+    _this->_internal_set_use(from._internal_use());
   }
-  switch (from.has_road_class_case()) {
-    case kRoadClass: {
-      _internal_set_road_class(from._internal_road_class());
-      break;
-    }
-    case HAS_ROAD_CLASS_NOT_SET: {
-      break;
-    }
+  if (from._internal_road_class() != 0) {
+    _this->_internal_set_road_class(from._internal_road_class());
   }
-  switch (from.has_lane_count_case()) {
-    case kLaneCount: {
-      _internal_set_lane_count(from._internal_lane_count());
-      break;
-    }
-    case HAS_LANE_COUNT_NOT_SET: {
-      break;
-    }
+  if (from._internal_lane_count() != 0) {
+    _this->_internal_set_lane_count(from._internal_lane_count());
   }
-  _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
 }
 
 void TripLeg_IntersectingEdge::CopyFrom(const TripLeg_IntersectingEdge& from) {
@@ -6014,25 +3934,12 @@ bool TripLeg_IntersectingEdge::IsInitialized() const {
 void TripLeg_IntersectingEdge::InternalSwap(TripLeg_IntersectingEdge* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(sign_, other->sign_);
-  swap(has_begin_heading_, other->has_begin_heading_);
-  swap(has_prev_name_consistency_, other->has_prev_name_consistency_);
-  swap(has_curr_name_consistency_, other->has_curr_name_consistency_);
-  swap(has_driveability_, other->has_driveability_);
-  swap(has_cyclability_, other->has_cyclability_);
-  swap(has_walkability_, other->has_walkability_);
-  swap(has_use_, other->has_use_);
-  swap(has_road_class_, other->has_road_class_);
-  swap(has_lane_count_, other->has_lane_count_);
-  swap(_oneof_case_[0], other->_oneof_case_[0]);
-  swap(_oneof_case_[1], other->_oneof_case_[1]);
-  swap(_oneof_case_[2], other->_oneof_case_[2]);
-  swap(_oneof_case_[3], other->_oneof_case_[3]);
-  swap(_oneof_case_[4], other->_oneof_case_[4]);
-  swap(_oneof_case_[5], other->_oneof_case_[5]);
-  swap(_oneof_case_[6], other->_oneof_case_[6]);
-  swap(_oneof_case_[7], other->_oneof_case_[7]);
-  swap(_oneof_case_[8], other->_oneof_case_[8]);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(TripLeg_IntersectingEdge, _impl_.lane_count_)
+      + sizeof(TripLeg_IntersectingEdge::_impl_.lane_count_)
+      - PROTOBUF_FIELD_OFFSET(TripLeg_IntersectingEdge, _impl_.sign_)>(
+          reinterpret_cast<char*>(&_impl_.sign_),
+          reinterpret_cast<char*>(&other->_impl_.sign_));
 }
 
 std::string TripLeg_IntersectingEdge::GetTypeName() const {
@@ -6049,169 +3956,133 @@ class TripLeg_Cost::_Internal {
 TripLeg_Cost::TripLeg_Cost(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::MessageLite(arena, is_message_owned) {
-  SharedCtor();
-  if (!is_message_owned) {
-    RegisterArenaDtor(arena);
-  }
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:valhalla.TripLeg.Cost)
 }
 TripLeg_Cost::TripLeg_Cost(const TripLeg_Cost& from)
   : ::PROTOBUF_NAMESPACE_ID::MessageLite() {
+  TripLeg_Cost* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.seconds_){}
+    , decltype(_impl_.cost_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
-  clear_has_has_seconds();
-  switch (from.has_seconds_case()) {
-    case kSeconds: {
-      _internal_set_seconds(from._internal_seconds());
-      break;
-    }
-    case HAS_SECONDS_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_cost();
-  switch (from.has_cost_case()) {
-    case kCost: {
-      _internal_set_cost(from._internal_cost());
-      break;
-    }
-    case HAS_COST_NOT_SET: {
-      break;
-    }
-  }
+  ::memcpy(&_impl_.seconds_, &from._impl_.seconds_,
+    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.cost_) -
+    reinterpret_cast<char*>(&_impl_.seconds_)) + sizeof(_impl_.cost_));
   // @@protoc_insertion_point(copy_constructor:valhalla.TripLeg.Cost)
 }
 
-inline void TripLeg_Cost::SharedCtor() {
-clear_has_has_seconds();
-clear_has_has_cost();
+inline void TripLeg_Cost::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.seconds_){0}
+    , decltype(_impl_.cost_){0}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
 }
 
 TripLeg_Cost::~TripLeg_Cost() {
   // @@protoc_insertion_point(destructor:valhalla.TripLeg.Cost)
-  if (GetArenaForAllocation() != nullptr) return;
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<std::string>()) {
+  (void)arena;
+    return;
+  }
   SharedDtor();
-  _internal_metadata_.Delete<std::string>();
 }
 
 inline void TripLeg_Cost::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  if (has_has_seconds()) {
-    clear_has_seconds();
-  }
-  if (has_has_cost()) {
-    clear_has_cost();
-  }
 }
 
-void TripLeg_Cost::ArenaDtor(void* object) {
-  TripLeg_Cost* _this = reinterpret_cast< TripLeg_Cost* >(object);
-  (void)_this;
-}
-void TripLeg_Cost::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
-}
 void TripLeg_Cost::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
-
-void TripLeg_Cost::clear_has_seconds() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.TripLeg.Cost)
-  switch (has_seconds_case()) {
-    case kSeconds: {
-      // No need to clear
-      break;
-    }
-    case HAS_SECONDS_NOT_SET: {
-      break;
-    }
-  }
-  _oneof_case_[0] = HAS_SECONDS_NOT_SET;
-}
-
-void TripLeg_Cost::clear_has_cost() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.TripLeg.Cost)
-  switch (has_cost_case()) {
-    case kCost: {
-      // No need to clear
-      break;
-    }
-    case HAS_COST_NOT_SET: {
-      break;
-    }
-  }
-  _oneof_case_[1] = HAS_COST_NOT_SET;
-}
-
 
 void TripLeg_Cost::Clear() {
 // @@protoc_insertion_point(message_clear_start:valhalla.TripLeg.Cost)
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  clear_has_seconds();
-  clear_has_cost();
+  ::memset(&_impl_.seconds_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&_impl_.cost_) -
+      reinterpret_cast<char*>(&_impl_.seconds_)) + sizeof(_impl_.cost_));
   _internal_metadata_.Clear<std::string>();
 }
 
-const char* TripLeg_Cost::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+const char* TripLeg_Cost::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
   while (!ctx->Done(&ptr)) {
-    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
-    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
       // double seconds = 1;
       case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 9)) {
-          _internal_set_seconds(::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr));
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 9)) {
+          _impl_.seconds_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
           ptr += sizeof(double);
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // double cost = 2;
       case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 17)) {
-          _internal_set_cost(::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr));
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 17)) {
+          _impl_.cost_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
           ptr += sizeof(double);
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
-      default: {
-      handle_unusual:
-        if ((tag == 0) || ((tag & 7) == 4)) {
-          CHK_(ptr);
-          ctx->SetLastTag(tag);
-          goto success;
-        }
-        ptr = UnknownFieldParse(tag,
-            _internal_metadata_.mutable_unknown_fields<std::string>(),
-            ptr, ctx);
-        CHK_(ptr != nullptr);
-        continue;
-      }
+      default:
+        goto handle_unusual;
     }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<std::string>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
   }  // while
-success:
+message_done:
   return ptr;
 failure:
   ptr = nullptr;
-  goto success;
+  goto message_done;
 #undef CHK_
 }
 
-::PROTOBUF_NAMESPACE_ID::uint8* TripLeg_Cost::_InternalSerialize(
-    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+uint8_t* TripLeg_Cost::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:valhalla.TripLeg.Cost)
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   // double seconds = 1;
-  if (_internal_has_seconds()) {
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_seconds = this->_internal_seconds();
+  uint64_t raw_seconds;
+  memcpy(&raw_seconds, &tmp_seconds, sizeof(tmp_seconds));
+  if (raw_seconds != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteDoubleToArray(1, this->_internal_seconds(), target);
+    target = ::_pbi::WireFormatLite::WriteDoubleToArray(1, this->_internal_seconds(), target);
   }
 
   // double cost = 2;
-  if (_internal_has_cost()) {
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_cost = this->_internal_cost();
+  uint64_t raw_cost;
+  memcpy(&raw_cost, &tmp_cost, sizeof(tmp_cost));
+  if (raw_cost != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteDoubleToArray(2, this->_internal_cost(), target);
+    target = ::_pbi::WireFormatLite::WriteDoubleToArray(2, this->_internal_cost(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -6226,69 +4097,64 @@ size_t TripLeg_Cost::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:valhalla.TripLeg.Cost)
   size_t total_size = 0;
 
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  switch (has_seconds_case()) {
-    // double seconds = 1;
-    case kSeconds: {
-      total_size += 1 + 8;
-      break;
-    }
-    case HAS_SECONDS_NOT_SET: {
-      break;
-    }
+  // double seconds = 1;
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_seconds = this->_internal_seconds();
+  uint64_t raw_seconds;
+  memcpy(&raw_seconds, &tmp_seconds, sizeof(tmp_seconds));
+  if (raw_seconds != 0) {
+    total_size += 1 + 8;
   }
-  switch (has_cost_case()) {
-    // double cost = 2;
-    case kCost: {
-      total_size += 1 + 8;
-      break;
-    }
-    case HAS_COST_NOT_SET: {
-      break;
-    }
+
+  // double cost = 2;
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_cost = this->_internal_cost();
+  uint64_t raw_cost;
+  memcpy(&raw_cost, &tmp_cost, sizeof(tmp_cost));
+  if (raw_cost != 0) {
+    total_size += 1 + 8;
   }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     total_size += _internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).size();
   }
-  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  int cached_size = ::_pbi::ToCachedSize(total_size);
   SetCachedSize(cached_size);
   return total_size;
 }
 
 void TripLeg_Cost::CheckTypeAndMergeFrom(
     const ::PROTOBUF_NAMESPACE_ID::MessageLite& from) {
-  MergeFrom(*::PROTOBUF_NAMESPACE_ID::internal::DownCast<const TripLeg_Cost*>(
+  MergeFrom(*::_pbi::DownCast<const TripLeg_Cost*>(
       &from));
 }
 
 void TripLeg_Cost::MergeFrom(const TripLeg_Cost& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:valhalla.TripLeg.Cost)
-  GOOGLE_DCHECK_NE(&from, this);
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  TripLeg_Cost* const _this = this;
+  // @@protoc_insertion_point(class_specific_merge_from_start:valhalla.TripLeg.Cost)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  switch (from.has_seconds_case()) {
-    case kSeconds: {
-      _internal_set_seconds(from._internal_seconds());
-      break;
-    }
-    case HAS_SECONDS_NOT_SET: {
-      break;
-    }
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_seconds = from._internal_seconds();
+  uint64_t raw_seconds;
+  memcpy(&raw_seconds, &tmp_seconds, sizeof(tmp_seconds));
+  if (raw_seconds != 0) {
+    _this->_internal_set_seconds(from._internal_seconds());
   }
-  switch (from.has_cost_case()) {
-    case kCost: {
-      _internal_set_cost(from._internal_cost());
-      break;
-    }
-    case HAS_COST_NOT_SET: {
-      break;
-    }
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_cost = from._internal_cost();
+  uint64_t raw_cost;
+  memcpy(&raw_cost, &tmp_cost, sizeof(tmp_cost));
+  if (raw_cost != 0) {
+    _this->_internal_set_cost(from._internal_cost());
   }
-  _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
 }
 
 void TripLeg_Cost::CopyFrom(const TripLeg_Cost& from) {
@@ -6305,10 +4171,12 @@ bool TripLeg_Cost::IsInitialized() const {
 void TripLeg_Cost::InternalSwap(TripLeg_Cost* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(has_seconds_, other->has_seconds_);
-  swap(has_cost_, other->has_cost_);
-  swap(_oneof_case_[0], other->_oneof_case_[0]);
-  swap(_oneof_case_[1], other->_oneof_case_[1]);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(TripLeg_Cost, _impl_.cost_)
+      + sizeof(TripLeg_Cost::_impl_.cost_)
+      - PROTOBUF_FIELD_OFFSET(TripLeg_Cost, _impl_.seconds_)>(
+          reinterpret_cast<char*>(&_impl_.seconds_),
+          reinterpret_cast<char*>(&other->_impl_.seconds_));
 }
 
 std::string TripLeg_Cost::GetTypeName() const {
@@ -6326,147 +4194,146 @@ class TripLeg_PathCost::_Internal {
 
 const ::valhalla::TripLeg_Cost&
 TripLeg_PathCost::_Internal::elapsed_cost(const TripLeg_PathCost* msg) {
-  return *msg->elapsed_cost_;
+  return *msg->_impl_.elapsed_cost_;
 }
 const ::valhalla::TripLeg_Cost&
 TripLeg_PathCost::_Internal::transition_cost(const TripLeg_PathCost* msg) {
-  return *msg->transition_cost_;
+  return *msg->_impl_.transition_cost_;
 }
 TripLeg_PathCost::TripLeg_PathCost(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::MessageLite(arena, is_message_owned) {
-  SharedCtor();
-  if (!is_message_owned) {
-    RegisterArenaDtor(arena);
-  }
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:valhalla.TripLeg.PathCost)
 }
 TripLeg_PathCost::TripLeg_PathCost(const TripLeg_PathCost& from)
   : ::PROTOBUF_NAMESPACE_ID::MessageLite() {
+  TripLeg_PathCost* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.elapsed_cost_){nullptr}
+    , decltype(_impl_.transition_cost_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
   if (from._internal_has_elapsed_cost()) {
-    elapsed_cost_ = new ::valhalla::TripLeg_Cost(*from.elapsed_cost_);
-  } else {
-    elapsed_cost_ = nullptr;
+    _this->_impl_.elapsed_cost_ = new ::valhalla::TripLeg_Cost(*from._impl_.elapsed_cost_);
   }
   if (from._internal_has_transition_cost()) {
-    transition_cost_ = new ::valhalla::TripLeg_Cost(*from.transition_cost_);
-  } else {
-    transition_cost_ = nullptr;
+    _this->_impl_.transition_cost_ = new ::valhalla::TripLeg_Cost(*from._impl_.transition_cost_);
   }
   // @@protoc_insertion_point(copy_constructor:valhalla.TripLeg.PathCost)
 }
 
-inline void TripLeg_PathCost::SharedCtor() {
-::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
-    reinterpret_cast<char*>(&elapsed_cost_) - reinterpret_cast<char*>(this)),
-    0, static_cast<size_t>(reinterpret_cast<char*>(&transition_cost_) -
-    reinterpret_cast<char*>(&elapsed_cost_)) + sizeof(transition_cost_));
+inline void TripLeg_PathCost::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.elapsed_cost_){nullptr}
+    , decltype(_impl_.transition_cost_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
 }
 
 TripLeg_PathCost::~TripLeg_PathCost() {
   // @@protoc_insertion_point(destructor:valhalla.TripLeg.PathCost)
-  if (GetArenaForAllocation() != nullptr) return;
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<std::string>()) {
+  (void)arena;
+    return;
+  }
   SharedDtor();
-  _internal_metadata_.Delete<std::string>();
 }
 
 inline void TripLeg_PathCost::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  if (this != internal_default_instance()) delete elapsed_cost_;
-  if (this != internal_default_instance()) delete transition_cost_;
+  if (this != internal_default_instance()) delete _impl_.elapsed_cost_;
+  if (this != internal_default_instance()) delete _impl_.transition_cost_;
 }
 
-void TripLeg_PathCost::ArenaDtor(void* object) {
-  TripLeg_PathCost* _this = reinterpret_cast< TripLeg_PathCost* >(object);
-  (void)_this;
-}
-void TripLeg_PathCost::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
-}
 void TripLeg_PathCost::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void TripLeg_PathCost::Clear() {
 // @@protoc_insertion_point(message_clear_start:valhalla.TripLeg.PathCost)
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  if (GetArenaForAllocation() == nullptr && elapsed_cost_ != nullptr) {
-    delete elapsed_cost_;
+  if (GetArenaForAllocation() == nullptr && _impl_.elapsed_cost_ != nullptr) {
+    delete _impl_.elapsed_cost_;
   }
-  elapsed_cost_ = nullptr;
-  if (GetArenaForAllocation() == nullptr && transition_cost_ != nullptr) {
-    delete transition_cost_;
+  _impl_.elapsed_cost_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && _impl_.transition_cost_ != nullptr) {
+    delete _impl_.transition_cost_;
   }
-  transition_cost_ = nullptr;
+  _impl_.transition_cost_ = nullptr;
   _internal_metadata_.Clear<std::string>();
 }
 
-const char* TripLeg_PathCost::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+const char* TripLeg_PathCost::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
   while (!ctx->Done(&ptr)) {
-    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
-    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
       // .valhalla.TripLeg.Cost elapsed_cost = 1;
       case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
           ptr = ctx->ParseMessage(_internal_mutable_elapsed_cost(), ptr);
           CHK_(ptr);
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // .valhalla.TripLeg.Cost transition_cost = 2;
       case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
           ptr = ctx->ParseMessage(_internal_mutable_transition_cost(), ptr);
           CHK_(ptr);
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
-      default: {
-      handle_unusual:
-        if ((tag == 0) || ((tag & 7) == 4)) {
-          CHK_(ptr);
-          ctx->SetLastTag(tag);
-          goto success;
-        }
-        ptr = UnknownFieldParse(tag,
-            _internal_metadata_.mutable_unknown_fields<std::string>(),
-            ptr, ctx);
-        CHK_(ptr != nullptr);
-        continue;
-      }
+      default:
+        goto handle_unusual;
     }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<std::string>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
   }  // while
-success:
+message_done:
   return ptr;
 failure:
   ptr = nullptr;
-  goto success;
+  goto message_done;
 #undef CHK_
 }
 
-::PROTOBUF_NAMESPACE_ID::uint8* TripLeg_PathCost::_InternalSerialize(
-    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+uint8_t* TripLeg_PathCost::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:valhalla.TripLeg.PathCost)
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   // .valhalla.TripLeg.Cost elapsed_cost = 1;
   if (this->_internal_has_elapsed_cost()) {
-    target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(
-        1, _Internal::elapsed_cost(this), target, stream);
+      InternalWriteMessage(1, _Internal::elapsed_cost(this),
+        _Internal::elapsed_cost(this).GetCachedSize(), target, stream);
   }
 
   // .valhalla.TripLeg.Cost transition_cost = 2;
   if (this->_internal_has_transition_cost()) {
-    target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(
-        2, _Internal::transition_cost(this), target, stream);
+      InternalWriteMessage(2, _Internal::transition_cost(this),
+        _Internal::transition_cost(this).GetCachedSize(), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -6481,7 +4348,7 @@ size_t TripLeg_PathCost::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:valhalla.TripLeg.PathCost)
   size_t total_size = 0;
 
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
@@ -6489,43 +4356,46 @@ size_t TripLeg_PathCost::ByteSizeLong() const {
   if (this->_internal_has_elapsed_cost()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *elapsed_cost_);
+        *_impl_.elapsed_cost_);
   }
 
   // .valhalla.TripLeg.Cost transition_cost = 2;
   if (this->_internal_has_transition_cost()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *transition_cost_);
+        *_impl_.transition_cost_);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     total_size += _internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).size();
   }
-  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  int cached_size = ::_pbi::ToCachedSize(total_size);
   SetCachedSize(cached_size);
   return total_size;
 }
 
 void TripLeg_PathCost::CheckTypeAndMergeFrom(
     const ::PROTOBUF_NAMESPACE_ID::MessageLite& from) {
-  MergeFrom(*::PROTOBUF_NAMESPACE_ID::internal::DownCast<const TripLeg_PathCost*>(
+  MergeFrom(*::_pbi::DownCast<const TripLeg_PathCost*>(
       &from));
 }
 
 void TripLeg_PathCost::MergeFrom(const TripLeg_PathCost& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:valhalla.TripLeg.PathCost)
-  GOOGLE_DCHECK_NE(&from, this);
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  TripLeg_PathCost* const _this = this;
+  // @@protoc_insertion_point(class_specific_merge_from_start:valhalla.TripLeg.PathCost)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from._internal_has_elapsed_cost()) {
-    _internal_mutable_elapsed_cost()->::valhalla::TripLeg_Cost::MergeFrom(from._internal_elapsed_cost());
+    _this->_internal_mutable_elapsed_cost()->::valhalla::TripLeg_Cost::MergeFrom(
+        from._internal_elapsed_cost());
   }
   if (from._internal_has_transition_cost()) {
-    _internal_mutable_transition_cost()->::valhalla::TripLeg_Cost::MergeFrom(from._internal_transition_cost());
+    _this->_internal_mutable_transition_cost()->::valhalla::TripLeg_Cost::MergeFrom(
+        from._internal_transition_cost());
   }
-  _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
 }
 
 void TripLeg_PathCost::CopyFrom(const TripLeg_PathCost& from) {
@@ -6543,11 +4413,11 @@ void TripLeg_PathCost::InternalSwap(TripLeg_PathCost* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(TripLeg_PathCost, transition_cost_)
-      + sizeof(TripLeg_PathCost::transition_cost_)
-      - PROTOBUF_FIELD_OFFSET(TripLeg_PathCost, elapsed_cost_)>(
-          reinterpret_cast<char*>(&elapsed_cost_),
-          reinterpret_cast<char*>(&other->elapsed_cost_));
+      PROTOBUF_FIELD_OFFSET(TripLeg_PathCost, _impl_.transition_cost_)
+      + sizeof(TripLeg_PathCost::_impl_.transition_cost_)
+      - PROTOBUF_FIELD_OFFSET(TripLeg_PathCost, _impl_.elapsed_cost_)>(
+          reinterpret_cast<char*>(&_impl_.elapsed_cost_),
+          reinterpret_cast<char*>(&other->_impl_.elapsed_cost_));
 }
 
 std::string TripLeg_PathCost::GetTypeName() const {
@@ -6569,303 +4439,216 @@ class TripLeg_Node::_Internal {
 
 const ::valhalla::TripLeg_Edge&
 TripLeg_Node::_Internal::edge(const TripLeg_Node* msg) {
-  return *msg->edge_;
+  return *msg->_impl_.edge_;
 }
 const ::valhalla::TransitPlatformInfo&
 TripLeg_Node::_Internal::transit_platform_info(const TripLeg_Node* msg) {
-  return *msg->transit_platform_info_;
+  return *msg->_impl_.transit_platform_info_;
 }
 const ::valhalla::TransitStationInfo&
 TripLeg_Node::_Internal::transit_station_info(const TripLeg_Node* msg) {
-  return *msg->transit_station_info_;
+  return *msg->_impl_.transit_station_info_;
 }
 const ::valhalla::TransitEgressInfo&
 TripLeg_Node::_Internal::transit_egress_info(const TripLeg_Node* msg) {
-  return *msg->transit_egress_info_;
+  return *msg->_impl_.transit_egress_info_;
 }
 const ::valhalla::TripLeg_PathCost&
 TripLeg_Node::_Internal::cost(const TripLeg_Node* msg) {
-  return *msg->cost_;
+  return *msg->_impl_.cost_;
 }
 const ::valhalla::BikeShareStationInfo&
 TripLeg_Node::_Internal::bss_info(const TripLeg_Node* msg) {
-  return *msg->bss_info_;
+  return *msg->_impl_.bss_info_;
 }
 void TripLeg_Node::clear_transit_platform_info() {
-  if (GetArenaForAllocation() == nullptr && transit_platform_info_ != nullptr) {
-    delete transit_platform_info_;
+  if (GetArenaForAllocation() == nullptr && _impl_.transit_platform_info_ != nullptr) {
+    delete _impl_.transit_platform_info_;
   }
-  transit_platform_info_ = nullptr;
+  _impl_.transit_platform_info_ = nullptr;
 }
 void TripLeg_Node::clear_transit_station_info() {
-  if (GetArenaForAllocation() == nullptr && transit_station_info_ != nullptr) {
-    delete transit_station_info_;
+  if (GetArenaForAllocation() == nullptr && _impl_.transit_station_info_ != nullptr) {
+    delete _impl_.transit_station_info_;
   }
-  transit_station_info_ = nullptr;
+  _impl_.transit_station_info_ = nullptr;
 }
 void TripLeg_Node::clear_transit_egress_info() {
-  if (GetArenaForAllocation() == nullptr && transit_egress_info_ != nullptr) {
-    delete transit_egress_info_;
+  if (GetArenaForAllocation() == nullptr && _impl_.transit_egress_info_ != nullptr) {
+    delete _impl_.transit_egress_info_;
   }
-  transit_egress_info_ = nullptr;
+  _impl_.transit_egress_info_ = nullptr;
 }
 void TripLeg_Node::clear_bss_info() {
-  if (GetArenaForAllocation() == nullptr && bss_info_ != nullptr) {
-    delete bss_info_;
+  if (GetArenaForAllocation() == nullptr && _impl_.bss_info_ != nullptr) {
+    delete _impl_.bss_info_;
   }
-  bss_info_ = nullptr;
+  _impl_.bss_info_ = nullptr;
 }
 TripLeg_Node::TripLeg_Node(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::MessageLite(arena, is_message_owned),
-  intersecting_edge_(arena),
-  recosts_(arena) {
-  SharedCtor();
-  if (!is_message_owned) {
-    RegisterArenaDtor(arena);
-  }
+  : ::PROTOBUF_NAMESPACE_ID::MessageLite(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:valhalla.TripLeg.Node)
 }
 TripLeg_Node::TripLeg_Node(const TripLeg_Node& from)
-  : ::PROTOBUF_NAMESPACE_ID::MessageLite(),
-      intersecting_edge_(from.intersecting_edge_),
-      recosts_(from.recosts_) {
+  : ::PROTOBUF_NAMESPACE_ID::MessageLite() {
+  TripLeg_Node* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.intersecting_edge_){from._impl_.intersecting_edge_}
+    , decltype(_impl_.recosts_){from._impl_.recosts_}
+    , decltype(_impl_.time_zone_){}
+    , decltype(_impl_.edge_){nullptr}
+    , decltype(_impl_.transit_platform_info_){nullptr}
+    , decltype(_impl_.transit_station_info_){nullptr}
+    , decltype(_impl_.transit_egress_info_){nullptr}
+    , decltype(_impl_.cost_){nullptr}
+    , decltype(_impl_.bss_info_){nullptr}
+    , decltype(_impl_.admin_index_){}
+    , decltype(_impl_.type_){}
+    , decltype(_impl_.fork_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
+  _impl_.time_zone_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.time_zone_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_time_zone().empty()) {
+    _this->_impl_.time_zone_.Set(from._internal_time_zone(), 
+      _this->GetArenaForAllocation());
+  }
   if (from._internal_has_edge()) {
-    edge_ = new ::valhalla::TripLeg_Edge(*from.edge_);
-  } else {
-    edge_ = nullptr;
+    _this->_impl_.edge_ = new ::valhalla::TripLeg_Edge(*from._impl_.edge_);
   }
   if (from._internal_has_transit_platform_info()) {
-    transit_platform_info_ = new ::valhalla::TransitPlatformInfo(*from.transit_platform_info_);
-  } else {
-    transit_platform_info_ = nullptr;
+    _this->_impl_.transit_platform_info_ = new ::valhalla::TransitPlatformInfo(*from._impl_.transit_platform_info_);
   }
   if (from._internal_has_transit_station_info()) {
-    transit_station_info_ = new ::valhalla::TransitStationInfo(*from.transit_station_info_);
-  } else {
-    transit_station_info_ = nullptr;
+    _this->_impl_.transit_station_info_ = new ::valhalla::TransitStationInfo(*from._impl_.transit_station_info_);
   }
   if (from._internal_has_transit_egress_info()) {
-    transit_egress_info_ = new ::valhalla::TransitEgressInfo(*from.transit_egress_info_);
-  } else {
-    transit_egress_info_ = nullptr;
+    _this->_impl_.transit_egress_info_ = new ::valhalla::TransitEgressInfo(*from._impl_.transit_egress_info_);
   }
   if (from._internal_has_cost()) {
-    cost_ = new ::valhalla::TripLeg_PathCost(*from.cost_);
-  } else {
-    cost_ = nullptr;
+    _this->_impl_.cost_ = new ::valhalla::TripLeg_PathCost(*from._impl_.cost_);
   }
   if (from._internal_has_bss_info()) {
-    bss_info_ = new ::valhalla::BikeShareStationInfo(*from.bss_info_);
-  } else {
-    bss_info_ = nullptr;
+    _this->_impl_.bss_info_ = new ::valhalla::BikeShareStationInfo(*from._impl_.bss_info_);
   }
-  clear_has_has_admin_index();
-  switch (from.has_admin_index_case()) {
-    case kAdminIndex: {
-      _internal_set_admin_index(from._internal_admin_index());
-      break;
-    }
-    case HAS_ADMIN_INDEX_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_type();
-  switch (from.has_type_case()) {
-    case kType: {
-      _internal_set_type(from._internal_type());
-      break;
-    }
-    case HAS_TYPE_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_fork();
-  switch (from.has_fork_case()) {
-    case kFork: {
-      _internal_set_fork(from._internal_fork());
-      break;
-    }
-    case HAS_FORK_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_time_zone();
-  switch (from.has_time_zone_case()) {
-    case kTimeZone: {
-      _internal_set_time_zone(from._internal_time_zone());
-      break;
-    }
-    case HAS_TIME_ZONE_NOT_SET: {
-      break;
-    }
-  }
+  ::memcpy(&_impl_.admin_index_, &from._impl_.admin_index_,
+    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.fork_) -
+    reinterpret_cast<char*>(&_impl_.admin_index_)) + sizeof(_impl_.fork_));
   // @@protoc_insertion_point(copy_constructor:valhalla.TripLeg.Node)
 }
 
-inline void TripLeg_Node::SharedCtor() {
-::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
-    reinterpret_cast<char*>(&edge_) - reinterpret_cast<char*>(this)),
-    0, static_cast<size_t>(reinterpret_cast<char*>(&bss_info_) -
-    reinterpret_cast<char*>(&edge_)) + sizeof(bss_info_));
-clear_has_has_admin_index();
-clear_has_has_type();
-clear_has_has_fork();
-clear_has_has_time_zone();
+inline void TripLeg_Node::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.intersecting_edge_){arena}
+    , decltype(_impl_.recosts_){arena}
+    , decltype(_impl_.time_zone_){}
+    , decltype(_impl_.edge_){nullptr}
+    , decltype(_impl_.transit_platform_info_){nullptr}
+    , decltype(_impl_.transit_station_info_){nullptr}
+    , decltype(_impl_.transit_egress_info_){nullptr}
+    , decltype(_impl_.cost_){nullptr}
+    , decltype(_impl_.bss_info_){nullptr}
+    , decltype(_impl_.admin_index_){0u}
+    , decltype(_impl_.type_){0}
+    , decltype(_impl_.fork_){false}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.time_zone_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.time_zone_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 TripLeg_Node::~TripLeg_Node() {
   // @@protoc_insertion_point(destructor:valhalla.TripLeg.Node)
-  if (GetArenaForAllocation() != nullptr) return;
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<std::string>()) {
+  (void)arena;
+    return;
+  }
   SharedDtor();
-  _internal_metadata_.Delete<std::string>();
 }
 
 inline void TripLeg_Node::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  if (this != internal_default_instance()) delete edge_;
-  if (this != internal_default_instance()) delete transit_platform_info_;
-  if (this != internal_default_instance()) delete transit_station_info_;
-  if (this != internal_default_instance()) delete transit_egress_info_;
-  if (this != internal_default_instance()) delete cost_;
-  if (this != internal_default_instance()) delete bss_info_;
-  if (has_has_admin_index()) {
-    clear_has_admin_index();
-  }
-  if (has_has_type()) {
-    clear_has_type();
-  }
-  if (has_has_fork()) {
-    clear_has_fork();
-  }
-  if (has_has_time_zone()) {
-    clear_has_time_zone();
-  }
+  _impl_.intersecting_edge_.~RepeatedPtrField();
+  _impl_.recosts_.~RepeatedPtrField();
+  _impl_.time_zone_.Destroy();
+  if (this != internal_default_instance()) delete _impl_.edge_;
+  if (this != internal_default_instance()) delete _impl_.transit_platform_info_;
+  if (this != internal_default_instance()) delete _impl_.transit_station_info_;
+  if (this != internal_default_instance()) delete _impl_.transit_egress_info_;
+  if (this != internal_default_instance()) delete _impl_.cost_;
+  if (this != internal_default_instance()) delete _impl_.bss_info_;
 }
 
-void TripLeg_Node::ArenaDtor(void* object) {
-  TripLeg_Node* _this = reinterpret_cast< TripLeg_Node* >(object);
-  (void)_this;
-}
-void TripLeg_Node::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
-}
 void TripLeg_Node::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
-
-void TripLeg_Node::clear_has_admin_index() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.TripLeg.Node)
-  switch (has_admin_index_case()) {
-    case kAdminIndex: {
-      // No need to clear
-      break;
-    }
-    case HAS_ADMIN_INDEX_NOT_SET: {
-      break;
-    }
-  }
-  _oneof_case_[0] = HAS_ADMIN_INDEX_NOT_SET;
-}
-
-void TripLeg_Node::clear_has_type() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.TripLeg.Node)
-  switch (has_type_case()) {
-    case kType: {
-      // No need to clear
-      break;
-    }
-    case HAS_TYPE_NOT_SET: {
-      break;
-    }
-  }
-  _oneof_case_[1] = HAS_TYPE_NOT_SET;
-}
-
-void TripLeg_Node::clear_has_fork() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.TripLeg.Node)
-  switch (has_fork_case()) {
-    case kFork: {
-      // No need to clear
-      break;
-    }
-    case HAS_FORK_NOT_SET: {
-      break;
-    }
-  }
-  _oneof_case_[2] = HAS_FORK_NOT_SET;
-}
-
-void TripLeg_Node::clear_has_time_zone() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.TripLeg.Node)
-  switch (has_time_zone_case()) {
-    case kTimeZone: {
-      has_time_zone_.time_zone_.Destroy(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
-      break;
-    }
-    case HAS_TIME_ZONE_NOT_SET: {
-      break;
-    }
-  }
-  _oneof_case_[3] = HAS_TIME_ZONE_NOT_SET;
-}
-
 
 void TripLeg_Node::Clear() {
 // @@protoc_insertion_point(message_clear_start:valhalla.TripLeg.Node)
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  intersecting_edge_.Clear();
-  recosts_.Clear();
-  if (GetArenaForAllocation() == nullptr && edge_ != nullptr) {
-    delete edge_;
+  _impl_.intersecting_edge_.Clear();
+  _impl_.recosts_.Clear();
+  _impl_.time_zone_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && _impl_.edge_ != nullptr) {
+    delete _impl_.edge_;
   }
-  edge_ = nullptr;
-  if (GetArenaForAllocation() == nullptr && transit_platform_info_ != nullptr) {
-    delete transit_platform_info_;
+  _impl_.edge_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && _impl_.transit_platform_info_ != nullptr) {
+    delete _impl_.transit_platform_info_;
   }
-  transit_platform_info_ = nullptr;
-  if (GetArenaForAllocation() == nullptr && transit_station_info_ != nullptr) {
-    delete transit_station_info_;
+  _impl_.transit_platform_info_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && _impl_.transit_station_info_ != nullptr) {
+    delete _impl_.transit_station_info_;
   }
-  transit_station_info_ = nullptr;
-  if (GetArenaForAllocation() == nullptr && transit_egress_info_ != nullptr) {
-    delete transit_egress_info_;
+  _impl_.transit_station_info_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && _impl_.transit_egress_info_ != nullptr) {
+    delete _impl_.transit_egress_info_;
   }
-  transit_egress_info_ = nullptr;
-  if (GetArenaForAllocation() == nullptr && cost_ != nullptr) {
-    delete cost_;
+  _impl_.transit_egress_info_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && _impl_.cost_ != nullptr) {
+    delete _impl_.cost_;
   }
-  cost_ = nullptr;
-  if (GetArenaForAllocation() == nullptr && bss_info_ != nullptr) {
-    delete bss_info_;
+  _impl_.cost_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && _impl_.bss_info_ != nullptr) {
+    delete _impl_.bss_info_;
   }
-  bss_info_ = nullptr;
-  clear_has_admin_index();
-  clear_has_type();
-  clear_has_fork();
-  clear_has_time_zone();
+  _impl_.bss_info_ = nullptr;
+  ::memset(&_impl_.admin_index_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&_impl_.fork_) -
+      reinterpret_cast<char*>(&_impl_.admin_index_)) + sizeof(_impl_.fork_));
   _internal_metadata_.Clear<std::string>();
 }
 
-const char* TripLeg_Node::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+const char* TripLeg_Node::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
   while (!ctx->Done(&ptr)) {
-    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
-    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
       // .valhalla.TripLeg.Edge edge = 1;
       case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
           ptr = ctx->ParseMessage(_internal_mutable_edge(), ptr);
           CHK_(ptr);
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // repeated .valhalla.TripLeg.IntersectingEdge intersecting_edge = 2;
       case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
           ptr -= 1;
           do {
             ptr += 1;
@@ -6873,70 +4656,79 @@ const char* TripLeg_Node::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_I
             CHK_(ptr);
             if (!ctx->DataAvailable(ptr)) break;
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<18>(ptr));
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // uint32 admin_index = 3;
       case 3:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 24)) {
-          _internal_set_admin_index(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr));
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
+          _impl_.admin_index_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // .valhalla.TripLeg.Node.Type type = 4;
       case 4:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 32)) {
-          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 32)) {
+          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
           _internal_set_type(static_cast<::valhalla::TripLeg_Node_Type>(val));
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // bool fork = 5;
       case 5:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 40)) {
-          _internal_set_fork(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr));
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 40)) {
+          _impl_.fork_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // .valhalla.TransitPlatformInfo transit_platform_info = 6;
       case 6:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 50)) {
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 50)) {
           ptr = ctx->ParseMessage(_internal_mutable_transit_platform_info(), ptr);
           CHK_(ptr);
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // .valhalla.TransitStationInfo transit_station_info = 7;
       case 7:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 58)) {
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 58)) {
           ptr = ctx->ParseMessage(_internal_mutable_transit_station_info(), ptr);
           CHK_(ptr);
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // .valhalla.TransitEgressInfo transit_egress_info = 10;
       case 10:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 82)) {
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 82)) {
           ptr = ctx->ParseMessage(_internal_mutable_transit_egress_info(), ptr);
           CHK_(ptr);
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // string time_zone = 11;
       case 11:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 90)) {
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 90)) {
           auto str = _internal_mutable_time_zone();
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, nullptr));
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
-        } else goto handle_unusual;
+          CHK_(::_pbi::VerifyUTF8(str, nullptr));
+        } else
+          goto handle_unusual;
         continue;
       // .valhalla.TripLeg.PathCost cost = 12;
       case 12:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 98)) {
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 98)) {
           ptr = ctx->ParseMessage(_internal_mutable_cost(), ptr);
           CHK_(ptr);
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // repeated .valhalla.TripLeg.PathCost recosts = 13;
       case 13:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 106)) {
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 106)) {
           ptr -= 1;
           do {
             ptr += 1;
@@ -6944,105 +4736,103 @@ const char* TripLeg_Node::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_I
             CHK_(ptr);
             if (!ctx->DataAvailable(ptr)) break;
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<106>(ptr));
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // .valhalla.BikeShareStationInfo bss_info = 14;
       case 14:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 114)) {
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 114)) {
           ptr = ctx->ParseMessage(_internal_mutable_bss_info(), ptr);
           CHK_(ptr);
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
-      default: {
-      handle_unusual:
-        if ((tag == 0) || ((tag & 7) == 4)) {
-          CHK_(ptr);
-          ctx->SetLastTag(tag);
-          goto success;
-        }
-        ptr = UnknownFieldParse(tag,
-            _internal_metadata_.mutable_unknown_fields<std::string>(),
-            ptr, ctx);
-        CHK_(ptr != nullptr);
-        continue;
-      }
+      default:
+        goto handle_unusual;
     }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<std::string>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
   }  // while
-success:
+message_done:
   return ptr;
 failure:
   ptr = nullptr;
-  goto success;
+  goto message_done;
 #undef CHK_
 }
 
-::PROTOBUF_NAMESPACE_ID::uint8* TripLeg_Node::_InternalSerialize(
-    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+uint8_t* TripLeg_Node::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:valhalla.TripLeg.Node)
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   // .valhalla.TripLeg.Edge edge = 1;
   if (this->_internal_has_edge()) {
-    target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(
-        1, _Internal::edge(this), target, stream);
+      InternalWriteMessage(1, _Internal::edge(this),
+        _Internal::edge(this).GetCachedSize(), target, stream);
   }
 
   // repeated .valhalla.TripLeg.IntersectingEdge intersecting_edge = 2;
-  for (unsigned int i = 0,
-      n = static_cast<unsigned int>(this->_internal_intersecting_edge_size()); i < n; i++) {
-    target = stream->EnsureSpace(target);
+  for (unsigned i = 0,
+      n = static_cast<unsigned>(this->_internal_intersecting_edge_size()); i < n; i++) {
+    const auto& repfield = this->_internal_intersecting_edge(i);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(2, this->_internal_intersecting_edge(i), target, stream);
+        InternalWriteMessage(2, repfield, repfield.GetCachedSize(), target, stream);
   }
 
   // uint32 admin_index = 3;
-  if (_internal_has_admin_index()) {
+  if (this->_internal_admin_index() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt32ToArray(3, this->_internal_admin_index(), target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(3, this->_internal_admin_index(), target);
   }
 
   // .valhalla.TripLeg.Node.Type type = 4;
-  if (_internal_has_type()) {
+  if (this->_internal_type() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnumToArray(
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
       4, this->_internal_type(), target);
   }
 
   // bool fork = 5;
-  if (_internal_has_fork()) {
+  if (this->_internal_fork() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(5, this->_internal_fork(), target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(5, this->_internal_fork(), target);
   }
 
   // .valhalla.TransitPlatformInfo transit_platform_info = 6;
   if (this->_internal_has_transit_platform_info()) {
-    target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(
-        6, _Internal::transit_platform_info(this), target, stream);
+      InternalWriteMessage(6, _Internal::transit_platform_info(this),
+        _Internal::transit_platform_info(this).GetCachedSize(), target, stream);
   }
 
   // .valhalla.TransitStationInfo transit_station_info = 7;
   if (this->_internal_has_transit_station_info()) {
-    target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(
-        7, _Internal::transit_station_info(this), target, stream);
+      InternalWriteMessage(7, _Internal::transit_station_info(this),
+        _Internal::transit_station_info(this).GetCachedSize(), target, stream);
   }
 
   // .valhalla.TransitEgressInfo transit_egress_info = 10;
   if (this->_internal_has_transit_egress_info()) {
-    target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(
-        10, _Internal::transit_egress_info(this), target, stream);
+      InternalWriteMessage(10, _Internal::transit_egress_info(this),
+        _Internal::transit_egress_info(this).GetCachedSize(), target, stream);
   }
 
   // string time_zone = 11;
-  if (_internal_has_time_zone()) {
+  if (!this->_internal_time_zone().empty()) {
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_time_zone().data(), static_cast<int>(this->_internal_time_zone().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
@@ -7053,26 +4843,24 @@ failure:
 
   // .valhalla.TripLeg.PathCost cost = 12;
   if (this->_internal_has_cost()) {
-    target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(
-        12, _Internal::cost(this), target, stream);
+      InternalWriteMessage(12, _Internal::cost(this),
+        _Internal::cost(this).GetCachedSize(), target, stream);
   }
 
   // repeated .valhalla.TripLeg.PathCost recosts = 13;
-  for (unsigned int i = 0,
-      n = static_cast<unsigned int>(this->_internal_recosts_size()); i < n; i++) {
-    target = stream->EnsureSpace(target);
+  for (unsigned i = 0,
+      n = static_cast<unsigned>(this->_internal_recosts_size()); i < n; i++) {
+    const auto& repfield = this->_internal_recosts(i);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(13, this->_internal_recosts(i), target, stream);
+        InternalWriteMessage(13, repfield, repfield.GetCachedSize(), target, stream);
   }
 
   // .valhalla.BikeShareStationInfo bss_info = 14;
   if (this->_internal_has_bss_info()) {
-    target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(
-        14, _Internal::bss_info(this), target, stream);
+      InternalWriteMessage(14, _Internal::bss_info(this),
+        _Internal::bss_info(this).GetCachedSize(), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -7087,188 +4875,149 @@ size_t TripLeg_Node::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:valhalla.TripLeg.Node)
   size_t total_size = 0;
 
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // repeated .valhalla.TripLeg.IntersectingEdge intersecting_edge = 2;
   total_size += 1UL * this->_internal_intersecting_edge_size();
-  for (const auto& msg : this->intersecting_edge_) {
+  for (const auto& msg : this->_impl_.intersecting_edge_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
 
   // repeated .valhalla.TripLeg.PathCost recosts = 13;
   total_size += 1UL * this->_internal_recosts_size();
-  for (const auto& msg : this->recosts_) {
+  for (const auto& msg : this->_impl_.recosts_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+  }
+
+  // string time_zone = 11;
+  if (!this->_internal_time_zone().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_time_zone());
   }
 
   // .valhalla.TripLeg.Edge edge = 1;
   if (this->_internal_has_edge()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *edge_);
+        *_impl_.edge_);
   }
 
   // .valhalla.TransitPlatformInfo transit_platform_info = 6;
   if (this->_internal_has_transit_platform_info()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *transit_platform_info_);
+        *_impl_.transit_platform_info_);
   }
 
   // .valhalla.TransitStationInfo transit_station_info = 7;
   if (this->_internal_has_transit_station_info()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *transit_station_info_);
+        *_impl_.transit_station_info_);
   }
 
   // .valhalla.TransitEgressInfo transit_egress_info = 10;
   if (this->_internal_has_transit_egress_info()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *transit_egress_info_);
+        *_impl_.transit_egress_info_);
   }
 
   // .valhalla.TripLeg.PathCost cost = 12;
   if (this->_internal_has_cost()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *cost_);
+        *_impl_.cost_);
   }
 
   // .valhalla.BikeShareStationInfo bss_info = 14;
   if (this->_internal_has_bss_info()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *bss_info_);
+        *_impl_.bss_info_);
   }
 
-  switch (has_admin_index_case()) {
-    // uint32 admin_index = 3;
-    case kAdminIndex: {
-      total_size += 1 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt32Size(
-          this->_internal_admin_index());
-      break;
-    }
-    case HAS_ADMIN_INDEX_NOT_SET: {
-      break;
-    }
+  // uint32 admin_index = 3;
+  if (this->_internal_admin_index() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_admin_index());
   }
-  switch (has_type_case()) {
-    // .valhalla.TripLeg.Node.Type type = 4;
-    case kType: {
-      total_size += 1 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::EnumSize(this->_internal_type());
-      break;
-    }
-    case HAS_TYPE_NOT_SET: {
-      break;
-    }
+
+  // .valhalla.TripLeg.Node.Type type = 4;
+  if (this->_internal_type() != 0) {
+    total_size += 1 +
+      ::_pbi::WireFormatLite::EnumSize(this->_internal_type());
   }
-  switch (has_fork_case()) {
-    // bool fork = 5;
-    case kFork: {
-      total_size += 1 + 1;
-      break;
-    }
-    case HAS_FORK_NOT_SET: {
-      break;
-    }
+
+  // bool fork = 5;
+  if (this->_internal_fork() != 0) {
+    total_size += 1 + 1;
   }
-  switch (has_time_zone_case()) {
-    // string time_zone = 11;
-    case kTimeZone: {
-      total_size += 1 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-          this->_internal_time_zone());
-      break;
-    }
-    case HAS_TIME_ZONE_NOT_SET: {
-      break;
-    }
-  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     total_size += _internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).size();
   }
-  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  int cached_size = ::_pbi::ToCachedSize(total_size);
   SetCachedSize(cached_size);
   return total_size;
 }
 
 void TripLeg_Node::CheckTypeAndMergeFrom(
     const ::PROTOBUF_NAMESPACE_ID::MessageLite& from) {
-  MergeFrom(*::PROTOBUF_NAMESPACE_ID::internal::DownCast<const TripLeg_Node*>(
+  MergeFrom(*::_pbi::DownCast<const TripLeg_Node*>(
       &from));
 }
 
 void TripLeg_Node::MergeFrom(const TripLeg_Node& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:valhalla.TripLeg.Node)
-  GOOGLE_DCHECK_NE(&from, this);
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  TripLeg_Node* const _this = this;
+  // @@protoc_insertion_point(class_specific_merge_from_start:valhalla.TripLeg.Node)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  intersecting_edge_.MergeFrom(from.intersecting_edge_);
-  recosts_.MergeFrom(from.recosts_);
+  _this->_impl_.intersecting_edge_.MergeFrom(from._impl_.intersecting_edge_);
+  _this->_impl_.recosts_.MergeFrom(from._impl_.recosts_);
+  if (!from._internal_time_zone().empty()) {
+    _this->_internal_set_time_zone(from._internal_time_zone());
+  }
   if (from._internal_has_edge()) {
-    _internal_mutable_edge()->::valhalla::TripLeg_Edge::MergeFrom(from._internal_edge());
+    _this->_internal_mutable_edge()->::valhalla::TripLeg_Edge::MergeFrom(
+        from._internal_edge());
   }
   if (from._internal_has_transit_platform_info()) {
-    _internal_mutable_transit_platform_info()->::valhalla::TransitPlatformInfo::MergeFrom(from._internal_transit_platform_info());
+    _this->_internal_mutable_transit_platform_info()->::valhalla::TransitPlatformInfo::MergeFrom(
+        from._internal_transit_platform_info());
   }
   if (from._internal_has_transit_station_info()) {
-    _internal_mutable_transit_station_info()->::valhalla::TransitStationInfo::MergeFrom(from._internal_transit_station_info());
+    _this->_internal_mutable_transit_station_info()->::valhalla::TransitStationInfo::MergeFrom(
+        from._internal_transit_station_info());
   }
   if (from._internal_has_transit_egress_info()) {
-    _internal_mutable_transit_egress_info()->::valhalla::TransitEgressInfo::MergeFrom(from._internal_transit_egress_info());
+    _this->_internal_mutable_transit_egress_info()->::valhalla::TransitEgressInfo::MergeFrom(
+        from._internal_transit_egress_info());
   }
   if (from._internal_has_cost()) {
-    _internal_mutable_cost()->::valhalla::TripLeg_PathCost::MergeFrom(from._internal_cost());
+    _this->_internal_mutable_cost()->::valhalla::TripLeg_PathCost::MergeFrom(
+        from._internal_cost());
   }
   if (from._internal_has_bss_info()) {
-    _internal_mutable_bss_info()->::valhalla::BikeShareStationInfo::MergeFrom(from._internal_bss_info());
+    _this->_internal_mutable_bss_info()->::valhalla::BikeShareStationInfo::MergeFrom(
+        from._internal_bss_info());
   }
-  switch (from.has_admin_index_case()) {
-    case kAdminIndex: {
-      _internal_set_admin_index(from._internal_admin_index());
-      break;
-    }
-    case HAS_ADMIN_INDEX_NOT_SET: {
-      break;
-    }
+  if (from._internal_admin_index() != 0) {
+    _this->_internal_set_admin_index(from._internal_admin_index());
   }
-  switch (from.has_type_case()) {
-    case kType: {
-      _internal_set_type(from._internal_type());
-      break;
-    }
-    case HAS_TYPE_NOT_SET: {
-      break;
-    }
+  if (from._internal_type() != 0) {
+    _this->_internal_set_type(from._internal_type());
   }
-  switch (from.has_fork_case()) {
-    case kFork: {
-      _internal_set_fork(from._internal_fork());
-      break;
-    }
-    case HAS_FORK_NOT_SET: {
-      break;
-    }
+  if (from._internal_fork() != 0) {
+    _this->_internal_set_fork(from._internal_fork());
   }
-  switch (from.has_time_zone_case()) {
-    case kTimeZone: {
-      _internal_set_time_zone(from._internal_time_zone());
-      break;
-    }
-    case HAS_TIME_ZONE_NOT_SET: {
-      break;
-    }
-  }
-  _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
 }
 
 void TripLeg_Node::CopyFrom(const TripLeg_Node& from) {
@@ -7284,23 +5033,21 @@ bool TripLeg_Node::IsInitialized() const {
 
 void TripLeg_Node::InternalSwap(TripLeg_Node* other) {
   using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  intersecting_edge_.InternalSwap(&other->intersecting_edge_);
-  recosts_.InternalSwap(&other->recosts_);
+  _impl_.intersecting_edge_.InternalSwap(&other->_impl_.intersecting_edge_);
+  _impl_.recosts_.InternalSwap(&other->_impl_.recosts_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.time_zone_, lhs_arena,
+      &other->_impl_.time_zone_, rhs_arena
+  );
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(TripLeg_Node, bss_info_)
-      + sizeof(TripLeg_Node::bss_info_)
-      - PROTOBUF_FIELD_OFFSET(TripLeg_Node, edge_)>(
-          reinterpret_cast<char*>(&edge_),
-          reinterpret_cast<char*>(&other->edge_));
-  swap(has_admin_index_, other->has_admin_index_);
-  swap(has_type_, other->has_type_);
-  swap(has_fork_, other->has_fork_);
-  swap(has_time_zone_, other->has_time_zone_);
-  swap(_oneof_case_[0], other->_oneof_case_[0]);
-  swap(_oneof_case_[1], other->_oneof_case_[1]);
-  swap(_oneof_case_[2], other->_oneof_case_[2]);
-  swap(_oneof_case_[3], other->_oneof_case_[3]);
+      PROTOBUF_FIELD_OFFSET(TripLeg_Node, _impl_.fork_)
+      + sizeof(TripLeg_Node::_impl_.fork_)
+      - PROTOBUF_FIELD_OFFSET(TripLeg_Node, _impl_.edge_)>(
+          reinterpret_cast<char*>(&_impl_.edge_),
+          reinterpret_cast<char*>(&other->_impl_.edge_));
 }
 
 std::string TripLeg_Node::GetTypeName() const {
@@ -7317,241 +5064,195 @@ class TripLeg_Admin::_Internal {
 TripLeg_Admin::TripLeg_Admin(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::MessageLite(arena, is_message_owned) {
-  SharedCtor();
-  if (!is_message_owned) {
-    RegisterArenaDtor(arena);
-  }
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:valhalla.TripLeg.Admin)
 }
 TripLeg_Admin::TripLeg_Admin(const TripLeg_Admin& from)
   : ::PROTOBUF_NAMESPACE_ID::MessageLite() {
+  TripLeg_Admin* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.country_code_){}
+    , decltype(_impl_.country_text_){}
+    , decltype(_impl_.state_code_){}
+    , decltype(_impl_.state_text_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
-  clear_has_has_country_code();
-  switch (from.has_country_code_case()) {
-    case kCountryCode: {
-      _internal_set_country_code(from._internal_country_code());
-      break;
-    }
-    case HAS_COUNTRY_CODE_NOT_SET: {
-      break;
-    }
+  _impl_.country_code_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.country_code_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_country_code().empty()) {
+    _this->_impl_.country_code_.Set(from._internal_country_code(), 
+      _this->GetArenaForAllocation());
   }
-  clear_has_has_country_text();
-  switch (from.has_country_text_case()) {
-    case kCountryText: {
-      _internal_set_country_text(from._internal_country_text());
-      break;
-    }
-    case HAS_COUNTRY_TEXT_NOT_SET: {
-      break;
-    }
+  _impl_.country_text_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.country_text_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_country_text().empty()) {
+    _this->_impl_.country_text_.Set(from._internal_country_text(), 
+      _this->GetArenaForAllocation());
   }
-  clear_has_has_state_code();
-  switch (from.has_state_code_case()) {
-    case kStateCode: {
-      _internal_set_state_code(from._internal_state_code());
-      break;
-    }
-    case HAS_STATE_CODE_NOT_SET: {
-      break;
-    }
+  _impl_.state_code_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.state_code_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_state_code().empty()) {
+    _this->_impl_.state_code_.Set(from._internal_state_code(), 
+      _this->GetArenaForAllocation());
   }
-  clear_has_has_state_text();
-  switch (from.has_state_text_case()) {
-    case kStateText: {
-      _internal_set_state_text(from._internal_state_text());
-      break;
-    }
-    case HAS_STATE_TEXT_NOT_SET: {
-      break;
-    }
+  _impl_.state_text_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.state_text_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_state_text().empty()) {
+    _this->_impl_.state_text_.Set(from._internal_state_text(), 
+      _this->GetArenaForAllocation());
   }
   // @@protoc_insertion_point(copy_constructor:valhalla.TripLeg.Admin)
 }
 
-inline void TripLeg_Admin::SharedCtor() {
-clear_has_has_country_code();
-clear_has_has_country_text();
-clear_has_has_state_code();
-clear_has_has_state_text();
+inline void TripLeg_Admin::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.country_code_){}
+    , decltype(_impl_.country_text_){}
+    , decltype(_impl_.state_code_){}
+    , decltype(_impl_.state_text_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.country_code_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.country_code_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.country_text_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.country_text_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.state_code_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.state_code_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.state_text_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.state_text_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 TripLeg_Admin::~TripLeg_Admin() {
   // @@protoc_insertion_point(destructor:valhalla.TripLeg.Admin)
-  if (GetArenaForAllocation() != nullptr) return;
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<std::string>()) {
+  (void)arena;
+    return;
+  }
   SharedDtor();
-  _internal_metadata_.Delete<std::string>();
 }
 
 inline void TripLeg_Admin::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  if (has_has_country_code()) {
-    clear_has_country_code();
-  }
-  if (has_has_country_text()) {
-    clear_has_country_text();
-  }
-  if (has_has_state_code()) {
-    clear_has_state_code();
-  }
-  if (has_has_state_text()) {
-    clear_has_state_text();
-  }
+  _impl_.country_code_.Destroy();
+  _impl_.country_text_.Destroy();
+  _impl_.state_code_.Destroy();
+  _impl_.state_text_.Destroy();
 }
 
-void TripLeg_Admin::ArenaDtor(void* object) {
-  TripLeg_Admin* _this = reinterpret_cast< TripLeg_Admin* >(object);
-  (void)_this;
-}
-void TripLeg_Admin::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
-}
 void TripLeg_Admin::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
-
-void TripLeg_Admin::clear_has_country_code() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.TripLeg.Admin)
-  switch (has_country_code_case()) {
-    case kCountryCode: {
-      has_country_code_.country_code_.Destroy(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
-      break;
-    }
-    case HAS_COUNTRY_CODE_NOT_SET: {
-      break;
-    }
-  }
-  _oneof_case_[0] = HAS_COUNTRY_CODE_NOT_SET;
-}
-
-void TripLeg_Admin::clear_has_country_text() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.TripLeg.Admin)
-  switch (has_country_text_case()) {
-    case kCountryText: {
-      has_country_text_.country_text_.Destroy(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
-      break;
-    }
-    case HAS_COUNTRY_TEXT_NOT_SET: {
-      break;
-    }
-  }
-  _oneof_case_[1] = HAS_COUNTRY_TEXT_NOT_SET;
-}
-
-void TripLeg_Admin::clear_has_state_code() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.TripLeg.Admin)
-  switch (has_state_code_case()) {
-    case kStateCode: {
-      has_state_code_.state_code_.Destroy(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
-      break;
-    }
-    case HAS_STATE_CODE_NOT_SET: {
-      break;
-    }
-  }
-  _oneof_case_[2] = HAS_STATE_CODE_NOT_SET;
-}
-
-void TripLeg_Admin::clear_has_state_text() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.TripLeg.Admin)
-  switch (has_state_text_case()) {
-    case kStateText: {
-      has_state_text_.state_text_.Destroy(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
-      break;
-    }
-    case HAS_STATE_TEXT_NOT_SET: {
-      break;
-    }
-  }
-  _oneof_case_[3] = HAS_STATE_TEXT_NOT_SET;
-}
-
 
 void TripLeg_Admin::Clear() {
 // @@protoc_insertion_point(message_clear_start:valhalla.TripLeg.Admin)
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  clear_has_country_code();
-  clear_has_country_text();
-  clear_has_state_code();
-  clear_has_state_text();
+  _impl_.country_code_.ClearToEmpty();
+  _impl_.country_text_.ClearToEmpty();
+  _impl_.state_code_.ClearToEmpty();
+  _impl_.state_text_.ClearToEmpty();
   _internal_metadata_.Clear<std::string>();
 }
 
-const char* TripLeg_Admin::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+const char* TripLeg_Admin::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
   while (!ctx->Done(&ptr)) {
-    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
-    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
       // string country_code = 1;
       case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
           auto str = _internal_mutable_country_code();
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, nullptr));
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
-        } else goto handle_unusual;
+          CHK_(::_pbi::VerifyUTF8(str, nullptr));
+        } else
+          goto handle_unusual;
         continue;
       // string country_text = 2;
       case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
           auto str = _internal_mutable_country_text();
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, nullptr));
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
-        } else goto handle_unusual;
+          CHK_(::_pbi::VerifyUTF8(str, nullptr));
+        } else
+          goto handle_unusual;
         continue;
       // string state_code = 3;
       case 3:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
           auto str = _internal_mutable_state_code();
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, nullptr));
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
-        } else goto handle_unusual;
+          CHK_(::_pbi::VerifyUTF8(str, nullptr));
+        } else
+          goto handle_unusual;
         continue;
       // string state_text = 4;
       case 4:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 34)) {
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 34)) {
           auto str = _internal_mutable_state_text();
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, nullptr));
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
-        } else goto handle_unusual;
+          CHK_(::_pbi::VerifyUTF8(str, nullptr));
+        } else
+          goto handle_unusual;
         continue;
-      default: {
-      handle_unusual:
-        if ((tag == 0) || ((tag & 7) == 4)) {
-          CHK_(ptr);
-          ctx->SetLastTag(tag);
-          goto success;
-        }
-        ptr = UnknownFieldParse(tag,
-            _internal_metadata_.mutable_unknown_fields<std::string>(),
-            ptr, ctx);
-        CHK_(ptr != nullptr);
-        continue;
-      }
+      default:
+        goto handle_unusual;
     }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<std::string>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
   }  // while
-success:
+message_done:
   return ptr;
 failure:
   ptr = nullptr;
-  goto success;
+  goto message_done;
 #undef CHK_
 }
 
-::PROTOBUF_NAMESPACE_ID::uint8* TripLeg_Admin::_InternalSerialize(
-    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+uint8_t* TripLeg_Admin::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:valhalla.TripLeg.Admin)
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   // string country_code = 1;
-  if (_internal_has_country_code()) {
+  if (!this->_internal_country_code().empty()) {
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_country_code().data(), static_cast<int>(this->_internal_country_code().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
@@ -7561,7 +5262,7 @@ failure:
   }
 
   // string country_text = 2;
-  if (_internal_has_country_text()) {
+  if (!this->_internal_country_text().empty()) {
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_country_text().data(), static_cast<int>(this->_internal_country_text().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
@@ -7571,7 +5272,7 @@ failure:
   }
 
   // string state_code = 3;
-  if (_internal_has_state_code()) {
+  if (!this->_internal_state_code().empty()) {
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_state_code().data(), static_cast<int>(this->_internal_state_code().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
@@ -7581,7 +5282,7 @@ failure:
   }
 
   // string state_text = 4;
-  if (_internal_has_state_text()) {
+  if (!this->_internal_state_text().empty()) {
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_state_text().data(), static_cast<int>(this->_internal_state_text().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
@@ -7602,115 +5303,72 @@ size_t TripLeg_Admin::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:valhalla.TripLeg.Admin)
   size_t total_size = 0;
 
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  switch (has_country_code_case()) {
-    // string country_code = 1;
-    case kCountryCode: {
-      total_size += 1 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-          this->_internal_country_code());
-      break;
-    }
-    case HAS_COUNTRY_CODE_NOT_SET: {
-      break;
-    }
+  // string country_code = 1;
+  if (!this->_internal_country_code().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_country_code());
   }
-  switch (has_country_text_case()) {
-    // string country_text = 2;
-    case kCountryText: {
-      total_size += 1 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-          this->_internal_country_text());
-      break;
-    }
-    case HAS_COUNTRY_TEXT_NOT_SET: {
-      break;
-    }
+
+  // string country_text = 2;
+  if (!this->_internal_country_text().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_country_text());
   }
-  switch (has_state_code_case()) {
-    // string state_code = 3;
-    case kStateCode: {
-      total_size += 1 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-          this->_internal_state_code());
-      break;
-    }
-    case HAS_STATE_CODE_NOT_SET: {
-      break;
-    }
+
+  // string state_code = 3;
+  if (!this->_internal_state_code().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_state_code());
   }
-  switch (has_state_text_case()) {
-    // string state_text = 4;
-    case kStateText: {
-      total_size += 1 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-          this->_internal_state_text());
-      break;
-    }
-    case HAS_STATE_TEXT_NOT_SET: {
-      break;
-    }
+
+  // string state_text = 4;
+  if (!this->_internal_state_text().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_state_text());
   }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     total_size += _internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).size();
   }
-  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  int cached_size = ::_pbi::ToCachedSize(total_size);
   SetCachedSize(cached_size);
   return total_size;
 }
 
 void TripLeg_Admin::CheckTypeAndMergeFrom(
     const ::PROTOBUF_NAMESPACE_ID::MessageLite& from) {
-  MergeFrom(*::PROTOBUF_NAMESPACE_ID::internal::DownCast<const TripLeg_Admin*>(
+  MergeFrom(*::_pbi::DownCast<const TripLeg_Admin*>(
       &from));
 }
 
 void TripLeg_Admin::MergeFrom(const TripLeg_Admin& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:valhalla.TripLeg.Admin)
-  GOOGLE_DCHECK_NE(&from, this);
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  TripLeg_Admin* const _this = this;
+  // @@protoc_insertion_point(class_specific_merge_from_start:valhalla.TripLeg.Admin)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  switch (from.has_country_code_case()) {
-    case kCountryCode: {
-      _internal_set_country_code(from._internal_country_code());
-      break;
-    }
-    case HAS_COUNTRY_CODE_NOT_SET: {
-      break;
-    }
+  if (!from._internal_country_code().empty()) {
+    _this->_internal_set_country_code(from._internal_country_code());
   }
-  switch (from.has_country_text_case()) {
-    case kCountryText: {
-      _internal_set_country_text(from._internal_country_text());
-      break;
-    }
-    case HAS_COUNTRY_TEXT_NOT_SET: {
-      break;
-    }
+  if (!from._internal_country_text().empty()) {
+    _this->_internal_set_country_text(from._internal_country_text());
   }
-  switch (from.has_state_code_case()) {
-    case kStateCode: {
-      _internal_set_state_code(from._internal_state_code());
-      break;
-    }
-    case HAS_STATE_CODE_NOT_SET: {
-      break;
-    }
+  if (!from._internal_state_code().empty()) {
+    _this->_internal_set_state_code(from._internal_state_code());
   }
-  switch (from.has_state_text_case()) {
-    case kStateText: {
-      _internal_set_state_text(from._internal_state_text());
-      break;
-    }
-    case HAS_STATE_TEXT_NOT_SET: {
-      break;
-    }
+  if (!from._internal_state_text().empty()) {
+    _this->_internal_set_state_text(from._internal_state_text());
   }
-  _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
 }
 
 void TripLeg_Admin::CopyFrom(const TripLeg_Admin& from) {
@@ -7726,15 +5384,25 @@ bool TripLeg_Admin::IsInitialized() const {
 
 void TripLeg_Admin::InternalSwap(TripLeg_Admin* other) {
   using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(has_country_code_, other->has_country_code_);
-  swap(has_country_text_, other->has_country_text_);
-  swap(has_state_code_, other->has_state_code_);
-  swap(has_state_text_, other->has_state_text_);
-  swap(_oneof_case_[0], other->_oneof_case_[0]);
-  swap(_oneof_case_[1], other->_oneof_case_[1]);
-  swap(_oneof_case_[2], other->_oneof_case_[2]);
-  swap(_oneof_case_[3], other->_oneof_case_[3]);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.country_code_, lhs_arena,
+      &other->_impl_.country_code_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.country_text_, lhs_arena,
+      &other->_impl_.country_text_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.state_code_, lhs_arena,
+      &other->_impl_.state_code_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.state_text_, lhs_arena,
+      &other->_impl_.state_text_, rhs_arena
+  );
 }
 
 std::string TripLeg_Admin::GetTypeName() const {
@@ -7750,142 +5418,161 @@ class TripLeg_ShapeAttributes::_Internal {
 
 TripLeg_ShapeAttributes::TripLeg_ShapeAttributes(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::MessageLite(arena, is_message_owned),
-  time_(arena),
-  length_(arena),
-  speed_(arena),
-  speed_limit_(arena) {
-  SharedCtor();
-  if (!is_message_owned) {
-    RegisterArenaDtor(arena);
-  }
+  : ::PROTOBUF_NAMESPACE_ID::MessageLite(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:valhalla.TripLeg.ShapeAttributes)
 }
 TripLeg_ShapeAttributes::TripLeg_ShapeAttributes(const TripLeg_ShapeAttributes& from)
-  : ::PROTOBUF_NAMESPACE_ID::MessageLite(),
-      time_(from.time_),
-      length_(from.length_),
-      speed_(from.speed_),
-      speed_limit_(from.speed_limit_) {
+  : ::PROTOBUF_NAMESPACE_ID::MessageLite() {
+  TripLeg_ShapeAttributes* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.time_){from._impl_.time_}
+    , /*decltype(_impl_._time_cached_byte_size_)*/{0}
+    , decltype(_impl_.length_){from._impl_.length_}
+    , /*decltype(_impl_._length_cached_byte_size_)*/{0}
+    , decltype(_impl_.speed_){from._impl_.speed_}
+    , /*decltype(_impl_._speed_cached_byte_size_)*/{0}
+    , decltype(_impl_.speed_limit_){from._impl_.speed_limit_}
+    , /*decltype(_impl_._speed_limit_cached_byte_size_)*/{0}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:valhalla.TripLeg.ShapeAttributes)
 }
 
-inline void TripLeg_ShapeAttributes::SharedCtor() {
+inline void TripLeg_ShapeAttributes::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.time_){arena}
+    , /*decltype(_impl_._time_cached_byte_size_)*/{0}
+    , decltype(_impl_.length_){arena}
+    , /*decltype(_impl_._length_cached_byte_size_)*/{0}
+    , decltype(_impl_.speed_){arena}
+    , /*decltype(_impl_._speed_cached_byte_size_)*/{0}
+    , decltype(_impl_.speed_limit_){arena}
+    , /*decltype(_impl_._speed_limit_cached_byte_size_)*/{0}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
 }
 
 TripLeg_ShapeAttributes::~TripLeg_ShapeAttributes() {
   // @@protoc_insertion_point(destructor:valhalla.TripLeg.ShapeAttributes)
-  if (GetArenaForAllocation() != nullptr) return;
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<std::string>()) {
+  (void)arena;
+    return;
+  }
   SharedDtor();
-  _internal_metadata_.Delete<std::string>();
 }
 
 inline void TripLeg_ShapeAttributes::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.time_.~RepeatedField();
+  _impl_.length_.~RepeatedField();
+  _impl_.speed_.~RepeatedField();
+  _impl_.speed_limit_.~RepeatedField();
 }
 
-void TripLeg_ShapeAttributes::ArenaDtor(void* object) {
-  TripLeg_ShapeAttributes* _this = reinterpret_cast< TripLeg_ShapeAttributes* >(object);
-  (void)_this;
-}
-void TripLeg_ShapeAttributes::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
-}
 void TripLeg_ShapeAttributes::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void TripLeg_ShapeAttributes::Clear() {
 // @@protoc_insertion_point(message_clear_start:valhalla.TripLeg.ShapeAttributes)
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  time_.Clear();
-  length_.Clear();
-  speed_.Clear();
-  speed_limit_.Clear();
+  _impl_.time_.Clear();
+  _impl_.length_.Clear();
+  _impl_.speed_.Clear();
+  _impl_.speed_limit_.Clear();
   _internal_metadata_.Clear<std::string>();
 }
 
-const char* TripLeg_ShapeAttributes::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+const char* TripLeg_ShapeAttributes::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
   while (!ctx->Done(&ptr)) {
-    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
-    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
       // repeated uint32 time = 1 [packed = true];
       case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
           ptr = ::PROTOBUF_NAMESPACE_ID::internal::PackedUInt32Parser(_internal_mutable_time(), ptr, ctx);
           CHK_(ptr);
-        } else if (static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8) {
+        } else if (static_cast<uint8_t>(tag) == 8) {
           _internal_add_time(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr));
           CHK_(ptr);
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // repeated uint32 length = 2 [packed = true];
       case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
           ptr = ::PROTOBUF_NAMESPACE_ID::internal::PackedUInt32Parser(_internal_mutable_length(), ptr, ctx);
           CHK_(ptr);
-        } else if (static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16) {
+        } else if (static_cast<uint8_t>(tag) == 16) {
           _internal_add_length(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr));
           CHK_(ptr);
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // repeated uint32 speed = 3 [packed = true];
       case 3:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
           ptr = ::PROTOBUF_NAMESPACE_ID::internal::PackedUInt32Parser(_internal_mutable_speed(), ptr, ctx);
           CHK_(ptr);
-        } else if (static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 24) {
+        } else if (static_cast<uint8_t>(tag) == 24) {
           _internal_add_speed(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr));
           CHK_(ptr);
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // repeated uint32 speed_limit = 5 [packed = true];
       case 5:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 42)) {
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 42)) {
           ptr = ::PROTOBUF_NAMESPACE_ID::internal::PackedUInt32Parser(_internal_mutable_speed_limit(), ptr, ctx);
           CHK_(ptr);
-        } else if (static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 40) {
+        } else if (static_cast<uint8_t>(tag) == 40) {
           _internal_add_speed_limit(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr));
           CHK_(ptr);
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
-      default: {
-      handle_unusual:
-        if ((tag == 0) || ((tag & 7) == 4)) {
-          CHK_(ptr);
-          ctx->SetLastTag(tag);
-          goto success;
-        }
-        ptr = UnknownFieldParse(tag,
-            _internal_metadata_.mutable_unknown_fields<std::string>(),
-            ptr, ctx);
-        CHK_(ptr != nullptr);
-        continue;
-      }
+      default:
+        goto handle_unusual;
     }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<std::string>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
   }  // while
-success:
+message_done:
   return ptr;
 failure:
   ptr = nullptr;
-  goto success;
+  goto message_done;
 #undef CHK_
 }
 
-::PROTOBUF_NAMESPACE_ID::uint8* TripLeg_ShapeAttributes::_InternalSerialize(
-    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+uint8_t* TripLeg_ShapeAttributes::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:valhalla.TripLeg.ShapeAttributes)
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   // repeated uint32 time = 1 [packed = true];
   {
-    int byte_size = _time_cached_byte_size_.load(std::memory_order_relaxed);
+    int byte_size = _impl_._time_cached_byte_size_.load(std::memory_order_relaxed);
     if (byte_size > 0) {
       target = stream->WriteUInt32Packed(
           1, _internal_time(), byte_size, target);
@@ -7894,7 +5581,7 @@ failure:
 
   // repeated uint32 length = 2 [packed = true];
   {
-    int byte_size = _length_cached_byte_size_.load(std::memory_order_relaxed);
+    int byte_size = _impl_._length_cached_byte_size_.load(std::memory_order_relaxed);
     if (byte_size > 0) {
       target = stream->WriteUInt32Packed(
           2, _internal_length(), byte_size, target);
@@ -7903,7 +5590,7 @@ failure:
 
   // repeated uint32 speed = 3 [packed = true];
   {
-    int byte_size = _speed_cached_byte_size_.load(std::memory_order_relaxed);
+    int byte_size = _impl_._speed_cached_byte_size_.load(std::memory_order_relaxed);
     if (byte_size > 0) {
       target = stream->WriteUInt32Packed(
           3, _internal_speed(), byte_size, target);
@@ -7912,7 +5599,7 @@ failure:
 
   // repeated uint32 speed_limit = 5 [packed = true];
   {
-    int byte_size = _speed_limit_cached_byte_size_.load(std::memory_order_relaxed);
+    int byte_size = _impl_._speed_limit_cached_byte_size_.load(std::memory_order_relaxed);
     if (byte_size > 0) {
       target = stream->WriteUInt32Packed(
           5, _internal_speed_limit(), byte_size, target);
@@ -7931,66 +5618,62 @@ size_t TripLeg_ShapeAttributes::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:valhalla.TripLeg.ShapeAttributes)
   size_t total_size = 0;
 
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // repeated uint32 time = 1 [packed = true];
   {
-    size_t data_size = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      UInt32Size(this->time_);
+    size_t data_size = ::_pbi::WireFormatLite::
+      UInt32Size(this->_impl_.time_);
     if (data_size > 0) {
       total_size += 1 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
-            static_cast<::PROTOBUF_NAMESPACE_ID::int32>(data_size));
+        ::_pbi::WireFormatLite::Int32Size(static_cast<int32_t>(data_size));
     }
-    int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(data_size);
-    _time_cached_byte_size_.store(cached_size,
+    int cached_size = ::_pbi::ToCachedSize(data_size);
+    _impl_._time_cached_byte_size_.store(cached_size,
                                     std::memory_order_relaxed);
     total_size += data_size;
   }
 
   // repeated uint32 length = 2 [packed = true];
   {
-    size_t data_size = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      UInt32Size(this->length_);
+    size_t data_size = ::_pbi::WireFormatLite::
+      UInt32Size(this->_impl_.length_);
     if (data_size > 0) {
       total_size += 1 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
-            static_cast<::PROTOBUF_NAMESPACE_ID::int32>(data_size));
+        ::_pbi::WireFormatLite::Int32Size(static_cast<int32_t>(data_size));
     }
-    int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(data_size);
-    _length_cached_byte_size_.store(cached_size,
+    int cached_size = ::_pbi::ToCachedSize(data_size);
+    _impl_._length_cached_byte_size_.store(cached_size,
                                     std::memory_order_relaxed);
     total_size += data_size;
   }
 
   // repeated uint32 speed = 3 [packed = true];
   {
-    size_t data_size = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      UInt32Size(this->speed_);
+    size_t data_size = ::_pbi::WireFormatLite::
+      UInt32Size(this->_impl_.speed_);
     if (data_size > 0) {
       total_size += 1 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
-            static_cast<::PROTOBUF_NAMESPACE_ID::int32>(data_size));
+        ::_pbi::WireFormatLite::Int32Size(static_cast<int32_t>(data_size));
     }
-    int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(data_size);
-    _speed_cached_byte_size_.store(cached_size,
+    int cached_size = ::_pbi::ToCachedSize(data_size);
+    _impl_._speed_cached_byte_size_.store(cached_size,
                                     std::memory_order_relaxed);
     total_size += data_size;
   }
 
   // repeated uint32 speed_limit = 5 [packed = true];
   {
-    size_t data_size = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      UInt32Size(this->speed_limit_);
+    size_t data_size = ::_pbi::WireFormatLite::
+      UInt32Size(this->_impl_.speed_limit_);
     if (data_size > 0) {
       total_size += 1 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
-            static_cast<::PROTOBUF_NAMESPACE_ID::int32>(data_size));
+        ::_pbi::WireFormatLite::Int32Size(static_cast<int32_t>(data_size));
     }
-    int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(data_size);
-    _speed_limit_cached_byte_size_.store(cached_size,
+    int cached_size = ::_pbi::ToCachedSize(data_size);
+    _impl_._speed_limit_cached_byte_size_.store(cached_size,
                                     std::memory_order_relaxed);
     total_size += data_size;
   }
@@ -7998,28 +5681,29 @@ size_t TripLeg_ShapeAttributes::ByteSizeLong() const {
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     total_size += _internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).size();
   }
-  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  int cached_size = ::_pbi::ToCachedSize(total_size);
   SetCachedSize(cached_size);
   return total_size;
 }
 
 void TripLeg_ShapeAttributes::CheckTypeAndMergeFrom(
     const ::PROTOBUF_NAMESPACE_ID::MessageLite& from) {
-  MergeFrom(*::PROTOBUF_NAMESPACE_ID::internal::DownCast<const TripLeg_ShapeAttributes*>(
+  MergeFrom(*::_pbi::DownCast<const TripLeg_ShapeAttributes*>(
       &from));
 }
 
 void TripLeg_ShapeAttributes::MergeFrom(const TripLeg_ShapeAttributes& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:valhalla.TripLeg.ShapeAttributes)
-  GOOGLE_DCHECK_NE(&from, this);
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  TripLeg_ShapeAttributes* const _this = this;
+  // @@protoc_insertion_point(class_specific_merge_from_start:valhalla.TripLeg.ShapeAttributes)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  time_.MergeFrom(from.time_);
-  length_.MergeFrom(from.length_);
-  speed_.MergeFrom(from.speed_);
-  speed_limit_.MergeFrom(from.speed_limit_);
-  _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
+  _this->_impl_.time_.MergeFrom(from._impl_.time_);
+  _this->_impl_.length_.MergeFrom(from._impl_.length_);
+  _this->_impl_.speed_.MergeFrom(from._impl_.speed_);
+  _this->_impl_.speed_limit_.MergeFrom(from._impl_.speed_limit_);
+  _this->_internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
 }
 
 void TripLeg_ShapeAttributes::CopyFrom(const TripLeg_ShapeAttributes& from) {
@@ -8036,10 +5720,10 @@ bool TripLeg_ShapeAttributes::IsInitialized() const {
 void TripLeg_ShapeAttributes::InternalSwap(TripLeg_ShapeAttributes* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  time_.InternalSwap(&other->time_);
-  length_.InternalSwap(&other->length_);
-  speed_.InternalSwap(&other->speed_);
-  speed_limit_.InternalSwap(&other->speed_limit_);
+  _impl_.time_.InternalSwap(&other->_impl_.time_);
+  _impl_.length_.InternalSwap(&other->_impl_.length_);
+  _impl_.speed_.InternalSwap(&other->_impl_.speed_);
+  _impl_.speed_limit_.InternalSwap(&other->_impl_.speed_limit_);
 }
 
 std::string TripLeg_ShapeAttributes::GetTypeName() const {
@@ -8056,206 +5740,161 @@ class TripLeg_Incident::_Internal {
 
 const ::valhalla::IncidentsTile_Metadata&
 TripLeg_Incident::_Internal::metadata(const TripLeg_Incident* msg) {
-  return *msg->metadata_;
+  return *msg->_impl_.metadata_;
 }
 void TripLeg_Incident::clear_metadata() {
-  if (GetArenaForAllocation() == nullptr && metadata_ != nullptr) {
-    delete metadata_;
+  if (GetArenaForAllocation() == nullptr && _impl_.metadata_ != nullptr) {
+    delete _impl_.metadata_;
   }
-  metadata_ = nullptr;
+  _impl_.metadata_ = nullptr;
 }
 TripLeg_Incident::TripLeg_Incident(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::MessageLite(arena, is_message_owned) {
-  SharedCtor();
-  if (!is_message_owned) {
-    RegisterArenaDtor(arena);
-  }
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:valhalla.TripLeg.Incident)
 }
 TripLeg_Incident::TripLeg_Incident(const TripLeg_Incident& from)
   : ::PROTOBUF_NAMESPACE_ID::MessageLite() {
+  TripLeg_Incident* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.metadata_){nullptr}
+    , decltype(_impl_.begin_shape_index_){}
+    , decltype(_impl_.end_shape_index_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
   if (from._internal_has_metadata()) {
-    metadata_ = new ::valhalla::IncidentsTile_Metadata(*from.metadata_);
-  } else {
-    metadata_ = nullptr;
+    _this->_impl_.metadata_ = new ::valhalla::IncidentsTile_Metadata(*from._impl_.metadata_);
   }
-  clear_has_has_begin_shape_index();
-  switch (from.has_begin_shape_index_case()) {
-    case kBeginShapeIndex: {
-      _internal_set_begin_shape_index(from._internal_begin_shape_index());
-      break;
-    }
-    case HAS_BEGIN_SHAPE_INDEX_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_end_shape_index();
-  switch (from.has_end_shape_index_case()) {
-    case kEndShapeIndex: {
-      _internal_set_end_shape_index(from._internal_end_shape_index());
-      break;
-    }
-    case HAS_END_SHAPE_INDEX_NOT_SET: {
-      break;
-    }
-  }
+  ::memcpy(&_impl_.begin_shape_index_, &from._impl_.begin_shape_index_,
+    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.end_shape_index_) -
+    reinterpret_cast<char*>(&_impl_.begin_shape_index_)) + sizeof(_impl_.end_shape_index_));
   // @@protoc_insertion_point(copy_constructor:valhalla.TripLeg.Incident)
 }
 
-inline void TripLeg_Incident::SharedCtor() {
-metadata_ = nullptr;
-clear_has_has_begin_shape_index();
-clear_has_has_end_shape_index();
+inline void TripLeg_Incident::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.metadata_){nullptr}
+    , decltype(_impl_.begin_shape_index_){0u}
+    , decltype(_impl_.end_shape_index_){0u}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
 }
 
 TripLeg_Incident::~TripLeg_Incident() {
   // @@protoc_insertion_point(destructor:valhalla.TripLeg.Incident)
-  if (GetArenaForAllocation() != nullptr) return;
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<std::string>()) {
+  (void)arena;
+    return;
+  }
   SharedDtor();
-  _internal_metadata_.Delete<std::string>();
 }
 
 inline void TripLeg_Incident::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  if (this != internal_default_instance()) delete metadata_;
-  if (has_has_begin_shape_index()) {
-    clear_has_begin_shape_index();
-  }
-  if (has_has_end_shape_index()) {
-    clear_has_end_shape_index();
-  }
+  if (this != internal_default_instance()) delete _impl_.metadata_;
 }
 
-void TripLeg_Incident::ArenaDtor(void* object) {
-  TripLeg_Incident* _this = reinterpret_cast< TripLeg_Incident* >(object);
-  (void)_this;
-}
-void TripLeg_Incident::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
-}
 void TripLeg_Incident::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
-
-void TripLeg_Incident::clear_has_begin_shape_index() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.TripLeg.Incident)
-  switch (has_begin_shape_index_case()) {
-    case kBeginShapeIndex: {
-      // No need to clear
-      break;
-    }
-    case HAS_BEGIN_SHAPE_INDEX_NOT_SET: {
-      break;
-    }
-  }
-  _oneof_case_[0] = HAS_BEGIN_SHAPE_INDEX_NOT_SET;
-}
-
-void TripLeg_Incident::clear_has_end_shape_index() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.TripLeg.Incident)
-  switch (has_end_shape_index_case()) {
-    case kEndShapeIndex: {
-      // No need to clear
-      break;
-    }
-    case HAS_END_SHAPE_INDEX_NOT_SET: {
-      break;
-    }
-  }
-  _oneof_case_[1] = HAS_END_SHAPE_INDEX_NOT_SET;
-}
-
 
 void TripLeg_Incident::Clear() {
 // @@protoc_insertion_point(message_clear_start:valhalla.TripLeg.Incident)
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  if (GetArenaForAllocation() == nullptr && metadata_ != nullptr) {
-    delete metadata_;
+  if (GetArenaForAllocation() == nullptr && _impl_.metadata_ != nullptr) {
+    delete _impl_.metadata_;
   }
-  metadata_ = nullptr;
-  clear_has_begin_shape_index();
-  clear_has_end_shape_index();
+  _impl_.metadata_ = nullptr;
+  ::memset(&_impl_.begin_shape_index_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&_impl_.end_shape_index_) -
+      reinterpret_cast<char*>(&_impl_.begin_shape_index_)) + sizeof(_impl_.end_shape_index_));
   _internal_metadata_.Clear<std::string>();
 }
 
-const char* TripLeg_Incident::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+const char* TripLeg_Incident::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
   while (!ctx->Done(&ptr)) {
-    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
-    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
       // .valhalla.IncidentsTile.Metadata metadata = 1;
       case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
           ptr = ctx->ParseMessage(_internal_mutable_metadata(), ptr);
           CHK_(ptr);
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // uint32 begin_shape_index = 3;
       case 3:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 24)) {
-          _internal_set_begin_shape_index(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr));
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
+          _impl_.begin_shape_index_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // uint32 end_shape_index = 4;
       case 4:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 32)) {
-          _internal_set_end_shape_index(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr));
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 32)) {
+          _impl_.end_shape_index_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
-      default: {
-      handle_unusual:
-        if ((tag == 0) || ((tag & 7) == 4)) {
-          CHK_(ptr);
-          ctx->SetLastTag(tag);
-          goto success;
-        }
-        ptr = UnknownFieldParse(tag,
-            _internal_metadata_.mutable_unknown_fields<std::string>(),
-            ptr, ctx);
-        CHK_(ptr != nullptr);
-        continue;
-      }
+      default:
+        goto handle_unusual;
     }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<std::string>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
   }  // while
-success:
+message_done:
   return ptr;
 failure:
   ptr = nullptr;
-  goto success;
+  goto message_done;
 #undef CHK_
 }
 
-::PROTOBUF_NAMESPACE_ID::uint8* TripLeg_Incident::_InternalSerialize(
-    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+uint8_t* TripLeg_Incident::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:valhalla.TripLeg.Incident)
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   // .valhalla.IncidentsTile.Metadata metadata = 1;
   if (this->_internal_has_metadata()) {
-    target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(
-        1, _Internal::metadata(this), target, stream);
+      InternalWriteMessage(1, _Internal::metadata(this),
+        _Internal::metadata(this).GetCachedSize(), target, stream);
   }
 
   // uint32 begin_shape_index = 3;
-  if (_internal_has_begin_shape_index()) {
+  if (this->_internal_begin_shape_index() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt32ToArray(3, this->_internal_begin_shape_index(), target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(3, this->_internal_begin_shape_index(), target);
   }
 
   // uint32 end_shape_index = 4;
-  if (_internal_has_end_shape_index()) {
+  if (this->_internal_end_shape_index() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt32ToArray(4, this->_internal_end_shape_index(), target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(4, this->_internal_end_shape_index(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -8270,7 +5909,7 @@ size_t TripLeg_Incident::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:valhalla.TripLeg.Incident)
   size_t total_size = 0;
 
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
@@ -8278,75 +5917,51 @@ size_t TripLeg_Incident::ByteSizeLong() const {
   if (this->_internal_has_metadata()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *metadata_);
+        *_impl_.metadata_);
   }
 
-  switch (has_begin_shape_index_case()) {
-    // uint32 begin_shape_index = 3;
-    case kBeginShapeIndex: {
-      total_size += 1 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt32Size(
-          this->_internal_begin_shape_index());
-      break;
-    }
-    case HAS_BEGIN_SHAPE_INDEX_NOT_SET: {
-      break;
-    }
+  // uint32 begin_shape_index = 3;
+  if (this->_internal_begin_shape_index() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_begin_shape_index());
   }
-  switch (has_end_shape_index_case()) {
-    // uint32 end_shape_index = 4;
-    case kEndShapeIndex: {
-      total_size += 1 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt32Size(
-          this->_internal_end_shape_index());
-      break;
-    }
-    case HAS_END_SHAPE_INDEX_NOT_SET: {
-      break;
-    }
+
+  // uint32 end_shape_index = 4;
+  if (this->_internal_end_shape_index() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_end_shape_index());
   }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     total_size += _internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).size();
   }
-  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  int cached_size = ::_pbi::ToCachedSize(total_size);
   SetCachedSize(cached_size);
   return total_size;
 }
 
 void TripLeg_Incident::CheckTypeAndMergeFrom(
     const ::PROTOBUF_NAMESPACE_ID::MessageLite& from) {
-  MergeFrom(*::PROTOBUF_NAMESPACE_ID::internal::DownCast<const TripLeg_Incident*>(
+  MergeFrom(*::_pbi::DownCast<const TripLeg_Incident*>(
       &from));
 }
 
 void TripLeg_Incident::MergeFrom(const TripLeg_Incident& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:valhalla.TripLeg.Incident)
-  GOOGLE_DCHECK_NE(&from, this);
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  TripLeg_Incident* const _this = this;
+  // @@protoc_insertion_point(class_specific_merge_from_start:valhalla.TripLeg.Incident)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from._internal_has_metadata()) {
-    _internal_mutable_metadata()->::valhalla::IncidentsTile_Metadata::MergeFrom(from._internal_metadata());
+    _this->_internal_mutable_metadata()->::valhalla::IncidentsTile_Metadata::MergeFrom(
+        from._internal_metadata());
   }
-  switch (from.has_begin_shape_index_case()) {
-    case kBeginShapeIndex: {
-      _internal_set_begin_shape_index(from._internal_begin_shape_index());
-      break;
-    }
-    case HAS_BEGIN_SHAPE_INDEX_NOT_SET: {
-      break;
-    }
+  if (from._internal_begin_shape_index() != 0) {
+    _this->_internal_set_begin_shape_index(from._internal_begin_shape_index());
   }
-  switch (from.has_end_shape_index_case()) {
-    case kEndShapeIndex: {
-      _internal_set_end_shape_index(from._internal_end_shape_index());
-      break;
-    }
-    case HAS_END_SHAPE_INDEX_NOT_SET: {
-      break;
-    }
+  if (from._internal_end_shape_index() != 0) {
+    _this->_internal_set_end_shape_index(from._internal_end_shape_index());
   }
-  _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
 }
 
 void TripLeg_Incident::CopyFrom(const TripLeg_Incident& from) {
@@ -8363,11 +5978,12 @@ bool TripLeg_Incident::IsInitialized() const {
 void TripLeg_Incident::InternalSwap(TripLeg_Incident* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(metadata_, other->metadata_);
-  swap(has_begin_shape_index_, other->has_begin_shape_index_);
-  swap(has_end_shape_index_, other->has_end_shape_index_);
-  swap(_oneof_case_[0], other->_oneof_case_[0]);
-  swap(_oneof_case_[1], other->_oneof_case_[1]);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(TripLeg_Incident, _impl_.end_shape_index_)
+      + sizeof(TripLeg_Incident::_impl_.end_shape_index_)
+      - PROTOBUF_FIELD_OFFSET(TripLeg_Incident, _impl_.metadata_)>(
+          reinterpret_cast<char*>(&_impl_.metadata_),
+          reinterpret_cast<char*>(&other->_impl_.metadata_));
 }
 
 std::string TripLeg_Incident::GetTypeName() const {
@@ -8384,19 +6000,23 @@ class TripLeg_Closure::_Internal {
 TripLeg_Closure::TripLeg_Closure(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::MessageLite(arena, is_message_owned) {
-  SharedCtor();
-  if (!is_message_owned) {
-    RegisterArenaDtor(arena);
-  }
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:valhalla.TripLeg.Closure)
 }
 TripLeg_Closure::TripLeg_Closure(const TripLeg_Closure& from)
   : ::PROTOBUF_NAMESPACE_ID::MessageLite() {
+  TripLeg_Closure* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.has_begin_shape_index_){}
+    , decltype(_impl_.has_end_shape_index_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+    , /*decltype(_impl_._oneof_case_)*/{}};
+
   _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
   clear_has_has_begin_shape_index();
   switch (from.has_begin_shape_index_case()) {
     case kBeginShapeIndex: {
-      _internal_set_begin_shape_index(from._internal_begin_shape_index());
+      _this->_internal_set_begin_shape_index(from._internal_begin_shape_index());
       break;
     }
     case HAS_BEGIN_SHAPE_INDEX_NOT_SET: {
@@ -8406,7 +6026,7 @@ TripLeg_Closure::TripLeg_Closure(const TripLeg_Closure& from)
   clear_has_has_end_shape_index();
   switch (from.has_end_shape_index_case()) {
     case kEndShapeIndex: {
-      _internal_set_end_shape_index(from._internal_end_shape_index());
+      _this->_internal_set_end_shape_index(from._internal_end_shape_index());
       break;
     }
     case HAS_END_SHAPE_INDEX_NOT_SET: {
@@ -8416,16 +6036,27 @@ TripLeg_Closure::TripLeg_Closure(const TripLeg_Closure& from)
   // @@protoc_insertion_point(copy_constructor:valhalla.TripLeg.Closure)
 }
 
-inline void TripLeg_Closure::SharedCtor() {
-clear_has_has_begin_shape_index();
-clear_has_has_end_shape_index();
+inline void TripLeg_Closure::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.has_begin_shape_index_){}
+    , decltype(_impl_.has_end_shape_index_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+    , /*decltype(_impl_._oneof_case_)*/{}
+  };
+  clear_has_has_begin_shape_index();
+  clear_has_has_end_shape_index();
 }
 
 TripLeg_Closure::~TripLeg_Closure() {
   // @@protoc_insertion_point(destructor:valhalla.TripLeg.Closure)
-  if (GetArenaForAllocation() != nullptr) return;
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<std::string>()) {
+  (void)arena;
+    return;
+  }
   SharedDtor();
-  _internal_metadata_.Delete<std::string>();
 }
 
 inline void TripLeg_Closure::SharedDtor() {
@@ -8438,14 +6069,8 @@ inline void TripLeg_Closure::SharedDtor() {
   }
 }
 
-void TripLeg_Closure::ArenaDtor(void* object) {
-  TripLeg_Closure* _this = reinterpret_cast< TripLeg_Closure* >(object);
-  (void)_this;
-}
-void TripLeg_Closure::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
-}
 void TripLeg_Closure::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void TripLeg_Closure::clear_has_begin_shape_index() {
@@ -8459,7 +6084,7 @@ void TripLeg_Closure::clear_has_begin_shape_index() {
       break;
     }
   }
-  _oneof_case_[0] = HAS_BEGIN_SHAPE_INDEX_NOT_SET;
+  _impl_._oneof_case_[0] = HAS_BEGIN_SHAPE_INDEX_NOT_SET;
 }
 
 void TripLeg_Closure::clear_has_end_shape_index() {
@@ -8473,13 +6098,13 @@ void TripLeg_Closure::clear_has_end_shape_index() {
       break;
     }
   }
-  _oneof_case_[1] = HAS_END_SHAPE_INDEX_NOT_SET;
+  _impl_._oneof_case_[1] = HAS_END_SHAPE_INDEX_NOT_SET;
 }
 
 
 void TripLeg_Closure::Clear() {
 // @@protoc_insertion_point(message_clear_start:valhalla.TripLeg.Closure)
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
@@ -8488,65 +6113,67 @@ void TripLeg_Closure::Clear() {
   _internal_metadata_.Clear<std::string>();
 }
 
-const char* TripLeg_Closure::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+const char* TripLeg_Closure::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
   while (!ctx->Done(&ptr)) {
-    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
-    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
       // uint32 begin_shape_index = 1;
       case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
           _internal_set_begin_shape_index(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr));
           CHK_(ptr);
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // uint32 end_shape_index = 2;
       case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
           _internal_set_end_shape_index(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr));
           CHK_(ptr);
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
-      default: {
-      handle_unusual:
-        if ((tag == 0) || ((tag & 7) == 4)) {
-          CHK_(ptr);
-          ctx->SetLastTag(tag);
-          goto success;
-        }
-        ptr = UnknownFieldParse(tag,
-            _internal_metadata_.mutable_unknown_fields<std::string>(),
-            ptr, ctx);
-        CHK_(ptr != nullptr);
-        continue;
-      }
+      default:
+        goto handle_unusual;
     }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<std::string>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
   }  // while
-success:
+message_done:
   return ptr;
 failure:
   ptr = nullptr;
-  goto success;
+  goto message_done;
 #undef CHK_
 }
 
-::PROTOBUF_NAMESPACE_ID::uint8* TripLeg_Closure::_InternalSerialize(
-    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+uint8_t* TripLeg_Closure::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:valhalla.TripLeg.Closure)
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   // uint32 begin_shape_index = 1;
   if (_internal_has_begin_shape_index()) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt32ToArray(1, this->_internal_begin_shape_index(), target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(1, this->_internal_begin_shape_index(), target);
   }
 
   // uint32 end_shape_index = 2;
   if (_internal_has_end_shape_index()) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt32ToArray(2, this->_internal_end_shape_index(), target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(2, this->_internal_end_shape_index(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -8561,16 +6188,14 @@ size_t TripLeg_Closure::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:valhalla.TripLeg.Closure)
   size_t total_size = 0;
 
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   switch (has_begin_shape_index_case()) {
     // uint32 begin_shape_index = 1;
     case kBeginShapeIndex: {
-      total_size += 1 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt32Size(
-          this->_internal_begin_shape_index());
+      total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_begin_shape_index());
       break;
     }
     case HAS_BEGIN_SHAPE_INDEX_NOT_SET: {
@@ -8580,9 +6205,7 @@ size_t TripLeg_Closure::ByteSizeLong() const {
   switch (has_end_shape_index_case()) {
     // uint32 end_shape_index = 2;
     case kEndShapeIndex: {
-      total_size += 1 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt32Size(
-          this->_internal_end_shape_index());
+      total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_end_shape_index());
       break;
     }
     case HAS_END_SHAPE_INDEX_NOT_SET: {
@@ -8592,26 +6215,27 @@ size_t TripLeg_Closure::ByteSizeLong() const {
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     total_size += _internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).size();
   }
-  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  int cached_size = ::_pbi::ToCachedSize(total_size);
   SetCachedSize(cached_size);
   return total_size;
 }
 
 void TripLeg_Closure::CheckTypeAndMergeFrom(
     const ::PROTOBUF_NAMESPACE_ID::MessageLite& from) {
-  MergeFrom(*::PROTOBUF_NAMESPACE_ID::internal::DownCast<const TripLeg_Closure*>(
+  MergeFrom(*::_pbi::DownCast<const TripLeg_Closure*>(
       &from));
 }
 
 void TripLeg_Closure::MergeFrom(const TripLeg_Closure& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:valhalla.TripLeg.Closure)
-  GOOGLE_DCHECK_NE(&from, this);
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  TripLeg_Closure* const _this = this;
+  // @@protoc_insertion_point(class_specific_merge_from_start:valhalla.TripLeg.Closure)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   switch (from.has_begin_shape_index_case()) {
     case kBeginShapeIndex: {
-      _internal_set_begin_shape_index(from._internal_begin_shape_index());
+      _this->_internal_set_begin_shape_index(from._internal_begin_shape_index());
       break;
     }
     case HAS_BEGIN_SHAPE_INDEX_NOT_SET: {
@@ -8620,14 +6244,14 @@ void TripLeg_Closure::MergeFrom(const TripLeg_Closure& from) {
   }
   switch (from.has_end_shape_index_case()) {
     case kEndShapeIndex: {
-      _internal_set_end_shape_index(from._internal_end_shape_index());
+      _this->_internal_set_end_shape_index(from._internal_end_shape_index());
       break;
     }
     case HAS_END_SHAPE_INDEX_NOT_SET: {
       break;
     }
   }
-  _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
 }
 
 void TripLeg_Closure::CopyFrom(const TripLeg_Closure& from) {
@@ -8644,10 +6268,10 @@ bool TripLeg_Closure::IsInitialized() const {
 void TripLeg_Closure::InternalSwap(TripLeg_Closure* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(has_begin_shape_index_, other->has_begin_shape_index_);
-  swap(has_end_shape_index_, other->has_end_shape_index_);
-  swap(_oneof_case_[0], other->_oneof_case_[0]);
-  swap(_oneof_case_[1], other->_oneof_case_[1]);
+  swap(_impl_.has_begin_shape_index_, other->_impl_.has_begin_shape_index_);
+  swap(_impl_.has_end_shape_index_, other->_impl_.has_end_shape_index_);
+  swap(_impl_._oneof_case_[0], other->_impl_._oneof_case_[0]);
+  swap(_impl_._oneof_case_[1], other->_impl_._oneof_case_[1]);
 }
 
 std::string TripLeg_Closure::GetTypeName() const {
@@ -8665,294 +6289,187 @@ class TripLeg::_Internal {
 
 const ::valhalla::BoundingBox&
 TripLeg::_Internal::bbox(const TripLeg* msg) {
-  return *msg->bbox_;
+  return *msg->_impl_.bbox_;
 }
 const ::valhalla::TripLeg_ShapeAttributes&
 TripLeg::_Internal::shape_attributes(const TripLeg* msg) {
-  return *msg->shape_attributes_;
+  return *msg->_impl_.shape_attributes_;
 }
 void TripLeg::clear_location() {
-  location_.Clear();
+  _impl_.location_.Clear();
 }
 void TripLeg::clear_bbox() {
-  if (GetArenaForAllocation() == nullptr && bbox_ != nullptr) {
-    delete bbox_;
+  if (GetArenaForAllocation() == nullptr && _impl_.bbox_ != nullptr) {
+    delete _impl_.bbox_;
   }
-  bbox_ = nullptr;
+  _impl_.bbox_ = nullptr;
 }
 TripLeg::TripLeg(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::MessageLite(arena, is_message_owned),
-  location_(arena),
-  node_(arena),
-  admin_(arena),
-  incidents_(arena),
-  algorithms_(arena),
-  closures_(arena) {
-  SharedCtor();
-  if (!is_message_owned) {
-    RegisterArenaDtor(arena);
-  }
+  : ::PROTOBUF_NAMESPACE_ID::MessageLite(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:valhalla.TripLeg)
 }
 TripLeg::TripLeg(const TripLeg& from)
-  : ::PROTOBUF_NAMESPACE_ID::MessageLite(),
-      location_(from.location_),
-      node_(from.node_),
-      admin_(from.admin_),
-      incidents_(from.incidents_),
-      algorithms_(from.algorithms_),
-      closures_(from.closures_) {
+  : ::PROTOBUF_NAMESPACE_ID::MessageLite() {
+  TripLeg* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.location_){from._impl_.location_}
+    , decltype(_impl_.node_){from._impl_.node_}
+    , decltype(_impl_.admin_){from._impl_.admin_}
+    , decltype(_impl_.incidents_){from._impl_.incidents_}
+    , decltype(_impl_.algorithms_){from._impl_.algorithms_}
+    , decltype(_impl_.closures_){from._impl_.closures_}
+    , decltype(_impl_.shape_){}
+    , decltype(_impl_.bbox_){nullptr}
+    , decltype(_impl_.shape_attributes_){nullptr}
+    , decltype(_impl_.osm_changeset_){}
+    , decltype(_impl_.trip_id_){}
+    , decltype(_impl_.leg_id_){}
+    , decltype(_impl_.leg_count_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
+  _impl_.shape_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.shape_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_shape().empty()) {
+    _this->_impl_.shape_.Set(from._internal_shape(), 
+      _this->GetArenaForAllocation());
+  }
   if (from._internal_has_bbox()) {
-    bbox_ = new ::valhalla::BoundingBox(*from.bbox_);
-  } else {
-    bbox_ = nullptr;
+    _this->_impl_.bbox_ = new ::valhalla::BoundingBox(*from._impl_.bbox_);
   }
   if (from._internal_has_shape_attributes()) {
-    shape_attributes_ = new ::valhalla::TripLeg_ShapeAttributes(*from.shape_attributes_);
-  } else {
-    shape_attributes_ = nullptr;
+    _this->_impl_.shape_attributes_ = new ::valhalla::TripLeg_ShapeAttributes(*from._impl_.shape_attributes_);
   }
-  clear_has_has_osm_changeset();
-  switch (from.has_osm_changeset_case()) {
-    case kOsmChangeset: {
-      _internal_set_osm_changeset(from._internal_osm_changeset());
-      break;
-    }
-    case HAS_OSM_CHANGESET_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_trip_id();
-  switch (from.has_trip_id_case()) {
-    case kTripId: {
-      _internal_set_trip_id(from._internal_trip_id());
-      break;
-    }
-    case HAS_TRIP_ID_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_leg_id();
-  switch (from.has_leg_id_case()) {
-    case kLegId: {
-      _internal_set_leg_id(from._internal_leg_id());
-      break;
-    }
-    case HAS_LEG_ID_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_leg_count();
-  switch (from.has_leg_count_case()) {
-    case kLegCount: {
-      _internal_set_leg_count(from._internal_leg_count());
-      break;
-    }
-    case HAS_LEG_COUNT_NOT_SET: {
-      break;
-    }
-  }
-  clear_has_has_shape();
-  switch (from.has_shape_case()) {
-    case kShape: {
-      _internal_set_shape(from._internal_shape());
-      break;
-    }
-    case HAS_SHAPE_NOT_SET: {
-      break;
-    }
-  }
+  ::memcpy(&_impl_.osm_changeset_, &from._impl_.osm_changeset_,
+    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.leg_count_) -
+    reinterpret_cast<char*>(&_impl_.osm_changeset_)) + sizeof(_impl_.leg_count_));
   // @@protoc_insertion_point(copy_constructor:valhalla.TripLeg)
 }
 
-inline void TripLeg::SharedCtor() {
-::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
-    reinterpret_cast<char*>(&bbox_) - reinterpret_cast<char*>(this)),
-    0, static_cast<size_t>(reinterpret_cast<char*>(&shape_attributes_) -
-    reinterpret_cast<char*>(&bbox_)) + sizeof(shape_attributes_));
-clear_has_has_osm_changeset();
-clear_has_has_trip_id();
-clear_has_has_leg_id();
-clear_has_has_leg_count();
-clear_has_has_shape();
+inline void TripLeg::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.location_){arena}
+    , decltype(_impl_.node_){arena}
+    , decltype(_impl_.admin_){arena}
+    , decltype(_impl_.incidents_){arena}
+    , decltype(_impl_.algorithms_){arena}
+    , decltype(_impl_.closures_){arena}
+    , decltype(_impl_.shape_){}
+    , decltype(_impl_.bbox_){nullptr}
+    , decltype(_impl_.shape_attributes_){nullptr}
+    , decltype(_impl_.osm_changeset_){uint64_t{0u}}
+    , decltype(_impl_.trip_id_){uint64_t{0u}}
+    , decltype(_impl_.leg_id_){0u}
+    , decltype(_impl_.leg_count_){0u}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.shape_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.shape_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 TripLeg::~TripLeg() {
   // @@protoc_insertion_point(destructor:valhalla.TripLeg)
-  if (GetArenaForAllocation() != nullptr) return;
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<std::string>()) {
+  (void)arena;
+    return;
+  }
   SharedDtor();
-  _internal_metadata_.Delete<std::string>();
 }
 
 inline void TripLeg::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  if (this != internal_default_instance()) delete bbox_;
-  if (this != internal_default_instance()) delete shape_attributes_;
-  if (has_has_osm_changeset()) {
-    clear_has_osm_changeset();
-  }
-  if (has_has_trip_id()) {
-    clear_has_trip_id();
-  }
-  if (has_has_leg_id()) {
-    clear_has_leg_id();
-  }
-  if (has_has_leg_count()) {
-    clear_has_leg_count();
-  }
-  if (has_has_shape()) {
-    clear_has_shape();
-  }
+  _impl_.location_.~RepeatedPtrField();
+  _impl_.node_.~RepeatedPtrField();
+  _impl_.admin_.~RepeatedPtrField();
+  _impl_.incidents_.~RepeatedPtrField();
+  _impl_.algorithms_.~RepeatedPtrField();
+  _impl_.closures_.~RepeatedPtrField();
+  _impl_.shape_.Destroy();
+  if (this != internal_default_instance()) delete _impl_.bbox_;
+  if (this != internal_default_instance()) delete _impl_.shape_attributes_;
 }
 
-void TripLeg::ArenaDtor(void* object) {
-  TripLeg* _this = reinterpret_cast< TripLeg* >(object);
-  (void)_this;
-}
-void TripLeg::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
-}
 void TripLeg::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
-
-void TripLeg::clear_has_osm_changeset() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.TripLeg)
-  switch (has_osm_changeset_case()) {
-    case kOsmChangeset: {
-      // No need to clear
-      break;
-    }
-    case HAS_OSM_CHANGESET_NOT_SET: {
-      break;
-    }
-  }
-  _oneof_case_[0] = HAS_OSM_CHANGESET_NOT_SET;
-}
-
-void TripLeg::clear_has_trip_id() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.TripLeg)
-  switch (has_trip_id_case()) {
-    case kTripId: {
-      // No need to clear
-      break;
-    }
-    case HAS_TRIP_ID_NOT_SET: {
-      break;
-    }
-  }
-  _oneof_case_[1] = HAS_TRIP_ID_NOT_SET;
-}
-
-void TripLeg::clear_has_leg_id() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.TripLeg)
-  switch (has_leg_id_case()) {
-    case kLegId: {
-      // No need to clear
-      break;
-    }
-    case HAS_LEG_ID_NOT_SET: {
-      break;
-    }
-  }
-  _oneof_case_[2] = HAS_LEG_ID_NOT_SET;
-}
-
-void TripLeg::clear_has_leg_count() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.TripLeg)
-  switch (has_leg_count_case()) {
-    case kLegCount: {
-      // No need to clear
-      break;
-    }
-    case HAS_LEG_COUNT_NOT_SET: {
-      break;
-    }
-  }
-  _oneof_case_[3] = HAS_LEG_COUNT_NOT_SET;
-}
-
-void TripLeg::clear_has_shape() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.TripLeg)
-  switch (has_shape_case()) {
-    case kShape: {
-      has_shape_.shape_.Destroy(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
-      break;
-    }
-    case HAS_SHAPE_NOT_SET: {
-      break;
-    }
-  }
-  _oneof_case_[4] = HAS_SHAPE_NOT_SET;
-}
-
 
 void TripLeg::Clear() {
 // @@protoc_insertion_point(message_clear_start:valhalla.TripLeg)
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  location_.Clear();
-  node_.Clear();
-  admin_.Clear();
-  incidents_.Clear();
-  algorithms_.Clear();
-  closures_.Clear();
-  if (GetArenaForAllocation() == nullptr && bbox_ != nullptr) {
-    delete bbox_;
+  _impl_.location_.Clear();
+  _impl_.node_.Clear();
+  _impl_.admin_.Clear();
+  _impl_.incidents_.Clear();
+  _impl_.algorithms_.Clear();
+  _impl_.closures_.Clear();
+  _impl_.shape_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && _impl_.bbox_ != nullptr) {
+    delete _impl_.bbox_;
   }
-  bbox_ = nullptr;
-  if (GetArenaForAllocation() == nullptr && shape_attributes_ != nullptr) {
-    delete shape_attributes_;
+  _impl_.bbox_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && _impl_.shape_attributes_ != nullptr) {
+    delete _impl_.shape_attributes_;
   }
-  shape_attributes_ = nullptr;
-  clear_has_osm_changeset();
-  clear_has_trip_id();
-  clear_has_leg_id();
-  clear_has_leg_count();
-  clear_has_shape();
+  _impl_.shape_attributes_ = nullptr;
+  ::memset(&_impl_.osm_changeset_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&_impl_.leg_count_) -
+      reinterpret_cast<char*>(&_impl_.osm_changeset_)) + sizeof(_impl_.leg_count_));
   _internal_metadata_.Clear<std::string>();
 }
 
-const char* TripLeg::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+const char* TripLeg::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
   while (!ctx->Done(&ptr)) {
-    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
-    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
       // uint64 osm_changeset = 1;
       case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
-          _internal_set_osm_changeset(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr));
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
+          _impl_.osm_changeset_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // uint64 trip_id = 2;
       case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
-          _internal_set_trip_id(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr));
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
+          _impl_.trip_id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // uint32 leg_id = 3;
       case 3:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 24)) {
-          _internal_set_leg_id(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr));
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
+          _impl_.leg_id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // uint32 leg_count = 4;
       case 4:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 32)) {
-          _internal_set_leg_count(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr));
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 32)) {
+          _impl_.leg_count_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // repeated .valhalla.Location location = 5;
       case 5:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 42)) {
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 42)) {
           ptr -= 1;
           do {
             ptr += 1;
@@ -8960,11 +6477,12 @@ const char* TripLeg::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::in
             CHK_(ptr);
             if (!ctx->DataAvailable(ptr)) break;
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<42>(ptr));
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // repeated .valhalla.TripLeg.Node node = 6;
       case 6:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 50)) {
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 50)) {
           ptr -= 1;
           do {
             ptr += 1;
@@ -8972,11 +6490,12 @@ const char* TripLeg::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::in
             CHK_(ptr);
             if (!ctx->DataAvailable(ptr)) break;
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<50>(ptr));
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // repeated .valhalla.TripLeg.Admin admin = 7;
       case 7:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 58)) {
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 58)) {
           ptr -= 1;
           do {
             ptr += 1;
@@ -8984,34 +6503,38 @@ const char* TripLeg::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::in
             CHK_(ptr);
             if (!ctx->DataAvailable(ptr)) break;
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<58>(ptr));
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // string shape = 8;
       case 8:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 66)) {
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 66)) {
           auto str = _internal_mutable_shape();
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, nullptr));
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
-        } else goto handle_unusual;
+          CHK_(::_pbi::VerifyUTF8(str, nullptr));
+        } else
+          goto handle_unusual;
         continue;
       // .valhalla.BoundingBox bbox = 9;
       case 9:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 74)) {
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 74)) {
           ptr = ctx->ParseMessage(_internal_mutable_bbox(), ptr);
           CHK_(ptr);
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // .valhalla.TripLeg.ShapeAttributes shape_attributes = 10;
       case 10:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 82)) {
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 82)) {
           ptr = ctx->ParseMessage(_internal_mutable_shape_attributes(), ptr);
           CHK_(ptr);
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // repeated .valhalla.TripLeg.Incident incidents = 11;
       case 11:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 90)) {
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 90)) {
           ptr -= 1;
           do {
             ptr += 1;
@@ -9019,25 +6542,27 @@ const char* TripLeg::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::in
             CHK_(ptr);
             if (!ctx->DataAvailable(ptr)) break;
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<90>(ptr));
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // repeated string algorithms = 12;
       case 12:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 98)) {
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 98)) {
           ptr -= 1;
           do {
             ptr += 1;
             auto str = _internal_add_algorithms();
-            ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
-            CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, nullptr));
+            ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
             CHK_(ptr);
+            CHK_(::_pbi::VerifyUTF8(str, nullptr));
             if (!ctx->DataAvailable(ptr)) break;
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<98>(ptr));
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // repeated .valhalla.TripLeg.Closure closures = 13;
       case 13:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 106)) {
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 106)) {
           ptr -= 1;
           do {
             ptr += 1;
@@ -9045,87 +6570,88 @@ const char* TripLeg::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::in
             CHK_(ptr);
             if (!ctx->DataAvailable(ptr)) break;
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<106>(ptr));
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
-      default: {
-      handle_unusual:
-        if ((tag == 0) || ((tag & 7) == 4)) {
-          CHK_(ptr);
-          ctx->SetLastTag(tag);
-          goto success;
-        }
-        ptr = UnknownFieldParse(tag,
-            _internal_metadata_.mutable_unknown_fields<std::string>(),
-            ptr, ctx);
-        CHK_(ptr != nullptr);
-        continue;
-      }
+      default:
+        goto handle_unusual;
     }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<std::string>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
   }  // while
-success:
+message_done:
   return ptr;
 failure:
   ptr = nullptr;
-  goto success;
+  goto message_done;
 #undef CHK_
 }
 
-::PROTOBUF_NAMESPACE_ID::uint8* TripLeg::_InternalSerialize(
-    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+uint8_t* TripLeg::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:valhalla.TripLeg)
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   // uint64 osm_changeset = 1;
-  if (_internal_has_osm_changeset()) {
+  if (this->_internal_osm_changeset() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt64ToArray(1, this->_internal_osm_changeset(), target);
+    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(1, this->_internal_osm_changeset(), target);
   }
 
   // uint64 trip_id = 2;
-  if (_internal_has_trip_id()) {
+  if (this->_internal_trip_id() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt64ToArray(2, this->_internal_trip_id(), target);
+    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(2, this->_internal_trip_id(), target);
   }
 
   // uint32 leg_id = 3;
-  if (_internal_has_leg_id()) {
+  if (this->_internal_leg_id() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt32ToArray(3, this->_internal_leg_id(), target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(3, this->_internal_leg_id(), target);
   }
 
   // uint32 leg_count = 4;
-  if (_internal_has_leg_count()) {
+  if (this->_internal_leg_count() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt32ToArray(4, this->_internal_leg_count(), target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(4, this->_internal_leg_count(), target);
   }
 
   // repeated .valhalla.Location location = 5;
-  for (unsigned int i = 0,
-      n = static_cast<unsigned int>(this->_internal_location_size()); i < n; i++) {
-    target = stream->EnsureSpace(target);
+  for (unsigned i = 0,
+      n = static_cast<unsigned>(this->_internal_location_size()); i < n; i++) {
+    const auto& repfield = this->_internal_location(i);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(5, this->_internal_location(i), target, stream);
+        InternalWriteMessage(5, repfield, repfield.GetCachedSize(), target, stream);
   }
 
   // repeated .valhalla.TripLeg.Node node = 6;
-  for (unsigned int i = 0,
-      n = static_cast<unsigned int>(this->_internal_node_size()); i < n; i++) {
-    target = stream->EnsureSpace(target);
+  for (unsigned i = 0,
+      n = static_cast<unsigned>(this->_internal_node_size()); i < n; i++) {
+    const auto& repfield = this->_internal_node(i);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(6, this->_internal_node(i), target, stream);
+        InternalWriteMessage(6, repfield, repfield.GetCachedSize(), target, stream);
   }
 
   // repeated .valhalla.TripLeg.Admin admin = 7;
-  for (unsigned int i = 0,
-      n = static_cast<unsigned int>(this->_internal_admin_size()); i < n; i++) {
-    target = stream->EnsureSpace(target);
+  for (unsigned i = 0,
+      n = static_cast<unsigned>(this->_internal_admin_size()); i < n; i++) {
+    const auto& repfield = this->_internal_admin(i);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(7, this->_internal_admin(i), target, stream);
+        InternalWriteMessage(7, repfield, repfield.GetCachedSize(), target, stream);
   }
 
   // string shape = 8;
-  if (_internal_has_shape()) {
+  if (!this->_internal_shape().empty()) {
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_shape().data(), static_cast<int>(this->_internal_shape().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
@@ -9136,26 +6662,24 @@ failure:
 
   // .valhalla.BoundingBox bbox = 9;
   if (this->_internal_has_bbox()) {
-    target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(
-        9, _Internal::bbox(this), target, stream);
+      InternalWriteMessage(9, _Internal::bbox(this),
+        _Internal::bbox(this).GetCachedSize(), target, stream);
   }
 
   // .valhalla.TripLeg.ShapeAttributes shape_attributes = 10;
   if (this->_internal_has_shape_attributes()) {
-    target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(
-        10, _Internal::shape_attributes(this), target, stream);
+      InternalWriteMessage(10, _Internal::shape_attributes(this),
+        _Internal::shape_attributes(this).GetCachedSize(), target, stream);
   }
 
   // repeated .valhalla.TripLeg.Incident incidents = 11;
-  for (unsigned int i = 0,
-      n = static_cast<unsigned int>(this->_internal_incidents_size()); i < n; i++) {
-    target = stream->EnsureSpace(target);
+  for (unsigned i = 0,
+      n = static_cast<unsigned>(this->_internal_incidents_size()); i < n; i++) {
+    const auto& repfield = this->_internal_incidents(i);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(11, this->_internal_incidents(i), target, stream);
+        InternalWriteMessage(11, repfield, repfield.GetCachedSize(), target, stream);
   }
 
   // repeated string algorithms = 12;
@@ -9169,11 +6693,11 @@ failure:
   }
 
   // repeated .valhalla.TripLeg.Closure closures = 13;
-  for (unsigned int i = 0,
-      n = static_cast<unsigned int>(this->_internal_closures_size()); i < n; i++) {
-    target = stream->EnsureSpace(target);
+  for (unsigned i = 0,
+      n = static_cast<unsigned>(this->_internal_closures_size()); i < n; i++) {
+    const auto& repfield = this->_internal_closures(i);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(13, this->_internal_closures(i), target, stream);
+        InternalWriteMessage(13, repfield, repfield.GetCachedSize(), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -9188,205 +6712,145 @@ size_t TripLeg::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:valhalla.TripLeg)
   size_t total_size = 0;
 
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // repeated .valhalla.Location location = 5;
   total_size += 1UL * this->_internal_location_size();
-  for (const auto& msg : this->location_) {
+  for (const auto& msg : this->_impl_.location_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
 
   // repeated .valhalla.TripLeg.Node node = 6;
   total_size += 1UL * this->_internal_node_size();
-  for (const auto& msg : this->node_) {
+  for (const auto& msg : this->_impl_.node_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
 
   // repeated .valhalla.TripLeg.Admin admin = 7;
   total_size += 1UL * this->_internal_admin_size();
-  for (const auto& msg : this->admin_) {
+  for (const auto& msg : this->_impl_.admin_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
 
   // repeated .valhalla.TripLeg.Incident incidents = 11;
   total_size += 1UL * this->_internal_incidents_size();
-  for (const auto& msg : this->incidents_) {
+  for (const auto& msg : this->_impl_.incidents_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
 
   // repeated string algorithms = 12;
   total_size += 1 *
-      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(algorithms_.size());
-  for (int i = 0, n = algorithms_.size(); i < n; i++) {
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(_impl_.algorithms_.size());
+  for (int i = 0, n = _impl_.algorithms_.size(); i < n; i++) {
     total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-      algorithms_.Get(i));
+      _impl_.algorithms_.Get(i));
   }
 
   // repeated .valhalla.TripLeg.Closure closures = 13;
   total_size += 1UL * this->_internal_closures_size();
-  for (const auto& msg : this->closures_) {
+  for (const auto& msg : this->_impl_.closures_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+  }
+
+  // string shape = 8;
+  if (!this->_internal_shape().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_shape());
   }
 
   // .valhalla.BoundingBox bbox = 9;
   if (this->_internal_has_bbox()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *bbox_);
+        *_impl_.bbox_);
   }
 
   // .valhalla.TripLeg.ShapeAttributes shape_attributes = 10;
   if (this->_internal_has_shape_attributes()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *shape_attributes_);
+        *_impl_.shape_attributes_);
   }
 
-  switch (has_osm_changeset_case()) {
-    // uint64 osm_changeset = 1;
-    case kOsmChangeset: {
-      total_size += 1 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt64Size(
-          this->_internal_osm_changeset());
-      break;
-    }
-    case HAS_OSM_CHANGESET_NOT_SET: {
-      break;
-    }
+  // uint64 osm_changeset = 1;
+  if (this->_internal_osm_changeset() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_osm_changeset());
   }
-  switch (has_trip_id_case()) {
-    // uint64 trip_id = 2;
-    case kTripId: {
-      total_size += 1 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt64Size(
-          this->_internal_trip_id());
-      break;
-    }
-    case HAS_TRIP_ID_NOT_SET: {
-      break;
-    }
+
+  // uint64 trip_id = 2;
+  if (this->_internal_trip_id() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_trip_id());
   }
-  switch (has_leg_id_case()) {
-    // uint32 leg_id = 3;
-    case kLegId: {
-      total_size += 1 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt32Size(
-          this->_internal_leg_id());
-      break;
-    }
-    case HAS_LEG_ID_NOT_SET: {
-      break;
-    }
+
+  // uint32 leg_id = 3;
+  if (this->_internal_leg_id() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_leg_id());
   }
-  switch (has_leg_count_case()) {
-    // uint32 leg_count = 4;
-    case kLegCount: {
-      total_size += 1 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt32Size(
-          this->_internal_leg_count());
-      break;
-    }
-    case HAS_LEG_COUNT_NOT_SET: {
-      break;
-    }
+
+  // uint32 leg_count = 4;
+  if (this->_internal_leg_count() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_leg_count());
   }
-  switch (has_shape_case()) {
-    // string shape = 8;
-    case kShape: {
-      total_size += 1 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-          this->_internal_shape());
-      break;
-    }
-    case HAS_SHAPE_NOT_SET: {
-      break;
-    }
-  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     total_size += _internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).size();
   }
-  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  int cached_size = ::_pbi::ToCachedSize(total_size);
   SetCachedSize(cached_size);
   return total_size;
 }
 
 void TripLeg::CheckTypeAndMergeFrom(
     const ::PROTOBUF_NAMESPACE_ID::MessageLite& from) {
-  MergeFrom(*::PROTOBUF_NAMESPACE_ID::internal::DownCast<const TripLeg*>(
+  MergeFrom(*::_pbi::DownCast<const TripLeg*>(
       &from));
 }
 
 void TripLeg::MergeFrom(const TripLeg& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:valhalla.TripLeg)
-  GOOGLE_DCHECK_NE(&from, this);
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  TripLeg* const _this = this;
+  // @@protoc_insertion_point(class_specific_merge_from_start:valhalla.TripLeg)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  location_.MergeFrom(from.location_);
-  node_.MergeFrom(from.node_);
-  admin_.MergeFrom(from.admin_);
-  incidents_.MergeFrom(from.incidents_);
-  algorithms_.MergeFrom(from.algorithms_);
-  closures_.MergeFrom(from.closures_);
+  _this->_impl_.location_.MergeFrom(from._impl_.location_);
+  _this->_impl_.node_.MergeFrom(from._impl_.node_);
+  _this->_impl_.admin_.MergeFrom(from._impl_.admin_);
+  _this->_impl_.incidents_.MergeFrom(from._impl_.incidents_);
+  _this->_impl_.algorithms_.MergeFrom(from._impl_.algorithms_);
+  _this->_impl_.closures_.MergeFrom(from._impl_.closures_);
+  if (!from._internal_shape().empty()) {
+    _this->_internal_set_shape(from._internal_shape());
+  }
   if (from._internal_has_bbox()) {
-    _internal_mutable_bbox()->::valhalla::BoundingBox::MergeFrom(from._internal_bbox());
+    _this->_internal_mutable_bbox()->::valhalla::BoundingBox::MergeFrom(
+        from._internal_bbox());
   }
   if (from._internal_has_shape_attributes()) {
-    _internal_mutable_shape_attributes()->::valhalla::TripLeg_ShapeAttributes::MergeFrom(from._internal_shape_attributes());
+    _this->_internal_mutable_shape_attributes()->::valhalla::TripLeg_ShapeAttributes::MergeFrom(
+        from._internal_shape_attributes());
   }
-  switch (from.has_osm_changeset_case()) {
-    case kOsmChangeset: {
-      _internal_set_osm_changeset(from._internal_osm_changeset());
-      break;
-    }
-    case HAS_OSM_CHANGESET_NOT_SET: {
-      break;
-    }
+  if (from._internal_osm_changeset() != 0) {
+    _this->_internal_set_osm_changeset(from._internal_osm_changeset());
   }
-  switch (from.has_trip_id_case()) {
-    case kTripId: {
-      _internal_set_trip_id(from._internal_trip_id());
-      break;
-    }
-    case HAS_TRIP_ID_NOT_SET: {
-      break;
-    }
+  if (from._internal_trip_id() != 0) {
+    _this->_internal_set_trip_id(from._internal_trip_id());
   }
-  switch (from.has_leg_id_case()) {
-    case kLegId: {
-      _internal_set_leg_id(from._internal_leg_id());
-      break;
-    }
-    case HAS_LEG_ID_NOT_SET: {
-      break;
-    }
+  if (from._internal_leg_id() != 0) {
+    _this->_internal_set_leg_id(from._internal_leg_id());
   }
-  switch (from.has_leg_count_case()) {
-    case kLegCount: {
-      _internal_set_leg_count(from._internal_leg_count());
-      break;
-    }
-    case HAS_LEG_COUNT_NOT_SET: {
-      break;
-    }
+  if (from._internal_leg_count() != 0) {
+    _this->_internal_set_leg_count(from._internal_leg_count());
   }
-  switch (from.has_shape_case()) {
-    case kShape: {
-      _internal_set_shape(from._internal_shape());
-      break;
-    }
-    case HAS_SHAPE_NOT_SET: {
-      break;
-    }
-  }
-  _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
 }
 
 void TripLeg::CopyFrom(const TripLeg& from) {
@@ -9402,29 +6866,25 @@ bool TripLeg::IsInitialized() const {
 
 void TripLeg::InternalSwap(TripLeg* other) {
   using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  location_.InternalSwap(&other->location_);
-  node_.InternalSwap(&other->node_);
-  admin_.InternalSwap(&other->admin_);
-  incidents_.InternalSwap(&other->incidents_);
-  algorithms_.InternalSwap(&other->algorithms_);
-  closures_.InternalSwap(&other->closures_);
+  _impl_.location_.InternalSwap(&other->_impl_.location_);
+  _impl_.node_.InternalSwap(&other->_impl_.node_);
+  _impl_.admin_.InternalSwap(&other->_impl_.admin_);
+  _impl_.incidents_.InternalSwap(&other->_impl_.incidents_);
+  _impl_.algorithms_.InternalSwap(&other->_impl_.algorithms_);
+  _impl_.closures_.InternalSwap(&other->_impl_.closures_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.shape_, lhs_arena,
+      &other->_impl_.shape_, rhs_arena
+  );
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(TripLeg, shape_attributes_)
-      + sizeof(TripLeg::shape_attributes_)
-      - PROTOBUF_FIELD_OFFSET(TripLeg, bbox_)>(
-          reinterpret_cast<char*>(&bbox_),
-          reinterpret_cast<char*>(&other->bbox_));
-  swap(has_osm_changeset_, other->has_osm_changeset_);
-  swap(has_trip_id_, other->has_trip_id_);
-  swap(has_leg_id_, other->has_leg_id_);
-  swap(has_leg_count_, other->has_leg_count_);
-  swap(has_shape_, other->has_shape_);
-  swap(_oneof_case_[0], other->_oneof_case_[0]);
-  swap(_oneof_case_[1], other->_oneof_case_[1]);
-  swap(_oneof_case_[2], other->_oneof_case_[2]);
-  swap(_oneof_case_[3], other->_oneof_case_[3]);
-  swap(_oneof_case_[4], other->_oneof_case_[4]);
+      PROTOBUF_FIELD_OFFSET(TripLeg, _impl_.leg_count_)
+      + sizeof(TripLeg::_impl_.leg_count_)
+      - PROTOBUF_FIELD_OFFSET(TripLeg, _impl_.bbox_)>(
+          reinterpret_cast<char*>(&_impl_.bbox_),
+          reinterpret_cast<char*>(&other->_impl_.bbox_));
 }
 
 std::string TripLeg::GetTypeName() const {
@@ -9440,64 +6900,68 @@ class TripRoute::_Internal {
 
 TripRoute::TripRoute(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::MessageLite(arena, is_message_owned),
-  legs_(arena) {
-  SharedCtor();
-  if (!is_message_owned) {
-    RegisterArenaDtor(arena);
-  }
+  : ::PROTOBUF_NAMESPACE_ID::MessageLite(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:valhalla.TripRoute)
 }
 TripRoute::TripRoute(const TripRoute& from)
-  : ::PROTOBUF_NAMESPACE_ID::MessageLite(),
-      legs_(from.legs_) {
+  : ::PROTOBUF_NAMESPACE_ID::MessageLite() {
+  TripRoute* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.legs_){from._impl_.legs_}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:valhalla.TripRoute)
 }
 
-inline void TripRoute::SharedCtor() {
+inline void TripRoute::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.legs_){arena}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
 }
 
 TripRoute::~TripRoute() {
   // @@protoc_insertion_point(destructor:valhalla.TripRoute)
-  if (GetArenaForAllocation() != nullptr) return;
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<std::string>()) {
+  (void)arena;
+    return;
+  }
   SharedDtor();
-  _internal_metadata_.Delete<std::string>();
 }
 
 inline void TripRoute::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.legs_.~RepeatedPtrField();
 }
 
-void TripRoute::ArenaDtor(void* object) {
-  TripRoute* _this = reinterpret_cast< TripRoute* >(object);
-  (void)_this;
-}
-void TripRoute::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
-}
 void TripRoute::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void TripRoute::Clear() {
 // @@protoc_insertion_point(message_clear_start:valhalla.TripRoute)
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  legs_.Clear();
+  _impl_.legs_.Clear();
   _internal_metadata_.Clear<std::string>();
 }
 
-const char* TripRoute::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+const char* TripRoute::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
   while (!ctx->Done(&ptr)) {
-    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
-    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
       // repeated .valhalla.TripLeg legs = 1;
       case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
           ptr -= 1;
           do {
             ptr += 1;
@@ -9505,43 +6969,44 @@ const char* TripRoute::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::
             CHK_(ptr);
             if (!ctx->DataAvailable(ptr)) break;
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
-      default: {
-      handle_unusual:
-        if ((tag == 0) || ((tag & 7) == 4)) {
-          CHK_(ptr);
-          ctx->SetLastTag(tag);
-          goto success;
-        }
-        ptr = UnknownFieldParse(tag,
-            _internal_metadata_.mutable_unknown_fields<std::string>(),
-            ptr, ctx);
-        CHK_(ptr != nullptr);
-        continue;
-      }
+      default:
+        goto handle_unusual;
     }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<std::string>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
   }  // while
-success:
+message_done:
   return ptr;
 failure:
   ptr = nullptr;
-  goto success;
+  goto message_done;
 #undef CHK_
 }
 
-::PROTOBUF_NAMESPACE_ID::uint8* TripRoute::_InternalSerialize(
-    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+uint8_t* TripRoute::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:valhalla.TripRoute)
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   // repeated .valhalla.TripLeg legs = 1;
-  for (unsigned int i = 0,
-      n = static_cast<unsigned int>(this->_internal_legs_size()); i < n; i++) {
-    target = stream->EnsureSpace(target);
+  for (unsigned i = 0,
+      n = static_cast<unsigned>(this->_internal_legs_size()); i < n; i++) {
+    const auto& repfield = this->_internal_legs(i);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(1, this->_internal_legs(i), target, stream);
+        InternalWriteMessage(1, repfield, repfield.GetCachedSize(), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -9556,13 +7021,13 @@ size_t TripRoute::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:valhalla.TripRoute)
   size_t total_size = 0;
 
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // repeated .valhalla.TripLeg legs = 1;
   total_size += 1UL * this->_internal_legs_size();
-  for (const auto& msg : this->legs_) {
+  for (const auto& msg : this->_impl_.legs_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
@@ -9570,25 +7035,26 @@ size_t TripRoute::ByteSizeLong() const {
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     total_size += _internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).size();
   }
-  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  int cached_size = ::_pbi::ToCachedSize(total_size);
   SetCachedSize(cached_size);
   return total_size;
 }
 
 void TripRoute::CheckTypeAndMergeFrom(
     const ::PROTOBUF_NAMESPACE_ID::MessageLite& from) {
-  MergeFrom(*::PROTOBUF_NAMESPACE_ID::internal::DownCast<const TripRoute*>(
+  MergeFrom(*::_pbi::DownCast<const TripRoute*>(
       &from));
 }
 
 void TripRoute::MergeFrom(const TripRoute& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:valhalla.TripRoute)
-  GOOGLE_DCHECK_NE(&from, this);
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  TripRoute* const _this = this;
+  // @@protoc_insertion_point(class_specific_merge_from_start:valhalla.TripRoute)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  legs_.MergeFrom(from.legs_);
-  _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
+  _this->_impl_.legs_.MergeFrom(from._impl_.legs_);
+  _this->_internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
 }
 
 void TripRoute::CopyFrom(const TripRoute& from) {
@@ -9605,7 +7071,7 @@ bool TripRoute::IsInitialized() const {
 void TripRoute::InternalSwap(TripRoute* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  legs_.InternalSwap(&other->legs_);
+  _impl_.legs_.InternalSwap(&other->_impl_.legs_);
 }
 
 std::string TripRoute::GetTypeName() const {
@@ -9621,64 +7087,68 @@ class Trip::_Internal {
 
 Trip::Trip(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::MessageLite(arena, is_message_owned),
-  routes_(arena) {
-  SharedCtor();
-  if (!is_message_owned) {
-    RegisterArenaDtor(arena);
-  }
+  : ::PROTOBUF_NAMESPACE_ID::MessageLite(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:valhalla.Trip)
 }
 Trip::Trip(const Trip& from)
-  : ::PROTOBUF_NAMESPACE_ID::MessageLite(),
-      routes_(from.routes_) {
+  : ::PROTOBUF_NAMESPACE_ID::MessageLite() {
+  Trip* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.routes_){from._impl_.routes_}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:valhalla.Trip)
 }
 
-inline void Trip::SharedCtor() {
+inline void Trip::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.routes_){arena}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
 }
 
 Trip::~Trip() {
   // @@protoc_insertion_point(destructor:valhalla.Trip)
-  if (GetArenaForAllocation() != nullptr) return;
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<std::string>()) {
+  (void)arena;
+    return;
+  }
   SharedDtor();
-  _internal_metadata_.Delete<std::string>();
 }
 
 inline void Trip::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.routes_.~RepeatedPtrField();
 }
 
-void Trip::ArenaDtor(void* object) {
-  Trip* _this = reinterpret_cast< Trip* >(object);
-  (void)_this;
-}
-void Trip::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
-}
 void Trip::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void Trip::Clear() {
 // @@protoc_insertion_point(message_clear_start:valhalla.Trip)
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  routes_.Clear();
+  _impl_.routes_.Clear();
   _internal_metadata_.Clear<std::string>();
 }
 
-const char* Trip::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+const char* Trip::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
   while (!ctx->Done(&ptr)) {
-    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
-    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
       // repeated .valhalla.TripRoute routes = 1;
       case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
           ptr -= 1;
           do {
             ptr += 1;
@@ -9686,43 +7156,44 @@ const char* Trip::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::inter
             CHK_(ptr);
             if (!ctx->DataAvailable(ptr)) break;
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
-      default: {
-      handle_unusual:
-        if ((tag == 0) || ((tag & 7) == 4)) {
-          CHK_(ptr);
-          ctx->SetLastTag(tag);
-          goto success;
-        }
-        ptr = UnknownFieldParse(tag,
-            _internal_metadata_.mutable_unknown_fields<std::string>(),
-            ptr, ctx);
-        CHK_(ptr != nullptr);
-        continue;
-      }
+      default:
+        goto handle_unusual;
     }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<std::string>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
   }  // while
-success:
+message_done:
   return ptr;
 failure:
   ptr = nullptr;
-  goto success;
+  goto message_done;
 #undef CHK_
 }
 
-::PROTOBUF_NAMESPACE_ID::uint8* Trip::_InternalSerialize(
-    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+uint8_t* Trip::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:valhalla.Trip)
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   // repeated .valhalla.TripRoute routes = 1;
-  for (unsigned int i = 0,
-      n = static_cast<unsigned int>(this->_internal_routes_size()); i < n; i++) {
-    target = stream->EnsureSpace(target);
+  for (unsigned i = 0,
+      n = static_cast<unsigned>(this->_internal_routes_size()); i < n; i++) {
+    const auto& repfield = this->_internal_routes(i);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(1, this->_internal_routes(i), target, stream);
+        InternalWriteMessage(1, repfield, repfield.GetCachedSize(), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -9737,13 +7208,13 @@ size_t Trip::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:valhalla.Trip)
   size_t total_size = 0;
 
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // repeated .valhalla.TripRoute routes = 1;
   total_size += 1UL * this->_internal_routes_size();
-  for (const auto& msg : this->routes_) {
+  for (const auto& msg : this->_impl_.routes_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
@@ -9751,25 +7222,26 @@ size_t Trip::ByteSizeLong() const {
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     total_size += _internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).size();
   }
-  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  int cached_size = ::_pbi::ToCachedSize(total_size);
   SetCachedSize(cached_size);
   return total_size;
 }
 
 void Trip::CheckTypeAndMergeFrom(
     const ::PROTOBUF_NAMESPACE_ID::MessageLite& from) {
-  MergeFrom(*::PROTOBUF_NAMESPACE_ID::internal::DownCast<const Trip*>(
+  MergeFrom(*::_pbi::DownCast<const Trip*>(
       &from));
 }
 
 void Trip::MergeFrom(const Trip& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:valhalla.Trip)
-  GOOGLE_DCHECK_NE(&from, this);
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  Trip* const _this = this;
+  // @@protoc_insertion_point(class_specific_merge_from_start:valhalla.Trip)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  routes_.MergeFrom(from.routes_);
-  _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
+  _this->_impl_.routes_.MergeFrom(from._impl_.routes_);
+  _this->_internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
 }
 
 void Trip::CopyFrom(const Trip& from) {
@@ -9786,7 +7258,7 @@ bool Trip::IsInitialized() const {
 void Trip::InternalSwap(Trip* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  routes_.InternalSwap(&other->routes_);
+  _impl_.routes_.InternalSwap(&other->_impl_.routes_);
 }
 
 std::string Trip::GetTypeName() const {
@@ -9797,49 +7269,64 @@ std::string Trip::GetTypeName() const {
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace valhalla
 PROTOBUF_NAMESPACE_OPEN
-template<> PROTOBUF_NOINLINE ::valhalla::TripLeg_LaneConnectivity* Arena::CreateMaybeMessage< ::valhalla::TripLeg_LaneConnectivity >(Arena* arena) {
+template<> PROTOBUF_NOINLINE ::valhalla::TripLeg_LaneConnectivity*
+Arena::CreateMaybeMessage< ::valhalla::TripLeg_LaneConnectivity >(Arena* arena) {
   return Arena::CreateMessageInternal< ::valhalla::TripLeg_LaneConnectivity >(arena);
 }
-template<> PROTOBUF_NOINLINE ::valhalla::TripLeg_TrafficSegment* Arena::CreateMaybeMessage< ::valhalla::TripLeg_TrafficSegment >(Arena* arena) {
+template<> PROTOBUF_NOINLINE ::valhalla::TripLeg_TrafficSegment*
+Arena::CreateMaybeMessage< ::valhalla::TripLeg_TrafficSegment >(Arena* arena) {
   return Arena::CreateMessageInternal< ::valhalla::TripLeg_TrafficSegment >(arena);
 }
-template<> PROTOBUF_NOINLINE ::valhalla::TripLeg_Restriction* Arena::CreateMaybeMessage< ::valhalla::TripLeg_Restriction >(Arena* arena) {
+template<> PROTOBUF_NOINLINE ::valhalla::TripLeg_Restriction*
+Arena::CreateMaybeMessage< ::valhalla::TripLeg_Restriction >(Arena* arena) {
   return Arena::CreateMessageInternal< ::valhalla::TripLeg_Restriction >(arena);
 }
-template<> PROTOBUF_NOINLINE ::valhalla::TripLeg_Edge* Arena::CreateMaybeMessage< ::valhalla::TripLeg_Edge >(Arena* arena) {
+template<> PROTOBUF_NOINLINE ::valhalla::TripLeg_Edge*
+Arena::CreateMaybeMessage< ::valhalla::TripLeg_Edge >(Arena* arena) {
   return Arena::CreateMessageInternal< ::valhalla::TripLeg_Edge >(arena);
 }
-template<> PROTOBUF_NOINLINE ::valhalla::TripLeg_IntersectingEdge* Arena::CreateMaybeMessage< ::valhalla::TripLeg_IntersectingEdge >(Arena* arena) {
+template<> PROTOBUF_NOINLINE ::valhalla::TripLeg_IntersectingEdge*
+Arena::CreateMaybeMessage< ::valhalla::TripLeg_IntersectingEdge >(Arena* arena) {
   return Arena::CreateMessageInternal< ::valhalla::TripLeg_IntersectingEdge >(arena);
 }
-template<> PROTOBUF_NOINLINE ::valhalla::TripLeg_Cost* Arena::CreateMaybeMessage< ::valhalla::TripLeg_Cost >(Arena* arena) {
+template<> PROTOBUF_NOINLINE ::valhalla::TripLeg_Cost*
+Arena::CreateMaybeMessage< ::valhalla::TripLeg_Cost >(Arena* arena) {
   return Arena::CreateMessageInternal< ::valhalla::TripLeg_Cost >(arena);
 }
-template<> PROTOBUF_NOINLINE ::valhalla::TripLeg_PathCost* Arena::CreateMaybeMessage< ::valhalla::TripLeg_PathCost >(Arena* arena) {
+template<> PROTOBUF_NOINLINE ::valhalla::TripLeg_PathCost*
+Arena::CreateMaybeMessage< ::valhalla::TripLeg_PathCost >(Arena* arena) {
   return Arena::CreateMessageInternal< ::valhalla::TripLeg_PathCost >(arena);
 }
-template<> PROTOBUF_NOINLINE ::valhalla::TripLeg_Node* Arena::CreateMaybeMessage< ::valhalla::TripLeg_Node >(Arena* arena) {
+template<> PROTOBUF_NOINLINE ::valhalla::TripLeg_Node*
+Arena::CreateMaybeMessage< ::valhalla::TripLeg_Node >(Arena* arena) {
   return Arena::CreateMessageInternal< ::valhalla::TripLeg_Node >(arena);
 }
-template<> PROTOBUF_NOINLINE ::valhalla::TripLeg_Admin* Arena::CreateMaybeMessage< ::valhalla::TripLeg_Admin >(Arena* arena) {
+template<> PROTOBUF_NOINLINE ::valhalla::TripLeg_Admin*
+Arena::CreateMaybeMessage< ::valhalla::TripLeg_Admin >(Arena* arena) {
   return Arena::CreateMessageInternal< ::valhalla::TripLeg_Admin >(arena);
 }
-template<> PROTOBUF_NOINLINE ::valhalla::TripLeg_ShapeAttributes* Arena::CreateMaybeMessage< ::valhalla::TripLeg_ShapeAttributes >(Arena* arena) {
+template<> PROTOBUF_NOINLINE ::valhalla::TripLeg_ShapeAttributes*
+Arena::CreateMaybeMessage< ::valhalla::TripLeg_ShapeAttributes >(Arena* arena) {
   return Arena::CreateMessageInternal< ::valhalla::TripLeg_ShapeAttributes >(arena);
 }
-template<> PROTOBUF_NOINLINE ::valhalla::TripLeg_Incident* Arena::CreateMaybeMessage< ::valhalla::TripLeg_Incident >(Arena* arena) {
+template<> PROTOBUF_NOINLINE ::valhalla::TripLeg_Incident*
+Arena::CreateMaybeMessage< ::valhalla::TripLeg_Incident >(Arena* arena) {
   return Arena::CreateMessageInternal< ::valhalla::TripLeg_Incident >(arena);
 }
-template<> PROTOBUF_NOINLINE ::valhalla::TripLeg_Closure* Arena::CreateMaybeMessage< ::valhalla::TripLeg_Closure >(Arena* arena) {
+template<> PROTOBUF_NOINLINE ::valhalla::TripLeg_Closure*
+Arena::CreateMaybeMessage< ::valhalla::TripLeg_Closure >(Arena* arena) {
   return Arena::CreateMessageInternal< ::valhalla::TripLeg_Closure >(arena);
 }
-template<> PROTOBUF_NOINLINE ::valhalla::TripLeg* Arena::CreateMaybeMessage< ::valhalla::TripLeg >(Arena* arena) {
+template<> PROTOBUF_NOINLINE ::valhalla::TripLeg*
+Arena::CreateMaybeMessage< ::valhalla::TripLeg >(Arena* arena) {
   return Arena::CreateMessageInternal< ::valhalla::TripLeg >(arena);
 }
-template<> PROTOBUF_NOINLINE ::valhalla::TripRoute* Arena::CreateMaybeMessage< ::valhalla::TripRoute >(Arena* arena) {
+template<> PROTOBUF_NOINLINE ::valhalla::TripRoute*
+Arena::CreateMaybeMessage< ::valhalla::TripRoute >(Arena* arena) {
   return Arena::CreateMessageInternal< ::valhalla::TripRoute >(arena);
 }
-template<> PROTOBUF_NOINLINE ::valhalla::Trip* Arena::CreateMaybeMessage< ::valhalla::Trip >(Arena* arena) {
+template<> PROTOBUF_NOINLINE ::valhalla::Trip*
+Arena::CreateMaybeMessage< ::valhalla::Trip >(Arena* arena) {
   return Arena::CreateMessageInternal< ::valhalla::Trip >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE

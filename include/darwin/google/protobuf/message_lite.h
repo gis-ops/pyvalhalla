@@ -39,6 +39,7 @@
 #ifndef GOOGLE_PROTOBUF_MESSAGE_LITE_H__
 #define GOOGLE_PROTOBUF_MESSAGE_LITE_H__
 
+
 #include <climits>
 #include <string>
 
@@ -46,13 +47,16 @@
 #include <google/protobuf/stubs/logging.h>
 #include <google/protobuf/io/coded_stream.h>
 #include <google/protobuf/arena.h>
-#include <google/protobuf/metadata_lite.h>
 #include <google/protobuf/stubs/once.h>
 #include <google/protobuf/port.h>
 #include <google/protobuf/stubs/strutil.h>
+#include <google/protobuf/explicitly_constructed.h>
+#include <google/protobuf/metadata_lite.h>
+#include <google/protobuf/stubs/hash.h>  // TODO(b/211442718): cleanup
 
-
+// clang-format off
 #include <google/protobuf/port_def.inc>
+// clang-format on
 
 #ifdef SWIG
 #error "You cannot SWIG proto headers"
@@ -80,19 +84,13 @@ namespace internal {
 
 class SwapFieldHelper;
 
-// Tag type used to invoke the constinit constructor overload of some classes.
-// Such constructors are internal implementation details of the library.
-struct ConstantInitialized {
-  explicit ConstantInitialized() = default;
-};
-
 // See parse_context.h for explanation
 class ParseContext;
 
 class ExtensionSet;
 class LazyField;
 class RepeatedPtrFieldBase;
-class TcParserBase;
+class TcParser;
 class WireFormatLite;
 class WeakFieldMap;
 
@@ -126,46 +124,10 @@ inline int ToIntSize(size_t size) {
   return static_cast<int>(size);
 }
 
-// This type wraps a variable whose constructor and destructor are explicitly
-// called. It is particularly useful for a global variable, without its
-// constructor and destructor run on start and end of the program lifetime.
-// This circumvents the initial construction order fiasco, while keeping
-// the address of the empty string a compile time constant.
-//
-// Pay special attention to the initialization state of the object.
-// 1. The object is "uninitialized" to begin with.
-// 2. Call Construct() or DefaultConstruct() only if the object is
-//    uninitialized. After the call, the object becomes "initialized".
-// 3. Call get() and get_mutable() only if the object is initialized.
-// 4. Call Destruct() only if the object is initialized.
-//    After the call, the object becomes uninitialized.
-template <typename T>
-class ExplicitlyConstructed {
- public:
-  void DefaultConstruct() { new (&union_) T(); }
-
-  template <typename... Args>
-  void Construct(Args&&... args) {
-    new (&union_) T(std::forward<Args>(args)...);
-  }
-
-  void Destruct() { get_mutable()->~T(); }
-
-  constexpr const T& get() const { return reinterpret_cast<const T&>(union_); }
-  T* get_mutable() { return reinterpret_cast<T*>(&union_); }
-
- private:
-  // Prefer c++14 aligned_storage, but for compatibility this will do.
-  union AlignedUnion {
-    alignas(T) char space[sizeof(T)];
-    int64 align_to_int64;
-    void* align_to_ptr;
-  } union_;
-};
-
 // Default empty string object. Don't use this directly. Instead, call
-// GetEmptyString() to get the reference.
-PROTOBUF_EXPORT extern ExplicitlyConstructed<std::string>
+// GetEmptyString() to get the reference. This empty string is aligned with a
+// minimum alignment of 8 bytes to match the requirement of ArenaStringPtr.
+PROTOBUF_EXPORT extern ExplicitlyConstructedArenaString
     fixed_address_empty_string;
 
 
@@ -215,33 +177,19 @@ class PROTOBUF_EXPORT MessageLite {
 
   // Construct a new instance of the same type.  Ownership is passed to the
   // caller.
-  virtual MessageLite* New() const = 0;
+  MessageLite* New() const { return New(nullptr); }
 
   // Construct a new instance on the arena. Ownership is passed to the caller
-  // if arena is a NULL. Default implementation for backwards compatibility.
-  virtual MessageLite* New(Arena* arena) const;
+  // if arena is a nullptr.
+  virtual MessageLite* New(Arena* arena) const = 0;
 
-  // Same as GetOwningArena.
-  Arena* GetArena() const { return GetOwningArena(); }
-
-  // Get a pointer that may be equal to this message's arena, or may not be.
-  // If the value returned by this method is equal to some arena pointer, then
-  // this message is on that arena; however, if this message is on some arena,
-  // this method may or may not return that arena's pointer. As a tradeoff,
-  // this method may be more efficient than GetArena(). The intent is to allow
-  // underlying representations that use e.g. tagged pointers to sometimes
-  // store the arena pointer directly, and sometimes in a more indirect way,
-  // and allow a fastpath comparison against the arena pointer when it's easy
-  // to obtain.
-  void* GetMaybeArenaPointer() const {
-    return _internal_metadata_.raw_arena_ptr();
-  }
+  // Returns user-owned arena; nullptr if it's message owned.
+  Arena* GetArena() const { return _internal_metadata_.user_arena(); }
 
   // Clear all fields of the message and set them to their default values.
-  // Clear() avoids freeing memory, assuming that any memory allocated
-  // to hold parts of the message will be needed again to hold the next
-  // message.  If you actually want to free the memory used by a Message,
-  // you must delete it.
+  // Clear() assumes that any memory allocated to hold parts of the message
+  // will likely be needed again, so the memory used may not be freed.
+  // To ensure that all memory used by a Message is freed, you must delete it.
   virtual void Clear() = 0;
 
   // Quickly check if all required fields have values set.
@@ -449,7 +397,7 @@ class PROTOBUF_EXPORT MessageLite {
   // must point at a byte array of at least ByteSize() bytes.  Whether to use
   // deterministic serialization, e.g., maps in sorted order, is determined by
   // CodedOutputStream::IsDefaultSerializationDeterministic().
-  uint8* SerializeWithCachedSizesToArray(uint8* target) const;
+  uint8_t* SerializeWithCachedSizesToArray(uint8_t* target) const;
 
   // Returns the result of the last call to ByteSize().  An embedded message's
   // size is needed both to serialize it (because embedded messages are
@@ -468,6 +416,8 @@ class PROTOBUF_EXPORT MessageLite {
                                      internal::ParseContext* /*ctx*/) {
     return nullptr;
   }
+
+  virtual void OnDemandRegisterArenaDtor(Arena* /*arena*/) {}
 
  protected:
   template <typename T>
@@ -489,6 +439,10 @@ class PROTOBUF_EXPORT MessageLite {
   // messages, etc), or owning incoming objects (e.g., set allocated).
   Arena* GetArenaForAllocation() const { return _internal_metadata_.arena(); }
 
+  // Returns true if this message is enabled for message-owned arena (MOA)
+  // trials. No lite messages are eligible for MOA.
+  static bool InMoaTrial() { return false; }
+
   internal::InternalMetadata _internal_metadata_;
 
  public:
@@ -507,9 +461,9 @@ class PROTOBUF_EXPORT MessageLite {
   bool ParseFrom(const T& input);
 
   // Fast path when conditions match (ie. non-deterministic)
-  //  uint8* _InternalSerialize(uint8* ptr) const;
-  virtual uint8* _InternalSerialize(uint8* ptr,
-                                    io::EpsCopyOutputStream* stream) const = 0;
+  //  uint8_t* _InternalSerialize(uint8_t* ptr) const;
+  virtual uint8_t* _InternalSerialize(
+      uint8_t* ptr, io::EpsCopyOutputStream* stream) const = 0;
 
   // Identical to IsInitialized() except that it logs an error message.
   bool IsInitializedWithErrors() const {
@@ -519,9 +473,6 @@ class PROTOBUF_EXPORT MessageLite {
   }
 
  private:
-  // TODO(gerbens) make this a pure abstract function
-  virtual const void* InternalGetTable() const { return NULL; }
-
   friend class FastReflectionMessageMutator;
   friend class FastReflectionStringSetter;
   friend class Message;
@@ -529,7 +480,7 @@ class PROTOBUF_EXPORT MessageLite {
   friend class internal::ExtensionSet;
   friend class internal::LazyField;
   friend class internal::SwapFieldHelper;
-  friend class internal::TcParserBase;
+  friend class internal::TcParser;
   friend class internal::WeakFieldMap;
   friend class internal::WireFormatLite;
 

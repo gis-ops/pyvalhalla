@@ -17,11 +17,10 @@
  *
  **********************************************************************/
 
-#ifndef GEOS_IO_BYTEORDERVALUES_H
-#define GEOS_IO_BYTEORDERVALUES_H
+#pragma once
 
 #include <geos/export.h>
-#include <geos/constants.h>
+#include <cstdint>
 
 namespace geos {
 namespace io {
@@ -43,11 +42,14 @@ public:
         ENDIAN_LITTLE = 1
     };
 
-    static int getInt(const unsigned char* buf, int byteOrder);
-    static void putInt(int intValue, unsigned char* buf, int byteOrder);
+    static int32_t getInt(const unsigned char* buf, int byteOrder);
+    static void putInt(int32_t intValue, unsigned char* buf, int byteOrder);
 
-    static int64 getLong(const unsigned char* buf, int byteOrder);
-    static void putLong(int64 longValue, unsigned char* buf, int byteOrder);
+    static uint32_t getUnsigned(const unsigned char* buf, int byteOrder);
+    static void putUnsigned(uint32_t intValue, unsigned char* buf, int byteOrder);
+
+    static int64_t getLong(const unsigned char* buf, int byteOrder);
+    static void putLong(int64_t longValue, unsigned char* buf, int byteOrder);
 
     static double getDouble(const unsigned char* buf, int byteOrder);
     static void putDouble(double doubleValue, unsigned char* buf, int byteOrder);
@@ -57,4 +59,3 @@ public:
 } // namespace io
 } // namespace geos
 
-#endif // #ifndef GEOS_IO_BYTEORDERVALUES_H

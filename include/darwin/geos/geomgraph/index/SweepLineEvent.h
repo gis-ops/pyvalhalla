@@ -13,9 +13,7 @@
  *
  **********************************************************************/
 
-#ifndef GEOS_GEOMGRAPH_INDEX_SWEEPLINEEVENT_H
-#define GEOS_GEOMGRAPH_INDEX_SWEEPLINEEVENT_H
-
+#pragma once
 
 #include <geos/export.h>
 #include <string>
@@ -82,7 +80,7 @@ public:
     }
 
     void
-    setDeleteEventIndex(size_t newDeleteEventIndex)
+    setDeleteEventIndex(std::size_t newDeleteEventIndex)
     {
         deleteEventIndex = newDeleteEventIndex;
     }
@@ -109,7 +107,7 @@ private:
 
     SweepLineEvent* insertEvent; // null if this is an INSERT_EVENT event
 
-    size_t deleteEventIndex;
+    std::size_t deleteEventIndex;
 };
 
 class GEOS_DLL SweepLineEventLessThen {
@@ -132,10 +130,7 @@ public:
 };
 
 
-
 } // namespace geos.geomgraph.index
 } // namespace geos.geomgraph
 } // namespace geos
-
-#endif
 

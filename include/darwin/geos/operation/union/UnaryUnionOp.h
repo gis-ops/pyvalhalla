@@ -16,8 +16,7 @@
  *
  **********************************************************************/
 
-#ifndef GEOS_OP_UNION_UNARYUNION_H
-#define GEOS_OP_UNION_UNARYUNION_H
+#pragma once
 
 #include <memory>
 #include <vector>
@@ -30,7 +29,6 @@
 #include <geos/geom/util/GeometryExtracter.h>
 #include <geos/operation/overlay/OverlayOp.h>
 #include <geos/operation/union/CascadedPolygonUnion.h>
-//#include <geos/operation/overlay/snap/SnapIfNeededOverlayOp.h>
 
 #ifdef _MSC_VER
 #pragma warning(push)
@@ -199,12 +197,10 @@ private:
     unionNoOpt(const geom::Geometry& g0)
     {
         using geos::operation::overlay::OverlayOp;
-        //using geos::operation::overlay::snap::SnapIfNeededOverlayOp;
 
         if(! empty.get()) {
             empty = geomFact->createEmptyGeometry();
         }
-        //return SnapIfNeededOverlayOp::overlayOp(g0, *empty, OverlayOp::opUNION);
         return unionFunction->Union(&g0, empty.get());
     }
 
@@ -244,4 +240,3 @@ private:
 #pragma warning(pop)
 #endif
 
-#endif

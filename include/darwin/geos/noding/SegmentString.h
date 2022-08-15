@@ -18,8 +18,7 @@
  *
  **********************************************************************/
 
-#ifndef GEOS_NODING_SEGMENTSTRING_H
-#define GEOS_NODING_SEGMENTSTRING_H
+#pragma once
 
 #include <geos/export.h>
 #include <geos/noding/SegmentNodeList.h>
@@ -86,9 +85,9 @@ public:
     }
 
 
-    virtual size_t size() const = 0;
+    virtual std::size_t size() const = 0;
 
-    virtual const geom::Coordinate& getCoordinate(size_t i) const = 0;
+    virtual const geom::Coordinate& getCoordinate(std::size_t i) const = 0;
 
     /// \brief
     /// Return a pointer to the CoordinateSequence associated
@@ -115,6 +114,4 @@ std::ostream& operator<< (std::ostream& os, const SegmentString& ss);
 
 } // namespace geos.noding
 } // namespace geos
-
-#endif
 

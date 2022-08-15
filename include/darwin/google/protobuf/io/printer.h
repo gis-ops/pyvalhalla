@@ -43,6 +43,8 @@
 #include <vector>
 
 #include <google/protobuf/stubs/common.h>
+
+// Must be included last.
 #include <google/protobuf/port_def.inc>
 
 namespace google {
@@ -82,9 +84,9 @@ class AnnotationProtoCollector : public AnnotationCollector {
       : annotation_proto_(annotation_proto) {}
 
   // Override for AnnotationCollector::AddAnnotation.
-  virtual void AddAnnotation(size_t begin_offset, size_t end_offset,
-                             const std::string& file_path,
-                             const std::vector<int>& path) {
+  void AddAnnotation(size_t begin_offset, size_t end_offset,
+                     const std::string& file_path,
+                     const std::vector<int>& path) override {
     typename AnnotationProto::Annotation* annotation =
         annotation_proto_->add_annotation();
     for (int i = 0; i < path.size(); ++i) {
@@ -95,7 +97,7 @@ class AnnotationProtoCollector : public AnnotationCollector {
     annotation->set_end(end_offset);
   }
   // Override for AnnotationCollector::AddAnnotation.
-  virtual void AddAnnotationNew(Annotation& a) {
+  void AddAnnotationNew(Annotation& a) override {
     auto* annotation = annotation_proto_->add_annotation();
     annotation->ParseFromString(a.second);
     annotation->set_begin(a.first.first);

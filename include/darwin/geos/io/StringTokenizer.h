@@ -17,8 +17,7 @@
  *
  **********************************************************************/
 
-#ifndef GEOS_IO_STRINGTOKENIZER_H
-#define GEOS_IO_STRINGTOKENIZER_H
+#pragma once
 
 #include <geos/export.h>
 
@@ -45,8 +44,8 @@ public:
     ~StringTokenizer() {}
     int nextToken();
     int peekNextToken();
-    double getNVal();
-    std::string getSVal();
+    double getNVal() const;
+    std::string getSVal() const;
 private:
     const std::string& str;
     std::string stok;
@@ -65,4 +64,3 @@ private:
 #pragma warning(pop)
 #endif
 
-#endif // #ifndef GEOS_IO_STRINGTOKENIZER_H

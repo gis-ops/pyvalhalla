@@ -13,8 +13,7 @@
  *
  **********************************************************************/
 
-#ifndef GEOS_GEOMGRAPH_INDEX_MONOTONECHAINEDGE_H
-#define GEOS_GEOMGRAPH_INDEX_MONOTONECHAINEDGE_H
+#pragma once
 
 #include <geos/export.h>
 #include <geos/geom/Envelope.h> // for composition
@@ -50,14 +49,14 @@ public:
     MonotoneChainEdge(Edge* newE);
     const geom::CoordinateSequence* getCoordinates();
     std::vector<size_t>& getStartIndexes();
-    double getMinX(size_t chainIndex);
-    double getMaxX(size_t chainIndex);
+    double getMinX(std::size_t chainIndex);
+    double getMaxX(std::size_t chainIndex);
 
     void computeIntersects(const MonotoneChainEdge& mce,
                            SegmentIntersector& si);
 
-    void computeIntersectsForChain(size_t chainIndex0,
-                                   const MonotoneChainEdge& mce, size_t chainIndex1,
+    void computeIntersectsForChain(std::size_t chainIndex0,
+                                   const MonotoneChainEdge& mce, std::size_t chainIndex1,
                                    SegmentIntersector& si);
 
 protected:
@@ -68,12 +67,12 @@ protected:
     std::vector<size_t> startIndex;
     // these envelopes are created once and reused
 private:
-    void computeIntersectsForChain(size_t start0, size_t end0,
+    void computeIntersectsForChain(std::size_t start0, std::size_t end0,
                                    const MonotoneChainEdge& mce,
-                                   size_t start1, size_t end1,
+                                   std::size_t start1, std::size_t end1,
                                    SegmentIntersector& ei);
 
-    bool overlaps(size_t start0, size_t end0, const MonotoneChainEdge& mce, size_t start1, size_t end1);
+    bool overlaps(std::size_t start0, std::size_t end0, const MonotoneChainEdge& mce, std::size_t start1, std::size_t end1);
 
 };
 
@@ -84,6 +83,3 @@ private:
 #ifdef _MSC_VER
 #pragma warning(pop)
 #endif
-
-#endif
-

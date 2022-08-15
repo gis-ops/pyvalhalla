@@ -12,8 +12,7 @@
  *
  **********************************************************************/
 
-#ifndef GEOS_TRIANGULATE_QUADEDGE_QUADEDGEQUARTET_H
-#define GEOS_TRIANGULATE_QUADEDGE_QUADEDGEQUARTET_H
+#pragma once
 
 #include <geos/triangulate/quadedge/QuadEdge.h>
 
@@ -25,7 +24,7 @@ namespace quadedge {
 class GEOS_DLL QuadEdgeQuartet {
 
 public:
-    QuadEdgeQuartet() : e{QuadEdge(0), QuadEdge(1), QuadEdge(2), QuadEdge(3)} {
+    QuadEdgeQuartet() : e{{QuadEdge(0), QuadEdge(1), QuadEdge(2), QuadEdge(3)}} {
         e[0].next = &(e[0]);
         e[1].next = &(e[3]);
         e[2].next = &(e[2]);
@@ -63,5 +62,3 @@ private:
 }
 }
 
-
-#endif

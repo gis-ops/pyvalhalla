@@ -16,8 +16,7 @@
  *
  **********************************************************************/
 
-#ifndef GEOS_ALGORITHM_BOUNDARYNODERULE_H
-#define GEOS_ALGORITHM_BOUNDARYNODERULE_H
+#pragma once
 
 #include <geos/export.h>
 
@@ -45,7 +44,7 @@ namespace algorithm { // geos::algorithm
  * @version 1.7
  *
  * @see operation::relate::RelateOp
- * @see operation::IsSimpleOp
+ * @see operation::valid::IsSimpleOp
  * @see algorithm::PointLocator
  */
 class GEOS_DLL BoundaryNodeRule {
@@ -140,6 +139,4 @@ public:
 
 } // namespace geos::algorithm
 } // namespace geos
-
-#endif // GEOS_ALGORITHM_BOUNDARYNODERULE_H
 

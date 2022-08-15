@@ -18,15 +18,12 @@
  *
  **********************************************************************/
 
-#ifndef GEOS_GEOS_MULTIPOINT_H
-#define GEOS_GEOS_MULTIPOINT_H
+#pragma once
 
 #include <geos/export.h>
 #include <geos/geom/GeometryCollection.h> // for inheritance
 #include <geos/geom/Dimension.h> // for Dimension::DimensionType
 #include <geos/geom/Point.h> // for covariant return type
-
-#include <geos/inline.h>
 
 #include <string>
 #include <vector>
@@ -86,18 +83,14 @@ public:
 
     GeometryTypeId getGeometryTypeId() const override;
 
-    bool equalsExact(const Geometry* other, double tolerance = 0) const override;
-
-    std::unique_ptr<Geometry>
-    clone() const override
+    std::unique_ptr<MultiPoint> clone() const
     {
-        return std::unique_ptr<Geometry>(new MultiPoint(*this));
+        return std::unique_ptr<MultiPoint>(cloneImpl());
     }
 
-    std::unique_ptr<Geometry>
-    reverse() const override
+    std::unique_ptr<MultiPoint> reverse() const
     {
-        return clone();
+        return std::unique_ptr<MultiPoint>(reverseImpl());
     }
 
 protected:
@@ -128,7 +121,11 @@ protected:
 
     MultiPoint(const MultiPoint& mp): GeometryCollection(mp) {}
 
-    const Coordinate* getCoordinateN(size_t n) const;
+    MultiPoint* cloneImpl() const override { return new MultiPoint(*this); }
+
+    MultiPoint* reverseImpl() const override { return new MultiPoint(*this); }
+
+    const Coordinate* getCoordinateN(std::size_t n) const;
 
     int
     getSortIndex() const override
@@ -145,4 +142,3 @@ protected:
 } // namespace geos::geom
 } // namespace geos
 
-#endif // ndef GEOS_GEOS_MULTIPOINT_H

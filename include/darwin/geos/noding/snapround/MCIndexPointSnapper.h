@@ -16,13 +16,10 @@
  *
  **********************************************************************/
 
-#ifndef GEOS_NODING_SNAPROUND_MCINDEXPOINTSNAPPER_H
-#define GEOS_NODING_SNAPROUND_MCINDEXPOINTSNAPPER_H
+#pragma once
 
 #include <cstddef>
 #include <geos/export.h>
-
-#include <geos/inline.h>
 
 // Forward declarations
 namespace geos {
@@ -72,7 +69,7 @@ public:
      * @return `true` if a node was added for this pixel
      */
     bool snap(HotPixel& hotPixel, SegmentString* parentEdge,
-              size_t vertexIndex);
+              std::size_t vertexIndex);
 
     bool
     snap(HotPixel& hotPixel)
@@ -99,4 +96,3 @@ private:
 } // namespace geos::noding
 } // namespace geos
 
-#endif // GEOS_NODING_SNAPROUND_MCINDEXPOINTSNAPPER_H

@@ -16,8 +16,7 @@
  *
  **********************************************************************/
 
-#ifndef GEOS_INDEX_STRTREE_STRTREE_H
-#define GEOS_INDEX_STRTREE_STRTREE_H
+#pragma once
 
 #include <geos/export.h>
 #include <geos/index/strtree/ItemDistance.h>
@@ -99,7 +98,7 @@ private:
      */
     std::vector<BoundableList*>* verticalSlices(
         BoundableList* childBoundables,
-        size_t sliceCount);
+        std::size_t sliceCount);
 
     bool isWithinDistance(BoundablePair* initBndPair, double maxDistance);
 
@@ -176,4 +175,3 @@ public:
 #pragma warning(pop)
 #endif
 
-#endif // GEOS_INDEX_STRTREE_STRTREE_H

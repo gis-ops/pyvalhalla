@@ -17,8 +17,7 @@
  *
  **********************************************************************/
 
-#ifndef GEOS_OP_TOPOLOGYVALIDATIONERROR_H
-#define GEOS_OP_TOPOLOGYVALIDATIONERROR_H
+#pragma once
 
 #include <geos/export.h>
 #include <string>
@@ -52,21 +51,22 @@ public:
         eDuplicatedRings,
         eTooFewPoints,
         eInvalidCoordinate,
-        eRingNotClosed
+        eRingNotClosed,
+        oNoInvalidIntersection = -1
     };
 
     TopologyValidationError(int newErrorType, const geom::Coordinate& newPt);
     TopologyValidationError(int newErrorType);
-    geom::Coordinate& getCoordinate();
-    std::string getMessage();
-    int getErrorType();
-    std::string toString();
+    const geom::Coordinate& getCoordinate() const;
+    std::string getMessage() const;
+    int getErrorType() const;
+    std::string toString() const;
 
 private:
     // Used const char* to reduce dynamic allocations
     static const char* errMsg[];
     int errorType;
-    geom::Coordinate pt;
+    const geom::Coordinate pt;
 };
 
 
@@ -74,4 +74,3 @@ private:
 } // namespace geos.operation
 } // namespace geos
 
-#endif // GEOS_OP_TOPOLOGYVALIDATIONERROR_H

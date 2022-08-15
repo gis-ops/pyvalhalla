@@ -12,12 +12,12 @@
  *
  **********************************************************************/
 
-#ifndef GEOS_GEOM_FIXEDSIZECOORDINATESEQUENCE_H
-#define GEOS_GEOM_FIXEDSIZECOORDINATESEQUENCE_H
+#pragma once
 
 #include <geos/geom/Coordinate.h>
 #include <geos/geom/CoordinateFilter.h>
 #include <geos/geom/CoordinateSequence.h>
+#include <geos/util/IllegalArgumentException.h>
 #include <geos/util.h>
 
 #include <algorithm>
@@ -32,23 +32,23 @@ namespace geom {
     template<size_t N>
     class FixedSizeCoordinateSequence : public CoordinateSequence {
     public:
-        explicit FixedSizeCoordinateSequence(size_t dimension_in = 0) : dimension(dimension_in) {}
+        explicit FixedSizeCoordinateSequence(std::size_t dimension_in = 0) : dimension(dimension_in) {}
 
         std::unique_ptr<CoordinateSequence> clone() const final override {
             auto seq = detail::make_unique<FixedSizeCoordinateSequence<N>>(dimension);
             seq->m_data = m_data;
-            return std::move(seq); // move needed for gcc 4.8
+            return RETURN_UNIQUE_PTR(seq);
         }
 
-        const Coordinate& getAt(size_t i) const final override {
+        const Coordinate& getAt(std::size_t i) const final override {
             return m_data[i];
         }
 
-        void getAt(size_t i, Coordinate& c) const final override {
+        void getAt(std::size_t i, Coordinate& c) const final override {
             c = m_data[i];
         }
 
-        size_t getSize() const final override {
+        std::size_t getSize() const final override {
             return N;
         }
 
@@ -56,11 +56,11 @@ namespace geom {
             return N == 0;
         }
 
-        void setAt(const Coordinate & c, size_t pos) final override {
+        void setAt(const Coordinate & c, std::size_t pos) final override {
             m_data[pos] = c;
         }
 
-        void setOrdinate(size_t index, size_t ordinateIndex, double value) final override
+        void setOrdinate(std::size_t index, std::size_t ordinateIndex, double value) final override
         {
             switch(ordinateIndex) {
                 case CoordinateSequence::X:
@@ -81,7 +81,7 @@ namespace geom {
             }
         }
 
-        size_t getDimension() const final override {
+        std::size_t getDimension() const final override {
             if(dimension != 0) {
                 return dimension;
             }
@@ -105,7 +105,11 @@ namespace geom {
         }
 
         void setPoints(const std::vector<Coordinate> & v) final override {
-            std::copy(v.begin(), v.end(), m_data.begin());
+            assert(v.size() == N);
+            if (N > 0) {
+                std::copy(v.begin(), v.end(), m_data.begin());
+            }
+
         }
 
         void apply_ro(CoordinateFilter* filter) const final override {
@@ -126,5 +130,3 @@ namespace geom {
 
 }
 }
-
-#endif

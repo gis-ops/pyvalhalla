@@ -17,8 +17,7 @@
  *
  **********************************************************************/
 
-#ifndef GEOS_OP_LINEMERGE_LINESEQUENCER_H
-#define GEOS_OP_LINEMERGE_LINESEQUENCER_H
+#pragma once
 
 #include <geos/export.h>
 
@@ -109,9 +108,6 @@ private:
     DirEdgeList* findSequence(planargraph::Subgraph& graph);
 
     void delAll(Sequences&);
-
-    /// return a newly allocated LineString
-    static geom::LineString* reverse(const geom::LineString* line);
 
     /**
      * Builds a geometry ({@link LineString} or {@link MultiLineString} )
@@ -297,5 +293,3 @@ public:
 #ifdef _MSC_VER
 #pragma warning(pop)
 #endif
-
-#endif // GEOS_OP_LINEMERGE_LINESEQUENCER_H

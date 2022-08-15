@@ -12,13 +12,10 @@
  *
  **********************************************************************/
 
-#ifndef GEOS_NODING_SEGMENTINTERSECTOR_H
-#define GEOS_NODING_SEGMENTINTERSECTOR_H
+#pragma once
 
 #include <cstddef>
 #include <geos/export.h>
-
-#include <geos/inline.h>
 
 // Forward declarations
 namespace geos {
@@ -56,8 +53,8 @@ public:
      * being intersected.
      */
     virtual void processIntersections(
-        SegmentString* e0,  size_t segIndex0,
-        SegmentString* e1,  size_t segIndex1) = 0;
+        SegmentString* e0,  std::size_t segIndex0,
+        SegmentString* e1,  std::size_t segIndex1) = 0;
 
     /**
      * \brief
@@ -90,4 +87,3 @@ typedef SegmentIntersector nodingSegmentIntersector;
 } // namespace geos.noding
 } // namespace geos
 
-#endif // GEOS_NODING_SEGMENTINTERSECTOR_H

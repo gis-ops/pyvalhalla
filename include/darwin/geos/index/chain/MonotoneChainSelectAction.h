@@ -16,8 +16,7 @@
  *
  **********************************************************************/
 
-#ifndef GEOS_IDX_CHAIN_MONOTONECHAINSELECTACTION_H
-#define GEOS_IDX_CHAIN_MONOTONECHAINSELECTACTION_H
+#pragma once
 
 #include <geos/export.h>
 #include <geos/geom/LineSegment.h> // composition
@@ -56,7 +55,7 @@ public:
     ~MonotoneChainSelectAction() {}
 
     /// This function can be overridden if the original chain is needed
-    virtual void select(MonotoneChain& mc, size_t start);
+    virtual void select(const MonotoneChain& mc, std::size_t start);
 
     /**
      * This is a convenience function which can be overridden
@@ -72,6 +71,4 @@ public:
 } // namespace geos::index::chain
 } // namespace geos::index
 } // namespace geos
-
-#endif // GEOS_IDX_CHAIN_MONOTONECHAINSELECTACTION_H
 

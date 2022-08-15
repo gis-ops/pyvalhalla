@@ -18,8 +18,7 @@
  *
  **********************************************************************/
 
-#ifndef GEOS_OP_LINEMERGE_EDGESTRING_H
-#define GEOS_OP_LINEMERGE_EDGESTRING_H
+#pragma once
 
 #include <geos/export.h>
 #include <vector>
@@ -33,7 +32,6 @@
 namespace geos {
 namespace geom {
 class GeometryFactory;
-class CoordinateArraySequence;
 class CoordinateSequence;
 class LineString;
 }
@@ -57,7 +55,6 @@ class GEOS_DLL EdgeString {
 private:
     const geom::GeometryFactory* factory;
     std::vector<LineMergeDirectedEdge*> directedEdges;
-    geom::CoordinateArraySequence* coordinates;
     geom::CoordinateSequence* getCoordinates();
 public:
     /**
@@ -88,4 +85,3 @@ public:
 #pragma warning(pop)
 #endif
 
-#endif // GEOS_OP_LINEMERGE_EDGESTRING_H

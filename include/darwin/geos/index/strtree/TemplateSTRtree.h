@@ -306,6 +306,8 @@ public:
     /// @{
 
     bool remove(const BoundsType& itemEnv, const ItemType& item) {
+        build();
+
         if (root == nullptr) {
             return false;
         }
@@ -359,12 +361,12 @@ public:
 
         // begin and end define a range of nodes needing parents
         auto begin = nodes.begin();
-        auto end = nodes.end();
+        auto number = static_cast<size_t>(std::distance(begin, nodes.end()));
 
-        while (std::distance(begin, end) > 1) {
-            createParentNodes(begin, end);
-            begin = end; // parents just added become children in the next round
-            end = nodes.end();
+        while (number > 1) {
+            createParentNodes(begin, number);
+            std::advance(begin, static_cast<long>(number)); // parents just added become children in the next round
+            number = static_cast<size_t>(std::distance(begin, nodes.end()));
         }
 
         assert(finalSize == nodes.size());
@@ -421,22 +423,24 @@ protected:
         return nodesInTree;
     }
 
-    void createParentNodes(const NodeListIterator& begin, const NodeListIterator& end) {
+    void createParentNodes(const NodeListIterator& begin, size_t number) {
         // Arrange child nodes in two dimensions.
         // First, divide them into vertical slices of a given size (left-to-right)
         // Then create nodes within those slices (bottom-to-top)
-        auto numChildren = static_cast<std::size_t>(std::distance(begin, end));
-        auto numSlices = sliceCount(numChildren);
-        std::size_t nodesPerSlice = sliceCapacity(numChildren, numSlices);
+        auto numSlices = sliceCount(number);
+        std::size_t nodesPerSlice = sliceCapacity(number, numSlices);
 
         // We could sort all of the nodes here, but we don't actually need them to be
         // completely sorted. They need to be sorted enough for each node to end up
         // in the right vertical slice, but their relative position within the slice
         // doesn't matter. So we do a partial sort for each slice below instead.
+        auto end = begin + static_cast<long>(number);
         sortNodesX(begin, end);
 
         auto startOfSlice = begin;
         for (decltype(numSlices) j = 0; j < numSlices; j++) {
+            // end iterator is being invalidated at each iteration
+            end = begin + static_cast<long>(number);
             auto nodesRemaining = static_cast<size_t>(std::distance(startOfSlice, end));
             auto nodesInSlice = std::min(nodesRemaining, nodesPerSlice);
             auto endOfSlice = std::next(startOfSlice, static_cast<long>(nodesInSlice));
@@ -536,7 +540,7 @@ protected:
 #endif
 
     template<typename Visitor>
-    void query(const BoundsType& queryEnv,
+    bool query(const BoundsType& queryEnv,
                const Node& node,
                Visitor&& visitor) {
 
@@ -544,15 +548,20 @@ protected:
 
         for (auto *child = node.beginChildren(); child < node.endChildren(); ++child) {
             if (child->boundsIntersect(queryEnv)) {
-                if (child->isLeaf() && !child->isDeleted()) {
-                    if (!visitLeaf(visitor, *child)) {
-                        return;
+                if (child->isLeaf()) {
+                    if (!child->isDeleted()) {
+                        if (!visitLeaf(visitor, *child)) {
+                            return false; // abort query
+                        }
                     }
                 } else {
-                    query(queryEnv, *child, visitor);
+                    if (!query(queryEnv, *child, visitor)) {
+                        return false; // abort query
+                    }
                 }
             }
         }
+        return true; // continue searching
     }
 
     bool remove(const BoundsType& queryEnv,

@@ -26,10 +26,10 @@ if platform.system() == "Windows":
     libraries.extend(["libprotobuf-lite", "valhalla", "libcurl", "zlib", "Ws2_32", "ole32", "Shell32"])
     extra_compile_args.extend(["-DNOMINMAX", "-DWIN32_LEAN_AND_MEAN", "-DNOGDI"])
 else:
-    protobuf_lib = str(THIS_DIR.joinpath("lib", platform.system().lower(), "libprotobuf-lite.a"))
-    libraries.extend([protobuf_lib, "valhalla", "curl", "z"])
+    # protobuf_lib = str(THIS_DIR.joinpath("lib", platform.system().lower(), "libprotobuf-lite.a"))
+    libraries.extend(["protobuf-lite", "valhalla", "curl", "z"])
     extra_link_args.extend(["-lvalhalla", "-lprotobuf-lite", "-lcurl", "-lz"])
-    extra_objects.append(protobuf_lib)
+    # extra_objects.append(protobuf_lib)
 
 # do conan dependency resolution
 # locally there will be 2 conanbuildinfo.json, one here and one in ./upstream/conan_build

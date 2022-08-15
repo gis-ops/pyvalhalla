@@ -12,15 +12,12 @@
  *
  **********************************************************************/
 
-#ifndef GEOS_NODING_NODINGVALIDATOR_H
-#define GEOS_NODING_NODINGVALIDATOR_H
+#pragma once
 
 #include <geos/export.h>
 
 #include <vector>
 #include <iostream>
-
-#include <geos/inline.h>
 
 #include <geos/algorithm/LineIntersector.h>
 //#include <geos/geom/Coordinate.h>
@@ -71,8 +68,8 @@ private:
                                     const SegmentString& ss1);
 
     void checkInteriorIntersections(
-        const SegmentString& e0, size_t segIndex0,
-        const SegmentString& e1, size_t segIndex1);
+        const SegmentString& e0, std::size_t segIndex0,
+        const SegmentString& e1, std::size_t segIndex1);
 
     /**
      * Checks for intersections between an endpoint of a segment string
@@ -110,4 +107,3 @@ public:
 } // namespace geos.noding
 } // namespace geos
 
-#endif // GEOS_NODING_NODINGVALIDATOR_H

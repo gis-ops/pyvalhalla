@@ -19,8 +19,7 @@
  **********************************************************************/
 
 
-#ifndef GEOS_GEOMGRAPH_GEOMETRYGRAPH_H
-#define GEOS_GEOMGRAPH_GEOMETRYGRAPH_H
+#pragma once
 
 #include <geos/export.h>
 #include <map>
@@ -33,8 +32,6 @@
 #include <geos/geomgraph/PlanarGraph.h>
 #include <geos/geomgraph/index/SegmentIntersector.h>
 #include <geos/geom/LineString.h> // for LineStringLT
-
-#include <geos/inline.h>
 
 #ifdef _MSC_VER
 #pragma warning(push)
@@ -101,7 +98,7 @@ private:
      * the index of this geometry as an argument to a spatial function
      * (used for labelling)
      */
-    int argIndex;
+    uint8_t argIndex;
 
     /// Cache for fast responses to getBoundaryPoints
     std::unique_ptr< geom::CoordinateSequence > boundaryPoints;
@@ -129,7 +126,7 @@ private:
 
     void addLineString(const geom::LineString* line);
 
-    void insertPoint(int argIndex, const geom::Coordinate& coord,
+    void insertPoint(uint8_t p_argIndex, const geom::Coordinate& coord,
                      geom::Location onLocation);
 
     /** \brief
@@ -139,9 +136,9 @@ private:
      * This is used to add the boundary
      * points of dim-1 geometries (Curves/MultiCurves).
      */
-    void insertBoundaryPoint(int argIndex, const geom::Coordinate& coord);
+    void insertBoundaryPoint(uint8_t p_argIndex, const geom::Coordinate& coord);
 
-    void addSelfIntersectionNodes(int argIndex);
+    void addSelfIntersectionNodes(uint8_t p_argIndex);
 
     /** \brief
      * Add a node for a self-intersection.
@@ -150,7 +147,7 @@ private:
      * which is a boundary) then insert it as a potential boundary node.
      * Otherwise, just add it as a regular node.
      */
-    void addSelfIntersectionNode(int argIndex,
+    void addSelfIntersectionNode(uint8_t p_argIndex,
                                  const geom::Coordinate& coord, geom::Location loc);
 
     // Declare type as noncopyable
@@ -167,22 +164,25 @@ public:
         const algorithm::BoundaryNodeRule& boundaryNodeRule,
         int boundaryCount);
 
-    GeometryGraph();
+    GeometryGraph(uint8_t newArgIndex, const geom::Geometry* newParentGeom);
 
-    GeometryGraph(int newArgIndex, const geom::Geometry* newParentGeom);
-
-    GeometryGraph(int newArgIndex, const geom::Geometry* newParentGeom,
+    GeometryGraph(uint8_t newArgIndex, const geom::Geometry* newParentGeom,
                   const algorithm::BoundaryNodeRule& boundaryNodeRule);
 
-    ~GeometryGraph() override;
+    ~GeometryGraph() override {};
 
-
-    const geom::Geometry* getGeometry();
+    const geom::Geometry* getGeometry()
+    {
+        return parentGeom;
+    };
 
     /// Returned object is owned by this GeometryGraph
-    std::vector<Node*>* getBoundaryNodes();
+    void getBoundaryNodes(std::vector<Node*>& bdyNodes)
+    {
+        nodes->getBoundaryNodes(static_cast<uint8_t>(argIndex), bdyNodes);
+    };
 
-    void getBoundaryNodes(std::vector<Node*>& bdyNodes);
+    std::vector<Node*>* getBoundaryNodes();
 
     /// Returned object is owned by this GeometryGraph
     geom::CoordinateSequence* getBoundaryPoints();
@@ -218,25 +218,11 @@ public:
         return computeSelfNodes(*li, computeRingSelfNodes, env);
     }
 
-    std::unique_ptr<index::SegmentIntersector>
-    computeSelfNodes(
-        algorithm::LineIntersector* li,
-        bool computeRingSelfNodes,
-        bool isDoneIfProperInt,
-        const geom::Envelope* env = nullptr)
-    {
-        return computeSelfNodes(*li, computeRingSelfNodes, isDoneIfProperInt, env);
-    }
-
     // Quick inline calling the function above, the above should probably
     // be deprecated.
     std::unique_ptr<index::SegmentIntersector> computeSelfNodes(
         algorithm::LineIntersector& li,
         bool computeRingSelfNodes, const geom::Envelope* env = nullptr);
-
-    std::unique_ptr<index::SegmentIntersector> computeSelfNodes(
-        algorithm::LineIntersector& li,
-        bool computeRingSelfNodes, bool isDoneIfProperInt, const geom::Envelope* env = nullptr);
 
     std::unique_ptr<index::SegmentIntersector> computeEdgeIntersections(GeometryGraph* g,
             algorithm::LineIntersector* li, bool includeProper,
@@ -263,9 +249,3 @@ public:
 #ifdef _MSC_VER
 #pragma warning(pop)
 #endif
-
-#ifdef GEOS_INLINE
-# include "geos/geomgraph/GeometryGraph.inl"
-#endif
-
-#endif // ifndef GEOS_GEOMGRAPH_GEOMETRYGRAPH_H

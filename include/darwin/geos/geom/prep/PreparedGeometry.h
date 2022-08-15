@@ -16,8 +16,7 @@
  *
  **********************************************************************/
 
-#ifndef GEOS_GEOM_PREP_PREPAREDGEOMETRY_H
-#define GEOS_GEOM_PREP_PREPAREDGEOMETRY_H
+#pragma once
 
 #include <vector>
 #include <memory>
@@ -216,6 +215,18 @@ public:
      *
      */
     virtual double distance(const geom::Geometry* geom) const = 0;
+
+    /** \brief
+     * Tests whether the base {@link Geometry} is within a given
+     * distance from the given geometry.
+     *
+     * @param geom the Geometry to test the distance to
+     * @param dist the distance value to compare
+     * @return true if this Geometry is within the given distance from
+     * the given Geometry.
+     *
+     */
+    virtual bool isWithinDistance(const geom::Geometry* geom, double dist) const = 0;
 };
 
 
@@ -223,5 +234,3 @@ public:
 } // namespace geos::geom
 } // namespace geos
 
-
-#endif // ndef GEOS_GEOM_PREP_PREPAREDGEOMETRY_H

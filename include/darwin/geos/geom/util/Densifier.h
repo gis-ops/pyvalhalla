@@ -18,8 +18,7 @@
  *
  **********************************************************************/
 
-#ifndef GEOS_DENSIFIER_H
-#define GEOS_DENSIFIER_H
+#pragma once
 
 #include <geos/export.h>
 #include <geos/geom/Geometry.h>
@@ -59,7 +58,7 @@ class GEOS_DLL Densifier {
 public:
     Densifier(const Geometry* inputGeom);
 
-    Geometry::Ptr densify(const Geometry* geom, double distanceTolerance);
+    static Geometry::Ptr densify(const Geometry* geom, double distanceTolerance);
     void setDistanceTolerance(double distanceTolerance);
     Geometry::Ptr getResultGeometry() const;
 
@@ -89,4 +88,3 @@ private:
 #pragma warning(pop)
 #endif
 
-#endif // GEOS_DENSIFIER_H

@@ -17,8 +17,7 @@
  *
  **********************************************************************/
 
-#ifndef GEOS_ALGORITHM_RAYCROSSINGCOUNTER_H
-#define GEOS_ALGORITHM_RAYCROSSINGCOUNTER_H
+#pragma once
 
 #include <geos/export.h>
 #include <geos/geom/Location.h>
@@ -117,7 +116,7 @@ public:
      * @return `true` if the point lies exactly on a segment
      */
     bool
-    isOnSegment()
+    isOnSegment() const
     {
         return isPointOnSegment;
     }
@@ -132,7 +131,7 @@ public:
      *
      * @return the Location of the point
      */
-    geom::Location getLocation();
+    geom::Location getLocation() const;
 
     /** \brief
      * Tests whether the point lies in or on the ring, polygon or
@@ -143,11 +142,9 @@ public:
      *
      * @return `true` if the point lies in or on the supplied polygon
      */
-    bool isPointInPolygon();
+    bool isPointInPolygon() const;
 
 };
 
 } // geos::algorithm
 } // geos
-
-#endif // GEOS_ALGORITHM_RAYCROSSINGCOUNTER_H

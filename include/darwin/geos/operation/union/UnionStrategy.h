@@ -1,7 +1,7 @@
 /**********************************************************************
  *
  * GEOS - Geometry Engine Open Source
- * http://trac.osgeo.org/geos
+ * http://geos.osgeo.org
  *
  * Copyright (C) 2020 Paul Ramsey <pramsey@cleverelephant.ca>
  *
@@ -49,6 +49,9 @@ public:
     * if one is encountered
     */
     virtual std::unique_ptr<geom::Geometry> Union(const geom::Geometry*, const geom::Geometry*) = 0;
+
+    virtual std::unique_ptr<geom::Geometry> Union(std::unique_ptr<geom::Geometry> &&,
+                                                  std::unique_ptr<geom::Geometry> &&);
 
     /**
     * Indicates whether the union function operates using

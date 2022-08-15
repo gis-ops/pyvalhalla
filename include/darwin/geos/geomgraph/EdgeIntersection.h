@@ -19,14 +19,11 @@
  **********************************************************************/
 
 
-#ifndef GEOS_GEOMGRAPH_EDGEINTERSECTION_H
-#define GEOS_GEOMGRAPH_EDGEINTERSECTION_H
+#pragma once
 
 #include <geos/export.h>
 
 #include <geos/geom/Coordinate.h> // for composition and inlines
-
-#include <geos/inline.h>
 
 #include <ostream>
 
@@ -52,10 +49,10 @@ public:
     double dist;
 
     // the index of the containing line segment in the parent edge
-    size_t segmentIndex;
+    std::size_t segmentIndex;
 
     EdgeIntersection(const geom::Coordinate& newCoord,
-                     size_t newSegmentIndex, double newDist)
+                     std::size_t newSegmentIndex, double newDist)
         :
         coord(newCoord),
         dist(newDist),
@@ -63,7 +60,7 @@ public:
     {}
 
     bool
-    isEndPoint(size_t maxSegmentIndex) const
+    isEndPoint(std::size_t maxSegmentIndex) const
     {
         if(segmentIndex == 0 && dist == 0.0) {
             return true;
@@ -116,7 +113,7 @@ operator< (const EdgeIntersection& ei1, const EdgeIntersection& ei2)
         }
 
         // TODO: check if the Coordinate matches, or this will
-        //       be a robustness issue in computin distance
+        //       be a robustness issue in computing distance
         //       See http://trac.osgeo.org/geos/ticket/350
     }
     return false;
@@ -149,7 +146,4 @@ operator<< (std::ostream& os, const EdgeIntersection& e)
 
 } // namespace geos.geomgraph
 } // namespace geos
-
-#endif // ifndef GEOS_GEOMGRAPH_EDGEINTERSECTION_H
-
 

@@ -16,14 +16,12 @@
  *
  **********************************************************************/
 
-#ifndef GEOS_OP_OVERLAY_POINTBUILDER_H
-#define GEOS_OP_OVERLAY_POINTBUILDER_H
+#pragma once
 
 #include <geos/export.h>
 
 #include <geos/geom/GeometryFactory.h> // for inlines
 #include <geos/operation/overlay/OverlayOp.h> // for OpCode enum
-#include <geos/util.h>
 
 #include <vector>
 
@@ -106,4 +104,3 @@ public:
 } // namespace geos::operation
 } // namespace geos
 
-#endif // ndef GEOS_OP_OVERLAY_POINTBUILDER_H

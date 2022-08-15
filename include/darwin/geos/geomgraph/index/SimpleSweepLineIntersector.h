@@ -13,8 +13,7 @@
  *
  **********************************************************************/
 
-#ifndef GEOS_GEOMGRAPH_INDEX_SIMPLESWEEPLINEINTERSECTOR_H
-#define GEOS_GEOMGRAPH_INDEX_SIMPLESWEEPLINEINTERSECTOR_H
+#pragma once
 
 #include <geos/export.h>
 #include <vector>
@@ -81,7 +80,7 @@ private:
 
     void computeIntersections(SegmentIntersector* si);
 
-    void processOverlaps(size_t start, size_t end, SweepLineEvent* ev0,
+    void processOverlaps(std::size_t start, std::size_t end, SweepLineEvent* ev0,
                          SegmentIntersector* si);
 };
 
@@ -92,6 +91,4 @@ private:
 #ifdef _MSC_VER
 #pragma warning(pop)
 #endif
-
-#endif // GEOS_GEOMGRAPH_INDEX_SIMPLESWEEPLINEINTERSECTOR_H
 

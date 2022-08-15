@@ -16,8 +16,7 @@
  *
  **********************************************************************/
 
-#ifndef GEOS_OP_RELATE_EDGEENDBUNDLE_H
-#define GEOS_OP_RELATE_EDGEENDBUNDLE_H
+#pragma once
 
 #include <geos/export.h>
 
@@ -93,15 +92,13 @@ protected:
      *  - otherwise, the attribute is NULL.
      *
      */
-    void computeLabelOn(int geomIndex,
+    void computeLabelOn(uint8_t geomIndex,
                         const algorithm::BoundaryNodeRule& boundaryNodeRule);
 
-    void computeLabelSides(int geomIndex);
-    void computeLabelSide(int geomIndex, int side);
+    void computeLabelSides(uint8_t geomIndex);
+    void computeLabelSide(uint8_t geomIndex, uint32_t side);
 };
 
 } // namespace geos:operation:relate
 } // namespace geos:operation
 } // namespace geos
-
-#endif // GEOS_OP_RELATE_EDGEENDBUNDLE_H

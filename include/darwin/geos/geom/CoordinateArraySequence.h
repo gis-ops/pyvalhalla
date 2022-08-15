@@ -12,15 +12,13 @@
  *
  **********************************************************************/
 
-#ifndef GEOS_GEOM_COORDINATEARRAYSEQUENCE_H
-#define GEOS_GEOM_COORDINATEARRAYSEQUENCE_H
+#pragma once
 
 #include <geos/export.h>
 #include <vector>
 
+#include <geos/geom/CoordinateFilter.h>
 #include <geos/geom/CoordinateSequence.h>
-
-#include <geos/inline.h>
 
 // Forward declarations
 namespace geos {
@@ -48,7 +46,7 @@ public:
     /// Copy Coordinate at position i to Coordinate c
     void getAt(std::size_t i, Coordinate& c) const override;
 
-    size_t getSize() const override;
+    std::size_t getSize() const override;
 
     // See dox in CoordinateSequence.h
     void toVector(std::vector<Coordinate>&) const override;
@@ -123,11 +121,17 @@ public:
 
     void expandEnvelope(Envelope& env) const override;
 
+    void closeRing();
+
     std::size_t getDimension() const override;
 
     void apply_rw(const CoordinateFilter* filter) override;
 
-    void apply_ro(CoordinateFilter* filter) const override;
+    void apply_ro(CoordinateFilter* filter) const override {
+        for(const auto& coord : vect) {
+            filter->filter_ro(&coord);
+        }
+    }
 
 private:
     std::vector<Coordinate> vect;
@@ -140,4 +144,3 @@ typedef CoordinateArraySequence DefaultCoordinateSequence;
 } // namespace geos.geom
 } // namespace geos
 
-#endif // ndef GEOS_GEOM_COORDINATEARRAYSEQUENCE_H

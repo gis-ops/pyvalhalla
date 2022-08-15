@@ -16,8 +16,7 @@
  *
  **********************************************************************/
 
-#ifndef GEOS_OP_DISTANCE_GEOMETRYLOCATION_H
-#define GEOS_OP_DISTANCE_GEOMETRYLOCATION_H
+#pragma once
 
 #include <geos/export.h>
 
@@ -50,7 +49,7 @@ namespace distance { // geos::operation::distance
 class GEOS_DLL GeometryLocation {
 private:
     const geom::Geometry* component;
-    size_t segIndex;
+    std::size_t segIndex;
     bool inside_area;
     geom::Coordinate pt;
 public:
@@ -73,7 +72,7 @@ public:
      * @param pt the coordinate of the location
      */
     GeometryLocation(const geom::Geometry* component,
-                     size_t segIndex, const geom::Coordinate& pt);
+                     std::size_t segIndex, const geom::Coordinate& pt);
 
     /** \brief
      * Constructs a GeometryLocation specifying a point inside an
@@ -98,7 +97,7 @@ public:
      *
      * @return the segment index for the location, or INSIDE_AREA
      */
-    size_t getSegmentIndex();
+    std::size_t getSegmentIndex();
 
     /**
      * Returns the geom::Coordinate of this location.
@@ -117,6 +116,4 @@ public:
 } // namespace geos::operation::distance
 } // namespace geos::operation
 } // namespace geos
-
-#endif // GEOS_OP_DISTANCE_GEOMETRYLOCATION_H
 

@@ -12,13 +12,10 @@
  *
  **********************************************************************/
 
-#ifndef GEOS_GEOM_TRIANGLE_H
-#define GEOS_GEOM_TRIANGLE_H
+#pragma once
 
 #include <geos/export.h>
 #include <geos/geom/Coordinate.h>
-
-#include <geos/inline.h>
 
 namespace geos {
 namespace geom { // geos::geom
@@ -33,11 +30,10 @@ public:
     Coordinate p0, p1, p2;
 
     Triangle(const Coordinate& nP0, const Coordinate& nP1, const Coordinate& nP2)
-        :
-        p0(nP0),
-        p1(nP1),
-        p2(nP2)
-    {}
+        : p0(nP0)
+        , p1(nP1)
+        , p2(nP2) {}
+
 
     /** \brief
      * The inCentre of a triangle is the point which is equidistant
@@ -69,10 +65,112 @@ public:
     void circumcentre(Coordinate& resultPoint);
     void circumcentreDD(Coordinate& resultPoint);
 
+    /** Computes the circumcentre of a triangle. */
+    static const Coordinate circumcentre(
+        const Coordinate& p0, const Coordinate& p1, const Coordinate& p2);
+
     bool isIsoceles();
 
-    /// Computes the circumcentre of a triangle.
-    static const Coordinate circumcentre(const Coordinate& p0, const Coordinate& p1, const Coordinate& p2);
+    /**
+    * Tests whether a triangle is acute. A triangle is acute if all interior
+    * angles are acute. This is a strict test - right triangles will return
+    * <tt>false</tt>. A triangle which is not acute is either right or obtuse.
+    * <p>
+    * Note: this implementation is not robust for angles very close to 90
+    * degrees.
+    *
+    * @param a a vertex of the triangle
+    * @param b a vertex of the triangle
+    * @param c a vertex of the triangle
+    * @return true if the triangle is acute
+    */
+    static bool isAcute(const Coordinate& a, const Coordinate& b, const Coordinate& c);
+
+    /**
+    * Tests whether a triangle is oriented counter-clockwise.
+    *
+    * @param a a vertex of the triangle
+    * @param b a vertex of the triangle
+    * @param c a vertex of the triangle
+    * @return true if the triangle orientation is counter-clockwise
+    */
+    static bool isCCW(const Coordinate& a, const Coordinate& b, const Coordinate& c);
+
+
+    /**
+    * Tests whether a triangle intersects a point.
+    *
+    * @param a a vertex of the triangle
+    * @param b a vertex of the triangle
+    * @param c a vertex of the triangle
+    * @param p the point to test
+    * @return true if the triangle intersects the point
+    */
+    static bool intersects(const Coordinate& a, const Coordinate& b, const Coordinate& c,
+        const Coordinate& p);
+
+
+    /**
+    * Tests whether a triangle intersects a point.
+    * @param p the point to test
+    * @return true if the triangle intersects the point
+    */
+    bool intersects(const Coordinate& p) { return intersects(p0, p1, p2, p); };
+
+    /**
+    * Tests whether this triangle is oriented counter-clockwise.
+    * @return true if the triangle orientation is counter-clockwise
+    */
+    bool isCCW() { return isCCW(p0, p1, p2); };
+
+    /**
+    * Tests whether this triangle is acute.
+    * @return true if this triangle is acute
+    */
+    bool isAcute() { return isAcute(p0, p1, p2); };
+
+    /**
+    * Computes the length of the longest side of a triangle
+    *
+    * @param a  a vertex of the triangle
+    * @param b  a vertex of the triangle
+    * @param c  a vertex of the triangle
+    * @return the length of the longest side of the triangle
+    */
+    static double longestSideLength(
+        const Coordinate& a,
+        const Coordinate& b,
+        const Coordinate& c);
+
+    /**
+    * Compute the length of the perimeter of a triangle
+    *
+    * @param a a vertex of the triangle
+    * @param b a vertex of the triangle
+    * @param c a vertex of the triangle
+    * @return the length of the triangle perimeter
+    */
+    static double length(const Coordinate& a, const Coordinate& b, const Coordinate& c);
+
+    /**
+    * Computes the length of the perimeter of this triangle.
+    *
+    * @return the length of the perimeter
+    */
+    double length() const;
+
+    /**
+    * Computes the 2D area of a triangle. The area value is always non-negative.
+    *
+    * @param a vertex of the triangle
+    * @param b vertex of the triangle
+    * @param c vertex of the triangle
+    * @return the area of the triangle
+    *
+    */
+    static double area(const Coordinate& a, const Coordinate& b, const Coordinate& c);
+
+    double area() const;
 
 private:
 
@@ -95,11 +193,7 @@ private:
 };
 
 
+
 } // namespace geos::geom
 } // namespace geos
 
-//#ifdef GEOS_INLINE
-//# include "geos/geom/Triangle.inl"
-//#endif
-
-#endif // ndef GEOS_GEOM_TRIANGLE_H

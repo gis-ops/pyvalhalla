@@ -18,18 +18,17 @@
  *
  **********************************************************************/
 
-#ifndef GEOS_GEOS_MULTILINESTRING_H
-#define GEOS_GEOS_MULTILINESTRING_H
+#pragma once
 
 #include <geos/export.h>
 #include <geos/geom/GeometryCollection.h> // for inheritance
 #include <geos/geom/Dimension.h>
 #include <geos/geom/LineString.h>
+#include <geos/geom/MultiPoint.h>
 
 #include <string>
 #include <vector>
 
-#include <geos/inline.h>
 
 // Forward declarations
 namespace geos {
@@ -81,9 +80,10 @@ public:
 
     bool isClosed() const;
 
-    bool equalsExact(const Geometry* other, double tolerance = 0) const override;
-
-    std::unique_ptr<Geometry> clone() const override;
+    std::unique_ptr<MultiLineString> clone() const
+    {
+        return std::unique_ptr<MultiLineString>(cloneImpl());
+    };
 
     /**
      * Creates a MultiLineString in the reverse
@@ -94,7 +94,7 @@ public:
      *
      * @return a MultiLineString in the reverse order
      */
-    std::unique_ptr<Geometry> reverse() const override;
+    std::unique_ptr<MultiLineString> reverse() const { return std::unique_ptr<MultiLineString>(reverseImpl()); }
 
 protected:
 
@@ -124,7 +124,13 @@ protected:
     MultiLineString(std::vector<std::unique_ptr<Geometry>> && newLines,
                     const GeometryFactory& newFactory);
 
-    MultiLineString(const MultiLineString& mp);
+    MultiLineString(const MultiLineString& mp)
+        : GeometryCollection(mp)
+        {};
+
+    MultiLineString* cloneImpl() const override { return new MultiLineString(*this); }
+
+    MultiLineString* reverseImpl() const override;
 
     int
     getSortIndex() const override
@@ -134,15 +140,16 @@ protected:
 
 };
 
-#ifdef _MSC_VER
-#pragma warning(pop)
-#endif
 
 } // namespace geos::geom
 } // namespace geos
 
-#ifdef GEOS_INLINE
-# include "geos/geom/MultiLineString.inl"
+
+#ifdef _MSC_VER
+#pragma warning(pop)
 #endif
 
-#endif // ndef GEOS_GEOS_MULTILINESTRING_H
+
+
+
+

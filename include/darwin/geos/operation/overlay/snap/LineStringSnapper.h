@@ -17,8 +17,7 @@
  *
  **********************************************************************/
 
-#ifndef GEOS_OP_OVERLAY_SNAP_LINESTRINGSNAPPER_H
-#define GEOS_OP_OVERLAY_SNAP_LINESTRINGSNAPPER_H
+#pragma once
 
 #include <geos/geom/Coordinate.h>
 #include <geos/geom/CoordinateSequence.h>
@@ -66,7 +65,7 @@ public:
         snapTolerance(nSnapTol),
         allowSnappingToSourceVertices(false)
     {
-        size_t s = srcPts.size();
+        std::size_t s = srcPts.size();
         isClosed = s < 2 ? false : srcPts[0].equals2D(srcPts[s - 1]);
     }
 
@@ -163,6 +162,4 @@ private:
 } // namespace geos::operation::overlay
 } // namespace geos::operation
 } // namespace geos
-
-#endif // GEOS_OP_OVERLAY_SNAP_LINESTRINGSNAPPER_H
 

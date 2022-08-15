@@ -16,8 +16,7 @@
  *
  **********************************************************************/
 
-#ifndef GEOS_INDEXEDFACETDISTANCE_H
-#define GEOS_INDEXEDFACETDISTANCE_H
+#pragma once
 
 #include <geos/operation/distance/FacetSequenceTreeBuilder.h>
 
@@ -99,11 +98,10 @@ public:
     std::vector<geom::Coordinate> nearestPoints(const geom::Geometry* g) const;
 
 private:
-    std::unique_ptr<geos::index::strtree::STRtree> cachedTree;
+    std::unique_ptr<geos::index::strtree::TemplateSTRtree<const FacetSequence*>> cachedTree;
 
 };
 }
 }
 }
 
-#endif //GEOS_INDEXEDFACETDISTANCE_H

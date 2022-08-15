@@ -37,6 +37,7 @@
 #ifndef GOOGLE_PROTOBUF_MAP_H__
 #define GOOGLE_PROTOBUF_MAP_H__
 
+
 #include <functional>
 #include <initializer_list>
 #include <iterator>
@@ -50,16 +51,22 @@
 #include <string_view>
 #endif  // defined(__cpp_lib_string_view)
 
+#if !defined(GOOGLE_PROTOBUF_NO_RDTSC) && defined(__APPLE__)
+#include <mach/mach_time.h>
+#endif
+
 #include <google/protobuf/stubs/common.h>
 #include <google/protobuf/arena.h>
 #include <google/protobuf/generated_enum_util.h>
 #include <google/protobuf/map_type_handler.h>
+#include <google/protobuf/port.h>
 #include <google/protobuf/stubs/hash.h>
 
 #ifdef SWIG
 #error "You cannot SWIG proto headers"
 #endif
 
+// Must be included last.
 #include <google/protobuf/port_def.inc>
 
 namespace google {
@@ -111,6 +118,11 @@ class MapAllocator {
   MapAllocator(const MapAllocator<X>& allocator)  // NOLINT(runtime/explicit)
       : arena_(allocator.arena()) {}
 
+  // MapAllocator does not support alignments beyond 8. Technically we should
+  // support up to std::max_align_t, but this fails with ubsan and tcmalloc
+  // debug allocation logic which assume 8 as default alignment.
+  static_assert(alignof(value_type) <= 8, "");
+
   pointer allocate(size_type n, const void* /* hint */ = nullptr) {
     // If arena is not given, malloc needs to be called which doesn't
     // construct element object.
@@ -118,18 +130,13 @@ class MapAllocator {
       return static_cast<pointer>(::operator new(n * sizeof(value_type)));
     } else {
       return reinterpret_cast<pointer>(
-          Arena::CreateArray<uint8>(arena_, n * sizeof(value_type)));
+          Arena::CreateArray<uint8_t>(arena_, n * sizeof(value_type)));
     }
   }
 
   void deallocate(pointer p, size_type n) {
     if (arena_ == nullptr) {
-#if defined(__GXX_DELETE_WITH_SIZE__) || defined(__cpp_sized_deallocation)
-      ::operator delete(p, n * sizeof(value_type));
-#else
-      (void)n;
-      ::operator delete(p);
-#endif
+      internal::SizedDelete(p, n * sizeof(value_type));
     }
   }
 
@@ -330,7 +337,7 @@ inline size_t SpaceUsedInValues(const void*) { return 0; }
 // std::pair as value_type, we use this class which provides us more control of
 // its process of construction and destruction.
 template <typename Key, typename T>
-struct MapPair {
+struct PROTOBUF_ATTRIBUTE_STANDALONE_DEBUG MapPair {
   using first_type = const Key;
   using second_type = T;
 
@@ -685,43 +692,30 @@ class Map {
       return FindHelper(k).first;
     }
 
-    // Insert the key into the map, if not present. In that case, the value will
-    // be value initialized.
+    // Inserts a new element into the container if there is no element with the
+    // key in the container.
+    // The new element is:
+    //  (1) Constructed in-place with the given args, if mapped_type is not
+    //      arena constructible.
+    //  (2) Constructed in-place with the arena and then assigned with a
+    //      mapped_type temporary constructed with the given args, otherwise.
+    template <typename K, typename... Args>
+    std::pair<iterator, bool> try_emplace(K&& k, Args&&... args) {
+      return ArenaAwareTryEmplace(Arena::is_arena_constructable<mapped_type>(),
+                                  std::forward<K>(k),
+                                  std::forward<Args>(args)...);
+    }
+
+    // Inserts the key into the map, if not present. In that case, the value
+    // will be value initialized.
     template <typename K>
     std::pair<iterator, bool> insert(K&& k) {
-      std::pair<const_iterator, size_type> p = FindHelper(k);
-      // Case 1: key was already present.
-      if (p.first.node_ != nullptr)
-        return std::make_pair(iterator(p.first), false);
-      // Case 2: insert.
-      if (ResizeIfLoadIsOutOfRange(num_elements_ + 1)) {
-        p = FindHelper(k);
-      }
-      const size_type b = p.second;  // bucket number
-      Node* node;
-      // If K is not key_type, make the conversion to key_type explicit.
-      using TypeToInit = typename std::conditional<
-          std::is_same<typename std::decay<K>::type, key_type>::value, K&&,
-          key_type>::type;
-      if (alloc_.arena() == nullptr) {
-        node = new Node{value_type(static_cast<TypeToInit>(std::forward<K>(k))),
-                        nullptr};
-      } else {
-        node = Alloc<Node>(1);
-        Arena::CreateInArenaStorage(
-            const_cast<Key*>(&node->kv.first), alloc_.arena(),
-            static_cast<TypeToInit>(std::forward<K>(k)));
-        Arena::CreateInArenaStorage(&node->kv.second, alloc_.arena());
-      }
-
-      iterator result = InsertUnique(b, node);
-      ++num_elements_;
-      return std::make_pair(result, true);
+      return try_emplace(std::forward<K>(k));
     }
 
     template <typename K>
     value_type& operator[](K&& k) {
-      return *insert(std::forward<K>(k)).first;
+      return *try_emplace(std::forward<K>(k)).first;
     }
 
     void erase(iterator it) {
@@ -763,6 +757,79 @@ class Map {
     }
 
    private:
+    template <typename K, typename... Args>
+    std::pair<iterator, bool> TryEmplaceInternal(K&& k, Args&&... args) {
+      std::pair<const_iterator, size_type> p = FindHelper(k);
+      // Case 1: key was already present.
+      if (p.first.node_ != nullptr)
+        return std::make_pair(iterator(p.first), false);
+      // Case 2: insert.
+      if (ResizeIfLoadIsOutOfRange(num_elements_ + 1)) {
+        p = FindHelper(k);
+      }
+      const size_type b = p.second;  // bucket number
+      // If K is not key_type, make the conversion to key_type explicit.
+      using TypeToInit = typename std::conditional<
+          std::is_same<typename std::decay<K>::type, key_type>::value, K&&,
+          key_type>::type;
+      Node* node = Alloc<Node>(1);
+      // Even when arena is nullptr, CreateInArenaStorage is still used to
+      // ensure the arena of submessage will be consistent. Otherwise,
+      // submessage may have its own arena when message-owned arena is enabled.
+      // Note: This only works if `Key` is not arena constructible.
+      Arena::CreateInArenaStorage(const_cast<Key*>(&node->kv.first),
+                                  alloc_.arena(),
+                                  static_cast<TypeToInit>(std::forward<K>(k)));
+      // Note: if `T` is arena constructible, `Args` needs to be empty.
+      Arena::CreateInArenaStorage(&node->kv.second, alloc_.arena(),
+                                  std::forward<Args>(args)...);
+
+      iterator result = InsertUnique(b, node);
+      ++num_elements_;
+      return std::make_pair(result, true);
+    }
+
+    // A helper function to perform an assignment of `mapped_type`.
+    // If the first argument is true, then it is a regular assignment.
+    // Otherwise, we first create a temporary and then perform an assignment.
+    template <typename V>
+    static void AssignMapped(std::true_type, mapped_type& mapped, V&& v) {
+      mapped = std::forward<V>(v);
+    }
+    template <typename... Args>
+    static void AssignMapped(std::false_type, mapped_type& mapped,
+                             Args&&... args) {
+      mapped = mapped_type(std::forward<Args>(args)...);
+    }
+
+    // Case 1: `mapped_type` is arena constructible. A temporary object is
+    // created and then (if `Args` are not empty) assigned to a mapped value
+    // that was created with the arena.
+    template <typename K>
+    std::pair<iterator, bool> ArenaAwareTryEmplace(std::true_type, K&& k) {
+      // case 1.1: "default" constructed (e.g. from arena only).
+      return TryEmplaceInternal(std::forward<K>(k));
+    }
+    template <typename K, typename... Args>
+    std::pair<iterator, bool> ArenaAwareTryEmplace(std::true_type, K&& k,
+                                                   Args&&... args) {
+      // case 1.2: "default" constructed + copy/move assignment
+      auto p = TryEmplaceInternal(std::forward<K>(k));
+      if (p.second) {
+        AssignMapped(std::is_same<void(typename std::decay<Args>::type...),
+                                  void(mapped_type)>(),
+                     p.first->second, std::forward<Args>(args)...);
+      }
+      return p;
+    }
+    // Case 2: `mapped_type` is not arena constructible. Using in-place
+    // construction.
+    template <typename... Args>
+    std::pair<iterator, bool> ArenaAwareTryEmplace(std::false_type,
+                                                   Args&&... args) {
+      return TryEmplaceInternal(std::forward<Args>(args)...);
+    }
+
     const_iterator find(const Key& k, TreeIterator* it) const {
       return FindHelper(k, it).first;
     }
@@ -1026,12 +1093,12 @@ class Map {
     size_type BucketNumber(const K& k) const {
       // We xor the hash value against the random seed so that we effectively
       // have a random hash function.
-      uint64 h = hash_function()(k) ^ seed_;
+      uint64_t h = hash_function()(k) ^ seed_;
 
       // We use the multiplication method to determine the bucket number from
       // the hash value. The constant kPhi (suggested by Knuth) is roughly
       // (sqrt(5) - 1) / 2 * 2^64.
-      constexpr uint64 kPhi = uint64{0x9e3779b97f4a7c15};
+      constexpr uint64_t kPhi = uint64_t{0x9e3779b97f4a7c15};
       return ((kPhi * h) >> 32) & (num_buckets_ - 1);
     }
 
@@ -1071,7 +1138,7 @@ class Map {
 
     void** CreateEmptyTable(size_type n) {
       GOOGLE_DCHECK(n >= kMinTableSize);
-      GOOGLE_DCHECK_EQ(n & (n - 1), 0);
+      GOOGLE_DCHECK_EQ(n & (n - 1), 0u);
       void** result = Alloc<void*>(n);
       memset(result, 0, n * sizeof(result[0]));
       return result;
@@ -1082,13 +1149,25 @@ class Map {
       // We get a little bit of randomness from the address of the map. The
       // lower bits are not very random, due to alignment, so we discard them
       // and shift the higher bits into their place.
-      size_type s = reinterpret_cast<uintptr_t>(this) >> 12;
-#if defined(__x86_64__) && defined(__GNUC__) && \
-    !defined(GOOGLE_PROTOBUF_NO_RDTSC)
-      uint32 hi, lo;
+      size_type s = reinterpret_cast<uintptr_t>(this) >> 4;
+#if !defined(GOOGLE_PROTOBUF_NO_RDTSC)
+#if defined(__APPLE__)
+      // Use a commpage-based fast time function on Apple environments (MacOS,
+      // iOS, tvOS, watchOS, etc).
+      s += mach_absolute_time();
+#elif defined(__x86_64__) && defined(__GNUC__)
+      uint32_t hi, lo;
       asm volatile("rdtsc" : "=a"(lo), "=d"(hi));
-      s += ((static_cast<uint64>(hi) << 32) | lo);
+      s += ((static_cast<uint64_t>(hi) << 32) | lo);
+#elif defined(__aarch64__) && defined(__GNUC__)
+      // There is no rdtsc on ARMv8. CNTVCT_EL0 is the virtual counter of the
+      // system timer. It runs at a different frequency than the CPU's, but is
+      // the best source of time-based entropy we get.
+      uint64_t virtual_timer_value;
+      asm volatile("mrs %0, cntvct_el0" : "=r"(virtual_timer_value));
+      s += virtual_timer_value;
 #endif
+#endif  // !defined(GOOGLE_PROTOBUF_NO_RDTSC)
       return s;
     }
 
@@ -1266,21 +1345,26 @@ class Map {
   }
 
   // insert
-  std::pair<iterator, bool> insert(const value_type& value) {
-    std::pair<typename InnerMap::iterator, bool> p =
-        elements_.insert(value.first);
-    if (p.second) {
-      p.first->second = value.second;
-    }
+  template <typename K, typename... Args>
+  std::pair<iterator, bool> try_emplace(K&& k, Args&&... args) {
+    auto p =
+        elements_.try_emplace(std::forward<K>(k), std::forward<Args>(args)...);
     return std::pair<iterator, bool>(iterator(p.first), p.second);
+  }
+  std::pair<iterator, bool> insert(const value_type& value) {
+    return try_emplace(value.first, value.second);
+  }
+  std::pair<iterator, bool> insert(value_type&& value) {
+    return try_emplace(value.first, std::move(value.second));
+  }
+  template <typename... Args>
+  std::pair<iterator, bool> emplace(Args&&... args) {
+    return insert(value_type(std::forward<Args>(args)...));
   }
   template <class InputIt>
   void insert(InputIt first, InputIt last) {
-    for (InputIt it = first; it != last; ++it) {
-      iterator exist_it = find(it->first);
-      if (exist_it == end()) {
-        operator[](it->first) = it->second;
-      }
+    for (; first != last; ++first) {
+      try_emplace(first->first, first->second);
     }
   }
   void insert(std::initializer_list<value_type> values) {

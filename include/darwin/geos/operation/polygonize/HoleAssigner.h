@@ -16,11 +16,10 @@
  *
  **********************************************************************/
 
-#ifndef GEOS_OP_POLYGONIZE_HOLEASSIGNER_H
-#define GEOS_OP_POLYGONIZE_HOLEASSIGNER_H
+#pragma once
 
 #include <geos/operation/polygonize/EdgeRing.h>
-#include <geos/index/strtree/STRtree.h>
+#include <geos/index/strtree/TemplateSTRtree.h>
 
 #include <vector>
 
@@ -58,10 +57,9 @@ private:
     void buildIndex();
 
     std::vector<EdgeRing*>& m_shells;
-    geos::index::strtree::STRtree m_shellIndex;
+    geos::index::strtree::TemplateSTRtree<EdgeRing*> m_shellIndex;
 };
 }
 }
 }
 
-#endif

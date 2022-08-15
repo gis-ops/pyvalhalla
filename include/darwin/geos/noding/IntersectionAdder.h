@@ -16,16 +16,13 @@
  *
  **********************************************************************/
 
-#ifndef GEOS_NODING_INTERSECTIONADDER_H
-#define GEOS_NODING_INTERSECTIONADDER_H
+#pragma once
 
 #include <geos/export.h>
 
 #include <vector>
 #include <iostream>
 #include <cstdlib> // for abs()
-
-#include <geos/inline.h>
 
 #include <geos/geom/Coordinate.h>
 #include <geos/noding/SegmentIntersector.h> // for inheritance
@@ -48,7 +45,7 @@ namespace noding { // geos.noding
  * and adds them to each string.
  *
  * The SegmentIntersector is passed to a Noder.
- * The NodedSegmentString::addIntersections(algorithm::LineIntersector* li, size_t segmentIndex, size_t geomIndex)
+ * The NodedSegmentString::addIntersections(algorithm::LineIntersector* li, std::size_t segmentIndex, std::size_t geomIndex)
  * method is called whenever the Noder
  * detects that two SegmentStrings *might* intersect.
  * This class is an example of the *Strategy* pattern.
@@ -80,8 +77,8 @@ private:
      * Note that closed edges require a special check for the point
      * shared by the beginning and end segments.
      */
-    bool isTrivialIntersection(const SegmentString* e0, size_t segIndex0,
-                               const SegmentString* e1, size_t segIndex1);
+    bool isTrivialIntersection(const SegmentString* e0, std::size_t segIndex0,
+                               const SegmentString* e1, std::size_t segIndex1);
 
     // Declare type as noncopyable
     IntersectionAdder(const IntersectionAdder& other) = delete;
@@ -177,12 +174,12 @@ public:
      * intersect (e.g. by an disjoint envelope test).
      */
     void processIntersections(
-        SegmentString* e0,  size_t segIndex0,
-        SegmentString* e1,  size_t segIndex1) override;
+        SegmentString* e0,  std::size_t segIndex0,
+        SegmentString* e1,  std::size_t segIndex1) override;
 
 
     static bool
-    isAdjacentSegments(size_t i1, size_t i2)
+    isAdjacentSegments(std::size_t i1, std::size_t i2)
     {
         return (i1 > i2 ? i1 - i2 : i2 - i1) == 1;
     }
@@ -203,4 +200,3 @@ public:
 } // namespace geos.noding
 } // namespace geos
 
-#endif // GEOS_NODING_INTERSECTIONADDER_H

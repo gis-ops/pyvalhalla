@@ -17,8 +17,7 @@
  *
  **********************************************************************/
 
-#ifndef GEOS_OP_BUFFER_OFFSETSEGMENTSTRING_H
-#define GEOS_OP_BUFFER_OFFSETSEGMENTSTRING_H
+#pragma once
 
 #include <geos/geom/Coordinate.h> // for inlines
 #include <geos/geom/CoordinateSequence.h> // for inlines
@@ -144,12 +143,12 @@ public:
     addPts(const geom::CoordinateSequence& pts, bool isForward)
     {
         if(isForward) {
-            for(size_t i = 0, n = pts.size(); i < n; ++i) {
+            for(std::size_t i = 0, n = pts.size(); i < n; ++i) {
                 addPt(pts[i]);
             }
         }
         else {
-            for(size_t i = pts.size(); i > 0; --i) {
+            for(std::size_t i = pts.size(); i > 0; --i) {
                 addPt(pts[i - 1]);
             }
         }
@@ -214,7 +213,4 @@ operator<< (std::ostream& os,
 } // namespace geos.operation.buffer
 } // namespace geos.operation
 } // namespace geos
-
-
-#endif // ndef GEOS_OP_BUFFER_OFFSETSEGMENTSTRING_H
 

@@ -12,11 +12,11 @@
  *
  **********************************************************************/
 
-#ifndef GEOS_NODING_NODINGINTERSECTIONFINDER_H
-#define GEOS_NODING_NODINGINTERSECTIONFINDER_H
+#pragma once
 
 #include <geos/noding/SegmentIntersector.h> // for inheritance
 #include <geos/geom/Coordinate.h> // for composition
+#include <geos/noding/SegmentString.h>
 
 #include <vector>
 
@@ -152,8 +152,8 @@ public:
      * (e.g. by an disjoint envelope test).
      */
     void processIntersections(
-        SegmentString* e0,  size_t segIndex0,
-        SegmentString* e1,  size_t segIndex1) override;
+        SegmentString* e0,  std::size_t segIndex0,
+        SegmentString* e1,  std::size_t segIndex1) override;
 
     bool
     isDone() const override
@@ -164,7 +164,7 @@ public:
 private:
     algorithm::LineIntersector& li;
     geom::Coordinate interiorIntersection;
-    size_t intersectionCount;
+    std::size_t intersectionCount;
     bool isCheckEndSegmentsOnly;
     bool findAllIntersections;
     std::vector<geom::Coordinate> intSegments;
@@ -183,9 +183,21 @@ private:
      * @param isEnd1 true if vertex is a segmentString endpoint
      * @return true if an intersection is found
     */
-    bool isInteriorVertexIntersection(
+    static bool isInteriorVertexIntersection(
         const geom::Coordinate& p0, const geom::Coordinate& p1,
-        bool isEnd0, bool isEnd1);
+        bool isEnd0, bool isEnd1)
+    {
+        // Intersections between endpoints are valid nodes, so not reported
+        if (isEnd0 && isEnd1) {
+            return false;
+        }
+
+        if (p0.equals2D(p1)) {
+            return true;
+        }
+
+        return false;
+    };
 
     /** \brief
      * Tests if an intersection occurs between a SegmentString interior vertex and another vertex.
@@ -203,10 +215,25 @@ private:
      * @param isEnd11 true if vertex is a segmentString endpoint
      * @return true if an intersection is found
      */
-    bool isInteriorVertexIntersection(
+    static bool isInteriorVertexIntersection(
         const geom::Coordinate& p00, const geom::Coordinate& p01,
         const geom::Coordinate& p10, const geom::Coordinate& p11,
-        bool isEnd00, bool isEnd01, bool isEnd10, bool isEnd11);
+        bool isEnd00, bool isEnd01, bool isEnd10, bool isEnd11)
+    {
+        if (isInteriorVertexIntersection(p00, p10, isEnd00, isEnd10)) {
+            return true;
+        }
+        if (isInteriorVertexIntersection(p00, p11, isEnd00, isEnd11)) {
+            return true;
+        }
+        if (isInteriorVertexIntersection(p01, p10, isEnd01, isEnd10)) {
+            return true;
+        }
+        if (isInteriorVertexIntersection(p01, p11, isEnd01, isEnd11)) {
+            return true;
+        }
+        return false;
+    };
 
     /** \brief
      * Tests whether a segment in a SegmentString is an end segment.
@@ -216,12 +243,20 @@ private:
      * @param index the index of a segment in the segment string
      * @return true if the segment is an end segment
      */
-    bool isEndSegment(const SegmentString* segStr, size_t index);
-
+    static bool isEndSegment(const SegmentString* segStr, std::size_t index)
+    {
+        if (index == 0) {
+            return true;
+        }
+        if (index >= segStr->size() - 2) {
+            return true;
+        }
+        return false;
+    };
 
 };
 
 } // namespace geos.noding
 } // namespace geos
 
-#endif // GEOS_NODING_NODINGINTERSECTIONFINDER_H
+

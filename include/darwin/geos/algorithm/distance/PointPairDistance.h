@@ -16,8 +16,7 @@
  *
  **********************************************************************/
 
-#ifndef GEOS_ALGORITHM_DISTANCE_POINTPAIRDISTANCE_H
-#define GEOS_ALGORITHM_DISTANCE_POINTPAIRDISTANCE_H
+#pragma once
 
 #include <geos/constants.h> // for DoubleNotANumber
 #include <geos/geom/Coordinate.h> // for inlines
@@ -71,7 +70,7 @@ public:
     }
 
     const geom::Coordinate&
-    getCoordinate(size_t i) const
+    getCoordinate(std::size_t i) const
     {
         assert(i < pt.size());
         return pt[i];
@@ -149,6 +148,4 @@ private:
 } // geos::algorithm::distance
 } // geos::algorithm
 } // geos
-
-#endif // GEOS_ALGORITHM_DISTANCE_POINTPAIRDISTANCE_H
 

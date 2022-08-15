@@ -17,23 +17,21 @@
  *
  **********************************************************************/
 
-#ifndef GEOS_GEOM_GEOMETRYFACTORY_H
-#define GEOS_GEOM_GEOMETRYFACTORY_H
+#pragma once
 
 #include <geos/geom/Geometry.h>
 #include <geos/geom/GeometryCollection.h>
+#include <geos/geom/GeometryFactory.h>
 #include <geos/geom/MultiPoint.h>
 #include <geos/geom/MultiLineString.h>
 #include <geos/geom/MultiPolygon.h>
 #include <geos/geom/PrecisionModel.h>
+#include <geos/util/IllegalArgumentException.h>
 #include <geos/export.h>
-#include <geos/inline.h>
-#include <geos/util.h>
 
 #include <vector>
 #include <memory>
 #include <cassert>
-#include <geos/util/IllegalArgumentException.h>
 
 namespace geos {
 namespace geom {
@@ -161,7 +159,10 @@ public:
     /// \brief
     /// Returns the PrecisionModel that Geometries created by this
     /// factory will be associated with.
-    const PrecisionModel* getPrecisionModel() const;
+    const PrecisionModel* getPrecisionModel() const
+    {
+        return &precisionModel;
+    };
 
     /// Creates an EMPTY Point
     std::unique_ptr<Point> createPoint(std::size_t coordinateDimension = 2) const;
@@ -238,6 +239,9 @@ public:
     std::unique_ptr<LinearRing> createLinearRing(
         std::unique_ptr<CoordinateSequence> && newCoords) const;
 
+    std::unique_ptr<LinearRing> createLinearRing(
+        std::vector<Coordinate> && coordinates) const;
+
     /// Construct a LinearRing with a deep-copy of given arguments
     LinearRing* createLinearRing(
         const CoordinateSequence& coordinates) const;
@@ -280,6 +284,9 @@ public:
     std::unique_ptr<Polygon> createPolygon(std::unique_ptr<LinearRing> && shell,
                                            std::vector<std::unique_ptr<LinearRing>> && holes) const;
 
+    /// Construct a Polygon from a Coordinate vector, taking ownership of the vector
+    std::unique_ptr<Polygon> createPolygon(std::vector<Coordinate> && coords) const;
+
     /// Construct a Polygon with a deep-copy of given arguments
     Polygon* createPolygon(const LinearRing& shell,
                            const std::vector<LinearRing*>& holes) const;
@@ -295,6 +302,9 @@ public:
 
     std::unique_ptr<LineString> createLineString(
         std::unique_ptr<CoordinateSequence> && coordinates) const;
+
+    std::unique_ptr<LineString> createLineString(
+        std::vector<Coordinate> && coordinates) const;
 
     /// Construct a LineString with a deep-copy of given argument
     LineString* createLineString(
@@ -353,7 +363,7 @@ public:
     //
     /// Will clone the geometries accessible trough the iterator.
     ///
-    /// @tparam T an iterator yelding something which casts to const Geometry*
+    /// @tparam T an iterator yielding something which casts to const Geometry*
     /// @param from start iterator
     /// @param toofar end iterator
     ///
@@ -362,7 +372,7 @@ public:
     buildGeometry(T from, T toofar) const
     {
         bool isHeterogeneous = false;
-        size_t count = 0;
+        std::size_t count = 0;
         int geomClass = -1;
         for(T i = from; i != toofar; ++i) {
             ++count;
@@ -420,12 +430,18 @@ public:
      */
     Geometry* buildGeometry(const std::vector<const Geometry*>& geoms) const;
 
-    int getSRID() const;
+    int getSRID() const
+    {
+        return SRID;
+    };
 
     /// \brief
     /// Returns the CoordinateSequenceFactory associated
     /// with this GeometryFactory
-    const CoordinateSequenceFactory* getCoordinateSequenceFactory() const;
+    const CoordinateSequenceFactory* getCoordinateSequenceFactory() const
+    {
+        return coordinateListFactory;
+    };
 
     /// Returns a clone of given Geometry.
     Geometry* createGeometry(const Geometry* g) const;
@@ -523,8 +539,8 @@ private:
 } // namespace geos::geom
 } // namespace geos
 
-#ifdef GEOS_INLINE
-# include "geos/geom/GeometryFactory.inl"
-#endif
 
-#endif // ndef GEOS_GEOM_GEOMETRYFACTORY_H
+
+
+
+

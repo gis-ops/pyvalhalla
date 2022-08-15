@@ -16,8 +16,8 @@
  *
  **********************************************************************/
 
-#ifndef GEOS_ALGORITHM_CGALGORITHMDD_H
-#define GEOS_ALGORITHM_CGALGORITHMDD_H
+#pragma once
+
 #include <geos/export.h>
 #include <geos/math/DD.h>
 
@@ -87,10 +87,48 @@ public:
      *
      * Uses an approach due to Jonathan Shewchuk, which is in the public domain.
      */
-    static int orientationIndexFilter(double pax, double pay,
-                                      double pbx, double pby,
-                                      double pcx, double pcy);
+    static int orientationIndexFilter(
+        double pax, double pay,
+        double pbx, double pby,
+        double pcx, double pcy)
+    {
+        /**
+         * A value which is safely greater than the relative round-off
+         * error in double-precision numbers
+         */
+        double constexpr DP_SAFE_EPSILON =  1e-15;
 
+        double detsum;
+        double const detleft = (pax - pcx) * (pby - pcy);
+        double const detright = (pay - pcy) * (pbx - pcx);
+        double const det = detleft - detright;
+
+        if(detleft > 0.0) {
+            if(detright <= 0.0) {
+                return orientation(det);
+            }
+            else {
+                detsum = detleft + detright;
+            }
+        }
+        else if(detleft < 0.0) {
+            if(detright >= 0.0) {
+                return orientation(det);
+            }
+            else {
+                detsum = -detleft - detright;
+            }
+        }
+        else {
+            return orientation(det);
+        }
+
+        double const errbound = DP_SAFE_EPSILON * detsum;
+        if((det >= errbound) || (-det >= errbound)) {
+            return orientation(det);
+        }
+        return CGAlgorithmsDD::FAILURE;
+    };
 
     static int
     orientation(double x)
@@ -102,7 +140,7 @@ public:
             return CGAlgorithmsDD::LEFT;
         }
         return CGAlgorithmsDD::STRAIGHT;
-    }
+    };
 
     /**
      * If the lines are parallel (either identical
@@ -155,4 +193,5 @@ protected:
 } // namespace geos::algorithm
 } // namespace geos
 
-#endif // GEOS_ALGORITHM_CGALGORITHM_H
+
+

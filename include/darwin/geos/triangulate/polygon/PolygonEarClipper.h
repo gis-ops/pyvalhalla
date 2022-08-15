@@ -14,7 +14,9 @@
 
 #pragma once
 
-#include <geos/triangulate/polygon/VertexSequencePackedRtree.h>
+#include <geos/index/VertexSequencePackedRtree.h>
+#include <geos/triangulate/tri/TriList.h>
+#include <geos/triangulate/tri/Tri.h>
 
 #include <array>
 #include <memory>
@@ -27,18 +29,14 @@ class Coordinate;
 class Polygon;
 class Envelope;
 }
-namespace triangulate {
-namespace tri {
-class TriList;
-}
-}
 }
 
 using geos::geom::Coordinate;
 using geos::geom::Polygon;
 using geos::geom::Envelope;
+using geos::triangulate::tri::Tri;
 using geos::triangulate::tri::TriList;
-
+using geos::index::VertexSequencePackedRtree;
 
 namespace geos {
 namespace triangulate {
@@ -164,7 +162,12 @@ private:
 
     bool isFlat(const std::array<Coordinate, 3>& pts) const;
 
-    bool hasRepeatedPoint(const std::array<Coordinate, 3>& pts) const;
+    /**
+    * Detects if a corner has repeated points (AAB or ABB), or is collapsed (ABA).
+    * @param pts the corner points
+    * @return true if the corner is flat or collapsed
+    */
+    bool isCornerInvalid(const std::array<Coordinate, 3>& pts) const;
 
 
 public:
@@ -183,7 +186,7 @@ public:
     * @param triListResult vector to fill in with the resultant Tri s
     * @return a list of the Tris
     */
-    static void triangulate(std::vector<Coordinate>& polyShell, TriList& triListResult);
+    static void triangulate(std::vector<Coordinate>& polyShell, TriList<Tri>& triListResult);
 
     /**
     * Sets whether flat corners formed by collinear adjacent line segments
@@ -203,7 +206,7 @@ public:
     */
     void setSkipFlatCorners(bool p_isFlatCornersSkipped);
 
-    void compute(TriList& triList);
+    void compute(TriList<Tri>& triList);
 
     std::unique_ptr<Polygon> toGeometry() const;
 

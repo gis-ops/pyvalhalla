@@ -20,17 +20,19 @@
  *
  **********************************************************************/
 
-#ifndef GEOS_NODING_NODEDSEGMENTSTRING_H
-#define GEOS_NODING_NODEDSEGMENTSTRING_H
+#pragma once
 
 #include <geos/export.h>
-#include <geos/noding/NodableSegmentString.h> // for inheritance
-#include <geos/geom/CoordinateSequence.h> // for inlines
 #include <geos/algorithm/LineIntersector.h>
+#include <geos/geom/Coordinate.h>
+#include <geos/geom/CoordinateSequence.h> // for inlines
+#include <geos/noding/NodedSegmentString.h>
+#include <geos/noding/NodableSegmentString.h> // for inheritance
+#include <geos/noding/Octant.h>
 #include <geos/noding/SegmentNode.h>
 #include <geos/noding/SegmentNodeList.h>
 #include <geos/noding/SegmentString.h>
-#include <geos/geom/Coordinate.h>
+#include <geos/util/IllegalArgumentException.h>
 
 #include <cstddef>
 
@@ -85,7 +87,7 @@ public:
     static SegmentString::NonConstVect* getNodedSubstrings(
         const SegmentString::NonConstVect& segStrings);
 
-    std::unique_ptr<std::vector<geom::Coordinate>> getNodedCoordinates();
+    std::vector<geom::Coordinate> getNodedCoordinates();
 
 
     /** \brief
@@ -111,39 +113,6 @@ public:
 
     ~NodedSegmentString() override = default;
 
-    /** \brief
-     * Adds an intersection node for a given point and segment to this segment string.
-     *
-     * If an intersection already exists for this exact location, the existing
-     * node will be returned.
-     *
-     * @param intPt the location of the intersection
-     * @param segmentIndex the index of the segment containing the intersection
-     * @return the intersection node for the point
-     */
-    SegmentNode*
-    addIntersectionNode(geom::Coordinate* intPt, std::size_t segmentIndex)
-    {
-        std::size_t normalizedSegmentIndex = segmentIndex;
-
-        // normalize the intersection point location
-        std::size_t nextSegIndex = normalizedSegmentIndex + 1;
-        if(nextSegIndex < size()) {
-            geom::Coordinate const& nextPt =
-                getCoordinate(nextSegIndex);
-
-            // Normalize segment index if intPt falls on vertex
-            // The check for point equality is 2D only - Z values are ignored
-            if(intPt->equals2D(nextPt)) {
-                normalizedSegmentIndex = nextSegIndex;
-            }
-        }
-
-        // Add the intersection point to edge intersection list.
-        SegmentNode* ei = getNodeList().add(*intPt, normalizedSegmentIndex);
-        return ei;
-    }
-
     SegmentNodeList& getNodeList();
 
     const SegmentNodeList& getNodeList() const;
@@ -154,7 +123,7 @@ public:
         return pts->size();
     }
 
-    const geom::Coordinate& getCoordinate(size_t i) const override;
+    const geom::Coordinate& getCoordinate(std::size_t i) const override;
 
     geom::CoordinateSequence* getCoordinates() const override;
     geom::CoordinateSequence* releaseCoordinates();
@@ -171,7 +140,14 @@ public:
      *              Must not be the last index in the vertex list
      * @return the octant of the segment at the vertex
      */
-    int getSegmentOctant(size_t index) const;
+    int getSegmentOctant(std::size_t index) const
+    {
+        if (index >= size() - 1) {
+            return -1;
+        }
+        return safeOctant(getCoordinate(index), getCoordinate(index + 1));
+        //return Octant::octant(getCoordinate(index), getCoordinate(index+1));
+    };
 
     /** \brief
      * Add {@link SegmentNode}s for one or both
@@ -179,7 +155,12 @@ public:
      * intersection list.
      */
     void addIntersections(algorithm::LineIntersector* li,
-                          size_t segmentIndex, size_t geomIndex);
+        std::size_t segmentIndex, std::size_t geomIndex)
+    {
+        for (std::size_t i = 0, n = li->getIntersectionNum(); i < n; ++i) {
+            addIntersection(li, segmentIndex, geomIndex, i);
+        }
+    };
 
     /** \brief
      * Add an SegmentNode for intersection intIndex.
@@ -189,8 +170,14 @@ public:
      * to use the higher of the two possible segmentIndexes
      */
     void addIntersection(algorithm::LineIntersector* li,
-                         size_t segmentIndex,
-                         size_t geomIndex, size_t intIndex);
+        std::size_t segmentIndex,
+        std::size_t geomIndex, std::size_t intIndex)
+    {
+        ::geos::ignore_unused_variable_warning(geomIndex);
+
+        const geom::Coordinate& intPt = li->getIntersection(intIndex);
+        addIntersection(intPt, segmentIndex);
+    };
 
     /** \brief
      * Add an SegmentNode for intersection intIndex.
@@ -200,8 +187,33 @@ public:
      * to use the higher of the two possible segmentIndexes
      */
     void addIntersection(const geom::Coordinate& intPt,
-                         size_t segmentIndex);
+        std::size_t segmentIndex)
+    {
+        std::size_t normalizedSegmentIndex = segmentIndex;
 
+        if (segmentIndex > size() - 2) {
+            throw util::IllegalArgumentException("SegmentString::addIntersection: SegmentIndex out of range");
+        }
+
+        // normalize the intersection point location
+        auto nextSegIndex = normalizedSegmentIndex + 1;
+        if (nextSegIndex < size()) {
+            const geom::Coordinate& nextPt = pts->getAt(nextSegIndex);
+
+            // Normalize segment index if intPt falls on vertex
+            // The check for point equality is 2D only -
+            // Z values are ignored
+            if(intPt.equals2D(nextPt)) {
+                normalizedSegmentIndex = nextSegIndex;
+            }
+        }
+
+        /*
+         * Add the intersection point to edge intersection list
+         * (unless the node is already known)
+         */
+        nodeList.add(intPt, normalizedSegmentIndex);
+    };
 
 private:
 
@@ -209,7 +221,13 @@ private:
 
     std::unique_ptr<geom::CoordinateSequence> pts;
 
-    static int safeOctant(const geom::Coordinate& p0, const geom::Coordinate& p1);
+    static int safeOctant(const geom::Coordinate& p0, const geom::Coordinate& p1)
+    {
+        if(p0.equals2D(p1)) {
+            return 0;
+        }
+        return Octant::octant(p0, p1);
+    };
 
 };
 
@@ -220,4 +238,13 @@ private:
 #pragma warning(pop)
 #endif
 
-#endif // GEOS_NODING_NODEDSEGMENTSTRING_H
+
+
+
+
+
+
+
+
+
+

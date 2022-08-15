@@ -17,8 +17,7 @@
  *
  **********************************************************************/
 
-#ifndef GEOS_OP_BUFFER_OFFSETCURVEBUILDER_H
-#define GEOS_OP_BUFFER_OFFSETCURVEBUILDER_H
+#pragma once
 
 #include <geos/export.h>
 
@@ -154,6 +153,10 @@ public:
                       double distance,
                       std::vector<geom::CoordinateSequence*>& lineList);
 
+    void getOffsetCurve(const geom::CoordinateSequence* inputPts,
+                        double p_distance,
+                        std::vector<geom::CoordinateSequence*>& lineList);
+
 private:
 
     double distance;
@@ -196,6 +199,7 @@ private:
                            OffsetSegmentGenerator& segGen);
 
 
+
     // Declare type as noncopyable
     OffsetCurveBuilder(const OffsetCurveBuilder& other) = delete;
     OffsetCurveBuilder& operator=(const OffsetCurveBuilder& rhs) = delete;
@@ -208,6 +212,4 @@ private:
 #ifdef _MSC_VER
 #pragma warning(pop)
 #endif
-
-#endif // ndef GEOS_OP_BUFFER_OFFSETCURVEBUILDER_H
 

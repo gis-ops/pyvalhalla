@@ -13,8 +13,7 @@
  *
  **********************************************************************/
 
-#ifndef GEOS_PLANARGRAPH_EDGE_H
-#define GEOS_PLANARGRAPH_EDGE_H
+#pragma once
 
 #include <geos/export.h>
 
@@ -23,6 +22,7 @@
 #include <vector> // for typedefs
 #include <set> // for typedefs
 #include <iosfwd> // ostream
+#include <cstdint>
 
 #ifdef _MSC_VER
 #pragma warning(push)
@@ -139,4 +139,3 @@ std::ostream& operator<<(std::ostream& os, const Edge& n);
 #pragma warning(pop)
 #endif
 
-#endif // GEOS_PLANARGRAPH_EDGE_H

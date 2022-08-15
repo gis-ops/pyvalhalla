@@ -17,8 +17,7 @@
  *
  **********************************************************************/
 
-#ifndef GEOS_GEOM_PREP_BASICPREPAREDGEOMETRY_H
-#define GEOS_GEOM_PREP_BASICPREPAREDGEOMETRY_H
+#pragma once
 
 #include <geos/geom/prep/PreparedGeometry.h> // for inheritance
 //#include <geos/algorithm/PointLocator.h>
@@ -181,6 +180,11 @@ public:
      */
     double distance(const geom::Geometry* g) const override;
 
+    /**
+     * Default implementation.
+     */
+    bool isWithinDistance(const geom::Geometry* geom, double dist) const override;
+
     std::string toString();
 
 };
@@ -189,4 +193,3 @@ public:
 } // namespace geos::geom
 } // namespace geos
 
-#endif // GEOS_GEOM_PREP_BASICPREPAREDGEOMETRY_H

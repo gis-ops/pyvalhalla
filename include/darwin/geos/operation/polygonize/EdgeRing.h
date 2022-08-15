@@ -17,9 +17,7 @@
  *
  **********************************************************************/
 
-
-#ifndef GEOS_OP_POLYGONIZE_EDGERING_H
-#define GEOS_OP_POLYGONIZE_EDGERING_H
+#pragma once
 
 #include <geos/export.h>
 #include <geos/algorithm/locate/IndexedPointInAreaLocator.h>
@@ -47,11 +45,6 @@ class Coordinate;
 }
 namespace planargraph {
 class DirectedEdge;
-}
-namespace index {
-namespace strtree {
-class STRtree;
-}
 }
 }
 
@@ -348,4 +341,3 @@ public:
 #pragma warning(pop)
 #endif
 
-#endif // GEOS_OP_POLYGONIZE_EDGERING_H

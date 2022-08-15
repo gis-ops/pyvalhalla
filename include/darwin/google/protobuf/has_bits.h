@@ -34,6 +34,7 @@
 #include <google/protobuf/stubs/common.h>
 #include <google/protobuf/port.h>
 
+// Must be included last.
 #include <google/protobuf/port_def.inc>
 
 #ifdef SWIG
@@ -53,11 +54,11 @@ class HasBits {
     memset(has_bits_, 0, sizeof(has_bits_));
   }
 
-  PROTOBUF_NDEBUG_INLINE uint32& operator[](int index) {
+  PROTOBUF_NDEBUG_INLINE uint32_t& operator[](int index) {
     return has_bits_[index];
   }
 
-  PROTOBUF_NDEBUG_INLINE const uint32& operator[](int index) const {
+  PROTOBUF_NDEBUG_INLINE const uint32_t& operator[](int index) const {
     return has_bits_[index];
   }
 
@@ -76,7 +77,7 @@ class HasBits {
   bool empty() const;
 
  private:
-  uint32 has_bits_[doublewords];
+  uint32_t has_bits_[doublewords];
 };
 
 template <>

@@ -19,8 +19,6 @@
 #include <vector>
 #include <memory>
 
-#include <geos/inline.h>
-
 #include <geos/noding/Noder.h> // for inheritance
 #include <geos/algorithm/LineIntersector.h> // for composition
 #include <geos/geom/Coordinate.h> // for use in vector
@@ -65,11 +63,6 @@ namespace snapround { // geos::noding::snapround
 class GEOS_DLL SnapRoundingIntersectionAdder: public SegmentIntersector { // implements SegmentIntersector
 
 private:
-    /**
-    * The division factor used to determine
-    * nearness distance tolerance for interior intersection detection.
-    */
-    static constexpr int NEARNESS_FACTOR = 100;
 
     algorithm::LineIntersector li;
     std::unique_ptr<std::vector<geom::Coordinate>> intersections;
@@ -89,13 +82,17 @@ private:
     * result in the snapped segment A crossing segment B
     * without a node being introduced.
     */
-    void processNearVertex(const geom::Coordinate& p, SegmentString* edge, size_t segIndex,
+    void processNearVertex(const geom::Coordinate& p, SegmentString* edge, std::size_t segIndex,
                            const geom::Coordinate& p0, const geom::Coordinate& p1);
 
 
 public:
 
-    SnapRoundingIntersectionAdder(const geom::PrecisionModel* newPm);
+    SnapRoundingIntersectionAdder(double p_nearnessTol)
+        : SegmentIntersector()
+        , intersections(new std::vector<geom::Coordinate>)
+        , nearnessTol(p_nearnessTol)
+    {}
 
     std::unique_ptr<std::vector<geom::Coordinate>> getIntersections() { return std::move(intersections); };
 
@@ -107,7 +104,7 @@ public:
     * this call for segment pairs which they have determined do not intersect
     * (e.g. by an disjoint envelope test).
     */
-    void processIntersections(SegmentString* e0, size_t segIndex0, SegmentString* e1, size_t segIndex1) override;
+    void processIntersections(SegmentString* e0, std::size_t segIndex0, SegmentString* e1, std::size_t segIndex1) override;
 
     /**
     * Always process all intersections
@@ -121,8 +118,4 @@ public:
 } // namespace geos::noding::snapround
 } // namespace geos::noding
 } // namespace geos
-
-
-
-
 

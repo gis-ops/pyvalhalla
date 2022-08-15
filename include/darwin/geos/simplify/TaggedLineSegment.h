@@ -26,8 +26,7 @@
  *
  **********************************************************************/
 
-#ifndef GEOS_SIMPLIFY_TAGGEDLINESEGMENT_H
-#define GEOS_SIMPLIFY_TAGGEDLINESEGMENT_H
+#pragma once
 
 #include <geos/export.h>
 #include <geos/geom/LineSegment.h> // for inheritance
@@ -58,7 +57,7 @@ public:
     TaggedLineSegment(const geom::Coordinate& p0,
                       const geom::Coordinate& p1,
                       const geom::Geometry* parent,
-                      size_t index);
+                      std::size_t index);
 
     TaggedLineSegment(const geom::Coordinate& p0,
                       const geom::Coordinate& p1);
@@ -67,13 +66,13 @@ public:
 
     const geom::Geometry* getParent() const;
 
-    size_t getIndex() const;
+    std::size_t getIndex() const;
 
 private:
 
     const geom::Geometry* parent;
 
-    size_t index;
+    std::size_t index;
 
 };
 
@@ -82,4 +81,3 @@ private:
 } // namespace geos::simplify
 } // namespace geos
 
-#endif // GEOS_SIMPLIFY_TAGGEDLINESEGMENT_H

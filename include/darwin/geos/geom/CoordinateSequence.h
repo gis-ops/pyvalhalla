@@ -12,11 +12,9 @@
  *
  **********************************************************************/
 
-#ifndef GEOS_GEOM_COORDINATESEQUENCE_H
-#define GEOS_GEOM_COORDINATESEQUENCE_H
+#pragma once
 
 #include <geos/export.h>
-#include <geos/inline.h>
 
 #include <geos/geom/Coordinate.h> // for applyCoordinateFilter
 
@@ -41,18 +39,6 @@ namespace geom { // geos::geom
  *
  * \brief
  * The internal representation of a list of coordinates inside a Geometry.
- *
- * There are some cases in which you might want Geometries to store their
- * points using something other than the GEOS Coordinate class. For example, you
- * may want to experiment with another implementation, such as an array of Xs
- * and an array of Ys. or you might want to use your own coordinate class, one
- * that supports extra attributes like M-values.
- *
- * You can do this by implementing the CoordinateSequence and
- * CoordinateSequenceFactory interfaces. You would then create a
- * GeometryFactory parameterized by your CoordinateSequenceFactory, and use
- * this GeometryFactory to create new Geometries. All of these new Geometries
- * will use your CoordinateSequence implementation.
  *
  */
 class GEOS_DLL CoordinateSequence {
@@ -159,12 +145,11 @@ public:
     static CoordinateSequence* atLeastNCoordinatesOrNothing(std::size_t n,
             CoordinateSequence* c);
 
-    /// Return position of a Coordinate, or -1 if not found
+    /// Return position of a Coordinate
+    //
+    /// or numeric_limits<std::size_t>::max() if not found
     ///
-    /// FIXME: return std::size_t, using numeric_limits<std::size_t>::max
-    /// as 'not found' value.
-    ///
-    static size_t indexOf(const Coordinate* coordinate,
+    static std::size_t indexOf(const Coordinate* coordinate,
                           const CoordinateSequence* cl);
 
     /**
@@ -199,14 +184,12 @@ public:
 
 
     /** \brief
-    * Tests whether an array of {@link Coordinate}s forms a ring,
-    * by checking length and closure.
-    * Self-intersection is not checked.
+    * Tests whether an a {@link CoordinateSequence} forms a ring,
+    * by checking length and closure. Self-intersection is not checked.
     *
-    * @param pts an array of Coordinates
     * @return true if the coordinate form a ring.
     */
-    static bool isRing(const CoordinateSequence *pts);
+    bool isRing() const;
 
     /// Reverse Coordinate order in given CoordinateSequence
     static void reverse(CoordinateSequence* cl);
@@ -316,8 +299,3 @@ GEOS_DLL bool operator!= (const CoordinateSequence& s1, const CoordinateSequence
 } // namespace geos::geom
 } // namespace geos
 
-//#ifdef GEOS_INLINE
-//# include "geos/geom/CoordinateSequence.inl"
-//#endif
-
-#endif // ndef GEOS_GEOM_COORDINATESEQUENCE_H

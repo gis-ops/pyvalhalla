@@ -16,16 +16,16 @@
  *
  **********************************************************************/
 
-#ifndef GEOS_NODING_MCINDEXNODER_H
-#define GEOS_NODING_MCINDEXNODER_H
+#pragma once
 
 #include <geos/export.h>
 
-#include <geos/inline.h>
-
 #include <geos/index/chain/MonotoneChainOverlapAction.h> // for inheritance
+#include <geos/index/chain/MonotoneChain.h>
+#include <geos/index/strtree/TemplateSTRtree.h> // for composition
+#include <geos/noding/NodedSegmentString.h>
+#include <geos/noding/SegmentString.h>
 #include <geos/noding/SinglePassNoder.h> // for inheritance
-#include <geos/index/strtree/SimpleSTRtree.h> // for composition
 #include <geos/util.h>
 
 #include <vector>
@@ -65,13 +65,13 @@ namespace noding { // geos.noding
 class GEOS_DLL MCIndexNoder : public SinglePassNoder {
 
 private:
-    std::vector<index::chain::MonotoneChain*> monoChains;
-    index::strtree::SimpleSTRtree index;
-    int idCounter;
+    std::vector<index::chain::MonotoneChain> monoChains;
+    index::strtree::TemplateSTRtree<const index::chain::MonotoneChain*> index;
     std::vector<SegmentString*>* nodedSegStrings;
     // statistics
     int nOverlaps;
     double overlapTolerance;
+    bool indexBuilt;
 
     void intersectChains();
 
@@ -80,26 +80,33 @@ private:
 public:
 
     MCIndexNoder(SegmentIntersector* nSegInt = nullptr, double p_overlapTolerance = 0.0)
-        :
-        SinglePassNoder(nSegInt),
-        idCounter(0),
-        nodedSegStrings(nullptr),
-        nOverlaps(0),
-        overlapTolerance(p_overlapTolerance)
+        : SinglePassNoder(nSegInt)
+        , nodedSegStrings(nullptr)
+        , nOverlaps(0)
+        , overlapTolerance(p_overlapTolerance)
+        , indexBuilt(false)
     {}
 
-    ~MCIndexNoder() override;
+    ~MCIndexNoder() override {};
+
 
     /// \brief Return a reference to this instance's std::vector of MonotoneChains
-    std::vector<index::chain::MonotoneChain*>&
+    std::vector<index::chain::MonotoneChain>&
     getMonotoneChains()
     {
         return monoChains;
     }
 
-    index::SpatialIndex& getIndex();
+    index::SpatialIndex& getIndex()
+    {
+        return index;
+    }
 
-    std::vector<SegmentString*>* getNodedSubstrings() const override;
+    std::vector<SegmentString*>* getNodedSubstrings() const override
+    {
+        assert(nodedSegStrings); // must have called computeNodes before!
+        return NodedSegmentString::getNodedSubstrings(*nodedSegStrings);
+    }
 
     void computeNodes(std::vector<SegmentString*>* inputSegmentStrings) override;
 
@@ -111,8 +118,8 @@ public:
             si(newSi)
         {}
 
-        void overlap(index::chain::MonotoneChain& mc1, std::size_t start1,
-                     index::chain::MonotoneChain& mc2, std::size_t start2) override;
+        void overlap(const index::chain::MonotoneChain& mc1, std::size_t start1,
+                     const index::chain::MonotoneChain& mc2, std::size_t start2) override;
     private:
         SegmentIntersector& si;
 
@@ -130,8 +137,5 @@ public:
 #pragma warning(pop)
 #endif
 
-#ifdef GEOS_INLINE
-# include <geos/noding/MCIndexNoder.inl>
-#endif
 
-#endif // GEOS_NODING_MCINDEXNODER_H
+

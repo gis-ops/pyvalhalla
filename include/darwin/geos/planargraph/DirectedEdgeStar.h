@@ -13,8 +13,7 @@
  *
  **********************************************************************/
 
-#ifndef GEOS_PLANARGRAPH_DIRECTEDEDGESTAR_H
-#define GEOS_PLANARGRAPH_DIRECTEDEDGESTAR_H
+#pragma once
 
 #include <geos/export.h>
 
@@ -131,7 +130,7 @@ public:
      * \brief Returns the remainder when i is divided by the number of
      * edges in this DirectedEdgeStar.
      */
-    int getIndex(int i) const;
+    unsigned int getIndex(int i) const;
 
     /**
      * \brief Returns the DirectedEdge on the left-hand side
@@ -148,4 +147,3 @@ public:
 #pragma warning(pop)
 #endif
 
-#endif // GEOS_PLANARGRAPH_DIRECTEDEDGESTAR_H

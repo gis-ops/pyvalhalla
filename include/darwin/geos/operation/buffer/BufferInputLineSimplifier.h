@@ -16,8 +16,7 @@
  *
  **********************************************************************/
 
-#ifndef GEOS_OP_BUFFER_BUFFERINPUTLINESIMPLIFIER_H
-#define GEOS_OP_BUFFER_BUFFERINPUTLINESIMPLIFIER_H
+#pragma once
 
 #include <geos/geom/CoordinateSequence.h> // complete type required
 
@@ -120,11 +119,11 @@ private:
      * @return the next non-deleted index, if any
      * @return inputLine.size() if there are no more non-deleted indices
      */
-    size_t findNextNonDeletedIndex(size_t index) const;
+    std::size_t findNextNonDeletedIndex(std::size_t index) const;
 
     std::unique_ptr<geom::CoordinateSequence> collapseLine() const;
 
-    bool isDeletable(size_t i0, size_t i1, size_t i2, double distanceTol) const;
+    bool isDeletable(std::size_t i0, std::size_t i1, std::size_t i2, double distanceTol) const;
 
     bool isShallowConcavity(const geom::Coordinate& p0,
                             const geom::Coordinate& p1,
@@ -134,7 +133,7 @@ private:
     /**
      * Checks for shallowness over a sample of points in the given section.
      *
-     * This helps prevents the siplification from incrementally
+     * This helps prevents the simplification from incrementally
      * "skipping" over points which are in fact non-shallow.
      *
      * @param p0 start coordinate of section
@@ -146,7 +145,7 @@ private:
      */
     bool isShallowSampled(const geom::Coordinate& p0,
                           const geom::Coordinate& p2,
-                          size_t i0, size_t i2, double distanceTol) const;
+                          std::size_t i0, std::size_t i2, double distanceTol) const;
 
     bool isShallow(const geom::Coordinate& p0,
                    const geom::Coordinate& p1,
@@ -178,7 +177,4 @@ private:
 } // namespace geos.operation.buffer
 } // namespace geos.operation
 } // namespace geos
-
-
-#endif // ndef GEOS_OP_BUFFER_BUFFERINPUTLINESIMPLIFIER_H
 

@@ -17,13 +17,14 @@
  *
  **********************************************************************/
 
-#ifndef GEOS_ALGORITHM_LINEINTERSECTOR_H
-#define GEOS_ALGORITHM_LINEINTERSECTOR_H
+#pragma once
 
 #include <geos/export.h>
-#include <string>
-
+#include <geos/algorithm/Intersection.h>
 #include <geos/geom/Coordinate.h>
+#include <geos/geom/Envelope.h>
+
+#include <string>
 
 // Forward declarations
 namespace geos {
@@ -78,14 +79,15 @@ public:
     static double nonRobustComputeEdgeDistance(const geom::Coordinate& p, const geom::Coordinate& p1,
             const geom::Coordinate& p2);
 
-    LineIntersector(const geom::PrecisionModel* initialPrecisionModel = nullptr)
+    explicit LineIntersector(const geom::PrecisionModel* initialPrecisionModel = nullptr)
         :
         precisionModel(initialPrecisionModel),
         result(0),
+        inputLines(),
         isProperVar(false)
     {}
 
-    ~LineIntersector() {}
+    ~LineIntersector() = default;
 
     /** \brief
      * Tests whether either intersection point is an interior point of
@@ -94,7 +96,16 @@ public:
      * @return <code>true</code> if either intersection point is in
      * the interior of one of the input segments
      */
-    bool isInteriorIntersection();
+    bool isInteriorIntersection()
+    {
+        if(isInteriorIntersection(0)) {
+            return true;
+        }
+        if(isInteriorIntersection(1)) {
+            return true;
+        }
+        return false;
+    };
 
     /** \brief
      * Tests whether either intersection point is an interior point
@@ -103,7 +114,16 @@ public:
      * @return <code>true</code> if either intersection point is in
      * the interior of the input segment
      */
-    bool isInteriorIntersection(size_t inputLineIndex);
+    bool isInteriorIntersection(std::size_t inputLineIndex)
+    {
+        for(std::size_t i = 0; i < result; ++i) {
+            if(!(intPt[i].equals2D(*inputLines[inputLineIndex][0])
+                 || intPt[i].equals2D(*inputLines[inputLineIndex][1]))) {
+                return true;
+            }
+        }
+        return false;
+    };
 
     /// Force computed intersection to be rounded to a given precision model.
     ///
@@ -156,6 +176,20 @@ public:
         return result != NO_INTERSECTION;
     }
 
+
+    /**
+    * Gets an endpoint of an input segment.
+    *
+    * @param segmentIndex the index of the input segment (0 or 1)
+    * @param ptIndex the index of the endpoint (0 or 1)
+    * @return the specified endpoint
+    */
+    const geom::Coordinate*
+    getEndpoint(std::size_t segmentIndex, std::size_t ptIndex) const
+    {
+        return inputLines[segmentIndex][ptIndex];
+    }
+
     /// Returns the number of intersection points found.
     ///
     /// This will be either 0, 1 or 2.
@@ -174,7 +208,7 @@ public:
     /// @return the intIndex'th intersection point
     ///
     const geom::Coordinate&
-    getIntersection(size_t intIndex) const
+    getIntersection(std::size_t intIndex) const
     {
         return intPt[intIndex];
     }
@@ -195,7 +229,15 @@ public:
      *
      * @return true if the input point is one of the intersection points.
      */
-    bool isIntersection(const geom::Coordinate& pt) const;
+    bool isIntersection(const geom::Coordinate& pt) const
+    {
+        for(std::size_t i = 0; i < result; ++i) {
+            if(intPt[i].equals2D(pt)) {
+                return true;
+            }
+        }
+        return false;
+    };
 
     /** \brief
      * Tests whether an intersection is proper.
@@ -227,7 +269,7 @@ public:
      * @return the intIndex'th intersection point in the direction of the
      *         specified input line segment
      */
-    const geom::Coordinate& getIntersectionAlongSegment(size_t segmentIndex, size_t intIndex);
+    const geom::Coordinate& getIntersectionAlongSegment(std::size_t segmentIndex, std::size_t intIndex);
 
     /** \brief
      * Computes the index of the intIndex'th intersection point in the direction of
@@ -238,7 +280,7 @@ public:
      *
      * @return the index of the intersection point along the segment (0 or 1)
      */
-    size_t getIndexAlongSegment(size_t segmentIndex, size_t intIndex);
+    std::size_t getIndexAlongSegment(std::size_t segmentIndex, std::size_t intIndex);
 
     /** \brief
      * Computes the "edge distance" of an intersection point along the specified
@@ -249,7 +291,7 @@ public:
      *
      * @return the edge distance of the intersection point
      */
-    double getEdgeDistance(size_t geomIndex, size_t intIndex) const;
+    double getEdgeDistance(std::size_t geomIndex, std::size_t intIndex) const;
 
 private:
 
@@ -259,7 +301,7 @@ private:
      */
     const geom::PrecisionModel* precisionModel;
 
-    size_t result;
+    std::size_t result;
 
     const geom::Coordinate* inputLines[2][2];
 
@@ -273,7 +315,7 @@ private:
      * The indexes of the endpoints of the intersection lines, in order along
      * the corresponding line
      */
-    size_t intLineIndex[2][2];
+    std::size_t intLineIndex[2][2];
 
     bool isProperVar;
     //Coordinate &pa;
@@ -296,7 +338,7 @@ private:
 
     void computeIntLineIndex();
 
-    void computeIntLineIndex(size_t segmentIndex);
+    void computeIntLineIndex(std::size_t segmentIndex);
 
     uint8_t computeCollinearIntersection(const geom::Coordinate& p1, const geom::Coordinate& p2,
                                          const geom::Coordinate& q1, const geom::Coordinate& q2);
@@ -325,8 +367,12 @@ private:
      * @return true if the input point lies within both
      *         input segment envelopes
      */
-    bool isInSegmentEnvelopes(const geom::Coordinate& intPt) const;
-
+    bool isInSegmentEnvelopes(const geom::Coordinate& pt) const
+    {
+        geom::Envelope env0(*inputLines[0][0], *inputLines[0][1]);
+        geom::Envelope env1(*inputLines[1][0], *inputLines[1][1]);
+        return env0.contains(pt) && env1.contains(pt);
+    };
 
     /**
      * Computes a segment intersection.
@@ -341,7 +387,14 @@ private:
      * @return the computed intersection point is stored there
      */
     geom::Coordinate intersectionSafe(const geom::Coordinate& p1, const geom::Coordinate& p2,
-                                      const geom::Coordinate& q1, const geom::Coordinate& q2) const;
+                                      const geom::Coordinate& q1, const geom::Coordinate& q2) const
+    {
+        geom::Coordinate ptInt = Intersection::intersection(p1, p2, q1, q2);
+        if (ptInt.isNull()) {
+            ptInt = nearestEndpoint(p1, p2, q1, q2);
+        }
+        return ptInt;
+    };
 
     /**
      * Finds the endpoint of the segments P and Q which
@@ -367,15 +420,37 @@ private:
                                             const geom::Coordinate& q1,
                                             const geom::Coordinate& q2);
 
-    static double zGet(const geom::Coordinate& p, const geom::Coordinate& q);
+    static double zGet(
+        const geom::Coordinate& p,
+        const geom::Coordinate& q)
+    {
+        double z = p.z;
+        if ( std::isnan(z) ) {
+            z = q.z; // may be NaN
+        }
+        return z;
+    };
 
-    static double zGetOrInterpolate(const geom::Coordinate& p,
-                                    const geom::Coordinate& p0,
-                                    const geom::Coordinate& p1);
+    static double zGetOrInterpolate(
+        const geom::Coordinate& p,
+        const geom::Coordinate& p1,
+        const geom::Coordinate& p2)
+    {
+        double z = p.z;
+        if (! std::isnan(z) ) return z;
+        return zInterpolate(p, p1, p2); // may be NaN
+    };
 
-    static geom::Coordinate zGetOrInterpolateCopy(const geom::Coordinate& p,
-                                                  const geom::Coordinate& p0,
-                                                  const geom::Coordinate& p1);
+    static geom::Coordinate zGetOrInterpolateCopy(
+        const geom::Coordinate& p,
+        const geom::Coordinate& p1,
+        const geom::Coordinate& p2)
+    {
+        geom::Coordinate pCopy = p;
+        double z = zGetOrInterpolate(p, p1, p2);
+        pCopy.z = z;
+        return pCopy;
+    };
 
     /// \brief
     /// Return a Z value being the interpolation of Z from p0 to p1 at
@@ -397,5 +472,17 @@ private:
 } // namespace geos
 
 
-#endif // GEOS_ALGORITHM_LINEINTERSECTOR_H
+
+
+
+
+
+
+
+
+
+
+
+
+
 

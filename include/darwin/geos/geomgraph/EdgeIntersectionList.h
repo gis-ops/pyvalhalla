@@ -19,8 +19,7 @@
  **********************************************************************/
 
 
-#ifndef GEOS_GEOMGRAPH_EDGEINTERSECTIONLIST_H
-#define GEOS_GEOMGRAPH_EDGEINTERSECTIONLIST_H
+#pragma once
 
 #include <geos/export.h>
 #include <algorithm>
@@ -29,8 +28,6 @@
 
 #include <geos/geomgraph/EdgeIntersection.h> // for EdgeIntersectionLessThen
 #include <geos/geom/Coordinate.h> // for CoordinateLessThen
-
-#include <geos/inline.h>
 
 #ifdef _MSC_VER
 #pragma warning(push)
@@ -80,7 +77,7 @@ public:
      * The input segmentIndex and dist are expected to be normalized.
      * @return the EdgeIntersection found or added
      */
-    void add(const geom::Coordinate& coord, size_t segmentIndex, double dist);
+    void add(const geom::Coordinate& coord, std::size_t segmentIndex, double dist);
 
     const_iterator
     begin() const
@@ -129,6 +126,4 @@ std::ostream& operator<< (std::ostream&, const EdgeIntersectionList&);
 #ifdef _MSC_VER
 #pragma warning(pop)
 #endif
-
-#endif // ifndef GEOS_GEOMGRAPH_EDGEINTERSECTIONLIST_H
 

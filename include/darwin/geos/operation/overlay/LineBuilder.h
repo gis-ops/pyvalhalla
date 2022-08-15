@@ -16,8 +16,7 @@
  *
  **********************************************************************/
 
-#ifndef GEOS_OP_OVERLAY_LINEBUILDER_H
-#define GEOS_OP_OVERLAY_LINEBUILDER_H
+#pragma once
 
 #include <geos/export.h>
 
@@ -118,7 +117,7 @@ private:
     /**
      * Label an isolated node with its relationship to the target geometry.
      */
-    void labelIsolatedLine(geomgraph::Edge* e, int targetIndex);
+    void labelIsolatedLine(geomgraph::Edge* e, uint8_t targetIndex);
 
     /*
      * If the given CoordinateSequence has mixed 3d/2d vertexes
@@ -137,4 +136,3 @@ private:
 #pragma warning(pop)
 #endif
 
-#endif // ndef GEOS_OP_OVERLAY_LINEBUILDER_H
