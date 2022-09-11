@@ -39,7 +39,9 @@ cp -f upstream/build/src/libvalhalla.a lib/darwin
 
 # copy dependencies
 cp -RL /usr/local/lib/libprotobuf-lite.dylib lib/darwin/libprotobuf-lite.32.dylib
-ln -s lib/darwin/libprotobuf-lite.32.dylib lib/darwin/libprotobuf-lite.dylib
+pushd lib/darwin
+ln -s libprotobuf-lite.32.dylib libprotobuf-lite.dylib
+popd
 
 mkdir -p include/darwin/valhalla/proto
 protoc --proto_path=upstream/proto --cpp_out=include/darwin/valhalla/proto upstream/proto/*.proto
