@@ -25,10 +25,6 @@ extra_objects = list()
 if platform.system() == "Windows":
     libraries.extend(["libprotobuf-lite", "valhalla", "libcurl", "zlib", "Ws2_32", "ole32", "Shell32"])
     extra_compile_args.extend(["-DNOMINMAX", "-DWIN32_LEAN_AND_MEAN", "-DNOGDI"])
-elif platform.system() == "Darwin":
-    # OSX has protobuf compiled into the Valhalla library
-    libraries.extend(["valhalla", "curl", "z"])
-    extra_link_args.extend(["-lvalhalla", "-lcurl", "-lz"])
 else:
     # protobuf_lib = str(THIS_DIR.joinpath("lib", platform.system().lower(), "libprotobuf-lite.a"))
     libraries.extend(["protobuf-lite", "valhalla", "curl", "z"])

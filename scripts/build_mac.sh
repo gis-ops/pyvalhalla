@@ -37,26 +37,8 @@ cp -rf /usr/local/include/google include/darwin
 mkdir -p lib/darwin
 cp -f upstream/build/src/libvalhalla.a lib/darwin
 
-echo "copying all libraries"
-deps="libprotobuf-lite"
-# prints all linked library paths
-for path in $(otool -L upstream/build/src/bindings/python/valhalla/*.so | awk '{print $1}'); do
-  for dep in ${deps}; do
-    if [[ ${path} == *${dep}* ]]; then
-      rel_dest=lib/darwin/${path##*/lib/}
-      # make the directory before
-      mkdir -p $(dirname ${rel_dest})
-      # follow symlinks and copy the actual file
-      cp -L $path $(dirname ${rel_dest})
-      chmod 644 ${rel_dest}
-    fi
-  done
-done
-
-# symlink protobuf-lite or ld can't find it
-pushd lib/darwin
-ln -s libprotobuf-lite.32.dylib libprotobuf-lite.dylib
-popd
+# copy dependencies
+cp -RL /usr/local/lib/libprotobuf-lite.dylib lib/darwin/libprotobuf-lite.dylib
 
 mkdir -p include/darwin/valhalla/proto
 protoc --proto_path=upstream/proto --cpp_out=include/darwin/valhalla/proto upstream/proto/*.proto
