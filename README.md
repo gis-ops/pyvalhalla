@@ -8,6 +8,8 @@ Over time we will very likely deviate from Valhalla's own Python binding code to
 **Note**, the performance boost using these bindings compared to requesting an HTTP service is tremendous: on 500 random routes in Berlin, the bindings take 27 secs while HTTP on localhost takes 127 secs.
 
 ## Installation
+
+![pypi version](https://badge.fury.io/py/pyvalhalla.svg)
  
 We distribute all 4 currently developed CPython versions as **binary wheels** for Win64, MacOS (Intel) and x86_64 Linux distributions with `glibc>=2.24` (most modern systems, see [PEP 600](https://www.python.org/dev/peps/pep-0600/)). We **do not** offer a source distribution on PyPI. Please contact us on enquiry@gis-ops.com if you need support building the bindings for your platform/distribution.
 
