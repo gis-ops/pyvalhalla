@@ -79,6 +79,8 @@ That'll take care of all the header & library copying, proto compilation etc. It
 
 #### Mac OS
 
+> Note, for OSX we locally built protobuf from source (currently 3.21.5) as the `brew` version is not compiled to work with lower OSX versions.
+
 Pretty identical to Linux, just we don't need a docker container of course:
 ```
 ./scripts/build_mac.sh
