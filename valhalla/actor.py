@@ -80,6 +80,10 @@ class Actor(_Actor):
         return super().route(req)
 
     @dict_or_str
+    def optimized_route(self, req: Union[str, dict]):
+        return super().route(req)
+
+    @dict_or_str
     def locate(self, req: Union[str, dict]):
         return super().locate(req)
 
