@@ -23,7 +23,7 @@ jobs:
 
     - uses: pypa/cibuildwheel@v2.3.1
       env:
-        CIBW_BUILD: cp37* cp310*
+        CIBW_BUILD: cp310* cp38*
 
     - name: Upload wheels
       uses: actions/upload-artifact@v2
