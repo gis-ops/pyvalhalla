@@ -107,4 +107,6 @@ protoc.exe --proto_path=upstream/proto --cpp_out=include/windows/valhalla/proto 
 # replace all occurrences of "AuxillaryParseTableField" with "AuxiliaryParseTableField"
 ```
 
+Since `3.3.0` it also needs `dirent.h` from Valhalla's `third_party/dirent`.
+
 The only area where Windows is shining: makes it really simple, just copy the headers & libs from `vcpkg`.

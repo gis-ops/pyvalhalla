@@ -37,3 +37,9 @@ jobs:
         conan install --install-folder conan_build --remote conancenter .
 
     - uses: pypa/cibuildwheel@v2.12.1
+      CIBW_BUILD: cp310*
+
+    - name: Upload wheels
+      uses: actions/upload-artifact@v2
+      with:
+        path: wheelhouse/*.whl
