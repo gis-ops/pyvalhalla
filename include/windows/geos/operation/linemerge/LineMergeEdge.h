@@ -8,7 +8,7 @@
  *
  * This is free software; you can redistribute and/or modify it under
  * the terms of the GNU Lesser General Public Licence as published
- * by the Free Software Foundation. 
+ * by the Free Software Foundation.
  * See the COPYING file for more information.
  *
  **********************************************************************
@@ -17,18 +17,17 @@
  *
  **********************************************************************/
 
-#ifndef GEOS_OP_LINEMERGE_LINEMERGEEDGE_H
-#define GEOS_OP_LINEMERGE_LINEMERGEEDGE_H
+#pragma once
 
 #include <geos/export.h>
 
 #include <geos/planargraph/Edge.h> // for inheritance
 
-// Forward declarations 
+// Forward declarations
 namespace geos {
-	namespace geom { 
-		class LineString;
-	}
+namespace geom {
+class LineString;
+}
 }
 
 
@@ -42,18 +41,18 @@ namespace linemerge { // geos::operation::linemerge
  */
 class GEOS_DLL LineMergeEdge: public planargraph::Edge {
 private:
-	const geom::LineString *line;
+    const geom::LineString* line;
 public:
-	/**
-	 * Constructs a LineMergeEdge with vertices given by the specified
-	 * LineString.
-	 */
-	LineMergeEdge(const geom::LineString *newLine);
+    /**
+     * Constructs a LineMergeEdge with vertices given by the specified
+     * LineString.
+     */
+    LineMergeEdge(const geom::LineString* newLine);
 
-	/**
-	 * Returns the LineString specifying the vertices of this edge.
-	 */
-	const geom::LineString* getLine() const;
+    /**
+     * Returns the LineString specifying the vertices of this edge.
+     */
+    const geom::LineString* getLine() const;
 };
 
 
@@ -61,4 +60,3 @@ public:
 } // namespace geos::operation
 } // namespace geos
 
-#endif // GEOS_OP_LINEMERGE_LINEMERGEEDGE_H

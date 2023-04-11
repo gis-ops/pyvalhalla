@@ -16,37 +16,54 @@
  *
  **********************************************************************/
 
-#ifndef GEOS_OPERATION_DISTANCE_FACETSEQUENCETREEBUILDER_H
-#define GEOS_OPERATION_DISTANCE_FACETSEQUENCETREEBUILDER_H
+#pragma once
 
-#include <geos/index/strtree/STRtree.h>
+#include <geos/index/ItemVisitor.h>
+#include <geos/index/strtree/TemplateSTRtree.h>
 #include <geos/geom/Geometry.h>
 #include <geos/geom/CoordinateSequence.h>
 #include <geos/operation/distance/FacetSequence.h>
 
-using namespace geos::geom;
-using namespace geos::index::strtree;
-using namespace geos::operation::distance;
-
 namespace geos {
-    namespace operation {
-        namespace distance {
-            class FacetSequenceTreeBuilder {
-            private:
-                // 6 seems to be a good facet sequence size
-                static const int FACET_SEQUENCE_SIZE = 6;
+namespace operation {
+namespace distance {
+class GEOS_DLL FacetSequenceTreeBuilder {
+private:
+    // 6 seems to be a good facet sequence size
+    static const int FACET_SEQUENCE_SIZE = 6;
 
-                // Seems to be better to use a minimum node capacity
-                static const int STR_TREE_NODE_CAPACITY = 4;
+    // Seems to be better to use a minimum node capacity
+    static const int STR_TREE_NODE_CAPACITY = 4;
 
-                static void addFacetSequences(const CoordinateSequence* pts, std::vector<FacetSequence*> & sections);
-                static std::vector<FacetSequence*> * computeFacetSequences(const Geometry* g);
+    static void addFacetSequences(const geom::Geometry* geom,
+                                  const geom::CoordinateSequence* pts,
+                                  std::vector<FacetSequence> & sections);
+    static std::vector<FacetSequence> computeFacetSequences(const geom::Geometry* g);
 
-            public:
-                static STRtree* build(const Geometry* g);
-            };
+    class FacetSequenceTree : public geos::index::strtree::TemplateSTRtree<const FacetSequence*> {
+    public:
+        // TODO support TemplateSTRtree<std::unique_ptr<FacetSequence>> and dispense with holding vector.
+        FacetSequenceTree(std::vector<FacetSequence> &&seq) :
+            TemplateSTRtree(STR_TREE_NODE_CAPACITY, seq.size()), sequences(seq) {
+            for (auto& fs : sequences) {
+                TemplateSTRtree::insert(fs.getEnvelope(), &fs);
+            }
         }
-    }
+
+    private:
+        std::vector<FacetSequence> sequences;
+    };
+
+public:
+    /** \brief
+     * Return a tree of FacetSequences constructed from the supplied Geometry.
+     *
+     * The FacetSequences are owned by the tree and are automatically deleted by
+     * the tree on destruction.
+     */
+    static std::unique_ptr<geos::index::strtree::TemplateSTRtree<const FacetSequence*>> build(const geom::Geometry* g);
+};
+}
+}
 }
 
-#endif //GEOS_FACETSEQUENCETREEBUILDER_H

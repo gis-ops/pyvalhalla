@@ -292,6 +292,11 @@ extern "C"
 #define FREEXL_CFBF_ILLEGAL_MINI_FAT_ENTRY	-25 /**< The MiniFAT stream 
                                                      contains an invalid entry.
                                                      Possibly a corrupt file. */
+#define FREEXL_CRAFTED_FILE			-26 /**< A severely corrupted file
+                                                 (may be purposely crafted for 
+                                                 malicious purposes) has been 
+                                                 detected. */
+
 
     /**
      Container for a cell value

@@ -7,28 +7,27 @@
  *
  * This is free software; you can redistribute and/or modify it under
  * the terms of the GNU Lesser General Public Licence as published
- * by the Free Software Foundation. 
+ * by the Free Software Foundation.
  * See the COPYING file for more information.
  *
  **********************************************************************/
 
+#pragma once
+
 #include <geos/export.h>
 
-#ifndef GEOS_UNLOAD_H
-#define GEOS_UNLOAD_H
 //xie add for realse static memory 2003,10,06
 namespace geos {
 namespace io {
 
-class GEOS_DLL Unload
-{
+class GEOS_DLL Unload {
 private:
-	Unload(void) {}
-	~Unload(void) {}
+    Unload(void) {}
+    ~Unload(void) {}
 public:
-	static void Release();
+    static void Release();
 };
 
 }
 }
-#endif
+

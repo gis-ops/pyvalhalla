@@ -7,7 +7,7 @@
  *
  * This is free software; you can redistribute and/or modify it under
  * the terms of the GNU Lesser General Licence as published
- * by the Free Software Foundation. 
+ * by the Free Software Foundation.
  * See the COPYING file for more information.
  *
  **********************************************************************
@@ -16,12 +16,11 @@
  *
  **********************************************************************/
 
-#ifndef GEOS_TRIANGULATE_QUADEDGE_LOCATEFAILUREEXCEPTION_H
-#define GEOS_TRIANGULATE_QUADEDGE_LOCATEFAILUREEXCEPTION_H
+#pragma once
 
 #include <string>
 
-#include <geos/util.h>
+#include <geos/util/GEOSException.h>
 
 namespace geos {
 namespace triangulate { //geos.triangulate
@@ -29,12 +28,10 @@ namespace quadedge { //geos.triangulate.quadedge
 
 class GEOS_DLL LocateFailureException : public geos::util::GEOSException {
 public:
-	LocateFailureException(std::string const&msg);
+    LocateFailureException(std::string const& msg);
 };
 
 } //namespace geos.triangulate.quadedge
 } //namespace geos.triangulate
 } //namespace goes
-
-#endif //GEOS_TRIANGULATE_QUADEDGE_LOCATEFAILUREEXCEPTION_H
 

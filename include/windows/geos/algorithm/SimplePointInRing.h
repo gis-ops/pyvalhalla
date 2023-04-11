@@ -8,24 +8,23 @@
  *
  * This is free software; you can redistribute and/or modify it under
  * the terms of the GNU Lesser General Public Licence as published
- * by the Free Software Foundation. 
+ * by the Free Software Foundation.
  * See the COPYING file for more information.
  *
  **********************************************************************/
 
-#ifndef GEOS_ALGORITHM_SIMPLEPOINTINRING_H
-#define GEOS_ALGORITHM_SIMPLEPOINTINRING_H
+#pragma once
 
 #include <geos/export.h>
 #include <geos/algorithm/PointInRing.h> // for inheritance
 
 // Forward declarations
 namespace geos {
-	namespace geom {
-		class Coordinate;
-		class LinearRing;
-		class CoordinateSequence;
-	}
+namespace geom {
+class Coordinate;
+class LinearRing;
+class CoordinateSequence;
+}
 }
 
 namespace geos {
@@ -33,16 +32,13 @@ namespace algorithm { // geos::algorithm
 
 class GEOS_DLL SimplePointInRing: public PointInRing {
 public:
-	SimplePointInRing(geom::LinearRing *ring);
-	virtual ~SimplePointInRing();
-	bool isInside(const geom::Coordinate& pt);
+    SimplePointInRing(geom::LinearRing* ring);
+    ~SimplePointInRing() override = default;
+    bool isInside(const geom::Coordinate& pt) override;
 private:
-	const geom::CoordinateSequence* pts;
+    const geom::CoordinateSequence* pts;
 };
 
 } // namespace geos::algorithm
 } // namespace geos
-
-
-#endif // GEOS_ALGORITHM_SIMPLEPOINTINRING_H
 

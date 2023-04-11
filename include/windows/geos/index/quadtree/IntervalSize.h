@@ -7,7 +7,7 @@
  *
  * This is free software; you can redistribute and/or modify it under
  * the terms of the GNU Lesser General Public Licence as published
- * by the Free Software Foundation. 
+ * by the Free Software Foundation.
  * See the COPYING file for more information.
  *
  **********************************************************************
@@ -16,8 +16,7 @@
  *
  **********************************************************************/
 
-#ifndef GEOS_IDX_QUADTREE_INTERVALSIZE_H
-#define GEOS_IDX_QUADTREE_INTERVALSIZE_H
+#pragma once
 
 #include <geos/export.h>
 
@@ -26,7 +25,7 @@ namespace index { // geos::index
 namespace quadtree { // geos::index::quadtree
 
 /**
- * \class IntervalSize indexQuadtree.h geos/indexQuadtree.h
+ * \class IntervalSize
  *
  * \brief
  * Provides a test for whether an interval is
@@ -40,25 +39,24 @@ namespace quadtree { // geos::index::quadtree
  */
 class GEOS_DLL IntervalSize {
 public:
-	/**
-	 * This value is chosen to be a few powers of 2 less than the
-	 * number of bits available in the double representation (i.e. 53).
-	 * This should allow enough extra precision for simple computations
-	 * to be correct, at least for comparison purposes.
-	 */
-	static const int MIN_BINARY_EXPONENT = -50;
+    /**
+     * This value is chosen to be a few powers of 2 less than the
+     * number of bits available in the double representation (i.e. 53).
+     * This should allow enough extra precision for simple computations
+     * to be correct, at least for comparison purposes.
+     */
+    static const int MIN_BINARY_EXPONENT = -50;
 
-	/**
-	 * Computes whether the interval [min, max] is effectively zero width.
-	 * I.e. the width of the interval is so much less than the
-	 * location of the interval that the midpoint of the interval
-	 * cannot be represented precisely.
-	 */
-	static bool isZeroWidth(double min, double max);
+    /**
+     * Computes whether the interval [min, max] is effectively zero width.
+     * I.e. the width of the interval is so much less than the
+     * location of the interval that the midpoint of the interval
+     * cannot be represented precisely.
+     */
+    static bool isZeroWidth(double min, double max);
 };
 
 } // namespace geos::index::quadtree
 } // namespace geos::index
 } // namespace geos
 
-#endif // GEOS_IDX_QUADTREE_INTERVALSIZE_H

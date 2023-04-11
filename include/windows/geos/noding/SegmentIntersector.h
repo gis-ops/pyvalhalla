@@ -7,23 +7,21 @@
  *
  * This is free software; you can redistribute and/or modify it under
  * the terms of the GNU Lesser General Public Licence as published
- * by the Free Software Foundation. 
+ * by the Free Software Foundation.
  * See the COPYING file for more information.
  *
  **********************************************************************/
 
-#ifndef GEOS_NODING_SEGMENTINTERSECTOR_H
-#define GEOS_NODING_SEGMENTINTERSECTOR_H
+#pragma once
 
+#include <cstddef>
 #include <geos/export.h>
-
-#include <geos/inline.h>
 
 // Forward declarations
 namespace geos {
-	namespace noding {
-		class SegmentString;
-	}
+namespace noding {
+class SegmentString;
+}
 }
 
 namespace geos {
@@ -48,36 +46,39 @@ class GEOS_DLL SegmentIntersector {
 
 public:
 
-	/**
-	 * This method is called by clients
-	 * of the SegmentIntersector interface to process
-	 * intersections for two segments of the SegmentStrings
-	 * being intersected.
-	 */
-	virtual void processIntersections(
-		SegmentString* e0,  int segIndex0,
-		SegmentString* e1,  int segIndex1)=0;
+    /**
+     * This method is called by clients
+     * of the SegmentIntersector interface to process
+     * intersections for two segments of the SegmentStrings
+     * being intersected.
+     */
+    virtual void processIntersections(
+        SegmentString* e0,  std::size_t segIndex0,
+        SegmentString* e1,  std::size_t segIndex1) = 0;
 
-	/**
-	 * \brief
-	 * Reports whether the client of this class
-	 * needs to continue testing all intersections in an arrangement.
-	 * 
-	 * @return true if there is not need to continue testing segments
-	 *
-	 * The default implementation always return false (process all intersections).
-	 */
-	virtual bool isDone() const {
-		return false;
-	}
+    /**
+     * \brief
+     * Reports whether the client of this class
+     * needs to continue testing all intersections in an arrangement.
+     *
+     * @return true if there is not need to continue testing segments
+     *
+     * The default implementation always return false (process all intersections).
+     */
+    virtual bool
+    isDone() const
+    {
+        return false;
+    }
 
-	virtual ~SegmentIntersector() 
-	{ }
+    virtual
+    ~SegmentIntersector()
+    { }
 
 protected:
 
-	SegmentIntersector() {}
- 
+    SegmentIntersector() {}
+
 };
 
 /// Temporary typedef for namespace transition
@@ -86,4 +87,3 @@ typedef SegmentIntersector nodingSegmentIntersector;
 } // namespace geos.noding
 } // namespace geos
 
-#endif // GEOS_NODING_SEGMENTINTERSECTOR_H

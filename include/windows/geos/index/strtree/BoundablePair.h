@@ -16,16 +16,20 @@
  *
  **********************************************************************/
 
-#ifndef GEOS_INDEX_STRTREE_BOUNDABLEPAIR_H
-#define GEOS_INDEX_STRTREE_BOUNDABLEPAIR_H
+#pragma once
 
 #include <geos/index/strtree/Boundable.h>
 #include <geos/index/strtree/ItemDistance.h>
 #include <queue>
 
+namespace geos {
+namespace index {
+namespace strtree {
+
 /**
- * A pair of {@link Boundable}s, whose leaf items
- * support a distance metric between them.
+ * @brief A pair of [Boundables](@ref Boundable), whose
+ *        leaf items support a distance metric between them.
+ *
  * Used to compute the distance between the members,
  * and to expand a member relative to the other
  * in order to produce new branches of the
@@ -36,79 +40,83 @@
  * @author Martin Davis
  *
  */
-
-using namespace geos::index::strtree;
-
-
-namespace geos {
-namespace index {
-namespace strtree {
 class BoundablePair {
-	private:
-		const Boundable* boundable1;
-		const Boundable* boundable2;
-		ItemDistance* itemDistance;
-		double mDistance;
+private:
+    const Boundable* boundable1;
+    const Boundable* boundable2;
+    ItemDistance* itemDistance;
+    double mDistance;
 
-	public:
-		struct BoundablePairQueueCompare {
-			bool operator()(const BoundablePair* a, const BoundablePair* b) {
-				return a->getDistance() > b->getDistance();
-			}
-		};
+public:
+    struct BoundablePairQueueCompare {
+        bool
+        operator()(const BoundablePair* a, const BoundablePair* b)
+        {
+            return a->getDistance() > b->getDistance();
+        }
+    };
 
-		typedef std::priority_queue<BoundablePair*, std::vector<BoundablePair*>, BoundablePairQueueCompare> BoundablePairQueue;
-		BoundablePair(const Boundable* boundable1, const Boundable* boundable2, ItemDistance* itemDistance);
+    typedef std::priority_queue<BoundablePair*, std::vector<BoundablePair*>, BoundablePairQueueCompare> BoundablePairQueue;
+    BoundablePair(const Boundable* boundable1, const Boundable* boundable2, ItemDistance* itemDistance);
 
-		/**
-		 * Gets one of the member {@link Boundable}s in the pair
-		 * (indexed by [0, 1]).
-		 *
-		 * @param i the index of the member to return (0 or 1)
-		 * @return the chosen member
-		 */
-		const Boundable* getBoundable(int i) const;
+    /**
+     * Gets one of the member {@link Boundable}s in the pair
+     * (indexed by [0, 1]).
+     *
+     * @param i the index of the member to return (0 or 1)
+     * @return the chosen member
+     */
+    const Boundable* getBoundable(int i) const;
 
-		/**
-		 * Computes the distance between the {@link Boundable}s in this pair.
-		 * The boundables are either composites or leaves.
-		 * If either is composite, the distance is computed as the minimum distance
-		 * between the bounds.
-		 * If both are leaves, the distance is computed by {@link #itemDistance(ItemBoundable, ItemBoundable)}.
-		 *
-		 * @return
-		 */
-		double distance() const;
+    /** \brief
+     * Computes the distance between the {@link Boundable}s in this pair.
+     * The boundables are either composites or leaves.
+     *
+     * If either is composite, the distance is computed as the minimum distance
+     * between the bounds.
+     * If both are leaves, the distance is computed by
+     * ItemDistance::distance(const ItemBoundable* item1, const ItemBoundable* item2).
+     *
+     * @return the distance between the items
+     */
+    double distance() const;
 
-		/**
-		 * Gets the minimum possible distance between the Boundables in
-		 * this pair.
-		 * If the members are both items, this will be the
-		 * exact distance between them.
-		 * Otherwise, this distance will be a lower bound on
-		 * the distances between the items in the members.
-		 *
-		 * @return the exact or lower bound distance for this pair
-		 */
-		double getDistance() const;
+    /** \brief
+     * Gets the minimum possible distance between the Boundables in this pair.
+     *
+     * If the members are both items, this will be the
+     * exact distance between them.
+     * Otherwise, this distance will be a lower bound on
+     * the distances between the items in the members.
+     *
+     * @return the exact or lower bound distance for this pair
+     */
+    double getDistance() const;
 
-		/**
-		 * Tests if both elements of the pair are leaf nodes
-		 *
-		 * @return true if both pair elements are leaf nodes
-		 */
-		bool isLeaves() const;
+    /**
+     * Tests if both elements of the pair are leaf nodes
+     *
+     * @return true if both pair elements are leaf nodes
+     */
+    bool isLeaves() const;
 
-		static bool isComposite(const Boundable* item);
+    /** \brief
+     * Computes the maximum distance between any
+     * two items in the pair of nodes.
+     *
+     * @return the maximum distance between items in the pair
+     */
+    double maximumDistance();
 
-		static double area(const Boundable* b);
+    static bool isComposite(const Boundable* item);
 
-		void expandToQueue(BoundablePairQueue &, double minDistance);
-		void expand(const Boundable* bndComposite, const Boundable* bndOther, BoundablePairQueue & priQ, double minDistance);
+    static double area(const Boundable* b);
+
+    void expandToQueue(BoundablePairQueue&, double minDistance);
+    void expand(const Boundable* bndComposite, const Boundable* bndOther, bool isFlipped, BoundablePairQueue& priQ,
+                double minDistance);
 };
-}
-}
-}
 
-#endif
-
+}
+}
+}

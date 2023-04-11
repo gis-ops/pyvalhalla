@@ -1,7 +1,7 @@
 /*
  gg_wfs.h -- Gaia common support for WFS
   
- version 4.3, 2015 June 29
+ version 5.0, 2020 August 1
 
  Author: Sandro Furieri a.furieri@lqt.it
 
@@ -23,7 +23,7 @@ The Original Code is the SpatiaLite library
 
 The Initial Developer of the Original Code is Alessandro Furieri
  
-Portions created by the Initial Developer are Copyright (C) 2008-2015
+Portions created by the Initial Developer are Copyright (C) 2008-2021
 the Initial Developer. All Rights Reserved.
 
 Contributor(s):
@@ -103,8 +103,8 @@ extern "C"
     SPATIALITE_DECLARE int load_from_wfs (sqlite3 * sqlite,
 					  const char *path_or_url,
 					  const char *alt_describe_uri,
-					  const char *layer_name, int swap_axes,
-					  const char *table,
+					  const char *layer_name,
+					  int swap_axes, const char *table,
 					  const char *pk_column_name,
 					  int spatial_index, int *rows,
 					  char **err_msg,
@@ -134,7 +134,8 @@ extern "C"
  \param callback_ptr an arbitrary pointer (to be passed as the second argument
  by the callback function).
  
- \sa create_wfs_catalog, load_from_wfs, reset_wfs_http_connection
+ \sa create_wfs_catalog, load_from_wfs, reset_wfs_http_connection,
+ load_from_wfs_paged_ex
 
  \return 0 on failure, any other value on success
  
@@ -144,6 +145,9 @@ extern "C"
  \note the progress_callback function must have this signature: 
  \b void \b myfunct(\b int \b count, \b void \b *ptr);
  \n and will cyclically report how many features have been processed since the initial call start.
+ 
+ \note this function is now deprecated and simply defaults to a call to
+ load_from_wfs_paged_ex assuming WFS version 1.1.0
  */
     SPATIALITE_DECLARE int load_from_wfs_paged (sqlite3 * sqlite,
 						const char *path_or_url,
@@ -155,10 +159,58 @@ extern "C"
 						int spatial_index,
 						int page_size, int *rows,
 						char **err_msg,
-						void (*progress_callback) (int,
-									   void
-									   *),
+						void (*progress_callback)
+						(int, void *),
 						void *callback_ptr);
+
+/**
+ Loads data from some WFS source (using WFS paging) - Extended
+
+ \param sqlite handle to current DB connection
+ \param wfs_version one of "1.0.0", "1.1.0", "2.0.0" or "2.0.2"
+ \param path_or_url pointer to some WFS-GetFeature XML Document (could be a pathname or an URL).
+ \param alt_describe_uri an alternative URI for DescribeFeatureType to be used
+ if no one is found within the XML document returned by GetFeature.
+ \param layer_name the name of the WFS layer.
+ \param swap_axes if TRUE the X and Y axes will be swapped 
+ \param table the name of the table to be created
+ \param pk_column name of the Primary Key column; if NULL or mismatching
+ then "PK_UID" will be assumed by default.
+ \param spatial_index if TRUE an R*Tree Spatial Index will be created
+ \param page_size max number of features for each single WFS call; if zero or
+ negative a single monolithic page is assumed (i.e. paging will not be applied).
+ \param rows on completion will contain the total number of actually imported rows
+ \param err_msg on completion will contain an error message (if any)
+ \param progress_callback pointer to a callback function to be invoked immediately
+ after processing each WFS page (could be NULL)
+ \param callback_ptr an arbitrary pointer (to be passed as the second argument
+ by the callback function).
+ 
+ \sa create_wfs_catalog, load_from_wfs, reset_wfs_http_connection
+
+ \return 0 on failure, any other value on success
+ 
+ \note an eventual error message returned via err_msg requires to be deallocated
+ by invoking free()
+
+ \note the progress_callback function must have this signature: 
+ \b void \b myfunct(\b int \b count, \b void \b *ptr);
+ \n and will cyclically report how many features have been processed since the initial call start.
+ */
+    SPATIALITE_DECLARE int load_from_wfs_paged_ex (sqlite3 * sqlite,
+						   const char *wfs_version,
+						   const char *path_or_url,
+						   const char *alt_describe_uri,
+						   const char *layer_name,
+						   int swap_axes,
+						   const char *table,
+						   const char *pk_column_name,
+						   int spatial_index,
+						   int page_size, int *rows,
+						   char **err_msg,
+						   void (*progress_callback)
+						   (int, void *),
+						   void *callback_ptr);
 
 /**
  Creates a Catalog for some WFS service 
@@ -224,8 +276,8 @@ extern "C"
  
  \sa create_wfs_catalog, get_wfs_base_request_url, get_wfs_describe_url
  */
-    SPATIALITE_DECLARE const char *get_wfs_base_describe_url (gaiaWFScatalogPtr
-							      handle);
+    SPATIALITE_DECLARE const char
+	*get_wfs_base_describe_url (gaiaWFScatalogPtr handle);
 
 /**
  Return a GetFeature URL (GET)
@@ -491,9 +543,8 @@ extern "C"
  \sa create_wfs_schema, get_wfs_schema_geometry_info, 
  get_wfs_schema_column_count, get_wfs_schema_column_info
  */
-    SPATIALITE_DECLARE gaiaWFScolumnPtr get_wfs_schema_column (gaiaWFSschemaPtr
-							       handle,
-							       int index);
+    SPATIALITE_DECLARE gaiaWFScolumnPtr
+	get_wfs_schema_column (gaiaWFSschemaPtr handle, int index);
 
 /**
  Return the infos describing some WFS-Column object
@@ -510,7 +561,8 @@ extern "C"
  
  \sa get_wfs_schema_column, get_wfs_schema_geometry_info
  */
-    SPATIALITE_DECLARE int get_wfs_schema_column_info (gaiaWFScolumnPtr handle,
+    SPATIALITE_DECLARE int get_wfs_schema_column_info (gaiaWFScolumnPtr
+						       handle,
 						       const char **name,
 						       int *type,
 						       int *nullable);

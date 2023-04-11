@@ -16,29 +16,34 @@
  *
  **********************************************************************/
 
-#ifndef GEOS_INDEX_STRTREE_ITEMDISTANCE_H
-#define GEOS_INDEX_STRTREE_ITEMDISTANCE_H
+#pragma once
 
 #include <geos/index/strtree/ItemBoundable.h>
 
 namespace geos {
 namespace index {
 namespace strtree {
+
+/** \brief
+ * A function method which computes the distance between two [ItemBoundables](\ref ItemBoundable)
+ * in an STRtree. Used for Nearest Neighbour searches.
+ *
+ * \author Martin Davis
+ */
 class GEOS_DLL ItemDistance {
 public:
-	/**
-	 * Computes the distance between two items.
-	 *
-	 * @param item1
-	 * @param item2
-	 * @return the distance between the items
-	 *
-	 * @throws IllegalArgumentException if the metric is not applicable to the arguments
-	 */
-	virtual double distance(const ItemBoundable* item1, const ItemBoundable* item2) = 0;
+    /** \brief
+     * Computes the distance between two items.
+     *
+     * @param item1
+     * @param item2
+     * @return the distance between the items
+     *
+     * @throws IllegalArgumentException if the metric is not applicable to the arguments
+     */
+    virtual double distance(const ItemBoundable* item1, const ItemBoundable* item2) = 0;
 };
 }
 }
 }
 
-#endif //GEOS_ITEMDISTANCE_H

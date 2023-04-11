@@ -1,7 +1,7 @@
 /* 
  gaiaaux.h -- Gaia common utility functions
   
- version 4.3, 2015 June 29
+ version 5.0, 2020 August 1
 
  Author: Sandro Furieri a.furieri@lqt.it
 
@@ -23,7 +23,7 @@ The Original Code is the SpatiaLite library
 
 The Initial Developer of the Original Code is Alessandro Furieri
  
-Portions created by the Initial Developer are Copyright (C) 2008-2015
+Portions created by the Initial Developer are Copyright (C) 2008-2021
 the Initial Developer. All Rights Reserved.
 
 Contributor(s):
@@ -295,8 +295,8 @@ extern "C"
   statement itself.
  */
     GAIAAUX_DECLARE void gaiaUpdateSqlLog (sqlite3 * sqlite,
-					   sqlite3_int64 sqllog_pk, int success,
-					   const char *errMsg);
+					   sqlite3_int64 sqllog_pk,
+					   int success, const char *errMsg);
 
 /**
  Creates a persistent MD5 checksum object
@@ -382,10 +382,12 @@ extern "C"
 				      double *latitude);
 
 /**
- Return a DMS string
+ Return a DMS string - extended
 
  \param longitude the angle of longitude expressed in Decimal Degrees.
  \param latitude the angle of latitude expressed in Decimal Degrees.
+ \param decimal_digits how many decimal digits must be preserved for
+ representing Seconds.
 
  \return the corresponding DMS (Degrees/Minutes/Seconds) text string,
  or NULL on failure
@@ -396,12 +398,33 @@ extern "C"
  by malloc(). 
  You are required to explicitly free() any string returned by this function.
  */
+    GAIAAUX_DECLARE char *gaiaConvertToDMSex (double longitude, double latitude,
+					      int decimal_digits);
+
+/**
+ Return a DMS string
+
+ \param longitude the angle of longitude expressed in Decimal Degrees.
+ \param latitude the angle of latitude expressed in Decimal Degrees.
+
+ \return the corresponding DMS (Degrees/Minutes/Seconds) text string,
+ or NULL on failure
+
+ \sa gaiaConvertToDMSex
+
+ \note this function will return a dynamically allocated buffer created 
+ by malloc(). 
+ You are required to explicitly free() any string returned by this function.
+ 
+ \note this functions simply defaults to gaiaConvertToDMSex(lon, lat, 0)
+ */
     GAIAAUX_DECLARE char *gaiaConvertToDMS (double longitude, double latitude);
 
 /**
  Return a percent-encoded URL
 
  \param url the URL to be percent-encoded
+ \param out_charset the charset encoding adopted by the encoded URL
 
  \return the corresponding percent-encoded URL text string,
  or NULL on failure
@@ -412,12 +435,14 @@ extern "C"
  by malloc(). 
  You are required to explicitly free() any string returned by this function.
  */
-    GAIAAUX_DECLARE char *gaiaEncodeURL (const char *url);
+    GAIAAUX_DECLARE char *gaiaEncodeURL (const char *url,
+					 const char *in_charset);
 
 /**
  Return a clean URL from its percent-encoded representation
 
  \param encoded the percent-encoded URL to be decoded
+ \param in_charset the charset encoding adopted by the URL to be decoded
 
  \return the corresponding clean URL text string,
  or NULL on failure
@@ -428,7 +453,8 @@ extern "C"
  by malloc(). 
  You are required to explicitly free() any string returned by this function.
  */
-    GAIAAUX_DECLARE char *gaiaDecodeURL (const char *encoded);
+    GAIAAUX_DECLARE char *gaiaDecodeURL (const char *encoded,
+					 const char *out_charset);
 
 /**
  Return the DirName component (if any) from a Path
@@ -492,6 +518,20 @@ extern "C"
  You are required to explicitly free() any string returned by this function.
  */
     GAIAAUX_DECLARE char *gaiaFileExtFromPath (const char *path);
+
+/**
+ Return a text string containing no repeated whitespaces
+
+ \param string the input string to be cleaned
+
+ \return the corresponding string containing no repeated whitespaces,
+ or NULL on failure
+
+ \note this function will return a dynamically allocated buffer created 
+ by malloc(). 
+ You are required to explicitly free() any string returned by this function.
+ */
+    GAIAAUX_DECLARE char *gaiaRemoveExtraSpaces (const char *string);
 
 #ifdef __cplusplus
 }

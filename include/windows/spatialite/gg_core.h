@@ -1,7 +1,7 @@
 /*
  gg_core.h -- Gaia common support for geometries: core functions
   
- version 4.3, 2015 June 29
+ version 5.0, 2020 August 1
 
  Author: Sandro Furieri a.furieri@lqt.it
 
@@ -23,7 +23,7 @@ The Original Code is the SpatiaLite library
 
 The Initial Developer of the Original Code is Alessandro Furieri
  
-Portions created by the Initial Developer are Copyright (C) 2008-2015
+Portions created by the Initial Developer are Copyright (C) 2008-2021
 the Initial Developer. All Rights Reserved.
 
 Contributor(s):
@@ -59,6 +59,39 @@ the terms of any one of the MPL, the GPL or the LGPL.
 extern "C"
 {
 #endif
+
+#if defined(_WIN32) && !defined(__MINGW32__)
+#include <spatialite/gaiaconfig-msvc.h>
+#else
+#include <spatialite/gaiaconfig.h>
+#endif
+
+/* constant values for gaiaGeodesicArcLength return_type */
+
+/** Arc Length measured in Degrees */
+#define GAIA_GEODESIC_ARC_LENGTH_DEGREES	0
+
+/** Arc Length measured in Meters */
+#define GAIA_GEODESIC_ARC_LENGTH_METERS		1
+
+/** Chord Length measured in Degrees */
+#define GAIA_GEODESIC_CHORD_LENGTH_DEGREES	2
+
+/** Chord Length measured in Meters */
+#define GAIA_GEODESIC_CHORD_LENGTH_METERS	3
+
+/** Central Angle measured in Radians */
+#define GAIA_GEODESIC_CENTRAL_ANGLE_RADIANS	4
+
+/** Central Angle measured in Degrees */
+#define GAIA_GEODESIC_CENTRAL_ANGLE_DEGREES	5
+
+/** Area of segment/arc measured in Square Meters */
+#define GAIA_GEODESIC_ARC_AREA_METERS		6
+
+/** Height of segment/arc in Meters */
+#define GAIA_GEODESIC_ARC_HEIGHT_METERS		7
+
 
 /* function prototypes */
 
@@ -250,7 +283,7 @@ extern "C"
  \param dst destination LINESTRING [output]
  \param src origin LINESTRING [input]
 
- \sa gaiaCopyLinestringCoordsReverse
+ \sa gaiaCopyLinestringCoordsReverse, gaiaCopyLinestringCoordsEx
 
  \note both LINESTRING objects must have exactly the same number of points:
  if dimensions aren't the same for both objects, then the appropriate 
@@ -258,6 +291,25 @@ extern "C"
  */
     GAIAGEO_DECLARE void gaiaCopyLinestringCoords (gaiaLinestringPtr dst,
 						   gaiaLinestringPtr src);
+
+/**
+ Copies coordinates between two LINESTRING objects
+
+ \param dst destination LINESTRING [output]
+ \param src origin LINESTRING [input]
+ \param z_no_data the default Z value
+ \parma m_no_data the default M value
+
+ \sa gaiaCopyLinestringCoords
+
+ \note both LINESTRING objects must have exactly the same number of points:
+ if dimensions aren't the same for both objects, then the appropriate 
+ conversion will be silently applied.
+ */
+    GAIAGEO_DECLARE void gaiaCopyLinestringCoordsEx (gaiaLinestringPtr dst,
+						     gaiaLinestringPtr src,
+						     double z_no_data,
+						     double m_no_data);
 
 /**
  Copies coordinates between two LINESTRING objects in reverse order
@@ -271,7 +323,8 @@ extern "C"
  if dimensions aren't the same for both objects, then the appropriate 
  conversion will be silently applied.
  */
-    GAIAGEO_DECLARE void gaiaCopyLinestringCoordsReverse (gaiaLinestringPtr dst,
+    GAIAGEO_DECLARE void gaiaCopyLinestringCoordsReverse (gaiaLinestringPtr
+							  dst,
 							  gaiaLinestringPtr
 							  src);
 
@@ -363,13 +416,31 @@ extern "C"
  \param dst destination RING [output]
  \param src origin RING [input]
 
- \sa gaiaCopyRingCoordsReverse
+ \sa gaiaCopyRingCoordsReverse, gaiaCopyRingCoordEx
 
  \note both RING objects must have exactly the same number of points:
  if dimensions aren't the same for both objects, then the appropriate
  conversion will be silently applied.
  */
     GAIAGEO_DECLARE void gaiaCopyRingCoords (gaiaRingPtr dst, gaiaRingPtr src);
+
+/**
+ Copies coordinates between two RING objects
+
+ \param dst destination RING [output]
+ \param src origin RING [input]
+ \param z_no_data the default Z value
+ \param m_no_data the default M value
+
+ \sa gaiaCopyRingCoords
+
+ \note both RING objects must have exactly the same number of points:
+ if dimensions aren't the same for both objects, then the appropriate
+ conversion will be silently applied.
+ */
+    GAIAGEO_DECLARE void gaiaCopyRingCoordsEx (gaiaRingPtr dst, gaiaRingPtr src,
+					       double z_no_data,
+					       double m_no_data);
 
 /**
  Copies coordinates between two RING objects in reverse order
@@ -588,8 +659,9 @@ extern "C"
  \note ownership of the newly created POINT object belongs to the Geometry
  object.
  */
-    GAIAGEO_DECLARE void gaiaAddPointToGeomCollXYZ (gaiaGeomCollPtr p, double x,
-						    double y, double z);
+    GAIAGEO_DECLARE void gaiaAddPointToGeomCollXYZ (gaiaGeomCollPtr p,
+						    double x, double y,
+						    double z);
 
 /**
  Creates a new 2D Point [XYM] object into a Geometry object
@@ -602,8 +674,9 @@ extern "C"
  \note ownership of the newly created POINT object belongs to the Geometry
  object.
  */
-    GAIAGEO_DECLARE void gaiaAddPointToGeomCollXYM (gaiaGeomCollPtr p, double x,
-						    double y, double m);
+    GAIAGEO_DECLARE void gaiaAddPointToGeomCollXYM (gaiaGeomCollPtr p,
+						    double x, double y,
+						    double m);
 
 /**
  Creates a new 3D Point [XYZM] object into a Geometry object
@@ -660,8 +733,8 @@ extern "C"
  \note ownership of the newly created Polygon object belongs to the Geometry object.
  \n the newly created Polygon will have the same dimensions as the Geometry has.
  */
-    GAIAGEO_DECLARE gaiaPolygonPtr gaiaAddPolygonToGeomColl (gaiaGeomCollPtr p,
-							     int vert,
+    GAIAGEO_DECLARE gaiaPolygonPtr gaiaAddPolygonToGeomColl (gaiaGeomCollPtr
+							     p, int vert,
 							     int interiors);
 
 /**
@@ -678,10 +751,8 @@ extern "C"
  Polygon object, and the Polygon object ownerships belongs to the Geometry object.
  \n the Polygon object will have the same dimensions as the Ring object has.
  */
-    GAIAGEO_DECLARE gaiaPolygonPtr gaiaInsertPolygonInGeomColl (gaiaGeomCollPtr
-								p,
-								gaiaRingPtr
-								ring);
+    GAIAGEO_DECLARE gaiaPolygonPtr
+	gaiaInsertPolygonInGeomColl (gaiaGeomCollPtr p, gaiaRingPtr ring);
 
 /**
  Creates a new Interior Ring object into a Polygon object
@@ -698,8 +769,8 @@ extern "C"
  \note ownership of the Ring object belongs to the Polygon object.
  \n the newly created Ring will have the same dimensions the Polygon has.
  */
-    GAIAGEO_DECLARE gaiaRingPtr gaiaAddInteriorRing (gaiaPolygonPtr p, int pos,
-						     int vert);
+    GAIAGEO_DECLARE gaiaRingPtr gaiaAddInteriorRing (gaiaPolygonPtr p,
+						     int pos, int vert);
 
 /**
  Inserts an already existing Ring object into a Polygon object
@@ -817,16 +888,18 @@ extern "C"
  Duplicates a Polygon object (special)
 
  \param polyg pointer to Polygon object [origin].
- \param mode one of GAIA_SAME_ORDER, GAIA_REVERSE_ORDER or GAIA_LHR_ORDER.
+ \param mode one of GAIA_SAME_ORDER, GAIA_REVERSE_ORDER, or GAIA_LHR_ORDER.
 
  \return the pointer to newly created Polygon object: NULL on failure.
 
  \sa gaiaClonePolygon, gaiaCloneGeomCollSpecial
 
  \note if GAIA_REVERSE_ORDER is specified, then any Ring into the newly created
-  object will be in reverse order. If GAIA_LHR_ORDER is specified instead, any
+  object will be in reverse order. If GAIA_CW_ORDER is specified, any
   Exterior Ring will have clockwise orientation, and any Interior Ring will have
-  counter-clockwise orientation. In any other case this function will simply 
+  counter-clockwise orientation. If GAIA_CCW_ORDER is specified, any
+  Exterior Ring will have counter-clockwise orientation, and any Interior Ring 
+  will have clockwise orientation. In any other case this function will simply 
   default to gaiaClonePolygon. 
  */
     GAIAGEO_DECLARE gaiaPolygonPtr gaiaClonePolygonSpecial (gaiaPolygonPtr
@@ -945,7 +1018,8 @@ extern "C"
  \return the pointer to newly created Geometry object: NULL on failure.
 
  \sa gaiaCloneGeomColl, gaiaCastGeomCollToXY, 
- gaiaCastGeomCollToXYM, gaiaCastGeomCollToXYZM
+ gaiaCastGeomCollToXYM, gaiaCastGeomCollToXYZM,
+ gaiaCostGeomCollToXYZnoData
 
  \note the newly created object is an exact copy of the original one; except
  in that any elementary item  will be cast to 3D [XYZ] dimensions.
@@ -961,7 +1035,7 @@ extern "C"
  \return the pointer to newly created Geometry object: NULL on failure.
 
  \sa gaiaCloneGeomColl, gaiaCastGeomCollToXY, gaiaCastGeomCollToXYZ,
- gaiaCastGeomCollToXYZM
+ gaiaCastGeomCollToXYZM, gaiaCastGeomCollToXYMnoData
 
  \note the newly created object is an exact copy of the original one; except
  in that any elementary item  will be cast to 2D [XYM] dimensions.
@@ -977,13 +1051,67 @@ extern "C"
  \return the pointer to newly created Geometry object: NULL on failure.
 
  \sa gaiaCloneGeomColl, gaiaCastGeomCollToXY, gaiaCastGeomCollToXYZ,
- gaiaCastGeomCollToXYM
+ gaiaCastGeomCollToXYM, gaiaCastGeomCollToXYZMnoData
 
  \note the newly created object is an exact copy of the original one; except
  in that any elementary item  will be cast to 3D [XYZM] dimensions.
  */
     GAIAGEO_DECLARE gaiaGeomCollPtr gaiaCastGeomCollToXYZM (gaiaGeomCollPtr
 							    geom);
+
+/**
+ Duplicates a Geometry object [casting dimensions to 3D XYZ - noData]
+
+ \param geom pointer to Geometry object [origin].
+ \param no_data the default Z value
+
+ \return the pointer to newly created Geometry object: NULL on failure.
+
+ \sa gaiaCostGeomCollToXYZ
+
+ \note the newly created object is an exact copy of the original one; except
+ in that any elementary item  will be cast to 3D [XYZ] dimensions.
+ */
+    GAIAGEO_DECLARE gaiaGeomCollPtr gaiaCastGeomCollToXYZnoData (gaiaGeomCollPtr
+								 geom,
+								 double
+								 no_data);
+
+/**
+ Duplicates a Geometry object [casting dimensions to 2D XYM - noData]
+
+ \param geom pointer to Geometry object [origin].
+ \param no_data the default M value
+
+ \return the pointer to newly created Geometry object: NULL on failure.
+
+ \sa gaiaCastGeomCollToXYM
+
+ \note the newly created object is an exact copy of the original one; except
+ in that any elementary item  will be cast to 2D [XYM] dimensions.
+ */
+    GAIAGEO_DECLARE gaiaGeomCollPtr gaiaCastGeomCollToXYMnoData (gaiaGeomCollPtr
+								 geom,
+								 double
+								 no_data);
+
+/**
+ Duplicates a Geometry object [casting dimensions to 3D XYZM - noData]
+
+ \param geom pointer to Geometry object [origin].
+ \param z_no_data the default Z value
+ \param m_no_data the default M value
+
+ \return the pointer to newly created Geometry object: NULL on failure.
+
+ \sa gaiaCastGeomCollToXYZM
+
+ \note the newly created object is an exact copy of the original one; except
+ in that any elementary item  will be cast to 3D [XYZM] dimensions.
+ */
+    GAIAGEO_DECLARE gaiaGeomCollPtr
+	gaiaCastGeomCollToXYZMnoData (gaiaGeomCollPtr geom, double z_no_data,
+				      double m_no_data);
 
 /**
  Gets coodinates from a Linestring's Point
@@ -1037,8 +1165,9 @@ extern "C"
  \n gaiaLineSetPoint() instead will always ensure that the appropriate 
  dimensions (as declared by the Linestring object) will be correctly used.
  */
-    GAIAGEO_DECLARE int gaiaLineSetPoint (gaiaLinestringPtr ln, int v, double x,
-					  double y, double z, double m);
+    GAIAGEO_DECLARE int gaiaLineSetPoint (gaiaLinestringPtr ln, int v,
+					  double x, double y, double z,
+					  double m);
 
 /**
  Gets coordinates from a Ring's Point
@@ -1160,6 +1289,34 @@ extern "C"
     GAIAGEO_DECLARE int gaiaIsEmpty (gaiaGeomCollPtr geom);
 
 /**
+ Checks for Clockwise Geometry object
+
+ \param geom pointer to Geometry object
+
+ \return 0 if the Geometry is not clockwise: otherwise any other different value.
+
+ \note a Clockwise Geometry contains no Polygons, or alternatively
+ contains only Clockwise Polygons.
+ A Clockwise Polygon has a Clockwise exterior ring and all interior rings
+ are Counter-Clockwise.
+ */
+    GAIAGEO_DECLARE int gaiaCheckClockwise (gaiaGeomCollPtr geom);
+
+/**
+ Checks for CounterClockwise Geometry object
+
+ \param geom pointer to Geometry object
+
+ \return 0 if the Geometry is not counter-clockwise: otherwise any other different value.
+
+ \note a CounterClockwise Geometry contains no Polygons, or alternatively
+ contains only CounterClockwise Polygons.
+ A CounterClockwise Polygon has a CounterClockwise exterior ring and all 
+ interior rings are Clockwise.
+ */
+    GAIAGEO_DECLARE int gaiaCheckCounterClockwise (gaiaGeomCollPtr geom);
+
+/**
  Checks for toxic Geometry object
 
  \param geom pointer to Geometry object
@@ -1276,7 +1433,7 @@ extern "C"
 
  \return the pointer to newly created Geometry: NULL on failure.
 
- \sa gaiaIsToxic
+ \sa gaiaIsToxic, gaiaEnsureClosedRings, gaiaRemoveRepeatedPoints
 
  \note you are responsible to destroy (before or after) any allocated Geometry,
  this including any Geometry created by gaiaSanitize()
@@ -1289,6 +1446,42 @@ extern "C"
  */
     GAIAGEO_DECLARE gaiaGeomCollPtr gaiaSanitize (gaiaGeomCollPtr org);
 
+/**
+ Attempts to sanitize a possibly malformed Geometry object
+
+ \param org pointer to Geometry object.
+
+ \return the pointer to newly created Geometry: NULL on failure.
+
+ \sa gaiaIsToxic, gaiaSanitize, gaiaRemoveRepeatedPoint
+
+ \note you are responsible to destroy (before or after) any allocated Geometry,
+ this including any Geometry created by gaiaSanitize()
+ \n the output Geometry will surely have proper Ring closure: for sure any 
+ Ring will have exactly coinciding first and last Points.
+ */
+    GAIAGEO_DECLARE gaiaGeomCollPtr gaiaEnsureClosedRings (gaiaGeomCollPtr org);
+
+/**
+ Attempts to sanitize a possibly malformed Geometry object
+
+ \param org pointer to Geometry object.
+ \param tolerance
+
+ \return the pointer to newly created Geometry: NULL on failure.
+
+ \sa gaiaIsToxic, gaiaSanitizeGeometry, gaiaEnsureClosedRings
+
+ \note you are responsible to destroy (before or after) any allocated Geometry,
+ this including any Geometry created by gaiaSanitize()
+ \n the output Geometry will surely have no repeated Points on Linestrings or Rings
+ or MultiPoints (i.e. consecutive Points sharing exactly the same coordinates or
+ falling within the given tolerace): any repeated Point will be suppressed,
+ simply leaving only the first occurrence.
+ */
+    GAIAGEO_DECLARE gaiaGeomCollPtr gaiaRemoveRepeatedPoints (gaiaGeomCollPtr
+							      org,
+							      double tolerance);
 
 /**
  Attempts to resolve a (Multi)Linestring from a Geometry object
@@ -1418,7 +1611,8 @@ extern "C"
  Polygon contained in both input Geometries.\n
  not reentrant and thread unsafe.
  */
-    GAIAGEO_DECLARE gaiaGeomCollPtr gaiaMergeGeometries (gaiaGeomCollPtr geom1,
+    GAIAGEO_DECLARE gaiaGeomCollPtr gaiaMergeGeometries (gaiaGeomCollPtr
+							 geom1,
 							 gaiaGeomCollPtr geom2);
 
 /**
@@ -1438,11 +1632,51 @@ extern "C"
  Polygon contained in both input Geometries.\n
  reentrant and thread-safe.
  */
-    GAIAGEO_DECLARE gaiaGeomCollPtr gaiaMergeGeometries_r (const void *p_cache,
+    GAIAGEO_DECLARE gaiaGeomCollPtr gaiaMergeGeometries_r (const void
+							   *p_cache,
 							   gaiaGeomCollPtr
 							   geom1,
 							   gaiaGeomCollPtr
 							   geom2);
+
+/**
+ Will return a new GEOMETRY (supporting M) with measures linearly
+ interpolated between the start and end points.
+
+ \param geom pointer to Geometry object of the Linestring or MultiLinestring type.
+ \param m_start M start value
+ \param m_end M end value
+
+ \return the pointer to newly created Geometry: NULL on failure.
+
+ \note you are responsible to destroy (before or after) any allocated Geometry,
+ this including any Geometry created by gaiaAddMeasure()
+ \n the newly created Geometry will contain Linestrings.
+ \n if the input Geometry has no M dimension it will be added, otherwise
+ it will overwritten.
+ \n an eventual Z will be preserved unaffected.
+ */
+    GAIAGEO_DECLARE gaiaGeomCollPtr
+	gaiaAddMeasure (gaiaGeomCollPtr geom, double m_start, double m_end);
+	
+#ifndef OMIT_GEOS		/* including GEOS */
+/**
+ Will interpolate the M-value for a LinestringM at the point closest to the 
+ given Point.
+
+ \param p_cache a memory pointer returned by spatialite_alloc_connection()
+ \param line pointer to Geometry object of the Linestring type and supporting
+ the M dimension.
+ \param point pointer to Geometry object of the Point type.
+ \param m_value on succesfull completion this variable will contain the 
+ interpolated M value
+
+ \return 0 on failure: any other value on success.
+ */
+    GAIAGEO_DECLARE int
+	gaiaInterpolatePoint (const void *p_cache, gaiaGeomCollPtr line,
+			      gaiaGeomCollPtr point, double *m_value);		      
+#endif /* end including GEOS */
 
 /**
  Return a GeometryCollection containing elements matching the specified range of measures
@@ -1465,6 +1699,42 @@ extern "C"
     GAIAGEO_DECLARE gaiaGeomCollPtr
 	gaiaLocateBetweenMeasures (gaiaGeomCollPtr geom, double m_start,
 				   double m_end);
+
+/**
+ Checks if a Geometry object is valid Trajectory
+
+ \param geom pointer to Geometry object
+
+ \return 0 if false; any other value if true
+
+ \sa gaiaTrajectoryInterpolatePoint
+ 
+ \note a Geometry is considered to be a valid Trajectory if it contains
+ a simple LINESTRING supporting M-values growing from each vertex to the next.
+ */
+    GAIAGEO_DECLARE int gaiaIsValidTrajectory (gaiaGeomCollPtr geom);
+
+/**
+ Attempts to interpolate a Point along a Trajectory accordingly to given M-Value
+
+ \param geom pointer to Geometry object (expected to be a valid Trajectory)
+ \param m the M-Value to be interpolated
+
+ \return the pointer to newly created Geometry object representing a Point
+ laying on the input Geometry and positioned at the given M-Value
+ NULL on failure.
+
+ \sa gaiaIsValidTrajectory, gaiaFreeGeomColl
+
+ \note you are responsible to destroy (before or after) any allocated Geometry,
+ this including any Geometry returned by gaiaTrajectoryInterpolatePoint()\n
+ not reentrant and thread unsafe.
+ 
+ \note a Geometry is considered to be a valid Trajectory if it contains
+ a simple LINESTRING supporting M-values growing from each vertex to the next.
+ */
+    GAIAGEO_DECLARE gaiaGeomCollPtr
+	gaiaTrajectoryInterpolatePoint (gaiaGeomCollPtr geom, double m);
 
 /**
  Measures the geometric length for a Linestring or Ring
@@ -1532,8 +1802,8 @@ extern "C"
 
  \return 0 if false: any other value if true
  */
-    GAIAGEO_DECLARE int gaiaIsPointOnRingSurface (gaiaRingPtr ring, double pt_x,
-						  double pt_y);
+    GAIAGEO_DECLARE int gaiaIsPointOnRingSurface (gaiaRingPtr ring,
+						  double pt_x, double pt_y);
 
 /**
  Checks if a Point lays on a Polygon surface
@@ -1597,8 +1867,8 @@ extern "C"
  \sa gaiaScaleCoords, gaiaRotateCoords, gaiaReflectCoords, gaiaSwapCoords,
      gaiaShiftCoords3D, gaiaShiftLongitude
  */
-    GAIAGEO_DECLARE void gaiaShiftCoords (gaiaGeomCollPtr geom, double shift_x,
-					  double shift_y);
+    GAIAGEO_DECLARE void gaiaShiftCoords (gaiaGeomCollPtr geom,
+					  double shift_x, double shift_y);
 
 /**
  Shifts any coordinate within a 3D Geometry object
@@ -1651,8 +1921,8 @@ extern "C"
 
  \sa gaiaShiftCoords, gaiaRotateCoords, gaiaReflectCoords, gaiaSwapCoords
  */
-    GAIAGEO_DECLARE void gaiaScaleCoords (gaiaGeomCollPtr geom, double scale_x,
-					  double scale_y);
+    GAIAGEO_DECLARE void gaiaScaleCoords (gaiaGeomCollPtr geom,
+					  double scale_x, double scale_y);
 
 /**
  Rotates any coordinate within a Geometry object
@@ -1769,7 +2039,7 @@ extern "C"
 						    double lat2, double lon2);
 
 /**
- Calculates the Geodesic Distance between between two Points
+ Calculates the Geodesic Distance between two Points
 
  \param a first geodesic parameter.
  \param b second geodesic parameter.
@@ -1782,14 +2052,15 @@ extern "C"
  \return the calculated Geodesic Distance.
 
  \sa gaiaEllipseParams, gaiaGreatCircleDistance, gaiaGreatCircleTotalLength,
- gaiaGeodesicTotalLength
+ gaiaGeodesicTotalLength, gaiaGeodesicArcLength
 
  \note the returned distance is expressed in Kilometers.
  \n the Geodesic method is much more accurate but slowest to be calculated.
  */
-    GAIAGEO_DECLARE double gaiaGeodesicDistance (double a, double b, double rf,
-						 double lat1, double lon1,
-						 double lat2, double lon2);
+    GAIAGEO_DECLARE double gaiaGeodesicDistance (double a, double b,
+						 double rf, double lat1,
+						 double lon1, double lat2,
+						 double lon2);
 
 /**
  Calculates the Great Circle Total Length for a Linestring / Ring
@@ -1812,7 +2083,8 @@ extern "C"
  or gaiaRingStruct
  */
     GAIAGEO_DECLARE double gaiaGreatCircleTotalLength (double a, double b,
-						       int dims, double *coords,
+						       int dims,
+						       double *coords,
 						       int vert);
 
 /**
@@ -1828,13 +2100,13 @@ extern "C"
  \return the calculated Geodesic Total Length.
 
  \sa gaiaEllipseParams, gaiaGreatCircleDistance, gaiaGeodesicDistance,
- gaiaGreatCircleTotalLength
+ gaiaGreatCircleTotalLength, gaiaGeodesicArcLength
 
  \note the returned length is expressed in Kilometers.
  \n the Geodesic method is much more accurate but slowest to be calculated.
  \n \b dims, \b coords and \b vert are usually expected to correspond to
  \b DimensionModel, \b Coords and \b Points members from a gaiaLinestringStruct
- or gaiaRingStruct
+ or gaiaRingStruct.
  */
     GAIAGEO_DECLARE double gaiaGeodesicTotalLength (double a, double b,
 						    double rf, int dims,
@@ -1856,6 +2128,38 @@ extern "C"
  */
     GAIAGEO_DECLARE int gaiaConvertLength (double value, int unit_from,
 					   int unit_to, double *cvt);
+
+/**
+ Computes several Geodesic values based on the Distance between two Geometries
+
+ \param db_handle handle to the current DB connection.
+ \param cache the same memory pointer passed to the corresponding call to
+ spatialite_init_ex() and returned by spatialite_alloc_connection()
+ \param geom1 the first Geometry.
+ \param geom2 the second Geometry.
+ \param return_type selects wich value has be computed.
+ Must be one between: GAIA_GEODESIC_ARC_LENGTH_METERS, 
+ GAIA_GEODESIC_ARC_LENGTH_DEGREES, GAIA_GEODESIC_CHORD_LENGTH_METERS, 
+ GAIA_GEODESIC_CHORD_LENGTH_DEGREES, GAIA_GEODESIC_CENTRAL_ANGLE_DEGREES,
+ GAIA_GEODESIC_CENTRAL_ANGLE_RADIANS, GAIA_GEODESIC_ARC_AREA_METERS or
+ GAIA_GEODESIC_ARC_HEIGHT_METERS.
+ \param retval on completion this variable will contain the computed value.
+ 
+ \return 0 on failure: any other value on success.
+ 
+ \sa gaiaGeodesicDistance, gaiaGeodesicTotalLength
+ 
+ \note Both geom1 and geom2 must share the same SRID, that is expected
+ to be of the Geographic type (longitudes and latitudes).
+ \n Requires to be supported by a recent version of PROJ (>= 4.9.0).
+ \n If not supported by GEOS only two POINT Geometries will be accepted.
+ 
+ */
+    GAIAGEO_DECLARE int gaiaGeodesicArcLength (sqlite3 * sqlite,
+					       const void *cache,
+					       gaiaGeomCollPtr geom1,
+					       gaiaGeomCollPtr geom2,
+					       int return_type, double *retval);
 
 /**
  Creates a Circle (Linestring) Geometry
@@ -1907,9 +2211,9 @@ extern "C"
  with both axes set to radius value
  */
     GAIAGEO_DECLARE gaiaGeomCollPtr gaiaMakeArc (double center_x,
-						 double center_y, double radius,
-						 double start, double stop,
-						 double step);
+						 double center_y,
+						 double radius, double start,
+						 double stop, double step);
 
 /**
  Creates an Elliptic Arc (Linestring) Geometry
@@ -1951,6 +2255,37 @@ extern "C"
  */
     GAIAGEO_DECLARE gaiaGeomCollPtr gaiaMakePolygon (gaiaGeomCollPtr exterior,
 						     gaiaGeomCollPtr interiors);
+
+/**
+ Computes the Curvosity Index for some Linestrings
+
+ \param p_cache a memory pointer returned by spatialite_alloc_connection()
+ \param line a generic Linestring.
+ \param extra_points number of points to be interpolated at regular
+ distance into the reference line.
+
+ \return the calculated Curvosity Index (expected to be in the range between 0.0 and 1.0).
+ */
+    GAIAGEO_DECLARE double gaiaCurvosityIndex (const void *p_cache,
+					       gaiaLinestringPtr line,
+					       int extra_points);
+
+/**
+ Computes the Uphill and Downhill total Height for some 3D Linestrings
+
+ \param line a generic Linestring.
+ \param up on completion this variable will contain the total Uphill Height.\n
+ Will always be ZERO for any 2D Linestring.
+ \param down on completion this variable will contain the total Downhill Height.\n
+ Will always be ZERO for any 2D Linestring.
+
+ */
+    GAIAGEO_DECLARE void gaiaUpDownHeight (gaiaLinestringPtr line, double *up,
+					   double *down);
+	
+#ifdef _WIN32				      
+	GAIAGEO_DECLARE FILE * gaia_win_fopen(const char *path, const char *mode);
+#endif
 
 #ifdef __cplusplus
 }

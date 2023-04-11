@@ -8,7 +8,7 @@
  *
  * This is free software; you can redistribute and/or modify it under
  * the terms of the GNU Lesser General Public Licence as published
- * by the Free Software Foundation. 
+ * by the Free Software Foundation.
  * See the COPYING file for more information.
  *
  **********************************************************************
@@ -17,17 +17,16 @@
  *
  **********************************************************************/
 
-#ifndef GEOS_IO_WKBREADER_H
-#define GEOS_IO_WKBREADER_H
+#pragma once
 
 #include <geos/export.h>
 
-#include <geos/geom/GeometryFactory.h>
 #include <geos/io/ByteOrderDataInStream.h> // for composition
 
 #include <iosfwd> // ostream, istream
-#include <vector>
-#include <string>
+#include <memory>
+// #include <vector>
+#include <array>
 
 #define BAD_GEOM_TYPE_MSG "Bad geometry type encountered in"
 
@@ -38,22 +37,23 @@
 
 // Forward declarations
 namespace geos {
-	namespace geom {
+namespace geom {
 
-		//class GeometryFactory;
-		class Coordinate;
-		class Geometry;
-		class GeometryCollection;
-		class Point;
-		class LineString;
-		class LinearRing;
-		class Polygon;
-		class MultiPoint;
-		class MultiLineString;
-		class MultiPolygon;
-		class PrecisionModel;
+class GeometryFactory;
+class Coordinate;
+class Geometry;
+class GeometryCollection;
+class Point;
+class LineString;
+class LinearRing;
+class Polygon;
+class MultiPoint;
+class MultiLineString;
+class MultiPolygon;
+class PrecisionModel;
+class CoordinateSequence;
 
-	} // namespace geom
+} // namespace geom
 } // namespace geos
 
 
@@ -61,7 +61,7 @@ namespace geos {
 namespace io {
 
 /**
- * \class WKBReader io.h geos.h
+ * \class WKBReader
  *
  * \brief Reads a Geometry from Well-Known Binary format.
  *
@@ -80,86 +80,93 @@ class GEOS_DLL WKBReader {
 
 public:
 
-	WKBReader(geom::GeometryFactory const& f): factory(f) {}
+    WKBReader(geom::GeometryFactory const& f);
 
-	/// Inizialize parser with default GeometryFactory.
-	WKBReader();
+    /// Inizialize parser with default GeometryFactory.
+    WKBReader();
 
-	/**
-	 * \brief Reads a Geometry from an istream.
-	 *
-	 * @param is the stream to read from 
-	 * @return the Geometry read
-	 * @throws IOException
-	 * @throws ParseException
-	 */
-	geom::Geometry* read(std::istream &is);
-		// throws IOException, ParseException
+    void setFixStructure(bool doFixStructure);
 
-	/**
-	 * \brief Reads a Geometry from an istream in hex format.
-	 *
-	 * @param is the stream to read from 
-	 * @return the Geometry read
-	 * @throws IOException
-	 * @throws ParseException
-	 */
-	geom::Geometry *readHEX(std::istream &is);
-		// throws IOException, ParseException
+    /**
+     * \brief Reads a Geometry from an istream.
+     *
+     * @param is the stream to read from
+     * @return the Geometry read
+     * @throws IOException
+     * @throws ParseException
+     */
+    std::unique_ptr<geom::Geometry> read(std::istream& is);
 
-	/**
-	 * \brief Print WKB in HEX form to out stream
-	 *
-	 * @param is is the stream to read from
-	 * @param os is the stream to write to
-	 */
-	static std::ostream &printHEX(std::istream &is, std::ostream &os);
- 
+    /**
+     * \brief Reads a Geometry from a buffer
+     *
+     * @param buf the buffer to read from
+     * @param size the size of the buffer in bytes
+     * @return the Geometry read
+     * @throws IOException
+     * @throws ParseException
+     */
+    std::unique_ptr<geom::Geometry> read(const unsigned char* buf, size_t size);
+
+    /**
+     * \brief Reads a Geometry from an istream in hex format.
+     *
+     * @param is the stream to read from
+     * @return the Geometry read
+     * @throws IOException
+     * @throws ParseException
+     */
+    std::unique_ptr<geom::Geometry> readHEX(std::istream& is);
+
+    /**
+     * \brief Print WKB in HEX form to out stream
+     *
+     * @param is is the stream to read from
+     * @param os is the stream to write to
+     */
+    static std::ostream& printHEX(std::istream& is, std::ostream& os);
+
 private:
 
-	const geom::GeometryFactory &factory;
+    const geom::GeometryFactory& factory;
 
-	// for now support the WKB standard only - may be generalized later
-	unsigned int inputDimension;
+    // for now support the WKB standard only - may be generalized later
+    unsigned int inputDimension;
+    bool hasZ;
+    bool hasM;
+    bool fixStructure;
 
-	ByteOrderDataInStream dis;
+    ByteOrderDataInStream dis;
 
-	std::vector<double> ordValues;
+    std::array<double, 4> ordValues;
 
-	geom::Geometry *readGeometry();
-		// throws IOException, ParseException
+    std::unique_ptr<geom::Geometry> readGeometry();
 
-	geom::Point *readPoint();
-		// throws IOException
+    std::unique_ptr<geom::Point> readPoint();
 
-	geom::LineString *readLineString();
-		// throws IOException
+    std::unique_ptr<geom::LineString> readLineString();
 
-	geom::LinearRing *readLinearRing();
-		// throws IOException
+    std::unique_ptr<geom::LinearRing> readLinearRing();
 
-	geom::Polygon *readPolygon();
-		// throws IOException
+    std::unique_ptr<geom::Polygon> readPolygon();
 
-	geom::MultiPoint *readMultiPoint();
-		// throws IOException, ParseException
+    std::unique_ptr<geom::MultiPoint> readMultiPoint();
 
-	geom::MultiLineString *readMultiLineString();
-		// throws IOException, ParseException
+    std::unique_ptr<geom::MultiLineString> readMultiLineString();
 
-	geom::MultiPolygon *readMultiPolygon();
-		// throws IOException, ParseException
+    std::unique_ptr<geom::MultiPolygon> readMultiPolygon();
 
-	geom::GeometryCollection *readGeometryCollection();
-		// throws IOException, ParseException
+    std::unique_ptr<geom::GeometryCollection> readGeometryCollection();
 
-	geom::CoordinateSequence *readCoordinateSequence(int); // throws IOException
+    std::unique_ptr<geom::CoordinateSequence> readCoordinateSequence(unsigned int); // throws IOException
 
-	void readCoordinate(); // throws IOException
+    void minMemSize(int geomType, uint64_t size);
+
+    void readCoordinate(); // throws IOException
 
     // Declare type as noncopyable
-    WKBReader(const WKBReader& other);
-    WKBReader& operator=(const WKBReader& rhs);
+    WKBReader(const WKBReader& other) = delete;
+    WKBReader& operator=(const WKBReader& rhs) = delete;
 };
 
 } // namespace io
@@ -169,4 +176,3 @@ private:
 #pragma warning(pop)
 #endif
 
-#endif // #ifndef GEOS_IO_WKBREADER_H

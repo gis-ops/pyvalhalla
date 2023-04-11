@@ -1,7 +1,7 @@
 /*
  gg_const.h -- Gaia common support for geometries: constants
   
- version 4.3, 2015 June 29
+ version 5.0, 2020 August 1
 
  Author: Sandro Furieri a.furieri@lqt.it
 
@@ -23,7 +23,7 @@ The Original Code is the SpatiaLite library
 
 The Initial Developer of the Original Code is Alessandro Furieri
  
-Portions created by the Initial Developer are Copyright (C) 2008-2015
+Portions created by the Initial Developer are Copyright (C) 2008-2021
 the Initial Developer. All Rights Reserved.
 
 Contributor(s):
@@ -126,6 +126,10 @@ extern "C"
 #define GAIA_BIG_ENDIAN		0
 /** Little-Endian marker */
 #define GAIA_LITTLE_ENDIAN	1
+/** TinyPoint Big-Endian marker */
+#define GAIA_TINYPOINT_BIG_ENDIAN		0x80
+/** TinyPoint Little-Endian marker */
+#define GAIA_TINYPOINT_LITTLE_ENDIAN	0x81
 
 /* constants that defines special markers used for encoding of SpatiaLite internal BLOB geometries  */
 /** BLOB-Geometry internal marker: START */
@@ -196,6 +200,16 @@ extern "C"
 #define GAIA_MULTIPOLYGONZM		3006
 /** BLOB-Geometry CLASS: GEOMETRYCOLLECTION ZM */
 #define GAIA_GEOMETRYCOLLECTIONZM	3007
+
+/* constants that defines TinyPoint Types */
+/** BLOB-TinyPoint Type: POINT XY */
+#define GAIA_TINYPOINT_XY		0x01
+/** BLOB-TinyPoint Type: POINT XYZ */
+#define GAIA_TINYPOINT_XYZ		0x02
+/** BLOB-TinyPoint Type: POINT XYM */
+#define GAIA_TINYPOINT_XYM		0x03
+/** BLOB-TinyPoint Type: POINT XYZM */
+#define GAIA_TINYPOINT_XYZM		0x04
 
 /* constants that defines Compressed GEOMETRY CLASSes */
 /** BLOB-Geometry CLASS: compressed LINESTRING */
@@ -408,8 +422,28 @@ extern "C"
 #define GAIA_SAME_ORDER		0
 /** Clone Special Mode: Reversed Order */
 #define GAIA_REVERSE_ORDER	-1
-/** Clone Special Mode: apply Left Handle Rule to Polygon Rings */
-#define GAIA_LHR_ORDER		-2
+/** Clone Special Mode: apply Clockwise Rule to Polygon Rings */
+#define GAIA_CW_ORDER		-2
+/** Clone Special Mode: apply Counter-Clockwise Rule to Polygon Rings */
+#define GAIA_CCW_ORDER		-3
+
+/* constants used for DBF column-names case */
+/** Leave all DBF column-names as they are */
+#define GAIA_DBF_COLNAME_CASE_IGNORE	0
+/** Convert all DBF column names to LowerCase */
+#define GAIA_DBF_COLNAME_LOWERCASE	1
+/** Convert all DBF column names to UpperCase */
+#define GAIA_DBF_COLNAME_UPPERCASE	2
+
+/* constants used for PROJ.6 WKT styles */
+/** WKT style is ISO-2018 */
+#define GAIA_PROJ_WKT_ISO_2018	1
+/** WKT style is ISO-2015 */
+#define GAIA_PROJ_WKT_ISO_2015	2
+/** WKT style is GDAL */
+#define GAIA_PROJ_WKT_GDAL	3
+/** WKT style is ESRI */
+#define GAIA_PROJ_WKT_ESRI	4
 
 /* macros */
 /**

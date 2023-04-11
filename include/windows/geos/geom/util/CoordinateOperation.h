@@ -8,24 +8,23 @@
  *
  * This is free software; you can redistribute and/or modify it under
  * the terms of the GNU Lesser General Public Licence as published
- * by the Free Software Foundation. 
+ * by the Free Software Foundation.
  * See the COPYING file for more information.
  *
  **********************************************************************/
 
-#ifndef GEOS_GEOM_UTIL_COORDINATEOPERATION_H
-#define GEOS_GEOM_UTIL_COORDINATEOPERATION_H
+#pragma once
 
 #include <geos/export.h>
 #include <geos/geom/util/GeometryEditorOperation.h> // for inheritance
 
 // Forward declarations
 namespace geos {
-	namespace geom {
-		class Geometry;
-		class CoordinateSequence;
-		class GeometryFactory;
-	}
+namespace geom {
+class Geometry;
+class CoordinateSequence;
+class GeometryFactory;
+}
 }
 
 
@@ -42,25 +41,25 @@ class GEOS_DLL CoordinateOperation: public GeometryEditorOperation {
 
 public:
 
-	/**
-	 * Return a newly created geometry, ownership to caller
-	 */
-	virtual Geometry* edit(const Geometry *geometry,
-			const GeometryFactory *factory);
+    /**
+     * Return a newly created geometry, ownership to caller
+     */
+    std::unique_ptr<Geometry> edit(const Geometry* geometry,
+                                   const GeometryFactory* factory) override;
 
-	/**
-	 * Edits the array of Coordinate from a Geometry.
-	 *
-	 * @param coordinates the coordinate array to operate on
-	 * @param geometry the geometry containing the coordinate list
-	 * @return an edited coordinate array (which may be the same as
-	 *         the input)
-	 */
-	virtual CoordinateSequence* edit(const CoordinateSequence* coordinates,
-			const Geometry *geometry)=0;
+    /**
+     * Edits the array of Coordinate from a Geometry.
+     *
+     * @param coordinates the coordinate array to operate on
+     * @param geometry the geometry containing the coordinate list
+     * @return an edited coordinate array (which may be the same as
+     *         the input)
+     */
+    virtual std::unique_ptr<CoordinateSequence> edit(const CoordinateSequence* coordinates,
+                                                     const Geometry* geometry) = 0;
 
 
-	virtual ~CoordinateOperation() {}
+    ~CoordinateOperation() override = default;
 };
 
 
@@ -69,4 +68,3 @@ public:
 } // namespace geos.geom
 } // namespace geos
 
-#endif

@@ -8,7 +8,7 @@
  *
  * This is free software; you can redistribute and/or modify it under
  * the terms of the GNU Lesser General Public Licence as published
- * by the Free Software Foundation. 
+ * by the Free Software Foundation.
  * See the COPYING file for more information.
  *
  **********************************************************************
@@ -17,8 +17,7 @@
  *
  **********************************************************************/
 
-#ifndef GEOS_OP_TOPOLOGYVALIDATIONERROR_H
-#define GEOS_OP_TOPOLOGYVALIDATIONERROR_H
+#pragma once
 
 #include <geos/export.h>
 #include <string>
@@ -33,40 +32,41 @@ namespace operation { // geos::operation
 namespace valid { // geos::operation::valid
 
 /** \brief
- * Contains information about the nature and location of a {@link Geometry}
+ * Contains information about the nature and location of a geom::Geometry
  * validation error
  *
  */
 class GEOS_DLL TopologyValidationError {
 public:
 
-	enum errorEnum {
-		eError,
-		eRepeatedPoint,
-		eHoleOutsideShell,
-		eNestedHoles,
-		eDisconnectedInterior,
-		eSelfIntersection,
-		eRingSelfIntersection,
-		eNestedShells,
-		eDuplicatedRings,
-		eTooFewPoints,
-		eInvalidCoordinate,
-		eRingNotClosed
-	};
+    enum errorEnum {
+        eError,
+        eRepeatedPoint,
+        eHoleOutsideShell,
+        eNestedHoles,
+        eDisconnectedInterior,
+        eSelfIntersection,
+        eRingSelfIntersection,
+        eNestedShells,
+        eDuplicatedRings,
+        eTooFewPoints,
+        eInvalidCoordinate,
+        eRingNotClosed,
+        oNoInvalidIntersection = -1
+    };
 
-	TopologyValidationError(int newErrorType, const geom::Coordinate& newPt);
-	TopologyValidationError(int newErrorType);
-	geom::Coordinate& getCoordinate();
-	std::string getMessage();
-	int getErrorType();
-	std::string toString();
+    TopologyValidationError(int newErrorType, const geom::Coordinate& newPt);
+    TopologyValidationError(int newErrorType);
+    const geom::Coordinate& getCoordinate() const;
+    std::string getMessage() const;
+    int getErrorType() const;
+    std::string toString() const;
 
 private:
-	// Used const char* to reduce dynamic allocations
-	static const char* errMsg[];
-	int errorType;
-	geom::Coordinate pt;
+    // Used const char* to reduce dynamic allocations
+    static const char* errMsg[];
+    int errorType;
+    const geom::Coordinate pt;
 };
 
 
@@ -74,4 +74,3 @@ private:
 } // namespace geos.operation
 } // namespace geos
 
-#endif // GEOS_OP_TOPOLOGYVALIDATIONERROR_H

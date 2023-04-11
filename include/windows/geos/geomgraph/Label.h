@@ -8,7 +8,7 @@
  *
  * This is free software; you can redistribute and/or modify it under
  * the terms of the GNU Lesser General Public Licence as published
- * by the Free Software Foundation. 
+ * by the Free Software Foundation.
  * See the COPYING file for more information.
  *
  **********************************************************************
@@ -18,15 +18,14 @@
  **********************************************************************/
 
 
-#ifndef GEOS_GEOMGRAPH_LABEL_H
-#define GEOS_GEOMGRAPH_LABEL_H
+#pragma once
 
 #include <geos/export.h>
-#include <geos/geomgraph/TopologyLocation.h> 
-
-#include <geos/inline.h>
+#include <geos/geom/Location.h>
+#include <geos/geomgraph/TopologyLocation.h>
 
 #include <iosfwd> // for operator<<
+#include <cassert>
 
 namespace geos {
 namespace geomgraph { // geos.geomgraph
@@ -34,9 +33,10 @@ namespace geomgraph { // geos.geomgraph
 /** \brief
  * A <code>Label</code> indicates the topological relationship of a component
  * of a topology graph to a given <code>Geometry</code>.
+ *
  * This class supports labels for relationships to two <code>Geometry</code>s,
  * which is sufficient for algorithms for binary operations.
- * 
+ *
  * Topology graphs support the concept of labeling nodes and edges in the graph.
  * The label of a node or edge specifies its topological relationship to one or
  * more geometries.  (In fact, since JTS operations have only two arguments labels
@@ -58,108 +58,228 @@ class GEOS_DLL Label {
 
 public:
 
-	friend std::ostream& operator<< (std::ostream&, const Label&);
+    friend std::ostream& operator<< (std::ostream&, const Label&);
 
-	/** \brief
-	 * Converts a Label to a Line label
-	 * (that is, one with no side Locations)
-	 *
-	 */
-	static Label toLineLabel(const Label& label);
+    /** \brief
+     * Converts a Label to a Line label
+     * (that is, one with no side Locations)
+     *
+     */
+    static Label toLineLabel(const Label& label)
+    {
+        Label lineLabel(geom::Location::NONE);
+        for(uint32_t i = 0; i < 2; i++) {
+            lineLabel.setLocation(i, label.getLocation(i));
+        }
+        return lineLabel;
+    };
 
-	/** \brief
-	 * Construct a Label with a single location for both Geometries.
-	 */
-	Label(int onLoc);
+    /** \brief
+     * Construct a Label with a single location for both Geometries.
+     */
+    Label(geom::Location onLoc)
+        : elt{TopologyLocation(onLoc)
+        , TopologyLocation(onLoc)}
+        {};
 
-	/** \brief
-	 * Construct a Label with the location specified
-	 * for the given Geometry.
-	 * 
-	 * Other geometry location will be set to
-	 * Location::UNDEF.
-	 */
-	Label(int geomIndex, int onLoc);
+    /** \brief
+     * Construct a Label with the location specified
+     * for the given Geometry.
+     *
+     * Other geometry location will be set to
+     * Location::NONE.
+     */
+    Label(uint32_t geomIndex, geom::Location onLoc)
+        : elt{TopologyLocation(geom::Location::NONE)
+        , TopologyLocation(geom::Location::NONE)}
+    {
+        assert(geomIndex < 2);
+        elt[geomIndex].setLocation(onLoc);
+    };
 
-	/** \brief
-	 * Construct a Label with On, Left and Right locations for both Geometries.
-	 *
-	 * Initialize the locations for both Geometries to the given values.
-	 */
-	Label(int onLoc, int leftLoc, int rightLoc);
+    /** \brief
+     * Construct a Label with On, Left and Right locations for both Geometries.
+     *
+     * Initialize the locations for both Geometries to the given values.
+     */
+    Label(geom::Location onLoc, geom::Location leftLoc, geom::Location rightLoc)
+        : elt {TopologyLocation(onLoc, leftLoc, rightLoc)
+        , TopologyLocation(onLoc, leftLoc, rightLoc)}
+        {};
 
-	/// Copy ctor
-	Label(const Label &l);
+    /// Copy ctor
+    Label(const Label& l)
+        : elt{TopologyLocation(l.elt[0])
+        , TopologyLocation(l.elt[1])}
+        {};
 
-	Label& operator= (const Label& l);
+    /** \brief
+     * Initialize both locations to Location::NONE
+     *
+     * isNull() should return true after this kind of construction
+     */
+    Label()
+        : elt{TopologyLocation(geom::Location::NONE)
+        , TopologyLocation(geom::Location::NONE)}
+        {};
 
-	/** \brief
-	 * Initialize both locations to Location::UNDEF
-	 * 
-	 * isNull() should return true after this kind of construction
-	 */
-	Label();
+    /** \brief
+     * Construct a Label with On, Left and Right locations for the
+     * given Geometries.
+     * Initialize the locations for the other Geometry to
+     * Location::NONE
+     */
+    Label(uint32_t geomIndex, geom::Location onLoc, geom::Location leftLoc, geom::Location rightLoc)
+    {
+        elt[0] = TopologyLocation(geom::Location::NONE, geom::Location::NONE, geom::Location::NONE);
+        elt[1] = TopologyLocation(geom::Location::NONE, geom::Location::NONE, geom::Location::NONE);
+        elt[geomIndex].setLocations(onLoc, leftLoc, rightLoc);
+    };
 
-	/** \brief
-	 * Construct a Label with On, Left and Right locations for the
-	 * given Geometries.
-	 * Initialize the locations for the other Geometry to
-	 * Location::UNDEF
-	 */
-	Label(int geomIndex, int onLoc, int leftLoc, int rightLoc);
+    Label&
+    operator=(const Label& l)
+    {
+        elt[0] = TopologyLocation(l.elt[0]);
+        elt[1] = TopologyLocation(l.elt[1]);
+        return *this;
+    };
 
-	void flip();
+    void flip()
+    {
+        elt[0].flip();
+        elt[1].flip();
+    };
 
-	int getLocation(int geomIndex, int posIndex) const;
+    /** \brief
+     * Merge this label with another one.
+     *
+     * Merging updates any null attributes of this label with the attributes
+     * from lbl
+     */
+    void merge(const Label& lbl)
+    {
+        for(int i = 0; i < 2; i++) {
+            elt[i].merge(lbl.elt[i]);
+        }
+    };
 
-	int getLocation(int geomIndex) const;
+    int getGeometryCount() const
+    {
+        int count = 0;
+        if(!elt[0].isNull()) {
+            count++;
+        }
+        if(!elt[1].isNull()) {
+            count++;
+        }
+        return count;
+    };
 
-	void setLocation(int geomIndex, int posIndex, int location);
+    geom::Location getLocation(uint32_t geomIndex, uint32_t posIndex) const
+    {
+        assert(geomIndex < 2);
+        return elt[geomIndex].get(posIndex);
+    };
 
-	void setLocation(int geomIndex, int location);
+    geom::Location getLocation(uint32_t geomIndex) const
+    {
+        assert(geomIndex < 2);
+        return elt[geomIndex].get(Position::ON);
+    };
 
-	void setAllLocations(int geomIndex, int location);
+    void setLocation(uint32_t geomIndex, uint32_t posIndex, geom::Location location)
+    {
+        assert(geomIndex < 2);
+        elt[geomIndex].setLocation(posIndex, location);
+    };
 
-	void setAllLocationsIfNull(int geomIndex, int location);
+    void setLocation(uint32_t geomIndex, geom::Location location)
+    {
+        assert(geomIndex < 2);
+        elt[geomIndex].setLocation(Position::ON, location);
+    };
 
-	void setAllLocationsIfNull(int location);
+    void setAllLocations(uint32_t geomIndex, geom::Location location)
+    {
+        assert(geomIndex < 2);
+        elt[geomIndex].setAllLocations(location);
+    };
 
-	/** \brief
-	 * Merge this label with another one.
-	 *
-	 * Merging updates any null attributes of this label with the attributes
-	 * from lbl
-	 */
-	void merge(const Label &lbl);
+    void setAllLocationsIfNull(uint32_t geomIndex, geom::Location location)
+    {
+        assert(geomIndex < 2);
+        elt[geomIndex].setAllLocationsIfNull(location);
+    };
 
-	int getGeometryCount() const;
+    void setAllLocationsIfNull(geom::Location location)
+    {
+        setAllLocationsIfNull(0, location);
+        setAllLocationsIfNull(1, location);
+    };
 
-	bool isNull() const;
+    bool isNull(uint32_t geomIndex) const
+    {
+        assert(geomIndex < 2);
+        return elt[geomIndex].isNull();
+    };
 
-	bool isNull(int geomIndex) const;
+    bool isNull() const
+    {
+        return elt[0].isNull() && elt[1].isNull();
+    };
 
-	bool isAnyNull(int geomIndex) const;
+    bool isAnyNull(uint32_t geomIndex) const
+    {
+        assert(geomIndex < 2);
+        return elt[geomIndex].isAnyNull();
+    };
 
-	bool isArea() const;
+    bool isArea() const
+    {
+        return elt[0].isArea() || elt[1].isArea();
+    };
 
-	bool isArea(int geomIndex) const;
+    bool isArea(uint32_t geomIndex) const
+    {
+        assert(geomIndex < 2);
+        return elt[geomIndex].isArea();
+    };
 
-	bool isLine(int geomIndex) const;
+    bool isLine(uint32_t geomIndex) const
+    {
+        assert(geomIndex < 2);
+        return elt[geomIndex].isLine();
+    };
 
-	bool isEqualOnSide(const Label &lbl, int side) const;
+    bool isEqualOnSide(const Label& lbl, uint32_t side) const
+    {
+        return elt[0].isEqualOnSide(lbl.elt[0], side)
+                && elt[1].isEqualOnSide(lbl.elt[1], side);
+    };
 
-	bool allPositionsEqual(int geomIndex, int loc) const;
+    bool allPositionsEqual(uint32_t geomIndex, geom::Location loc) const
+    {
+        assert(geomIndex < 2);
+        return elt[geomIndex].allPositionsEqual(loc);
+    };
 
-	/** \brief
-	 * Converts one GeometryLocation to a Line location
-	 */
-	void toLine(int geomIndex);
+    /** \brief
+     * Converts one GeometryLocation to a Line location
+     */
+    void toLine(uint32_t geomIndex)
+    {
+        assert(geomIndex < 2);
+        if(elt[geomIndex].isArea()) {
+            elt[geomIndex] = TopologyLocation(elt[geomIndex].getLocations()[0]);
+        }
+    };
 
-	std::string toString() const;
+    std::string toString() const;
 
 private:
 
-	TopologyLocation elt[2];
+    TopologyLocation elt[2];
+
 };
 
 std::ostream& operator<< (std::ostream&, const Label&);
@@ -167,10 +287,4 @@ std::ostream& operator<< (std::ostream&, const Label&);
 } // namespace geos.geomgraph
 } // namespace geos
 
-
-//#ifdef GEOS_INLINE
-//# include "geos/geomgraph/Label.inl"
-//#endif
-
-#endif // ifndef GEOS_GEOMGRAPH_LABEL_H
 

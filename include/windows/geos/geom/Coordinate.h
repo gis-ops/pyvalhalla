@@ -12,12 +12,10 @@
  *
  **********************************************************************/
 
-#ifndef GEOS_GEOM_COORDINATE_H
-#define GEOS_GEOM_COORDINATE_H
+#pragma once
 
 #include <geos/export.h>
-#include <geos/platform.h> // for DoubleNotANumber
-#include <geos/inline.h>
+#include <geos/constants.h> // for DoubleNotANumber
 #include <set>
 #include <stack>
 #include <vector> // for typedefs
@@ -55,97 +53,199 @@ struct CoordinateLessThen;
  *
  */
 // Define the following to make assignments and copy constructions
-// NON-inline (will let profilers report usages)
+// NON-(will let profilers report usages)
 //#define PROFILE_COORDINATE_COPIES 1
 class GEOS_DLL Coordinate {
 
 private:
 
-	static Coordinate _nullCoord;
+    static Coordinate _nullCoord;
 
 public:
-	/// A set of const Coordinate pointers
-	typedef std::set<const Coordinate *, CoordinateLessThen> ConstSet;
+    /// A set of const Coordinate pointers
+    typedef std::set<const Coordinate*, CoordinateLessThen> ConstSet;
 
-	/// A vector of const Coordinate pointers
-	typedef std::vector<const Coordinate *> ConstVect;
+    /// A vector of const Coordinate pointers
+    typedef std::vector<const Coordinate*> ConstVect;
 
-	/// A stack of const Coordinate pointers
-	typedef std::stack<const Coordinate *> ConstStack;
+    /// A stack of const Coordinate pointers
+    typedef std::stack<const Coordinate*> ConstStack;
 
-	/// A vector of Coordinate objects (real object, not pointers)
-	typedef std::vector<Coordinate> Vect;
+    /// A vector of Coordinate objects (real object, not pointers)
+    typedef std::vector<Coordinate> Vect;
 
-	/// x-coordinate
-	double x;
+    /// x-coordinate
+    double x;
 
-	/// y-coordinate
-	double y;
+    /// y-coordinate
+    double y;
 
-	/// z-coordinate
-	double z;
+    /// z-coordinate
+    double z;
 
-	void setNull();
+    /// Output function
+    GEOS_DLL friend std::ostream& operator<< (std::ostream& os, const Coordinate& c);
 
-	static Coordinate& getNull();
+    /// Equality operator for Coordinate. 2D only.
+    GEOS_DLL friend bool operator==(const Coordinate& a, const Coordinate& b)
+    {
+        return a.equals2D(b);
+    };
 
-	bool isNull() const;
+    /// Inequality operator for Coordinate. 2D only.
+    GEOS_DLL friend bool operator!=(const Coordinate& a, const Coordinate& b)
+    {
+        return ! a.equals2D(b);
+    };
 
-	Coordinate(double xNew=0.0, double yNew=0.0, double zNew=DoubleNotANumber);
+    Coordinate()
+        : x(0.0)
+        , y(0.0)
+        , z(DoubleNotANumber)
+        {};
 
-	bool equals2D(const Coordinate& other) const;
+    Coordinate(double xNew, double yNew, double zNew = DoubleNotANumber)
+        : x(xNew)
+        , y(yNew)
+        , z(zNew)
+        {};
 
-	/// 2D only
-	bool equals(const Coordinate& other) const;
+    void setNull()
+    {
+        x = DoubleNotANumber;
+        y = DoubleNotANumber;
+        z = DoubleNotANumber;
+    };
 
-	/// TODO: deprecate this, move logic to CoordinateLessThen instead
-	int compareTo(const Coordinate& other) const;
+    static Coordinate& getNull();
 
-	/// 3D comparison
-	bool equals3D(const Coordinate& other) const;
+    bool isNull() const
+    {
+        return (std::isnan(x) && std::isnan(y) && std::isnan(z));
+    };
 
-	///  Returns a string of the form <I>(x,y,z)</I> .
-	std::string toString() const;
+    bool isValid() const
+    {
+        return std::isfinite(x) && std::isfinite(y);
+    };
 
-	/// TODO: obsoleted this, can use PrecisionModel::makePrecise(Coordinate*)
-	/// instead
-	//void makePrecise(const PrecisionModel *pm);
+    bool equals2D(const Coordinate& other) const
+    {
+        if(x != other.x) {
+            return false;
+        }
+        if(y != other.y) {
+            return false;
+        }
+        return true;
+    };
 
-	double distance(const Coordinate& p) const;
+    bool equals2D(const Coordinate& other, double tolerance) const
+    {
+        if (std::abs(x - other.x) > tolerance) {
+            return false;
+        }
+        if (std::abs(y - other.y) > tolerance) {
+            return false;
+        }
+        return true;
+    };
 
-	int hashCode() const;
+    /// 2D only
+    bool equals(const Coordinate& other) const
+    {
+        return equals2D(other);
+    };
 
-	/**
-	 * Returns a hash code for a double value, using the algorithm from
-	 * Joshua Bloch's book <i>Effective Java</i>
-	 */
-	static int hashCode(double d);
+    /// TODO: deprecate this, move logic to CoordinateLessThen instead
+    int compareTo(const Coordinate& other) const
+    {
+        if(x < other.x) {
+            return -1;
+        }
+        if(x > other.x) {
+            return 1;
+        }
+        if(y < other.y) {
+            return -1;
+        }
+        if(y > other.y) {
+            return 1;
+        }
+        return 0;
+    };
+
+    /// 3D comparison
+    bool equals3D(const Coordinate& other) const
+    {
+        return (x == other.x) && (y == other.y) &&
+               ((z == other.z) || (std::isnan(z) && std::isnan(other.z)));
+    };
+
+    ///  Returns a string of the form <I>(x,y,z)</I> .
+    std::string toString() const;
+
+    /// TODO: obsoleted this, can use PrecisionModel::makePrecise(Coordinate*)
+    /// instead
+    //void makePrecise(const PrecisionModel *pm);
+    double distance(const Coordinate& p) const
+    {
+        double dx = x - p.x;
+        double dy = y - p.y;
+        return std::sqrt(dx * dx + dy * dy);
+    };
+
+    double distanceSquared(const Coordinate& p) const
+    {
+        double dx = x - p.x;
+        double dy = y - p.y;
+        return dx * dx + dy * dy;
+    };
+
+    struct GEOS_DLL HashCode
+    {
+        std::size_t operator()(const Coordinate & c) const
+        {
+            size_t h = std::hash<double>{}(c.x);
+            h ^= std::hash<double>{}(c.y) << 1;
+            // z ordinate ignored for consistency with operator==
+            return h;
+        };
+    };
 
 };
+
 
 /// Strict weak ordering Functor for Coordinate
 struct GEOS_DLL CoordinateLessThen {
 
-	bool operator()(const Coordinate* a, const Coordinate* b) const;
-	bool operator()(const Coordinate& a, const Coordinate& b) const;
+    bool operator()(const Coordinate* a, const Coordinate* b) const
+    {
+        if(a->compareTo(*b) < 0) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    };
+
+    bool operator()(const Coordinate& a, const Coordinate& b) const
+    {
+        if(a.compareTo(b) < 0) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    };
 
 };
 
 /// Strict weak ordering operator for Coordinate
-inline bool operator<(const Coordinate& a, const Coordinate& b) {
-  return CoordinateLessThen()(a,b);
+inline bool operator<(const Coordinate& a, const Coordinate& b)
+{
+    return CoordinateLessThen()(a, b);
 }
-
-/// Output function
-GEOS_DLL std::ostream& operator<< (std::ostream& os, const Coordinate& c);
-
-/// Equality operator for Coordinate. 2D only.
-GEOS_DLL bool operator==(const Coordinate& a, const Coordinate& b);
-
-/// Inequality operator for Coordinate. 2D only.
-GEOS_DLL bool operator!=(const Coordinate& a, const Coordinate& b);
-
-
 
 } // namespace geos.geom
 } // namespace geos
@@ -154,9 +254,28 @@ GEOS_DLL bool operator!=(const Coordinate& a, const Coordinate& b);
 #pragma warning(pop)
 #endif
 
-#ifdef GEOS_INLINE
-# include "geos/geom/Coordinate.inl"
-#endif
 
-#endif // ndef GEOS_GEOM_COORDINATE_H
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

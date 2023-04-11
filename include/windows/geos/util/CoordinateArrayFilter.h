@@ -8,13 +8,12 @@
  *
  * This is free software; you can redistribute and/or modify it under
  * the terms of the GNU Lesser General Public Licence as published
- * by the Free Software Foundation. 
+ * by the Free Software Foundation.
  * See the COPYING file for more information.
  *
  **********************************************************************/
 
-#ifndef GEOS_UTIL_COORDINATEARRAYFILTER_H
-#define GEOS_UTIL_COORDINATEARRAYFILTER_H
+#pragma once
 
 #include <geos/export.h>
 #include <cassert>
@@ -26,7 +25,7 @@
 namespace geos {
 namespace util { // geos::util
 
-/**
+/** \brief
  * A CoordinateFilter that adds read-only pointers
  * to every Coordinate in a Geometry to a given
  * vector.
@@ -35,28 +34,29 @@ namespace util { // geos::util
  */
 class GEOS_DLL CoordinateArrayFilter: public geom::CoordinateFilter {
 private:
-	geom::Coordinate::ConstVect &pts; // target vector reference
+    geom::Coordinate::ConstVect& pts; // target vector reference
 public:
-	/**
-	 * Constructs a CoordinateArrayFilter.
-	 *
-	 * @param  target   The destination vector. 
-	 */
-	CoordinateArrayFilter(geom::Coordinate::ConstVect& target)
-		:
-		pts(target)
-		{}
+    /** \brief
+     * Constructs a CoordinateArrayFilter.
+     *
+     * @param target The destination vector.
+     */
+    CoordinateArrayFilter(geom::Coordinate::ConstVect& target)
+        :
+        pts(target)
+    {}
 
-	virtual ~CoordinateArrayFilter() {}
+    virtual
+    ~CoordinateArrayFilter() {}
 
-	virtual void filter_ro(const geom::Coordinate *coord)
-	{
-		pts.push_back(coord);
-	}
+    virtual void
+    filter_ro(const geom::Coordinate* coord)
+    {
+        pts.push_back(coord);
+    }
 };
 
 
 } // namespace geos.util
 } // namespace geos
 
-#endif // GEOS_UTIL_COORDINATEARRAYFILTER_H

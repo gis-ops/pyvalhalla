@@ -8,13 +8,12 @@
  *
  * This is free software; you can redistribute and/or modify it under
  * the terms of the GNU Lesser General Public Licence as published
- * by the Free Software Foundation. 
+ * by the Free Software Foundation.
  * See the COPYING file for more information.
  *
  **********************************************************************/
 
-#ifndef GEOS_GEOMGRAPH_INDEX_MONOTONECHAINEDGE_H
-#define GEOS_GEOMGRAPH_INDEX_MONOTONECHAINEDGE_H
+#pragma once
 
 #include <geos/export.h>
 #include <geos/geom/Envelope.h> // for composition
@@ -26,52 +25,55 @@
 
 // Forward declarations
 namespace geos {
-	namespace geom {
-		class CoordinateSequence;
-	}
-	namespace geomgraph {
-		class Edge;
-		namespace index {
-			class SegmentIntersector;
-		}
-	}
+namespace geom {
+class CoordinateSequence;
+}
+namespace geomgraph {
+class Edge;
+namespace index {
+class SegmentIntersector;
+}
+}
 }
 
 namespace geos {
 namespace geomgraph { // geos::geomgraph
 namespace index { // geos::geomgraph::index
 
+/// \brief MonotoneChains are a way of partitioning the segments of an edge to
+/// allow for fast searching of intersections.
 class GEOS_DLL MonotoneChainEdge {
 public:
-	//MonotoneChainEdge();
-	~MonotoneChainEdge();
-	MonotoneChainEdge(Edge *newE);
-	const geom::CoordinateSequence* getCoordinates();
-	std::vector<int>& getStartIndexes();
-	double getMinX(int chainIndex);
-	double getMaxX(int chainIndex);
+    //MonotoneChainEdge();
+    ~MonotoneChainEdge() = default;
+    MonotoneChainEdge(Edge* newE);
+    const geom::CoordinateSequence* getCoordinates();
+    std::vector<size_t>& getStartIndexes();
+    double getMinX(std::size_t chainIndex);
+    double getMaxX(std::size_t chainIndex);
 
-	void computeIntersects(const MonotoneChainEdge &mce,
-		SegmentIntersector &si);
+    void computeIntersects(const MonotoneChainEdge& mce,
+                           SegmentIntersector& si);
 
-	void computeIntersectsForChain(int chainIndex0,
-		const MonotoneChainEdge &mce, int chainIndex1,
-		SegmentIntersector &si);
+    void computeIntersectsForChain(std::size_t chainIndex0,
+                                   const MonotoneChainEdge& mce, std::size_t chainIndex1,
+                                   SegmentIntersector& si);
 
 protected:
-	Edge *e;
-	const geom::CoordinateSequence* pts; // cache a reference to the coord array, for efficiency
-	// the lists of start/end indexes of the monotone chains.
-	// Includes the end point of the edge as a sentinel
-	std::vector<int> startIndex;
-	// these envelopes are created once and reused
-	geom::Envelope env1;
-	geom::Envelope env2;
+    Edge* e;
+    const geom::CoordinateSequence* pts; // cache a reference to the coord array, for efficiency
+    // the lists of start/end indexes of the monotone chains.
+    // Includes the end point of the edge as a sentinel
+    std::vector<size_t> startIndex;
+    // these envelopes are created once and reused
 private:
-	void computeIntersectsForChain(int start0, int end0,
-		const MonotoneChainEdge &mce,
-		int start1, int end1,
-		SegmentIntersector &ei);
+    void computeIntersectsForChain(std::size_t start0, std::size_t end0,
+                                   const MonotoneChainEdge& mce,
+                                   std::size_t start1, std::size_t end1,
+                                   SegmentIntersector& ei);
+
+    bool overlaps(std::size_t start0, std::size_t end0, const MonotoneChainEdge& mce, std::size_t start1, std::size_t end1);
+
 };
 
 } // namespace geos.geomgraph.index
@@ -81,6 +83,3 @@ private:
 #ifdef _MSC_VER
 #pragma warning(pop)
 #endif
-
-#endif
-

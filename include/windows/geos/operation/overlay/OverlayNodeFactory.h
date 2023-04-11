@@ -7,7 +7,7 @@
  *
  * This is free software; you can redistribute and/or modify it under
  * the terms of the GNU Lesser General Public Licence as published
- * by the Free Software Foundation. 
+ * by the Free Software Foundation.
  * See the COPYING file for more information.
  *
  **********************************************************************
@@ -16,8 +16,7 @@
  *
  **********************************************************************/
 
-#ifndef GEOS_OP_OVERLAY_OVERLAYNODEFACTORY_H
-#define GEOS_OP_OVERLAY_OVERLAYNODEFACTORY_H
+#pragma once
 
 #include <geos/export.h>
 
@@ -27,12 +26,12 @@
 
 // Forward declarations
 namespace geos {
-	namespace geom {
-		class Coordinate;
-	}
-	namespace geomgraph {
-		class Node;
-	}
+namespace geom {
+class Coordinate;
+}
+namespace geomgraph {
+class Node;
+}
 }
 
 namespace geos {
@@ -45,9 +44,9 @@ namespace overlay { // geos::operation::overlay
  */
 class GEOS_DLL OverlayNodeFactory: public geomgraph::NodeFactory {
 public:
-	OverlayNodeFactory():geomgraph::NodeFactory() {}
-	geomgraph::Node* createNode(const geom::Coordinate &coord) const;
-	static const geomgraph::NodeFactory &instance();
+    OverlayNodeFactory(): geomgraph::NodeFactory() {}
+    geomgraph::Node* createNode(const geom::Coordinate& coord) const override;
+    static const geomgraph::NodeFactory& instance();
 };
 
 
@@ -55,4 +54,3 @@ public:
 } // namespace geos::operation
 } // namespace geos
 
-#endif // ndef GEOS_OP_OVERLAY_OVERLAYNODEFACTORY_H

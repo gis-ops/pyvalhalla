@@ -38,10 +38,11 @@
 
 #include "proj.h"
 
-#include "proj_json_streaming_writer.hpp"
 #include "util.hpp"
 
 NS_PROJ_START
+
+class CPLJSonStreamingWriter;
 
 namespace common {
 class UnitOfMeasure;
@@ -69,6 +70,10 @@ namespace datum {
 class Datum;
 using DatumPtr = std::shared_ptr<Datum>;
 using DatumNNPtr = util::nn<DatumPtr>;
+
+class DatumEnsemble;
+using DatumEnsemblePtr = std::shared_ptr<DatumEnsemble>;
+using DatumEnsembleNNPtr = util::nn<DatumEnsemblePtr>;
 
 class Ellipsoid;
 using EllipsoidPtr = std::shared_ptr<Ellipsoid>;
@@ -238,6 +243,13 @@ class PROJ_GCC_DLL WKTFormatter {
     PROJ_DLL WKTFormatter &setStrict(bool strict) noexcept;
     PROJ_DLL bool isStrict() const noexcept;
 
+    PROJ_DLL WKTFormatter &
+    setAllowEllipsoidalHeightAsVerticalCRS(bool allow) noexcept;
+    PROJ_DLL bool isAllowedEllipsoidalHeightAsVerticalCRS() const noexcept;
+
+    PROJ_DLL WKTFormatter &setAllowLINUNITNode(bool allow) noexcept;
+    PROJ_DLL bool isAllowedLINUNITNode() const noexcept;
+
     PROJ_DLL const std::string &toString() const;
 
     PROJ_PRIVATE :
@@ -250,6 +262,8 @@ class PROJ_GCC_DLL WKTFormatter {
 
     PROJ_INTERNAL void startNode(const std::string &keyword, bool hasId);
     PROJ_INTERNAL void endNode();
+
+    PROJ_INTERNAL bool isAtTopLevel() const;
 
     PROJ_DLL WKTFormatter &simulCurNodeHasId();
 
@@ -299,6 +313,10 @@ class PROJ_GCC_DLL WKTFormatter {
 
     PROJ_INTERNAL void setHDatumExtension(const std::string &filename);
     PROJ_INTERNAL const std::string &getHDatumExtension() const;
+
+    PROJ_INTERNAL void
+    setGeogCRSOfCompoundCRS(const crs::GeographicCRSPtr &crs);
+    PROJ_INTERNAL const crs::GeographicCRSPtr &getGeogCRSOfCompoundCRS() const;
 
     PROJ_INTERNAL static std::string morphNameToESRI(const std::string &name);
 
@@ -380,6 +398,10 @@ class PROJ_GCC_DLL PROJStringFormatter {
     PROJ_DLL ~PROJStringFormatter();
     //! @endcond
 
+    PROJ_DLL PROJStringFormatter &setMultiLine(bool multiLine) noexcept;
+    PROJ_DLL PROJStringFormatter &setIndentationWidth(int width) noexcept;
+    PROJ_DLL PROJStringFormatter &setMaxLineLength(int maxLineLength) noexcept;
+
     PROJ_DLL void setUseApproxTMerc(bool flag);
 
     PROJ_DLL const std::string &toString() const;
@@ -425,11 +447,17 @@ class PROJ_GCC_DLL PROJStringFormatter {
     PROJ_INTERNAL void setTOWGS84Parameters(const std::vector<double> &params);
     PROJ_INTERNAL const std::vector<double> &getTOWGS84Parameters() const;
 
-    PROJ_INTERNAL void setVDatumExtension(const std::string &filename);
+    PROJ_INTERNAL void setVDatumExtension(const std::string &filename,
+                                          const std::string &geoidCRSValue);
     PROJ_INTERNAL const std::string &getVDatumExtension() const;
+    PROJ_INTERNAL const std::string &getGeoidCRSValue() const;
 
     PROJ_INTERNAL void setHDatumExtension(const std::string &filename);
     PROJ_INTERNAL const std::string &getHDatumExtension() const;
+
+    PROJ_INTERNAL void
+    setGeogCRSOfCompoundCRS(const crs::GeographicCRSPtr &crs);
+    PROJ_INTERNAL const crs::GeographicCRSPtr &getGeogCRSOfCompoundCRS() const;
 
     PROJ_INTERNAL void setOmitProjLongLatIfPossible(bool omit);
     PROJ_INTERNAL bool omitProjLongLatIfPossible() const;
@@ -438,12 +466,20 @@ class PROJ_GCC_DLL PROJStringFormatter {
     PROJ_INTERNAL void popOmitZUnitConversion();
     PROJ_INTERNAL bool omitZUnitConversion() const;
 
+    PROJ_INTERNAL void pushOmitHorizontalConversionInVertTransformation();
+    PROJ_INTERNAL void popOmitHorizontalConversionInVertTransformation();
+    PROJ_INTERNAL bool omitHorizontalConversionInVertTransformation() const;
+
     PROJ_INTERNAL void setLegacyCRSToCRSContext(bool legacyContext);
     PROJ_INTERNAL bool getLegacyCRSToCRSContext() const;
+
+    PROJ_INTERNAL PROJStringFormatter &setNormalizeOutput();
 
     PROJ_INTERNAL const DatabaseContextPtr &databaseContext() const;
 
     PROJ_INTERNAL Convention convention() const;
+
+    PROJ_INTERNAL size_t getStepCount() const;
 
     //! @endcond
 
@@ -490,8 +526,10 @@ class PROJ_GCC_DLL JSONFormatter {
     PROJ_PRIVATE :
 
         //! @cond Doxygen_Suppress
-        PROJ_INTERNAL CPLJSonStreamingWriter &
+        PROJ_INTERNAL CPLJSonStreamingWriter *
         writer() const;
+
+    PROJ_INTERNAL const DatabaseContextPtr &databaseContext() const;
 
     struct ObjectContext {
         JSONFormatter &m_formatter;
@@ -515,10 +553,16 @@ class PROJ_GCC_DLL JSONFormatter {
     PROJ_INTERNAL void setAbridgedTransformation(bool abriged);
     PROJ_INTERNAL bool abridgedTransformation() const;
 
+    PROJ_INTERNAL void setAbridgedTransformationWriteSourceCRS(bool writeCRS);
+    PROJ_INTERNAL bool abridgedTransformationWriteSourceCRS() const;
+
     // cppcheck-suppress functionStatic
     PROJ_INTERNAL bool outputId() const;
 
-    PROJ_INTERNAL bool outputUsage() const;
+    PROJ_INTERNAL bool
+    outputUsage(bool calledBeforeObjectContext = false) const;
+
+    PROJ_INTERNAL static const char *PROJJSON_v0_6;
 
     //! @endcond
 
@@ -553,7 +597,7 @@ class PROJ_GCC_DLL IJSONExportable {
         PROJ_INTERNAL virtual void
         _exportToJSON(
             JSONFormatter *formatter) const = 0; // throw(FormattingException)
-    //! @endcond
+                                                 //! @endcond
 };
 
 // ---------------------------------------------------------------------------
@@ -606,7 +650,7 @@ class PROJ_GCC_DLL IWKTExportable {
         PROJ_INTERNAL virtual void
         _exportToWKT(
             WKTFormatter *formatter) const = 0; // throw(FormattingException)
-    //! @endcond
+                                                //! @endcond
 };
 
 // ---------------------------------------------------------------------------
@@ -642,7 +686,7 @@ class PROJ_GCC_DLL IPROJStringExportable {
      * <li>For PROJStringFormatter::Convention::PROJ_4, format a string
      * compatible with the OGRSpatialReference::exportToProj4() of GDAL
      * &lt;=2.3. It is only compatible of a few CRS objects. The PROJ string
-     * will also contain a +type=crs parameter to disambiguish the nature of
+     * will also contain a +type=crs parameter to disambiguate the nature of
      * the string from a CoordinateOperation.
      * <ul>
      * <li>For a crs::GeographicCRS, returns a proj=longlat string, with
@@ -672,7 +716,7 @@ class PROJ_GCC_DLL IPROJStringExportable {
         PROJ_INTERNAL virtual void
         _exportToPROJString(PROJStringFormatter *formatter)
             const = 0; // throw(FormattingException)
-    //! @endcond
+                       //! @endcond
 };
 
 // ---------------------------------------------------------------------------
@@ -692,8 +736,8 @@ class PROJ_GCC_DLL WKTNode {
     PROJ_DLL void addChild(WKTNodeNNPtr &&child);
     PROJ_DLL const WKTNodePtr &lookForChild(const std::string &childName,
                                             int occurrence = 0) const noexcept;
-    PROJ_DLL int countChildrenOfName(const std::string &childName) const
-        noexcept;
+    PROJ_DLL int
+    countChildrenOfName(const std::string &childName) const noexcept;
 
     PROJ_DLL std::string toString() const;
 
@@ -722,7 +766,7 @@ PROJ_DLL util::BaseObjectNNPtr createFromUserInput(const std::string &text,
 
 // ---------------------------------------------------------------------------
 
-/** \brief Parse a WKT string into the appropriate suclass of util::BaseObject.
+/** \brief Parse a WKT string into the appropriate subclass of util::BaseObject.
  */
 class PROJ_GCC_DLL WKTParser {
   public:
@@ -736,6 +780,8 @@ class PROJ_GCC_DLL WKTParser {
 
     PROJ_DLL WKTParser &setStrict(bool strict);
     PROJ_DLL std::list<std::string> warningList() const;
+
+    PROJ_DLL WKTParser &setUnsetIdentifiersIfIncompatibleDef(bool unset);
 
     PROJ_DLL util::BaseObjectNNPtr
     createFromWKT(const std::string &wkt); // throw(ParsingException)
@@ -765,7 +811,8 @@ class PROJ_GCC_DLL WKTParser {
 
 // ---------------------------------------------------------------------------
 
-/** \brief Parse a PROJ string into the appropriate suclass of util::BaseObject.
+/** \brief Parse a PROJ string into the appropriate subclass of
+ * util::BaseObject.
  */
 class PROJ_GCC_DLL PROJStringParser {
   public:
@@ -819,6 +866,19 @@ class PROJ_GCC_DLL DatabaseContext {
 
     PROJ_DLL std::vector<std::string> getDatabaseStructure() const;
 
+    PROJ_DLL void startInsertStatementsSession();
+
+    PROJ_DLL std::string
+    suggestsCodeFor(const common::IdentifiedObjectNNPtr &object,
+                    const std::string &authName, bool numericCode);
+
+    PROJ_DLL std::vector<std::string> getInsertStatementsFor(
+        const common::IdentifiedObjectNNPtr &object,
+        const std::string &authName, const std::string &code, bool numericCode,
+        const std::vector<std::string> &allowedAuthorities = {"EPSG", "PROJ"});
+
+    PROJ_DLL void stopInsertStatementsSession();
+
     PROJ_PRIVATE :
         //! @cond Doxygen_Suppress
         PROJ_DLL void *
@@ -832,10 +892,16 @@ class PROJ_GCC_DLL DatabaseContext {
                                               bool &inverse) const;
 
     PROJ_DLL bool lookForGridInfo(const std::string &projFilename,
+                                  bool considerKnownGridsAsAvailable,
                                   std::string &fullFilename,
                                   std::string &packageName, std::string &url,
                                   bool &directDownload, bool &openLicense,
                                   bool &gridAvailable) const;
+
+    PROJ_INTERNAL std::string
+    getProjGridName(const std::string &oldProjGridName);
+
+    PROJ_INTERNAL std::string getOldProjGridName(const std::string &gridName);
 
     PROJ_INTERNAL std::string
     getAliasFromOfficialName(const std::string &officialName,
@@ -850,6 +916,10 @@ class PROJ_GCC_DLL DatabaseContext {
     PROJ_INTERNAL bool isKnownName(const std::string &name,
                                    const std::string &tableName) const;
 
+    PROJ_INTERNAL std::string getName(const std::string &tableName,
+                                      const std::string &authName,
+                                      const std::string &code) const;
+
     PROJ_INTERNAL std::string getTextDefinition(const std::string &tableName,
                                                 const std::string &authName,
                                                 const std::string &code) const;
@@ -861,6 +931,21 @@ class PROJ_GCC_DLL DatabaseContext {
     PROJ_INTERNAL std::list<std::pair<std::string, std::string>>
     getNonDeprecated(const std::string &tableName, const std::string &authName,
                      const std::string &code) const;
+
+    PROJ_INTERNAL static std::vector<operation::CoordinateOperationNNPtr>
+    getTransformationsForGridName(const DatabaseContextNNPtr &databaseContext,
+                                  const std::string &gridName);
+
+    PROJ_INTERNAL bool
+    getAuthorityAndVersion(const std::string &versionedAuthName,
+                           std::string &authNameOut, std::string &versionOut);
+
+    PROJ_INTERNAL bool getVersionedAuthority(const std::string &authName,
+                                             const std::string &version,
+                                             std::string &versionedAuthNameOut);
+
+    PROJ_DLL std::vector<std::string>
+    getVersionedAuthoritiesFromName(const std::string &authName);
 
     //! @endcond
 
@@ -915,6 +1000,10 @@ class PROJ_GCC_DLL AuthorityFactory {
 
     PROJ_DLL datum::DatumNNPtr createDatum(const std::string &code) const;
 
+    PROJ_DLL datum::DatumEnsembleNNPtr
+    createDatumEnsemble(const std::string &code,
+                        const std::string &type = std::string()) const;
+
     PROJ_DLL datum::GeodeticReferenceFrameNNPtr
     createGeodeticDatum(const std::string &code) const;
 
@@ -953,6 +1042,9 @@ class PROJ_GCC_DLL AuthorityFactory {
     createFromCoordinateReferenceSystemCodes(
         const std::string &sourceCRSCode,
         const std::string &targetCRSCode) const;
+
+    PROJ_DLL std::list<std::string>
+    getGeoidModels(const std::string &code) const;
 
     PROJ_DLL const std::string &getAuthority() PROJ_PURE_DECL;
 
@@ -999,6 +1091,12 @@ class PROJ_GCC_DLL AuthorityFactory {
         /** Object of type operation::ConcatenatedOperation (and derived
            classes) */
         CONCATENATED_OPERATION,
+        /** Object of type datum::DynamicGeodeticReferenceFrame */
+        DYNAMIC_GEODETIC_REFERENCE_FRAME,
+        /** Object of type datum::DynamicVerticalReferenceFrame */
+        DYNAMIC_VERTICAL_REFERENCE_FRAME,
+        /** Object of type datum::DatumEnsemble */
+        DATUM_ENSEMBLE,
     };
 
     PROJ_DLL std::set<std::string>
@@ -1006,6 +1104,8 @@ class PROJ_GCC_DLL AuthorityFactory {
                       bool allowDeprecated = true) const;
 
     PROJ_DLL std::string getDescriptionText(const std::string &code) const;
+
+    // non-standard
 
     /** CRS information */
     struct CRSInfo {
@@ -1035,6 +1135,8 @@ class PROJ_GCC_DLL AuthorityFactory {
         /** Name of the projection method for a projected CRS. Might be empty
          * even for projected CRS in some cases. */
         std::string projectionMethodName;
+        /** Name of the celestial body of the CRS (e.g. "Earth") */
+        std::string celestialBodyName;
 
         //! @cond Doxygen_Suppress
         CRSInfo();
@@ -1043,7 +1145,46 @@ class PROJ_GCC_DLL AuthorityFactory {
 
     PROJ_DLL std::list<CRSInfo> getCRSInfoList() const;
 
-    // non-standard
+    /** Unit information */
+    struct UnitInfo {
+        /** Authority name */
+        std::string authName;
+        /** Code */
+        std::string code;
+        /** Name */
+        std::string name;
+        /** Category: one of "linear", "linear_per_time", "angular",
+         * "angular_per_time", "scale", "scale_per_time" or "time" */
+        std::string category;
+        /** Conversion factor to the SI unit.
+         * It might be 0 in some cases to indicate no known conversion factor.
+         */
+        double convFactor;
+        /** PROJ short name (may be empty) */
+        std::string projShortName;
+        /** Whether the object is deprecated */
+        bool deprecated;
+
+        //! @cond Doxygen_Suppress
+        UnitInfo();
+        //! @endcond
+    };
+
+    PROJ_DLL std::list<UnitInfo> getUnitList() const;
+
+    /** Celestial Body information */
+    struct CelestialBodyInfo {
+        /** Authority name */
+        std::string authName;
+        /** Name */
+        std::string name;
+        //! @cond Doxygen_Suppress
+        CelestialBodyInfo();
+        //! @endcond
+    };
+
+    PROJ_DLL std::list<CelestialBodyInfo> getCelestialBodyList() const;
+
     PROJ_DLL static AuthorityFactoryNNPtr
     create(const DatabaseContextNNPtr &context,
            const std::string &authorityName);
@@ -1055,7 +1196,8 @@ class PROJ_GCC_DLL AuthorityFactory {
         const std::string &sourceCRSAuthName, const std::string &sourceCRSCode,
         const std::string &targetCRSAuthName, const std::string &targetCRSCode,
         bool usePROJAlternativeGridNames, bool discardIfMissingGrid,
-        bool discardSuperseded, bool tryReverseOrder = false,
+        bool considerKnownGridsAsAvailable, bool discardSuperseded,
+        bool tryReverseOrder = false,
         bool reportOnlyIntersectingTransformations = false,
         const metadata::ExtentPtr &intersectingExtent1 = nullptr,
         const metadata::ExtentPtr &intersectingExtent2 = nullptr) const;
@@ -1065,7 +1207,7 @@ class PROJ_GCC_DLL AuthorityFactory {
         const std::string &sourceCRSAuthName, const std::string &sourceCRSCode,
         const std::string &targetCRSAuthName, const std::string &targetCRSCode,
         bool usePROJAlternativeGridNames, bool discardIfMissingGrid,
-        bool discardSuperseded,
+        bool considerKnownGridsAsAvailable, bool discardSuperseded,
         const std::vector<std::pair<std::string, std::string>>
             &intermediateCRSAuthCodes,
         ObjectType allowedIntermediateObjectType = ObjectType::CRS,
@@ -1131,10 +1273,19 @@ class PROJ_GCC_DLL AuthorityFactory {
         const std::string &sourceCRSCode, const crs::CRSNNPtr &targetCRS,
         const std::string &targetCRSAuthName, const std::string &targetCRSCode,
         bool usePROJAlternativeGridNames, bool discardIfMissingGrid,
-        bool discardSuperseded,
+        bool considerKnownGridsAsAvailable, bool discardSuperseded,
         const std::vector<std::string> &allowedAuthorities,
         const metadata::ExtentPtr &intersectingExtent1,
         const metadata::ExtentPtr &intersectingExtent2) const;
+
+    typedef std::pair<common::IdentifiedObjectNNPtr, std::string>
+        PairObjectName;
+    PROJ_INTERNAL std::list<PairObjectName>
+    createObjectsFromNameEx(const std::string &name,
+                            const std::vector<ObjectType> &allowedObjectTypes =
+                                std::vector<ObjectType>(),
+                            bool approximateMatch = true,
+                            size_t limitResultCount = 0) const;
 
     //! @endcond
 
@@ -1154,6 +1305,18 @@ class PROJ_GCC_DLL AuthorityFactory {
 
   private:
     PROJ_OPAQUE_PRIVATE_DATA
+
+    PROJ_INTERNAL void
+    createGeodeticDatumOrEnsemble(const std::string &code,
+                                  datum::GeodeticReferenceFramePtr &outDatum,
+                                  datum::DatumEnsemblePtr &outDatumEnsemble,
+                                  bool turnEnsembleAsDatum) const;
+
+    PROJ_INTERNAL void
+    createVerticalDatumOrEnsemble(const std::string &code,
+                                  datum::VerticalReferenceFramePtr &outDatum,
+                                  datum::DatumEnsemblePtr &outDatumEnsemble,
+                                  bool turnEnsembleAsDatum) const;
 };
 
 // ---------------------------------------------------------------------------

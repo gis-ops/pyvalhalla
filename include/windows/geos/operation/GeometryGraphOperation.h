@@ -8,7 +8,7 @@
  *
  * This is free software; you can redistribute and/or modify it under
  * the terms of the GNU Lesser General Public Licence as published
- * by the Free Software Foundation. 
+ * by the Free Software Foundation.
  * See the COPYING file for more information.
  *
  **********************************************************************
@@ -17,8 +17,7 @@
  *
  **********************************************************************/
 
-#ifndef GEOS_OPERATION_GEOMETRYGRAPHOPERATION_H
-#define GEOS_OPERATION_GEOMETRYGRAPHOPERATION_H
+#pragma once
 
 #include <geos/export.h>
 #include <geos/algorithm/LineIntersector.h> // for composition
@@ -32,16 +31,16 @@
 
 // Forward declarations
 namespace geos {
-	namespace algorithm {
-		class BoundaryNodeRule;
-	}
-	namespace geom {
-		class Geometry;
-		class PrecisionModel;
-	}
-	namespace geomgraph {
-		class GeometryGraph;
-	}
+namespace algorithm {
+class BoundaryNodeRule;
+}
+namespace geom {
+class Geometry;
+class PrecisionModel;
+}
+namespace geomgraph {
+class GeometryGraph;
+}
 }
 
 
@@ -53,31 +52,31 @@ class GEOS_DLL GeometryGraphOperation {
 
 public:
 
-	GeometryGraphOperation(const geom::Geometry *g0,
-			const geom::Geometry *g1);
+    GeometryGraphOperation(const geom::Geometry* g0,
+                           const geom::Geometry* g1);
 
-	GeometryGraphOperation(const geom::Geometry *g0,
-		const geom::Geometry *g1,
-		const algorithm::BoundaryNodeRule& boundaryNodeRule);
+    GeometryGraphOperation(const geom::Geometry* g0,
+                           const geom::Geometry* g1,
+                           const algorithm::BoundaryNodeRule& boundaryNodeRule);
 
-	GeometryGraphOperation(const geom::Geometry *g0);
+    GeometryGraphOperation(const geom::Geometry* g0);
 
-	virtual ~GeometryGraphOperation();
+    virtual ~GeometryGraphOperation();
 
-	const geom::Geometry* getArgGeometry(unsigned int i) const;
+    const geom::Geometry* getArgGeometry(unsigned int i) const;
 
 protected:
 
-	algorithm::LineIntersector li;
+    algorithm::LineIntersector li;
 
-	const geom::PrecisionModel* resultPrecisionModel;
+    const geom::PrecisionModel* resultPrecisionModel;
 
-	/** \brief
-	 * The operation args into an array so they can be accessed by index
-	 */
-	std::vector<geomgraph::GeometryGraph*> arg; 
+    /** \brief
+     * The operation args into an array so they can be accessed by index
+     */
+    std::vector<geomgraph::GeometryGraph*> arg;
 
-	void setComputationPrecision(const geom::PrecisionModel* pm);
+    void setComputationPrecision(const geom::PrecisionModel* pm);
 };
 
 } // namespace geos.operation
@@ -87,4 +86,3 @@ protected:
 #pragma warning(pop)
 #endif
 
-#endif

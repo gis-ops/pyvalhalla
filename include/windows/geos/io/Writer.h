@@ -8,7 +8,7 @@
  *
  * This is free software; you can redistribute and/or modify it under
  * the terms of the GNU Lesser General Public Licence as published
- * by the Free Software Foundation. 
+ * by the Free Software Foundation.
  * See the COPYING file for more information.
  *
  **********************************************************************
@@ -17,8 +17,7 @@
  *
  **********************************************************************/
 
-#ifndef GEOS_IO_WRITER_H
-#define GEOS_IO_WRITER_H
+#pragma once
 
 #include <geos/export.h>
 
@@ -34,13 +33,13 @@ namespace io {
 
 class GEOS_DLL Writer {
 public:
-	Writer();
-	void reserve(std::size_t capacity);
-	~Writer();
-	void write(const std::string& txt);
-	const std::string& toString();
+    Writer();
+    void reserve(std::size_t capacity);
+    ~Writer() = default;
+    void write(const std::string& txt);
+    const std::string& toString();
 private:
-	std::string str;
+    std::string str;
 };
 
 } // namespace geos::io
@@ -50,4 +49,3 @@ private:
 #pragma warning(pop)
 #endif
 
-#endif // #ifndef GEOS_IO_WRITER_H

@@ -8,15 +8,15 @@
  *
  * This is free software; you can redistribute and/or modify it under
  * the terms of the GNU Lesser General Public Licence as published
- * by the Free Software Foundation. 
+ * by the Free Software Foundation.
  * See the COPYING file for more information.
  *
  **********************************************************************/
 
-#ifndef GEOS_UTIL_MATH_H
-#define GEOS_UTIL_MATH_H
+#pragma once
 
-namespace geos { namespace util {
+namespace geos {
+namespace util {
 
 /// Symmetric Rounding Algorithm
 double sym_round(double val);
@@ -27,15 +27,19 @@ double java_math_round(double val);
 /// Equivalent to Java Math.rint()
 double rint_vc(double val);
 
+
 /// Default rounding method for GEOS
 ///
 /// @note Always use this rounding method, to easy easy switching
 /// between different rounding method for the whole codebase.
-inline double round(double val)
+inline double
+round(double val)
 {
-	return java_math_round(val);
+    return java_math_round(val);
 }
 
-}} // namespace geos::util
+/// Equivalent to std::clamp() in C++17
+double clamp(double x, double min, double max);
 
-#endif // GEOS_UTIL_MATH_H
+}
+} // namespace geos::util

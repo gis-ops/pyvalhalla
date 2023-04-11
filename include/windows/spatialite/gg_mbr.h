@@ -1,7 +1,7 @@
 /*
  gg_mbr.h -- Gaia common support for geometries: MBR functions
   
- version 4.3, 2015 June 29
+ version 5.0, 2020 August 1
 
  Author: Sandro Furieri a.furieri@lqt.it
 
@@ -23,7 +23,7 @@ The Original Code is the SpatiaLite library
 
 The Initial Developer of the Original Code is Alessandro Furieri
  
-Portions created by the Initial Developer are Copyright (C) 2008-2015
+Portions created by the Initial Developer are Copyright (C) 2008-2021
 the Initial Developer. All Rights Reserved.
 
 Contributor(s):
@@ -307,9 +307,9 @@ extern "C"
  \note the \e circle of givern \e radius and \e centre will be used so to
  determine the corresponding \e square Envelope
  */
-    GAIAGEO_DECLARE void gaiaBuildCircleMbr (double x, double y, double radius,
-					     int srid, unsigned char **result,
-					     int *size);
+    GAIAGEO_DECLARE void gaiaBuildCircleMbr (double x, double y,
+					     double radius, int srid,
+					     unsigned char **result, int *size);
 
 /**
  Creates a BLOB-FilterMBR
@@ -366,6 +366,8 @@ extern "C"
  \param line pointer to the Linestring object
  \param min on completion this variable will contain the min Z value found 
  \param max on completion this variable will contain the max Z value found 
+ 
+ \sa gaiaZRangeLinestringEx
 
  \note if the Linestring has XY or XYM dims, the Z-Range is meaningless
  */
@@ -373,11 +375,29 @@ extern "C"
 					       double *min, double *max);
 
 /**
+ Computes the Z-Range for a Linestring object (NODATA flavor)
+
+ \param line pointer to the Linestring object
+ \param nodata the NODATA value
+ \param min on completion this variable will contain the min Z value found 
+ \param max on completion this variable will contain the max Z value found
+ 
+ \sa gaiaZRangeLinestring 
+
+ \note if the Linestring has XY or XYM dims, the Z-Range is meaningless
+ */
+    GAIAGEO_DECLARE void gaiaZRangeLinestringEx (gaiaLinestringPtr line,
+						 double nodata, double *min,
+						 double *max);
+
+/**
  Computes the Z-Range for a Ring object
 
  \param rng pointer to the Ring object
  \param min on completion this variable will contain the min Z value found
  \param max on completion this variable will contain the max Z value found
+ 
+ \sa gaiaZRangeRingEx
 
  \note if the Ring has XY or XYM dims, the Z-Range is meaningless
  */
@@ -385,11 +405,28 @@ extern "C"
 					 double *max);
 
 /**
+ Computes the Z-Range for a Ring object (NODATA flavor)
+
+ \param rng pointer to the Ring object
+ \param nodata the NODATA value
+ \param min on completion this variable will contain the min Z value found
+ \param max on completion this variable will contain the max Z value found
+ 
+ \sa gaiaZRangeRing
+
+ \note if the Ring has XY or XYM dims, the Z-Range is meaningless
+ */
+    GAIAGEO_DECLARE void gaiaZRangeRingEx (gaiaRingPtr rng, double nodata,
+					   double *min, double *max);
+
+/**
  Computes the Z-Range for a Polygon object
 
  \param polyg pointer to the Polygon object
  \param min on completion this variable will contain the min Z value found
  \param max on completion this variable will contain the max Z value found
+ 
+ \sa gaiaZRangePolygonEx
 
  \note if the Polygon has XY or XYM dims, the Z-Range is meaningless
  */
@@ -397,16 +434,50 @@ extern "C"
 					    double *max);
 
 /**
+ Computes the Z-Range for a Polygon object (NODATA flavor)
+
+ \param polyg pointer to the Polygon object
+ \param nodata the NODATA value
+ \param min on completion this variable will contain the min Z value found
+ \param max on completion this variable will contain the max Z value found
+ 
+ \sa gaiaZRangePolygon
+
+ \note if the Polygon has XY or XYM dims, the Z-Range is meaningless
+ */
+    GAIAGEO_DECLARE void gaiaZRangePolygonEx (gaiaPolygonPtr polyg,
+					      double nodata, double *min,
+					      double *max);
+
+/**
  Computes the Z-Range for a Geometry object
 
  \param geom pointer to the Geometry object
  \param min on completion this variable will contain the min Z value found
  \param max on completion this variable will contain the max Z value found
+ 
+ \sa gaiaZRangeGeometryEx
 
  \note if the Geometry has XY or XYM dims, the Z-Range is meaningless
  */
-    GAIAGEO_DECLARE void gaiaZRangeGeometry (gaiaGeomCollPtr geom, double *min,
-					     double *max);
+    GAIAGEO_DECLARE void gaiaZRangeGeometry (gaiaGeomCollPtr geom,
+					     double *min, double *max);
+
+/**
+ Computes the Z-Range for a Geometry object (NODATA flavor)
+
+ \param geom pointer to the Geometry object
+ \param nodata the NODATA value
+ \param min on completion this variable will contain the min Z value found
+ \param max on completion this variable will contain the max Z value found
+ 
+ \sa gaiaZRangeGeometry
+
+ \note if the Geometry has XY or XYM dims, the Z-Range is meaningless
+ */
+    GAIAGEO_DECLARE void gaiaZRangeGeometryEx (gaiaGeomCollPtr geom,
+					       double nodata, double *min,
+					       double *max);
 
 /**
  Computes the M-Range for a Linestring object
@@ -414,6 +485,8 @@ extern "C"
  \param line pointer to the Linestring object
  \param min on completion this variable will contain the min M value found
  \param max on completion this variable will contain the max M value found
+ 
+ \sa gaiaMRangeLinestringEx
 
  \note if the Linestring has XY or XYZ dims, the M-Range is meaningless
  */
@@ -421,11 +494,29 @@ extern "C"
 					       double *min, double *max);
 
 /**
+ Computes the M-Range for a Linestring object (NODATA flavor)
+
+ \param line pointer to the Linestring object
+ \param nodata the NODATA value
+ \param min on completion this variable will contain the min M value found
+ \param max on completion this variable will contain the max M value found
+ 
+ \sa gaiaMRangeLinestring
+
+ \note if the Linestring has XY or XYZ dims, the M-Range is meaningless
+ */
+    GAIAGEO_DECLARE void gaiaMRangeLinestringEx (gaiaLinestringPtr line,
+						 double nodata, double *min,
+						 double *max);
+
+/**
  Computes the M-Range for a Ring object
 
  \param rng pointer to the Ring object
  \param min on completion this variable will contain the min M value found
  \param max on completion this variable will contain the max M value found
+ 
+ \sa gaiaMRangeRingEx
 
  \note if the Ring has XY or XYZ dims, the M-Range is meaningless
  */
@@ -433,11 +524,28 @@ extern "C"
 					 double *max);
 
 /**
+ Computes the M-Range for a Ring object (NODATA flavor)
+
+ \param rng pointer to the Ring object
+ \param nodata the NODATA value
+ \param min on completion this variable will contain the min M value found
+ \param max on completion this variable will contain the max M value found
+ 
+ \sa gaiaMRangeRing
+
+ \note if the Ring has XY or XYZ dims, the M-Range is meaningless
+ */
+    GAIAGEO_DECLARE void gaiaMRangeRingEx (gaiaRingPtr rng, double nodata,
+					   double *min, double *max);
+
+/**
  Computes the M-Range for a Polygon object
 
  \param polyg pointer to the Polygon object
  \param min on completion this variable will contain the min M value found
  \param max on completion this variable will contain the max M value found
+ 
+ \sa gaiaMRangePolygonEx
 
  \note if the Polygon has XY or XYZ dims, the M-Range is meaningless
  */
@@ -445,16 +553,50 @@ extern "C"
 					    double *max);
 
 /**
+ Computes the M-Range for a Polygon object (NODATA flavor)
+
+ \param polyg pointer to the Polygon object 
+ \param nodata the NODATA value
+ \param min on completion this variable will contain the min M value found
+ \param max on completion this variable will contain the max M value found
+ 
+ \sa gaiaMRangePolygon
+
+ \note if the Polygon has XY or XYZ dims, the M-Range is meaningless
+ */
+    GAIAGEO_DECLARE void gaiaMRangePolygonEx (gaiaPolygonPtr polyg,
+					      double nodata, double *min,
+					      double *max);
+
+/**
  Computes the Z-Range for a Geometry object
 
  \param geom pointer to the Geometry object
  \param min on completion this variable will contain the min M value found
  \param max on completion this variable will contain the max M value found
+ 
+ \sa gaiaMRangeGeometryEx
 
  \note if the Geometry has XY or XYZ dims, the M-Range is meaningless
  */
-    GAIAGEO_DECLARE void gaiaMRangeGeometry (gaiaGeomCollPtr geom, double *min,
-					     double *max);
+    GAIAGEO_DECLARE void gaiaMRangeGeometry (gaiaGeomCollPtr geom,
+					     double *min, double *max);
+
+/**
+ Computes the Z-Range for a Geometry object (NODATA flavor)
+
+ \param geom pointer to the Geometry object 
+ \param nodata the NODATA value
+ \param min on completion this variable will contain the min M value found
+ \param max on completion this variable will contain the max M value found
+ 
+ \sa gaiaMRangeGeometryEx
+
+ \note if the Geometry has XY or XYZ dims, the M-Range is meaningless
+ */
+    GAIAGEO_DECLARE void gaiaMRangeGeometryEx (gaiaGeomCollPtr geom,
+					       double nodata, double *min,
+					       double *max);
 
 
 #ifdef __cplusplus

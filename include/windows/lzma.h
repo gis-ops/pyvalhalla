@@ -188,7 +188,7 @@
  * omitted on Cygwin but not on MinGW.
  */
 #ifndef LZMA_API_IMPORT
-#	if !defined(LZMA_API_STATIC) && defined(_WIN32) && !defined(__GNUC__)
+#	if !0 && defined(_WIN32) && !defined(__GNUC__)
 #		define LZMA_API_IMPORT __declspec(dllimport)
 #	else
 #		define LZMA_API_IMPORT
@@ -219,7 +219,8 @@
  */
 #ifndef lzma_nothrow
 #	if defined(__cplusplus)
-#		if __cplusplus >= 201103L
+#		if __cplusplus >= 201103L || (defined(_MSVC_LANG) \
+				&& _MSVC_LANG >= 201103L)
 #			define lzma_nothrow noexcept
 #		else
 #			define lzma_nothrow throw()

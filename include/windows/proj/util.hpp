@@ -33,6 +33,11 @@
 #error Must have C++11 or newer.
 #endif
 
+// windows.h can conflict with Criterion::STRICT
+#ifdef STRICT
+#undef STRICT
+#endif
+
 #include <exception>
 #include <map>
 #include <memory>
@@ -50,10 +55,12 @@ namespace proj {}
 //! @cond Doxygen_Suppress
 
 #ifndef PROJ_DLL
+#if defined(_MSC_VER)
 #ifdef PROJ_MSVC_DLL_EXPORT
 #define PROJ_DLL __declspec(dllexport)
-#elif defined(PROJ_MSVC_DLL_IMPORT)
+#else
 #define PROJ_DLL __declspec(dllimport)
+#endif
 #elif defined(__GNUC__)
 #define PROJ_DLL __attribute__((visibility("default")))
 #else
@@ -62,12 +69,7 @@ namespace proj {}
 #endif
 
 #ifndef PROJ_MSVC_DLL
-
-#ifdef PROJ_MSVC_DLL_EXPORT
-#define PROJ_MSVC_DLL PROJ_DLL
-#define PROJ_GCC_DLL
-#define PROJ_INTERNAL
-#elif defined(PROJ_MSVC_DLL_IMPORT)
+#if defined(_MSC_VER)
 #define PROJ_MSVC_DLL PROJ_DLL
 #define PROJ_GCC_DLL
 #define PROJ_INTERNAL
@@ -84,14 +86,21 @@ namespace proj {}
 #define PROJ_GCC_DLL
 #define PROJ_INTERNAL
 #endif
-
 #define PROJ_FOR_TEST PROJ_DLL
-
 #endif
 
 #include "nn.hpp"
 
 /* To allow customizing the base namespace of PROJ */
+#ifdef PROJ_INTERNAL_CPP_NAMESPACE
+#define NS_PROJ osgeo::internalproj
+#define NS_PROJ_START                                                          \
+    namespace osgeo {                                                          \
+    namespace internalproj {
+#define NS_PROJ_END                                                            \
+    }                                                                          \
+    }
+#else
 #ifndef NS_PROJ
 #define NS_PROJ osgeo::proj
 #define NS_PROJ_START                                                          \
@@ -100,6 +109,7 @@ namespace proj {}
 #define NS_PROJ_END                                                            \
     }                                                                          \
     }
+#endif
 #endif
 
 // Private-implementation (Pimpl) pattern
@@ -120,11 +130,11 @@ namespace proj {}
 // to be able to call make_shared on a protected/private constructor
 #define INLINED_MAKE_SHARED                                                    \
     template <typename T, typename... Args>                                    \
-    static std::shared_ptr<T> make_shared(Args &&... args) {                   \
+    static std::shared_ptr<T> make_shared(Args &&...args) {                    \
         return std::shared_ptr<T>(new T(std::forward<Args>(args)...));         \
     }                                                                          \
     template <typename T, typename... Args>                                    \
-    static util::nn_shared_ptr<T> nn_make_shared(Args &&... args) {            \
+    static util::nn_shared_ptr<T> nn_make_shared(Args &&...args) {             \
         return util::nn_shared_ptr<T>(                                         \
             util::i_promise_i_checked_for_null,                                \
             std::shared_ptr<T>(new T(std::forward<Args>(args)...)));           \
@@ -134,7 +144,7 @@ namespace proj {}
 // to be able to call make_unique on a protected/private constructor
 #define INLINED_MAKE_UNIQUE                                                    \
     template <typename T, typename... Args>                                    \
-    static std::unique_ptr<T> make_unique(Args &&... args) {                   \
+    static std::unique_ptr<T> make_unique(Args &&...args) {                    \
         return std::unique_ptr<T>(new T(std::forward<Args>(args)...));         \
     }
 
@@ -170,7 +180,7 @@ NS_PROJ_START
 namespace io {
 class DatabaseContext;
 using DatabaseContextPtr = std::shared_ptr<DatabaseContext>;
-}
+} // namespace io
 //! @endcond
 
 /** osgeo.proj.util namespace.
@@ -202,6 +212,14 @@ template <typename T> using nn_shared_ptr = nn<std::shared_ptr<T>>;
 
 // To avoid formatting differences between clang-format 3.8 and 7
 #define PROJ_NOEXCEPT noexcept
+
+//! @cond Doxygen_Suppress
+// isOfExactType<MyType>(*p) checks that the type of *p is exactly MyType
+template <typename TemplateT, typename ObjectT>
+inline bool isOfExactType(const ObjectT &o) {
+    return typeid(TemplateT).hash_code() == typeid(o).hash_code();
+}
+//! @endcond
 
 /** \brief Loose transposition of [std::optional]
  * (https://en.cppreference.com/w/cpp/utility/optional) available from C++17. */
@@ -296,7 +314,7 @@ struct BaseObjectNNPtr : public util::nn<BaseObjectPtr> {
 using BaseObjectNNPtr = util::nn<BaseObjectPtr>;
 #endif
 
-/** \brief Class that can be derived from, to emulate Java's Object behaviour.
+/** \brief Class that can be derived from, to emulate Java's Object behavior.
  */
 class PROJ_GCC_DLL BaseObject {
   public:
@@ -313,6 +331,7 @@ class PROJ_GCC_DLL BaseObject {
   protected:
     PROJ_INTERNAL BaseObject();
     PROJ_INTERNAL void assignSelf(const BaseObjectNNPtr &self);
+    PROJ_INTERNAL BaseObject &operator=(BaseObject &&other);
 
   private:
     PROJ_OPAQUE_PRIVATE_DATA
@@ -682,7 +701,7 @@ class CodeList {
     //! @endcond
   protected:
     explicit CodeList(const std::string &nameIn) : name_(nameIn) {}
-    CodeList(const CodeList &other) = default;
+    CodeList(const CodeList &) = default;
     CodeList &operator=(const CodeList &other);
 
   private:
