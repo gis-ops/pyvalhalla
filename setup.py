@@ -34,7 +34,7 @@ else:
 # do conan dependency resolution
 # locally there will be 2 conanbuildinfo.json, one here and one in ./upstream/conan_build
 conanfiles = Path(__file__).parent.resolve().rglob("conanbuildinfo.json")
-conanfiles = tuple(filter(lambda p: p.parent.parent.name == "upstream", conanfiles))
+conanfiles = tuple(filter(lambda p: p.parent.parent.name != "upstream", conanfiles))
 if conanfiles:
     logging.info("Using conan to resolve dependencies.")
     with conanfiles[0].open() as f:
@@ -49,7 +49,7 @@ ext_modules = [
     Pybind11Extension(
         "_valhalla",
         [os.path.join("valhalla", "_valhalla.cc")],
-        cxx_std=14,
+        cxx_std=17,
         include_pybind11=False,  # use submodule'd pybind11
         library_dirs=library_dirs,
         include_dirs=include_dirs,
