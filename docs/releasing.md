@@ -99,14 +99,10 @@ python -c "from valhalla import Actor; a = Actor('valhalla.json')"
 First build Valhalla (or set up your `.vscode/settings.json` properly, hint: `cmake.sourceDirectory/buildDirectory`):
 ```
 cmake -Bupstream/build -Supstream -DENABLE_TOOLS=OFF -DENABLE_HTTP=OFF -DENABLE_DATA_TOOLS=OFF -DENABLE_PYTHON_BINDINGS=OFF -DENABLE_SERVICES=OFF -DENABLE_TESTS=OFF -DENABLE_CCACHE=OFF -DENABLE_COVERAGE=OFF -DENABLE_BENCHMARKS=OFF -DENABLE_SINGLE_FILES_WERROR=OFF -DCMAKE_TOOLCHAIN_FILE=C:\Users\nilsn\dev\cpp\vcpkg\scripts\buildsystems\vcpkg.cmake -DVCPKG_TARGET_TRIPLET=x64-windows -DCMAKE_BUILD_TYPE=Release -G "Visual Studio 17 2022" -T host=x64 -A x64
-cmake --build upstream/build --config Release --target valhalla -j 8 -- /clp:ErrorsOnly
+cmake --build upstream/build --config Release --target valhalla -j 8 -- /clp:ErrorsOnly /p:BuildInParallel=true /m:8
 protoc.exe --proto_path=upstream/proto --cpp_out=include/windows/valhalla/proto upstream/proto/*.proto
-
-# protobuf 3.12.3 seems to have problems with spelling: https://github.com/protocolbuffers/protobuf/issues/7522
-# need to patch here:
-# replace all occurrences of "AuxillaryParseTableField" with "AuxiliaryParseTableField"
 ```
 
 Since `3.3.0` it also needs `dirent.h` from Valhalla's `third_party/dirent`.
 
-The only area where Windows is shining: makes it really simple, just copy the headers & libs from `vcpkg`.
+The only area where Windows is shining: makes it really simple, just copy the headers & libs from `vcpkg`. **Note**, it'll need the DLLs, **not** the static `.lib`s.
