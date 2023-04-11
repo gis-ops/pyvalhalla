@@ -2,4 +2,4 @@
 
 # build valhalla first in our manylinux image
 echo "building valhalla.."
-docker exec python-build /valhalla-py/scripts/build_linux_do.sh
+docker exec valhalla-py /valhalla-py/scripts/build_linux_do.sh

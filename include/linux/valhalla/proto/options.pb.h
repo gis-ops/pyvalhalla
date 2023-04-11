@@ -1498,6 +1498,8 @@ class Costing_Options final :
     kFilterStopActionFieldNumber = 49,
     kFilterOperatorActionFieldNumber = 51,
     kFilterRouteActionFieldNumber = 53,
+    kFixedSpeedFieldNumber = 80,
+    kAxleCountFieldNumber = 81,
     kManeuverPenaltyFieldNumber = 1,
     kDestinationOnlyPenaltyFieldNumber = 2,
     kGateCostFieldNumber = 3,
@@ -1686,6 +1688,24 @@ class Costing_Options final :
   private:
   ::valhalla::FilterAction _internal_filter_route_action() const;
   void _internal_set_filter_route_action(::valhalla::FilterAction value);
+  public:
+
+  // uint32 fixed_speed = 80;
+  void clear_fixed_speed();
+  uint32_t fixed_speed() const;
+  void set_fixed_speed(uint32_t value);
+  private:
+  uint32_t _internal_fixed_speed() const;
+  void _internal_set_fixed_speed(uint32_t value);
+  public:
+
+  // uint32 axle_count = 81;
+  void clear_axle_count();
+  uint32_t axle_count() const;
+  void set_axle_count(uint32_t value);
+  private:
+  uint32_t _internal_axle_count() const;
+  void _internal_set_axle_count(uint32_t value);
   public:
 
   // float maneuver_penalty = 1;
@@ -3076,6 +3096,8 @@ class Costing_Options final :
     int filter_stop_action_;
     int filter_operator_action_;
     int filter_route_action_;
+    uint32_t fixed_speed_;
+    uint32_t axle_count_;
     union HasManeuverPenaltyUnion {
       constexpr HasManeuverPenaltyUnion() : _constinit_{} {}
         ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
@@ -8746,6 +8768,46 @@ inline float Costing_Options::elevator_penalty() const {
 inline void Costing_Options::set_elevator_penalty(float value) {
   _internal_set_elevator_penalty(value);
   // @@protoc_insertion_point(field_set:valhalla.Costing.Options.elevator_penalty)
+}
+
+// uint32 fixed_speed = 80;
+inline void Costing_Options::clear_fixed_speed() {
+  _impl_.fixed_speed_ = 0u;
+}
+inline uint32_t Costing_Options::_internal_fixed_speed() const {
+  return _impl_.fixed_speed_;
+}
+inline uint32_t Costing_Options::fixed_speed() const {
+  // @@protoc_insertion_point(field_get:valhalla.Costing.Options.fixed_speed)
+  return _internal_fixed_speed();
+}
+inline void Costing_Options::_internal_set_fixed_speed(uint32_t value) {
+  
+  _impl_.fixed_speed_ = value;
+}
+inline void Costing_Options::set_fixed_speed(uint32_t value) {
+  _internal_set_fixed_speed(value);
+  // @@protoc_insertion_point(field_set:valhalla.Costing.Options.fixed_speed)
+}
+
+// uint32 axle_count = 81;
+inline void Costing_Options::clear_axle_count() {
+  _impl_.axle_count_ = 0u;
+}
+inline uint32_t Costing_Options::_internal_axle_count() const {
+  return _impl_.axle_count_;
+}
+inline uint32_t Costing_Options::axle_count() const {
+  // @@protoc_insertion_point(field_get:valhalla.Costing.Options.axle_count)
+  return _internal_axle_count();
+}
+inline void Costing_Options::_internal_set_axle_count(uint32_t value) {
+  
+  _impl_.axle_count_ = value;
+}
+inline void Costing_Options::set_axle_count(uint32_t value) {
+  _internal_set_axle_count(value);
+  // @@protoc_insertion_point(field_set:valhalla.Costing.Options.axle_count)
 }
 
 inline bool Costing_Options::has_has_maneuver_penalty() const {

@@ -65,10 +65,10 @@ Proto headers have to be compiled on each platform separately.
 
 #### Linux
 
-Fire up the `ghcr.io/gis-ops/manylinux:valhalla_python` image which has all dependencies installed and build valhalla:
+Fire up the `ghcr.io/gis-ops/manylinux:2_28_valhalla_python` image which has all dependencies installed and build valhalla:
 
 ```
-docker run -dt -v $PWD:/valhalla-py --name valhalla-py ghcr.io/gis-ops/manylinux:valhalla_python
+docker run -dt -v $PWD:/valhalla-py --name valhalla-py ghcr.io/gis-ops/manylinux:2_28_valhalla_python
 ./scripts/build_linux.sh
 sudo chown -R nilsnolde:nilsnolde .
 ```

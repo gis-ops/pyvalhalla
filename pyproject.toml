@@ -40,7 +40,7 @@ repair-wheel-command = "delvewheel repair --add-path lib/windows {wheel} -w {des
 
 [tool.cibuildwheel.linux]
 before-all = """
-pip install conan
+pip install "conan<2.0.0"
 conan profile new default --detect
 conan config set storage.path={package}/conan_data
 conan install --install-folder {package}/conan_build --remote conancenter {package}/conanfile.txt
