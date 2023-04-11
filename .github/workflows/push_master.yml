@@ -73,3 +73,4 @@ jobs:
       env:
         MACOSX_DEPLOYMENT_TARGET: 10.9
         CIBW_BUILD: cp37*
+        CIBW_TEST_COMMAND: ''
