@@ -17,15 +17,22 @@ on:
 jobs:
   build_wheels:
     name: PR - cp*, ubuntu-latest
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
 
     - name: Configure Python
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v4
 
-    - name: Lint & Style Check
+    - name: Install Conan (Windows)
+      if: matrix.platform == 'windows'
       run: |
-        pre-commit run --all-files --show-diff-on-failure
+        pip install pip --upgrade
+        pip install conan<2.0.0
+        conan profile new default --detect
+        conan profile update "settings.compiler=Visual Studio" default
+        conan profile update "settings.compiler.version=16" default
+        conan config set "storage.path=$env:GITHUB_WORKSPACE/conan_data"
+        conan install --install-folder conan_build --remote conancenter .
 
-    - uses: pypa/cibuildwheel@v2.3.1
+    - uses: pypa/cibuildwheel@v2.12.1

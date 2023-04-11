@@ -96,9 +96,9 @@ python -c "from valhalla import Actor; a = Actor('valhalla.json')"
 
 #### Windows
 
-First build Valhalla:
+First build Valhalla (or set up your `.vscode/settings.json` properly, hint: `cmake.sourceDirectory/buildDirectory`):
 ```
-cmake -Bupstream/build -Supstream -DENABLE_TOOLS=OFF -DENABLE_HTTP=OFF -DENABLE_DATA_TOOLS=ON -DENABLE_PYTHON_BINDINGS=ON -DENABLE_SERVICES=OFF -DENABLE_TESTS=OFF -DENABLE_CCACHE=OFF -DENABLE_COVERAGE=OFF -DENABLE_BENCHMARKS=OFF -DENABLE_SINGLE_FILES_WERROR=OFF  -DLUA_INCLUDE_DIR=C:\Users\nilsn\Documents\dev\vcpkg\installed\x64-windows\include\luajit -DLUA_LIBRARIES=C:\Users\nilsn\Documents\dev\vcpkg\installed\x64-windows\lib\lua51.lib -DPython_EXECUTABLE=C:\Users\nilsn\AppData\Local\Programs\Python\Python39\python.exe -DPython_LIBRARIES=C:\Users\nilsn\AppData\Local\Programs\Python\Python39\libs\python39.lib -DPython_INCLUDE_DIRS=C:\Users\nilsn\AppData\Local\Programs\Python\Python39\include -DCMAKE_TOOLCHAIN_FILE=C:\Users\nilsn\Documents\dev\vcpkg\scripts\buildsystems\vcpkg.cmake -DVCPKG_TARGET_TRIPLET=x64-windows -DCMAKE_BUILD_TYPE=Release -G "Visual Studio 16 2019" -T host=x64 -A x64
+cmake -Bupstream/build -Supstream -DENABLE_TOOLS=OFF -DENABLE_HTTP=OFF -DENABLE_DATA_TOOLS=OFF -DENABLE_PYTHON_BINDINGS=OFF -DENABLE_SERVICES=OFF -DENABLE_TESTS=OFF -DENABLE_CCACHE=OFF -DENABLE_COVERAGE=OFF -DENABLE_BENCHMARKS=OFF -DENABLE_SINGLE_FILES_WERROR=OFF -DCMAKE_TOOLCHAIN_FILE=C:\Users\nilsn\dev\cpp\vcpkg\scripts\buildsystems\vcpkg.cmake -DVCPKG_TARGET_TRIPLET=x64-windows -DCMAKE_BUILD_TYPE=Release -G "Visual Studio 17 2022" -T host=x64 -A x64
 cmake --build upstream/build --config Release --target valhalla -j 8 -- /clp:ErrorsOnly
 protoc.exe --proto_path=upstream/proto --cpp_out=include/windows/valhalla/proto upstream/proto/*.proto
 
