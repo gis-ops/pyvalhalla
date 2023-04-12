@@ -46,7 +46,7 @@ jobs:
       if: matrix.platform == 'windows'  # && steps.cache-conan.outputs.cache-hit != 'true'
       run: |
         pip install pip --upgrade
-        pip install conan
+        pip install conan<2.0.0
         conan profile new default --detect
         conan profile update "settings.compiler=Visual Studio" default
         conan profile update "settings.compiler.version=16" default
@@ -57,7 +57,7 @@ jobs:
       if: matrix.platform == 'macos' && steps.cache-conan.outputs.cache-hit != 'true'
       run: |
         pip install pip --upgrade
-        pip install conan
+        pip install conan<2.0.0
         conan profile new default --detect
         conan config set "storage.path=${{ github.workspace }}/conan_data"
         conan install --install-folder ${{ github.workspace }}/conan_build --remote conancenter .
