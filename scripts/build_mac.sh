@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-pip3 install conan
+pip3 install "conan<2.0.0"
 conan profile new default --detect
 conan config set "storage.path=${PWD}/upstream/conan_data"
 conan install --install-folder conan_build .

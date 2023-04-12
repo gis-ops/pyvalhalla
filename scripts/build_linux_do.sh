@@ -7,7 +7,7 @@ cd valhalla-py
 apt-get update
 apt-get install -y python3-pip
 pip3 install --upgrade pip
-pip3 install conan
+pip3 install "conan<2.0.0"
 conan config set "storage.path=$PWD/upstream/conan_data"
 conan install --install-folder conan_build .
 
