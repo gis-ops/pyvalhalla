@@ -22,17 +22,17 @@ jobs:
           - image: macos-latest
             platform: macos
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
       with:
         fetch-depth: 0
 
     - name: Configure Python
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v3
 
     # keep in-sync with the other yaml
     - name: Cache Conan (MacOS)
       id: cache-conan
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       if: matrix.platform != 'windows'
       with:
         path: |
@@ -78,14 +78,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/setup-python@v2
+    - uses: actions/setup-python@v3
 
     - uses: actions/download-artifact@v2
       with:
         name: artifact
         path: dist
 
-    - uses: pypa/gh-action-pypi-publish@v1.4.2
+    - uses: pypa/gh-action-pypi-publish@v1.8.5
       with:
         user: nilsnolde
         password: ${{ secrets.PYPI_PASS }}
