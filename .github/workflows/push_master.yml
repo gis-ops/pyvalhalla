@@ -29,10 +29,10 @@ jobs:
             platform: macos
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
 
     - name: Configure Python
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v3
 
     # keep in-sync with the other yaml
     # only macos makes sense, windows didn't work, linux installs conan inside the docker image
