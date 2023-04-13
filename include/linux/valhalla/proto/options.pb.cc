@@ -87,6 +87,8 @@ PROTOBUF_CONSTEXPR Costing_Options::Costing_Options(
   , /*decltype(_impl_.filter_stop_action_)*/0
   , /*decltype(_impl_.filter_operator_action_)*/0
   , /*decltype(_impl_.filter_route_action_)*/0
+  , /*decltype(_impl_.fixed_speed_)*/0u
+  , /*decltype(_impl_.axle_count_)*/0u
   , /*decltype(_impl_.has_maneuver_penalty_)*/{}
   , /*decltype(_impl_.has_destination_only_penalty_)*/{}
   , /*decltype(_impl_.has_gate_cost_)*/{}
@@ -2102,6 +2104,8 @@ Costing_Options::Costing_Options(const Costing_Options& from)
     , decltype(_impl_.filter_stop_action_){}
     , decltype(_impl_.filter_operator_action_){}
     , decltype(_impl_.filter_route_action_){}
+    , decltype(_impl_.fixed_speed_){}
+    , decltype(_impl_.axle_count_){}
     , decltype(_impl_.has_maneuver_penalty_){}
     , decltype(_impl_.has_destination_only_penalty_){}
     , decltype(_impl_.has_gate_cost_){}
@@ -2179,8 +2183,8 @@ Costing_Options::Costing_Options(const Costing_Options& from)
 
   _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
   ::memcpy(&_impl_.filter_stop_action_, &from._impl_.filter_stop_action_,
-    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.filter_route_action_) -
-    reinterpret_cast<char*>(&_impl_.filter_stop_action_)) + sizeof(_impl_.filter_route_action_));
+    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.axle_count_) -
+    reinterpret_cast<char*>(&_impl_.filter_stop_action_)) + sizeof(_impl_.axle_count_));
   clear_has_has_maneuver_penalty();
   switch (from.has_maneuver_penalty_case()) {
     case kManeuverPenalty: {
@@ -2916,6 +2920,8 @@ inline void Costing_Options::SharedCtor(
     , decltype(_impl_.filter_stop_action_){0}
     , decltype(_impl_.filter_operator_action_){0}
     , decltype(_impl_.filter_route_action_){0}
+    , decltype(_impl_.fixed_speed_){0u}
+    , decltype(_impl_.axle_count_){0u}
     , decltype(_impl_.has_maneuver_penalty_){}
     , decltype(_impl_.has_destination_only_penalty_){}
     , decltype(_impl_.has_gate_cost_){}
@@ -4322,8 +4328,8 @@ void Costing_Options::Clear() {
   _impl_.filter_route_ids_.Clear();
   _impl_.exclude_edges_.Clear();
   ::memset(&_impl_.filter_stop_action_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&_impl_.filter_route_action_) -
-      reinterpret_cast<char*>(&_impl_.filter_stop_action_)) + sizeof(_impl_.filter_route_action_));
+      reinterpret_cast<char*>(&_impl_.axle_count_) -
+      reinterpret_cast<char*>(&_impl_.filter_stop_action_)) + sizeof(_impl_.axle_count_));
   clear_has_maneuver_penalty();
   clear_has_destination_only_penalty();
   clear_has_gate_cost();
@@ -5068,6 +5074,22 @@ const char* Costing_Options::_InternalParse(const char* ptr, ::_pbi::ParseContex
         } else
           goto handle_unusual;
         continue;
+      // uint32 fixed_speed = 80;
+      case 80:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 128)) {
+          _impl_.fixed_speed_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // uint32 axle_count = 81;
+      case 81:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 136)) {
+          _impl_.axle_count_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
       default:
         goto handle_unusual;
     }  // switch
@@ -5592,6 +5614,18 @@ uint8_t* Costing_Options::_InternalSerialize(
     target = ::_pbi::WireFormatLite::WriteFloatToArray(79, this->_internal_elevator_penalty(), target);
   }
 
+  // uint32 fixed_speed = 80;
+  if (this->_internal_fixed_speed() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(80, this->_internal_fixed_speed(), target);
+  }
+
+  // uint32 axle_count = 81;
+  if (this->_internal_axle_count() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(81, this->_internal_axle_count(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = stream->WriteRaw(_internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).data(),
         static_cast<int>(_internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).size()), target);
@@ -5655,6 +5689,20 @@ size_t Costing_Options::ByteSizeLong() const {
   if (this->_internal_filter_route_action() != 0) {
     total_size += 2 +
       ::_pbi::WireFormatLite::EnumSize(this->_internal_filter_route_action());
+  }
+
+  // uint32 fixed_speed = 80;
+  if (this->_internal_fixed_speed() != 0) {
+    total_size += 2 +
+      ::_pbi::WireFormatLite::UInt32Size(
+        this->_internal_fixed_speed());
+  }
+
+  // uint32 axle_count = 81;
+  if (this->_internal_axle_count() != 0) {
+    total_size += 2 +
+      ::_pbi::WireFormatLite::UInt32Size(
+        this->_internal_axle_count());
   }
 
   switch (has_maneuver_penalty_case()) {
@@ -6427,6 +6475,12 @@ void Costing_Options::MergeFrom(const Costing_Options& from) {
   if (from._internal_filter_route_action() != 0) {
     _this->_internal_set_filter_route_action(from._internal_filter_route_action());
   }
+  if (from._internal_fixed_speed() != 0) {
+    _this->_internal_set_fixed_speed(from._internal_fixed_speed());
+  }
+  if (from._internal_axle_count() != 0) {
+    _this->_internal_set_axle_count(from._internal_axle_count());
+  }
   switch (from.has_maneuver_penalty_case()) {
     case kManeuverPenalty: {
       _this->_internal_set_maneuver_penalty(from._internal_maneuver_penalty());
@@ -7097,8 +7151,8 @@ void Costing_Options::InternalSwap(Costing_Options* other) {
   _impl_.filter_route_ids_.InternalSwap(&other->_impl_.filter_route_ids_);
   _impl_.exclude_edges_.InternalSwap(&other->_impl_.exclude_edges_);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(Costing_Options, _impl_.filter_route_action_)
-      + sizeof(Costing_Options::_impl_.filter_route_action_)
+      PROTOBUF_FIELD_OFFSET(Costing_Options, _impl_.axle_count_)
+      + sizeof(Costing_Options::_impl_.axle_count_)
       - PROTOBUF_FIELD_OFFSET(Costing_Options, _impl_.filter_stop_action_)>(
           reinterpret_cast<char*>(&_impl_.filter_stop_action_),
           reinterpret_cast<char*>(&other->_impl_.filter_stop_action_));

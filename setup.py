@@ -49,7 +49,7 @@ ext_modules = [
     Pybind11Extension(
         "_valhalla",
         [os.path.join("valhalla", "_valhalla.cc")],
-        cxx_std=14,
+        cxx_std=17,
         include_pybind11=False,  # use submodule'd pybind11
         library_dirs=library_dirs,
         include_dirs=include_dirs,

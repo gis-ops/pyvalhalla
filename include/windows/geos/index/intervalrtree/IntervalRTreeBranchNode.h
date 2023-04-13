@@ -7,14 +7,13 @@
  *
  * This is free software; you can redistribute and/or modify it under
  * the terms of the GNU Lesser General Public Licence as published
- * by the Free Software Foundation. 
+ * by the Free Software Foundation.
  * See the COPYING file for more information.
  *
  *
  **********************************************************************/
 
-#ifndef GEOS_INDEX_INTERVALRTREE_INTERVALRTREEBRANCHNODE_H
-#define GEOS_INDEX_INTERVALRTREE_INTERVALRTREEBRANCHNODE_H
+#pragma once
 
 #include <geos/index/intervalrtree/IntervalRTreeNode.h> // inherited
 
@@ -22,9 +21,9 @@
 
 // forward declarations
 namespace geos {
-	namespace index {
-		class ItemVisitor;
-	}
+namespace index {
+class ItemVisitor;
+}
 }
 
 
@@ -32,39 +31,23 @@ namespace geos {
 namespace index {
 namespace intervalrtree {
 
-class IntervalRTreeBranchNode : public IntervalRTreeNode
-{
+class IntervalRTreeBranchNode : public IntervalRTreeNode {
 private:
-	const IntervalRTreeNode * node1;
-	const IntervalRTreeNode * node2;
-
-	//void buildExtent( IntervalRTreeNode * n1, IntervalRTreeNode * n2)
-	//{
-	//	min = std::min( n1->min, n2->min);
-	//	max = std::max( n1->max, n2->max);
-	//}
+    const IntervalRTreeNode* node1;
+    const IntervalRTreeNode* node2;
 
 protected:
 public:
-	IntervalRTreeBranchNode( const IntervalRTreeNode * n1, const IntervalRTreeNode * n2)
-	:	IntervalRTreeNode( std::min( n1->getMin(), n2->getMin()), std::max( n1->getMax(), n2->getMax())),
-		node1( n1),
-		node2( n2)
-	{ }
+    IntervalRTreeBranchNode(const IntervalRTreeNode* n1, const IntervalRTreeNode* n2)
+        :	IntervalRTreeNode(std::min(n1->getMin(), n2->getMin()), std::max(n1->getMax(), n2->getMax())),
+          node1(n1),
+          node2(n2)
+    { }
 
-	~IntervalRTreeBranchNode()
-	{
-		delete node1;
-		delete node2;
-	}
-
-	
-	void query(double queryMin, double queryMax, index::ItemVisitor * visitor) const;
+    void query(double queryMin, double queryMax, index::ItemVisitor* visitor) const override;
 };
 
 } // geos::intervalrtree
 } // geos::index
 } // geos
-
-#endif // GEOS_INDEX_INTERVALRTREE_INTERVALRTREEBRANCHNODE_H
 

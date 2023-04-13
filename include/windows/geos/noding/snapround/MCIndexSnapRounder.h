@@ -7,7 +7,7 @@
  *
  * This is free software; you can redistribute and/or modify it under
  * the terms of the GNU Lesser General Public Licence as published
- * by the Free Software Foundation. 
+ * by the Free Software Foundation.
  * See the COPYING file for more information.
  *
  **********************************************************************
@@ -16,14 +16,13 @@
  *
  **********************************************************************/
 
-#ifndef GEOS_NODING_SNAPROUND_MCINDEXSNAPROUNDER_H
-#define GEOS_NODING_SNAPROUND_MCINDEXSNAPROUNDER_H
+#pragma once
 
 #include <geos/export.h>
 
 #include <geos/noding/Noder.h> // for inheritance
 #include <geos/noding/NodedSegmentString.h> // for inlines
-#include <geos/noding/snapround/MCIndexPointSnapper.h> // for inines
+#include <geos/noding/snapround/MCIndexPointSnapper.h> // for inlines
 #include <geos/algorithm/LineIntersector.h> // for composition
 #include <geos/geom/Coordinate.h> // for use in vector
 #include <geos/geom/PrecisionModel.h> // for inlines
@@ -37,13 +36,13 @@
 
 // Forward declarations
 namespace geos {
-	namespace algorithm {
-		class LineIntersector;
-	}
-	namespace noding {
-		class SegmentString;
-		class MCIndexNoder;
-	}
+namespace algorithm {
+class LineIntersector;
+}
+namespace noding {
+class SegmentString;
+class MCIndexNoder;
+}
 }
 
 namespace geos {
@@ -61,7 +60,7 @@ namespace snapround { // geos::noding::snapround
  * Snap Rounding assumes that all vertices lie on a uniform grid
  * (hence the precision model of the input must be fixed precision,
  * and all the input vertices must be rounded to that precision).
- * 
+ *
  * This implementation uses a monotone chains and a spatial index to
  * speed up the intersection tests.
  *
@@ -71,79 +70,81 @@ namespace snapround { // geos::noding::snapround
  * It will function with non-integer precision models, but the
  * results are not 100% guaranteed to be correctly noded.
  */
-class GEOS_DLL MCIndexSnapRounder: public Noder { // implments Noder
+class GEOS_DLL MCIndexSnapRounder: public Noder { // implements Noder
 
 public:
 
-	MCIndexSnapRounder(const geom::PrecisionModel& nPm)
-    :
-		pm(nPm),
-		scaleFactor(nPm.getScale()),
-		pointSnapper(0)
-  {
-    li.setPrecisionModel(&pm);
-  }
+    MCIndexSnapRounder(const geom::PrecisionModel& nPm)
+        :
+        pm(nPm),
+        scaleFactor(nPm.getScale()),
+        pointSnapper(nullptr)
+    {
+        li.setPrecisionModel(&pm);
+    }
 
-	std::vector<SegmentString*>* getNodedSubstrings() const {
-	  return NodedSegmentString::getNodedSubstrings(*nodedSegStrings);
-  }
+    std::vector<SegmentString*>*
+    getNodedSubstrings() const override
+    {
+        return NodedSegmentString::getNodedSubstrings(*nodedSegStrings);
+    }
 
-	void computeNodes(std::vector<SegmentString*>* segStrings);
- 
-	/**
-	 * Computes nodes introduced as a result of
-	 * snapping segments to vertices of other segments
-	 *
-	 * @param edges the list of segment strings to snap together
-	 *        NOTE: they *must* be instances of NodedSegmentString, or
-	 * 	            an assertion will fail.
-	 */
-	void computeVertexSnaps(std::vector<SegmentString*>& edges);
+    void computeNodes(std::vector<SegmentString*>* segStrings) override;
+
+    /**
+     * Computes nodes introduced as a result of
+     * snapping segments to vertices of other segments
+     *
+     * @param edges the list of segment strings to snap together
+     *        NOTE: they *must* be instances of NodedSegmentString, or
+     * 	            an assertion will fail.
+     */
+    void computeVertexSnaps(std::vector<SegmentString*>& edges);
 
 private:
 
-	/// externally owned
-	const geom::PrecisionModel& pm;
+    /// externally owned
+    const geom::PrecisionModel& pm;
 
-	algorithm::LineIntersector li;
+    algorithm::LineIntersector li;
 
-	double scaleFactor;
+    double scaleFactor;
 
-	std::vector<SegmentString*>* nodedSegStrings;
+    std::vector<SegmentString*>* nodedSegStrings;
 
-	std::auto_ptr<MCIndexPointSnapper> pointSnapper;
+    std::unique_ptr<MCIndexPointSnapper> pointSnapper;
 
-	void snapRound(MCIndexNoder& noder, std::vector<SegmentString*>* segStrings);
+    void snapRound(MCIndexNoder& noder, std::vector<SegmentString*>* segStrings);
 
-	
-	/**
-	 * Computes all interior intersections in the collection of SegmentStrings,
-	 * and push their Coordinate to the provided vector.
-	 *
-	 * Does NOT node the segStrings.
-	 *
-	 */
-	void findInteriorIntersections(MCIndexNoder& noder,
-			std::vector<SegmentString*>* segStrings,
-			std::vector<geom::Coordinate>& intersections);
 
-	/**
-	 * Computes nodes introduced as a result of snapping
-	 * segments to snap points (hot pixels)
-	 */
-	void computeIntersectionSnaps(std::vector<geom::Coordinate>& snapPts);
+    /**
+     * Computes all interior intersections in the collection of SegmentStrings,
+     * and push their Coordinate to the provided vector.
+     *
+     * Does NOT node the segStrings.
+     *
+     */
+    void findInteriorIntersections(MCIndexNoder& noder,
+                                   std::vector<SegmentString*>* segStrings,
+                                   std::vector<geom::Coordinate>& intersections);
 
-	/**
-	 * Performs a brute-force comparison of every segment in each {@link SegmentString}.
-	 * This has n^2 performance.
-	 */
-	void computeVertexSnaps(NodedSegmentString* e);
-	
-	void checkCorrectness(std::vector<SegmentString*>& inputSegmentStrings);
+    /**
+     * Computes nodes introduced as a result of snapping
+     * segments to snap points (hot pixels)
+     */
+    void computeIntersectionSnaps(std::vector<geom::Coordinate>& snapPts);
+
+    /**
+     * Performs a brute-force comparison of every segment in each {@link SegmentString}.
+     * This has n^2 performance.
+     */
+    void computeVertexSnaps(NodedSegmentString* e);
+
+    void checkCorrectness(std::vector<SegmentString*>& inputSegmentStrings);
 
     // Declare type as noncopyable
-    MCIndexSnapRounder(const MCIndexSnapRounder& other);
-    MCIndexSnapRounder& operator=(const MCIndexSnapRounder& rhs);
+    MCIndexSnapRounder(const MCIndexSnapRounder& other) = delete;
+    MCIndexSnapRounder& operator=(const MCIndexSnapRounder& rhs) = delete;
 };
 
 } // namespace geos::noding::snapround
@@ -154,4 +155,3 @@ private:
 #pragma warning(pop)
 #endif
 
-#endif // GEOS_NODING_SNAPROUND_MCINDEXSNAPROUNDER_H

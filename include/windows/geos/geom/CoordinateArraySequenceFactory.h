@@ -7,27 +7,26 @@
  *
  * This is free software; you can redistribute and/or modify it under
  * the terms of the GNU Lesser General Public Licence as published
- * by the Free Software Foundation. 
+ * by the Free Software Foundation.
  * See the COPYING file for more information.
  *
  **********************************************************************/
 
-#ifndef GEOS_GEOM_COORDINATEARRAYSEQUENCEFACTORY_H
-#define GEOS_GEOM_COORDINATEARRAYSEQUENCEFACTORY_H
+#pragma once
 
 
 #include <geos/export.h>
+#include <geos/geom/CoordinateArraySequence.h>
+#include <geos/geom/CoordinateSequenceFactory.h> // for inheritance
 #include <vector>
 
-#include <geos/geom/CoordinateSequenceFactory.h> // for inheritance
 
-#include <geos/inline.h>
 
 // Forward declarations
 namespace geos {
-	namespace geom { 
-		class Coordinate;
-	}
+namespace geom {
+class Coordinate;
+}
 }
 
 namespace geos {
@@ -43,19 +42,40 @@ namespace geom { // geos::geom
 class GEOS_DLL CoordinateArraySequenceFactory: public CoordinateSequenceFactory {
 
 public:
-	CoordinateSequence *create() const;
+    std::unique_ptr<CoordinateSequence> create() const override;
 
-	CoordinateSequence *create(std::vector<Coordinate> *coords, std::size_t dims=0) const;
+    std::unique_ptr<CoordinateSequence> create(
+        std::vector<Coordinate>* coords,
+        size_t dimension) const override
+    {
+        return std::unique_ptr<CoordinateSequence>(
+            new CoordinateArraySequence(coords, dimension));
+    };
 
-   	/** @see CoordinateSequenceFactory::create(std::size_t, int) */
-	CoordinateSequence *create(std::size_t size, std::size_t dimension=0) const;
+    std::unique_ptr<CoordinateSequence> create(
+        std::vector<Coordinate> && coords,
+        size_t dimension) const override
+    {
+        return std::unique_ptr<CoordinateSequence>(new CoordinateArraySequence(std::move(coords), dimension));
+    };
 
-	CoordinateSequence *create(const CoordinateSequence &coordSeq) const;
+    /** @see CoordinateSequenceFactory::create(std::size_t, int) */
+    std::unique_ptr<CoordinateSequence> create(std::size_t size, std::size_t dimension) const override
+    {
+        return std::unique_ptr<CoordinateSequence>(
+            new CoordinateArraySequence(size, dimension));
+    };
 
-	/** \brief
-	 * Returns the singleton instance of CoordinateArraySequenceFactory
-	 */
-	static const CoordinateSequenceFactory *instance();
+    std::unique_ptr<CoordinateSequence> create(const CoordinateSequence& seq) const override
+    {
+        return std::unique_ptr<CoordinateSequence>(
+            new CoordinateArraySequence(seq));
+    };
+
+    /** \brief
+     * Returns the singleton instance of CoordinateArraySequenceFactory
+     */
+    static const CoordinateSequenceFactory* instance();
 };
 
 /// This is for backward API compatibility
@@ -64,8 +84,12 @@ typedef CoordinateArraySequenceFactory DefaultCoordinateSequenceFactory;
 } // namespace geos::geom
 } // namespace geos
 
-#ifdef GEOS_INLINE
-# include "geos/geom/CoordinateArraySequenceFactory.inl"
-#endif
 
-#endif // ndef GEOS_GEOM_COORDINATEARRAYSEQUENCEFACTORY_H
+
+
+
+
+
+
+
+

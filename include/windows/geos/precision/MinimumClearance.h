@@ -16,8 +16,7 @@
  *
  **********************************************************************/
 
-#ifndef GEOS_PRECISION_MINIMUMCLEARANCE_H
-#define GEOS_PRECISION_MINIMUMCLEARANCE_H
+#pragma once
 
 #include <geos/geom/Geometry.h>
 #include <geos/geom/LineString.h>
@@ -25,36 +24,34 @@
 
 namespace geos {
 namespace precision {
+
+/// Computes the Minimum Clearance of a Geometry.
 class GEOS_DLL MinimumClearance {
-    private:
-        const geom::Geometry* inputGeom;
-        double minClearance;
-        std::auto_ptr<geom::CoordinateSequence> minClearancePts;
+private:
+    const geom::Geometry* inputGeom;
+    double minClearance;
+    std::unique_ptr<geom::CoordinateSequence> minClearancePts;
 
-        void compute();
-    public:
-        MinimumClearance(const geom::Geometry* g);
+    void compute();
+public:
+    MinimumClearance(const geom::Geometry* g);
 
-        /**
-         * Gets the Minimum Clearance distance.
-         *
-         * @return the value of the minimum clearance distance
-         * or <tt>DBL_MAX</tt> if no Minimum Clearance distance exists
-         */
-        double getDistance();
+    /**
+     * Gets the Minimum Clearance distance.
+     *
+     * @return the value of the minimum clearance distance
+     * or <tt>DBL_MAX</tt> if no Minimum Clearance distance exists
+     */
+    double getDistance();
 
-        /**
-         * Gets a LineString containing two points
-         * which are at the Minimum Clearance distance.
-         *
-         * @return the value of the minimum clearance distance
-         * or <tt>LINESTRING EMPTY</tt> if no Minimum Clearance distance exists
-         */
-        std::auto_ptr<geom::LineString> getLine();
+    /**
+     * Gets a LineString containing two points
+     * which are at the Minimum Clearance distance.
+     *
+     * @return the value of the minimum clearance distance
+     * or <tt>LINESTRING EMPTY</tt> if no Minimum Clearance distance exists
+     */
+    std::unique_ptr<geom::LineString> getLine();
 };
 }
 }
-
-#endif
-
-

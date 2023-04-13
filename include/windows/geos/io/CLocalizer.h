@@ -7,7 +7,7 @@
  *
  * This is free software; you can redistribute and/or modify it under
  * the terms of the GNU Lesser General Public Licence as published
- * by the Free Software Foundation. 
+ * by the Free Software Foundation.
  * See the COPYING file for more information.
  *
  **********************************************************************
@@ -16,8 +16,7 @@
  *
  **********************************************************************/
 
-#ifndef GEOS_IO_CLOCALIZER_H
-#define GEOS_IO_CLOCALIZER_H
+#pragma once
 
 #include <geos/export.h>
 
@@ -34,8 +33,7 @@ namespace io {
 /**
  * \class CLocalizer io.h geos.h
  */
-class GEOS_DLL CLocalizer
-{
+class GEOS_DLL CLocalizer {
 public:
 
     CLocalizer();
@@ -53,4 +51,3 @@ private:
 } // namespace io
 } // namespace geos
 
-#endif // GEOS_IO_CLOCALIZER_H

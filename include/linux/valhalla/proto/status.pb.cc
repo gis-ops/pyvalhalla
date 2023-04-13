@@ -20,7 +20,8 @@ namespace _pbi = _pb::internal;
 namespace valhalla {
 PROTOBUF_CONSTEXPR Status::Status(
     ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.has_has_tiles_)*/{}
+    /*decltype(_impl_.available_actions_)*/{}
+  , /*decltype(_impl_.has_has_tiles_)*/{}
   , /*decltype(_impl_.has_has_admins_)*/{}
   , /*decltype(_impl_.has_has_timezones_)*/{}
   , /*decltype(_impl_.has_has_live_traffic_)*/{}
@@ -57,7 +58,8 @@ Status::Status(const Status& from)
   : ::PROTOBUF_NAMESPACE_ID::MessageLite() {
   Status* const _this = this; (void)_this;
   new (&_impl_) Impl_{
-      decltype(_impl_.has_has_tiles_){}
+      decltype(_impl_.available_actions_){from._impl_.available_actions_}
+    , decltype(_impl_.has_has_tiles_){}
     , decltype(_impl_.has_has_admins_){}
     , decltype(_impl_.has_has_timezones_){}
     , decltype(_impl_.has_has_live_traffic_){}
@@ -146,7 +148,8 @@ inline void Status::SharedCtor(
   (void)arena;
   (void)is_message_owned;
   new (&_impl_) Impl_{
-      decltype(_impl_.has_has_tiles_){}
+      decltype(_impl_.available_actions_){arena}
+    , decltype(_impl_.has_has_tiles_){}
     , decltype(_impl_.has_has_admins_){}
     , decltype(_impl_.has_has_timezones_){}
     , decltype(_impl_.has_has_live_traffic_){}
@@ -176,6 +179,7 @@ Status::~Status() {
 
 inline void Status::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.available_actions_.~RepeatedPtrField();
   if (has_has_has_tiles()) {
     clear_has_has_tiles();
   }
@@ -308,6 +312,7 @@ void Status::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
+  _impl_.available_actions_.Clear();
   clear_has_has_tiles();
   clear_has_has_admins();
   clear_has_has_timezones();
@@ -381,6 +386,21 @@ const char* Status::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 56)) {
           _internal_set_tileset_last_modified(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr));
           CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // repeated string available_actions = 8;
+      case 8:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 66)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            auto str = _internal_add_available_actions();
+            ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+            CHK_(ptr);
+            CHK_(::_pbi::VerifyUTF8(str, nullptr));
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<66>(ptr));
         } else
           goto handle_unusual;
         continue;
@@ -463,6 +483,16 @@ uint8_t* Status::_InternalSerialize(
     target = ::_pbi::WireFormatLite::WriteUInt32ToArray(7, this->_internal_tileset_last_modified(), target);
   }
 
+  // repeated string available_actions = 8;
+  for (int i = 0, n = this->_internal_available_actions_size(); i < n; i++) {
+    const auto& s = this->_internal_available_actions(i);
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      s.data(), static_cast<int>(s.length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "valhalla.Status.available_actions");
+    target = stream->WriteString(8, s, target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = stream->WriteRaw(_internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).data(),
         static_cast<int>(_internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).size()), target);
@@ -478,6 +508,14 @@ size_t Status::ByteSizeLong() const {
   uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
+
+  // repeated string available_actions = 8;
+  total_size += 1 *
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(_impl_.available_actions_.size());
+  for (int i = 0, n = _impl_.available_actions_.size(); i < n; i++) {
+    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+      _impl_.available_actions_.Get(i));
+  }
 
   switch (has_has_tiles_case()) {
     // bool has_tiles = 1;
@@ -574,6 +612,7 @@ void Status::MergeFrom(const Status& from) {
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
+  _this->_impl_.available_actions_.MergeFrom(from._impl_.available_actions_);
   switch (from.has_has_tiles_case()) {
     case kHasTiles: {
       _this->_internal_set_has_tiles(from._internal_has_tiles());
@@ -654,6 +693,7 @@ bool Status::IsInitialized() const {
 void Status::InternalSwap(Status* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  _impl_.available_actions_.InternalSwap(&other->_impl_.available_actions_);
   swap(_impl_.has_has_tiles_, other->_impl_.has_has_tiles_);
   swap(_impl_.has_has_admins_, other->_impl_.has_has_admins_);
   swap(_impl_.has_has_timezones_, other->_impl_.has_has_timezones_);

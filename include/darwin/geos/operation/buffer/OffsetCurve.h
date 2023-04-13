@@ -201,7 +201,11 @@ public:
         , distance(dist)
         , matchDistance(std::abs(dist)/NEARNESS_FACTOR)
         , geomFactory(geom.getFactory())
-        {};
+        {
+            if (!std::isfinite(dist)) {
+                throw util::IllegalArgumentException("OffsetCurve distance must be a finite value");
+            }
+        };
 
     /**
     * Creates a new instance for computing an offset curve for a geometry at a given distance.
@@ -218,7 +222,11 @@ public:
         , bufferParams(bp)
         , matchDistance(std::abs(dist)/NEARNESS_FACTOR)
         , geomFactory(geom.getFactory())
-        {};
+        {
+            if (!std::isfinite(dist)) {
+                throw util::IllegalArgumentException("OffsetCurve distance must be a finite value");
+            }
+        };
 
     /**
     * Computes the offset curve of a geometry at a given distance,
@@ -252,7 +260,6 @@ public:
     * @param dist the offset distance
     * @param bufParams the buffer parameters to use
     * @param lineList the vector to populate with the return value
-    * @return the raw offset line
     */
     static void rawOffset(const LineString& geom, double dist, BufferParameters& bufParams, std::vector<CoordinateSequence*>& lineList);
     static void rawOffset(const LineString& geom, double dist, std::vector<CoordinateSequence*>& lineList);

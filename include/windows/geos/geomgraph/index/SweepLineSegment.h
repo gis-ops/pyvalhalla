@@ -8,29 +8,28 @@
  *
  * This is free software; you can redistribute and/or modify it under
  * the terms of the GNU Lesser General Public Licence as published
- * by the Free Software Foundation. 
+ * by the Free Software Foundation.
  * See the COPYING file for more information.
  *
  **********************************************************************/
 
-#ifndef GEOS_GEOMGRAPH_INDEX_SWEEPLINESEGMENT_H
-#define GEOS_GEOMGRAPH_INDEX_SWEEPLINESEGMENT_H
+#pragma once
 
-
+#include <cstddef>
 #include <geos/export.h>
 #include <geos/geomgraph/index/SweepLineEventObj.h> // for inheritance
 
 // Forward declarations
 namespace geos {
-	namespace geom {
-		class CoordinateSequence;
-	}
-	namespace geomgraph {
-		class Edge;
-		namespace index {
-			class SegmentIntersector;
-		}
-	}
+namespace geom {
+class CoordinateSequence;
+}
+namespace geomgraph {
+class Edge;
+namespace index {
+class SegmentIntersector;
+}
+}
 }
 
 namespace geos {
@@ -39,15 +38,15 @@ namespace index { // geos::geomgraph::index
 
 class GEOS_DLL SweepLineSegment: public SweepLineEventOBJ {
 public:
-	SweepLineSegment(Edge *newEdge, int newPtIndex);
-	~SweepLineSegment();
-	double getMinX();
-	double getMaxX();
-	void computeIntersections(SweepLineSegment *ss, SegmentIntersector *si);
+    SweepLineSegment(Edge* newEdge, std::size_t newPtIndex);
+    ~SweepLineSegment() override = default;
+    double getMinX();
+    double getMaxX();
+    void computeIntersections(SweepLineSegment* ss, SegmentIntersector* si);
 protected:
-	Edge *edge;
-	const geom::CoordinateSequence* pts;
-	int ptIndex;
+    Edge* edge;
+    const geom::CoordinateSequence* pts;
+    std::size_t ptIndex;
 };
 
 
@@ -55,6 +54,4 @@ protected:
 } // namespace geos.geomgraph.index
 } // namespace geos.geomgraph
 } // namespace geos
-
-#endif
 

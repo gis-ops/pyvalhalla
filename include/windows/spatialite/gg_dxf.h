@@ -1,7 +1,7 @@
 /*
  gg_dxf.h -- Gaia common support for DXF files
   
- version 4.3, 2015 June 29
+ version 5.0, 2020 August 1
 
  Author: Sandro Furieri a.furieri@lqt.it
 
@@ -23,7 +23,7 @@ The Original Code is the SpatiaLite library
 
 The Initial Developer of the Original Code is Alessandro Furieri
  
-Portions created by the Initial Developer are Copyright (C) 2008-2015
+Portions created by the Initial Developer are Copyright (C) 2008-2021
 the Initial Developer. All Rights Reserved.
 
 Contributor(s):
@@ -900,7 +900,8 @@ extern "C"
  */
     GAIAGEO_DECLARE int gaiaDxfWriteText (gaiaDxfWriterPtr dxf,
 					  const char *layer_name, double x,
-					  double y, double z, const char *label,
+					  double y, double z,
+					  const char *label,
 					  double text_height, double angle);
 
 /**

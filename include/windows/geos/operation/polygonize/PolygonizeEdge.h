@@ -8,7 +8,7 @@
  *
  * This is free software; you can redistribute and/or modify it under
  * the terms of the GNU Lesser General Public Licence as published
- * by the Free Software Foundation. 
+ * by the Free Software Foundation.
  * See the COPYING file for more information.
  *
  **********************************************************************
@@ -17,9 +17,7 @@
  *
  **********************************************************************/
 
-
-#ifndef GEOS_OP_POLYGONIZE_POLYGONIZEEDGE_H
-#define GEOS_OP_POLYGONIZE_POLYGONIZEEDGE_H
+#pragma once
 
 #include <geos/export.h>
 
@@ -27,35 +25,34 @@
 
 // Forward declarations
 namespace geos {
-	namespace geom { 
-		class LineString;
-	}
+namespace geom {
+class LineString;
+}
 }
 
 namespace geos {
 namespace operation { // geos::operation
 namespace polygonize { // geos::operation::polygonize
 
-/* \brief
+/** \brief
  * An edge of a polygonization graph.
  *
  * @version 1.4
  */
 class GEOS_DLL PolygonizeEdge: public planargraph::Edge {
 private:
-	// Externally owned
-	const geom::LineString *line;
+    // Externally owned
+    const geom::LineString* line;
 public:
 
-	// Keep the given pointer (won't do anything to it)
-	PolygonizeEdge(const geom::LineString *newLine);
+    // Keep the given pointer (won't do anything to it)
+    PolygonizeEdge(const geom::LineString* newLine);
 
-	// Just return what it was given initially
-	const geom::LineString* getLine();
+    // Just return what it was given initially
+    const geom::LineString* getLine();
 };
 
 } // namespace geos::operation::polygonize
 } // namespace geos::operation
 } // namespace geos
 
-#endif // GEOS_OP_POLYGONIZE_POLYGONIZEEDGE_H

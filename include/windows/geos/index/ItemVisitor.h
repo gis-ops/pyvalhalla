@@ -8,13 +8,12 @@
  *
  * This is free software; you can redistribute and/or modify it under
  * the terms of the GNU Lesser General Public Licence as published
- * by the Free Software Foundation. 
+ * by the Free Software Foundation.
  * See the COPYING file for more information.
  *
  **********************************************************************/
 
-#ifndef GEOS_INDEX_ITEMVISITOR_H
-#define GEOS_INDEX_ITEMVISITOR_H
+#pragma once
 
 #include <geos/export.h>
 
@@ -28,13 +27,12 @@ namespace index {
  */
 class GEOS_DLL ItemVisitor {
 public:
-	virtual void visitItem(void *)=0;
+    virtual void visitItem(void*) = 0;
 
-	virtual ~ItemVisitor() {}
+    virtual
+    ~ItemVisitor() {}
 };
 
 } // namespace geos.index
 } // namespace geos
-
-#endif // GEOS_INDEX_ITEMVISITOR_H
 

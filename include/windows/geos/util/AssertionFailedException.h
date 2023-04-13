@@ -8,13 +8,12 @@
  *
  * This is free software; you can redistribute and/or modify it under
  * the terms of the GNU Lesser General Public Licence as published
- * by the Free Software Foundation. 
+ * by the Free Software Foundation.
  * See the COPYING file for more information.
  *
  **********************************************************************/
 
-#ifndef GEOS_UTIL_ASSERTIONFAILEDEXCEPTION_H
-#define GEOS_UTIL_ASSERTIONFAILEDEXCEPTION_H
+#pragma once
 
 #include <geos/export.h>
 #include <string>
@@ -31,21 +30,19 @@ class GEOS_DLL AssertionFailedException: public GEOSException {
 
 public:
 
-	AssertionFailedException()
-		:
-		GEOSException("AssertionFailedException", "")
-	{}
+    AssertionFailedException()
+        :
+        GEOSException("AssertionFailedException", "")
+    {}
 
-	AssertionFailedException(const std::string& msg)
-		:
-		GEOSException("AssertionFailedException", msg)
-	{}
+    AssertionFailedException(const std::string& msg)
+        :
+        GEOSException("AssertionFailedException", msg)
+    {}
 
-	~AssertionFailedException() throw() {}
+    ~AssertionFailedException() noexcept override {}
 };
 
 } // namespace geos.util
 } // namespace geos
 
-
-#endif // GEOS_UTIL_ASSERTIONFAILEDEXCEPTION_H

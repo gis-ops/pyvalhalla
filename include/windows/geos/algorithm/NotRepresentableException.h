@@ -8,13 +8,12 @@
  *
  * This is free software; you can redistribute and/or modify it under
  * the terms of the GNU Lesser General Public Licence as published
- * by the Free Software Foundation. 
+ * by the Free Software Foundation.
  * See the COPYING file for more information.
  *
  **********************************************************************/
 
-#ifndef GEOS_ALGORITHM_NOTREPRESENTABLEEXCEPTION_H
-#define GEOS_ALGORITHM_NOTREPRESENTABLEEXCEPTION_H
+#pragma once
 
 #include <geos/export.h>
 #include <string>
@@ -24,7 +23,7 @@ namespace geos {
 namespace algorithm { // geos::algorithm
 
 /**
- * \class NotRepresentableException geosAlgorithm.h geos/geosAlgorithm.h
+ * \class NotRepresentableException
  * \brief
  * Indicates that a HCoordinate has been computed which is
  * not representable on the Cartesian plane.
@@ -34,13 +33,11 @@ namespace algorithm { // geos::algorithm
  */
 class GEOS_DLL NotRepresentableException: public util::GEOSException {
 public:
-	NotRepresentableException();
-	NotRepresentableException(std::string msg);
-	~NotRepresentableException() throw() {}
+    NotRepresentableException();
+    NotRepresentableException(std::string msg);
+    ~NotRepresentableException() noexcept override {}
 };
 
 } // namespace geos::algorithm
 } // namespace geos
-
-#endif
 

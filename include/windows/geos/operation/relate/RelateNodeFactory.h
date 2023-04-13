@@ -7,7 +7,7 @@
  *
  * This is free software; you can redistribute and/or modify it under
  * the terms of the GNU Lesser General Public Licence as published
- * by the Free Software Foundation. 
+ * by the Free Software Foundation.
  * See the COPYING file for more information.
  *
  **********************************************************************
@@ -16,8 +16,7 @@
  *
  **********************************************************************/
 
-#ifndef GEOS_OP_RELATE_RELATENODEFACTORY_H
-#define GEOS_OP_RELATE_RELATENODEFACTORY_H
+#pragma once
 
 #include <geos/export.h>
 
@@ -25,12 +24,12 @@
 
 // Forward declarations
 namespace geos {
-	namespace geom {
-		class Coordinate;
-	}
-	namespace geomgraph {
-		class Node;
-	}
+namespace geom {
+class Coordinate;
+}
+namespace geomgraph {
+class Node;
+}
 }
 
 
@@ -43,10 +42,10 @@ namespace relate { // geos::operation::relate
  */
 class GEOS_DLL RelateNodeFactory: public geomgraph::NodeFactory {
 public:
-	geomgraph::Node* createNode(const geom::Coordinate &coord) const;
-	static const geomgraph::NodeFactory &instance();
+    geomgraph::Node* createNode(const geom::Coordinate& coord) const override;
+    static const geomgraph::NodeFactory& instance();
 private:
-	RelateNodeFactory() {}
+    RelateNodeFactory() {}
 };
 
 
@@ -54,4 +53,3 @@ private:
 } // namespace geos:operation
 } // namespace geos
 
-#endif // GEOS_OP_RELATE_RELATENODEFACTORY_H

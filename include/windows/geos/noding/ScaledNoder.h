@@ -7,7 +7,7 @@
  *
  * This is free software; you can redistribute and/or modify it under
  * the terms of the GNU Lesser General Public Licence as published
- * by the Free Software Foundation. 
+ * by the Free Software Foundation.
  * See the COPYING file for more information.
  *
  **********************************************************************
@@ -16,17 +16,14 @@
  *
  **********************************************************************/
 
-#ifndef GEOS_NODING_SCALEDNODER_H
-#define GEOS_NODING_SCALEDNODER_H
+#pragma once
 
 #include <geos/export.h>
 
 #include <cassert>
 #include <vector>
 
-#include <geos/inline.h>
 #include <geos/noding/Noder.h> // for inheritance
-//#include <geos/geom/CoordinateFilter.h> // for inheritance
 #include <geos/util.h>
 
 #ifdef _MSC_VER
@@ -36,13 +33,13 @@
 
 // Forward declarations
 namespace geos {
-	namespace geom {
-		class Coordinate;
-		class CoordinateSequence;
-	}
-	namespace noding {
-		class SegmentString;
-	}
+namespace geom {
+class Coordinate;
+class CoordinateSequence;
+}
+namespace noding {
+class SegmentString;
+}
 }
 
 namespace geos {
@@ -62,63 +59,68 @@ class GEOS_DLL ScaledNoder : public Noder { // , public geom::CoordinateFilter {
 
 public:
 
-	bool isIntegerPrecision() { return (scaleFactor == 1.0); }
+    bool
+    isIntegerPrecision()
+    {
+        return (scaleFactor == 1.0);
+    }
 
-	ScaledNoder(Noder& n, double nScaleFactor,
-			double nOffsetX=0.0, double nOffsetY=0.0)
-		:
-		noder(n),
-		scaleFactor(nScaleFactor),
-		offsetX(nOffsetX),
-		offsetY(nOffsetY),
-		isScaled(nScaleFactor!=1.0)
-	{}
+    ScaledNoder(Noder& n, double nScaleFactor,
+                double nOffsetX = 0.0, double nOffsetY = 0.0)
+        :
+        noder(n),
+        scaleFactor(nScaleFactor),
+        offsetX(nOffsetX),
+        offsetY(nOffsetY),
+        isScaled(nScaleFactor != 1.0)
+    {}
 
-	~ScaledNoder();
+    ~ScaledNoder() override;
 
-	std::vector<SegmentString*>* getNodedSubstrings() const;
+    std::vector<SegmentString*>* getNodedSubstrings() const override;
 
-	void computeNodes(std::vector<SegmentString*>* inputSegStr);
+    void computeNodes(std::vector<SegmentString*>* inputSegStr) override;
 
-	//void filter(Coordinate& c);
+    //void filter(Coordinate& c);
 
-	void filter_ro(const geom::Coordinate* c)
+    void
+    filter_ro(const geom::Coordinate* c)
     {
         ::geos::ignore_unused_variable_warning(c);
         assert(0);
     }
 
-	void filter_rw(geom::Coordinate* c) const;
+    void filter_rw(geom::Coordinate* c) const;
 
 private:
 
-	Noder& noder;
+    Noder& noder;
 
-	double scaleFactor;
+    double scaleFactor;
 
-	double offsetX;
+    double offsetX;
 
-	double offsetY;
+    double offsetY;
 
-	bool isScaled;
+    bool isScaled;
 
-	void rescale(std::vector<SegmentString*>& segStrings) const;
+    void rescale(std::vector<SegmentString*>& segStrings) const;
 
-	void scale(std::vector<SegmentString*>& segStrings) const;
+    void scale(std::vector<SegmentString*>& segStrings) const;
 
-	class Scaler;
+    class Scaler;
 
-	class ReScaler;
+    class ReScaler;
 
-	friend class ScaledNoder::Scaler;
+    friend class ScaledNoder::Scaler;
 
-	friend class ScaledNoder::ReScaler;
+    friend class ScaledNoder::ReScaler;
 
     mutable std::vector<geom::CoordinateSequence*> newCoordSeq;
 
     // Declare type as noncopyable
-    ScaledNoder(const ScaledNoder& other);
-    ScaledNoder& operator=(const ScaledNoder& rhs);
+    ScaledNoder(const ScaledNoder& other) = delete;
+    ScaledNoder& operator=(const ScaledNoder& rhs) = delete;
 };
 
 } // namespace geos.noding
@@ -128,4 +130,3 @@ private:
 #pragma warning(pop)
 #endif
 
-#endif // GEOS_NODING_SCALEDNODER_H

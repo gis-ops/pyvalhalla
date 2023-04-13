@@ -7,7 +7,7 @@
  *
  * This is free software; you can redistribute and/or modify it under
  * the terms of the GNU Lesser General Public Licence as published
- * by the Free Software Foundation. 
+ * by the Free Software Foundation.
  * See the COPYING file for more information.
  *
  **********************************************************************
@@ -16,8 +16,8 @@
  *
  **********************************************************************/
 
-#ifndef GEOS_OP_OVERLAY_MINIMALEDGERING_H
-#define GEOS_OP_OVERLAY_MINIMALEDGERING_H
+#pragma once
+
 
 #include <geos/export.h>
 
@@ -26,17 +26,15 @@
 
 #include <vector>
 
-#include <geos/inline.h>
-
 // Forward declarations
 namespace geos {
-	namespace geom {
-		class GeometryFactory;
-	}
-	namespace geomgraph {
-		class DirectedEdge;
-		class EdgeRing;
-	}
+namespace geom {
+class GeometryFactory;
+}
+namespace geomgraph {
+class DirectedEdge;
+class EdgeRing;
+}
 }
 
 namespace geos {
@@ -44,11 +42,11 @@ namespace operation { // geos::operation
 namespace overlay { // geos::operation::overlay
 
 /** \brief
- * A ring of {@link Edge}s with the property that no node
- * has degree greater than 2. 
+ * A ring of [Edges](@ref geomgraph::Edge) with the property that no node
+ * has degree greater than 2.
  *
- * These are the form of rings required
- * to represent polygons under the OGC SFS spatial data model.
+ * These are the form of rings required to represent polygons
+ * under the OGC SFS spatial data model.
  *
  * @see operation::overlay::MaximalEdgeRing
  *
@@ -57,16 +55,22 @@ class GEOS_DLL MinimalEdgeRing: public geomgraph::EdgeRing {
 
 public:
 
-	// CGAlgorithms argument obsoleted
-	MinimalEdgeRing(geomgraph::DirectedEdge *start,
-		const geom::GeometryFactory *geometryFactory);
+    MinimalEdgeRing(geomgraph::DirectedEdge* start,
+                    const geom::GeometryFactory* geometryFactory);
 
-	virtual ~MinimalEdgeRing();
+    ~MinimalEdgeRing() override {};
 
-	geomgraph::DirectedEdge* getNext(geomgraph::DirectedEdge *de);
+    geomgraph::DirectedEdge* getNext(geomgraph::DirectedEdge* de) override
+    {
+        return de->getNextMin();
+    };
 
-	void setEdgeRing(geomgraph::DirectedEdge *de,
-			geomgraph::EdgeRing *er);
+    void setEdgeRing(geomgraph::DirectedEdge* de,
+                     geomgraph::EdgeRing* er) override
+    {
+        de->setMinEdgeRing(er);
+    };
+
 };
 
 
@@ -74,8 +78,3 @@ public:
 } // namespace geos::operation
 } // namespace geos
 
-#ifdef GEOS_INLINE
-#include <geos/operation/overlay/MinimalEdgeRing.inl>
-#endif
-
-#endif // ndef GEOS_OP_OVERLAY_MINIMALEDGERING_H

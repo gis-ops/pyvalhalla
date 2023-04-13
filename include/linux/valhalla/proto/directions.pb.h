@@ -323,6 +323,9 @@ class DirectionsLeg_Summary final :
     kTimeFieldNumber = 2,
     kLengthFieldNumber = 1,
     kHasTimeRestrictionsFieldNumber = 4,
+    kHasTollFieldNumber = 5,
+    kHasFerryFieldNumber = 6,
+    kHasHighwayFieldNumber = 7,
   };
   // .valhalla.BoundingBox bbox = 3;
   bool has_bbox() const;
@@ -369,6 +372,33 @@ class DirectionsLeg_Summary final :
   void _internal_set_has_time_restrictions(bool value);
   public:
 
+  // bool has_toll = 5;
+  void clear_has_toll();
+  bool has_toll() const;
+  void set_has_toll(bool value);
+  private:
+  bool _internal_has_toll() const;
+  void _internal_set_has_toll(bool value);
+  public:
+
+  // bool has_ferry = 6;
+  void clear_has_ferry();
+  bool has_ferry() const;
+  void set_has_ferry(bool value);
+  private:
+  bool _internal_has_ferry() const;
+  void _internal_set_has_ferry(bool value);
+  public:
+
+  // bool has_highway = 7;
+  void clear_has_highway();
+  bool has_highway() const;
+  void set_has_highway(bool value);
+  private:
+  bool _internal_has_highway() const;
+  void _internal_set_has_highway(bool value);
+  public:
+
   // @@protoc_insertion_point(class_scope:valhalla.DirectionsLeg.Summary)
  private:
   class _Internal;
@@ -381,6 +411,9 @@ class DirectionsLeg_Summary final :
     double time_;
     float length_;
     bool has_time_restrictions_;
+    bool has_toll_;
+    bool has_ferry_;
+    bool has_highway_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -931,8 +964,10 @@ class DirectionsLeg_Maneuver final :
     kBeginPathIndexFieldNumber = 29,
     kEndPathIndexFieldNumber = 30,
     kTurnDegreeFieldNumber = 33,
-    kHasTimeRestrictionsFieldNumber = 34,
     kBssManeuverTypeFieldNumber = 36,
+    kHasTimeRestrictionsFieldNumber = 34,
+    kPortionsHighwayFieldNumber = 39,
+    kPortionsFerryFieldNumber = 40,
   };
   // repeated .valhalla.StreetName street_name = 3;
   int street_name_size() const;
@@ -1366,6 +1401,15 @@ class DirectionsLeg_Maneuver final :
   void _internal_set_turn_degree(uint32_t value);
   public:
 
+  // .valhalla.DirectionsLeg.Maneuver.BssManeuverType bss_maneuver_type = 36;
+  void clear_bss_maneuver_type();
+  ::valhalla::DirectionsLeg_Maneuver_BssManeuverType bss_maneuver_type() const;
+  void set_bss_maneuver_type(::valhalla::DirectionsLeg_Maneuver_BssManeuverType value);
+  private:
+  ::valhalla::DirectionsLeg_Maneuver_BssManeuverType _internal_bss_maneuver_type() const;
+  void _internal_set_bss_maneuver_type(::valhalla::DirectionsLeg_Maneuver_BssManeuverType value);
+  public:
+
   // bool has_time_restrictions = 34;
   void clear_has_time_restrictions();
   bool has_time_restrictions() const;
@@ -1375,13 +1419,22 @@ class DirectionsLeg_Maneuver final :
   void _internal_set_has_time_restrictions(bool value);
   public:
 
-  // .valhalla.DirectionsLeg.Maneuver.BssManeuverType bss_maneuver_type = 36;
-  void clear_bss_maneuver_type();
-  ::valhalla::DirectionsLeg_Maneuver_BssManeuverType bss_maneuver_type() const;
-  void set_bss_maneuver_type(::valhalla::DirectionsLeg_Maneuver_BssManeuverType value);
+  // bool portions_highway = 39;
+  void clear_portions_highway();
+  bool portions_highway() const;
+  void set_portions_highway(bool value);
   private:
-  ::valhalla::DirectionsLeg_Maneuver_BssManeuverType _internal_bss_maneuver_type() const;
-  void _internal_set_bss_maneuver_type(::valhalla::DirectionsLeg_Maneuver_BssManeuverType value);
+  bool _internal_portions_highway() const;
+  void _internal_set_portions_highway(bool value);
+  public:
+
+  // bool portions_ferry = 40;
+  void clear_portions_ferry();
+  bool portions_ferry() const;
+  void set_portions_ferry(bool value);
+  private:
+  bool _internal_portions_ferry() const;
+  void _internal_set_portions_ferry(bool value);
   public:
 
   // @@protoc_insertion_point(class_scope:valhalla.DirectionsLeg.Maneuver)
@@ -1428,8 +1481,10 @@ class DirectionsLeg_Maneuver final :
     uint32_t begin_path_index_;
     uint32_t end_path_index_;
     uint32_t turn_degree_;
-    bool has_time_restrictions_;
     int bss_maneuver_type_;
+    bool has_time_restrictions_;
+    bool portions_highway_;
+    bool portions_ferry_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -2099,6 +2154,66 @@ inline void DirectionsLeg_Summary::_internal_set_has_time_restrictions(bool valu
 inline void DirectionsLeg_Summary::set_has_time_restrictions(bool value) {
   _internal_set_has_time_restrictions(value);
   // @@protoc_insertion_point(field_set:valhalla.DirectionsLeg.Summary.has_time_restrictions)
+}
+
+// bool has_toll = 5;
+inline void DirectionsLeg_Summary::clear_has_toll() {
+  _impl_.has_toll_ = false;
+}
+inline bool DirectionsLeg_Summary::_internal_has_toll() const {
+  return _impl_.has_toll_;
+}
+inline bool DirectionsLeg_Summary::has_toll() const {
+  // @@protoc_insertion_point(field_get:valhalla.DirectionsLeg.Summary.has_toll)
+  return _internal_has_toll();
+}
+inline void DirectionsLeg_Summary::_internal_set_has_toll(bool value) {
+  
+  _impl_.has_toll_ = value;
+}
+inline void DirectionsLeg_Summary::set_has_toll(bool value) {
+  _internal_set_has_toll(value);
+  // @@protoc_insertion_point(field_set:valhalla.DirectionsLeg.Summary.has_toll)
+}
+
+// bool has_ferry = 6;
+inline void DirectionsLeg_Summary::clear_has_ferry() {
+  _impl_.has_ferry_ = false;
+}
+inline bool DirectionsLeg_Summary::_internal_has_ferry() const {
+  return _impl_.has_ferry_;
+}
+inline bool DirectionsLeg_Summary::has_ferry() const {
+  // @@protoc_insertion_point(field_get:valhalla.DirectionsLeg.Summary.has_ferry)
+  return _internal_has_ferry();
+}
+inline void DirectionsLeg_Summary::_internal_set_has_ferry(bool value) {
+  
+  _impl_.has_ferry_ = value;
+}
+inline void DirectionsLeg_Summary::set_has_ferry(bool value) {
+  _internal_set_has_ferry(value);
+  // @@protoc_insertion_point(field_set:valhalla.DirectionsLeg.Summary.has_ferry)
+}
+
+// bool has_highway = 7;
+inline void DirectionsLeg_Summary::clear_has_highway() {
+  _impl_.has_highway_ = false;
+}
+inline bool DirectionsLeg_Summary::_internal_has_highway() const {
+  return _impl_.has_highway_;
+}
+inline bool DirectionsLeg_Summary::has_highway() const {
+  // @@protoc_insertion_point(field_get:valhalla.DirectionsLeg.Summary.has_highway)
+  return _internal_has_highway();
+}
+inline void DirectionsLeg_Summary::_internal_set_has_highway(bool value) {
+  
+  _impl_.has_highway_ = value;
+}
+inline void DirectionsLeg_Summary::set_has_highway(bool value) {
+  _internal_set_has_highway(value);
+  // @@protoc_insertion_point(field_set:valhalla.DirectionsLeg.Summary.has_highway)
 }
 
 // -------------------------------------------------------------------
@@ -3598,6 +3713,46 @@ inline void DirectionsLeg_Maneuver::set_allocated_bss_info(::valhalla::BikeShare
   }
   _impl_.bss_info_ = bss_info;
   // @@protoc_insertion_point(field_set_allocated:valhalla.DirectionsLeg.Maneuver.bss_info)
+}
+
+// bool portions_highway = 39;
+inline void DirectionsLeg_Maneuver::clear_portions_highway() {
+  _impl_.portions_highway_ = false;
+}
+inline bool DirectionsLeg_Maneuver::_internal_portions_highway() const {
+  return _impl_.portions_highway_;
+}
+inline bool DirectionsLeg_Maneuver::portions_highway() const {
+  // @@protoc_insertion_point(field_get:valhalla.DirectionsLeg.Maneuver.portions_highway)
+  return _internal_portions_highway();
+}
+inline void DirectionsLeg_Maneuver::_internal_set_portions_highway(bool value) {
+  
+  _impl_.portions_highway_ = value;
+}
+inline void DirectionsLeg_Maneuver::set_portions_highway(bool value) {
+  _internal_set_portions_highway(value);
+  // @@protoc_insertion_point(field_set:valhalla.DirectionsLeg.Maneuver.portions_highway)
+}
+
+// bool portions_ferry = 40;
+inline void DirectionsLeg_Maneuver::clear_portions_ferry() {
+  _impl_.portions_ferry_ = false;
+}
+inline bool DirectionsLeg_Maneuver::_internal_portions_ferry() const {
+  return _impl_.portions_ferry_;
+}
+inline bool DirectionsLeg_Maneuver::portions_ferry() const {
+  // @@protoc_insertion_point(field_get:valhalla.DirectionsLeg.Maneuver.portions_ferry)
+  return _internal_portions_ferry();
+}
+inline void DirectionsLeg_Maneuver::_internal_set_portions_ferry(bool value) {
+  
+  _impl_.portions_ferry_ = value;
+}
+inline void DirectionsLeg_Maneuver::set_portions_ferry(bool value) {
+  _internal_set_portions_ferry(value);
+  // @@protoc_insertion_point(field_set:valhalla.DirectionsLeg.Maneuver.portions_ferry)
 }
 
 // -------------------------------------------------------------------

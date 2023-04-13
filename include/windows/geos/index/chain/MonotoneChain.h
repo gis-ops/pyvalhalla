@@ -7,7 +7,7 @@
  *
  * This is free software; you can redistribute and/or modify it under
  * the terms of the GNU Lesser General Public Licence as published
- * by the Free Software Foundation. 
+ * by the Free Software Foundation.
  * See the COPYING file for more information.
  *
  **********************************************************************
@@ -16,27 +16,27 @@
  *
  **********************************************************************/
 
-#ifndef GEOS_IDX_CHAIN_MONOTONECHAIN_H
-#define GEOS_IDX_CHAIN_MONOTONECHAIN_H
+#pragma once
 
 #include <geos/export.h>
+#include <geos/geom/CoordinateSequence.h> // for inline
 #include <geos/geom/Envelope.h> // for inline
+#include <geos/geom/LineSegment.h> // for inline
 
-#include <memory> // for auto_ptr
+#include <memory> // for unique_ptr
 
 // Forward declarations
 namespace geos {
-	namespace geom {
-		class Envelope;
-		class LineSegment;
-		class CoordinateSequence;
-	}
-	namespace index { 
-		namespace chain { 
-			class MonotoneChainSelectAction;
-			class MonotoneChainOverlapAction;
-		}
-	}
+namespace geom {
+class LineSegment;
+class CoordinateSequence;
+}
+namespace index {
+namespace chain {
+class MonotoneChainSelectAction;
+class MonotoneChainOverlapAction;
+}
+}
 }
 
 namespace geos {
@@ -48,11 +48,11 @@ namespace chain { // geos::index::chain
  * allow for fast searching of intersections.
  *
  * They have the following properties:
- * 
+ *
  * - the segments within a monotone chain never intersect each other
  * - the envelope of any contiguous subset of the segments in a monotone
  *   chain is equal to the envelope of the endpoints of the subset.
- * 
+ *
  * Property 1 means that there is no need to test pairs of segments from
  * within the same monotone chain for intersection.
  * Property 2 allows an efficient binary search to be used to find the
@@ -68,7 +68,7 @@ namespace chain { // geos::index::chain
  * have to be allocated.
  *
  * MonotoneChains support the following kinds of queries:
- * 
+ *
  * - Envelope select: determine all the segments in the chain which
  *   intersect a given envelope
  * - Overlap: determine all the pairs of segments in two chains whose
@@ -82,98 +82,119 @@ namespace chain { // geos::index::chain
  * However, it does mean that the queries are not thread-safe.
  *
  */
-class GEOS_DLL MonotoneChain
-{
+class GEOS_DLL MonotoneChain {
 public:
 
-	/// @param pts
-	///   Ownership left to caller, this class holds a reference.
-	///
-	/// @param start
-	///
-	/// @param end
-	///
-	/// @param context
-	///   Ownership left to caller, this class holds a reference.
-	///
-	MonotoneChain(const geom::CoordinateSequence& pts,
+    /// @param pts
+    ///   Ownership left to caller, this class holds a reference.
+    ///
+    /// @param start
+    ///
+    /// @param end
+    ///
+    /// @param context
+    ///   Ownership left to caller, this class holds a reference.
+    ///
+    MonotoneChain(const geom::CoordinateSequence& pts,
                   std::size_t start, std::size_t end, void* context);
 
-	~MonotoneChain();
+    ~MonotoneChain() = default;
 
-	/// Returned envelope is owned by this class
-	const geom::Envelope& getEnvelope() const;
+    /// Returned envelope is owned by this class
+    const geom::Envelope& getEnvelope() const;
+    const geom::Envelope& getEnvelope(double expansionDistance) const;
 
-	size_t getStartIndex() const { return start; }
+    size_t
+    getStartIndex() const
+    {
+        return start;
+    }
 
-	size_t getEndIndex() const { return end; }
+    size_t
+    getEndIndex() const
+    {
+        return end;
+    }
 
-	/** \brief
-	 *  Set given LineSegment with points of the segment starting
-	 *  at the given index.
-	 */
-	void getLineSegment(std::size_t index, geom::LineSegment& ls) const;
+    /** \brief
+     *  Set given LineSegment with points of the segment starting
+     *  at the given index.
+     */
+    void getLineSegment(std::size_t index, geom::LineSegment& ls) const {
+        pts->getAt(index, ls.p0);
+        pts->getAt(index + 1, ls.p1);
+    }
 
-	/**
-	 * Return the subsequence of coordinates forming this chain.
-	 * Allocates a new CoordinateSequence to hold the Coordinates
-	 *
-	 */
-	std::auto_ptr<geom::CoordinateSequence> getCoordinates() const;
+    /**
+     * Return the subsequence of coordinates forming this chain.
+     * Allocates a new CoordinateSequence to hold the Coordinates
+     *
+     */
+    std::unique_ptr<geom::CoordinateSequence> getCoordinates() const;
 
-	/**
-	 * Determine all the line segments in the chain whose envelopes overlap
-	 * the searchEnvelope, and process them
-	 */
-	void select(const geom::Envelope& searchEnv,
-			MonotoneChainSelectAction& mcs);
+    /**
+     * Determine all the line segments in the chain whose envelopes overlap
+     * the searchEnvelope, and process them
+     */
+    void select(const geom::Envelope& searchEnv,
+                MonotoneChainSelectAction& mcs) const;
 
-	void computeOverlaps(MonotoneChain *mc,
-			MonotoneChainOverlapAction *mco);
+    void computeOverlaps(const MonotoneChain* mc,
+                         MonotoneChainOverlapAction* mco) const;
 
-	void setId(int nId) { id=nId; }
+    void computeOverlaps(const MonotoneChain* mc, double overlapTolerance,
+                         MonotoneChainOverlapAction* mco) const;
 
-	inline int getId() const { return id; }
-
-	void* getContext() { return context; }
+    void*
+    getContext() const
+    {
+        return context;
+    }
 
 private:
 
-	void computeSelect(const geom::Envelope& searchEnv,
-			size_t start0,
-			size_t end0,
-			MonotoneChainSelectAction& mcs);
+    void computeSelect(const geom::Envelope& searchEnv,
+                       std::size_t start0,
+                       std::size_t end0,
+                       MonotoneChainSelectAction& mcs) const;
 
-	void computeOverlaps(std::size_t start0, std::size_t end0, MonotoneChain& mc,
-			     std::size_t start1, std::size_t end1,
-	                     MonotoneChainOverlapAction& mco);
+    void computeOverlaps(std::size_t start0, std::size_t end0, const MonotoneChain& mc,
+                         std::size_t start1, std::size_t end1,
+                         double overlapTolerance,
+                         MonotoneChainOverlapAction& mco) const;
 
-	/// Externally owned 
-	const geom::CoordinateSequence& pts;
+    bool overlaps(std::size_t start0, std::size_t end0,
+                  const MonotoneChain& mc, std::size_t start1, std::size_t end1,
+                  double overlapTolerance) const {
+        if (overlapTolerance > 0.0) {
+            return overlaps(pts->getAt(start0), pts->getAt(end0),
+                            mc.pts->getAt(start1), mc.pts->getAt(end1), overlapTolerance);
+        }
+        return geom::Envelope::intersects(pts->getAt(start0), pts->getAt(end0),
+                                          mc.pts->getAt(start1), mc.pts->getAt(end1));
+    }
 
-	/// Owned by this class, lazely created
-	mutable geom::Envelope* env;
+    static bool overlaps(const geom::Coordinate& p1, const geom::Coordinate& p2,
+                  const geom::Coordinate& q1, const geom::Coordinate& q2,
+                  double overlapTolerance);
 
-	/// user-defined information
-	void* context;
+    /// Externally owned
+    const geom::CoordinateSequence* pts;
 
-	/// Index of chain start vertex into the CoordinateSequence, 0 based.
-	size_t start;
+    /// user-defined information
+    void* context;
 
-	/// Index of chain end vertex into the CoordinateSequence, 0 based.
-	size_t end;
+    /// Index of chain start vertex into the CoordinateSequence, 0 based.
+    std::size_t start;
 
-	/// useful for optimizing chain comparisons
-	int id;
+    /// Index of chain end vertex into the CoordinateSequence, 0 based.
+    std::size_t end;
 
-    // Declare type as noncopyable
-    MonotoneChain(const MonotoneChain& other);
-    MonotoneChain& operator=(const MonotoneChain& rhs);
+    /// Owned by this class
+    mutable geom::Envelope env;
 };
 
 } // namespace geos::index::chain
 } // namespace geos::index
 } // namespace geos
-
-#endif // GEOS_IDX_CHAIN_MONOTONECHAIN_H
 

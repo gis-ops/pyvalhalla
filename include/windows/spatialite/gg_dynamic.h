@@ -1,7 +1,7 @@
 /*
  gg_dynamic.h -- Gaia common support for geometries: DynamicLine functions
   
- version 4.3, 2015 June 29
+ version 5.0, 2020 August 1
 
  Author: Sandro Furieri a.furieri@lqt.it
 
@@ -23,7 +23,7 @@ The Original Code is the SpatiaLite library
 
 The Initial Developer of the Original Code is Alessandro Furieri
  
-Portions created by the Initial Developer are Copyright (C) 2008-2015
+Portions created by the Initial Developer are Copyright (C) 2008-2021
 the Initial Developer. All Rights Reserved.
 
 Contributor(s):
@@ -108,8 +108,8 @@ extern "C"
  \return the pointer to newly created Point
  */
     GAIAGEO_DECLARE gaiaPointPtr
-	gaiaAppendPointZToDynamicLine (gaiaDynamicLinePtr p, double x, double y,
-				       double z);
+	gaiaAppendPointZToDynamicLine (gaiaDynamicLinePtr p, double x,
+				       double y, double z);
 
 /**
  Appends a new 2D Point [XYM] at the end of a dynamically growing line/ring 
@@ -123,8 +123,8 @@ extern "C"
  \return the pointer to newly created Point
  */
     GAIAGEO_DECLARE gaiaPointPtr
-	gaiaAppendPointMToDynamicLine (gaiaDynamicLinePtr p, double x, double y,
-				       double m);
+	gaiaAppendPointMToDynamicLine (gaiaDynamicLinePtr p, double x,
+				       double y, double m);
 
 /**
  Appends a new 3D Point [XYZM] at the end of a dynamically growing line/ring 
@@ -215,10 +215,9 @@ extern "C"
 
  \return the pointer to newly created Point
  */
-    GAIAGEO_DECLARE gaiaPointPtr gaiaDynamicLineInsertAfter (gaiaDynamicLinePtr
-							     p, gaiaPointPtr pt,
-							     double x,
-							     double y);
+    GAIAGEO_DECLARE gaiaPointPtr
+	gaiaDynamicLineInsertAfter (gaiaDynamicLinePtr p, gaiaPointPtr pt,
+				    double x, double y);
 
 /**
  Appends a new 2D Point [XY] immediately before the given Point into a
@@ -233,11 +232,9 @@ extern "C"
 
  \return the pointer to newly created Point
  */
-    GAIAGEO_DECLARE gaiaPointPtr gaiaDynamicLineInsertBefore (gaiaDynamicLinePtr
-							      p,
-							      gaiaPointPtr pt,
-							      double x,
-							      double y);
+    GAIAGEO_DECLARE gaiaPointPtr
+	gaiaDynamicLineInsertBefore (gaiaDynamicLinePtr p, gaiaPointPtr pt,
+				     double x, double y);
 
 /**
  Removes a given Point from a dynamically growing line/ring object
@@ -262,8 +259,8 @@ extern "C"
 
  \note the newly created object is an exact copy of the original one.
  */
-    GAIAGEO_DECLARE gaiaDynamicLinePtr gaiaCloneDynamicLine (gaiaDynamicLinePtr
-							     org);
+    GAIAGEO_DECLARE gaiaDynamicLinePtr
+	gaiaCloneDynamicLine (gaiaDynamicLinePtr org);
 
 /**
  Duplicates and reverts a dynamically growing line/ring object
@@ -377,9 +374,8 @@ extern "C"
  \note if the line object contains more Points sharing the same coordinates,
  a reference to the first one found will be returned.
  */
-    GAIAGEO_DECLARE gaiaPointPtr gaiaDynamicLineFindByCoords (gaiaDynamicLinePtr
-							      p, double x,
-							      double y);
+    GAIAGEO_DECLARE gaiaPointPtr
+	gaiaDynamicLineFindByCoords (gaiaDynamicLinePtr p, double x, double y);
 
 /**
  Finds a Point within a dymically growing line/ring object [by position]
@@ -391,8 +387,8 @@ extern "C"
 
  \sa gaiaDynamicLineFindByCoords
  */
-    GAIAGEO_DECLARE gaiaPointPtr gaiaDynamicLineFindByPos (gaiaDynamicLinePtr p,
-							   int pos);
+    GAIAGEO_DECLARE gaiaPointPtr gaiaDynamicLineFindByPos (gaiaDynamicLinePtr
+							   p, int pos);
 
 /**
  Creates a new dynamicly growing line/ring object

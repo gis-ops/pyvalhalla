@@ -69,6 +69,7 @@ class PROJ_GCC_DLL Datum : public common::ObjectUsage,
     //! @endcond
 
     PROJ_DLL const util::optional<std::string> &anchorDefinition() const;
+    PROJ_DLL const util::optional<common::Measure> &anchorEpoch() const;
     PROJ_DLL const util::optional<common::DateTime> &publicationDate() const;
     PROJ_DLL const common::IdentifiedObjectPtr &conventionalRS() const;
 
@@ -91,6 +92,8 @@ class PROJ_GCC_DLL Datum : public common::ObjectUsage,
 
   protected:
     PROJ_INTERNAL void setAnchor(const util::optional<std::string> &anchor);
+    PROJ_INTERNAL void
+    setAnchorEpoch(const util::optional<common::Measure> &anchorEpoch);
 
     PROJ_INTERNAL void
     setProperties(const util::PropertyMap
@@ -125,7 +128,7 @@ using DatumEnsembleNNPtr = util::nn<DatumEnsemblePtr>;
  *
  * \remark Implements DatumEnsemble from \ref ISO_19111_2019
  */
-class PROJ_GCC_DLL DatumEnsemble final : public common::IdentifiedObject,
+class PROJ_GCC_DLL DatumEnsemble final : public common::ObjectUsage,
                                          public io::IJSONExportable {
   public:
     //! @cond Doxygen_Suppress
@@ -147,7 +150,10 @@ class PROJ_GCC_DLL DatumEnsemble final : public common::IdentifiedObject,
 
     PROJ_INTERNAL void _exportToJSON(io::JSONFormatter *formatter)
         const override; // throw(io::FormattingException)
-                        //! @endcond
+
+    PROJ_FOR_TEST DatumNNPtr
+    asDatum(const io::DatabaseContextPtr &dbContext) const;
+    //! @endcond
 
   protected:
 #ifdef DOXYGEN_ENABLED
@@ -411,6 +417,12 @@ class PROJ_GCC_DLL GeodeticReferenceFrame : public Datum {
            const util::optional<std::string> &anchor,
            const PrimeMeridianNNPtr &primeMeridian);
 
+    PROJ_DLL static GeodeticReferenceFrameNNPtr
+    create(const util::PropertyMap &properties, const EllipsoidNNPtr &ellipsoid,
+           const util::optional<std::string> &anchor,
+           const util::optional<common::Measure> &anchorEpoch,
+           const PrimeMeridianNNPtr &primeMeridian);
+
     PROJ_DLL static const GeodeticReferenceFrameNNPtr
         EPSG_6267; // North American Datum 1927
     PROJ_DLL static const GeodeticReferenceFrameNNPtr
@@ -429,6 +441,10 @@ class PROJ_GCC_DLL GeodeticReferenceFrame : public Datum {
         util::IComparable::Criterion criterion =
             util::IComparable::Criterion::STRICT,
         const io::DatabaseContextPtr &dbContext = nullptr) const override;
+
+    PROJ_INTERNAL bool isEquivalentToNoExactTypeCheck(
+        const util::IComparable *other, util::IComparable::Criterion criterion,
+        const io::DatabaseContextPtr &dbContext) const;
     //! @endcond
 
   protected:
@@ -541,7 +557,7 @@ class PROJ_GCC_DLL RealizationMethod : public util::CodeList {
     PROJ_FRIEND_OPTIONAL(RealizationMethod);
     PROJ_DLL explicit RealizationMethod(
         const std::string &nameIn = std::string());
-    PROJ_DLL RealizationMethod(const RealizationMethod &other);
+    PROJ_DLL RealizationMethod(const RealizationMethod &other) = default;
     PROJ_DLL RealizationMethod &operator=(const RealizationMethod &other);
 };
 
@@ -577,6 +593,13 @@ class PROJ_GCC_DLL VerticalReferenceFrame : public Datum {
            const util::optional<RealizationMethod> &realizationMethodIn =
                util::optional<RealizationMethod>());
 
+    PROJ_DLL static VerticalReferenceFrameNNPtr
+    create(const util::PropertyMap &properties,
+           const util::optional<std::string> &anchor,
+           const util::optional<common::Measure> &anchorEpoch,
+           const util::optional<RealizationMethod> &realizationMethodIn =
+               util::optional<RealizationMethod>());
+
     //! @cond Doxygen_Suppress
     PROJ_INTERNAL bool _isEquivalentTo(
         const util::IComparable *other,
@@ -584,11 +607,17 @@ class PROJ_GCC_DLL VerticalReferenceFrame : public Datum {
             util::IComparable::Criterion::STRICT,
         const io::DatabaseContextPtr &dbContext = nullptr) const override;
 
+    PROJ_INTERNAL bool isEquivalentToNoExactTypeCheck(
+        const util::IComparable *other, util::IComparable::Criterion criterion,
+        const io::DatabaseContextPtr &dbContext) const;
+
     PROJ_INTERNAL void _exportToWKT(io::WKTFormatter *formatter)
         const override; // throw(io::FormattingException)
 
     PROJ_INTERNAL void _exportToJSON(io::JSONFormatter *formatter)
         const override; // throw(FormattingException)
+
+    PROJ_INTERNAL const std::string &getWKT1DatumType() const;
 
     //! @endcond
 

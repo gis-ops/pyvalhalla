@@ -7,6 +7,19 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
 ## Unreleased
 
+## [3.0.5](https://pypi.org/project/pyvalhalla/3.0.4/) - 2023-04-13
+
+_Valhalla version 3.3.0_
+
+### CHANGED
+
+- Mac OSX support only from 10.15 on
+- bumped Valhalla version to 3.3.0
+
+### REMOVED
+
+- deprecated `transit_available` endpoint
+
 ## [3.0.4](https://pypi.org/project/pyvalhalla/3.0.4/) - 2023-04-12
 
 _Valhalla version 3.1.4_

@@ -8,13 +8,12 @@
  *
  * This is free software; you can redistribute and/or modify it under
  * the terms of the GNU Lesser General Public Licence as published
- * by the Free Software Foundation. 
+ * by the Free Software Foundation.
  * See the COPYING file for more information.
  *
  **********************************************************************/
 
-#ifndef GEOS_GEOM_H
-#define GEOS_GEOM_H
+#pragma once
 
 /** \mainpage GEOS - Geometry Engine Open Source
  *
@@ -22,10 +21,10 @@
  *
  * Geometry Engine Open Source is a C++ port of the Java Topology Suite
  * released under the LGPL license.
- * It has interfaces for C++, C and python (though swig).
+ * It has interfaces for C++ and C.
  *
  * \section getstart_sec Getting Started
- *	
+ *
  * The recommended low-level interface to the GEOS library
  * is the simplified \ref c_iface. This will ensure stability of the
  * API and the ABI of the library during performance improvements
@@ -37,7 +36,7 @@
 
 /** \page c_iface C wrapper interface
  *
- * \section Overview
+ * \section overview_c Overview
  *
  * This is the preferred access method for GEOS.
  *
@@ -53,7 +52,7 @@
 
 /** \page cpp_iface C++ interface
  *
- * \section Overview
+ * \section overview_cpp Overview
  *
  * Main class is geos::geom::Geometry, from which all geometry types
  * derive.
@@ -85,13 +84,13 @@
  * Note that prior to version 3.0.0, GEOSException were thrown by
  * pointer, and did not derive from std::exception.
  *
- */ 
+ */
 
 
 namespace geos {
 
 /// Contains the <CODE>Geometry</CODE> interface hierarchy and supporting classes.
-//
+///
 /// The Java Topology Suite (JTS) is a Java API that implements a core
 /// set of spatial data operations using an explicit precision model
 /// and robust geometric algorithms. JTS is int ended to be used in the
@@ -147,7 +146,4 @@ namespace geom { // geos::geom
 
 using namespace geos::geom;
 
-
-
-#endif // ndef GEOS_GEOM_H
 

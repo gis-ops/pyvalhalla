@@ -8,13 +8,12 @@
  *
  * This is free software; you can redistribute and/or modify it under
  * the terms of the GNU Lesser General Public Licence as published
- * by the Free Software Foundation. 
+ * by the Free Software Foundation.
  * See the COPYING file for more information.
  *
  **********************************************************************/
 
-#ifndef GEOS_UTIL_ILLEGALARGUMENTEXCEPTION_H
-#define GEOS_UTIL_ILLEGALARGUMENTEXCEPTION_H
+#pragma once
 
 #include <geos/export.h>
 #include <string>
@@ -24,7 +23,7 @@
 namespace geos {
 namespace util { // geos::util
 
-/** 
+/**
  * \brief Indicates one or more illegal arguments.
  *
  * This exception is thrown - for example - when
@@ -33,21 +32,19 @@ namespace util { // geos::util
  */
 class GEOS_DLL IllegalArgumentException: public GEOSException {
 public:
-	IllegalArgumentException()
-		:
-		GEOSException("IllegalArgumentException", "")
-	{}
+    IllegalArgumentException()
+        :
+        GEOSException("IllegalArgumentException", "")
+    {}
 
-	IllegalArgumentException(const std::string& msg)
-		:
-		GEOSException("IllegalArgumentException", msg)
-	{}
+    IllegalArgumentException(const std::string& msg)
+        :
+        GEOSException("IllegalArgumentException", msg)
+    {}
 
-	~IllegalArgumentException() throw() {}
+    ~IllegalArgumentException() noexcept override {}
 };
 
 } // namespace geos::util
 } // namespace geos
 
-
-#endif // GEOS_UTIL_ILLEGALARGUMENTEXCEPTION_H

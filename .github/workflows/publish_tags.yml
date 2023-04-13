@@ -28,6 +28,8 @@ jobs:
 
     - name: Configure Python
       uses: actions/setup-python@v3
+      with:
+        python-version: '3.10'
 
     # keep in-sync with the other yaml
     - name: Cache Conan (MacOS)
@@ -46,7 +48,7 @@ jobs:
       if: matrix.platform == 'windows'  # && steps.cache-conan.outputs.cache-hit != 'true'
       run: |
         pip install pip --upgrade
-        pip install "conan<2.0.0"
+        pip install conan<2.0.0
         conan profile new default --detect
         conan profile update "settings.compiler=Visual Studio" default
         conan profile update "settings.compiler.version=16" default
@@ -57,14 +59,14 @@ jobs:
       if: matrix.platform == 'macos' && steps.cache-conan.outputs.cache-hit != 'true'
       run: |
         pip install pip --upgrade
-        pip install "conan<2.0.0"
+        pip install conan<2.0.0
         conan profile new default --detect
         conan config set "storage.path=${{ github.workspace }}/conan_data"
         conan install --install-folder ${{ github.workspace }}/conan_build --remote conancenter .
 
     - uses: pypa/cibuildwheel@v2.3.1
       env:
-        MACOSX_DEPLOYMENT_TARGET: 10.9
+        MACOSX_DEPLOYMENT_TARGET: 10.15
 
     - name: Upload wheels
       uses: actions/upload-artifact@v2

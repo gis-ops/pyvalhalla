@@ -122,6 +122,7 @@ PROTOBUF_CONSTEXPR Location::Location(
   , /*decltype(_impl_.side_of_street_)*/0
   , /*decltype(_impl_.skip_ranking_candidates_)*/false
   , /*decltype(_impl_.preferred_side_)*/0
+  , /*decltype(_impl_.waiting_secs_)*/0
   , /*decltype(_impl_.has_heading_)*/{}
   , /*decltype(_impl_.has_heading_tolerance_)*/{}
   , /*decltype(_impl_.has_node_snap_tolerance_)*/{}
@@ -3083,6 +3084,7 @@ Location::Location(const Location& from)
     , decltype(_impl_.side_of_street_){}
     , decltype(_impl_.skip_ranking_candidates_){}
     , decltype(_impl_.preferred_side_){}
+    , decltype(_impl_.waiting_secs_){}
     , decltype(_impl_.has_heading_){}
     , decltype(_impl_.has_heading_tolerance_){}
     , decltype(_impl_.has_node_snap_tolerance_){}
@@ -3135,8 +3137,8 @@ Location::Location(const Location& from)
     _this->_impl_.correlation_ = new ::valhalla::Correlation(*from._impl_.correlation_);
   }
   ::memcpy(&_impl_.type_, &from._impl_.type_,
-    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.preferred_side_) -
-    reinterpret_cast<char*>(&_impl_.type_)) + sizeof(_impl_.preferred_side_));
+    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.waiting_secs_) -
+    reinterpret_cast<char*>(&_impl_.type_)) + sizeof(_impl_.waiting_secs_));
   clear_has_has_heading();
   switch (from.has_heading_case()) {
     case kHeading: {
@@ -3266,6 +3268,7 @@ inline void Location::SharedCtor(
     , decltype(_impl_.side_of_street_){0}
     , decltype(_impl_.skip_ranking_candidates_){false}
     , decltype(_impl_.preferred_side_){0}
+    , decltype(_impl_.waiting_secs_){0}
     , decltype(_impl_.has_heading_){}
     , decltype(_impl_.has_heading_tolerance_){}
     , decltype(_impl_.has_node_snap_tolerance_){}
@@ -3543,8 +3546,8 @@ void Location::Clear() {
   }
   _impl_.correlation_ = nullptr;
   ::memset(&_impl_.type_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&_impl_.preferred_side_) -
-      reinterpret_cast<char*>(&_impl_.type_)) + sizeof(_impl_.preferred_side_));
+      reinterpret_cast<char*>(&_impl_.waiting_secs_) -
+      reinterpret_cast<char*>(&_impl_.type_)) + sizeof(_impl_.waiting_secs_));
   clear_has_heading();
   clear_has_heading_tolerance();
   clear_has_node_snap_tolerance();
@@ -3742,6 +3745,14 @@ const char* Location::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx)
         } else
           goto handle_unusual;
         continue;
+      // float waiting_secs = 29;
+      case 29:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 237)) {
+          _impl_.waiting_secs_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else
+          goto handle_unusual;
+        continue;
       // .valhalla.Correlation correlation = 90;
       case 90:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 210)) {
@@ -3923,6 +3934,16 @@ uint8_t* Location::_InternalSerialize(
     target = ::_pbi::WireFormatLite::WriteInt32ToArray(28, this->_internal_preferred_layer(), target);
   }
 
+  // float waiting_secs = 29;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_waiting_secs = this->_internal_waiting_secs();
+  uint32_t raw_waiting_secs;
+  memcpy(&raw_waiting_secs, &tmp_waiting_secs, sizeof(tmp_waiting_secs));
+  if (raw_waiting_secs != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(29, this->_internal_waiting_secs(), target);
+  }
+
   // .valhalla.Correlation correlation = 90;
   if (this->_internal_has_correlation()) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
@@ -4016,6 +4037,15 @@ size_t Location::ByteSizeLong() const {
   if (this->_internal_preferred_side() != 0) {
     total_size += 2 +
       ::_pbi::WireFormatLite::EnumSize(this->_internal_preferred_side());
+  }
+
+  // float waiting_secs = 29;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_waiting_secs = this->_internal_waiting_secs();
+  uint32_t raw_waiting_secs;
+  memcpy(&raw_waiting_secs, &tmp_waiting_secs, sizeof(tmp_waiting_secs));
+  if (raw_waiting_secs != 0) {
+    total_size += 2 + 4;
   }
 
   switch (has_heading_case()) {
@@ -4200,6 +4230,13 @@ void Location::MergeFrom(const Location& from) {
   if (from._internal_preferred_side() != 0) {
     _this->_internal_set_preferred_side(from._internal_preferred_side());
   }
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_waiting_secs = from._internal_waiting_secs();
+  uint32_t raw_waiting_secs;
+  memcpy(&raw_waiting_secs, &tmp_waiting_secs, sizeof(tmp_waiting_secs));
+  if (raw_waiting_secs != 0) {
+    _this->_internal_set_waiting_secs(from._internal_waiting_secs());
+  }
   switch (from.has_heading_case()) {
     case kHeading: {
       _this->_internal_set_heading(from._internal_heading());
@@ -4331,8 +4368,8 @@ void Location::InternalSwap(Location* other) {
       &other->_impl_.date_time_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(Location, _impl_.preferred_side_)
-      + sizeof(Location::_impl_.preferred_side_)
+      PROTOBUF_FIELD_OFFSET(Location, _impl_.waiting_secs_)
+      + sizeof(Location::_impl_.waiting_secs_)
       - PROTOBUF_FIELD_OFFSET(Location, _impl_.ll_)>(
           reinterpret_cast<char*>(&_impl_.ll_),
           reinterpret_cast<char*>(&other->_impl_.ll_));

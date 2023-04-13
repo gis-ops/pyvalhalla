@@ -8,13 +8,12 @@
  *
  * This is free software; you can redistribute and/or modify it under
  * the terms of the GNU Lesser General Public Licence as published
- * by the Free Software Foundation. 
+ * by the Free Software Foundation.
  * See the COPYING file for more information.
  *
  **********************************************************************/
 
-#ifndef GEOS_UTIL_TOPOLOGYEXCEPTION_H
-#define GEOS_UTIL_TOPOLOGYEXCEPTION_H
+#pragma once
 
 #include <geos/export.h>
 #include <geos/util/GEOSException.h>
@@ -34,30 +33,32 @@ namespace util { // geos.util
  */
 class GEOS_DLL TopologyException: public GEOSException {
 public:
-	TopologyException()
-		:
-		GEOSException("TopologyException", "")
-	{}
+    TopologyException()
+        :
+        GEOSException("TopologyException", "")
+    {}
 
-	TopologyException(const std::string& msg)
-		:
-		GEOSException("TopologyException", msg)
-	{}
+    TopologyException(const std::string& msg)
+        :
+        GEOSException("TopologyException", msg)
+    {}
 
-	TopologyException(const std::string& msg, const geom::Coordinate& newPt)
-		:
-		GEOSException("TopologyException", msg + " at " + newPt.toString()),
-		pt(newPt)
-	{}
+    TopologyException(const std::string& msg, const geom::Coordinate& newPt)
+        :
+        GEOSException("TopologyException", msg + " at " + newPt.toString()),
+        pt(newPt)
+    {}
 
-	~TopologyException() throw() {}
-	geom::Coordinate& getCoordinate() { return pt; }
+    ~TopologyException() noexcept override {}
+    geom::Coordinate&
+    getCoordinate()
+    {
+        return pt;
+    }
 private:
-	geom::Coordinate pt;
+    geom::Coordinate pt;
 };
 
 } // namespace geos::util
 } // namespace geos
 
-
-#endif // GEOS_UTIL_TOPOLOGYEXCEPTION_H
