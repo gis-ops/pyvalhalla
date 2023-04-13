@@ -11,7 +11,7 @@ Over time we will very likely deviate from Valhalla's own Python binding code to
 
 ![pypi version](https://badge.fury.io/py/pyvalhalla.svg)
  
-We distribute all 4 currently developed CPython versions as **binary wheels** for Win64, MacOS (Intel) and x86_64 Linux distributions with `glibc>=2.24` (most modern systems, see [PEP 600](https://www.python.org/dev/peps/pep-0600/)). We **do not** offer a source distribution on PyPI. Please contact us on enquiry@gis-ops.com if you need support building the bindings for your platform/distribution.
+We distribute all currently maintained CPython versions as **binary wheels** for Win64, MacOS (Intel) and x86_64 Linux distributions with `glibc>=2.28`. We **do not** offer a source distribution on PyPI. Please contact us on enquiry@gis-ops.com if you need support building the bindings for your platform/distribution.
 
 `pip install pyvalhalla`
 
