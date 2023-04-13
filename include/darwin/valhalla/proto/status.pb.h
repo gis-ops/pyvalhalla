@@ -191,6 +191,7 @@ class Status final :
   // accessors -------------------------------------------------------
 
   enum : int {
+    kAvailableActionsFieldNumber = 8,
     kHasTilesFieldNumber = 1,
     kHasAdminsFieldNumber = 2,
     kHasTimezonesFieldNumber = 3,
@@ -199,6 +200,30 @@ class Status final :
     kVersionFieldNumber = 6,
     kTilesetLastModifiedFieldNumber = 7,
   };
+  // repeated string available_actions = 8;
+  int available_actions_size() const;
+  private:
+  int _internal_available_actions_size() const;
+  public:
+  void clear_available_actions();
+  const std::string& available_actions(int index) const;
+  std::string* mutable_available_actions(int index);
+  void set_available_actions(int index, const std::string& value);
+  void set_available_actions(int index, std::string&& value);
+  void set_available_actions(int index, const char* value);
+  void set_available_actions(int index, const char* value, size_t size);
+  std::string* add_available_actions();
+  void add_available_actions(const std::string& value);
+  void add_available_actions(std::string&& value);
+  void add_available_actions(const char* value);
+  void add_available_actions(const char* value, size_t size);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>& available_actions() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>* mutable_available_actions();
+  private:
+  const std::string& _internal_available_actions(int index) const;
+  std::string* _internal_add_available_actions();
+  public:
+
   // bool has_tiles = 1;
   bool has_has_tiles() const;
   private:
@@ -350,6 +375,7 @@ class Status final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
+    ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> available_actions_;
     union HasHasTilesUnion {
       constexpr HasHasTilesUnion() : _constinit_{} {}
         ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
@@ -745,6 +771,81 @@ inline uint32_t Status::tileset_last_modified() const {
 inline void Status::set_tileset_last_modified(uint32_t value) {
   _internal_set_tileset_last_modified(value);
   // @@protoc_insertion_point(field_set:valhalla.Status.tileset_last_modified)
+}
+
+// repeated string available_actions = 8;
+inline int Status::_internal_available_actions_size() const {
+  return _impl_.available_actions_.size();
+}
+inline int Status::available_actions_size() const {
+  return _internal_available_actions_size();
+}
+inline void Status::clear_available_actions() {
+  _impl_.available_actions_.Clear();
+}
+inline std::string* Status::add_available_actions() {
+  std::string* _s = _internal_add_available_actions();
+  // @@protoc_insertion_point(field_add_mutable:valhalla.Status.available_actions)
+  return _s;
+}
+inline const std::string& Status::_internal_available_actions(int index) const {
+  return _impl_.available_actions_.Get(index);
+}
+inline const std::string& Status::available_actions(int index) const {
+  // @@protoc_insertion_point(field_get:valhalla.Status.available_actions)
+  return _internal_available_actions(index);
+}
+inline std::string* Status::mutable_available_actions(int index) {
+  // @@protoc_insertion_point(field_mutable:valhalla.Status.available_actions)
+  return _impl_.available_actions_.Mutable(index);
+}
+inline void Status::set_available_actions(int index, const std::string& value) {
+  _impl_.available_actions_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set:valhalla.Status.available_actions)
+}
+inline void Status::set_available_actions(int index, std::string&& value) {
+  _impl_.available_actions_.Mutable(index)->assign(std::move(value));
+  // @@protoc_insertion_point(field_set:valhalla.Status.available_actions)
+}
+inline void Status::set_available_actions(int index, const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  _impl_.available_actions_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:valhalla.Status.available_actions)
+}
+inline void Status::set_available_actions(int index, const char* value, size_t size) {
+  _impl_.available_actions_.Mutable(index)->assign(
+    reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:valhalla.Status.available_actions)
+}
+inline std::string* Status::_internal_add_available_actions() {
+  return _impl_.available_actions_.Add();
+}
+inline void Status::add_available_actions(const std::string& value) {
+  _impl_.available_actions_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add:valhalla.Status.available_actions)
+}
+inline void Status::add_available_actions(std::string&& value) {
+  _impl_.available_actions_.Add(std::move(value));
+  // @@protoc_insertion_point(field_add:valhalla.Status.available_actions)
+}
+inline void Status::add_available_actions(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  _impl_.available_actions_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:valhalla.Status.available_actions)
+}
+inline void Status::add_available_actions(const char* value, size_t size) {
+  _impl_.available_actions_.Add()->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:valhalla.Status.available_actions)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
+Status::available_actions() const {
+  // @@protoc_insertion_point(field_list:valhalla.Status.available_actions)
+  return _impl_.available_actions_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
+Status::mutable_available_actions() {
+  // @@protoc_insertion_point(field_mutable_list:valhalla.Status.available_actions)
+  return &_impl_.available_actions_;
 }
 
 inline bool Status::has_has_has_tiles() const {

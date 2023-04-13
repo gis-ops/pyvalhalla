@@ -79,7 +79,14 @@ That'll take care of all the header & library copying, proto compilation etc. It
 
 #### Mac OS
 
-> Note, for OSX we locally built protobuf from source (currently 3.21.5) as the `brew` version is not compiled to work with lower OSX versions.
+> Note, for OSX we locally built protobuf from source (currently 3.21.5) as the `brew` version is not compiled to work with lower OSX versions:
+  ```
+  cd custom_protobuf
+  cmake -B build -DCMAKE_OSX_DEPLOYMENT_TARGET=10.15 -Dprotobuf_BUILD_TESTS=OFF -DBUILD_SHARED_LIBS=ON
+  make -C build -j8
+  sudo make -C build install
+  ```
+
 
 Pretty identical to Linux, just we don't need a docker container of course:
 ```

@@ -53,10 +53,11 @@ namespace noding { // geos::noding
  */
 class GEOS_DLL SegmentNodeList {
 private:
-    // Since we are adding frequently to the SegmentNodeList and iterating infrequently,
-    // it is faster to store all the SegmentNodes in a vector and sort/remove duplicates
-    // before iteration, rather than storing them in a set and continuously maintaining
-    // a sorted order.
+    // Since we are adding frequently to the SegmentNodeList and
+    // iterating infrequently, it is faster to store all the
+    // SegmentNodes in a vector and sort/remove duplicates
+    // before iteration, rather than storing them in a set
+    // and continuously maintaining a sorted order.
     mutable std::vector<SegmentNode> nodeMap;
     mutable bool ready = false;
 
@@ -154,9 +155,6 @@ public:
     /**
      * Adds an intersection into the list, if it isn't already there.
      * The input segmentIndex is expected to be normalized.
-     *
-     * @return the SegmentIntersection found or added. It will be
-     *	   destroyed at SegmentNodeList destruction time.
      *
      * @param intPt the intersection Coordinate, will be copied
      * @param segmentIndex
