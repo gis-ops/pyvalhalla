@@ -33,6 +33,8 @@ jobs:
 
     - name: Configure Python
       uses: actions/setup-python@v3
+      with:
+        python-version: '3.10'
 
     # keep in-sync with the other yaml
     # only macos makes sense, windows didn't work, linux installs conan inside the docker image
