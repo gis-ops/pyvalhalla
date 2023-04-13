@@ -32,7 +32,7 @@ jobs:
     - uses: actions/checkout@v3
 
     - name: Configure Python
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v3
 
     # keep in-sync with the other yaml
     # only macos makes sense, windows didn't work, linux installs conan inside the docker image
@@ -52,7 +52,7 @@ jobs:
       if: matrix.platform == 'macos' && steps.cache-conan.outputs.cache-hit != 'true'
       run: |
         pip install pip --upgrade
-        pip install conan<2.0.0
+        pip install "conan<2.0.0"
         conan profile new default --detect
         conan config set "storage.path=${{ github.workspace }}/conan_data"
         conan install --install-folder ${{ github.workspace }}/conan_build --remote conancenter .
@@ -61,7 +61,7 @@ jobs:
       if: matrix.platform == 'windows'
       run: |
         pip install pip --upgrade
-        pip install conan<2.0.0
+        pip install "conan<2.0.0"
         conan profile new default --detect
         conan profile update "settings.compiler=Visual Studio" default
         conan profile update "settings.compiler.version=16" default
