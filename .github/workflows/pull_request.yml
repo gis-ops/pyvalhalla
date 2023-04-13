@@ -17,29 +17,18 @@ on:
 jobs:
   build_wheels:
     name: PR - cp*, ubuntu-latest
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
 
     - name: Configure Python
-      uses: actions/setup-python@v3
+      uses: actions/setup-python@v4
       with:
         python-version: '3.10'
-    
-    - name: Install Conan (MacOS)
+
+    - name: Lint & Style Check
       run: |
-        pip install pip --upgrade
-        pip install "conan<2.0.0"
-        conan profile new default --detect
-        conan config set "storage.path=${{ github.workspace }}/conan_data"
-        conan install --install-folder ${{ github.workspace }}/conan_build --remote conancenter .
+        python -m pip install -r dev-requirements.txt
+        pre-commit run --all-files --show-diff-on-failure
 
     - uses: pypa/cibuildwheel@v2.12.1
-      env:
-        MACOSX_DEPLOYMENT_TARGET: 10.15
-        CIBW_BUILD: cp37* cp311*
-
-    - name: Upload wheels
-      uses: actions/upload-artifact@v2
-      with:
-        path: wheelhouse/*.whl
