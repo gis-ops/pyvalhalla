@@ -7,7 +7,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
 ## Unreleased
 
-## [3.0.5](https://pypi.org/project/pyvalhalla/3.0.5/) - 2023-04-13
+## [3.1.0](https://pypi.org/project/pyvalhalla/3.1.0/) - 2023-04-13
 
 _Valhalla version 3.3.0_
 
