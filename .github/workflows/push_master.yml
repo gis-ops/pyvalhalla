@@ -73,6 +73,6 @@ jobs:
     # only build the earliest supported python version
     - uses: pypa/cibuildwheel@v2.3.1
       env:
-        MACOSX_DEPLOYMENT_TARGET: 10.9
+        MACOSX_DEPLOYMENT_TARGET: 10.15
         CIBW_BUILD: cp37*
         CIBW_TEST_COMMAND: ''

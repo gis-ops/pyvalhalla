@@ -36,6 +36,7 @@ jobs:
 
     - uses: pypa/cibuildwheel@v2.12.1
       env:
+        MACOSX_DEPLOYMENT_TARGET: 10.15
         CIBW_BUILD: cp37* cp311*
 
     - name: Upload wheels

@@ -63,10 +63,6 @@ PYBIND11_MODULE(_valhalla, m) {
       .def("height", [](vt::actor_t& self, std::string& req) { return self.height(req); },
            "Provides elevation data for a set of input geometries.")
       .def(
-          "transit_available",
-          [](vt::actor_t& self, std::string& req) { return self.transit_available(req); },
-          "Lookup if transit stops are available in a defined radius around a set of input locations.")
-      .def(
           "expansion", [](vt::actor_t& self, std::string& req) { return self.expansion(req); },
           "Returns all road segments which were touched by the routing algorithm during the graph traversal.")
       .def(
