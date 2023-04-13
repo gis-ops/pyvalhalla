@@ -19,7 +19,16 @@ jobs:
     name: PR - cp*, ubuntu-latest
     runs-on: macos-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v3    
+    
+    - name: Install Conan (MacOS)
+      if: matrix.platform == 'macos' && steps.cache-conan.outputs.cache-hit != 'true'
+      run: |
+        pip install pip --upgrade
+        pip install "conan<2.0.0"
+        conan profile new default --detect
+        conan config set "storage.path=${{ github.workspace }}/conan_data"
+        conan install --install-folder ${{ github.workspace }}/conan_build --remote conancenter .
 
     - uses: pypa/cibuildwheel@v2.12.1
       env:
