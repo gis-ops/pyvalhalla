@@ -81,7 +81,7 @@ class Actor(_Actor):
 
     @dict_or_str
     def optimized_route(self, req: Union[str, dict]):
-        return super().route(req)
+        return super().optimized_route(req)
 
     @dict_or_str
     def locate(self, req: Union[str, dict]):
@@ -106,10 +106,6 @@ class Actor(_Actor):
     @dict_or_str
     def height(self, req: Union[str, dict]):
         return super().height(req)
-
-    @dict_or_str
-    def transit_available(self, req: Union[str, dict]):
-        return super().transit_available(req)
 
     @dict_or_str
     def expansion(self, req: Union[str, dict]):

@@ -7,6 +7,16 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
 ## Unreleased
 
+_Valhalla version 3.3.0_
+
+## [3.1.1](https://pypi.org/project/pyvalhalla/3.1.1/) - 2023-04-16
+
+_Valhalla version 3.3.0_
+
+### FIXED
+
+- `Actor.optimized_route` called Valhalla's `_Actor.route`
+
 ## [3.1.0](https://pypi.org/project/pyvalhalla/3.1.0/) - 2023-04-13
 
 _Valhalla version 3.3.0_
