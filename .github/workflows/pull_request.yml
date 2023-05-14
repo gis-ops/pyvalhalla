@@ -32,3 +32,5 @@ jobs:
         pre-commit run --all-files --show-diff-on-failure
 
     - uses: pypa/cibuildwheel@v2.12.1
+      env:
+        CIBW_BUILD: cp38* cp39* cp310* cp311*
