@@ -23,6 +23,7 @@ exclude = '''
   | '*build'
   | __pycache__
   | '*.toml'
+
 )/
 '''
 

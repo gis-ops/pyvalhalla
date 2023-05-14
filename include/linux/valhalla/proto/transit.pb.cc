@@ -30,10 +30,12 @@ PROTOBUF_CONSTEXPR Transit_Node::Transit_Node(
   , /*decltype(_impl_.lat_)*/0
   , /*decltype(_impl_.graphid_)*/uint64_t{0u}
   , /*decltype(_impl_.prev_type_graphid_)*/uint64_t{0u}
-  , /*decltype(_impl_.osm_way_id_)*/uint64_t{0u}
+  , /*decltype(_impl_.osm_connecting_way_id_)*/uint64_t{0u}
   , /*decltype(_impl_.type_)*/0u
   , /*decltype(_impl_.wheelchair_boarding_)*/false
   , /*decltype(_impl_.generated_)*/false
+  , /*decltype(_impl_.osm_connecting_lon_)*/0
+  , /*decltype(_impl_.osm_connecting_lat_)*/0
   , /*decltype(_impl_.traversability_)*/0u} {}
 struct Transit_NodeDefaultTypeInternal {
   PROTOBUF_CONSTEXPR Transit_NodeDefaultTypeInternal()
@@ -253,7 +255,7 @@ class Transit_Node::_Internal {
   static void set_has_onestop_id(HasBits* has_bits) {
     (*has_bits)[0] |= 2u;
   }
-  static void set_has_osm_way_id(HasBits* has_bits) {
+  static void set_has_osm_connecting_way_id(HasBits* has_bits) {
     (*has_bits)[0] |= 128u;
   }
   static void set_has_timezone(HasBits* has_bits) {
@@ -266,7 +268,13 @@ class Transit_Node::_Internal {
     (*has_bits)[0] |= 1024u;
   }
   static void set_has_traversability(HasBits* has_bits) {
+    (*has_bits)[0] |= 8192u;
+  }
+  static void set_has_osm_connecting_lon(HasBits* has_bits) {
     (*has_bits)[0] |= 2048u;
+  }
+  static void set_has_osm_connecting_lat(HasBits* has_bits) {
+    (*has_bits)[0] |= 4096u;
   }
 };
 
@@ -289,10 +297,12 @@ Transit_Node::Transit_Node(const Transit_Node& from)
     , decltype(_impl_.lat_){}
     , decltype(_impl_.graphid_){}
     , decltype(_impl_.prev_type_graphid_){}
-    , decltype(_impl_.osm_way_id_){}
+    , decltype(_impl_.osm_connecting_way_id_){}
     , decltype(_impl_.type_){}
     , decltype(_impl_.wheelchair_boarding_){}
     , decltype(_impl_.generated_){}
+    , decltype(_impl_.osm_connecting_lon_){}
+    , decltype(_impl_.osm_connecting_lat_){}
     , decltype(_impl_.traversability_){}};
 
   _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
@@ -340,10 +350,12 @@ inline void Transit_Node::SharedCtor(
     , decltype(_impl_.lat_){0}
     , decltype(_impl_.graphid_){uint64_t{0u}}
     , decltype(_impl_.prev_type_graphid_){uint64_t{0u}}
-    , decltype(_impl_.osm_way_id_){uint64_t{0u}}
+    , decltype(_impl_.osm_connecting_way_id_){uint64_t{0u}}
     , decltype(_impl_.type_){0u}
     , decltype(_impl_.wheelchair_boarding_){false}
     , decltype(_impl_.generated_){false}
+    , decltype(_impl_.osm_connecting_lon_){0}
+    , decltype(_impl_.osm_connecting_lat_){0}
     , decltype(_impl_.traversability_){0u}
   };
   _impl_.name_.InitDefault();
@@ -400,10 +412,10 @@ void Transit_Node::Clear() {
   }
   if (cached_has_bits & 0x000000f8u) {
     ::memset(&_impl_.lon_, 0, static_cast<size_t>(
-        reinterpret_cast<char*>(&_impl_.osm_way_id_) -
-        reinterpret_cast<char*>(&_impl_.lon_)) + sizeof(_impl_.osm_way_id_));
+        reinterpret_cast<char*>(&_impl_.osm_connecting_way_id_) -
+        reinterpret_cast<char*>(&_impl_.lon_)) + sizeof(_impl_.osm_connecting_way_id_));
   }
-  if (cached_has_bits & 0x00000f00u) {
+  if (cached_has_bits & 0x00003f00u) {
     ::memset(&_impl_.type_, 0, static_cast<size_t>(
         reinterpret_cast<char*>(&_impl_.traversability_) -
         reinterpret_cast<char*>(&_impl_.type_)) + sizeof(_impl_.traversability_));
@@ -419,21 +431,21 @@ const char* Transit_Node::_InternalParse(const char* ptr, ::_pbi::ParseContext* 
     uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // optional float lon = 1;
+      // optional double lon = 1;
       case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 13)) {
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 9)) {
           _Internal::set_has_lon(&has_bits);
-          _impl_.lon_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
-          ptr += sizeof(float);
+          _impl_.lon_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
+          ptr += sizeof(double);
         } else
           goto handle_unusual;
         continue;
-      // optional float lat = 2;
+      // optional double lat = 2;
       case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 21)) {
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 17)) {
           _Internal::set_has_lat(&has_bits);
-          _impl_.lat_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
-          ptr += sizeof(float);
+          _impl_.lat_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
+          ptr += sizeof(double);
         } else
           goto handle_unusual;
         continue;
@@ -482,11 +494,11 @@ const char* Transit_Node::_InternalParse(const char* ptr, ::_pbi::ParseContext* 
         } else
           goto handle_unusual;
         continue;
-      // optional uint64 osm_way_id = 8;
+      // optional uint64 osm_connecting_way_id = 8;
       case 8:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 64)) {
-          _Internal::set_has_osm_way_id(&has_bits);
-          _impl_.osm_way_id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          _Internal::set_has_osm_connecting_way_id(&has_bits);
+          _impl_.osm_connecting_way_id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -527,6 +539,24 @@ const char* Transit_Node::_InternalParse(const char* ptr, ::_pbi::ParseContext* 
         } else
           goto handle_unusual;
         continue;
+      // optional double osm_connecting_lon = 13;
+      case 13:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 105)) {
+          _Internal::set_has_osm_connecting_lon(&has_bits);
+          _impl_.osm_connecting_lon_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
+          ptr += sizeof(double);
+        } else
+          goto handle_unusual;
+        continue;
+      // optional double osm_connecting_lat = 14;
+      case 14:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 113)) {
+          _Internal::set_has_osm_connecting_lat(&has_bits);
+          _impl_.osm_connecting_lat_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
+          ptr += sizeof(double);
+        } else
+          goto handle_unusual;
+        continue;
       default:
         goto handle_unusual;
     }  // switch
@@ -558,16 +588,16 @@ uint8_t* Transit_Node::_InternalSerialize(
   (void) cached_has_bits;
 
   cached_has_bits = _impl_._has_bits_[0];
-  // optional float lon = 1;
+  // optional double lon = 1;
   if (cached_has_bits & 0x00000008u) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteFloatToArray(1, this->_internal_lon(), target);
+    target = ::_pbi::WireFormatLite::WriteDoubleToArray(1, this->_internal_lon(), target);
   }
 
-  // optional float lat = 2;
+  // optional double lat = 2;
   if (cached_has_bits & 0x00000010u) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteFloatToArray(2, this->_internal_lat(), target);
+    target = ::_pbi::WireFormatLite::WriteDoubleToArray(2, this->_internal_lat(), target);
   }
 
   // optional uint32 type = 3;
@@ -600,10 +630,10 @@ uint8_t* Transit_Node::_InternalSerialize(
         7, this->_internal_onestop_id(), target);
   }
 
-  // optional uint64 osm_way_id = 8;
+  // optional uint64 osm_connecting_way_id = 8;
   if (cached_has_bits & 0x00000080u) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(8, this->_internal_osm_way_id(), target);
+    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(8, this->_internal_osm_connecting_way_id(), target);
   }
 
   // optional string timezone = 9;
@@ -625,9 +655,21 @@ uint8_t* Transit_Node::_InternalSerialize(
   }
 
   // optional uint32 traversability = 12;
-  if (cached_has_bits & 0x00000800u) {
+  if (cached_has_bits & 0x00002000u) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteUInt32ToArray(12, this->_internal_traversability(), target);
+  }
+
+  // optional double osm_connecting_lon = 13;
+  if (cached_has_bits & 0x00000800u) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteDoubleToArray(13, this->_internal_osm_connecting_lon(), target);
+  }
+
+  // optional double osm_connecting_lat = 14;
+  if (cached_has_bits & 0x00001000u) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteDoubleToArray(14, this->_internal_osm_connecting_lat(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -669,14 +711,14 @@ size_t Transit_Node::ByteSizeLong() const {
           this->_internal_timezone());
     }
 
-    // optional float lon = 1;
+    // optional double lon = 1;
     if (cached_has_bits & 0x00000008u) {
-      total_size += 1 + 4;
+      total_size += 1 + 8;
     }
 
-    // optional float lat = 2;
+    // optional double lat = 2;
     if (cached_has_bits & 0x00000010u) {
-      total_size += 1 + 4;
+      total_size += 1 + 8;
     }
 
     // optional uint64 graphid = 4;
@@ -689,13 +731,13 @@ size_t Transit_Node::ByteSizeLong() const {
       total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_prev_type_graphid());
     }
 
-    // optional uint64 osm_way_id = 8;
+    // optional uint64 osm_connecting_way_id = 8;
     if (cached_has_bits & 0x00000080u) {
-      total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_osm_way_id());
+      total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_osm_connecting_way_id());
     }
 
   }
-  if (cached_has_bits & 0x00000f00u) {
+  if (cached_has_bits & 0x00003f00u) {
     // optional uint32 type = 3;
     if (cached_has_bits & 0x00000100u) {
       total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_type());
@@ -711,8 +753,18 @@ size_t Transit_Node::ByteSizeLong() const {
       total_size += 1 + 1;
     }
 
-    // optional uint32 traversability = 12;
+    // optional double osm_connecting_lon = 13;
     if (cached_has_bits & 0x00000800u) {
+      total_size += 1 + 8;
+    }
+
+    // optional double osm_connecting_lat = 14;
+    if (cached_has_bits & 0x00001000u) {
+      total_size += 1 + 8;
+    }
+
+    // optional uint32 traversability = 12;
+    if (cached_has_bits & 0x00002000u) {
       total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_traversability());
     }
 
@@ -762,11 +814,11 @@ void Transit_Node::MergeFrom(const Transit_Node& from) {
       _this->_impl_.prev_type_graphid_ = from._impl_.prev_type_graphid_;
     }
     if (cached_has_bits & 0x00000080u) {
-      _this->_impl_.osm_way_id_ = from._impl_.osm_way_id_;
+      _this->_impl_.osm_connecting_way_id_ = from._impl_.osm_connecting_way_id_;
     }
     _this->_impl_._has_bits_[0] |= cached_has_bits;
   }
-  if (cached_has_bits & 0x00000f00u) {
+  if (cached_has_bits & 0x00003f00u) {
     if (cached_has_bits & 0x00000100u) {
       _this->_impl_.type_ = from._impl_.type_;
     }
@@ -777,6 +829,12 @@ void Transit_Node::MergeFrom(const Transit_Node& from) {
       _this->_impl_.generated_ = from._impl_.generated_;
     }
     if (cached_has_bits & 0x00000800u) {
+      _this->_impl_.osm_connecting_lon_ = from._impl_.osm_connecting_lon_;
+    }
+    if (cached_has_bits & 0x00001000u) {
+      _this->_impl_.osm_connecting_lat_ = from._impl_.osm_connecting_lat_;
+    }
+    if (cached_has_bits & 0x00002000u) {
       _this->_impl_.traversability_ = from._impl_.traversability_;
     }
     _this->_impl_._has_bits_[0] |= cached_has_bits;
