@@ -37,3 +37,4 @@ jobs:
     - uses: pypa/cibuildwheel@v2.12.1
       env:
         CIBW_BUILD: cp37*
+        MACOSX_DEPLOYMENT_TARGET: 10.15
