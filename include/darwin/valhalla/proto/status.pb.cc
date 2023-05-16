@@ -21,13 +21,15 @@ namespace valhalla {
 PROTOBUF_CONSTEXPR Status::Status(
     ::_pbi::ConstantInitialized): _impl_{
     /*decltype(_impl_.available_actions_)*/{}
+  , /*decltype(_impl_.version_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.tileset_last_modified_)*/0u
   , /*decltype(_impl_.has_has_tiles_)*/{}
   , /*decltype(_impl_.has_has_admins_)*/{}
   , /*decltype(_impl_.has_has_timezones_)*/{}
   , /*decltype(_impl_.has_has_live_traffic_)*/{}
   , /*decltype(_impl_.has_bbox_)*/{}
-  , /*decltype(_impl_.has_version_)*/{}
-  , /*decltype(_impl_.has_tileset_last_modified_)*/{}
+  , /*decltype(_impl_.has_has_transit_tiles_)*/{}
+  , /*decltype(_impl_.has_osm_changeset_)*/{}
   , /*decltype(_impl_._cached_size_)*/{}
   , /*decltype(_impl_._oneof_case_)*/{}} {}
 struct StatusDefaultTypeInternal {
@@ -59,17 +61,28 @@ Status::Status(const Status& from)
   Status* const _this = this; (void)_this;
   new (&_impl_) Impl_{
       decltype(_impl_.available_actions_){from._impl_.available_actions_}
+    , decltype(_impl_.version_){}
+    , decltype(_impl_.tileset_last_modified_){}
     , decltype(_impl_.has_has_tiles_){}
     , decltype(_impl_.has_has_admins_){}
     , decltype(_impl_.has_has_timezones_){}
     , decltype(_impl_.has_has_live_traffic_){}
     , decltype(_impl_.has_bbox_){}
-    , decltype(_impl_.has_version_){}
-    , decltype(_impl_.has_tileset_last_modified_){}
+    , decltype(_impl_.has_has_transit_tiles_){}
+    , decltype(_impl_.has_osm_changeset_){}
     , /*decltype(_impl_._cached_size_)*/{}
     , /*decltype(_impl_._oneof_case_)*/{}};
 
   _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
+  _impl_.version_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.version_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_version().empty()) {
+    _this->_impl_.version_.Set(from._internal_version(), 
+      _this->GetArenaForAllocation());
+  }
+  _this->_impl_.tileset_last_modified_ = from._impl_.tileset_last_modified_;
   clear_has_has_has_tiles();
   switch (from.has_has_tiles_case()) {
     case kHasTiles: {
@@ -120,23 +133,23 @@ Status::Status(const Status& from)
       break;
     }
   }
-  clear_has_has_version();
-  switch (from.has_version_case()) {
-    case kVersion: {
-      _this->_internal_set_version(from._internal_version());
+  clear_has_has_has_transit_tiles();
+  switch (from.has_has_transit_tiles_case()) {
+    case kHasTransitTiles: {
+      _this->_internal_set_has_transit_tiles(from._internal_has_transit_tiles());
       break;
     }
-    case HAS_VERSION_NOT_SET: {
+    case HAS_HAS_TRANSIT_TILES_NOT_SET: {
       break;
     }
   }
-  clear_has_has_tileset_last_modified();
-  switch (from.has_tileset_last_modified_case()) {
-    case kTilesetLastModified: {
-      _this->_internal_set_tileset_last_modified(from._internal_tileset_last_modified());
+  clear_has_has_osm_changeset();
+  switch (from.has_osm_changeset_case()) {
+    case kOsmChangeset: {
+      _this->_internal_set_osm_changeset(from._internal_osm_changeset());
       break;
     }
-    case HAS_TILESET_LAST_MODIFIED_NOT_SET: {
+    case HAS_OSM_CHANGESET_NOT_SET: {
       break;
     }
   }
@@ -149,23 +162,29 @@ inline void Status::SharedCtor(
   (void)is_message_owned;
   new (&_impl_) Impl_{
       decltype(_impl_.available_actions_){arena}
+    , decltype(_impl_.version_){}
+    , decltype(_impl_.tileset_last_modified_){0u}
     , decltype(_impl_.has_has_tiles_){}
     , decltype(_impl_.has_has_admins_){}
     , decltype(_impl_.has_has_timezones_){}
     , decltype(_impl_.has_has_live_traffic_){}
     , decltype(_impl_.has_bbox_){}
-    , decltype(_impl_.has_version_){}
-    , decltype(_impl_.has_tileset_last_modified_){}
+    , decltype(_impl_.has_has_transit_tiles_){}
+    , decltype(_impl_.has_osm_changeset_){}
     , /*decltype(_impl_._cached_size_)*/{}
     , /*decltype(_impl_._oneof_case_)*/{}
   };
+  _impl_.version_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.version_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   clear_has_has_has_tiles();
   clear_has_has_has_admins();
   clear_has_has_has_timezones();
   clear_has_has_has_live_traffic();
   clear_has_has_bbox();
-  clear_has_has_version();
-  clear_has_has_tileset_last_modified();
+  clear_has_has_has_transit_tiles();
+  clear_has_has_osm_changeset();
 }
 
 Status::~Status() {
@@ -180,6 +199,7 @@ Status::~Status() {
 inline void Status::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   _impl_.available_actions_.~RepeatedPtrField();
+  _impl_.version_.Destroy();
   if (has_has_has_tiles()) {
     clear_has_has_tiles();
   }
@@ -195,11 +215,11 @@ inline void Status::SharedDtor() {
   if (has_has_bbox()) {
     clear_has_bbox();
   }
-  if (has_has_version()) {
-    clear_has_version();
+  if (has_has_has_transit_tiles()) {
+    clear_has_has_transit_tiles();
   }
-  if (has_has_tileset_last_modified()) {
-    clear_has_tileset_last_modified();
+  if (has_has_osm_changeset()) {
+    clear_has_osm_changeset();
   }
 }
 
@@ -277,32 +297,32 @@ void Status::clear_has_bbox() {
   _impl_._oneof_case_[4] = HAS_BBOX_NOT_SET;
 }
 
-void Status::clear_has_version() {
+void Status::clear_has_has_transit_tiles() {
 // @@protoc_insertion_point(one_of_clear_start:valhalla.Status)
-  switch (has_version_case()) {
-    case kVersion: {
-      _impl_.has_version_.version_.Destroy();
-      break;
-    }
-    case HAS_VERSION_NOT_SET: {
-      break;
-    }
-  }
-  _impl_._oneof_case_[5] = HAS_VERSION_NOT_SET;
-}
-
-void Status::clear_has_tileset_last_modified() {
-// @@protoc_insertion_point(one_of_clear_start:valhalla.Status)
-  switch (has_tileset_last_modified_case()) {
-    case kTilesetLastModified: {
+  switch (has_has_transit_tiles_case()) {
+    case kHasTransitTiles: {
       // No need to clear
       break;
     }
-    case HAS_TILESET_LAST_MODIFIED_NOT_SET: {
+    case HAS_HAS_TRANSIT_TILES_NOT_SET: {
       break;
     }
   }
-  _impl_._oneof_case_[6] = HAS_TILESET_LAST_MODIFIED_NOT_SET;
+  _impl_._oneof_case_[5] = HAS_HAS_TRANSIT_TILES_NOT_SET;
+}
+
+void Status::clear_has_osm_changeset() {
+// @@protoc_insertion_point(one_of_clear_start:valhalla.Status)
+  switch (has_osm_changeset_case()) {
+    case kOsmChangeset: {
+      // No need to clear
+      break;
+    }
+    case HAS_OSM_CHANGESET_NOT_SET: {
+      break;
+    }
+  }
+  _impl_._oneof_case_[6] = HAS_OSM_CHANGESET_NOT_SET;
 }
 
 
@@ -313,13 +333,15 @@ void Status::Clear() {
   (void) cached_has_bits;
 
   _impl_.available_actions_.Clear();
+  _impl_.version_.ClearToEmpty();
+  _impl_.tileset_last_modified_ = 0u;
   clear_has_has_tiles();
   clear_has_has_admins();
   clear_has_has_timezones();
   clear_has_has_live_traffic();
   clear_has_bbox();
-  clear_has_version();
-  clear_has_tileset_last_modified();
+  clear_has_has_transit_tiles();
+  clear_has_osm_changeset();
   _internal_metadata_.Clear<std::string>();
 }
 
@@ -384,7 +406,7 @@ const char* Status::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
       // uint32 tileset_last_modified = 7;
       case 7:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 56)) {
-          _internal_set_tileset_last_modified(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr));
+          _impl_.tileset_last_modified_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -401,6 +423,22 @@ const char* Status::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
             CHK_(::_pbi::VerifyUTF8(str, nullptr));
             if (!ctx->DataAvailable(ptr)) break;
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<66>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      // bool has_transit_tiles = 9;
+      case 9:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 72)) {
+          _internal_set_has_transit_tiles(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr));
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // uint64 osm_changeset = 10;
+      case 10:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 80)) {
+          _internal_set_osm_changeset(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr));
+          CHK_(ptr);
         } else
           goto handle_unusual;
         continue;
@@ -468,7 +506,7 @@ uint8_t* Status::_InternalSerialize(
   }
 
   // string version = 6;
-  if (_internal_has_version()) {
+  if (!this->_internal_version().empty()) {
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_version().data(), static_cast<int>(this->_internal_version().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
@@ -478,7 +516,7 @@ uint8_t* Status::_InternalSerialize(
   }
 
   // uint32 tileset_last_modified = 7;
-  if (_internal_has_tileset_last_modified()) {
+  if (this->_internal_tileset_last_modified() != 0) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteUInt32ToArray(7, this->_internal_tileset_last_modified(), target);
   }
@@ -491,6 +529,18 @@ uint8_t* Status::_InternalSerialize(
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
       "valhalla.Status.available_actions");
     target = stream->WriteString(8, s, target);
+  }
+
+  // bool has_transit_tiles = 9;
+  if (_internal_has_has_transit_tiles()) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(9, this->_internal_has_transit_tiles(), target);
+  }
+
+  // uint64 osm_changeset = 10;
+  if (_internal_has_osm_changeset()) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(10, this->_internal_osm_changeset(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -515,6 +565,18 @@ size_t Status::ByteSizeLong() const {
   for (int i = 0, n = _impl_.available_actions_.size(); i < n; i++) {
     total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
       _impl_.available_actions_.Get(i));
+  }
+
+  // string version = 6;
+  if (!this->_internal_version().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_version());
+  }
+
+  // uint32 tileset_last_modified = 7;
+  if (this->_internal_tileset_last_modified() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_tileset_last_modified());
   }
 
   switch (has_has_tiles_case()) {
@@ -569,25 +631,23 @@ size_t Status::ByteSizeLong() const {
       break;
     }
   }
-  switch (has_version_case()) {
-    // string version = 6;
-    case kVersion: {
-      total_size += 1 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-          this->_internal_version());
+  switch (has_has_transit_tiles_case()) {
+    // bool has_transit_tiles = 9;
+    case kHasTransitTiles: {
+      total_size += 1 + 1;
       break;
     }
-    case HAS_VERSION_NOT_SET: {
+    case HAS_HAS_TRANSIT_TILES_NOT_SET: {
       break;
     }
   }
-  switch (has_tileset_last_modified_case()) {
-    // uint32 tileset_last_modified = 7;
-    case kTilesetLastModified: {
-      total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_tileset_last_modified());
+  switch (has_osm_changeset_case()) {
+    // uint64 osm_changeset = 10;
+    case kOsmChangeset: {
+      total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_osm_changeset());
       break;
     }
-    case HAS_TILESET_LAST_MODIFIED_NOT_SET: {
+    case HAS_OSM_CHANGESET_NOT_SET: {
       break;
     }
   }
@@ -613,6 +673,12 @@ void Status::MergeFrom(const Status& from) {
   (void) cached_has_bits;
 
   _this->_impl_.available_actions_.MergeFrom(from._impl_.available_actions_);
+  if (!from._internal_version().empty()) {
+    _this->_internal_set_version(from._internal_version());
+  }
+  if (from._internal_tileset_last_modified() != 0) {
+    _this->_internal_set_tileset_last_modified(from._internal_tileset_last_modified());
+  }
   switch (from.has_has_tiles_case()) {
     case kHasTiles: {
       _this->_internal_set_has_tiles(from._internal_has_tiles());
@@ -658,21 +724,21 @@ void Status::MergeFrom(const Status& from) {
       break;
     }
   }
-  switch (from.has_version_case()) {
-    case kVersion: {
-      _this->_internal_set_version(from._internal_version());
+  switch (from.has_has_transit_tiles_case()) {
+    case kHasTransitTiles: {
+      _this->_internal_set_has_transit_tiles(from._internal_has_transit_tiles());
       break;
     }
-    case HAS_VERSION_NOT_SET: {
+    case HAS_HAS_TRANSIT_TILES_NOT_SET: {
       break;
     }
   }
-  switch (from.has_tileset_last_modified_case()) {
-    case kTilesetLastModified: {
-      _this->_internal_set_tileset_last_modified(from._internal_tileset_last_modified());
+  switch (from.has_osm_changeset_case()) {
+    case kOsmChangeset: {
+      _this->_internal_set_osm_changeset(from._internal_osm_changeset());
       break;
     }
-    case HAS_TILESET_LAST_MODIFIED_NOT_SET: {
+    case HAS_OSM_CHANGESET_NOT_SET: {
       break;
     }
   }
@@ -692,15 +758,22 @@ bool Status::IsInitialized() const {
 
 void Status::InternalSwap(Status* other) {
   using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   _impl_.available_actions_.InternalSwap(&other->_impl_.available_actions_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.version_, lhs_arena,
+      &other->_impl_.version_, rhs_arena
+  );
+  swap(_impl_.tileset_last_modified_, other->_impl_.tileset_last_modified_);
   swap(_impl_.has_has_tiles_, other->_impl_.has_has_tiles_);
   swap(_impl_.has_has_admins_, other->_impl_.has_has_admins_);
   swap(_impl_.has_has_timezones_, other->_impl_.has_has_timezones_);
   swap(_impl_.has_has_live_traffic_, other->_impl_.has_has_live_traffic_);
   swap(_impl_.has_bbox_, other->_impl_.has_bbox_);
-  swap(_impl_.has_version_, other->_impl_.has_version_);
-  swap(_impl_.has_tileset_last_modified_, other->_impl_.has_tileset_last_modified_);
+  swap(_impl_.has_has_transit_tiles_, other->_impl_.has_has_transit_tiles_);
+  swap(_impl_.has_osm_changeset_, other->_impl_.has_osm_changeset_);
   swap(_impl_._oneof_case_[0], other->_impl_._oneof_case_[0]);
   swap(_impl_._oneof_case_[1], other->_impl_._oneof_case_[1]);
   swap(_impl_._oneof_case_[2], other->_impl_._oneof_case_[2]);

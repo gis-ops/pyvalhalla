@@ -1500,6 +1500,8 @@ class Costing_Options final :
     kFilterRouteActionFieldNumber = 53,
     kFixedSpeedFieldNumber = 80,
     kAxleCountFieldNumber = 81,
+    kUseLitFieldNumber = 82,
+    kDisableHierarchyPruningFieldNumber = 83,
     kManeuverPenaltyFieldNumber = 1,
     kDestinationOnlyPenaltyFieldNumber = 2,
     kGateCostFieldNumber = 3,
@@ -1706,6 +1708,24 @@ class Costing_Options final :
   private:
   uint32_t _internal_axle_count() const;
   void _internal_set_axle_count(uint32_t value);
+  public:
+
+  // float use_lit = 82;
+  void clear_use_lit();
+  float use_lit() const;
+  void set_use_lit(float value);
+  private:
+  float _internal_use_lit() const;
+  void _internal_set_use_lit(float value);
+  public:
+
+  // bool disable_hierarchy_pruning = 83;
+  void clear_disable_hierarchy_pruning();
+  bool disable_hierarchy_pruning() const;
+  void set_disable_hierarchy_pruning(bool value);
+  private:
+  bool _internal_disable_hierarchy_pruning() const;
+  void _internal_set_disable_hierarchy_pruning(bool value);
   public:
 
   // float maneuver_penalty = 1;
@@ -3098,6 +3118,8 @@ class Costing_Options final :
     int filter_route_action_;
     uint32_t fixed_speed_;
     uint32_t axle_count_;
+    float use_lit_;
+    bool disable_hierarchy_pruning_;
     union HasManeuverPenaltyUnion {
       constexpr HasManeuverPenaltyUnion() : _constinit_{} {}
         ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
@@ -3933,6 +3955,11 @@ class Options final :
     HAS_SKIP_OPPOSITES_NOT_SET = 0,
   };
 
+  enum HasMatrixLocationsCase {
+    kMatrixLocations = 54,
+    HAS_MATRIX_LOCATIONS_NOT_SET = 0,
+  };
+
   static inline const Options* internal_default_instance() {
     return reinterpret_cast<const Options*>(
                &_Options_default_instance_);
@@ -4194,7 +4221,6 @@ class Options final :
     kFilterActionFieldNumber = 33,
     kShapeFormatFieldNumber = 38,
     kReverseFieldNumber = 53,
-    kMatrixLocationsFieldNumber = 54,
     kLanguageFieldNumber = 2,
     kIdFieldNumber = 5,
     kJsonpFieldNumber = 6,
@@ -4221,6 +4247,7 @@ class Options final :
     kPrioritizeBidirectionalFieldNumber = 48,
     kExpansionActionFieldNumber = 49,
     kSkipOppositesFieldNumber = 50,
+    kMatrixLocationsFieldNumber = 54,
   };
   // map<int32, .valhalla.Costing> costings = 13;
   int costings_size() const;
@@ -4548,15 +4575,6 @@ class Options final :
   private:
   bool _internal_reverse() const;
   void _internal_set_reverse(bool value);
-  public:
-
-  // uint32 matrix_locations = 54;
-  void clear_matrix_locations();
-  uint32_t matrix_locations() const;
-  void set_matrix_locations(uint32_t value);
-  private:
-  uint32_t _internal_matrix_locations() const;
-  void _internal_set_matrix_locations(uint32_t value);
   public:
 
   // string language = 2;
@@ -4922,6 +4940,19 @@ class Options final :
   void _internal_set_skip_opposites(bool value);
   public:
 
+  // uint32 matrix_locations = 54;
+  bool has_matrix_locations() const;
+  private:
+  bool _internal_has_matrix_locations() const;
+  public:
+  void clear_matrix_locations();
+  uint32_t matrix_locations() const;
+  void set_matrix_locations(uint32_t value);
+  private:
+  uint32_t _internal_matrix_locations() const;
+  void _internal_set_matrix_locations(uint32_t value);
+  public:
+
   void clear_has_language();
   HasLanguageCase has_language_case() const;
   void clear_has_id();
@@ -4974,6 +5005,8 @@ class Options final :
   HasExpansionActionCase has_expansion_action_case() const;
   void clear_has_skip_opposites();
   HasSkipOppositesCase has_skip_opposites_case() const;
+  void clear_has_matrix_locations();
+  HasMatrixLocationsCase has_matrix_locations_case() const;
   // @@protoc_insertion_point(class_scope:valhalla.Options)
  private:
   class _Internal;
@@ -5003,6 +5036,7 @@ class Options final :
   void set_has_prioritize_bidirectional();
   void set_has_expansion_action();
   void set_has_skip_opposites();
+  void set_has_matrix_locations();
 
   inline bool has_has_language() const;
   inline void clear_has_has_language();
@@ -5082,6 +5116,9 @@ class Options final :
   inline bool has_has_skip_opposites() const;
   inline void clear_has_has_skip_opposites();
 
+  inline bool has_has_matrix_locations() const;
+  inline void clear_has_has_matrix_locations();
+
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
@@ -5114,7 +5151,6 @@ class Options final :
     int filter_action_;
     int shape_format_;
     bool reverse_;
-    uint32_t matrix_locations_;
     union HasLanguageUnion {
       constexpr HasLanguageUnion() : _constinit_{} {}
         ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
@@ -5245,8 +5281,13 @@ class Options final :
         ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
       bool skip_opposites_;
     } has_skip_opposites_;
+    union HasMatrixLocationsUnion {
+      constexpr HasMatrixLocationsUnion() : _constinit_{} {}
+        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
+      uint32_t matrix_locations_;
+    } has_matrix_locations_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-    uint32_t _oneof_case_[26];
+    uint32_t _oneof_case_[27];
 
   };
   union { Impl_ _impl_; };
@@ -8810,6 +8851,46 @@ inline void Costing_Options::set_axle_count(uint32_t value) {
   // @@protoc_insertion_point(field_set:valhalla.Costing.Options.axle_count)
 }
 
+// float use_lit = 82;
+inline void Costing_Options::clear_use_lit() {
+  _impl_.use_lit_ = 0;
+}
+inline float Costing_Options::_internal_use_lit() const {
+  return _impl_.use_lit_;
+}
+inline float Costing_Options::use_lit() const {
+  // @@protoc_insertion_point(field_get:valhalla.Costing.Options.use_lit)
+  return _internal_use_lit();
+}
+inline void Costing_Options::_internal_set_use_lit(float value) {
+  
+  _impl_.use_lit_ = value;
+}
+inline void Costing_Options::set_use_lit(float value) {
+  _internal_set_use_lit(value);
+  // @@protoc_insertion_point(field_set:valhalla.Costing.Options.use_lit)
+}
+
+// bool disable_hierarchy_pruning = 83;
+inline void Costing_Options::clear_disable_hierarchy_pruning() {
+  _impl_.disable_hierarchy_pruning_ = false;
+}
+inline bool Costing_Options::_internal_disable_hierarchy_pruning() const {
+  return _impl_.disable_hierarchy_pruning_;
+}
+inline bool Costing_Options::disable_hierarchy_pruning() const {
+  // @@protoc_insertion_point(field_get:valhalla.Costing.Options.disable_hierarchy_pruning)
+  return _internal_disable_hierarchy_pruning();
+}
+inline void Costing_Options::_internal_set_disable_hierarchy_pruning(bool value) {
+  
+  _impl_.disable_hierarchy_pruning_ = value;
+}
+inline void Costing_Options::set_disable_hierarchy_pruning(bool value) {
+  _internal_set_disable_hierarchy_pruning(value);
+  // @@protoc_insertion_point(field_set:valhalla.Costing.Options.disable_hierarchy_pruning)
+}
+
 inline bool Costing_Options::has_has_maneuver_penalty() const {
   return has_maneuver_penalty_case() != HAS_MANEUVER_PENALTY_NOT_SET;
 }
@@ -11667,19 +11748,37 @@ inline void Options::set_reverse(bool value) {
 }
 
 // uint32 matrix_locations = 54;
+inline bool Options::_internal_has_matrix_locations() const {
+  return has_matrix_locations_case() == kMatrixLocations;
+}
+inline bool Options::has_matrix_locations() const {
+  return _internal_has_matrix_locations();
+}
+inline void Options::set_has_matrix_locations() {
+  _impl_._oneof_case_[26] = kMatrixLocations;
+}
 inline void Options::clear_matrix_locations() {
-  _impl_.matrix_locations_ = 0u;
+  if (_internal_has_matrix_locations()) {
+    _impl_.has_matrix_locations_.matrix_locations_ = 0u;
+    clear_has_has_matrix_locations();
+  }
 }
 inline uint32_t Options::_internal_matrix_locations() const {
-  return _impl_.matrix_locations_;
+  if (_internal_has_matrix_locations()) {
+    return _impl_.has_matrix_locations_.matrix_locations_;
+  }
+  return 0u;
+}
+inline void Options::_internal_set_matrix_locations(uint32_t value) {
+  if (!_internal_has_matrix_locations()) {
+    clear_has_matrix_locations();
+    set_has_matrix_locations();
+  }
+  _impl_.has_matrix_locations_.matrix_locations_ = value;
 }
 inline uint32_t Options::matrix_locations() const {
   // @@protoc_insertion_point(field_get:valhalla.Options.matrix_locations)
   return _internal_matrix_locations();
-}
-inline void Options::_internal_set_matrix_locations(uint32_t value) {
-  
-  _impl_.matrix_locations_ = value;
 }
 inline void Options::set_matrix_locations(uint32_t value) {
   _internal_set_matrix_locations(value);
@@ -11842,6 +11941,12 @@ inline bool Options::has_has_skip_opposites() const {
 inline void Options::clear_has_has_skip_opposites() {
   _impl_._oneof_case_[25] = HAS_SKIP_OPPOSITES_NOT_SET;
 }
+inline bool Options::has_has_matrix_locations() const {
+  return has_matrix_locations_case() != HAS_MATRIX_LOCATIONS_NOT_SET;
+}
+inline void Options::clear_has_has_matrix_locations() {
+  _impl_._oneof_case_[26] = HAS_MATRIX_LOCATIONS_NOT_SET;
+}
 inline Options::HasLanguageCase Options::has_language_case() const {
   return Options::HasLanguageCase(_impl_._oneof_case_[0]);
 }
@@ -11919,6 +12024,9 @@ inline Options::HasExpansionActionCase Options::has_expansion_action_case() cons
 }
 inline Options::HasSkipOppositesCase Options::has_skip_opposites_case() const {
   return Options::HasSkipOppositesCase(_impl_._oneof_case_[25]);
+}
+inline Options::HasMatrixLocationsCase Options::has_matrix_locations_case() const {
+  return Options::HasMatrixLocationsCase(_impl_._oneof_case_[26]);
 }
 #ifdef __GNUC__
   #pragma GCC diagnostic pop

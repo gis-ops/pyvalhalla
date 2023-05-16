@@ -7,11 +7,15 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
 ## Unreleased
 
-_Valhalla version 3.3.0_
+_Valhalla version [3.4.0](https://github.com/valhalla/valhalla/releases/tag/3.4.0)_
+
+## [3.2.0](https://pypi.org/project/pyvalhalla/3.2.0/) - 2023-05-16
+
+_Valhalla version [3.4.0](https://github.com/valhalla/valhalla/releases/tag/3.4.0)_
 
 ## [3.1.1](https://pypi.org/project/pyvalhalla/3.1.1/) - 2023-04-16
 
-_Valhalla version 3.3.0_
+_Valhalla version [3.3.0](https://github.com/valhalla/valhalla/releases/tag/3.3.0)_
 
 ### FIXED
 
@@ -19,7 +23,7 @@ _Valhalla version 3.3.0_
 
 ## [3.1.0](https://pypi.org/project/pyvalhalla/3.1.0/) - 2023-04-13
 
-_Valhalla version 3.3.0_
+_Valhalla version [3.3.0](https://github.com/valhalla/valhalla/releases/tag/3.3.0)_
 
 ### CHANGED
 
@@ -32,7 +36,7 @@ _Valhalla version 3.3.0_
 
 ## [3.0.4](https://pypi.org/project/pyvalhalla/3.0.4/) - 2023-04-12
 
-_Valhalla version 3.1.4_
+_Valhalla version [3.1.4](https://github.com/valhalla/valhalla/releases/tag/3.1.4)_
 
 ### CHANGED
 
@@ -40,7 +44,7 @@ _Valhalla version 3.1.4_
 
 ## [3.0.3](https://pypi.org/project/pyvalhalla/3.0.3/) - 2022-09-11
 
-_Valhalla version 3.1.4_
+_Valhalla version [3.1.4](https://github.com/valhalla/valhalla/releases/tag/3.1.4)_
 
 ### CHANGED
 
@@ -48,7 +52,7 @@ _Valhalla version 3.1.4_
 
 ## [3.0.2](https://pypi.org/project/pyvalhalla/3.0.2/) - 2022-03-10
 
-_Valhalla version 3.1.4_
+_Valhalla version [3.1.4](https://github.com/valhalla/valhalla/releases/tag/3.1.4)_
 
 ### ADDED
 
@@ -56,7 +60,7 @@ _Valhalla version 3.1.4_
 
 ## [3.0.1](https://pypi.org/project/pyvalhalla/3.0.1/) - 2022-03-08
 
-_Valhalla version 3.1.4_
+_Valhalla version [3.1.4](https://github.com/valhalla/valhalla/releases/tag/3.1.4)_
 
 ### Fixed
 
@@ -64,6 +68,6 @@ _Valhalla version 3.1.4_
 
 ## [3.0.0](https://pypi.org/project/pyvalhalla/3.0.0/) - 2022-03-08
 
-_Valhalla version 3.1.4_
+_Valhalla version [3.1.4](https://github.com/valhalla/valhalla/releases/tag/3.1.4)_
 
 ### First release

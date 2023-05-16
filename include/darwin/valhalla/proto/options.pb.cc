@@ -89,6 +89,8 @@ PROTOBUF_CONSTEXPR Costing_Options::Costing_Options(
   , /*decltype(_impl_.filter_route_action_)*/0
   , /*decltype(_impl_.fixed_speed_)*/0u
   , /*decltype(_impl_.axle_count_)*/0u
+  , /*decltype(_impl_.use_lit_)*/0
+  , /*decltype(_impl_.disable_hierarchy_pruning_)*/false
   , /*decltype(_impl_.has_maneuver_penalty_)*/{}
   , /*decltype(_impl_.has_destination_only_penalty_)*/{}
   , /*decltype(_impl_.has_gate_cost_)*/{}
@@ -226,7 +228,6 @@ PROTOBUF_CONSTEXPR Options::Options(
   , /*decltype(_impl_.filter_action_)*/0
   , /*decltype(_impl_.shape_format_)*/0
   , /*decltype(_impl_.reverse_)*/false
-  , /*decltype(_impl_.matrix_locations_)*/0u
   , /*decltype(_impl_.has_language_)*/{}
   , /*decltype(_impl_.has_id_)*/{}
   , /*decltype(_impl_.has_jsonp_)*/{}
@@ -253,6 +254,7 @@ PROTOBUF_CONSTEXPR Options::Options(
   , /*decltype(_impl_.has_prioritize_bidirectional_)*/{}
   , /*decltype(_impl_.has_expansion_action_)*/{}
   , /*decltype(_impl_.has_skip_opposites_)*/{}
+  , /*decltype(_impl_.has_matrix_locations_)*/{}
   , /*decltype(_impl_._cached_size_)*/{}
   , /*decltype(_impl_._oneof_case_)*/{}} {}
 struct OptionsDefaultTypeInternal {
@@ -2106,6 +2108,8 @@ Costing_Options::Costing_Options(const Costing_Options& from)
     , decltype(_impl_.filter_route_action_){}
     , decltype(_impl_.fixed_speed_){}
     , decltype(_impl_.axle_count_){}
+    , decltype(_impl_.use_lit_){}
+    , decltype(_impl_.disable_hierarchy_pruning_){}
     , decltype(_impl_.has_maneuver_penalty_){}
     , decltype(_impl_.has_destination_only_penalty_){}
     , decltype(_impl_.has_gate_cost_){}
@@ -2183,8 +2187,8 @@ Costing_Options::Costing_Options(const Costing_Options& from)
 
   _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
   ::memcpy(&_impl_.filter_stop_action_, &from._impl_.filter_stop_action_,
-    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.axle_count_) -
-    reinterpret_cast<char*>(&_impl_.filter_stop_action_)) + sizeof(_impl_.axle_count_));
+    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.disable_hierarchy_pruning_) -
+    reinterpret_cast<char*>(&_impl_.filter_stop_action_)) + sizeof(_impl_.disable_hierarchy_pruning_));
   clear_has_has_maneuver_penalty();
   switch (from.has_maneuver_penalty_case()) {
     case kManeuverPenalty: {
@@ -2922,6 +2926,8 @@ inline void Costing_Options::SharedCtor(
     , decltype(_impl_.filter_route_action_){0}
     , decltype(_impl_.fixed_speed_){0u}
     , decltype(_impl_.axle_count_){0u}
+    , decltype(_impl_.use_lit_){0}
+    , decltype(_impl_.disable_hierarchy_pruning_){false}
     , decltype(_impl_.has_maneuver_penalty_){}
     , decltype(_impl_.has_destination_only_penalty_){}
     , decltype(_impl_.has_gate_cost_){}
@@ -4328,8 +4334,8 @@ void Costing_Options::Clear() {
   _impl_.filter_route_ids_.Clear();
   _impl_.exclude_edges_.Clear();
   ::memset(&_impl_.filter_stop_action_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&_impl_.axle_count_) -
-      reinterpret_cast<char*>(&_impl_.filter_stop_action_)) + sizeof(_impl_.axle_count_));
+      reinterpret_cast<char*>(&_impl_.disable_hierarchy_pruning_) -
+      reinterpret_cast<char*>(&_impl_.filter_stop_action_)) + sizeof(_impl_.disable_hierarchy_pruning_));
   clear_has_maneuver_penalty();
   clear_has_destination_only_penalty();
   clear_has_gate_cost();
@@ -5090,6 +5096,22 @@ const char* Costing_Options::_InternalParse(const char* ptr, ::_pbi::ParseContex
         } else
           goto handle_unusual;
         continue;
+      // float use_lit = 82;
+      case 82:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 149)) {
+          _impl_.use_lit_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else
+          goto handle_unusual;
+        continue;
+      // bool disable_hierarchy_pruning = 83;
+      case 83:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 152)) {
+          _impl_.disable_hierarchy_pruning_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
       default:
         goto handle_unusual;
     }  // switch
@@ -5626,6 +5648,22 @@ uint8_t* Costing_Options::_InternalSerialize(
     target = ::_pbi::WireFormatLite::WriteUInt32ToArray(81, this->_internal_axle_count(), target);
   }
 
+  // float use_lit = 82;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_use_lit = this->_internal_use_lit();
+  uint32_t raw_use_lit;
+  memcpy(&raw_use_lit, &tmp_use_lit, sizeof(tmp_use_lit));
+  if (raw_use_lit != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(82, this->_internal_use_lit(), target);
+  }
+
+  // bool disable_hierarchy_pruning = 83;
+  if (this->_internal_disable_hierarchy_pruning() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(83, this->_internal_disable_hierarchy_pruning(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = stream->WriteRaw(_internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).data(),
         static_cast<int>(_internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).size()), target);
@@ -5703,6 +5741,20 @@ size_t Costing_Options::ByteSizeLong() const {
     total_size += 2 +
       ::_pbi::WireFormatLite::UInt32Size(
         this->_internal_axle_count());
+  }
+
+  // float use_lit = 82;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_use_lit = this->_internal_use_lit();
+  uint32_t raw_use_lit;
+  memcpy(&raw_use_lit, &tmp_use_lit, sizeof(tmp_use_lit));
+  if (raw_use_lit != 0) {
+    total_size += 2 + 4;
+  }
+
+  // bool disable_hierarchy_pruning = 83;
+  if (this->_internal_disable_hierarchy_pruning() != 0) {
+    total_size += 2 + 1;
   }
 
   switch (has_maneuver_penalty_case()) {
@@ -6481,6 +6533,16 @@ void Costing_Options::MergeFrom(const Costing_Options& from) {
   if (from._internal_axle_count() != 0) {
     _this->_internal_set_axle_count(from._internal_axle_count());
   }
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_use_lit = from._internal_use_lit();
+  uint32_t raw_use_lit;
+  memcpy(&raw_use_lit, &tmp_use_lit, sizeof(tmp_use_lit));
+  if (raw_use_lit != 0) {
+    _this->_internal_set_use_lit(from._internal_use_lit());
+  }
+  if (from._internal_disable_hierarchy_pruning() != 0) {
+    _this->_internal_set_disable_hierarchy_pruning(from._internal_disable_hierarchy_pruning());
+  }
   switch (from.has_maneuver_penalty_case()) {
     case kManeuverPenalty: {
       _this->_internal_set_maneuver_penalty(from._internal_maneuver_penalty());
@@ -7151,8 +7213,8 @@ void Costing_Options::InternalSwap(Costing_Options* other) {
   _impl_.filter_route_ids_.InternalSwap(&other->_impl_.filter_route_ids_);
   _impl_.exclude_edges_.InternalSwap(&other->_impl_.exclude_edges_);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(Costing_Options, _impl_.axle_count_)
-      + sizeof(Costing_Options::_impl_.axle_count_)
+      PROTOBUF_FIELD_OFFSET(Costing_Options, _impl_.disable_hierarchy_pruning_)
+      + sizeof(Costing_Options::_impl_.disable_hierarchy_pruning_)
       - PROTOBUF_FIELD_OFFSET(Costing_Options, _impl_.filter_stop_action_)>(
           reinterpret_cast<char*>(&_impl_.filter_stop_action_),
           reinterpret_cast<char*>(&other->_impl_.filter_stop_action_));
@@ -7798,7 +7860,6 @@ Options::Options(const Options& from)
     , decltype(_impl_.filter_action_){}
     , decltype(_impl_.shape_format_){}
     , decltype(_impl_.reverse_){}
-    , decltype(_impl_.matrix_locations_){}
     , decltype(_impl_.has_language_){}
     , decltype(_impl_.has_id_){}
     , decltype(_impl_.has_jsonp_){}
@@ -7825,6 +7886,7 @@ Options::Options(const Options& from)
     , decltype(_impl_.has_prioritize_bidirectional_){}
     , decltype(_impl_.has_expansion_action_){}
     , decltype(_impl_.has_skip_opposites_){}
+    , decltype(_impl_.has_matrix_locations_){}
     , /*decltype(_impl_._cached_size_)*/{}
     , /*decltype(_impl_._oneof_case_)*/{}};
 
@@ -7834,8 +7896,8 @@ Options::Options(const Options& from)
     _this->_impl_.pbf_field_selector_ = new ::valhalla::PbfFieldSelector(*from._impl_.pbf_field_selector_);
   }
   ::memcpy(&_impl_.units_, &from._impl_.units_,
-    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.matrix_locations_) -
-    reinterpret_cast<char*>(&_impl_.units_)) + sizeof(_impl_.matrix_locations_));
+    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.reverse_) -
+    reinterpret_cast<char*>(&_impl_.units_)) + sizeof(_impl_.reverse_));
   clear_has_has_language();
   switch (from.has_language_case()) {
     case kLanguage: {
@@ -8096,6 +8158,16 @@ Options::Options(const Options& from)
       break;
     }
   }
+  clear_has_has_matrix_locations();
+  switch (from.has_matrix_locations_case()) {
+    case kMatrixLocations: {
+      _this->_internal_set_matrix_locations(from._internal_matrix_locations());
+      break;
+    }
+    case HAS_MATRIX_LOCATIONS_NOT_SET: {
+      break;
+    }
+  }
   // @@protoc_insertion_point(copy_constructor:valhalla.Options)
 }
 
@@ -8128,7 +8200,6 @@ inline void Options::SharedCtor(
     , decltype(_impl_.filter_action_){0}
     , decltype(_impl_.shape_format_){0}
     , decltype(_impl_.reverse_){false}
-    , decltype(_impl_.matrix_locations_){0u}
     , decltype(_impl_.has_language_){}
     , decltype(_impl_.has_id_){}
     , decltype(_impl_.has_jsonp_){}
@@ -8155,6 +8226,7 @@ inline void Options::SharedCtor(
     , decltype(_impl_.has_prioritize_bidirectional_){}
     , decltype(_impl_.has_expansion_action_){}
     , decltype(_impl_.has_skip_opposites_){}
+    , decltype(_impl_.has_matrix_locations_){}
     , /*decltype(_impl_._cached_size_)*/{}
     , /*decltype(_impl_._oneof_case_)*/{}
   };
@@ -8184,6 +8256,7 @@ inline void Options::SharedCtor(
   clear_has_has_prioritize_bidirectional();
   clear_has_has_expansion_action();
   clear_has_has_skip_opposites();
+  clear_has_has_matrix_locations();
 }
 
 Options::~Options() {
@@ -8288,6 +8361,9 @@ inline void Options::SharedDtor() {
   }
   if (has_has_skip_opposites()) {
     clear_has_skip_opposites();
+  }
+  if (has_has_matrix_locations()) {
+    clear_has_matrix_locations();
   }
 }
 
@@ -8659,6 +8735,20 @@ void Options::clear_has_skip_opposites() {
   _impl_._oneof_case_[25] = HAS_SKIP_OPPOSITES_NOT_SET;
 }
 
+void Options::clear_has_matrix_locations() {
+// @@protoc_insertion_point(one_of_clear_start:valhalla.Options)
+  switch (has_matrix_locations_case()) {
+    case kMatrixLocations: {
+      // No need to clear
+      break;
+    }
+    case HAS_MATRIX_LOCATIONS_NOT_SET: {
+      break;
+    }
+  }
+  _impl_._oneof_case_[26] = HAS_MATRIX_LOCATIONS_NOT_SET;
+}
+
 
 void Options::Clear() {
 // @@protoc_insertion_point(message_clear_start:valhalla.Options)
@@ -8683,8 +8773,8 @@ void Options::Clear() {
   }
   _impl_.pbf_field_selector_ = nullptr;
   ::memset(&_impl_.units_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&_impl_.matrix_locations_) -
-      reinterpret_cast<char*>(&_impl_.units_)) + sizeof(_impl_.matrix_locations_));
+      reinterpret_cast<char*>(&_impl_.reverse_) -
+      reinterpret_cast<char*>(&_impl_.units_)) + sizeof(_impl_.reverse_));
   clear_has_language();
   clear_has_id();
   clear_has_jsonp();
@@ -8711,6 +8801,7 @@ void Options::Clear() {
   clear_has_prioritize_bidirectional();
   clear_has_expansion_action();
   clear_has_skip_opposites();
+  clear_has_matrix_locations();
   _internal_metadata_.Clear<std::string>();
 }
 
@@ -9196,7 +9287,7 @@ const char* Options::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) 
       // uint32 matrix_locations = 54;
       case 54:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 176)) {
-          _impl_.matrix_locations_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          _internal_set_matrix_locations(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr));
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -9592,7 +9683,7 @@ uint8_t* Options::_InternalSerialize(
   }
 
   // uint32 matrix_locations = 54;
-  if (this->_internal_matrix_locations() != 0) {
+  if (_internal_has_matrix_locations()) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteUInt32ToArray(54, this->_internal_matrix_locations(), target);
   }
@@ -9774,13 +9865,6 @@ size_t Options::ByteSizeLong() const {
   // bool reverse = 53;
   if (this->_internal_reverse() != 0) {
     total_size += 2 + 1;
-  }
-
-  // uint32 matrix_locations = 54;
-  if (this->_internal_matrix_locations() != 0) {
-    total_size += 2 +
-      ::_pbi::WireFormatLite::UInt32Size(
-        this->_internal_matrix_locations());
   }
 
   switch (has_language_case()) {
@@ -10058,6 +10142,18 @@ size_t Options::ByteSizeLong() const {
       break;
     }
   }
+  switch (has_matrix_locations_case()) {
+    // uint32 matrix_locations = 54;
+    case kMatrixLocations: {
+      total_size += 2 +
+        ::_pbi::WireFormatLite::UInt32Size(
+          this->_internal_matrix_locations());
+      break;
+    }
+    case HAS_MATRIX_LOCATIONS_NOT_SET: {
+      break;
+    }
+  }
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     total_size += _internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).size();
   }
@@ -10124,9 +10220,6 @@ void Options::MergeFrom(const Options& from) {
   }
   if (from._internal_reverse() != 0) {
     _this->_internal_set_reverse(from._internal_reverse());
-  }
-  if (from._internal_matrix_locations() != 0) {
-    _this->_internal_set_matrix_locations(from._internal_matrix_locations());
   }
   switch (from.has_language_case()) {
     case kLanguage: {
@@ -10362,6 +10455,15 @@ void Options::MergeFrom(const Options& from) {
       break;
     }
   }
+  switch (from.has_matrix_locations_case()) {
+    case kMatrixLocations: {
+      _this->_internal_set_matrix_locations(from._internal_matrix_locations());
+      break;
+    }
+    case HAS_MATRIX_LOCATIONS_NOT_SET: {
+      break;
+    }
+  }
   _this->_internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
 }
 
@@ -10392,8 +10494,8 @@ void Options::InternalSwap(Options* other) {
   _impl_.exclude_polygons_.InternalSwap(&other->_impl_.exclude_polygons_);
   _impl_.expansion_properties_.InternalSwap(&other->_impl_.expansion_properties_);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(Options, _impl_.matrix_locations_)
-      + sizeof(Options::_impl_.matrix_locations_)
+      PROTOBUF_FIELD_OFFSET(Options, _impl_.reverse_)
+      + sizeof(Options::_impl_.reverse_)
       - PROTOBUF_FIELD_OFFSET(Options, _impl_.pbf_field_selector_)>(
           reinterpret_cast<char*>(&_impl_.pbf_field_selector_),
           reinterpret_cast<char*>(&other->_impl_.pbf_field_selector_));
@@ -10423,6 +10525,7 @@ void Options::InternalSwap(Options* other) {
   swap(_impl_.has_prioritize_bidirectional_, other->_impl_.has_prioritize_bidirectional_);
   swap(_impl_.has_expansion_action_, other->_impl_.has_expansion_action_);
   swap(_impl_.has_skip_opposites_, other->_impl_.has_skip_opposites_);
+  swap(_impl_.has_matrix_locations_, other->_impl_.has_matrix_locations_);
   swap(_impl_._oneof_case_[0], other->_impl_._oneof_case_[0]);
   swap(_impl_._oneof_case_[1], other->_impl_._oneof_case_[1]);
   swap(_impl_._oneof_case_[2], other->_impl_._oneof_case_[2]);
@@ -10449,6 +10552,7 @@ void Options::InternalSwap(Options* other) {
   swap(_impl_._oneof_case_[23], other->_impl_._oneof_case_[23]);
   swap(_impl_._oneof_case_[24], other->_impl_._oneof_case_[24]);
   swap(_impl_._oneof_case_[25], other->_impl_._oneof_case_[25]);
+  swap(_impl_._oneof_case_[26], other->_impl_._oneof_case_[26]);
 }
 
 std::string Options::GetTypeName() const {
