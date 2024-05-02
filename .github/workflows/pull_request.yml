@@ -17,9 +17,17 @@ on:
 jobs:
   build_wheels:
     name: PR - cp*, ubuntu-latest
-    runs-on: ubuntu-latest
+    runs-on: macos-14
     steps:
     - uses: actions/checkout@v4
+
+    - name: Install Conan (MacOS)
+      run: |
+        pip install pip --upgrade
+        pip install "conan<2.0.0"
+        conan profile new default --detect
+        conan config set "storage.path=${{ github.workspace }}/conan_data"
+        conan install --install-folder ${{ github.workspace }}/conan_build --remote conancenter .
 
     - name: Lint & Style Check
       run: |
