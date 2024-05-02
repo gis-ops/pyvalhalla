@@ -28,5 +28,5 @@ jobs:
 
     - uses: pypa/cibuildwheel@v2.17.0
       env:
-        CIBW_BUILD: cpcp38* cpcp312*
+        CIBW_BUILD: 'cp38* cp312*'
         MACOSX_DEPLOYMENT_TARGET: 10.15
