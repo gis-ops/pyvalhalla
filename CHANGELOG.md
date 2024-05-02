@@ -9,6 +9,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
 _Valhalla version [3.4.0](https://github.com/valhalla/valhalla/releases/tag/3.4.0)_
 
+### CHANGED
+
+- Building wheels for 3.12 and deprecate 3.7 [#36](https://github.com/gis-ops/pyvalhalla/pull/36)
+
 ## [3.2.0](https://pypi.org/project/pyvalhalla/3.2.0/) - 2023-05-16
 
 _Valhalla version [3.4.0](https://github.com/valhalla/valhalla/releases/tag/3.4.0)_

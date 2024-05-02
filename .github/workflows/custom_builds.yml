@@ -31,7 +31,7 @@ jobs:
 #            cxx: 'Visual Studio'
 #          - macos-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
 
     - name: Configure Python
       uses: actions/setup-python@v4
@@ -41,7 +41,7 @@ jobs:
     # keep in-sync with the other yaml
     - name: Cache Conan
       id: cache-conan
-      uses: actions/cache@v2
+      uses: actions/cache@v4
       if: steps.cache-conan.outputs.cache-hit != 'true'
       with:
         path: |
@@ -62,12 +62,12 @@ jobs:
 #        conan config set "storage.path=$env:GITHUB_WORKSPACE/conan_data"
 #        conan install --install-folder conan_build --remote conancenter .
 
-    - uses: pypa/cibuildwheel@v2.12.1
+    - uses: pypa/cibuildwheel@v2.17.0
       env:
         MACOSX_DEPLOYMENT_TARGET: 10.15
         CIBW_BUILD: cp310* cp39* cp38*
 
     - name: Upload wheels
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         path: wheelhouse/*.whl
