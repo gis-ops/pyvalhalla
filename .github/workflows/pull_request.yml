@@ -2,7 +2,7 @@ name: Pull Request
 
 # run test within the manylinux container: linux is quickest to run but needs access to the right system libs
 # runs tests on all python versions
-# push_master.yml tests all platforms but only py3.7 (lowest supported version)
+# push_master.yml tests all platforms but only py3.8 (lowest supported version)
 
 on:
   pull_request:
@@ -19,7 +19,7 @@ jobs:
     name: PR - cp*, ubuntu-latest
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
 
     - name: Lint & Style Check
       run: |
@@ -28,5 +28,5 @@ jobs:
 
     - uses: pypa/cibuildwheel@v2.17.0
       env:
-        CIBW_BUILD: cp312*
+        CIBW_BUILD: cpcp38* cpcp312*
         MACOSX_DEPLOYMENT_TARGET: 10.15

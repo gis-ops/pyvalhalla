@@ -72,7 +72,7 @@ setup(
     author="Nils Nolde",
     author_email="nils@gis-ops.com",
     packages=find_packages(exclude=["tests", "*.tests", "*.tests.*", "tests.*"]),
-    python_requires=">=3.7.0",
+    python_requires=">=3.8.0",
     url="https://github.com/gis-ops/pyvalhalla",
     ext_package="valhalla",
     ext_modules=ext_modules,

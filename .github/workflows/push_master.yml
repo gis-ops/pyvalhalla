@@ -15,7 +15,7 @@ on:
 
 jobs:
   build_wheels:
-    name: Push - cp37*, ${{ matrix.platform }}
+    name: Push - cp38*, ${{ matrix.platform }}
     runs-on: ${{ matrix.image }}
     strategy:
       fail-fast: true
@@ -29,10 +29,10 @@ jobs:
             platform: macos
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
 
     - name: Configure Python
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v5
       with:
         python-version: '3.10'
 
@@ -40,7 +40,7 @@ jobs:
     # only macos makes sense, windows didn't work, linux installs conan inside the docker image
     - name: Cache Conan (MacOS)
       id: cache-conan
-      uses: actions/cache@v2
+      uses: actions/cache@v4
       if: matrix.platform == 'macos'
       with:
         path: |
@@ -71,8 +71,7 @@ jobs:
         conan install --install-folder conan_build --remote conancenter .
 
     # only build the earliest supported python version
-    - uses: pypa/cibuildwheel@v2.12.1
+    - uses: pypa/cibuildwheel@v2.17.0
       env:
         MACOSX_DEPLOYMENT_TARGET: 10.15
-        CIBW_BUILD: cp37*
-        CIBW_TEST_COMMAND: ''
+        CIBW_BUILD: cp38*
