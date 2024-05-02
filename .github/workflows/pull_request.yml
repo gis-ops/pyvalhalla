@@ -26,7 +26,7 @@ jobs:
         python -m pip install -r dev-requirements.txt
         pre-commit run --all-files --show-diff-on-failure
 
-    - uses: pypa/cibuildwheel@v2.12.1
+    - uses: pypa/cibuildwheel@v2.17.0
       env:
-        CIBW_BUILD: cp37*
+        CIBW_BUILD: cp312*
         MACOSX_DEPLOYMENT_TARGET: 10.15
