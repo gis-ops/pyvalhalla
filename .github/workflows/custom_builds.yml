@@ -34,9 +34,9 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Configure Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
-          python-version: "3.10"
+          python-version: "3.12"
 
       # keep in-sync with the other yaml
       - name: Cache Conan
@@ -65,7 +65,7 @@ jobs:
       - uses: pypa/cibuildwheel@v2.17.0
         env:
           MACOSX_DEPLOYMENT_TARGET: 10.15
-          CIBW_BUILD: cp310* cp39* cp38*
+          CIBW_BUILD: cp312*
 
       - name: Upload wheels
         uses: actions/upload-artifact@v4
