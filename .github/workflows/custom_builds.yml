@@ -7,8 +7,6 @@ name: Custom build
 
 on:
   push:
-    branches-ignore:
-      - "*"
     branches:
       - "cb-custom"
     paths-ignore:
