@@ -1,0 +1,54 @@
+diff --git a/proto/options.proto b/proto/options.proto
+index e62844d46..626776aa9 100644
+--- a/proto/options.proto
++++ b/proto/options.proto
+@@ -324,6 +324,7 @@ message Options {
+     expansion = 9;
+     centroid = 10;
+     status = 11;
++    livespeed = 12;
+   }
+ 
+   enum DateTimeType {
+diff --git a/src/proto_conversions.cc b/src/proto_conversions.cc
+index 54d58b279..b9c8a1db9 100644
+--- a/src/proto_conversions.cc
++++ b/src/proto_conversions.cc
+@@ -114,6 +114,7 @@ bool Options_Action_Enum_Parse(const std::string& action, Options::Action* a) {
+       {"expansion", Options::expansion},
+       {"centroid", Options::centroid},
+       {"status", Options::status},
++      {"livespeed", Options::livespeed},
+   };
+   auto i = actions.find(action);
+   if (i == actions.cend())
+@@ -148,6 +149,7 @@ const std::string& Options_Action_Enum_Name(const Options::Action action) {
+       {Options::expansion, "expansion"},
+       {Options::centroid, "centroid"},
+       {Options::status, "status"},
++      {Options::livespeed, "livespeed"},
+   };
+   auto i = actions.find(action);
+   return i == actions.cend() ? empty : i->second;
+diff --git a/src/valhalla_service.cc b/src/valhalla_service.cc
+index 82fd7cbcc..24cf19089 100644
+--- a/src/valhalla_service.cc
++++ b/src/valhalla_service.cc
+@@ -82,6 +82,7 @@ int main(int argc, char** argv) {
+ 
+     // do the right action
+     valhalla::Api request;
++    char* end;
+     try {
+       switch (action) {
+         case valhalla::Options::route:
+@@ -117,6 +118,9 @@ int main(int argc, char** argv) {
+         case valhalla::Options::status:
+           std::cout << actor.status(request_str, nullptr, &request) << std::endl;
+           break;
++        case valhalla::Options::livespeed:
++          std::cout << actor.get_livespeed(std::strtoull(request_str.c_str(), &end, 10)) << std::endl;
++          break;
+         default:
+           std::cerr << "Unknown action" << std::endl;
+           return 1;

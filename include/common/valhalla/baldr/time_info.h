@@ -29,6 +29,7 @@ struct TimeInfo {
 
   // the ordinal second from the beginning of the week (starting monday at 00:00)
   // used to look up historical traffic as the route progresses
+  // this defaults to mondays at noon if no time is provided (for constrained flow lookup)
   uint64_t second_of_week : 20;
 
   // the distance in seconds from now
@@ -45,7 +46,7 @@ struct TimeInfo {
    * @return    TimeInfo structure
    */
   static inline TimeInfo invalid() {
-    return {false, 0, 0, kInvalidSecondsOfWeek, 0, false, nullptr};
+    return {false, 0, 0, kConstrainedFlowSecondOfDay, 0, false, nullptr};
   }
 
   /**
@@ -68,12 +69,12 @@ struct TimeInfo {
        baldr::DateTime::tz_sys_info_cache_t* tz_cache = nullptr,
        int default_timezone_index = baldr::DateTime::get_tz_db().to_index("Etc/UTC")) {
     // No time to to track
-    if (location.date_time().empty())
+    if (!location.has_date_time_case())
       return TimeInfo::invalid();
 
     // Find the first edge whose end node has a valid timezone index and keep it
     int timezone_index = 0;
-    for (const auto& pe : location.correlation().edges()) {
+    for (const auto& pe : location.path_edges()) {
       graph_tile_ptr tile;
       const auto* edge = reader.directededge(baldr::GraphId(pe.graph_id()), tile);
       timezone_index = reader.GetTimezone(edge->endnode(), tile);
@@ -137,7 +138,7 @@ struct TimeInfo {
       parsed_date = dt::get_formatted_date(date_time, true);
     } catch (...) {
       LOG_ERROR("Could not parse provided date_time: " + date_time);
-      return {false, 0, 0, kInvalidSecondsOfWeek, 0, false, nullptr};
+      return {false, 0, 0, kConstrainedFlowSecondOfDay, 0, false, nullptr};
     }
     const auto then_date = date::make_zoned(tz, parsed_date, date::choose::latest);
     uint64_t local_time = date::to_utc_time(then_date.get_sys_time()).time_since_epoch().count();
@@ -255,10 +256,6 @@ struct TimeInfo {
   // returns localtime as a string
   std::string date_time() const {
     return DateTime::seconds_to_date(local_time, dt::get_tz_db().from_index(timezone_index), false);
-  }
-
-  uint32_t day_seconds() const {
-    return static_cast<uint32_t>(second_of_week) % midgard::kSecondsPerDay;
   }
 
   // for unit tests

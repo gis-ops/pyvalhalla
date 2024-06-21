@@ -215,12 +215,10 @@ class Transit_Node final :
     kLatFieldNumber = 2,
     kGraphidFieldNumber = 4,
     kPrevTypeGraphidFieldNumber = 5,
-    kOsmConnectingWayIdFieldNumber = 8,
+    kOsmWayIdFieldNumber = 8,
     kTypeFieldNumber = 3,
     kWheelchairBoardingFieldNumber = 10,
     kGeneratedFieldNumber = 11,
-    kOsmConnectingLonFieldNumber = 13,
-    kOsmConnectingLatFieldNumber = 14,
     kTraversabilityFieldNumber = 12,
   };
   // optional string name = 6;
@@ -277,30 +275,30 @@ class Transit_Node final :
   std::string* _internal_mutable_timezone();
   public:
 
-  // optional double lon = 1;
+  // optional float lon = 1;
   bool has_lon() const;
   private:
   bool _internal_has_lon() const;
   public:
   void clear_lon();
-  double lon() const;
-  void set_lon(double value);
+  float lon() const;
+  void set_lon(float value);
   private:
-  double _internal_lon() const;
-  void _internal_set_lon(double value);
+  float _internal_lon() const;
+  void _internal_set_lon(float value);
   public:
 
-  // optional double lat = 2;
+  // optional float lat = 2;
   bool has_lat() const;
   private:
   bool _internal_has_lat() const;
   public:
   void clear_lat();
-  double lat() const;
-  void set_lat(double value);
+  float lat() const;
+  void set_lat(float value);
   private:
-  double _internal_lat() const;
-  void _internal_set_lat(double value);
+  float _internal_lat() const;
+  void _internal_set_lat(float value);
   public:
 
   // optional uint64 graphid = 4;
@@ -329,17 +327,17 @@ class Transit_Node final :
   void _internal_set_prev_type_graphid(uint64_t value);
   public:
 
-  // optional uint64 osm_connecting_way_id = 8;
-  bool has_osm_connecting_way_id() const;
+  // optional uint64 osm_way_id = 8;
+  bool has_osm_way_id() const;
   private:
-  bool _internal_has_osm_connecting_way_id() const;
+  bool _internal_has_osm_way_id() const;
   public:
-  void clear_osm_connecting_way_id();
-  uint64_t osm_connecting_way_id() const;
-  void set_osm_connecting_way_id(uint64_t value);
+  void clear_osm_way_id();
+  uint64_t osm_way_id() const;
+  void set_osm_way_id(uint64_t value);
   private:
-  uint64_t _internal_osm_connecting_way_id() const;
-  void _internal_set_osm_connecting_way_id(uint64_t value);
+  uint64_t _internal_osm_way_id() const;
+  void _internal_set_osm_way_id(uint64_t value);
   public:
 
   // optional uint32 type = 3;
@@ -381,32 +379,6 @@ class Transit_Node final :
   void _internal_set_generated(bool value);
   public:
 
-  // optional double osm_connecting_lon = 13;
-  bool has_osm_connecting_lon() const;
-  private:
-  bool _internal_has_osm_connecting_lon() const;
-  public:
-  void clear_osm_connecting_lon();
-  double osm_connecting_lon() const;
-  void set_osm_connecting_lon(double value);
-  private:
-  double _internal_osm_connecting_lon() const;
-  void _internal_set_osm_connecting_lon(double value);
-  public:
-
-  // optional double osm_connecting_lat = 14;
-  bool has_osm_connecting_lat() const;
-  private:
-  bool _internal_has_osm_connecting_lat() const;
-  public:
-  void clear_osm_connecting_lat();
-  double osm_connecting_lat() const;
-  void set_osm_connecting_lat(double value);
-  private:
-  double _internal_osm_connecting_lat() const;
-  void _internal_set_osm_connecting_lat(double value);
-  public:
-
   // optional uint32 traversability = 12;
   bool has_traversability() const;
   private:
@@ -433,16 +405,14 @@ class Transit_Node final :
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr onestop_id_;
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr timezone_;
-    double lon_;
-    double lat_;
+    float lon_;
+    float lat_;
     uint64_t graphid_;
     uint64_t prev_type_graphid_;
-    uint64_t osm_connecting_way_id_;
+    uint64_t osm_way_id_;
     uint32_t type_;
     bool wheelchair_boarding_;
     bool generated_;
-    double osm_connecting_lon_;
-    double osm_connecting_lat_;
     uint32_t traversability_;
   };
   union { Impl_ _impl_; };
@@ -1701,7 +1671,7 @@ class Transit final :
 #endif  // __GNUC__
 // Transit_Node
 
-// optional double lon = 1;
+// optional float lon = 1;
 inline bool Transit_Node::_internal_has_lon() const {
   bool value = (_impl_._has_bits_[0] & 0x00000008u) != 0;
   return value;
@@ -1713,23 +1683,23 @@ inline void Transit_Node::clear_lon() {
   _impl_.lon_ = 0;
   _impl_._has_bits_[0] &= ~0x00000008u;
 }
-inline double Transit_Node::_internal_lon() const {
+inline float Transit_Node::_internal_lon() const {
   return _impl_.lon_;
 }
-inline double Transit_Node::lon() const {
+inline float Transit_Node::lon() const {
   // @@protoc_insertion_point(field_get:valhalla.mjolnir.Transit.Node.lon)
   return _internal_lon();
 }
-inline void Transit_Node::_internal_set_lon(double value) {
+inline void Transit_Node::_internal_set_lon(float value) {
   _impl_._has_bits_[0] |= 0x00000008u;
   _impl_.lon_ = value;
 }
-inline void Transit_Node::set_lon(double value) {
+inline void Transit_Node::set_lon(float value) {
   _internal_set_lon(value);
   // @@protoc_insertion_point(field_set:valhalla.mjolnir.Transit.Node.lon)
 }
 
-// optional double lat = 2;
+// optional float lat = 2;
 inline bool Transit_Node::_internal_has_lat() const {
   bool value = (_impl_._has_bits_[0] & 0x00000010u) != 0;
   return value;
@@ -1741,18 +1711,18 @@ inline void Transit_Node::clear_lat() {
   _impl_.lat_ = 0;
   _impl_._has_bits_[0] &= ~0x00000010u;
 }
-inline double Transit_Node::_internal_lat() const {
+inline float Transit_Node::_internal_lat() const {
   return _impl_.lat_;
 }
-inline double Transit_Node::lat() const {
+inline float Transit_Node::lat() const {
   // @@protoc_insertion_point(field_get:valhalla.mjolnir.Transit.Node.lat)
   return _internal_lat();
 }
-inline void Transit_Node::_internal_set_lat(double value) {
+inline void Transit_Node::_internal_set_lat(float value) {
   _impl_._has_bits_[0] |= 0x00000010u;
   _impl_.lat_ = value;
 }
-inline void Transit_Node::set_lat(double value) {
+inline void Transit_Node::set_lat(float value) {
   _internal_set_lat(value);
   // @@protoc_insertion_point(field_set:valhalla.mjolnir.Transit.Node.lat)
 }
@@ -1977,32 +1947,32 @@ inline void Transit_Node::set_allocated_onestop_id(std::string* onestop_id) {
   // @@protoc_insertion_point(field_set_allocated:valhalla.mjolnir.Transit.Node.onestop_id)
 }
 
-// optional uint64 osm_connecting_way_id = 8;
-inline bool Transit_Node::_internal_has_osm_connecting_way_id() const {
+// optional uint64 osm_way_id = 8;
+inline bool Transit_Node::_internal_has_osm_way_id() const {
   bool value = (_impl_._has_bits_[0] & 0x00000080u) != 0;
   return value;
 }
-inline bool Transit_Node::has_osm_connecting_way_id() const {
-  return _internal_has_osm_connecting_way_id();
+inline bool Transit_Node::has_osm_way_id() const {
+  return _internal_has_osm_way_id();
 }
-inline void Transit_Node::clear_osm_connecting_way_id() {
-  _impl_.osm_connecting_way_id_ = uint64_t{0u};
+inline void Transit_Node::clear_osm_way_id() {
+  _impl_.osm_way_id_ = uint64_t{0u};
   _impl_._has_bits_[0] &= ~0x00000080u;
 }
-inline uint64_t Transit_Node::_internal_osm_connecting_way_id() const {
-  return _impl_.osm_connecting_way_id_;
+inline uint64_t Transit_Node::_internal_osm_way_id() const {
+  return _impl_.osm_way_id_;
 }
-inline uint64_t Transit_Node::osm_connecting_way_id() const {
-  // @@protoc_insertion_point(field_get:valhalla.mjolnir.Transit.Node.osm_connecting_way_id)
-  return _internal_osm_connecting_way_id();
+inline uint64_t Transit_Node::osm_way_id() const {
+  // @@protoc_insertion_point(field_get:valhalla.mjolnir.Transit.Node.osm_way_id)
+  return _internal_osm_way_id();
 }
-inline void Transit_Node::_internal_set_osm_connecting_way_id(uint64_t value) {
+inline void Transit_Node::_internal_set_osm_way_id(uint64_t value) {
   _impl_._has_bits_[0] |= 0x00000080u;
-  _impl_.osm_connecting_way_id_ = value;
+  _impl_.osm_way_id_ = value;
 }
-inline void Transit_Node::set_osm_connecting_way_id(uint64_t value) {
-  _internal_set_osm_connecting_way_id(value);
-  // @@protoc_insertion_point(field_set:valhalla.mjolnir.Transit.Node.osm_connecting_way_id)
+inline void Transit_Node::set_osm_way_id(uint64_t value) {
+  _internal_set_osm_way_id(value);
+  // @@protoc_insertion_point(field_set:valhalla.mjolnir.Transit.Node.osm_way_id)
 }
 
 // optional string timezone = 9;
@@ -2131,7 +2101,7 @@ inline void Transit_Node::set_generated(bool value) {
 
 // optional uint32 traversability = 12;
 inline bool Transit_Node::_internal_has_traversability() const {
-  bool value = (_impl_._has_bits_[0] & 0x00002000u) != 0;
+  bool value = (_impl_._has_bits_[0] & 0x00000800u) != 0;
   return value;
 }
 inline bool Transit_Node::has_traversability() const {
@@ -2139,7 +2109,7 @@ inline bool Transit_Node::has_traversability() const {
 }
 inline void Transit_Node::clear_traversability() {
   _impl_.traversability_ = 0u;
-  _impl_._has_bits_[0] &= ~0x00002000u;
+  _impl_._has_bits_[0] &= ~0x00000800u;
 }
 inline uint32_t Transit_Node::_internal_traversability() const {
   return _impl_.traversability_;
@@ -2149,68 +2119,12 @@ inline uint32_t Transit_Node::traversability() const {
   return _internal_traversability();
 }
 inline void Transit_Node::_internal_set_traversability(uint32_t value) {
-  _impl_._has_bits_[0] |= 0x00002000u;
+  _impl_._has_bits_[0] |= 0x00000800u;
   _impl_.traversability_ = value;
 }
 inline void Transit_Node::set_traversability(uint32_t value) {
   _internal_set_traversability(value);
   // @@protoc_insertion_point(field_set:valhalla.mjolnir.Transit.Node.traversability)
-}
-
-// optional double osm_connecting_lon = 13;
-inline bool Transit_Node::_internal_has_osm_connecting_lon() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000800u) != 0;
-  return value;
-}
-inline bool Transit_Node::has_osm_connecting_lon() const {
-  return _internal_has_osm_connecting_lon();
-}
-inline void Transit_Node::clear_osm_connecting_lon() {
-  _impl_.osm_connecting_lon_ = 0;
-  _impl_._has_bits_[0] &= ~0x00000800u;
-}
-inline double Transit_Node::_internal_osm_connecting_lon() const {
-  return _impl_.osm_connecting_lon_;
-}
-inline double Transit_Node::osm_connecting_lon() const {
-  // @@protoc_insertion_point(field_get:valhalla.mjolnir.Transit.Node.osm_connecting_lon)
-  return _internal_osm_connecting_lon();
-}
-inline void Transit_Node::_internal_set_osm_connecting_lon(double value) {
-  _impl_._has_bits_[0] |= 0x00000800u;
-  _impl_.osm_connecting_lon_ = value;
-}
-inline void Transit_Node::set_osm_connecting_lon(double value) {
-  _internal_set_osm_connecting_lon(value);
-  // @@protoc_insertion_point(field_set:valhalla.mjolnir.Transit.Node.osm_connecting_lon)
-}
-
-// optional double osm_connecting_lat = 14;
-inline bool Transit_Node::_internal_has_osm_connecting_lat() const {
-  bool value = (_impl_._has_bits_[0] & 0x00001000u) != 0;
-  return value;
-}
-inline bool Transit_Node::has_osm_connecting_lat() const {
-  return _internal_has_osm_connecting_lat();
-}
-inline void Transit_Node::clear_osm_connecting_lat() {
-  _impl_.osm_connecting_lat_ = 0;
-  _impl_._has_bits_[0] &= ~0x00001000u;
-}
-inline double Transit_Node::_internal_osm_connecting_lat() const {
-  return _impl_.osm_connecting_lat_;
-}
-inline double Transit_Node::osm_connecting_lat() const {
-  // @@protoc_insertion_point(field_get:valhalla.mjolnir.Transit.Node.osm_connecting_lat)
-  return _internal_osm_connecting_lat();
-}
-inline void Transit_Node::_internal_set_osm_connecting_lat(double value) {
-  _impl_._has_bits_[0] |= 0x00001000u;
-  _impl_.osm_connecting_lat_ = value;
-}
-inline void Transit_Node::set_osm_connecting_lat(double value) {
-  _internal_set_osm_connecting_lat(value);
-  // @@protoc_insertion_point(field_set:valhalla.mjolnir.Transit.Node.osm_connecting_lat)
 }
 
 // -------------------------------------------------------------------

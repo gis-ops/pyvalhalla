@@ -1,0 +1,261 @@
+diff --git a/.gitignore b/.gitignore
+index 1fd592245..e3a14ee02 100644
+--- a/.gitignore
++++ b/.gitignore
+@@ -1,6 +1,8 @@
+ # editor temporary / backup files
+ *~
+ 
++conan_data
++
+ # built objects
+ valhalla_run_map_match
+ valhalla_meili_worker
+diff --git a/src/baldr/graphreader.cc b/src/baldr/graphreader.cc
+index 2769f96ca..f1c246ce6 100644
+--- a/src/baldr/graphreader.cc
++++ b/src/baldr/graphreader.cc
+@@ -815,9 +815,28 @@ GraphId GraphReader::GetShortcut(const GraphId& id) {
+ 
+ // Unpack edges for a given shortcut edge
+ std::vector<GraphId> GraphReader::RecoverShortcut(const GraphId& shortcut_id) {
+-  return shortcut_recovery_t::get_instance().get(shortcut_id, *this);
++  auto shortcut_ints = shortcut_recovery_t::get_instance().get(shortcut_id, *this);
++  std::vector<valhalla::baldr::GraphId> out;
++  std::transform(shortcut_ints.begin(), shortcut_ints.end(), std::back_inserter(out), [](uint64_t v){
++    return valhalla::baldr::GraphId(v);
++  });
++  return out;
+ }
+ 
++std::unordered_map<uint64_t, std::vector<uint64_t>> GraphReader::GetAllShortcuts() {
++  return shortcut_recovery_t::get_instance().shortcuts;
++}
++
++uint32_t GraphReader::GetEdgeSpeed(const uint64_t edge_id) {
++  const auto gid = GraphId(edge_id);
++  auto tile = GetGraphTile(gid);
++  if (tile == nullptr) {
++    return 0;
++  }
++  const baldr::DirectedEdge* de = tile->directededge(gid);
++  return tile->GetSpeed(de);
++};
++
+ // Convenience method to get the relative edge density (from the
+ // begin node of an edge).
+ uint32_t GraphReader::GetEdgeDensity(const GraphId& edgeid) {
+diff --git a/src/baldr/shortcut_recovery.h b/src/baldr/shortcut_recovery.h
+index 21bc006c1..bd049867f 100644
+--- a/src/baldr/shortcut_recovery.h
++++ b/src/baldr/shortcut_recovery.h
+@@ -48,18 +48,18 @@ protected:
+           auto shortcut_id = tile->header()->graphid();
+           shortcut_id.set_id(&edge - tile->directededge(0));
+           // skip already found opposing edges
+-          if (shortcuts.find(shortcut_id) != shortcuts.end())
++          if (shortcuts.find(shortcut_id.value) != shortcuts.end())
+             continue;
+           // recover the shortcut and make a copy for opposing direction
+           auto recovered = recover_shortcut(*reader, shortcut_id);
+           decltype(recovered) opp_recovered = recovered;
+           std::reverse_copy(recovered.cbegin(), recovered.cend(), opp_recovered.begin());
+           // save some stats
+-          bool failed = recovered.front() == shortcut_id;
++          bool failed = recovered.front() == shortcut_id.value;
+           unrecovered += failed;
+           superseded += failed ? 0 : recovered.size();
+           // cache it even if it failed (no point in trying the same thing twice)
+-          shortcuts.emplace(shortcut_id, std::move(recovered));
++          shortcuts.emplace(shortcut_id.value, std::move(recovered));
+ 
+           // its cheaper to get the opposing without crawling the graph
+           auto opp_tile = tile;
+@@ -68,18 +68,19 @@ protected:
+             continue; // dont store edges which arent in our tileset
+ 
+           for (auto& id : opp_recovered) {
+-            id = reader->GetOpposingEdgeId(id, opp_tile);
+-            if (!id.Is_Valid()) {
+-              opp_recovered = {opp_id};
++            auto gid = valhalla::baldr::GraphId(id);
++            id = reader->GetOpposingEdgeId(gid, opp_tile);
++            if (!gid.Is_Valid()) {
++              opp_recovered = {opp_id.value};
+               break;
+             }
+           }
+           // stats
+-          failed = opp_recovered.front() == opp_id;
++          failed = opp_recovered.front() == opp_id.value;
+           unrecovered += failed;
+           superseded += failed ? 0 : opp_recovered.size();
+           // cache it even if it failed (no point in trying the same thing twice)
+-          shortcuts.emplace(opp_id, std::move(opp_recovered));
++          shortcuts.emplace(opp_id.value, std::move(opp_recovered));
+         }
+       }
+     }
+@@ -95,7 +96,7 @@ protected:
+    * @param  shortcutid  Graph Id of the shortcut edge.
+    * @return Returns the edgeids of the directed edges this shortcut represents.
+    */
+-  std::vector<valhalla::baldr::GraphId>
++  std::vector<uint64_t>
+   recover_shortcut(valhalla::baldr::GraphReader& reader,
+                    const valhalla::baldr::GraphId& shortcut_id) const {
+     using namespace valhalla::baldr;
+@@ -115,11 +116,12 @@ protected:
+       return {shortcut_id};
+ 
+     // loop over the edges leaving its begin node and find the superseded edge
+-    std::vector<GraphId> edges;
++    std::vector<uint64_t> edges;
+     for (const DirectedEdge& de : tile->GetDirectedEdges(begin_node.id())) {
+       if (shortcut->shortcut() & de.superseded()) {
+-        edges.push_back(tile->header()->graphid());
+-        edges.back().set_id(&de - tile->directededge(0));
++        auto e_id = tile->header()->graphid();
++        e_id.set_id(&de - tile->directededge(0));
++        edges.push_back(e_id.value);
+         break;
+       }
+     }
+@@ -132,7 +134,7 @@ protected:
+     }
+ 
+     // seed the edge walking with the first edge
+-    const DirectedEdge* current_edge = tile->directededge(edges.back());
++    const DirectedEdge* current_edge = tile->directededge(valhalla::baldr::GraphId(edges.back()));
+     uint32_t accumulated_length = current_edge->length();
+ 
+     // walk edges until we find the same ending node as the shortcut
+@@ -161,8 +163,9 @@ protected:
+             edge.unpaved() == shortcut->unpaved() && edge.surface() == shortcut->surface()/* &&
+           edge.speed() == shortcut->speed()*/) {
+           // we are going to keep this edge
+-          edges.emplace_back(tile->header()->graphid());
+-          edges.back().set_id(&edge - tile->directededge(0));
++          auto e_id = tile->header()->graphid();
++          e_id.set_id(&edge - tile->directededge(0));
++          edges.emplace_back(e_id.value);
+           // and keep expanding from the end of it
+           current_edge = &edge;
+           begin_node = tile->header()->graphid();
+@@ -194,13 +197,14 @@ protected:
+     return edges;
+   }
+ 
+-  // a place to cache the recovered shortcuts
+-  std::unordered_map<uint64_t, std::vector<valhalla::baldr::GraphId>> shortcuts;
+   // a place to keep some stats about the recovery
+   size_t unrecovered;
+   size_t superseded;
+ 
+ public:
++  // a place to cache the recovered shortcuts
++  std::unordered_map<uint64_t, std::vector<uint64_t>> shortcuts;
++
+   /**
+    * returns a static instance of the cache after prefilling it. if on the first call,
+    * the reader is nullptr then the cache will not be filled and recovery will be on the fly
+@@ -220,8 +224,8 @@ public:
+    * @param shortcut_id   the shortcuts edge id
+    * @return the list of superceded edges
+    */
+-  std::vector<valhalla::baldr::GraphId> get(const valhalla::baldr::GraphId& shortcut_id,
+-                                            valhalla::baldr::GraphReader& reader) const {
++  std::vector<uint64_t> get(const valhalla::baldr::GraphId& shortcut_id,
++                            valhalla::baldr::GraphReader& reader) const {
+     // in the case that we didnt fill the cache we fallback to recovering on the fly
+     auto itr = shortcuts.find(shortcut_id);
+     if (itr == shortcuts.cend())
+diff --git a/src/tyr/actor.cc b/src/tyr/actor.cc
+index ba49314c9..f5030c6c7 100644
+--- a/src/tyr/actor.cc
++++ b/src/tyr/actor.cc
+@@ -363,5 +363,26 @@ actor_t::status(const std::string& request_str, const std::function<void()>* int
+   return json;
+ }
+ 
++std::string actor_t::get_livespeed(const uint64_t value) {
++  auto edge_id = valhalla::baldr::GraphId(value);
++  auto tile = pimpl->reader->GetGraphTile(edge_id);
++  auto* directed_edge = tile->directededge(edge_id);
++  auto edge_info = tile->edgeinfo(directed_edge);
++  // live traffic information
++  const volatile auto& traffic = tile->trafficspeed(directed_edge);
++  auto live_speed = traffic.json();
++
++  std::stringstream ss;
++  ss << *live_speed;
++  return ss.str();
++}
++
++std::unordered_map<uint64_t, std::vector<uint64_t>> actor_t::get_all_shortcuts() {
++  return pimpl->reader->GetAllShortcuts();
++}
++
++uint32_t actor_t::get_edge_speed(const uint64_t value) {
++  return pimpl->reader->GetEdgeSpeed(value);
++}
+ } // namespace tyr
+ } // namespace valhalla
+diff --git a/test/recover_shortcut.cc b/test/recover_shortcut.cc
+index cc92cdd5a..222a9bd1e 100644
+--- a/test/recover_shortcut.cc
++++ b/test/recover_shortcut.cc
+@@ -80,8 +80,9 @@ void recover(bool cache) {
+         // accumulate the shape along the edges that we recovered
+         std::vector<PointLL> recovered_shape;
+         for (auto edgeid : edgeids) {
+-          auto tile = graphreader.GetGraphTile(edgeid);
+-          const auto* de = tile->directededge(edgeid);
++          auto gid = GraphId(edgeid);
++          auto tile = graphreader.GetGraphTile(gid);
++          const auto* de = tile->directededge(gid);
+           auto de_shape = tile->edgeinfo(de).shape();
+           if (!de->forward()) {
+             std::reverse(de_shape.begin(), de_shape.end());
+diff --git a/valhalla/baldr/graphreader.h b/valhalla/baldr/graphreader.h
+index c819ffa5c..ac081bc94 100644
+--- a/valhalla/baldr/graphreader.h
++++ b/valhalla/baldr/graphreader.h
+@@ -694,6 +694,22 @@ public:
+    */
+   std::vector<GraphId> RecoverShortcut(const GraphId& shortcutid);
+ 
++  /**
++   * Returns overall speeds for all relevant shortcuts, i.e. the ones
++   * containing traffic matched edge_ids
++   *@return Returns a map of shortcut IDs to recovered edge IDs
++   */
++  std::unordered_map<uint64_t, std::vector<uint64_t>> GetAllShortcuts();
++
++  /**
++   * Returns the speed for an edge not covered by live speed
++   * NOTE: will not give live speed results, since we initialize the Actor without
++   * to be able to map-match properly
++   * @return Speed of an edge not covered by live speed
++   */
++
++  uint32_t GetEdgeSpeed(const uint64_t edge_id);
++
+   /**
+    * Convenience method to get the relative edge density (from the
+    * begin node of an edge).
+diff --git a/valhalla/tyr/actor.h b/valhalla/tyr/actor.h
+index 43ecb75d2..c78e11162 100644
+--- a/valhalla/tyr/actor.h
++++ b/valhalla/tyr/actor.h
+@@ -213,6 +213,10 @@ public:
+                      const std::function<void()>* interrupt = nullptr,
+                      Api* api = nullptr);
+ 
++  std::string get_livespeed(const uint64_t value);
++  std::unordered_map<uint64_t, std::vector<uint64_t>> get_all_shortcuts();
++  std::uint32_t get_edge_speed(const uint64_t value);
++
+ protected:
+   struct pimpl_t;
+   std::shared_ptr<pimpl_t> pimpl;

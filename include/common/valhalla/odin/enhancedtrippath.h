@@ -4,11 +4,12 @@
 #include <cstdint>
 #include <limits>
 #include <memory>
-#include <optional>
 #include <string>
 #include <unordered_map>
 #include <utility>
 #include <vector>
+
+#include <boost/optional.hpp>
 
 #include <valhalla/baldr/turn.h>
 #include <valhalla/proto/directions.pb.h>
@@ -185,7 +186,7 @@ public:
   }
 
   bool has_vehicle_type() const {
-    return mutable_edge_->travel_mode() == kDrive;
+    return mutable_edge_->has_vehicle_type_case();
   }
 
   ::valhalla::VehicleType vehicle_type() const {
@@ -193,7 +194,7 @@ public:
   }
 
   bool has_pedestrian_type() const {
-    return mutable_edge_->travel_mode() == kPedestrian;
+    return mutable_edge_->has_pedestrian_type_case();
   }
 
   ::valhalla::PedestrianType pedestrian_type() const {
@@ -201,7 +202,7 @@ public:
   }
 
   bool has_bicycle_type() const {
-    return mutable_edge_->travel_mode() == kBicycle;
+    return mutable_edge_->has_bicycle_type_case();
   }
 
   ::valhalla::BicycleType bicycle_type() const {
@@ -209,7 +210,7 @@ public:
   }
 
   bool has_transit_type() const {
-    return mutable_edge_->travel_mode() == kTransit;
+    return mutable_edge_->has_transit_type_case();
   }
 
   ::valhalla::TransitType transit_type() const {
@@ -258,6 +259,10 @@ public:
 
   const ::valhalla::TripSign& sign() const {
     return mutable_edge_->sign();
+  }
+
+  bool has_travel_mode() const {
+    return mutable_edge_->has_travel_mode_case();
   }
 
   ::valhalla::TravelMode travel_mode() const {
@@ -348,12 +353,12 @@ public:
     return mutable_edge_->destination_only();
   }
 
-  bool is_urban() const {
-    return mutable_edge_->is_urban();
+  bool has_is_urban() const {
+    return mutable_edge_->has_is_urban_case();
   }
 
-  bool indoor() const {
-    return mutable_edge_->indoor();
+  bool is_urban() const {
+    return mutable_edge_->is_urban();
   }
 
   bool IsUnnamed() const;
@@ -373,9 +378,7 @@ public:
   bool IsMountainBikeUse() const;
   bool IsSidewalkUse() const;
   bool IsFootwayUse() const;
-  bool IsElevatorUse() const;
   bool IsStepsUse() const;
-  bool IsEscalatorUse() const;
   bool IsPathUse() const;
   bool IsPedestrianUse() const;
   bool IsBridlewayUse() const;
@@ -390,7 +393,6 @@ public:
   bool IsEgressConnectionUse() const;
   bool IsPlatformConnectionUse() const;
   bool IsTransitConnectionUse() const;
-  bool IsConstructionUse() const;
 
   bool IsTransitConnection() const;
 
@@ -413,8 +415,6 @@ public:
   bool IsStraightest(uint32_t prev2curr_turn_degree, uint32_t straightest_xedge_turn_degree) const;
 
   std::vector<std::pair<std::string, bool>> GetNameList() const;
-
-  std::string GetLevelRef() const;
 
   float GetLength(const Options::Units& units);
 
@@ -485,6 +485,10 @@ public:
 
   ::valhalla::TripLeg_Traversability walkability() const {
     return mutable_intersecting_edge_->walkability();
+  }
+
+  bool has_use() const {
+    return mutable_intersecting_edge_->has_use_case();
   }
 
   ::valhalla::TripLeg_Use use() const {
@@ -602,6 +606,10 @@ public:
     return mutable_node_->cost().elapsed_cost().seconds();
   }
 
+  bool has_admin_index() const {
+    return mutable_node_->has_admin_index_case();
+  }
+
   uint32_t admin_index() const {
     return mutable_node_->admin_index();
   }
@@ -712,7 +720,7 @@ public:
   uint32_t
   GetStraightestTraversableIntersectingEdgeTurnDegree(uint32_t from_heading,
                                                       const TravelMode travel_mode,
-                                                      std::optional<TripLeg_Use>* use = nullptr);
+                                                      boost::optional<TripLeg_Use>* use = nullptr);
 
   bool IsStraightestTraversableIntersectingEdgeReversed(uint32_t from_heading,
                                                         const TravelMode travel_mode);
@@ -737,8 +745,6 @@ public:
   bool IsBorderControl() const;
   bool IsTollGantry() const;
   bool IsSumpBuster() const;
-  bool IsBuildingEntrance() const;
-  bool IsElevator() const;
 
   std::string ToString() const;
 

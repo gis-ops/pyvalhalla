@@ -112,14 +112,14 @@ class Status final :
     HAS_BBOX_NOT_SET = 0,
   };
 
-  enum HasHasTransitTilesCase {
-    kHasTransitTiles = 9,
-    HAS_HAS_TRANSIT_TILES_NOT_SET = 0,
+  enum HasVersionCase {
+    kVersion = 6,
+    HAS_VERSION_NOT_SET = 0,
   };
 
-  enum HasOsmChangesetCase {
-    kOsmChangeset = 10,
-    HAS_OSM_CHANGESET_NOT_SET = 0,
+  enum HasTilesetLastModifiedCase {
+    kTilesetLastModified = 7,
+    HAS_TILESET_LAST_MODIFIED_NOT_SET = 0,
   };
 
   static inline const Status* internal_default_instance() {
@@ -191,64 +191,14 @@ class Status final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kAvailableActionsFieldNumber = 8,
-    kVersionFieldNumber = 6,
-    kTilesetLastModifiedFieldNumber = 7,
     kHasTilesFieldNumber = 1,
     kHasAdminsFieldNumber = 2,
     kHasTimezonesFieldNumber = 3,
     kHasLiveTrafficFieldNumber = 4,
     kBboxFieldNumber = 5,
-    kHasTransitTilesFieldNumber = 9,
-    kOsmChangesetFieldNumber = 10,
+    kVersionFieldNumber = 6,
+    kTilesetLastModifiedFieldNumber = 7,
   };
-  // repeated string available_actions = 8;
-  int available_actions_size() const;
-  private:
-  int _internal_available_actions_size() const;
-  public:
-  void clear_available_actions();
-  const std::string& available_actions(int index) const;
-  std::string* mutable_available_actions(int index);
-  void set_available_actions(int index, const std::string& value);
-  void set_available_actions(int index, std::string&& value);
-  void set_available_actions(int index, const char* value);
-  void set_available_actions(int index, const char* value, size_t size);
-  std::string* add_available_actions();
-  void add_available_actions(const std::string& value);
-  void add_available_actions(std::string&& value);
-  void add_available_actions(const char* value);
-  void add_available_actions(const char* value, size_t size);
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>& available_actions() const;
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>* mutable_available_actions();
-  private:
-  const std::string& _internal_available_actions(int index) const;
-  std::string* _internal_add_available_actions();
-  public:
-
-  // string version = 6;
-  void clear_version();
-  const std::string& version() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_version(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_version();
-  PROTOBUF_NODISCARD std::string* release_version();
-  void set_allocated_version(std::string* version);
-  private:
-  const std::string& _internal_version() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_version(const std::string& value);
-  std::string* _internal_mutable_version();
-  public:
-
-  // uint32 tileset_last_modified = 7;
-  void clear_tileset_last_modified();
-  uint32_t tileset_last_modified() const;
-  void set_tileset_last_modified(uint32_t value);
-  private:
-  uint32_t _internal_tileset_last_modified() const;
-  void _internal_set_tileset_last_modified(uint32_t value);
-  public:
-
   // bool has_tiles = 1;
   bool has_has_tiles() const;
   private:
@@ -319,30 +269,35 @@ class Status final :
   std::string* _internal_mutable_bbox();
   public:
 
-  // bool has_transit_tiles = 9;
-  bool has_has_transit_tiles() const;
+  // string version = 6;
+  bool has_version() const;
   private:
-  bool _internal_has_has_transit_tiles() const;
+  bool _internal_has_version() const;
   public:
-  void clear_has_transit_tiles();
-  bool has_transit_tiles() const;
-  void set_has_transit_tiles(bool value);
+  void clear_version();
+  const std::string& version() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_version(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_version();
+  PROTOBUF_NODISCARD std::string* release_version();
+  void set_allocated_version(std::string* version);
   private:
-  bool _internal_has_transit_tiles() const;
-  void _internal_set_has_transit_tiles(bool value);
+  const std::string& _internal_version() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_version(const std::string& value);
+  std::string* _internal_mutable_version();
   public:
 
-  // uint64 osm_changeset = 10;
-  bool has_osm_changeset() const;
+  // uint32 tileset_last_modified = 7;
+  bool has_tileset_last_modified() const;
   private:
-  bool _internal_has_osm_changeset() const;
+  bool _internal_has_tileset_last_modified() const;
   public:
-  void clear_osm_changeset();
-  uint64_t osm_changeset() const;
-  void set_osm_changeset(uint64_t value);
+  void clear_tileset_last_modified();
+  uint32_t tileset_last_modified() const;
+  void set_tileset_last_modified(uint32_t value);
   private:
-  uint64_t _internal_osm_changeset() const;
-  void _internal_set_osm_changeset(uint64_t value);
+  uint32_t _internal_tileset_last_modified() const;
+  void _internal_set_tileset_last_modified(uint32_t value);
   public:
 
   void clear_has_has_tiles();
@@ -355,10 +310,10 @@ class Status final :
   HasHasLiveTrafficCase has_has_live_traffic_case() const;
   void clear_has_bbox();
   HasBboxCase has_bbox_case() const;
-  void clear_has_has_transit_tiles();
-  HasHasTransitTilesCase has_has_transit_tiles_case() const;
-  void clear_has_osm_changeset();
-  HasOsmChangesetCase has_osm_changeset_case() const;
+  void clear_has_version();
+  HasVersionCase has_version_case() const;
+  void clear_has_tileset_last_modified();
+  HasTilesetLastModifiedCase has_tileset_last_modified_case() const;
   // @@protoc_insertion_point(class_scope:valhalla.Status)
  private:
   class _Internal;
@@ -367,8 +322,8 @@ class Status final :
   void set_has_has_timezones();
   void set_has_has_live_traffic();
   void set_has_bbox();
-  void set_has_has_transit_tiles();
-  void set_has_osm_changeset();
+  void set_has_version();
+  void set_has_tileset_last_modified();
 
   inline bool has_has_has_tiles() const;
   inline void clear_has_has_has_tiles();
@@ -385,19 +340,16 @@ class Status final :
   inline bool has_has_bbox() const;
   inline void clear_has_has_bbox();
 
-  inline bool has_has_has_transit_tiles() const;
-  inline void clear_has_has_has_transit_tiles();
+  inline bool has_has_version() const;
+  inline void clear_has_has_version();
 
-  inline bool has_has_osm_changeset() const;
-  inline void clear_has_has_osm_changeset();
+  inline bool has_has_tileset_last_modified() const;
+  inline void clear_has_has_tileset_last_modified();
 
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
-    ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> available_actions_;
-    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr version_;
-    uint32_t tileset_last_modified_;
     union HasHasTilesUnion {
       constexpr HasHasTilesUnion() : _constinit_{} {}
         ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
@@ -423,16 +375,16 @@ class Status final :
         ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
       ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr bbox_;
     } has_bbox_;
-    union HasHasTransitTilesUnion {
-      constexpr HasHasTransitTilesUnion() : _constinit_{} {}
+    union HasVersionUnion {
+      constexpr HasVersionUnion() : _constinit_{} {}
         ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
-      bool has_transit_tiles_;
-    } has_has_transit_tiles_;
-    union HasOsmChangesetUnion {
-      constexpr HasOsmChangesetUnion() : _constinit_{} {}
+      ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr version_;
+    } has_version_;
+    union HasTilesetLastModifiedUnion {
+      constexpr HasTilesetLastModifiedUnion() : _constinit_{} {}
         ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
-      uint64_t osm_changeset_;
-    } has_osm_changeset_;
+      uint32_t tileset_last_modified_;
+    } has_tileset_last_modified_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
     uint32_t _oneof_case_[7];
 
@@ -681,18 +633,33 @@ inline void Status::set_allocated_bbox(std::string* bbox) {
 }
 
 // string version = 6;
+inline bool Status::_internal_has_version() const {
+  return has_version_case() == kVersion;
+}
+inline bool Status::has_version() const {
+  return _internal_has_version();
+}
+inline void Status::set_has_version() {
+  _impl_._oneof_case_[5] = kVersion;
+}
 inline void Status::clear_version() {
-  _impl_.version_.ClearToEmpty();
+  if (_internal_has_version()) {
+    _impl_.has_version_.version_.Destroy();
+    clear_has_has_version();
+  }
 }
 inline const std::string& Status::version() const {
   // @@protoc_insertion_point(field_get:valhalla.Status.version)
   return _internal_version();
 }
 template <typename ArgT0, typename... ArgT>
-inline PROTOBUF_ALWAYS_INLINE
-void Status::set_version(ArgT0&& arg0, ArgT... args) {
- 
- _impl_.version_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+inline void Status::set_version(ArgT0&& arg0, ArgT... args) {
+  if (!_internal_has_version()) {
+    clear_has_version();
+    set_has_version();
+    _impl_.has_version_.version_.InitDefault();
+  }
+  _impl_.has_version_.version_.Set( static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
   // @@protoc_insertion_point(field_set:valhalla.Status.version)
 }
 inline std::string* Status::mutable_version() {
@@ -701,204 +668,83 @@ inline std::string* Status::mutable_version() {
   return _s;
 }
 inline const std::string& Status::_internal_version() const {
-  return _impl_.version_.Get();
+  if (_internal_has_version()) {
+    return _impl_.has_version_.version_.Get();
+  }
+  return ::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited();
 }
 inline void Status::_internal_set_version(const std::string& value) {
-  
-  _impl_.version_.Set(value, GetArenaForAllocation());
+  if (!_internal_has_version()) {
+    clear_has_version();
+    set_has_version();
+    _impl_.has_version_.version_.InitDefault();
+  }
+  _impl_.has_version_.version_.Set(value, GetArenaForAllocation());
 }
 inline std::string* Status::_internal_mutable_version() {
-  
-  return _impl_.version_.Mutable(GetArenaForAllocation());
+  if (!_internal_has_version()) {
+    clear_has_version();
+    set_has_version();
+    _impl_.has_version_.version_.InitDefault();
+  }
+  return _impl_.has_version_.version_.Mutable(      GetArenaForAllocation());
 }
 inline std::string* Status::release_version() {
   // @@protoc_insertion_point(field_release:valhalla.Status.version)
-  return _impl_.version_.Release();
+  if (_internal_has_version()) {
+    clear_has_has_version();
+    return _impl_.has_version_.version_.Release();
+  } else {
+    return nullptr;
+  }
 }
 inline void Status::set_allocated_version(std::string* version) {
+  if (has_has_version()) {
+    clear_has_version();
+  }
   if (version != nullptr) {
-    
-  } else {
-    
+    set_has_version();
+    _impl_.has_version_.version_.InitAllocated(version, GetArenaForAllocation());
   }
-  _impl_.version_.SetAllocated(version, GetArenaForAllocation());
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (_impl_.version_.IsDefault()) {
-    _impl_.version_.Set("", GetArenaForAllocation());
-  }
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:valhalla.Status.version)
 }
 
 // uint32 tileset_last_modified = 7;
+inline bool Status::_internal_has_tileset_last_modified() const {
+  return has_tileset_last_modified_case() == kTilesetLastModified;
+}
+inline bool Status::has_tileset_last_modified() const {
+  return _internal_has_tileset_last_modified();
+}
+inline void Status::set_has_tileset_last_modified() {
+  _impl_._oneof_case_[6] = kTilesetLastModified;
+}
 inline void Status::clear_tileset_last_modified() {
-  _impl_.tileset_last_modified_ = 0u;
+  if (_internal_has_tileset_last_modified()) {
+    _impl_.has_tileset_last_modified_.tileset_last_modified_ = 0u;
+    clear_has_has_tileset_last_modified();
+  }
 }
 inline uint32_t Status::_internal_tileset_last_modified() const {
-  return _impl_.tileset_last_modified_;
+  if (_internal_has_tileset_last_modified()) {
+    return _impl_.has_tileset_last_modified_.tileset_last_modified_;
+  }
+  return 0u;
+}
+inline void Status::_internal_set_tileset_last_modified(uint32_t value) {
+  if (!_internal_has_tileset_last_modified()) {
+    clear_has_tileset_last_modified();
+    set_has_tileset_last_modified();
+  }
+  _impl_.has_tileset_last_modified_.tileset_last_modified_ = value;
 }
 inline uint32_t Status::tileset_last_modified() const {
   // @@protoc_insertion_point(field_get:valhalla.Status.tileset_last_modified)
   return _internal_tileset_last_modified();
 }
-inline void Status::_internal_set_tileset_last_modified(uint32_t value) {
-  
-  _impl_.tileset_last_modified_ = value;
-}
 inline void Status::set_tileset_last_modified(uint32_t value) {
   _internal_set_tileset_last_modified(value);
   // @@protoc_insertion_point(field_set:valhalla.Status.tileset_last_modified)
-}
-
-// repeated string available_actions = 8;
-inline int Status::_internal_available_actions_size() const {
-  return _impl_.available_actions_.size();
-}
-inline int Status::available_actions_size() const {
-  return _internal_available_actions_size();
-}
-inline void Status::clear_available_actions() {
-  _impl_.available_actions_.Clear();
-}
-inline std::string* Status::add_available_actions() {
-  std::string* _s = _internal_add_available_actions();
-  // @@protoc_insertion_point(field_add_mutable:valhalla.Status.available_actions)
-  return _s;
-}
-inline const std::string& Status::_internal_available_actions(int index) const {
-  return _impl_.available_actions_.Get(index);
-}
-inline const std::string& Status::available_actions(int index) const {
-  // @@protoc_insertion_point(field_get:valhalla.Status.available_actions)
-  return _internal_available_actions(index);
-}
-inline std::string* Status::mutable_available_actions(int index) {
-  // @@protoc_insertion_point(field_mutable:valhalla.Status.available_actions)
-  return _impl_.available_actions_.Mutable(index);
-}
-inline void Status::set_available_actions(int index, const std::string& value) {
-  _impl_.available_actions_.Mutable(index)->assign(value);
-  // @@protoc_insertion_point(field_set:valhalla.Status.available_actions)
-}
-inline void Status::set_available_actions(int index, std::string&& value) {
-  _impl_.available_actions_.Mutable(index)->assign(std::move(value));
-  // @@protoc_insertion_point(field_set:valhalla.Status.available_actions)
-}
-inline void Status::set_available_actions(int index, const char* value) {
-  GOOGLE_DCHECK(value != nullptr);
-  _impl_.available_actions_.Mutable(index)->assign(value);
-  // @@protoc_insertion_point(field_set_char:valhalla.Status.available_actions)
-}
-inline void Status::set_available_actions(int index, const char* value, size_t size) {
-  _impl_.available_actions_.Mutable(index)->assign(
-    reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_set_pointer:valhalla.Status.available_actions)
-}
-inline std::string* Status::_internal_add_available_actions() {
-  return _impl_.available_actions_.Add();
-}
-inline void Status::add_available_actions(const std::string& value) {
-  _impl_.available_actions_.Add()->assign(value);
-  // @@protoc_insertion_point(field_add:valhalla.Status.available_actions)
-}
-inline void Status::add_available_actions(std::string&& value) {
-  _impl_.available_actions_.Add(std::move(value));
-  // @@protoc_insertion_point(field_add:valhalla.Status.available_actions)
-}
-inline void Status::add_available_actions(const char* value) {
-  GOOGLE_DCHECK(value != nullptr);
-  _impl_.available_actions_.Add()->assign(value);
-  // @@protoc_insertion_point(field_add_char:valhalla.Status.available_actions)
-}
-inline void Status::add_available_actions(const char* value, size_t size) {
-  _impl_.available_actions_.Add()->assign(reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_add_pointer:valhalla.Status.available_actions)
-}
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
-Status::available_actions() const {
-  // @@protoc_insertion_point(field_list:valhalla.Status.available_actions)
-  return _impl_.available_actions_;
-}
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
-Status::mutable_available_actions() {
-  // @@protoc_insertion_point(field_mutable_list:valhalla.Status.available_actions)
-  return &_impl_.available_actions_;
-}
-
-// bool has_transit_tiles = 9;
-inline bool Status::_internal_has_has_transit_tiles() const {
-  return has_has_transit_tiles_case() == kHasTransitTiles;
-}
-inline bool Status::has_has_transit_tiles() const {
-  return _internal_has_has_transit_tiles();
-}
-inline void Status::set_has_has_transit_tiles() {
-  _impl_._oneof_case_[5] = kHasTransitTiles;
-}
-inline void Status::clear_has_transit_tiles() {
-  if (_internal_has_has_transit_tiles()) {
-    _impl_.has_has_transit_tiles_.has_transit_tiles_ = false;
-    clear_has_has_has_transit_tiles();
-  }
-}
-inline bool Status::_internal_has_transit_tiles() const {
-  if (_internal_has_has_transit_tiles()) {
-    return _impl_.has_has_transit_tiles_.has_transit_tiles_;
-  }
-  return false;
-}
-inline void Status::_internal_set_has_transit_tiles(bool value) {
-  if (!_internal_has_has_transit_tiles()) {
-    clear_has_has_transit_tiles();
-    set_has_has_transit_tiles();
-  }
-  _impl_.has_has_transit_tiles_.has_transit_tiles_ = value;
-}
-inline bool Status::has_transit_tiles() const {
-  // @@protoc_insertion_point(field_get:valhalla.Status.has_transit_tiles)
-  return _internal_has_transit_tiles();
-}
-inline void Status::set_has_transit_tiles(bool value) {
-  _internal_set_has_transit_tiles(value);
-  // @@protoc_insertion_point(field_set:valhalla.Status.has_transit_tiles)
-}
-
-// uint64 osm_changeset = 10;
-inline bool Status::_internal_has_osm_changeset() const {
-  return has_osm_changeset_case() == kOsmChangeset;
-}
-inline bool Status::has_osm_changeset() const {
-  return _internal_has_osm_changeset();
-}
-inline void Status::set_has_osm_changeset() {
-  _impl_._oneof_case_[6] = kOsmChangeset;
-}
-inline void Status::clear_osm_changeset() {
-  if (_internal_has_osm_changeset()) {
-    _impl_.has_osm_changeset_.osm_changeset_ = uint64_t{0u};
-    clear_has_has_osm_changeset();
-  }
-}
-inline uint64_t Status::_internal_osm_changeset() const {
-  if (_internal_has_osm_changeset()) {
-    return _impl_.has_osm_changeset_.osm_changeset_;
-  }
-  return uint64_t{0u};
-}
-inline void Status::_internal_set_osm_changeset(uint64_t value) {
-  if (!_internal_has_osm_changeset()) {
-    clear_has_osm_changeset();
-    set_has_osm_changeset();
-  }
-  _impl_.has_osm_changeset_.osm_changeset_ = value;
-}
-inline uint64_t Status::osm_changeset() const {
-  // @@protoc_insertion_point(field_get:valhalla.Status.osm_changeset)
-  return _internal_osm_changeset();
-}
-inline void Status::set_osm_changeset(uint64_t value) {
-  _internal_set_osm_changeset(value);
-  // @@protoc_insertion_point(field_set:valhalla.Status.osm_changeset)
 }
 
 inline bool Status::has_has_has_tiles() const {
@@ -931,17 +777,17 @@ inline bool Status::has_has_bbox() const {
 inline void Status::clear_has_has_bbox() {
   _impl_._oneof_case_[4] = HAS_BBOX_NOT_SET;
 }
-inline bool Status::has_has_has_transit_tiles() const {
-  return has_has_transit_tiles_case() != HAS_HAS_TRANSIT_TILES_NOT_SET;
+inline bool Status::has_has_version() const {
+  return has_version_case() != HAS_VERSION_NOT_SET;
 }
-inline void Status::clear_has_has_has_transit_tiles() {
-  _impl_._oneof_case_[5] = HAS_HAS_TRANSIT_TILES_NOT_SET;
+inline void Status::clear_has_has_version() {
+  _impl_._oneof_case_[5] = HAS_VERSION_NOT_SET;
 }
-inline bool Status::has_has_osm_changeset() const {
-  return has_osm_changeset_case() != HAS_OSM_CHANGESET_NOT_SET;
+inline bool Status::has_has_tileset_last_modified() const {
+  return has_tileset_last_modified_case() != HAS_TILESET_LAST_MODIFIED_NOT_SET;
 }
-inline void Status::clear_has_has_osm_changeset() {
-  _impl_._oneof_case_[6] = HAS_OSM_CHANGESET_NOT_SET;
+inline void Status::clear_has_has_tileset_last_modified() {
+  _impl_._oneof_case_[6] = HAS_TILESET_LAST_MODIFIED_NOT_SET;
 }
 inline Status::HasHasTilesCase Status::has_has_tiles_case() const {
   return Status::HasHasTilesCase(_impl_._oneof_case_[0]);
@@ -958,11 +804,11 @@ inline Status::HasHasLiveTrafficCase Status::has_has_live_traffic_case() const {
 inline Status::HasBboxCase Status::has_bbox_case() const {
   return Status::HasBboxCase(_impl_._oneof_case_[4]);
 }
-inline Status::HasHasTransitTilesCase Status::has_has_transit_tiles_case() const {
-  return Status::HasHasTransitTilesCase(_impl_._oneof_case_[5]);
+inline Status::HasVersionCase Status::has_version_case() const {
+  return Status::HasVersionCase(_impl_._oneof_case_[5]);
 }
-inline Status::HasOsmChangesetCase Status::has_osm_changeset_case() const {
-  return Status::HasOsmChangesetCase(_impl_._oneof_case_[6]);
+inline Status::HasTilesetLastModifiedCase Status::has_tileset_last_modified_case() const {
+  return Status::HasTilesetLastModifiedCase(_impl_._oneof_case_[6]);
 }
 #ifdef __GNUC__
   #pragma GCC diagnostic pop

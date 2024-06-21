@@ -1290,22 +1290,6 @@ struct OSMWay {
   }
 
   /**
-   * Sets the indoor flag.
-   * @param  indoor   True if the edge is indoor, false if not (outdoor).
-   */
-  void set_indoor(const bool indoor) {
-    indoor_ = indoor;
-  }
-
-  /**
-   * Get the indoor flag.
-   * @return  Returns indoor flag.
-   */
-  bool indoor() const {
-    return indoor_;
-  }
-
-  /**
    * Sets the HOV Type.
    * @param  hov_type
    */
@@ -1651,56 +1635,6 @@ struct OSMWay {
   }
 
   /**
-   * Sets the index for level
-   * @param  idx  Index for the level.
-   */
-  void set_level_index(const uint32_t idx) {
-    level_index_ = idx;
-  }
-
-  /**
-   * Get the level index.
-   * @return  Returns the index for the level.
-   */
-  uint32_t level_index() const {
-    return level_index_;
-  }
-
-  /**
-   * Sets the index for level_ref
-   * @param  idx  Index for the level_ref
-   */
-  void set_level_ref_index(const uint32_t idx) {
-    level_ref_index_ = idx;
-  }
-
-  /**
-   * Get the level_ref index.
-   * @return  Returns the index for the level_ref.
-   */
-  uint32_t level_ref_index() const {
-    return level_ref_index_;
-  }
-
-  /**
-   * Sets the lit state
-   *
-   * @param lit whether the way is lit.
-   */
-  void set_lit(const bool lit) {
-    lit_ = lit;
-  }
-
-  /**
-   * Get the lit state.
-   *
-   * @return bool
-   */
-  bool lit() const {
-    return lit_;
-  }
-
-  /**
    * Get the names for the edge info based on the road class.
    * @param  ref              updated refs from relations.
    * @param  name_offset_map  map of unique names and refs from ways.
@@ -1757,10 +1691,6 @@ struct OSMWay {
   uint32_t destination_street_to_index_;
   uint32_t junction_ref_index_;
 
-  // level and level:ref of the way
-  uint32_t level_index_;
-  uint32_t level_ref_index_;
-
   // Bike network information. TODO - these are not yet used.
   //  uint32_t bike_national_ref_index_;
   //  uint32_t bike_regional_ref_index_;
@@ -1806,11 +1736,12 @@ struct OSMWay {
   uint32_t turn_channel_ : 1; // *link tag - turn channel (no ramp)
   uint32_t wheelchair_ : 1;
   uint32_t wheelchair_tag_ : 1;
+  uint32_t spare0_ : 1;
   uint32_t has_user_tags_ : 1;
   uint32_t has_pronunciation_tags_ : 1;
   uint32_t internal_ : 1;
   uint32_t hov_type_ : 1;
-  uint32_t indoor_ : 1;
+  uint32_t spare1_ : 1;
   uint32_t pedestrian_forward_ : 1;
   uint32_t pedestrian_backward_ : 1;
 
@@ -1843,8 +1774,7 @@ struct OSMWay {
   uint16_t use_sidepath_ : 1;
   uint16_t bike_forward_ : 1;
   uint16_t bike_backward_ : 1;
-  bool lit_ : 1;
-  uint16_t spare2_ : 3;
+  uint16_t spare2_ : 4;
 
   uint16_t nodecount_;
 

@@ -46,13 +46,8 @@ private:
 class IViterbiSearch;
 
 // TODO test it
-class StateIdIterator {
+class StateIdIterator : public std::iterator<std::forward_iterator_tag, StateId> {
 public:
-  using iterator_category = std::forward_iterator_tag;
-  using value_type = StateId;
-  using difference_type = std::ptrdiff_t;
-  using pointer = StateId*;
-  using reference = StateId&;
   StateIdIterator(IViterbiSearch& vs,
                   StateId::Time time,
                   const StateId& stateid,

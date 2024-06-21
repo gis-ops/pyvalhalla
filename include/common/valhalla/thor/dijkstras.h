@@ -13,7 +13,7 @@
 #include <valhalla/baldr/graphreader.h>
 #include <valhalla/baldr/location.h>
 #include <valhalla/baldr/time_info.h>
-#include <valhalla/proto/common.pb.h>
+#include <valhalla/proto/tripcommon.pb.h>
 #include <valhalla/sif/dynamiccost.h>
 #include <valhalla/sif/edgelabel.h>
 #include <valhalla/thor/edgestatus.h>
@@ -102,8 +102,7 @@ protected:
   ComputeMultiModal(google::protobuf::RepeatedPtrField<valhalla::Location>& origin_locations,
                     baldr::GraphReader& graphreader,
                     const sif::mode_costing_t& mode_costing,
-                    const sif::TravelMode mode,
-                    const valhalla::Options& options);
+                    const sif::TravelMode mode);
 
   // A child-class must implement this to learn about what nodes were expanded
   virtual void ExpandingNode(baldr::GraphReader&,
@@ -130,8 +129,8 @@ protected:
   uint32_t dow_;
   uint32_t day_;
   uint32_t max_transfer_distance_;
-  uint32_t max_walking_dist_;
   std::string origin_date_time_;
+  uint32_t start_time_;
   std::unordered_map<std::string, uint32_t> operators_;
   std::unordered_set<uint32_t> processed_tiles_;
 

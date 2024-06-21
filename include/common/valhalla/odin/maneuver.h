@@ -12,10 +12,10 @@
 
 #include <valhalla/odin/signs.h>
 #include <valhalla/odin/transitrouteinfo.h>
-#include <valhalla/proto/common.pb.h>
 #include <valhalla/proto/directions.pb.h>
 #include <valhalla/proto/options.pb.h>
 #include <valhalla/proto/trip.pb.h>
+#include <valhalla/proto/tripcommon.pb.h>
 
 using namespace valhalla::baldr;
 
@@ -378,24 +378,6 @@ public:
   const BikeShareStationInfo& bss_info() const;
   void set_bss_info(const BikeShareStationInfo& bss_info);
 
-  bool elevator() const;
-  void set_elevator(bool elevator);
-
-  bool indoor_steps() const;
-  void set_indoor_steps(bool indoor_steps);
-
-  bool escalator() const;
-  void set_escalator(bool escalator);
-
-  bool building_enter() const;
-  void set_building_enter(bool building_enter);
-
-  bool building_exit() const;
-  void set_building_exit(bool building_exit);
-
-  std::string end_level_ref() const;
-  void set_end_level_ref(std::string end_level_ref);
-
 #ifdef LOGGING_LEVEL_TRACE
   std::string ToString() const;
 
@@ -470,14 +452,6 @@ protected:
 
   // Bss support
   BikeShareStationInfo bss_info_;
-
-  // Indoor elements
-  bool elevator_;
-  bool indoor_steps_;
-  bool escalator_;
-  bool building_enter_;
-  bool building_exit_;
-  std::string end_level_ref_;
 
   ////////////////////////////////////////////////////////////////////////////
   // Transit support

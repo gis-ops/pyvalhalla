@@ -2,10 +2,11 @@
 #define VALHALLA_BALDR_STREETNAME_H_
 
 #include <memory>
-#include <optional>
 #include <string>
 
-#include <valhalla/proto/common.pb.h>
+#include <boost/optional.hpp>
+
+#include <valhalla/proto/tripcommon.pb.h>
 
 namespace valhalla {
 namespace baldr {
@@ -25,7 +26,7 @@ public:
    */
   StreetName(const std::string& value,
              const bool is_route_number,
-             const std::optional<baldr::Pronunciation>& pronunciation = std::nullopt);
+             const boost::optional<baldr::Pronunciation>& pronunciation = boost::none);
 
   virtual ~StreetName();
 
@@ -41,7 +42,7 @@ public:
    * Returns the pronunciation of this street name.
    * @return the pronunciation of this street name.
    */
-  const std::optional<baldr::Pronunciation>& pronunciation() const;
+  const boost::optional<baldr::Pronunciation>& pronunciation() const;
 
   bool operator==(const StreetName& rhs) const;
 
@@ -62,7 +63,7 @@ public:
 protected:
   std::string value_;
   bool is_route_number_;
-  std::optional<baldr::Pronunciation> pronunciation_;
+  boost::optional<baldr::Pronunciation> pronunciation_;
 };
 
 } // namespace baldr

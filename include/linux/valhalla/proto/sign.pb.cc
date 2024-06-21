@@ -20,11 +20,12 @@ namespace _pbi = _pb::internal;
 namespace valhalla {
 PROTOBUF_CONSTEXPR TripSignElement::TripSignElement(
     ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.text_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.pronunciation_)*/nullptr
-  , /*decltype(_impl_.is_route_number_)*/false
-  , /*decltype(_impl_.consecutive_count_)*/0u
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+    /*decltype(_impl_.pronunciation_)*/nullptr
+  , /*decltype(_impl_.has_text_)*/{}
+  , /*decltype(_impl_.has_is_route_number_)*/{}
+  , /*decltype(_impl_.has_consecutive_count_)*/{}
+  , /*decltype(_impl_._cached_size_)*/{}
+  , /*decltype(_impl_._oneof_case_)*/{}} {}
 struct TripSignElementDefaultTypeInternal {
   PROTOBUF_CONSTEXPR TripSignElementDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -85,27 +86,47 @@ TripSignElement::TripSignElement(const TripSignElement& from)
   : ::PROTOBUF_NAMESPACE_ID::MessageLite() {
   TripSignElement* const _this = this; (void)_this;
   new (&_impl_) Impl_{
-      decltype(_impl_.text_){}
-    , decltype(_impl_.pronunciation_){nullptr}
-    , decltype(_impl_.is_route_number_){}
-    , decltype(_impl_.consecutive_count_){}
-    , /*decltype(_impl_._cached_size_)*/{}};
+      decltype(_impl_.pronunciation_){nullptr}
+    , decltype(_impl_.has_text_){}
+    , decltype(_impl_.has_is_route_number_){}
+    , decltype(_impl_.has_consecutive_count_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+    , /*decltype(_impl_._oneof_case_)*/{}};
 
   _internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
-  _impl_.text_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.text_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_text().empty()) {
-    _this->_impl_.text_.Set(from._internal_text(), 
-      _this->GetArenaForAllocation());
-  }
   if (from._internal_has_pronunciation()) {
     _this->_impl_.pronunciation_ = new ::valhalla::Pronunciation(*from._impl_.pronunciation_);
   }
-  ::memcpy(&_impl_.is_route_number_, &from._impl_.is_route_number_,
-    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.consecutive_count_) -
-    reinterpret_cast<char*>(&_impl_.is_route_number_)) + sizeof(_impl_.consecutive_count_));
+  clear_has_has_text();
+  switch (from.has_text_case()) {
+    case kText: {
+      _this->_internal_set_text(from._internal_text());
+      break;
+    }
+    case HAS_TEXT_NOT_SET: {
+      break;
+    }
+  }
+  clear_has_has_is_route_number();
+  switch (from.has_is_route_number_case()) {
+    case kIsRouteNumber: {
+      _this->_internal_set_is_route_number(from._internal_is_route_number());
+      break;
+    }
+    case HAS_IS_ROUTE_NUMBER_NOT_SET: {
+      break;
+    }
+  }
+  clear_has_has_consecutive_count();
+  switch (from.has_consecutive_count_case()) {
+    case kConsecutiveCount: {
+      _this->_internal_set_consecutive_count(from._internal_consecutive_count());
+      break;
+    }
+    case HAS_CONSECUTIVE_COUNT_NOT_SET: {
+      break;
+    }
+  }
   // @@protoc_insertion_point(copy_constructor:valhalla.TripSignElement)
 }
 
@@ -114,16 +135,16 @@ inline void TripSignElement::SharedCtor(
   (void)arena;
   (void)is_message_owned;
   new (&_impl_) Impl_{
-      decltype(_impl_.text_){}
-    , decltype(_impl_.pronunciation_){nullptr}
-    , decltype(_impl_.is_route_number_){false}
-    , decltype(_impl_.consecutive_count_){0u}
+      decltype(_impl_.pronunciation_){nullptr}
+    , decltype(_impl_.has_text_){}
+    , decltype(_impl_.has_is_route_number_){}
+    , decltype(_impl_.has_consecutive_count_){}
     , /*decltype(_impl_._cached_size_)*/{}
+    , /*decltype(_impl_._oneof_case_)*/{}
   };
-  _impl_.text_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.text_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  clear_has_has_text();
+  clear_has_has_is_route_number();
+  clear_has_has_consecutive_count();
 }
 
 TripSignElement::~TripSignElement() {
@@ -137,13 +158,64 @@ TripSignElement::~TripSignElement() {
 
 inline void TripSignElement::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.text_.Destroy();
   if (this != internal_default_instance()) delete _impl_.pronunciation_;
+  if (has_has_text()) {
+    clear_has_text();
+  }
+  if (has_has_is_route_number()) {
+    clear_has_is_route_number();
+  }
+  if (has_has_consecutive_count()) {
+    clear_has_consecutive_count();
+  }
 }
 
 void TripSignElement::SetCachedSize(int size) const {
   _impl_._cached_size_.Set(size);
 }
+
+void TripSignElement::clear_has_text() {
+// @@protoc_insertion_point(one_of_clear_start:valhalla.TripSignElement)
+  switch (has_text_case()) {
+    case kText: {
+      _impl_.has_text_.text_.Destroy();
+      break;
+    }
+    case HAS_TEXT_NOT_SET: {
+      break;
+    }
+  }
+  _impl_._oneof_case_[0] = HAS_TEXT_NOT_SET;
+}
+
+void TripSignElement::clear_has_is_route_number() {
+// @@protoc_insertion_point(one_of_clear_start:valhalla.TripSignElement)
+  switch (has_is_route_number_case()) {
+    case kIsRouteNumber: {
+      // No need to clear
+      break;
+    }
+    case HAS_IS_ROUTE_NUMBER_NOT_SET: {
+      break;
+    }
+  }
+  _impl_._oneof_case_[1] = HAS_IS_ROUTE_NUMBER_NOT_SET;
+}
+
+void TripSignElement::clear_has_consecutive_count() {
+// @@protoc_insertion_point(one_of_clear_start:valhalla.TripSignElement)
+  switch (has_consecutive_count_case()) {
+    case kConsecutiveCount: {
+      // No need to clear
+      break;
+    }
+    case HAS_CONSECUTIVE_COUNT_NOT_SET: {
+      break;
+    }
+  }
+  _impl_._oneof_case_[2] = HAS_CONSECUTIVE_COUNT_NOT_SET;
+}
+
 
 void TripSignElement::Clear() {
 // @@protoc_insertion_point(message_clear_start:valhalla.TripSignElement)
@@ -151,14 +223,13 @@ void TripSignElement::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.text_.ClearToEmpty();
   if (GetArenaForAllocation() == nullptr && _impl_.pronunciation_ != nullptr) {
     delete _impl_.pronunciation_;
   }
   _impl_.pronunciation_ = nullptr;
-  ::memset(&_impl_.is_route_number_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&_impl_.consecutive_count_) -
-      reinterpret_cast<char*>(&_impl_.is_route_number_)) + sizeof(_impl_.consecutive_count_));
+  clear_has_text();
+  clear_has_is_route_number();
+  clear_has_consecutive_count();
   _internal_metadata_.Clear<std::string>();
 }
 
@@ -181,7 +252,7 @@ const char* TripSignElement::_InternalParse(const char* ptr, ::_pbi::ParseContex
       // bool is_route_number = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
-          _impl_.is_route_number_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          _internal_set_is_route_number(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr));
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -189,7 +260,7 @@ const char* TripSignElement::_InternalParse(const char* ptr, ::_pbi::ParseContex
       // uint32 consecutive_count = 3;
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
-          _impl_.consecutive_count_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          _internal_set_consecutive_count(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr));
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -232,7 +303,7 @@ uint8_t* TripSignElement::_InternalSerialize(
   (void) cached_has_bits;
 
   // string text = 1;
-  if (!this->_internal_text().empty()) {
+  if (_internal_has_text()) {
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_text().data(), static_cast<int>(this->_internal_text().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
@@ -242,13 +313,13 @@ uint8_t* TripSignElement::_InternalSerialize(
   }
 
   // bool is_route_number = 2;
-  if (this->_internal_is_route_number() != 0) {
+  if (_internal_has_is_route_number()) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteBoolToArray(2, this->_internal_is_route_number(), target);
   }
 
   // uint32 consecutive_count = 3;
-  if (this->_internal_consecutive_count() != 0) {
+  if (_internal_has_consecutive_count()) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteUInt32ToArray(3, this->_internal_consecutive_count(), target);
   }
@@ -276,13 +347,6 @@ size_t TripSignElement::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // string text = 1;
-  if (!this->_internal_text().empty()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_text());
-  }
-
   // .valhalla.Pronunciation pronunciation = 4;
   if (this->_internal_has_pronunciation()) {
     total_size += 1 +
@@ -290,16 +354,38 @@ size_t TripSignElement::ByteSizeLong() const {
         *_impl_.pronunciation_);
   }
 
-  // bool is_route_number = 2;
-  if (this->_internal_is_route_number() != 0) {
-    total_size += 1 + 1;
+  switch (has_text_case()) {
+    // string text = 1;
+    case kText: {
+      total_size += 1 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+          this->_internal_text());
+      break;
+    }
+    case HAS_TEXT_NOT_SET: {
+      break;
+    }
   }
-
-  // uint32 consecutive_count = 3;
-  if (this->_internal_consecutive_count() != 0) {
-    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_consecutive_count());
+  switch (has_is_route_number_case()) {
+    // bool is_route_number = 2;
+    case kIsRouteNumber: {
+      total_size += 1 + 1;
+      break;
+    }
+    case HAS_IS_ROUTE_NUMBER_NOT_SET: {
+      break;
+    }
   }
-
+  switch (has_consecutive_count_case()) {
+    // uint32 consecutive_count = 3;
+    case kConsecutiveCount: {
+      total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_consecutive_count());
+      break;
+    }
+    case HAS_CONSECUTIVE_COUNT_NOT_SET: {
+      break;
+    }
+  }
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     total_size += _internal_metadata_.unknown_fields<std::string>(::PROTOBUF_NAMESPACE_ID::internal::GetEmptyString).size();
   }
@@ -321,18 +407,36 @@ void TripSignElement::MergeFrom(const TripSignElement& from) {
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (!from._internal_text().empty()) {
-    _this->_internal_set_text(from._internal_text());
-  }
   if (from._internal_has_pronunciation()) {
     _this->_internal_mutable_pronunciation()->::valhalla::Pronunciation::MergeFrom(
         from._internal_pronunciation());
   }
-  if (from._internal_is_route_number() != 0) {
-    _this->_internal_set_is_route_number(from._internal_is_route_number());
+  switch (from.has_text_case()) {
+    case kText: {
+      _this->_internal_set_text(from._internal_text());
+      break;
+    }
+    case HAS_TEXT_NOT_SET: {
+      break;
+    }
   }
-  if (from._internal_consecutive_count() != 0) {
-    _this->_internal_set_consecutive_count(from._internal_consecutive_count());
+  switch (from.has_is_route_number_case()) {
+    case kIsRouteNumber: {
+      _this->_internal_set_is_route_number(from._internal_is_route_number());
+      break;
+    }
+    case HAS_IS_ROUTE_NUMBER_NOT_SET: {
+      break;
+    }
+  }
+  switch (from.has_consecutive_count_case()) {
+    case kConsecutiveCount: {
+      _this->_internal_set_consecutive_count(from._internal_consecutive_count());
+      break;
+    }
+    case HAS_CONSECUTIVE_COUNT_NOT_SET: {
+      break;
+    }
   }
   _this->_internal_metadata_.MergeFrom<std::string>(from._internal_metadata_);
 }
@@ -350,19 +454,14 @@ bool TripSignElement::IsInitialized() const {
 
 void TripSignElement::InternalSwap(TripSignElement* other) {
   using std::swap;
-  auto* lhs_arena = GetArenaForAllocation();
-  auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.text_, lhs_arena,
-      &other->_impl_.text_, rhs_arena
-  );
-  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(TripSignElement, _impl_.consecutive_count_)
-      + sizeof(TripSignElement::_impl_.consecutive_count_)
-      - PROTOBUF_FIELD_OFFSET(TripSignElement, _impl_.pronunciation_)>(
-          reinterpret_cast<char*>(&_impl_.pronunciation_),
-          reinterpret_cast<char*>(&other->_impl_.pronunciation_));
+  swap(_impl_.pronunciation_, other->_impl_.pronunciation_);
+  swap(_impl_.has_text_, other->_impl_.has_text_);
+  swap(_impl_.has_is_route_number_, other->_impl_.has_is_route_number_);
+  swap(_impl_.has_consecutive_count_, other->_impl_.has_consecutive_count_);
+  swap(_impl_._oneof_case_[0], other->_impl_._oneof_case_[0]);
+  swap(_impl_._oneof_case_[1], other->_impl_._oneof_case_[1]);
+  swap(_impl_._oneof_case_[2], other->_impl_._oneof_case_[2]);
 }
 
 std::string TripSignElement::GetTypeName() const {

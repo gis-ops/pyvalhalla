@@ -1,7 +1,6 @@
 #ifndef VALHALLA_BALDR_GRAPHTILEHEADER_H_
 #define VALHALLA_BALDR_GRAPHTILEHEADER_H_
 
-#include <array>
 #include <cstdint>
 #include <cstdlib>
 #include <string>
@@ -188,7 +187,7 @@ public:
    * @return  Returns the version of this tile.
    */
   std::string version() const {
-    return version_.data();
+    return version_;
   }
 
   /**
@@ -591,7 +590,6 @@ public:
   }
 
 protected:
-  // TODO when c++20 bitfields can be initialized here
   // GraphId (tileid and level) of this tile. Data quality metrics.
   uint64_t graphid_ : 46;
   uint64_t density_ : 4;
@@ -603,13 +601,13 @@ protected:
 
   // TODO: in v4, don't store this its superfluous information, the graphid has all we need
   // Base lon, lat of the tile
-  std::pair<float, float> base_ll_ = {0, 0};
+  std::pair<float, float> base_ll_;
 
   // baldr version.
-  std::array<char, kMaxVersionSize> version_ = {};
+  char version_[kMaxVersionSize];
 
   // Dataset Id
-  uint64_t dataset_id_ = 0;
+  uint64_t dataset_id_;
 
   // Record counts (for fixed size records). Node and directed edge have a max of
   // kMaxGraphId which is 21 bits.
@@ -665,36 +663,36 @@ protected:
   // the GraphTileHeader structure and order of data within the structure does not change
   // this should be backwards compatible. Make sure use of bits from spareword* does not
   // exceed 128 bits.
-  uint64_t spareword0_ = 0;
-  uint64_t spareword1_ = 0;
+  uint64_t spareword0_;
+  uint64_t spareword1_;
 
   // Offsets to beginning of data (for variable size records)
-  uint32_t complex_restriction_forward_offset_ = 0; // Offset to complex restriction list
-  uint32_t complex_restriction_reverse_offset_ = 0; // Offset to complex restriction list
-  uint32_t edgeinfo_offset_ = 0;                    // Offset to edge info
-  uint32_t textlist_offset_ = 0;                    // Offset to text list
+  uint32_t complex_restriction_forward_offset_; // Offset to complex restriction list
+  uint32_t complex_restriction_reverse_offset_; // Offset to complex restriction list
+  uint32_t edgeinfo_offset_;                    // Offset to edge info
+  uint32_t textlist_offset_;                    // Offset to text list
 
   // Date the tile was created. Days since pivot date.
-  uint32_t date_created_ = 0;
+  uint32_t date_created_;
 
   // Offsets for each bin of the 5x5 grid (for search/lookup)
-  std::array<uint32_t, kBinCount> bin_offsets_ = {};
+  uint32_t bin_offsets_[kBinCount];
 
   // Offset to beginning of the lane connectivity data
-  uint32_t lane_connectivity_offset_ = 0;
+  uint32_t lane_connectivity_offset_;
 
   // Offset to the beginning of the predicted speed data
-  uint32_t predictedspeeds_offset_ = 0;
+  uint32_t predictedspeeds_offset_;
 
   // GraphTile data size in bytes
-  uint32_t tile_size_ = 0;
+  uint32_t tile_size_;
 
   // Marks the end of this version of the tile with the rest of the slots
   // being available for growth. If you want to use one of the empty slots,
   // simply add a uint32_t some_offset_; just above empty_slots_ and decrease
   // kEmptySlots by 1. Note that you can ONLY add an offset here and NOT a
   // bitfield or union or anything like that
-  std::array<uint32_t, kEmptySlots> empty_slots_ = {};
+  uint32_t empty_slots_[kEmptySlots];
 };
 
 } // namespace baldr

@@ -7,7 +7,7 @@ cd valhalla-py
 git config --global --add safe.directory /valhalla-py/upstream
 
 # locally extend the PATH to avoid problems
-PATH="${PATH}:/opt/_internal/cpython-3.10.11/bin"
+PATH="${PATH}:/opt/_internal/cpython-3.10.14/bin"
 
 # install conan
 python3.10 -m pip install --upgrade pip "conan<2.0.0"
@@ -21,7 +21,7 @@ git apply --reject --whitespace=fix ../upstream_patches/*
 popd
 
 # build valhalla
-cmake -B upstream/build -S upstream/ -DCMAKE_POSITION_INDEPENDENT_CODE=ON -DENABLE_CCACHE=OFF -DBUILD_SHARED_LIBS=OFF -DENABLE_BENCHMARKS=OFF -DENABLE_PYTHON_BINDINGS=OFF -DENABLE_TESTS=OFF -DENABLE_TOOLS=OFF -DENABLE_DATA_TOOLS=OFF -DENABLE_SERVICES=OFF -DENABLE_HTTP=OFF -DENABLE_CCACHE=OFF -DCMAKE_BUILD_TYPE=Release
+cmake -B upstream/build -S upstream/ -DCMAKE_POSITION_INDEPENDENT_CODE=ON -DENABLE_CCACHE=OFF -DBUILD_SHARED_LIBS=OFF -DENABLE_BENCHMARKS=OFF -DENABLE_PYTHON_BINDINGS=OFF -DENABLE_TESTS=OFF -DENABLE_TOOLS=OFF -DENABLE_DATA_TOOLS=OFF -DENABLE_SERVICES=OFF -DENABLE_HTTP=OFF -DENABLE_CCACHE=OFF -DCMAKE_BUILD_TYPE=Release  -DENABLE_SINGLE_FILES_WERROR=OFF
 cmake --build upstream/build -- -j$(nproc)
 
 echo "copying all headers"
@@ -39,6 +39,9 @@ cp -r upstream/valhalla include/common
 if [[ -d build ]]; then
   rm -r build
 fi
+
+mv include/common/valhalla/config.h.cmake include/common/valhalla/config.h
+mv include/common/valhalla/valhalla.h.in include/common/valhalla/valhalla.h
 
 # copy most recent valhalla_build_config.py
 cp upstream/scripts/valhalla_build_config valhalla/valhalla_build_config.py

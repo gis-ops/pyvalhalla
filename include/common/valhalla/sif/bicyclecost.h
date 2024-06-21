@@ -14,17 +14,17 @@ namespace sif {
  * @param doc The json request represented as a DOM tree.
  * @param costing_options_key A string representing the location in the DOM tree where the costing
  *                            options are stored.
- * @param pbf_costing         A mutable protocol buffer where the parsed json values will be stored.
+ * @param co A mutable protocol buffer where the parsed json values will be stored.
  */
 void ParseBicycleCostOptions(const rapidjson::Document& doc,
                              const std::string& costing_options_key,
-                             Costing* pbf_costing);
+                             CostingOptions* co);
 
 /**
  * Create a bicyclecost
- * @param  costing pbf with request options.
+ * @param  options pbf with request options.
  */
-cost_ptr_t CreateBicycleCost(const Costing& optcostingions);
+cost_ptr_t CreateBicycleCost(const CostingOptions& options);
 
 } // namespace sif
 } // namespace valhalla

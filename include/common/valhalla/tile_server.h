@@ -8,13 +8,9 @@ struct context_t;
 
 namespace valhalla {
 class test_tile_server_t {
-  std::string m_url{"*:8004"};
-
 public:
-  void start(const std::string& tile_source_dir, zmq::context_t& context);
-  void set_url(const std::string& url) {
-    m_url = url;
-  }
+  static const std::string server_url;
+  static void start(const std::string& tile_source_dir, zmq::context_t& context);
 };
 
 } // namespace valhalla

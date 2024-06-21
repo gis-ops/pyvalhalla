@@ -12,7 +12,7 @@
 #include <valhalla/baldr/graphid.h>
 #include <valhalla/baldr/graphreader.h>
 #include <valhalla/baldr/time_info.h>
-#include <valhalla/proto/common.pb.h>
+#include <valhalla/proto/tripcommon.pb.h>
 #include <valhalla/sif/dynamiccost.h>
 #include <valhalla/sif/edgelabel.h>
 #include <valhalla/sif/hierarchylimits.h>
@@ -74,7 +74,8 @@ public:
   void Clear() override;
 
 protected:
-  uint32_t max_walking_dist_;
+  // Current walking distance.
+  uint32_t walking_distance_;
   uint32_t max_label_count_; // Max label count to allow
   sif::TravelMode mode_;     // Current travel mode
   uint8_t travel_type_;      // Current travel type

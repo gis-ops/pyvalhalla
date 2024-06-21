@@ -2,12 +2,11 @@
 #define VALHALLA_BALDR_LOCATION_H_
 
 #include <cstdint>
-#include <optional>
 #include <string>
 
 #include <valhalla/baldr/rapidjson_utils.h>
 #include <valhalla/midgard/pointll.h>
-#include <valhalla/proto/common.pb.h>
+#include <valhalla/proto/tripcommon.pb.h>
 
 namespace valhalla {
 namespace baldr {
@@ -72,7 +71,7 @@ public:
            unsigned long radius = 0,
            const PreferredSide& side = PreferredSide::EITHER,
            const SearchFilter& search_filter = SearchFilter(),
-           std::optional<int8_t> preferred_layer = {});
+           boost::optional<int8_t> preferred_layer = {});
 
   /**
    * equality.
@@ -89,9 +88,14 @@ public:
   // address of the location, probably should be its own more broken up structure
   std::string name_;
   std::string street_;
+  std::string city_;
+  std::string state_;
+  std::string zip_;
+  std::string country_;
 
-  std::optional<std::string> date_time_;
-  std::optional<float> heading_;
+  boost::optional<std::string> date_time_;
+  boost::optional<float> heading_;
+  boost::optional<uint64_t> way_id_;
 
   // try to find candidates who are reachable from/to this many or more nodes
   // if a given candidate edge is reachable to/from less than this number of nodes its considered to
@@ -112,9 +116,9 @@ public:
   SearchFilter search_filter_;
 
   // coordinates of the location as used for altering the side of street
-  std::optional<midgard::PointLL> display_latlng_;
+  boost::optional<midgard::PointLL> display_latlng_;
 
-  std::optional<int8_t> preferred_layer_;
+  boost::optional<int8_t> preferred_layer_;
 
 protected:
 };

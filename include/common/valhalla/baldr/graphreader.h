@@ -2,7 +2,6 @@
 
 #include <algorithm>
 #include <cstdint>
-#include <limits>
 #include <memory>
 #include <mutex>
 #include <string>
@@ -158,8 +157,7 @@ protected:
   }
   inline uint32_t get_index(const GraphId& graphid) const {
     auto offset = get_offset(graphid);
-    // using max value to indicate invalid
-    return offset < cache_indices_.size() ? cache_indices_[offset] : midgard::invalid<uint32_t>();
+    return offset < cache_indices_.size() ? cache_indices_[offset] : -1;
   }
 
   // The actual cached GraphTile objects
@@ -441,12 +439,9 @@ public:
    * @param pt  Property tree listing the configuration for the tile storage
    * @param tile_getter Object responsible for getting tiles by url. If nullptr default implementation
    * is in use.
-   * @param traffic_readonly Flag to indicate if memory-mapped traffic extract should be writeable or
-   * read-only (default).
    */
   explicit GraphReader(const boost::property_tree::ptree& pt,
-                       std::unique_ptr<tile_getter_t>&& tile_getter = nullptr,
-                       bool traffic_readonly = true);
+                       std::unique_ptr<tile_getter_t>&& tile_getter = nullptr);
 
   virtual ~GraphReader() = default;
 
@@ -700,6 +695,22 @@ public:
   std::vector<GraphId> RecoverShortcut(const GraphId& shortcutid);
 
   /**
+   * Returns overall speeds for all relevant shortcuts, i.e. the ones
+   * containing traffic matched edge_ids
+   *@return Returns a map of shortcut IDs to recovered edge IDs
+   */
+  std::unordered_map<uint64_t, std::vector<uint64_t>> GetAllShortcuts();
+
+  /**
+   * Returns the speed for an edge not covered by live speed
+   * NOTE: will not give live speed results, since we initialize the Actor without
+   * to be able to map-match properly
+   * @return Speed of an edge not covered by live speed
+   */
+
+  uint32_t GetEdgeSpeed(const uint64_t edge_id);
+
+  /**
    * Convenience method to get the relative edge density (from the
    * begin node of an edge).
    * @param   edgeid  Graph Id of the directed edge.
@@ -945,7 +956,7 @@ public:
 protected:
   // (Tar) extract of tiles - the contents are empty if not being used
   struct tile_extract_t {
-    tile_extract_t(const boost::property_tree::ptree& pt, bool traffic_readonly = true);
+    tile_extract_t(const boost::property_tree::ptree& pt);
     // TODO: dont remove constness, and actually make graphtile read only?
     std::unordered_map<uint64_t, std::pair<char*, size_t>> tiles;
     std::unordered_map<uint64_t, std::pair<char*, size_t>> traffic_tiles;

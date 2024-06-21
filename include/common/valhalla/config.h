@@ -6,10 +6,7 @@
 #define VALHALLA_STRINGIZE(A) VALHALLA_STRINGIZE_NX(A)
 
 /* Version number of package */
-
-// clang-format off
 #define VALHALLA_VERSION VALHALLA_STRINGIZE(VALHALLA_VERSION_MAJOR) "." VALHALLA_STRINGIZE(VALHALLA_VERSION_MINOR) "." VALHALLA_STRINGIZE(VALHALLA_VERSION_PATCH)
-// clang-format on
 
 /* Name of package */
 #define PACKAGE "valhalla-" VALHALLA_VERSION
@@ -31,3 +28,5 @@
 
 /* Define to the version of this package. */
 #define PACKAGE_VERSION VALHALLA_VERSION
+
+

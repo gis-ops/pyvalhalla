@@ -118,10 +118,6 @@ inline TripLeg_Node_Type GetTripLegNodeType(const baldr::NodeType node_type) {
       return TripLeg_Node_Type_kTollGantry;
     case baldr::NodeType::kSumpBuster:
       return TripLeg_Node_Type_kSumpBuster;
-    case baldr::NodeType::kBuildingEntrance:
-      return TripLeg_Node_Type_kBuildingEntrance;
-    case baldr::NodeType::kElevator:
-      return TripLeg_Node_Type_kElevator;
   }
   auto num = static_cast<uint8_t>(node_type);
   throw std::runtime_error(std::string(__FILE__) + ":" + std::to_string(__LINE__) +
@@ -192,8 +188,6 @@ inline TripLeg_Use GetTripLegUse(const baldr::Use use) {
       return TripLeg_Use_kCuldesacUse;
     case baldr::Use::kLivingStreet:
       return TripLeg_Use_kLivingStreetUse;
-    case baldr::Use::kServiceRoad:
-      return TripLeg_Use_kServiceRoadUse;
     case baldr::Use::kCycleway:
       return TripLeg_Use_kCyclewayUse;
     case baldr::Use::kMountainBike:
@@ -203,12 +197,8 @@ inline TripLeg_Use GetTripLegUse(const baldr::Use use) {
       return TripLeg_Use_kFootwayUse; // TODO: update when odin has been updated
     case baldr::Use::kFootway:
       return TripLeg_Use_kFootwayUse;
-    case baldr::Use::kElevator:
-      return TripLeg_Use_kElevatorUse;
     case baldr::Use::kSteps:
       return TripLeg_Use_kStepsUse;
-    case baldr::Use::kEscalator:
-      return TripLeg_Use_kEscalatorUse;
     case baldr::Use::kPath:
       return TripLeg_Use_kPathUse;
     case baldr::Use::kPedestrian:
@@ -227,8 +217,6 @@ inline TripLeg_Use GetTripLegUse(const baldr::Use use) {
       return TripLeg_Use_kFerryUse;
     case baldr::Use::kRailFerry:
       return TripLeg_Use_kRailFerryUse;
-    case baldr::Use::kConstruction:
-      return TripLeg_Use_kConstructionUse;
     case baldr::Use::kRail:
       return TripLeg_Use_kRailUse;
     case baldr::Use::kBus:
@@ -259,8 +247,8 @@ const std::string& GuidanceViewTypeToString(const valhalla::DirectionsLeg_Guidan
 // which would allow us to delete this completely would be to target a newer protobuf version
 bool Options_Action_Enum_Parse(const std::string& action, Options::Action* a);
 const std::string& Options_Action_Enum_Name(const Options::Action action);
-bool Costing_Enum_Parse(const std::string& costing, Costing::Type* c);
-const std::string& Costing_Enum_Name(const Costing::Type costing);
+bool Costing_Enum_Parse(const std::string& costing, Costing* c);
+const std::string& Costing_Enum_Name(const Costing costing);
 bool ShapeMatch_Enum_Parse(const std::string& match, ShapeMatch* s);
 const std::string& ShapeMatch_Enum_Name(const ShapeMatch match);
 bool Options_Format_Enum_Parse(const std::string& format, Options::Format* f);
@@ -282,10 +270,6 @@ travel_mode_type(const valhalla::DirectionsLeg_Maneuver& maneuver);
 
 inline midgard::PointLL to_ll(const LatLng& ll) {
   return midgard::PointLL{ll.lng(), ll.lat()};
-}
-
-inline midgard::PointLL to_ll(const valhalla::Location& l) {
-  return midgard::PointLL{l.ll().lng(), l.ll().lat()};
 }
 
 inline void from_ll(valhalla::Location* l, const midgard::PointLL& p) {
