@@ -1,4 +1,4 @@
-[!WARNING]
+> [!WARNING]
 > This project has been archived, look at https://github.com/valhalla/valhalla
 
 # Valhalla for Python
