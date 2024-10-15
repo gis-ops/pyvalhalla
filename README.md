@@ -1,3 +1,6 @@
+[!WARNING]
+> This project has been archived, look at https://github.com/valhalla/valhalla
+
 # Valhalla for Python
 [![Master Push](https://github.com/gis-ops/pyvalhalla/actions/workflows/push_master.yml/badge.svg)](https://github.com/gis-ops/pyvalhalla/actions/workflows/push_master.yml)
 
